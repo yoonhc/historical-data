@@ -64,6 +64,7 @@ class Store:
             CREATE TABLE IF NOT EXISTS fetches (
                 id INTEGER PRIMARY KEY, artifact_id TEXT REFERENCES artifacts(id),
                 url TEXT NOT NULL, observed_at TEXT NOT NULL, metadata TEXT NOT NULL);
+            CREATE INDEX IF NOT EXISTS fetches_observed ON fetches(observed_at);
             CREATE TABLE IF NOT EXISTS revisions (
                 id TEXT PRIMARY KEY, key_id TEXT NOT NULL, key_json TEXT NOT NULL,
                 day TEXT NOT NULL, path TEXT NOT NULL, file_sha TEXT NOT NULL,

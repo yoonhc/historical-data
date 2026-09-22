@@ -1,13 +1,18 @@
 # 사용자 systemd 자동 수집
 
 이 디렉터리의 서비스·타이머는 현재 머신의 사용자 systemd에 연결되어 있습니다.
-다른 위치에서 사용하려면 두 `.service` 파일의 `WorkingDirectory`와 `ExecStart`를
+다른 위치에서 사용하려면 `.service` 파일의 `WorkingDirectory`와 `ExecStart`를
 실제 프로젝트 경로로 수정하세요. `.venv/bin/marketdata`가 해당 위치에 설치되어 있어야 합니다.
 
 - `marketdata-daily.timer`: 매일 UTC 03:20 이후 최대 5분의 분산 지연을 두고 일별 자료를 갱신합니다.
 - `marketdata-oi.timer`: 매 5분 경계에서 45초 뒤에 최근 REST OI를 수집합니다.
-- 활성화 후 30초부터 첫 수집을 실행합니다. 일별 작업에는 최대 5분의 분산 지연이 추가됩니다.
-- 두 타이머는 enabled/active이며 실제 자동 실행 성공을 확인했습니다. `yoonhc`의 linger도 활성화했습니다.
+- `marketdata-oi-probe.timer`: 15초마다 원본 HTTP 응답을 관측합니다. canonical 게시 없이
+  수신 이력만 추가하며, `AccuracySec=1s`와 `Persistent=false`를 사용합니다.
+- `marketdata-oi-quality.timer`: UTC 03:40 / 한국 시각 12:40에 최근 7일의 OI 품질 보고서를 만듭니다.
+  [관측 정책·보고서·종료 코드](../../docs/oi-quality.md)를 함께 확인하세요.
+- 기존 daily/oi 타이머는 활성화 후 30초부터 첫 수집을 실행합니다. 일별 작업에는 최대 5분의
+  분산 지연이 추가됩니다. 관측기는 2초, 품질 보고서는 5초 후 첫 실행을 예약합니다.
+- 네 타이머는 enabled/active이며 실제 자동 실행 성공을 확인했습니다. `yoonhc`의 linger도 활성화했습니다.
 - 작업은 `Type=oneshot`이므로 성공한 서비스가 `inactive (dead)`인 것은 정상입니다. 타이머의 active 여부와 서비스의 `Result`를 확인하세요.
 - 실패 시 일별 작업은 60초, OI는 30초 후 재시도합니다. 일별 작업은 10분간 5회, OI는 5분간 4회로 시작 횟수를 제한합니다.
 - 최신 완료 보고서는 `state/daily-latest.json`, `state/oi-latest.json`입니다. 실행 이력은 SQLite에도 남습니다.
@@ -28,12 +33,16 @@ systemctl --user reset-failed marketdata-oi.service
 systemctl --user start marketdata-oi.service
 
 # 자동 실행 중지. 이미 실행 중인 작업까지 멈추려면 서비스도 stop합니다.
-systemctl --user disable --now marketdata-daily.timer marketdata-oi.timer
-systemctl --user stop marketdata-daily.service marketdata-oi.service
+systemctl --user disable --now marketdata-daily.timer marketdata-oi.timer \
+  marketdata-oi-probe.timer marketdata-oi-quality.timer
+systemctl --user stop marketdata-daily.service marketdata-oi.service \
+  marketdata-oi-probe.service marketdata-oi-quality.service
 ```
 
-`Persistent=true`로 머신을 꺼 둔 동안 놓친 실행을 재개하고, 수집기는 저장된 운영 범위에서
+daily/oi/oi-quality의 `Persistent=true`로 머신을 꺼 둔 동안 놓친 실행을 재개하고, 수집기는 저장된 운영 범위에서
 누락을 다시 계산합니다. 이미 보존한 원본·revision·스냅샷은 유지합니다. 머신이 꺼져 있거나
 절전 중에는 수집할 수 없으며, REST 제공 기간을 넘긴 누락은 `status`에 남습니다.
+oi-probe는 과거 시점의 HTTP 응답을 복구할 수 없으므로 `Persistent=false`로 실행하고,
+관측 공백을 품질 보고서에 표시합니다.
 
 설치 및 상태 확인 명령은 [프로젝트 README](../../README.md#갱신과-운영)에 있습니다.

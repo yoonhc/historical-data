@@ -1,0 +1,101 @@
+{
+  "checked_at": "2026-09-22T12:39:00.237597+00:00",
+  "pytest_passed": 95,
+  "ruff_check": "passed",
+  "ruff_format": "passed",
+  "git_diff_check": "passed",
+  "integrity": {
+    "checked": 10442,
+    "failures": [],
+    "ok": true
+  },
+  "report_id": "022f1bd021767f045d6b438ff2c16110cf70d9b44eb66db1757ef4e52a68901e",
+  "probe_version": 2,
+  "timing_eligible_probes": 42,
+  "old_boundary_policy_excluded": 92,
+  "observed_parity": {
+    "archive_label_shift_seconds": 300,
+    "quantity_and_value_exact": 2016,
+    "comparable": 2016
+  },
+  "systemd": {
+    "marketdata-oi-probe.timer": {
+      "active": true,
+      "enabled": true,
+      "cadence_seconds": 15
+    },
+    "marketdata-oi-quality.timer": {
+      "active": true,
+      "enabled": true,
+      "schedule": "03:40 UTC daily",
+      "next_at_validation": "2026-09-23T03:40:00Z"
+    },
+    "marketdata-oi-probe.service": {
+      "result": "success",
+      "exit_status": 0,
+      "last_exit": "2026-09-22T12:34:16Z"
+    },
+    "marketdata-oi-quality.service": {
+      "result": "success",
+      "exit_status": 2,
+      "last_exit": "2026-09-22T12:34:29Z"
+    },
+    "timezone": "Asia/Seoul",
+    "ntp_synchronized": true
+  },
+  "source_hashes": {
+    "integrations/systemd/marketdata-daily.service": "7ba5289fc742422fd1935bfe4515c274775262a5e6195214b2533311ab8d9d5c",
+    "integrations/systemd/marketdata-daily.timer": "c67b3d1268e6b38f9ccee07d12192579708b826851e7269be5c0b7a61eee03dd",
+    "integrations/systemd/marketdata-oi-probe.service": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+    "integrations/systemd/marketdata-oi-probe.timer": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+    "integrations/systemd/marketdata-oi-quality.service": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+    "integrations/systemd/marketdata-oi-quality.timer": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+    "integrations/systemd/marketdata-oi.service": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+    "integrations/systemd/marketdata-oi.timer": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+    "packages/marketdata/src/marketdata/__init__.py": "44a5fa1cce21a83e01fd81a9f2c34b7606177eb5dfd807d226b06a0e70c70e30",
+    "packages/marketdata/src/marketdata/backfill.py": "c244d85168bf2742ee7e596b6ff08fcdc1ade659839487840e31a60e2de3c7ff",
+    "packages/marketdata/src/marketdata/binance.py": "3250e4d20809801ff48e64955a955789a25bb294eeebe548f6f94323f054990f",
+    "packages/marketdata/src/marketdata/cli.py": "8cb0f6df30695b90164c805fba2d5c67ec75b665f1d52ea55dce306ab7ee2fd2",
+    "packages/marketdata/src/marketdata/domain.py": "73f8b66d835116dd32c10503e89b5d49e0b6e060972451d13494a27a68c7a47f",
+    "packages/marketdata/src/marketdata/normalize.py": "7457cab7bca40b4b2a39d5b00cfe143f953390b8457264478d9c1819c4d7a3a8",
+    "packages/marketdata/src/marketdata/oi_probe.py": "dadae21a8228622c54555f68379eee946cc21cb8b68e3e74178004bc31acebae",
+    "packages/marketdata/src/marketdata/oi_quality.py": "0bf1ebee69811c9d32dcdabcb773ba785355ac037f95771b8f1c7c664cd07f27",
+    "packages/marketdata/src/marketdata/operations.py": "d7668cb005905ca10afdc019477f200594f969339f17b543fb1cdbc988bcf3cd",
+    "packages/marketdata/src/marketdata/pipeline.py": "9cf20eb9b832d8eec67d137e0078c4fe3ea746810f6bb6f8b2af22c758b62eae",
+    "packages/marketdata/src/marketdata/research.py": "b0a2d224bafc5d2969574fa1c3b71e10a758b7a3bbf5e762d20b8e9357786939",
+    "packages/marketdata/src/marketdata/schema.py": "ac440454f1353979c2ae38ca5335a93a4ce2d96e7dc34db4cdd4bbdc8d30212d",
+    "packages/marketdata/src/marketdata/store.py": "dcf343b15b85c88142823ae34b34fabb2f1297d3ccc6641cb86eef3f47366e7c",
+    "packages/marketdata/src/marketdata/transforms.py": "775d9fa8b01e6b30cfaadfc1a413c0f4a9d162f339c4342d3baf2d505e1e408d",
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/__init__.py": "d39fa9d53c3ae690e95e80bb9d75e5be0b20a3a7f0e239261b6c69f39d91eeb1",
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/cli.py": "7556897b5a124ad24143afc6b9abde576372e8f9b47370d1f7971f7411bbfb13",
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/export.py": "697e9633f67b663f39e9053cd70e5eae5664cb3ca467ce8ddf1f157717ca0021",
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/features.py": "ea8f54f9993cd03dd43d6a125777a6ce6d9b74ec09b67d2cec33e647b575c2e7",
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/window.py": "5365aa8c7c6e07303c80260df4c36054b07bf2c06a33e9a736441ac65c2c84c8",
+    "scripts/audit_legacy_oi.py": "6f2e3eec4cb9806a953323938c5bf932d0a475a12e849e9416d2ceca0f695f3a",
+    "scripts/build_freqtrade_exports.py": "8552af6131ed290834824cdb19b7e5ca8ee77376ed4bb8f6810e907b5ef11368",
+    "scripts/build_research_dataset.py": "3a411d53cbfc6623901cea5b3281314074e77cb1a1b5bea79c6d3cb6c70e6fe9",
+    "scripts/build_smoke_export.py": "5f6f02a7104c0bbc0162533326bb82a03623d70072ac95e1398696ee42727d58",
+    "scripts/freqtrade_run.py": "4272af8dc13ea4e7c50034696c10e77d99ec394eed2a94f58a3105f0f9cb7396",
+    "scripts/summarize_backtests.py": "29bb6b2c79b5926ddee6b6ce09b2188e8640e9b7dd89e7ffd9733c2db671090a",
+    "tests/conftest.py": "a03128a11532c96a081d1d8f027540ac88a264eb25b03bd60d8e812ad752b590",
+    "tests/test_adapter.py": "5fe9724c9ef4dba70f4fa7cd381c056f15aff422b17c5b17b8095e912c831ead",
+    "tests/test_backfill.py": "397cb6aedebf929e144ab83ebbcde2701e98cabe3d01a432631e99a990024a6c",
+    "tests/test_freqtrade_run.py": "981034b72115d5a09ecc557867bed9b14c280d66155c8cbf697ba76320325461",
+    "tests/test_ingestion.py": "970312503459ab9f127086fe01be5bfa47991e907b37b7223953ec4bc93fb840",
+    "tests/test_oi_probe.py": "016888785d098193ab5e1c4f75ad6e04dd0352d93d088b617c993313a79a92f5",
+    "tests/test_oi_quality.py": "5efe10f01931d239413a61d3ba4d6effe81934c587345f4e7c7626cf2ae1eabb",
+    "tests/test_operations.py": "8ff84a1c98c5cfe96f7dcc640adce9e127ebcc09311b45b3440148e4314c6cdc",
+    "tests/test_recovery.py": "01756ee1ab4b3717411b34dfbf0f406cf5cb3195bf9648a2f184e2d8b74f4383",
+    "tests/test_research.py": "033388629d5d5079245404b9242d4e72767d78d62eefa63264c6e80b62d5f803",
+    "tests/test_transport.py": "b799676b4c4b91756fcd38b19992cac1857661e83247b0f1c381f869c97816a3",
+    "tests/test_window_export.py": "bcc99f0ed2d055a5c77199a86c34f503f8a92d807f3fae266c7e26060d789dbf",
+    "uv.lock": "ec69ef4994b93198ff198c44501a3207a2ab7bd6ac3b9797f875807c41acef95",
+    ".gitattributes": "e8068497b2d55c23573460d6435e7b63bd98512ff911e48ef2ee5da690f7ee67"
+  },
+  "limits": [
+    "Only about ten minutes of v2 evidence in this frozen report; no general publication-delay estimate.",
+    "Unit labels remain unverified; no automatic timestamp shift or canonical replacement.",
+    "needs_review reflects a 96.638423-second setup observation gap."
+  ],
+  "csv_record_separators": "Original CRLF bytes preserved; Git whitespace attribute permits CR at line endings."
+}

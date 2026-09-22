@@ -9,7 +9,9 @@ from pathlib import Path
 
 from .backfill import backfill_set
 from .binance import SourceError, archive_units, archive_url
-from .domain import DataError, Key, json_bytes, json_default, utc
+from .domain import DAY, DataError, Key, json_bytes, json_default, now, utc
+from .oi_probe import probe_once
+from .oi_quality import SHIFTS, quality_report, write_report
 from .operations import SyncPolicy, status, update
 from .pipeline import Collector
 from .store import Store, atomic_write
@@ -110,6 +112,21 @@ def parser():
         help="Release the writer between archive/REST batches and pause this long",
     )
     sub.add_parser("validate")
+    sub.add_parser("oi-probe", help="Record one timed OI response without changing canonical data")
+    p = sub.add_parser("oi-quality", help="Compare OI sources and report observed availability")
+    p.add_argument("--start", help="First UTC day, requires --end")
+    p.add_argument("--end", help="Exclusive completed UTC day boundary, requires --start")
+    p.add_argument(
+        "--days", type=int, default=7, help="Default comparison window: last 7 completed days"
+    )
+    p.add_argument(
+        "--reference-shift",
+        type=int,
+        choices=SHIFTS,
+        default=300,
+        help="Hypothesis for anomaly reporting, never applied to stored labels",
+    )
+    p.add_argument("--output", type=Path, help="Default: <root>/reports/oi-quality")
     p = sub.add_parser("status")
     p.add_argument("--config", type=Path, help="Selected datasets and desired operational scope")
     p.add_argument("--table", action="store_true", help="Readable summary instead of JSON")
@@ -216,7 +233,31 @@ def main(argv=None):
     store = Store(args.root)
     collector = Collector(store)
     try:
-        if args.command == "status":
+        if args.command == "oi-probe":
+            result = probe_once(store)
+        elif args.command == "oi-quality":
+            if bool(args.start) != bool(args.end) or not 1 <= args.days <= 31:
+                raise DataError("Supply both --start/--end, or --days between 1 and 31")
+            end = (
+                utc(args.end)
+                if args.end
+                else now().replace(hour=0, minute=0, second=0, microsecond=0)
+            )
+            start = utc(args.start) if args.start else end - args.days * DAY
+            result = quality_report(store, start, end, reference_shift=args.reference_shift)
+            output = write_report(result, args.output or store.root / "reports/oi-quality")
+            emit(
+                {
+                    "report_id": result["report_id"],
+                    "path": str(output),
+                    "needs_review": result["needs_review"],
+                    "parity": result["parity"]["totals"],
+                    "probe_counts": result["observations"]["counts"],
+                    "availability_states": result["observations"]["availability_states"],
+                }
+            )
+            return 2 if result["needs_review"] else 0
+        elif args.command == "status":
             result = status(
                 store,
                 config_keys(args.config) if args.config else None,

@@ -122,6 +122,14 @@ OI의 0값을 포함한 날짜를 해제하려면 완전하고 유효한 하루 
 
 ## 갱신과 운영
 
+OI는 15초 간격의 별도 관측기로 HTTP 응답과 수신 시각을 기록하고, 매일 최근 7일의
+archive/REST 값 비교와 응답 변화 보고서를 생성합니다.
+[OI 품질·조회 시각 검증과 한계](docs/oi-quality.md)
+
+```bash
+.venv/bin/marketdata oi-quality --days 7
+```
+
 ```bash
 # 수집 범위의 누락·격리·최신 시각·마지막 실행 결과
 .venv/bin/marketdata status --table
@@ -147,7 +155,7 @@ archive OI는 별도 시계열로 유지합니다. 단일 저장소는 쓰기 �
 
 [`integrations/systemd/`](integrations/systemd/README.md)에는 이 머신에 연결한 사용자 서비스·타이머를 두었습니다.
 다른 위치에서 사용할 때는 서비스 파일의 절대 경로를 먼저 수정하세요.
-현재는 두 타이머와 `yoonhc`의 linger가 활성화되어 로그아웃 후에도 실행됩니다.
+현재는 네 타이머와 `yoonhc`의 linger가 활성화되어 로그아웃 후에도 실행됩니다.
 일별 작업은 한국 시각 12:20 이후 약 5분 이내, REST OI는 매 5분 경계의 45초 이후에 실행합니다.
 새 머신에 설치하려면 사용자 systemd에 다음과 같이 연결합니다.
 
@@ -155,7 +163,8 @@ archive OI는 별도 시계열로 유지합니다. 단일 저장소는 쓰기 �
 systemctl --user link "$PWD"/integrations/systemd/marketdata-*.service \
   "$PWD"/integrations/systemd/marketdata-*.timer
 systemctl --user daemon-reload
-systemctl --user enable --now marketdata-daily.timer marketdata-oi.timer
+systemctl --user enable --now marketdata-daily.timer marketdata-oi.timer \
+  marketdata-oi-probe.timer marketdata-oi-quality.timer
 systemctl --user list-timers 'marketdata-*'
 loginctl enable-linger "$USER"
 ```

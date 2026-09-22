@@ -17,9 +17,10 @@ FUTURES = "https://fapi.binance.com"
 
 
 class SourceError(RuntimeError):
-    def __init__(self, message, status=None, body=b"", url=""):
+    def __init__(self, message, status=None, body=b"", url="", headers=None):
         super().__init__(message)
         self.status, self.body, self.url = status, body, url
+        self.headers = dict(headers or {})
 
 
 @dataclass
@@ -75,7 +76,11 @@ class Fetcher:
                     if response.status_code == 200:
                         return Response(body, url, now(), dict(response.headers))
                     error = SourceError(
-                        f"HTTP {response.status_code}: {url}", response.status_code, body, url
+                        f"HTTP {response.status_code}: {url}",
+                        response.status_code,
+                        body,
+                        url,
+                        response.headers,
                     )
                     if response.status_code not in {429, 500, 502, 503, 504}:
                         raise error
@@ -92,6 +97,7 @@ class Fetcher:
                             response.status_code,
                             body,
                             url,
+                            response.headers,
                         )
                     self.sleep(max(0, delay))
             except httpx.TransportError as exc:
