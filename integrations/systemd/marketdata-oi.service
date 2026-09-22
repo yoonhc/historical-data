@@ -2,9 +2,13 @@
 Description=Capture recent public five-minute open interest
 Wants=network-online.target
 After=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=4
 
 [Service]
 Type=oneshot
 WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
-ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . update --config configs/oi-live.toml
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . update --config configs/oi-live.toml --report state/oi-latest.json
 TimeoutStartSec=4min
+Restart=on-failure
+RestartSec=30s

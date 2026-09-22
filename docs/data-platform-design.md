@@ -13,7 +13,7 @@
 - 2026-09-14~20 UTC의 현물·선물·마크·지수 분봉, 펀딩, 두 OI 원천을 실제 확보했다.
   Freqtrade 2026.8 공식 Docker에서 11개 파일 로딩과 현물·선물 백테스트를 실행했다.
 - 코드 구조는 초기 규모에 맞게 `domain.py`, `binance.py`, `normalize.py`, `store.py`,
-  `pipeline.py`, `transforms.py`로 단순화했다. 조회는 `Store.read(Key, start, end, snapshot_id)`다.
+  `pipeline.py`, `transforms.py`, `operations.py`로 단순화했다. 조회는 `Store.read(Key, start, end, snapshot_id)`다.
   시간 열 이름은 `timestamp`, 원본 출처는 `source_id`와 `source_row`다.
 - OI는 `series=archive/rest`를 키에 추가했다. archive 기준 시각·수량 단위는 미확정 상태로 유지하며
   검증 표본의 5분 차이를 전 기간에 자동 보정하지 않는다. [OI 검토](legacy-oi-review.md)
@@ -23,10 +23,13 @@
   원천 시각은 core와 별도 피처 파일에 보존한다. 한 시간 중간의 정산 이벤트는 export에서 거부한다.
 - 읽기 경로는 PyArrow이며 DuckDB는 반환된 Arrow 테이블에 SQL을 실행할 때 사용한다.
   카탈로그 테이블은 현재 필요한 artifacts/fetches/jobs/revisions/active/issues/queries/snapshots로 통합했다.
+  운영 범위·실행 기록·revision별 완전성 캐시는 sync_targets/sync_runs/sync_coverage에 보존한다.
 - 기본 스냅샷은 `historical_assumption`이다. 전체 과거 revision의 시점별 재구성,
   자동 품질 예외 승인, 백업 CLI, 독립 `reconcile` 명령은 아직 구현하지 않았다.
   최근 구간 재확인은 `update`/`repair --refresh`를 사용한다.
-- 사용자 systemd 서비스·타이머를 작성하고 문법 검사했지만 활성화하지 않았다.
+- `status`와 운영 범위 내 자동 누락 복구를 구현했다. 중간 누락·장기 중단·중단 후 재시작·
+  데이터셋별 실패 격리를 검증했고, 사용자 systemd 타이머 두 개를 활성화해 실제 실행을 확인했다.
+  REST OI의 최초 28일 범위도 확보했다. [운영 정책과 확인 방법](operations.md)
   3년 전체 신규 수집과 aggTrades·호가 스트리밍은 후속 단계다.
 
 ## 1. 목적과 경계

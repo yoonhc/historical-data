@@ -23,7 +23,8 @@ Freqtrade와 연구 노트북은 이 프로젝트가 제공하는 데이터를 �
 아카이브 OI와 REST OI는 별도 시계열이며 시각·단위를 검증한 것처럼 합치지 않습니다.
 
 3년 전체 신규 다운로드, aggTrades, 호가 스트림, 주문 실행은 이번 구현에 포함하지 않았습니다.
-아래 명령으로 기간을 넓혀 수집할 수 있습니다. 정기 실행용 타이머 파일은 준비했으며 아직 활성화하지 않았습니다.
+아래 명령으로 기간을 넓혀 수집할 수 있습니다. 현재 머신에서는 일별 갱신과 5분 OI 수집 타이머를
+활성화했습니다. 위 표는 보존된 첫 검증 구간이며, 현재 수집 상태는 `status`로 확인합니다.
 
 ## 설치와 실행
 
@@ -97,24 +98,33 @@ OI의 0값을 포함한 날짜를 해제하려면 완전하고 유효한 하루 
 ## 갱신과 운영
 
 ```bash
-# 일별 갱신: 완료된 최근 3일을 재확인하고 현재 메타데이터를 관측합니다.
+# 수집 범위의 누락·격리·최신 시각·마지막 실행 결과
+.venv/bin/marketdata status --table
+.venv/bin/marketdata status --report reports/status.json
+
+# 일별 갱신: 등록된 범위의 누락을 복구하고, 최근 3일을 재확인합니다.
 .venv/bin/marketdata update --config configs/daily.toml
 
-# REST OI: 최초 실행은 최근 하루, 이후 마지막 기록보다 한 시간 전부터 겹쳐 수집
+# REST OI: 최초 28일 확보, 이후 중간 누락 복구와 최근 한 시간 재확인
 .venv/bin/marketdata update --config configs/oi-live.toml
 
 # 터미널에서 5분마다 수집. 종료는 Ctrl-C.
 .venv/bin/marketdata watch --config configs/oi-live.toml --sleep-seconds 300
 ```
 
-장기 중단 후 REST OI 재개는 보수적으로 최근 29일 안에서만 복구합니다. 더 오래된 자료는
-별도 archive 시계열에서 확보합니다. daily 설정을 5분마다 실행할 필요는 없습니다.
-단일 저장소는 쓰기 프로세스 하나만 허용하므로 동시 작업이 겹치면 한 작업이 재실행을 기다립니다.
+일별 운영 범위는 현재 `2026-09-14`부터이며, REST OI의 최초 시작점도 카탈로그에 보존합니다.
+새 데이터가 도착해도 이전 누락을 잊지 않습니다. 오래 중단했다면 최근 자료를 먼저 유지하면서
+데이터셋별 실행당 최대 32일씩 누락을 복구합니다. [운영 정책·장애 복구](docs/operations.md)
 
-[`integrations/systemd/`](integrations/systemd/README.md)에는 이 머신 경로에 맞춘 사용자 서비스·타이머 예제를 두었습니다.
+REST OI는 보수적으로 최근 29일 안에서만 복구하며, 그보다 오래된 누락은 만료 구간으로 표시합니다.
+archive OI는 별도 시계열로 유지합니다. 단일 저장소는 쓰기 프로세스 하나만 허용하며,
+타이머 작업이 겹쳐 잠금을 얻지 못하면 systemd가 재시도합니다.
+
+[`integrations/systemd/`](integrations/systemd/README.md)에는 이 머신에 연결한 사용자 서비스·타이머를 두었습니다.
 다른 위치에서 사용할 때는 서비스 파일의 절대 경로를 먼저 수정하세요.
-설치하려면 사용자 systemd에 다음과 같이 연결합니다. 사용자 서비스의 로그아웃 후 실행 여부는
-머신의 user-manager/linger 설정에 따릅니다.
+현재는 두 타이머와 `yoonhc`의 linger가 활성화되어 로그아웃 후에도 실행됩니다.
+일별 작업은 한국 시각 12:20 이후 약 5분 이내, REST OI는 매 5분 경계의 45초 이후에 실행합니다.
+새 머신에 설치하려면 사용자 systemd에 다음과 같이 연결합니다.
 
 ```bash
 systemctl --user link "$PWD"/integrations/systemd/marketdata-*.service \
@@ -122,6 +132,7 @@ systemctl --user link "$PWD"/integrations/systemd/marketdata-*.service \
 systemctl --user daemon-reload
 systemctl --user enable --now marketdata-daily.timer marketdata-oi.timer
 systemctl --user list-timers 'marketdata-*'
+loginctl enable-linger "$USER"
 ```
 
 저장소는 `data/raw` 원본, `data/canonical` 불변 Parquet, `data/snapshots` manifest와
@@ -141,6 +152,7 @@ try:
     table = store.read(key, "2026-09-14", "2026-09-21", snapshot_id="SNAPSHOT_ID")
     # pyarrow.Table. Decimal과 UTC 시각을 유지합니다.
     import duckdb
+
     with duckdb.connect() as db:
         db.register("bars", table)
         print(db.sql("select count(*), sum(base_volume) from bars").fetchall())

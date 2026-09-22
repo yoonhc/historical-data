@@ -2,6 +2,7 @@
 Description=Capture OI every five minutes with publication slack
 
 [Timer]
+OnActiveSec=30s
 OnCalendar=*-*-* *:00/5:45 UTC
 Persistent=true
 

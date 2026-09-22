@@ -2,9 +2,13 @@
 Description=Daily public market data update
 Wants=network-online.target
 After=network-online.target
+StartLimitIntervalSec=600
+StartLimitBurst=5
 
 [Service]
 Type=oneshot
 WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
-ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . update --config configs/daily.toml
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . update --config configs/daily.toml --report state/daily-latest.json
 TimeoutStartSec=30min
+Restart=on-failure
+RestartSec=60s

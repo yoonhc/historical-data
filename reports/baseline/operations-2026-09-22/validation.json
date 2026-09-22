@@ -1,0 +1,134 @@
+{
+  "recorded_at": "2026-09-22T09:27:41.718415+00:00",
+  "ok": true,
+  "unit_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "56",
+    "time": "2.312",
+    "timestamp": "2026-09-22T18:24:23.042235+09:00",
+    "hostname": "hclm",
+    "report_sha256": "43906f3d58404d8038fb825c4b2fb46531c8c40dad2bcacc401d71d84bfdc3d2"
+  },
+  "lint": "passed",
+  "format": "passed",
+  "diff_check": "passed",
+  "integrity": {
+    "checked": 2972,
+    "failures": [],
+    "ok": true
+  },
+  "systemd_units": [
+    {
+      "Result": "success",
+      "ExecMainStartTimestamp": "Tue 2026-09-22 18:19:46 KST",
+      "ExecMainExitTimestamp": "Tue 2026-09-22 18:19:54 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-daily.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked"
+    },
+    {
+      "Result": "success",
+      "ExecMainStartTimestamp": "Tue 2026-09-22 18:20:46 KST",
+      "ExecMainExitTimestamp": "Tue 2026-09-22 18:20:46 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-oi.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked"
+    },
+    {
+      "NextElapseUSecRealtime": "Wed 2026-09-23 12:21:52 KST",
+      "LastTriggerUSec": "Tue 2026-09-22 18:19:46 KST",
+      "Result": "success",
+      "Id": "marketdata-daily.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled"
+    },
+    {
+      "NextElapseUSecRealtime": "Tue 2026-09-22 18:25:45 KST",
+      "LastTriggerUSec": "Tue 2026-09-22 18:20:46 KST",
+      "Result": "success",
+      "Id": "marketdata-oi.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled"
+    }
+  ],
+  "service_after_restart_observation": "Result=success\nExecMainStartTimestamp=Tue 2026-09-22 18:26:00 KST\nExecMainExitTimestamp=Tue 2026-09-22 18:26:01 KST\nExecMainStatus=0\nId=marketdata-oi.service\n",
+  "linger": {
+    "State": "active",
+    "Linger": "yes"
+  },
+  "restart": {
+    "after_run": "87d0fcc5f09445ca85e2aa5d7469ed69",
+    "before_run": "56b7088c0b8441b3a7a945f6de96be2e",
+    "complete": true,
+    "duplicate_timestamps": 0,
+    "end": "2026-09-22T09:25:00+00:00",
+    "missing_rows": 0,
+    "persisted_start": "2026-08-25T09:05:00+00:00",
+    "rows": 8068
+  },
+  "status_checked_at": "2026-09-22T09:25:42.164008+00:00",
+  "healthy_operational_datasets": 9,
+  "baseline_preserved": {
+    "snapshot_id": "1486c2d0db4de259c643f14832c482733ea0e92f59b4bce0b518b369ca6a6cc4",
+    "export_id": "7db892c56a5b8139bdcf993ecb459d1a19e180d1455d716d32b361d0dbd869f5",
+    "export_files_verified": 22,
+    "manifests_unchanged": true
+  },
+  "source_hashes": {
+    "configs/bootstrap.toml": "c92362393db80e6b4a77f7f8454a038ddefe1683df7286f2345a3a4df42f8c1a",
+    "configs/core.toml": "97d2872bb9324b92fbe9066ffb113a15270bd9b6a9ba01f4d54497720d7a0b0c",
+    "configs/daily.toml": "148196109805269fb339dd504d019e2a7243956d16c698b655fc3e766bd25ba3",
+    "configs/futures.toml": "899e7c05fccd264fb1460a25f9083fcb25dd73d01c7dd0b1691c113562f0712a",
+    "configs/metadata.toml": "3de31bf2e722cb100dd55548254b734c917106eeaabb0d57a96a07efd3c19d22",
+    "configs/oi-live.toml": "9aa395f34094b9f8473ee1bb3c3a3f368e2748e8250168cdec30eee0db05ba81",
+    "configs/oi.toml": "3b6814205dd597bb656eb339d71659bc61f53b20e216b6cbd8810e3f0073fd6d",
+    "configs/spot.toml": "8c923d0419da7fcad93785447448e0eb81cff47bca22c0e9860428c16bb28740",
+    "integrations/freqtrade/check_export.py": "527060970d80353c7b6123748bcfb3f7dc2829e45f426fcf0cfc79320eddfca8",
+    "integrations/freqtrade/compose.yaml": "bb56d55bfcc637ee3a1a07fe6ec2fa82bba7e23a6a3afc61bbfb2fb523f9806d",
+    "integrations/freqtrade/strategies/DataSmokeStrategy.py": "03c382b8bf8c27a134747e9f4ad5fb4b73ef6bde87cb121fae3dc705710c479c",
+    "integrations/systemd/marketdata-daily.service": "7ba5289fc742422fd1935bfe4515c274775262a5e6195214b2533311ab8d9d5c",
+    "integrations/systemd/marketdata-daily.timer": "c67b3d1268e6b38f9ccee07d12192579708b826851e7269be5c0b7a61eee03dd",
+    "integrations/systemd/marketdata-oi.service": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+    "integrations/systemd/marketdata-oi.timer": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+    "packages/marketdata/pyproject.toml": "8100be211024bab7550e0b6bba42c6ea73ac11af1286d0fd43db70059cf84f23",
+    "packages/marketdata/src/marketdata/__init__.py": "44a5fa1cce21a83e01fd81a9f2c34b7606177eb5dfd807d226b06a0e70c70e30",
+    "packages/marketdata/src/marketdata/binance.py": "6f301671f9e6e3b6009e1fbe64102753a3f7306a9d291c039877d2e996680f27",
+    "packages/marketdata/src/marketdata/cli.py": "652f79710f713b27383ffcecafbbcfae7d054c3de6ae3eda4e8619f3a9a79175",
+    "packages/marketdata/src/marketdata/domain.py": "a77ed55eda1518e70d6437f08e3819718ade090019b21cc4546d483745863e34",
+    "packages/marketdata/src/marketdata/normalize.py": "7457cab7bca40b4b2a39d5b00cfe143f953390b8457264478d9c1819c4d7a3a8",
+    "packages/marketdata/src/marketdata/operations.py": "d7668cb005905ca10afdc019477f200594f969339f17b543fb1cdbc988bcf3cd",
+    "packages/marketdata/src/marketdata/pipeline.py": "1960d1e928c496715e509f349c26a138322d593158f7eedcf9eda17757c997e2",
+    "packages/marketdata/src/marketdata/schema.py": "ac440454f1353979c2ae38ca5335a93a4ce2d96e7dc34db4cdd4bbdc8d30212d",
+    "packages/marketdata/src/marketdata/store.py": "51aa0dab3da34e07a082d2396f219f609388bc2013b531b462fa98199870759c",
+    "packages/marketdata/src/marketdata/transforms.py": "775d9fa8b01e6b30cfaadfc1a413c0f4a9d162f339c4342d3baf2d505e1e408d",
+    "packages/marketdata_freqtrade/pyproject.toml": "3d57baca33aef35f3983daf67467557f61a47e711cdded8cb42ef6926410cced",
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/__init__.py": "d39fa9d53c3ae690e95e80bb9d75e5be0b20a3a7f0e239261b6c69f39d91eeb1",
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/cli.py": "caac64a7f63099b0bc65af486ce460459ef84a7e32618ddafb3db6715d79e019",
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/export.py": "a3a94c4935b8d4ae417a485f28cf20e1f9a6953e24494003a1fc95f64e7444b4",
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/features.py": "ea8f54f9993cd03dd43d6a125777a6ce6d9b74ec09b67d2cec33e647b575c2e7",
+    "scripts/audit_legacy_oi.py": "6f2e3eec4cb9806a953323938c5bf932d0a475a12e849e9416d2ceca0f695f3a",
+    "scripts/build_smoke_export.py": "5f6f02a7104c0bbc0162533326bb82a03623d70072ac95e1398696ee42727d58",
+    "scripts/summarize_backtests.py": "29bb6b2c79b5926ddee6b6ce09b2188e8640e9b7dd89e7ffd9733c2db671090a",
+    "tests/conftest.py": "a03128a11532c96a081d1d8f027540ac88a264eb25b03bd60d8e812ad752b590",
+    "tests/test_adapter.py": "5fe9724c9ef4dba70f4fa7cd381c056f15aff422b17c5b17b8095e912c831ead",
+    "tests/test_ingestion.py": "970312503459ab9f127086fe01be5bfa47991e907b37b7223953ec4bc93fb840",
+    "tests/test_operations.py": "8ff84a1c98c5cfe96f7dcc640adce9e127ebcc09311b45b3440148e4314c6cdc",
+    "tests/test_recovery.py": "01756ee1ab4b3717411b34dfbf0f406cf5cb3195bf9648a2f184e2d8b74f4383",
+    "tests/test_transport.py": "b799676b4c4b91756fcd38b19992cac1857661e83247b0f1c381f869c97816a3"
+  },
+  "notes": [
+    "Fixed observations, not a live status page.",
+    "Integrity checked immutable raw artifacts and canonical revisions before subsequent scheduled append-only collection.",
+    "Older imported archive OI has 20 blocked days outside the explicit operational scope.",
+    "Long outages and interruption recovery were tested with simulated sources; timer execution and a service restart used the real Binance collector."
+  ]
+}

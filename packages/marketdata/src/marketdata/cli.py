@@ -5,11 +5,11 @@ import json
 import sys
 import time
 import tomllib
-from datetime import timedelta
 from pathlib import Path
 
 from .binance import SourceError, archive_units, archive_url
-from .domain import DataError, Key, json_bytes, json_default, now, utc
+from .domain import DataError, Key, json_bytes, json_default, utc
+from .operations import SyncPolicy, status, update
 from .pipeline import Collector
 from .store import Store, atomic_write
 
@@ -103,9 +103,14 @@ def parser():
     range_args(p)
     p.add_argument("--report", type=Path)
     sub.add_parser("validate")
+    p = sub.add_parser("status")
+    p.add_argument("--config", type=Path, help="Selected datasets and desired operational scope")
+    p.add_argument("--table", action="store_true", help="Readable summary instead of JSON")
+    p.add_argument("--report", type=Path)
     for name in ("update", "watch"):
         p = sub.add_parser(name)
         p.add_argument("--config", type=Path, required=True)
+        p.add_argument("--report", type=Path, help="Write the latest completed update report")
         if name == "watch":
             p.add_argument(
                 "--cycles", type=int, default=0, help="0 runs continuously; interrupt to stop"
@@ -124,6 +129,56 @@ def config_keys(path):
     if len({k.id for k in keys}) != len(keys):
         raise DataError("Duplicate dataset key in config")
     return keys
+
+
+def config_policy(path):
+    with path.open("rb") as f:
+        values = tomllib.load(f).get("operations", {})
+    try:
+        return SyncPolicy(**values)
+    except TypeError as exc:
+        raise DataError(f"Invalid operations configuration: {exc}") from exc
+
+
+def status_table(report):
+    rows = [
+        [
+            "Dataset / interval / source",
+            "Market",
+            "State",
+            "Latest label (UTC)",
+            "Missing",
+            "Blocked(scope/all)",
+            "Last run",
+        ]
+    ]
+    for item in report["datasets"]:
+        key, coverage = item["key"], item["coverage"]
+        latest = item["data"]["latest_timestamp"]
+        run = item["last_run"]
+        missing = coverage.get("missing_rows")
+        missing_text = (
+            str(missing)
+            if missing is not None
+            else (f"{coverage['missing_days']}d" if "missing_days" in coverage else "-")
+        )
+        rows.append(
+            [
+                f"{key['dataset']}/{key['interval']}/{key['series']}",
+                key["market"],
+                item["state"],
+                latest.strftime("%Y-%m-%d %H:%M:%S") if latest else "-",
+                missing_text,
+                f"{len(coverage.get('blocked_days', []))}/{item['historical_blocked_days']}",
+                run["state"] if run else "never",
+            ]
+        )
+    widths = [max(len(row[i]) for row in rows) for i in range(len(rows[0]))]
+    for row in rows:
+        print("  ".join(value.ljust(widths[i]) for i, value in enumerate(row)))
+    print(
+        "Scope: registered/configured operational interval; historic issues appear in JSON output."
+    )
 
 
 def source_for(key, requested):
@@ -149,41 +204,25 @@ def incomplete(result):
     return False
 
 
-def update(collector, keys):
-    output = []
-    current = now()
-    midnight = current.replace(hour=0, minute=0, second=0, microsecond=0)
-    for key in keys:
-        source = source_for(key, "auto")
-        if key.dataset == "instrument_metadata":
-            start, end = midnight, current
-        elif key.dataset == "open_interest" and key.series == "rest":
-            end = current.replace(second=0, microsecond=0) - timedelta(minutes=current.minute % 5)
-            records = collector.store.revision_list(key, end - timedelta(days=29), end)
-            if records:
-                table = collector.store.read(key, utc(records[-1]["day"]), end)
-                last = table["timestamp"][-1].as_py() if len(table) else end - timedelta(days=1)
-                start = max(end - timedelta(days=29), last - timedelta(hours=1))
-            else:
-                start = end - timedelta(days=1)
-        else:
-            start, end = midnight - timedelta(days=3), midnight
-        if source == "rest":
-            result = collector.rest(key, start, end)
-        else:
-            result = collector.archive(
-                key, start, end, monthly=False, refresh=True, progress=lambda p: emit(p, error=True)
-            )
-        output.append({"key": key.id, "results": result})
-    return output
-
-
 def main(argv=None):
     args = parser().parse_args(argv)
     store = Store(args.root)
     collector = Collector(store)
     try:
-        if args.command == "coverage":
+        if args.command == "status":
+            result = status(
+                store,
+                config_keys(args.config) if args.config else None,
+                config_policy(args.config) if args.config else None,
+            )
+            if args.report:
+                atomic_write(args.report, json_bytes(result))
+            if args.table:
+                status_table(result)
+            else:
+                emit(result)
+            return 0 if result["healthy"] else 2
+        elif args.command == "coverage":
             result = store.coverage(make_key(args), args.start, args.end)
         elif args.command == "query":
             table = store.read(make_key(args), args.start, args.end, args.snapshot)
@@ -212,12 +251,17 @@ def main(argv=None):
                 ]
         elif args.command == "watch":
             keys = config_keys(args.config)
+            policy = config_policy(args.config)
             iteration = 0
             last_failed = False
             while args.cycles == 0 or iteration < args.cycles:
                 try:
                     with store.writer():
-                        result = update(collector, keys)
+                        result = update(
+                            collector, keys, policy, progress=lambda p: emit(p, error=True)
+                        )
+                    if args.report:
+                        atomic_write(args.report, json_bytes(result))
                     emit({"cycle": iteration, "result": result})
                     last_failed = incomplete(result)
                 except (DataError, SourceError) as exc:
@@ -287,7 +331,14 @@ def main(argv=None):
                         )
                     }
                 elif args.command == "update":
-                    result = update(collector, config_keys(args.config))
+                    result = update(
+                        collector,
+                        config_keys(args.config),
+                        config_policy(args.config),
+                        progress=lambda p: emit(p, error=True),
+                    )
+                    if args.report:
+                        atomic_write(args.report, json_bytes(result))
                 elif args.command == "backfill-set":
                     result = []
                     for key in config_keys(args.config):

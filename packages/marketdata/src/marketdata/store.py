@@ -81,6 +81,16 @@ class Store:
                 source_id TEXT, error TEXT, attempts INTEGER NOT NULL DEFAULT 1, updated_at TEXT);
             CREATE TABLE IF NOT EXISTS snapshots (
                 id TEXT PRIMARY KEY, manifest TEXT NOT NULL, path TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS sync_targets (
+                key_id TEXT PRIMARY KEY, key_json TEXT NOT NULL, start TEXT NOT NULL,
+                policy TEXT NOT NULL, created_at TEXT NOT NULL, updated_at TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS sync_runs (
+                id TEXT PRIMARY KEY, key_id TEXT NOT NULL, start TEXT NOT NULL, end TEXT NOT NULL,
+                started_at TEXT NOT NULL, updated_at TEXT NOT NULL, finished_at TEXT,
+                state TEXT NOT NULL, report TEXT NOT NULL);
+            CREATE INDEX IF NOT EXISTS sync_runs_key_time ON sync_runs(key_id, started_at);
+            CREATE TABLE IF NOT EXISTS sync_coverage (
+                revision_id TEXT PRIMARY KEY REFERENCES revisions(id), coverage TEXT NOT NULL);
         """)
 
     def close(self):

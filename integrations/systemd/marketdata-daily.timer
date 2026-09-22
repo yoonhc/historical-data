@@ -2,6 +2,8 @@
 Description=Update archive data daily
 
 [Timer]
+# Collect after activation as well as on the daily schedule.
+OnActiveSec=30s
 OnCalendar=*-*-* 03:20:00 UTC
 Persistent=true
 RandomizedDelaySec=300
