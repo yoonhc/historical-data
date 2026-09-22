@@ -13,7 +13,8 @@
 - 2026-09-14~20 UTC의 현물·선물·마크·지수 분봉, 펀딩, 두 OI 원천을 실제 확보했다.
   Freqtrade 2026.8 공식 Docker에서 11개 파일 로딩과 현물·선물 백테스트를 실행했다.
 - 코드 구조는 초기 규모에 맞게 `domain.py`, `binance.py`, `normalize.py`, `store.py`,
-  `pipeline.py`, `transforms.py`, `operations.py`로 단순화했다. 조회는 `Store.read(Key, start, end, snapshot_id)`다.
+  `pipeline.py`, `transforms.py`, `operations.py`, `backfill.py`, `research.py`로 단순화했다.
+  조회는 `Store.read(Key, start, end, snapshot_id)`다.
   시간 열 이름은 `timestamp`, 원본 출처는 `source_id`와 `source_row`다.
 - OI는 `series=archive/rest`를 키에 추가했다. archive 기준 시각·수량 단위는 미확정 상태로 유지하며
   검증 표본의 5분 차이를 전 기간에 자동 보정하지 않는다. [OI 검토](legacy-oi-review.md)
@@ -30,7 +31,11 @@
 - `status`와 운영 범위 내 자동 누락 복구를 구현했다. 중간 누락·장기 중단·중단 후 재시작·
   데이터셋별 실패 격리를 검증했고, 사용자 systemd 타이머 두 개를 활성화해 실제 실행을 확인했다.
   REST OI의 최초 28일 범위도 확보했다. [운영 정책과 확인 방법](operations.md)
-  3년 전체 신규 수집과 aggTrades·호가 스트리밍은 후속 단계다.
+- UTC `[2023-09-22, 2026-09-22)`의 과거 수집·원천 재조회·품질 보고서를 완료했다.
+  거래봉과 펀딩 조회 범위는 전체를 확보했고, 마크·지수의 미확보 2분과 OI의 누락·격리를
+  별도로 보고한다. 입력이 완전한 연속 구간으로 19개 스냅샷을 만들었다.
+  [3년 연구 데이터셋 검증](../reports/baseline/research-2023_2026/summary.md)
+  aggTrades·호가 스트리밍과 실제 전략 연구는 후속 단계다.
 
 ## 1. 목적과 경계
 

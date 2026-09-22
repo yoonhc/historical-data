@@ -84,7 +84,16 @@ class Collector:
             raise
 
     def archive(
-        self, key, start, end, *, monthly=True, refresh=False, accept_revisions=False, progress=None
+        self,
+        key,
+        start,
+        end,
+        *,
+        monthly=True,
+        refresh=False,
+        accept_revisions=False,
+        progress=None,
+        fallback_daily=True,
     ):
         start, end = utc(start), utc(end)
         list(full_days(start, end))
@@ -137,7 +146,7 @@ class Collector:
                     "waiting_source" if exc.status == 404 else "failed",
                     error=str(exc),
                 )
-                if month and exc.status == 404:
+                if month and exc.status == 404 and fallback_daily:
                     output.extend(
                         self.archive(
                             key,

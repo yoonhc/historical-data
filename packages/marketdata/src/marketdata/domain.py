@@ -30,6 +30,10 @@ class ConflictError(DataError):
     pass
 
 
+class WriterBusy(DataError):
+    pass
+
+
 def utc(value: str | datetime) -> datetime:
     if isinstance(value, str):
         value = datetime.fromisoformat(value.replace("Z", "+00:00"))

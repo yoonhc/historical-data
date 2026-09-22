@@ -5,6 +5,7 @@ import json
 import os
 import sqlite3
 import tempfile
+import time
 from contextlib import contextmanager
 from datetime import timedelta
 from pathlib import Path
@@ -18,6 +19,7 @@ from .domain import (
     POLICY_VERSION,
     ConflictError,
     DataError,
+    WriterBusy,
     day_ranges,
     json_bytes,
     micros,
@@ -97,12 +99,18 @@ class Store:
         self.db.close()
 
     @contextmanager
-    def writer(self):
+    def writer(self, *, timeout=0):
         with (self.root / "state/writer.lock").open("a") as lock:
-            try:
-                fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            except BlockingIOError as exc:
-                raise DataError("Another writer owns this store; retry later") from exc
+            deadline = time.monotonic() + timeout
+            while True:
+                try:
+                    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                    break
+                except BlockingIOError as exc:
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        raise WriterBusy("Another writer owns this store; retry later") from exc
+                    time.sleep(min(0.1, remaining))
             try:
                 yield
             finally:
@@ -189,11 +197,14 @@ class Store:
                 ),
             )
 
-    def _revision_rows(self, record):
+    def _revision_table(self, record, *, columns=None):
         path = self.root / record["path"]
         if sha256(path.read_bytes()) != record["file_sha"]:
             raise DataError(f"Canonical hash mismatch: {path}")
-        return pq.ParquetFile(path).read().to_pylist()
+        return pq.ParquetFile(path).read(columns=columns)
+
+    def _revision_rows(self, record):
+        return self._revision_table(record).to_pylist()
 
     def publish(
         self, key, batch, start, end, source_id, *, accept_revisions=False, authoritative=False
@@ -371,7 +382,35 @@ class Store:
 
     def coverage(self, key, start, end):
         start, end = utc(start), utc(end)
-        rows = self.read(key, start, end).to_pylist()
+        if start >= end:
+            raise DataError("Expected start < end")
+        if key.step and (
+            micros(start) % (key.step * 1_000_000) or micros(end) % (key.step * 1_000_000)
+        ):
+            raise DataError("Coverage bounds must align with dataset interval")
+        records = {r["day"]: r for r in self.revision_list(key, start, end)}
+        row_count, missing_count, gaps = 0, 0, []
+        for begin, stop in day_ranges(start, end):
+            record = records.get(begin.date().isoformat())
+            timestamps = (
+                self._revision_table(record, columns=["timestamp"])["timestamp"]
+                .cast(pa.int64())
+                .to_pylist()
+                if record
+                else []
+            )
+            first, last = micros(begin), micros(stop)
+            stamps = [stamp for stamp in timestamps if first <= stamp < last]
+            row_count += len(stamps)
+            if key.step:
+                step = key.step * 1_000_000
+                missing = sorted(set(range(first, last, step)) - set(stamps))
+                missing_count += len(missing)
+                for value in missing:
+                    if gaps and gaps[-1][1] == value:
+                        gaps[-1][1] += step
+                    else:
+                        gaps.append([value, value + step])
         blocking = [
             dict(r)
             for r in self.db.execute(
@@ -386,25 +425,14 @@ class Store:
         ]
         if key.step:
             step = key.step * 1_000_000
-            if micros(start) % step or micros(end) % step:
-                raise DataError("Coverage bounds must align with dataset interval")
-            expected = set(range(micros(start), micros(end), step))
-            actual = {micros(r["timestamp"]) for r in rows}
-            missing = sorted(expected - actual)
-            gaps = []
-            for value in missing:
-                if gaps and gaps[-1][1] == value:
-                    gaps[-1][1] += step
-                else:
-                    gaps.append([value, value + step])
             return {
                 "key": key.asdict(),
-                "rows": len(rows),
-                "expected": len(expected),
-                "missing": len(missing),
+                "rows": row_count,
+                "expected": (micros(end) - micros(start)) // step,
+                "missing": missing_count,
                 "gap_ranges_us": gaps,
                 "blocking_issues": blocking,
-                "complete": not missing and not blocking,
+                "complete": not missing_count and not blocking,
                 "semantics": "source_label_grid_only"
                 if key.dataset == "open_interest"
                 else "bar_grid",
@@ -419,7 +447,7 @@ class Store:
                 cursor = max(cursor, b)
         return {
             "key": key.asdict(),
-            "rows": len(rows),
+            "rows": row_count,
             "query_complete": cursor >= end,
             "complete": cursor >= end and not blocking,
             "blocking_issues": blocking,
@@ -476,7 +504,7 @@ class Store:
         for record in self.db.execute("SELECT * FROM revisions"):
             count += 1
             try:
-                self._revision_rows(record)
+                self._revision_table(record)
             except (OSError, DataError) as exc:
                 failures.append(str(exc))
         return {"checked": count, "failures": failures, "ok": not failures}

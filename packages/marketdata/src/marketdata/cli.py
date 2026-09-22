@@ -7,6 +7,7 @@ import time
 import tomllib
 from pathlib import Path
 
+from .backfill import backfill_set
 from .binance import SourceError, archive_units, archive_url
 from .domain import DataError, Key, json_bytes, json_default, utc
 from .operations import SyncPolicy, status, update
@@ -102,6 +103,12 @@ def parser():
     p.add_argument("--config", type=Path, required=True)
     range_args(p)
     p.add_argument("--report", type=Path)
+    p.add_argument(
+        "--pause-seconds",
+        type=float,
+        default=1,
+        help="Release the writer between archive/REST batches and pause this long",
+    )
     sub.add_parser("validate")
     p = sub.add_parser("status")
     p.add_argument("--config", type=Path, help="Selected datasets and desired operational scope")
@@ -256,7 +263,7 @@ def main(argv=None):
             last_failed = False
             while args.cycles == 0 or iteration < args.cycles:
                 try:
-                    with store.writer():
+                    with store.writer(timeout=60):
                         result = update(
                             collector, keys, policy, progress=lambda p: emit(p, error=True)
                         )
@@ -271,8 +278,20 @@ def main(argv=None):
                 if args.cycles == 0 or iteration < args.cycles:
                     time.sleep(max(1, args.sleep_seconds))
             return 2 if last_failed else 0
+        elif args.command == "backfill-set":
+            result = backfill_set(
+                collector,
+                config_keys(args.config),
+                args.start,
+                args.end,
+                pause=args.pause_seconds,
+                progress=lambda p: emit(p, error=True),
+                checkpoint=(lambda r: atomic_write(args.report, json_bytes(r)))
+                if args.report
+                else None,
+            )
         else:
-            with store.writer():
+            with store.writer(timeout=60 if args.command in {"update", "repair"} else 0):
                 if args.command in {"backfill", "repair"}:
                     key = make_key(args)
                     source = source_for(key, args.source)
@@ -337,37 +356,6 @@ def main(argv=None):
                         config_policy(args.config),
                         progress=lambda p: emit(p, error=True),
                     )
-                    if args.report:
-                        atomic_write(args.report, json_bytes(result))
-                elif args.command == "backfill-set":
-                    result = []
-                    for key in config_keys(args.config):
-                        try:
-                            if source_for(key, "auto") == "rest":
-                                partitions = collector.rest(key, args.start, args.end)
-                            else:
-                                partitions = collector.archive(
-                                    key,
-                                    args.start,
-                                    args.end,
-                                    progress=lambda p: emit(p, error=True),
-                                )
-                            coverage = store.coverage(key, args.start, args.end)
-                            result.append(
-                                {
-                                    "key": key.asdict(),
-                                    "results": partitions,
-                                    "coverage": coverage,
-                                    "complete": coverage["complete"],
-                                }
-                            )
-                        except (DataError, SourceError, OSError) as exc:
-                            result.append(
-                                {"key": key.asdict(), "state": "failed", "error": str(exc)}
-                            )
-                        emit(
-                            {"key": key.id, "state": result[-1].get("state", "checked")}, error=True
-                        )
                     if args.report:
                         atomic_write(args.report, json_bytes(result))
                 else:

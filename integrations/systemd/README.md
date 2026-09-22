@@ -11,6 +11,7 @@
 - 작업은 `Type=oneshot`이므로 성공한 서비스가 `inactive (dead)`인 것은 정상입니다. 타이머의 active 여부와 서비스의 `Result`를 확인하세요.
 - 실패 시 일별 작업은 60초, OI는 30초 후 재시도합니다. 일별 작업은 10분간 5회, OI는 5분간 4회로 시작 횟수를 제한합니다.
 - 최신 완료 보고서는 `state/daily-latest.json`, `state/oi-latest.json`입니다. 실행 이력은 SQLite에도 남습니다.
+- 정기 수집기는 쓰기 잠금을 최대 60초 기다립니다. 장기 `backfill-set`은 배치마다 잠금을 반납해 함께 실행할 수 있습니다.
 
 ```bash
 systemctl --user list-timers --all 'marketdata-*'

@@ -8,23 +8,29 @@ Freqtrade와 연구 노트북은 이 프로젝트가 제공하는 데이터를 �
 
 ## 현재 확보한 데이터
 
-고정 검증 구간은 **2026-09-14 00:00 ≤ UTC < 2026-09-21 00:00**입니다.
+고정 연구 구간은 **2023-09-22 00:00 ≤ UTC < 2026-09-22 00:00**이며 총 1,096일입니다.
 
-| 데이터 | 시장 | 검증 구간 행 수 |
-|---|---|---:|
-| 거래 1분봉: OHLC, base/quote 거래량, 체결 수, taker 매수량 | 현물·선물 각각 | 각각 10,080 |
-| 마크가격·지수가격 1분봉 | 선물 각각 | 각각 10,080 |
-| 확정 펀딩 정산 이벤트 | 선물 | 21 |
-| OI 5분 통계 | 아카이브·REST 각각 | 각각 2,016 |
-| 상품 메타데이터 | 현물·선물 | 최초 수집 당시 각 1회 관측 |
+| 데이터 | 시장 | 확보 행 수 | 남은 누락·격리 |
+|---|---|---:|---|
+| 거래 1분봉: OHLC, base/quote 거래량, 체결 수, taker 매수량 | 현물·선물 각각 | 각각 1,578,240 | 없음 |
+| 마크가격·지수가격 1분봉 | 선물 각각 | 각각 1,578,238 | 각각 2분 |
+| 확정 펀딩 정산 이벤트 | 선물 | 3,288 | 원천 조회 범위 완료 |
+| OI 5분 통계 | archive | 310,334 | 격리 18일 및 추가 누락 130개 라벨 |
 
-기존 OI 실험의 916일 파일도 체크섬을 검증해 가져왔습니다. 20일은 0값으로 격리했고,
-나머지에도 누락이 있을 수 있으므로 `coverage`를 확인해야 합니다. 날짜 전체가 연속이라는 뜻은 아닙니다.
+마크·지수의 2026-06-29 하루 누락은 REST로 복구했습니다. 남은 2분은
+2024-08-12 10:02~10:04 UTC이며 월별·일별 아카이브와 REST에서 확보하지 못했습니다.
+REST OI는 최초 최근 28일을 확보한 뒤 5분마다 수집하고, 상품 메타데이터는 현재 관측을 기록합니다.
+
+입력이 완전한 연속 구간을 **19개 스냅샷**으로 보존했습니다. 거래봉·펀딩 통계 연구는 3년 전체,
+마크·지수가 필요한 연구는 남은 2분을 제외한 두 구간을 사용합니다.
+[데이터별 품질·연구 구간·스냅샷 보고서](reports/baseline/research-2023_2026/summary.md)
+
+기존 OI 실험의 916일 파일도 체크섬을 검증해 재사용했습니다. 전체 보관 이력과 위 연구 구간의
+격리 날짜 수는 다를 수 있으므로 `status`와 해당 기간의 `coverage`를 확인하세요.
 아카이브 OI와 REST OI는 별도 시계열이며 시각·단위를 검증한 것처럼 합치지 않습니다.
 
-3년 전체 신규 다운로드, aggTrades, 호가 스트림, 주문 실행은 이번 구현에 포함하지 않았습니다.
-아래 명령으로 기간을 넓혀 수집할 수 있습니다. 현재 머신에서는 일별 갱신과 5분 OI 수집 타이머를
-활성화했습니다. 위 표는 보존된 첫 검증 구간이며, 현재 수집 상태는 `status`로 확인합니다.
+현재 머신에서는 일별 갱신과 5분 OI 수집 타이머를 활성화했습니다. 현재 수집 상태는 `status`로
+확인합니다. aggTrades와 호가 스트림은 후속 확장 항목입니다.
 
 ## 설치와 실행
 
@@ -47,13 +53,16 @@ uv --cache-dir .cache/uv sync --all-packages --frozen
 .venv/bin/marketdata plan --dataset trade_bars --market spot \
   --start 2026-09-14 --end 2026-09-21
 
-# 기본 7개 데이터셋 수집. 완전한 아카이브 구간은 건너뜁니다.
+# 첫 연동 검증에 사용한 7일 수집 명령. REST OI는 최근 제공 기간에만 재조회 가능합니다.
 .venv/bin/marketdata backfill-set --config configs/bootstrap.toml \
   --start 2026-09-14 --end 2026-09-21 --report reports/acquisition.json
 
-# 개별 자료 수집: 긴 과거는 월별 ZIP 우선, OI archive는 일별 ZIP
-.venv/bin/marketdata backfill --dataset trade_bars --market spot \
-  --start 2023-09-21 --end 2026-09-21
+# 3년 과거 수집·재개: 월별 ZIP 우선, 배치마다 쓰기 잠금을 반납합니다.
+.venv/bin/marketdata backfill-set --config configs/research-archive.toml \
+  --start 2023-09-22 --end 2026-09-22 --report reports/research-backfill-2023_2026.json
+
+# 월별 품질·연속 연구 구간 보고서와 완전한 구간의 고정 스냅샷
+.venv/bin/python scripts/build_research_dataset.py --snapshots
 
 # 완전성 및 파일 해시 검사
 .venv/bin/marketdata coverage --dataset open_interest --series archive \
@@ -88,6 +97,7 @@ OI의 0값을 포함한 날짜를 해제하려면 완전하고 유효한 하루 
 거래대금·taker 매수량·OI는 `features/*.parquet`에 보존되며 전략에서 명시적으로 읽어야 합니다.
 
 - [Docker 실행·백테스트 및 OI 결합 예제](integrations/freqtrade/README.md)
+- [3년 과거 수집·연구 구간·스냅샷 사용법](docs/research-dataset.md)
 - [설계와 구현 범위](docs/data-platform-design.md)
 - [기존 OI 실험 검토 및 재검증](docs/legacy-oi-review.md)
 - [7일 검증·OI 시각 비교 결과](reports/baseline/v0.1.0/smoke.json)
