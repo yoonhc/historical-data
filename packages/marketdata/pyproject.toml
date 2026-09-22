@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marketdata"
+version = "0.1.0"
+description = "Independent, auditable Binance historical market data"
+requires-python = ">=3.12"
+dependencies = ["pyarrow>=19,<24", "duckdb>=1.2,<2", "httpx>=0.28,<1"]
+
+[project.scripts]
+marketdata = "marketdata.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

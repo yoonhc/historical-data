@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily public market data update
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . update --config configs/daily.toml
+TimeoutStartSec=30min
