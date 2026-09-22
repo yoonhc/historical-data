@@ -36,7 +36,9 @@ REST OI는 최초 최근 28일을 확보한 뒤 5분마다 수집하고, 상품 
 현재 머신에서는 일별 갱신과 5분 OI 수집 타이머를 활성화했습니다. 현재 수집 상태는 `status`로
 확인합니다. BTCUSDT 선물 aggTrade는 짧은 REST 구간과 WebSocket 표본 수집·재접속 복구를
 검증했습니다. [aggTrade 사용법·범위·검증](docs/aggtrades.md)을 확인하세요.
-현물 aggTrade, 장기 aggTrades 아카이브와 호가 depth는 후속 확장 항목입니다.
+선물 호가 depth의 스냅샷·증분 수집, 재동기화와 저장 자료 재생도 추가했습니다.
+[호가 depth 사용법·검증 범위](docs/orderbook-depth.md)를 확인하세요.
+두 스트림의 상시 서비스, 현물 스트림과 장기 aggTrades 아카이브는 후속 확장 항목입니다.
 
 ## 설치와 실행
 

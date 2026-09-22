@@ -39,7 +39,9 @@
   [3년 연구 데이터셋 검증](../reports/baseline/research-2023_2026/summary.md)
   BTCUSDT 선물 aggTrade의 짧은 REST 조회와 WebSocket 수집·ID 복구를 추가했다.
   [실시간 이벤트 세그먼트와 검증 범위](aggtrades.md)를 참고한다.
-  현물·장기 aggTrades 아카이브, 호가 스트리밍과 실제 전략 연구는 후속 단계다.
+  선물 depth의 스냅샷·증분 수집과 재동기화·오프라인 재생도 추가했다.
+  [호가 depth의 알려진 가격 범위와 공백 처리](orderbook-depth.md)를 참고한다.
+  스트림 상시 운영, 현물·장기 aggTrades 아카이브와 실제 전략 연구는 후속 단계다.
 
 ## 1. 목적과 경계
 

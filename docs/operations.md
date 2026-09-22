@@ -91,3 +91,8 @@ REST OI는 기간 종료 시각을 라벨로 사용합니다. 5분 경계 후 45
 선물 aggTrade 표본 수집은 별도 명령으로 실행하고 `marketdata aggtrade-status`로 상태를
 확인합니다. 기존 일별/OI 운영 범위와 타이머에는 포함하지 않았습니다. 실시간 자료의 작은
 파일 확정·ID 누락 복구와 한계는 [aggTrade 운영 문서](aggtrades.md)를 확인하세요.
+
+선물 호가 depth는 `marketdata depth-stream`으로 최대 1시간의 표본을 수집하고,
+`depth-replay`로 저장 자료를 재생하며 `depth-status`로 실행 상태를 확인합니다.
+연결이 바뀌면 새 스냅샷에서 시작하고 그 사이 공백을 남깁니다. 상시 서비스는 활성화하지
+않았습니다. [depth 동기화·재생·검증 범위](orderbook-depth.md)

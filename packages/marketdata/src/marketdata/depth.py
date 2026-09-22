@@ -1,0 +1,441 @@
+"""BTCUSDT USD-M depth: exact quantities, bounded known coverage, journal replay."""
+
+import json
+from uuid import uuid4
+
+import pyarrow as pa
+import pyarrow.parquet as pq
+
+from .domain import DataError, from_epoch, json_bytes, now, number, sha256, utc
+from .schema import TIME, VALUE
+from .store import atomic_write
+
+DATASET = "book_depth"
+INSTRUMENT = "binance:linear_perpetual:BTCUSDT"
+WS = "wss://fstream.binance.com/public/ws/btcusdt@depth@100ms"
+REST = "https://fapi.binance.com/fapi/v1/depth?symbol=BTCUSDT&limit=1000"
+LEVEL = pa.list_(pa.struct([pa.field("price", VALUE, False), pa.field("quantity", VALUE, False)]))
+SCHEMA = pa.schema(
+    [
+        pa.field("instrument_id", pa.string(), False),
+        pa.field("sequence", pa.int64(), False),
+        pa.field("epoch", pa.int32(), False),
+        pa.field("kind", pa.string(), False),
+        pa.field("timestamp", TIME, False),
+        pa.field("event_time", TIME, False),
+        pa.field("received_at", TIME, False),
+        pa.field("first_update_id", pa.int64()),
+        pa.field("final_update_id", pa.int64(), False),
+        pa.field("previous_update_id", pa.int64()),
+        pa.field("bids", LEVEL, False),
+        pa.field("asks", LEVEL, False),
+        pa.field("source_id", pa.string(), False),
+        pa.field("source_row", pa.int64(), False),
+    ],
+    metadata={b"dataset": b"book_depth", b"schema_version": b"1"},
+)
+
+
+def integer(value):
+    if type(value) is not int or not 0 <= value < 2**63:
+        raise DataError("Expected nonnegative int64 depth ID/time")
+    return value
+
+
+def levels(raw, *, snapshot=False, bid=False):
+    if not isinstance(raw, list) or len(raw) > (1000 if snapshot else 20000):
+        raise DataError("Invalid or oversized depth levels")
+    rows, seen = [], set()
+    for item in raw:
+        if not isinstance(item, list) or len(item) != 2:
+            raise DataError("Expected [price, quantity] depth level")
+        price = number(item[0], positive=True)
+        quantity = number(item[1], nonnegative=True, positive=snapshot)
+        if price in seen:
+            raise DataError("Duplicate depth price within an event")
+        seen.add(price)
+        rows.append({"price": price, "quantity": quantity})
+    if snapshot and (not rows or [r["price"] for r in rows] != sorted(seen, reverse=bid)):
+        raise DataError("Snapshot must have nonempty sorted sides")
+    return rows
+
+
+def parse(raw, kind, epoch, sequence, source_id, source_row, received_at):
+    if kind not in {"anchor", "check", "update"} or not isinstance(raw, dict):
+        raise DataError("Invalid depth event")
+    snapshot = kind != "update"
+    if not snapshot and (raw.get("e") != "depthUpdate" or raw.get("s") != "BTCUSDT"):
+        raise DataError("Wrong depth event type/symbol")
+    if "st" in raw and (type(raw["st"]) is not int or raw["st"] != 1):
+        raise DataError("Expected USD-M depth")
+    first = None if snapshot else integer(raw["U"])
+    last = integer(raw["lastUpdateId"] if snapshot else raw["u"])
+    previous = None if snapshot else integer(raw["pu"])
+    if not snapshot and (first > last or previous >= last):
+        raise DataError("Invalid depth update ID range")
+    return {
+        "instrument_id": INSTRUMENT,
+        "sequence": sequence,
+        "epoch": epoch,
+        "kind": kind,
+        "timestamp": from_epoch(integer(raw["T"])),
+        "event_time": from_epoch(integer(raw["E"])),
+        "received_at": utc(received_at),
+        "first_update_id": first,
+        "final_update_id": last,
+        "previous_update_id": previous,
+        "bids": levels(raw["bids" if snapshot else "b"], snapshot=snapshot, bid=True),
+        "asks": levels(raw["asks" if snapshot else "a"], snapshot=snapshot),
+        "source_id": source_id,
+        "source_row": source_row,
+    }
+
+
+class SyncLost(DataError):
+    """A fresh snapshot is needed; missing depth history cannot be backfilled."""
+
+
+class Book:
+    def __init__(self, snapshot):
+        self.bids = {r["price"]: r["quantity"] for r in snapshot["bids"]}
+        self.asks = {r["price"]: r["quantity"] for r in snapshot["asks"]}
+        self.bid_floor, self.ask_ceiling = min(self.bids), max(self.asks)
+        self.last = snapshot["final_update_id"]
+        self.timestamp = snapshot["timestamp"]
+        self.synced = False
+        self.last_signature = None
+        self.validate(self.bids, self.asks)
+
+    @staticmethod
+    def validate(bids, asks):
+        if not bids or not asks:
+            raise SyncLost("Known snapshot price range exhausted")
+        if max(bids) >= min(asks):
+            raise SyncLost("Crossed or locked reconstructed order book")
+        if len(bids) + len(asks) > 100000:
+            raise SyncLost("Known order book level budget exceeded")
+
+    def apply(self, row):
+        first, last = row["first_update_id"], row["final_update_id"]
+        signature = sha256(
+            json_bytes(
+                {
+                    k: row[k]
+                    for k in (
+                        "first_update_id",
+                        "final_update_id",
+                        "previous_update_id",
+                        "timestamp",
+                        "event_time",
+                        "bids",
+                        "asks",
+                    )
+                }
+            )
+        )
+        if not self.synced:
+            if last < self.last:
+                return "stale"
+            if first > self.last:
+                raise SyncLost("Snapshot bridge missing: expected U <= lastUpdateId <= u")
+        else:
+            if last == self.last and signature == self.last_signature:
+                return "duplicate"
+            if last <= self.last:
+                raise SyncLost("Conflicting duplicate or reversed depth update")
+            if row["previous_update_id"] != self.last:
+                raise SyncLost("Depth chain gap: pu differs from previous u")
+            if row["timestamp"] < self.timestamp:
+                raise SyncLost("Depth transaction time reversed")
+        bids, asks = self.bids.copy(), self.asks.copy()
+        for target, rows, inside in (
+            (bids, row["bids"], lambda p: p >= self.bid_floor),
+            (asks, row["asks"], lambda p: p <= self.ask_ceiling),
+        ):
+            for level in rows:
+                p, q = level["price"], level["quantity"]
+                if not inside(p):
+                    continue
+                if q == 0:
+                    target.pop(p, None)
+                else:
+                    target[p] = q
+        self.validate(bids, asks)
+        self.bids, self.asks = bids, asks
+        self.last, self.timestamp = last, row["timestamp"]
+        self.last_signature, self.synced = signature, True
+        return "applied"
+
+    def view(self, top=20):
+        bids, asks = sorted(self.bids.items(), reverse=True), sorted(self.asks.items())
+        return {
+            "last_update_id": self.last,
+            "timestamp": self.timestamp,
+            "synced": self.synced,
+            "bid_floor": self.bid_floor,
+            "ask_ceiling": self.ask_ceiling,
+            "known_bid_levels": len(bids),
+            "known_ask_levels": len(asks),
+            "top_requested": top,
+            "top_complete": len(bids) >= top and len(asks) >= top,
+            "bids": bids[:top],
+            "asks": asks[:top],
+            "book_sha256": sha256(json_bytes({"bids": bids, "asks": asks, "u": self.last})),
+        }
+
+
+class Session:
+    """Same deterministic state machine is used live and for offline replay."""
+
+    def __init__(self, top=20):
+        self.book = None
+        self.pending = None
+        self.top = top
+        self.counts = {"applied": 0, "stale": 0, "duplicate": 0}
+        self.checks = []
+        self.error = None
+
+    def compare(self, candidate, sequence):
+        a, b = self.book.view(self.top), candidate.view(self.top)
+        comparable = (
+            a["last_update_id"] == b["last_update_id"] and a["top_complete"] and b["top_complete"]
+        )
+        self.checks.append(
+            {
+                "snapshot_sequence": sequence,
+                "last_update_id": a["last_update_id"],
+                "top": self.top,
+                "comparable": comparable,
+                "equal": comparable and a["bids"] == b["bids"] and a["asks"] == b["asks"],
+            }
+        )
+        if comparable and not self.checks[-1]["equal"]:
+            raise SyncLost("Independent REST snapshot disagrees at the same update ID")
+
+    def take(self, row):
+        if row["kind"] == "anchor":
+            if self.book is not None:
+                raise DataError("Multiple anchors in one depth epoch")
+            self.book = Book(row)
+        elif self.book is None:
+            raise DataError("Depth journal has no preceding anchor")
+        elif row["kind"] == "check":
+            if self.pending:
+                raise DataError("Previous depth verification has not aligned")
+            candidate = Book(row)
+            if candidate.last < self.book.last:
+                self.checks.append(
+                    {
+                        "snapshot_sequence": row["sequence"],
+                        "comparable": False,
+                        "equal": False,
+                        "reason": "snapshot_behind_live_book",
+                    }
+                )
+            elif candidate.last == self.book.last and self.book.synced:
+                self.compare(candidate, row["sequence"])
+            else:
+                self.pending = (candidate, row["sequence"])
+        else:
+            result = self.book.apply(row)
+            self.counts[result] += 1
+            if result == "applied" and self.pending:
+                candidate, sequence = self.pending
+                try:
+                    applied = candidate.apply(row)
+                except SyncLost as exc:
+                    self.checks.append(
+                        {
+                            "snapshot_sequence": sequence,
+                            "comparable": False,
+                            "equal": False,
+                            "reason": str(exc),
+                        }
+                    )
+                    self.pending = None
+                else:
+                    if applied == "applied":
+                        self.pending = None
+                        self.compare(candidate, sequence)
+
+    def summary(self):
+        return {
+            "counts": self.counts,
+            "book": self.book.view(self.top) if self.book else None,
+            "checks": self.checks,
+            "pending_check_sequence": self.pending[1] if self.pending else None,
+            "error": self.error,
+        }
+
+
+def start_collection(store, details):
+    report = {
+        "id": uuid4().hex,
+        "dataset": DATASET,
+        "kind": "websocket",
+        "started_at": now(),
+        **details,
+    }
+    with store.writer(timeout=60), store.db:
+        store.db.execute(
+            "INSERT INTO event_collections VALUES(?,?,?,?,?,?,?)",
+            (
+                report["id"],
+                DATASET,
+                "websocket",
+                report["started_at"].isoformat(),
+                report["started_at"].isoformat(),
+                "running",
+                json_bytes(report).decode(),
+            ),
+        )
+    return report
+
+
+def save_collection(store, report, state):
+    report.update(state=state, updated_at=now())
+    with store.writer(timeout=60), store.db:
+        store.db.execute(
+            "UPDATE event_collections SET state=?,updated_at=?,report=? WHERE id=?",
+            (
+                state,
+                report["updated_at"].isoformat(),
+                json_bytes(report).decode(),
+                report["id"],
+            ),
+        )
+    atomic_write(store.root / "state/depth-latest.json", json_bytes(report))
+
+
+def publish(store, collection_id, rows, source_id):
+    if not rows:
+        return
+    sink = pa.BufferOutputStream()
+    pq.write_table(pa.Table.from_pylist(rows, schema=SCHEMA), sink, compression="zstd")
+    blob = sink.getvalue().to_pybytes()
+    identity = sha256(blob)
+    relative = f"data/canonical/{DATASET}/{identity[:2]}/{identity}.parquet"
+    with store.writer(timeout=60):
+        path = store.root / relative
+        if path.exists():
+            if sha256(path.read_bytes()) != identity:
+                raise DataError("Corrupted existing depth segment")
+        else:
+            atomic_write(path, blob)
+        with store.db:
+            store.db.execute(
+                "INSERT OR IGNORE INTO event_segments VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                (
+                    identity,
+                    collection_id,
+                    DATASET,
+                    INSTRUMENT,
+                    "journal",
+                    relative,
+                    identity,
+                    source_id,
+                    min(r["timestamp"] for r in rows).isoformat(),
+                    max(r["timestamp"] for r in rows).isoformat(),
+                    min(r["sequence"] for r in rows),
+                    max(r["sequence"] for r in rows),
+                    len(rows),
+                ),
+            )
+
+
+def collection_record(store, identity=None):
+    row = store.db.execute(
+        "SELECT * FROM event_collections WHERE dataset=? "
+        + ("AND id=?" if identity else "ORDER BY started_at DESC LIMIT 1"),
+        (DATASET, identity) if identity else (DATASET,),
+    ).fetchone()
+    if row is None:
+        raise DataError("Unknown depth collection")
+    return row
+
+
+def replay(store, identity=None, *, max_rows=100000):
+    record = collection_record(store, identity)
+    report = json.loads(record["report"])
+    records = list(
+        store.db.execute(
+            "SELECT * FROM event_segments WHERE dataset=? AND collection_id=? ORDER BY first_id",
+            (DATASET, record["id"]),
+        )
+    )
+    if sum(r["row_count"] for r in records) > max_rows:
+        raise DataError("Depth replay row budget exceeded")
+    rows = []
+    for segment in records:
+        rows.extend(store._revision_table(segment).to_pylist())
+    rows.sort(key=lambda r: r["sequence"])
+    if [r["sequence"] for r in rows] != list(range(len(rows))):
+        raise DataError("Depth journal sequence is missing or duplicated")
+    sessions = {}
+    for row in rows:
+        epoch = row["epoch"]
+        session = sessions.setdefault(epoch, Session(report["top"]))
+        if session.error:
+            raise DataError("Depth updates continued after an invalid epoch")
+        try:
+            session.take(row)
+        except (DataError, KeyError) as exc:
+            session.error = str(exc)
+    expected = {e["epoch"]: e.get("final") for e in report["epochs"]}
+    summaries = {e: s.summary() for e, s in sessions.items()}
+    matches = json_bytes(summaries) == json_bytes(expected)
+    checks = [c for s in sessions.values() for c in s.checks]
+    pending_checks = sum(s.pending is not None for s in sessions.values())
+    valid = (
+        bool(rows)
+        and matches
+        and report.get("complete", False)
+        and all(s.book and s.book.synced and not s.error for s in sessions.values())
+    )
+    return {
+        "collection_id": record["id"],
+        "state": record["state"],
+        "rows": len(rows),
+        "segments": [r["id"] for r in records],
+        "epochs": summaries,
+        "replay_matches_live": matches,
+        "valid": valid,
+        "continuous": valid and len(sessions) == 1 and not report.get("connection_errors"),
+        "verification_checks": len(checks),
+        "verification_equal": sum(bool(c["equal"]) for c in checks),
+        "verification_uncomparable": sum(not c["comparable"] for c in checks),
+        "verification_pending": pending_checks,
+        "verification_complete": bool(checks)
+        and not pending_checks
+        and all(c["equal"] for c in checks),
+        "note": "Per-epoch known price range only; reconnect intervals and time-window edges are not reconstructed.",
+    }
+
+
+def status(store):
+    try:
+        record = collection_record(store)
+    except DataError:
+        return {"state": "empty", "healthy": False}
+    report = json.loads(record["report"])
+    received = report.get("last_received_at")
+    age = (now() - utc(received)).total_seconds() if received else None
+    return {
+        "state": record["state"],
+        "healthy": record["state"] == "running"
+        and age is not None
+        and 0 <= age < 10
+        and report.get("synchronized", False)
+        and not report.get("sync_losses"),
+        "last_receive_age_seconds": age,
+        "recent_incomplete_collection_ids": [
+            r["id"]
+            for r in store.db.execute(
+                "SELECT id FROM event_collections WHERE dataset=? AND id<>? "
+                "AND state IN ('failed','partial','interrupted') ORDER BY started_at DESC LIMIT 100",
+                (DATASET, record["id"]),
+            )
+        ],
+        "report": report,
+        "note": "A completed pilot is not a running depth service. Epoch boundaries do not have historical repair.",
+    }

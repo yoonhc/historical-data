@@ -13,6 +13,9 @@ from .aggtrades import collect_rest, compare_candles, compare_sources, read_trad
 from .backfill import backfill_set
 from .backup import create_backup, restore_backup, storage_report, verify_backup
 from .binance import SourceError, archive_units, archive_url
+from .depth import replay as depth_replay
+from .depth import status as depth_status
+from .depth_stream import capture as depth_capture
 from .domain import DAY, DataError, Key, json_bytes, json_default, now, utc
 from .oi_probe import probe_once
 from .oi_quality import SHIFTS, quality_report, write_report
@@ -140,6 +143,23 @@ def parser():
                 default="rest" if name == "aggtrade-compare-candles" else None,
             )
     p = sub.add_parser("aggtrade-status")
+    p.add_argument("--report", type=Path)
+    p = sub.add_parser(
+        "depth-stream", help="BTCUSDT USD-M depth pilot with snapshot synchronization"
+    )
+    p.add_argument("--seconds", type=int, default=180)
+    p.add_argument("--flush-seconds", type=int, default=5)
+    p.add_argument("--rotate-seconds", type=int, default=3600)
+    p.add_argument("--verify-seconds", type=int, default=30)
+    p.add_argument("--top", type=int, default=20)
+    p.add_argument("--min-free-gib", type=float, default=10)
+    p.add_argument("--report", type=Path)
+    p = sub.add_parser(
+        "depth-replay", help="Replay a stored depth collection and compare live books"
+    )
+    p.add_argument("--collection-id")
+    p.add_argument("--report", type=Path)
+    p = sub.add_parser("depth-status")
     p.add_argument("--report", type=Path)
     p = sub.add_parser(
         "backup", help="Copy a consistent catalog and all referenced immutable files"
@@ -294,6 +314,29 @@ def main(argv=None):
         if args.command == "backup" and not (args.root / "state/catalog.sqlite").is_file():
             raise DataError("Cannot back up a missing catalog")
         store = Store(args.root)
+        if args.command.startswith("depth-"):
+            if args.command == "depth-stream":
+                result = depth_capture(
+                    store,
+                    seconds=args.seconds,
+                    flush_seconds=args.flush_seconds,
+                    rotate_seconds=args.rotate_seconds,
+                    verify_seconds=args.verify_seconds,
+                    top=args.top,
+                    min_free_gib=args.min_free_gib,
+                    progress=lambda p: emit(p, error=True),
+                )
+                ok = result["complete"]
+            elif args.command == "depth-replay":
+                result = depth_replay(store, args.collection_id)
+                ok = result["valid"]
+            else:
+                result = depth_status(store)
+                ok = result["healthy"]
+            if args.report:
+                atomic_write(args.report, json_bytes(result))
+            emit(result)
+            return 0 if ok else 2
         if args.command.startswith("aggtrade-"):
             if args.command == "aggtrade-rest":
                 result = collect_rest(
