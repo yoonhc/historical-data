@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-09-22T13:14:25.302551+00:00",
+  "pytest_passed": 111,
+  "new_backup_tests": 16,
+  "ruff_check": "passed",
+  "ruff_format": "passed",
+  "git_diff_check": "passed",
+  "source_base_commit": "b704a60",
+  "backup_manifest_path": "backups/pre-streaming-2026-09-22/backup.json",
+  "backup_manifest_sha256": "4fe7f23e6bc79da23188ffca6a5c148f7657bfe37798494644425592647d100d",
+  "source_hashes": {
+    "packages/marketdata/src/marketdata/backup.py": "1ee47a2f0df74841f71ef628b11f9974d3d8b59a8ad1609294562ec377fa5f1a",
+    "packages/marketdata/src/marketdata/cli.py": "6580e4e068a7930822f2eb149cdfd7e1a452581ab69023f44079ad8c87b30d81",
+    "packages/marketdata/src/marketdata/store.py": "dcf343b15b85c88142823ae34b34fabb2f1297d3ccc6641cb86eef3f47366e7c",
+    "packages/marketdata/src/marketdata/domain.py": "73f8b66d835116dd32c10503e89b5d49e0b6e060972451d13494a27a68c7a47f",
+    "tests/test_backup.py": "31bc03cab35881287671bbe056b084b93fd0807ba394bbec95ba7c0525e56be0",
+    "docs/backup-and-storage.md": "75425e22717d68197bec11ce0ef166ab6a52615f21987f18225f02e3c72e89ce",
+    "docs/operations.md": "28ca9d26a522573f710cd9688e76516ea1a3ea505242288b60f40c3c2b4c4dfb",
+    "docs/data-platform-design.md": "3031d48dcf9cde97ba45a9a161cfc7493c33220c5b30006362c42da2c29448b1",
+    "README.md": "0756a74a9e6b6fac5a30527fef40e43634e56910981141a69b0aa5e266ce20c3",
+    "reports/README.md": "458ad93ce8c1dc32fed812760f58c8d1d5490640aa7e6d93ed81ec50c4c99d4b",
+    ".gitignore": "f44b75b58a0ef4ad5eeca3db95b8cb92833667eee841d839b95e7fd199520469"
+  },
+  "commands": [
+    ".venv/bin/pytest -q --junitxml=reports/backup-tests.xml",
+    ".venv/bin/ruff check .",
+    ".venv/bin/ruff format --check .",
+    "git diff --check",
+    ".venv/bin/marketdata backup --output backups/pre-streaming-2026-09-22",
+    ".venv/bin/marketdata backup-verify backups/pre-streaming-2026-09-22",
+    ".venv/bin/marketdata restore backups/pre-streaming-2026-09-22 --output restore-checks/pre-streaming-2026-09-22",
+    ".venv/bin/marketdata --root restore-checks/pre-streaming-2026-09-22 validate",
+    ".venv/bin/marketdata status --report reports/status-after-backup.json --table",
+    ".venv/bin/marketdata storage --report reports/storage-after-backup.json"
+  ],
+  "limits": [
+    "Local backup and restored copy share a filesystem with the source; no external disaster-recovery backup.",
+    "No scheduled backup, external transfer, or external alert configured.",
+    "Only registered immutable files and the catalog are included; derived exports, reports, code, runtime JSON and orphan files are excluded.",
+    "Snapshot row equality checked the first up-to-24h per dataset; all backed-up file hashes were checked separately.",
+    "Known historical gaps and quarantines remain preserved.",
+    "aggTrade and orderbook depth collectors remain unimplemented."
+  ]
+}

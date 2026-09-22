@@ -26,7 +26,9 @@
   카탈로그 테이블은 현재 필요한 artifacts/fetches/jobs/revisions/active/issues/queries/snapshots로 통합했다.
   운영 범위·실행 기록·revision별 완전성 캐시는 sync_targets/sync_runs/sync_coverage에 보존한다.
 - 기본 스냅샷은 `historical_assumption`이다. 전체 과거 revision의 시점별 재구성,
-  자동 품질 예외 승인, 백업 CLI, 독립 `reconcile` 명령은 아직 구현하지 않았다.
+  자동 품질 예외 승인과 독립 `reconcile` 명령은 아직 구현하지 않았다.
+  일관된 카탈로그·불변 파일의 백업, 검증, 별도 경로 복원과 용량 점검 CLI를 추가했다.
+  [백업·복원 범위와 사용법](backup-and-storage.md)
   최근 구간 재확인은 `update`/`repair --refresh`를 사용한다.
 - `status`와 운영 범위 내 자동 누락 복구를 구현했다. 중간 누락·장기 중단·중단 후 재시작·
   데이터셋별 실패 격리를 검증했고, 사용자 systemd 타이머 두 개를 활성화해 실제 실행을 확인했다.

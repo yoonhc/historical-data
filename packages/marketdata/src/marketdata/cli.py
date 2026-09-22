@@ -2,12 +2,14 @@
 
 import argparse
 import json
+import sqlite3
 import sys
 import time
 import tomllib
 from pathlib import Path
 
 from .backfill import backfill_set
+from .backup import create_backup, restore_backup, storage_report, verify_backup
 from .binance import SourceError, archive_units, archive_url
 from .domain import DAY, DataError, Key, json_bytes, json_default, now, utc
 from .oi_probe import probe_once
@@ -112,6 +114,20 @@ def parser():
         help="Release the writer between archive/REST batches and pause this long",
     )
     sub.add_parser("validate")
+    p = sub.add_parser(
+        "backup", help="Copy a consistent catalog and all referenced immutable files"
+    )
+    p.add_argument("--output", type=Path, required=True, help="New backup directory")
+    p.add_argument("--min-free-gib", type=float, default=10)
+    p = sub.add_parser("backup-verify", help="Verify a completed standalone backup")
+    p.add_argument("path", type=Path)
+    p = sub.add_parser("restore", help="Restore a backup into a new, independent store directory")
+    p.add_argument("path", type=Path)
+    p.add_argument("--output", type=Path, required=True)
+    p.add_argument("--min-free-gib", type=float, default=10)
+    p = sub.add_parser("storage", help="Report filesystem capacity and local data sizes")
+    p.add_argument("--min-free-gib", type=float, default=10)
+    p.add_argument("--report", type=Path)
     sub.add_parser("oi-probe", help="Record one timed OI response without changing canonical data")
     p = sub.add_parser("oi-quality", help="Compare OI sources and report observed availability")
     p.add_argument("--start", help="First UTC day, requires --end")
@@ -230,9 +246,37 @@ def incomplete(result):
 
 def main(argv=None):
     args = parser().parse_args(argv)
-    store = Store(args.root)
-    collector = Collector(store)
+    store = collector = None
     try:
+        if args.command in {"backup-verify", "restore", "storage"}:
+            if args.command == "backup-verify":
+                result = verify_backup(args.path)
+            elif args.command == "restore":
+                result = restore_backup(
+                    args.path,
+                    args.output,
+                    min_free_gib=args.min_free_gib,
+                    progress=lambda p: emit(p, error=True),
+                )
+            else:
+                result = storage_report(args.root, min_free_gib=args.min_free_gib)
+                if args.report:
+                    atomic_write(args.report, json_bytes(result))
+            emit(result)
+            return 2 if result.get("healthy") is False else 0
+        if args.command == "backup" and not (args.root / "state/catalog.sqlite").is_file():
+            raise DataError("Cannot back up a missing catalog")
+        store = Store(args.root)
+        if args.command == "backup":
+            result = create_backup(
+                store,
+                args.output,
+                min_free_gib=args.min_free_gib,
+                progress=lambda p: emit(p, error=True),
+            )
+            emit(result)
+            return 0
+        collector = Collector(store)
         if args.command == "oi-probe":
             result = probe_once(store)
         elif args.command == "oi-quality":
@@ -403,7 +447,7 @@ def main(argv=None):
                     raise DataError("Unknown command")
         emit(result)
         return 2 if incomplete(result) else 0
-    except (DataError, SourceError, OSError, KeyError) as exc:
+    except (DataError, SourceError, OSError, KeyError, sqlite3.Error, json.JSONDecodeError) as exc:
         emit({"error": type(exc).__name__, "message": str(exc)}, error=True)
         return 1
     except KeyboardInterrupt:
@@ -413,8 +457,10 @@ def main(argv=None):
         )
         return 130
     finally:
-        collector.fetcher.close()
-        store.close()
+        if collector is not None:
+            collector.fetcher.close()
+        if store is not None:
+            store.close()
 
 
 if __name__ == "__main__":

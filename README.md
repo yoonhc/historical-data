@@ -139,6 +139,9 @@ archive/REST 값 비교와 응답 변화 보고서를 생성합니다.
 .venv/bin/marketdata status --table
 .venv/bin/marketdata status --report reports/status.json
 
+# 저장 용량과 파일 수 점검
+.venv/bin/marketdata storage --report reports/storage.json
+
 # 일별 갱신: 등록된 범위의 누락을 복구하고, 최근 3일을 재확인합니다.
 .venv/bin/marketdata update --config configs/daily.toml
 
@@ -176,6 +179,8 @@ loginctl enable-linger "$USER"
 저장소는 `data/raw` 원본, `data/canonical` 불변 Parquet, `data/snapshots` manifest와
 `state/catalog.sqlite`로 구성됩니다. 원본과 수정 이력은 자동 삭제하지 않습니다.
 백업은 수집기를 멈춘 상태에서 `data/`와 `state/`를 함께 복사하거나 SQLite 백업 API를 사용합니다.
+수집 중에도 일관된 복구 지점을 만드는 `marketdata backup`, `backup-verify`, `restore` 명령을
+제공합니다. [백업 범위·별도 경로 복원·용량 점검](docs/backup-and-storage.md)을 확인하세요.
 활성 revision을 무시하고 모든 Parquet을 glob으로 읽으면 수정 전후 데이터가 중복됩니다.
 
 ## Python 조회
