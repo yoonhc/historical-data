@@ -32,6 +32,11 @@
 `data/snapshots/`에 보존하고, Git에는 ID·범위·크기·검증 결과를 담은 인덱스를 보관합니다.
 이 단계는 전략 성과나 OI 공개 시각의 검증을 포함하지 않습니다.
 
+`baseline/freqtrade-userdata-2026-09-22/`는 기존 `ft_userdata` Docker에 연결한 검증 기록입니다.
+[요약](baseline/freqtrade-userdata-2026-09-22/summary.md)에 4개 출력, 실제 native 파일 29개 검사,
+4개 백테스트, 20개 신호의 lookahead 분석, 테스트 78개와 기존 설정 보존 확인을 기록했습니다.
+출력별 manifest와 실행별 명령·이미지·설정·결과 해시를 함께 보존합니다.
+
 수집·검증 스크립트가 생성하는 `reports/` 바로 아래의 보고서, 테스트 XML, 로그는
 로컬 실행 결과로 Git에서 제외합니다. 최초 페이지 분할 오류를 기록한
 `bootstrap-initial-2026-09-14_21.json`도 로컬에 보존하되 baseline에는 최종 검증 결과를 넣었습니다.

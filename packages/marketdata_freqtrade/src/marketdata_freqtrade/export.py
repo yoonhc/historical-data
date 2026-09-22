@@ -1,5 +1,6 @@
 """Versioned file export. Freqtrade is deliberately not a runtime dependency."""
 
+import hashlib
 import json
 import shutil
 import tempfile
@@ -54,7 +55,9 @@ def verify_export(path):
         target = (path / record["path"]).resolve()
         if not target.is_relative_to(path.resolve()):
             raise DataError("Export path escapes its directory")
-        if sha256(target.read_bytes()) != record["sha256"]:
+        with target.open("rb") as stream:
+            digest = hashlib.file_digest(stream, "sha256").hexdigest()
+        if digest != record["sha256"]:
             raise DataError(f"Export file hash mismatch: {target}")
     return {"export_id": identity, **manifest}
 

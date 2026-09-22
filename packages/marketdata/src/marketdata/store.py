@@ -364,21 +364,24 @@ class Store:
             r for r in records if utc(r["day"]) < end and utc(r["day"]) + timedelta(days=1) > start
         ]
 
-    def read(self, key, start, end, snapshot_id=None):
+    def iter_tables(self, key, start, end, snapshot_id=None):
+        """Yield verified daily Arrow tables from the selected immutable revisions."""
         start, end = utc(start), utc(end)
         if start >= end:
             raise DataError("Expected start < end")
         records = self.revision_list(key, start, end, snapshot_id)
-        tables = []
-        for record in records:
-            rows = self._revision_rows(record)
-            tables.append(pa.Table.from_pylist(rows, schema=schema(key)))
+        for record in sorted(records, key=lambda r: r["day"]):
+            table = self._revision_table(record)
+            mask = pc.and_(
+                pc.greater_equal(table["timestamp"], pa.scalar(start)),
+                pc.less(table["timestamp"], pa.scalar(end)),
+            )
+            yield table.filter(mask).sort_by([("timestamp", "ascending")])
+
+    def read(self, key, start, end, snapshot_id=None):
+        tables = list(self.iter_tables(key, start, end, snapshot_id))
         table = pa.concat_tables(tables) if tables else pa.Table.from_pylist([], schema=schema(key))
-        mask = pc.and_(
-            pc.greater_equal(table["timestamp"], pa.scalar(start)),
-            pc.less(table["timestamp"], pa.scalar(end)),
-        )
-        return table.filter(mask).sort_by([("timestamp", "ascending")])
+        return table.sort_by([("timestamp", "ascending")])
 
     def coverage(self, key, start, end):
         start, end = utc(start), utc(end)

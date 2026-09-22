@@ -78,6 +78,21 @@ OI의 0값을 포함한 날짜를 해제하려면 완전하고 유효한 하루 
 
 ## Freqtrade에서 사용
 
+현재 대상은 기존 **`/home/yoonhc/freqtrade/ft_userdata`** Docker 설치입니다.
+3년 스냅샷 출력과 실제 실행은 다음 명령을 사용합니다.
+
+```bash
+.venv/bin/python scripts/build_freqtrade_exports.py
+.venv/bin/python scripts/freqtrade_run.py check --execute
+.venv/bin/python scripts/freqtrade_run.py backtest --execute
+```
+
+기본값은 선물 누락 이후 구간이며, 설정·전략은 읽기 전용으로 연결하고 결과는
+기존 `ft_userdata/user_data/backtest_results/marketdata/`에 저장합니다.
+[데이터 구간·자신의 전략 실행·검증 기록 안내](docs/freqtrade-userdata.md)
+
+개별 스냅샷의 기존 v2 출력과 최초 7일 검증을 재현하려면 아래 명령을 사용합니다.
+
 ```bash
 # 저장된 자료로 고정 스냅샷 생성; 출력의 snapshot_id를 사용합니다.
 .venv/bin/marketdata snapshot --config configs/bootstrap.toml \
@@ -91,7 +106,7 @@ OI의 0값을 포함한 날짜를 해제하려면 완전하고 유효한 하루 
 ```
 
 대상은 **Freqtrade 2026.8**이며 공식 이미지 digest를 Compose에 고정했습니다.
-현재 검증 출력은 `data/exports/freqtrade/smoke-v2/`입니다.
+3년 출력은 `data/exports/freqtrade/research-v3/`, 최초 7일 출력은 `smoke-v2/`입니다.
 일반 캔들은 `date/open/high/low/close/volume`, 펀딩은 `date/funding_rate`입니다.
 마크·지수는 호환 출력에만 volume=0을 사용합니다. 공통 원본에는 허구의 거래량을 넣지 않습니다.
 거래대금·taker 매수량·OI는 `features/*.parquet`에 보존되며 전략에서 명시적으로 읽어야 합니다.

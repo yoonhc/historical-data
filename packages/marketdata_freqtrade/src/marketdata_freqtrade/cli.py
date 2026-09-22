@@ -6,6 +6,7 @@ from marketdata.domain import DataError
 from marketdata.store import Store
 
 from .export import export_snapshot, verify_export
+from .window import export_window
 
 
 def main(argv=None):
@@ -16,6 +17,12 @@ def main(argv=None):
     export.add_argument("--snapshot", required=True)
     export.add_argument("--output", type=Path, required=True)
     export.add_argument("--timeframes", nargs="+", default=["1m", "5m", "15m", "1h"])
+    window = sub.add_parser("export-window", help="Stream an explicitly aligned snapshot window")
+    window.add_argument("--snapshot", required=True)
+    window.add_argument("--output", type=Path, required=True)
+    window.add_argument("--start", required=True)
+    window.add_argument("--end", required=True)
+    window.add_argument("--timeframes", nargs="+", default=["1m", "5m", "15m", "1h"])
     check = sub.add_parser("verify")
     check.add_argument("path", type=Path)
     args = parser.parse_args(argv)
@@ -25,7 +32,11 @@ def main(argv=None):
         else:
             store = Store(args.root)
             try:
-                with store.writer():
+                if args.command == "export-window":
+                    result = export_window(
+                        store, args.snapshot, args.output, args.start, args.end, args.timeframes
+                    )
+                else:
                     result = export_snapshot(store, args.snapshot, args.output, args.timeframes)
             finally:
                 store.close()

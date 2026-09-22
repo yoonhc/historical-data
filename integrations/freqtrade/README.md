@@ -1,5 +1,12 @@
 # Freqtrade Docker 연동
 
+현재 실행 대상은 **`/home/yoonhc/freqtrade/ft_userdata`**다.
+3년 데이터와 기존 Docker 설치를 사용하는 명령은
+[ft_userdata 사용법](../../docs/freqtrade-userdata.md)을 따른다.
+`ft_userdata.compose.yaml`은 기존 Compose에 적용하는 overlay이며, 결과도 기존
+`user_data/backtest_results/marketdata/`에 저장한다. 아래 독립 `compose.yaml` 명령은
+최초 7일 연동 검증을 재현하기 위한 기록이다.
+
 Compose는 공식 Freqtrade 2026.8 이미지의 digest를 고정한다.
 수집 코어·어댑터에는 Freqtrade를 설치하지 않는다. 출력 데이터는 컨테이너에 읽기 전용으로 연결한다.
 아래 명령은 **프로젝트 루트**에서 실행한다.
