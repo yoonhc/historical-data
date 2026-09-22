@@ -100,6 +100,7 @@ class Book:
         self.bids = {r["price"]: r["quantity"] for r in snapshot["bids"]}
         self.asks = {r["price"]: r["quantity"] for r in snapshot["asks"]}
         self.bid_floor, self.ask_ceiling = min(self.bids), max(self.asks)
+        self.snapshot_bid_levels, self.snapshot_ask_levels = len(self.bids), len(self.asks)
         self.last = snapshot["final_update_id"]
         self.timestamp = snapshot["timestamp"]
         self.synced = False
@@ -187,13 +188,15 @@ class Book:
 class Session:
     """Same deterministic state machine is used live and for offline replay."""
 
-    def __init__(self, top=20):
+    def __init__(self, top=20, *, refresh_from_checks=False):
         self.book = None
         self.pending = None
         self.top = top
         self.counts = {"applied": 0, "stale": 0, "duplicate": 0}
         self.checks = []
         self.error = None
+        self.refresh_from_checks = refresh_from_checks
+        self.refreshes = 0
 
     def compare(self, candidate, sequence):
         a, b = self.book.view(self.top), candidate.view(self.top)
@@ -211,6 +214,17 @@ class Session:
         )
         if comparable and not self.checks[-1]["equal"]:
             raise SyncLost("Independent REST snapshot disagrees at the same update ID")
+        if self.refresh_from_checks:
+            refreshed = self.checks[-1]["equal"]
+            self.checks[-1]["refreshed"] = refreshed
+            if refreshed:
+                # The new snapshot has reached the exact live update ID. Keep the
+                # stream chain/duplicate marker while replacing its known price range.
+                candidate.synced = True
+                candidate.last_signature = self.book.last_signature
+                candidate.timestamp = self.book.timestamp
+                self.book = candidate
+                self.refreshes += 1
 
     def take(self, row):
         if row["kind"] == "anchor":
@@ -265,6 +279,7 @@ class Session:
             "checks": self.checks,
             "pending_check_sequence": self.pending[1] if self.pending else None,
             "error": self.error,
+            **({"refreshes": self.refreshes} if self.refresh_from_checks else {}),
         }
 
 
@@ -365,29 +380,35 @@ def replay(store, identity=None, *, max_rows=100000):
     )
     if sum(r["row_count"] for r in records) > max_rows:
         raise DataError("Depth replay row budget exceeded")
-    rows = []
-    for segment in records:
-        rows.extend(store._revision_table(segment).to_pylist())
-    rows.sort(key=lambda r: r["sequence"])
-    if [r["sequence"] for r in rows] != list(range(len(rows))):
-        raise DataError("Depth journal sequence is missing or duplicated")
     sessions = {}
-    for row in rows:
-        epoch = row["epoch"]
-        session = sessions.setdefault(epoch, Session(report["top"]))
-        if session.error:
-            raise DataError("Depth updates continued after an invalid epoch")
-        try:
-            session.take(row)
-        except (DataError, KeyError) as exc:
-            session.error = str(exc)
+    row_count = 0
+    for segment in records:
+        # Keep at most one immutable segment in memory, not the whole capture.
+        for batch in store._revision_table(segment).to_batches(max_chunksize=256):
+            for row in batch.to_pylist():
+                if row["sequence"] != row_count:
+                    raise DataError("Depth journal sequence is missing or duplicated")
+                row_count += 1
+                epoch = row["epoch"]
+                session = sessions.setdefault(
+                    epoch,
+                    Session(
+                        report["top"], refresh_from_checks=report.get("refresh_from_checks", False)
+                    ),
+                )
+                if session.error:
+                    raise DataError("Depth updates continued after an invalid epoch")
+                try:
+                    session.take(row)
+                except (DataError, KeyError) as exc:
+                    session.error = str(exc)
     expected = {e["epoch"]: e.get("final") for e in report["epochs"]}
     summaries = {e: s.summary() for e, s in sessions.items()}
     matches = json_bytes(summaries) == json_bytes(expected)
     checks = [c for s in sessions.values() for c in s.checks]
     pending_checks = sum(s.pending is not None for s in sessions.values())
     valid = (
-        bool(rows)
+        bool(row_count)
         and matches
         and report.get("complete", False)
         and all(s.book and s.book.synced and not s.error for s in sessions.values())
@@ -395,7 +416,7 @@ def replay(store, identity=None, *, max_rows=100000):
     return {
         "collection_id": record["id"],
         "state": record["state"],
-        "rows": len(rows),
+        "rows": row_count,
         "segments": [r["id"] for r in records],
         "epochs": summaries,
         "replay_matches_live": matches,

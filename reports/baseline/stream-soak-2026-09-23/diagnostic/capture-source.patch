@@ -1,0 +1,355 @@
+--- a/packages/marketdata/src/marketdata/aggtrade_stream.py
++++ b/packages/marketdata/src/marketdata/aggtrade_stream.py
+@@ -119,6 +119,7 @@
+     flush_seconds=5,
+     rotate_seconds=3600,
+     min_free_gib=10,
++    fresh_start=False,
+     connector=connect,
+     recover=None,
+     progress=None,
+@@ -178,7 +179,11 @@
+                 "boundary_semantics": "first_session_start_and_final_stop_are_not_complete_time_windows",
+             },
+         )
+-        sequence = Sequence(latest_trade(store))
++        previous = latest_trade(store)
++        sequence = Sequence(None if fresh_start else previous)
++        report["fresh_start"] = fresh_start
++        report["previous_persisted_id"] = previous["agg_trade_id"] if previous else None
++        report["uncollected_before_start"] = None
+         report["resume_after_id"] = sequence.last["agg_trade_id"] if sequence.last else None
+         messages = []
+         started, last_flush = time.monotonic(), time.monotonic()
+@@ -248,6 +253,16 @@
+                                 websocket=True,
+                             )
+                             event = sequence.observe(row)
++                            if report["messages"] == 1 and fresh_start and previous:
++                                first = previous["agg_trade_id"] + 1
++                                last = row["agg_trade_id"] - 1
++                                if first <= last:
++                                    report["uncollected_before_start"] = {
++                                        "first_id": first,
++                                        "last_id": last,
++                                        "reason": "explicit_fresh_start_outside_capture_scope",
++                                        "repaired": False,
++                                    }
+                             report["last_id"] = row["agg_trade_id"]
+                             report["last_trade_time"] = row["timestamp"]
+                             report["last_received_at"] = received
+--- a/packages/marketdata/src/marketdata/cli.py
++++ b/packages/marketdata/src/marketdata/cli.py
+@@ -127,6 +127,11 @@
+     p.add_argument("--max-pages", type=int, default=100)
+     p.add_argument("--report", type=Path)
+     p = sub.add_parser("aggtrade-stream", help="Capture public aggregate trades with ID recovery")
++    p.add_argument(
++        "--fresh-start",
++        action="store_true",
++        help="Start a new scope and record, without repairing, the prior-session gap",
++    )
+     p.add_argument("--seconds", type=int, default=300, help="0 runs continuously")
+     p.add_argument("--flush-seconds", type=int, default=5)
+     p.add_argument("--rotate-seconds", type=int, default=3600)
+@@ -356,6 +361,7 @@
+                     flush_seconds=args.flush_seconds,
+                     rotate_seconds=args.rotate_seconds,
+                     min_free_gib=args.min_free_gib,
++                    fresh_start=args.fresh_start,
+                     progress=lambda p: emit(p, error=True),
+                 )
+                 ok = result["complete"]
+--- a/packages/marketdata/src/marketdata/depth.py
++++ b/packages/marketdata/src/marketdata/depth.py
+@@ -365,29 +365,30 @@
+     )
+     if sum(r["row_count"] for r in records) > max_rows:
+         raise DataError("Depth replay row budget exceeded")
+-    rows = []
++    sessions = {}
++    row_count = 0
+     for segment in records:
+-        rows.extend(store._revision_table(segment).to_pylist())
+-    rows.sort(key=lambda r: r["sequence"])
+-    if [r["sequence"] for r in rows] != list(range(len(rows))):
+-        raise DataError("Depth journal sequence is missing or duplicated")
+-    sessions = {}
+-    for row in rows:
+-        epoch = row["epoch"]
+-        session = sessions.setdefault(epoch, Session(report["top"]))
+-        if session.error:
+-            raise DataError("Depth updates continued after an invalid epoch")
+-        try:
+-            session.take(row)
+-        except (DataError, KeyError) as exc:
+-            session.error = str(exc)
++        # Keep at most one immutable segment in memory, not the whole capture.
++        for batch in store._revision_table(segment).to_batches(max_chunksize=256):
++            for row in batch.to_pylist():
++                if row["sequence"] != row_count:
++                    raise DataError("Depth journal sequence is missing or duplicated")
++                row_count += 1
++                epoch = row["epoch"]
++                session = sessions.setdefault(epoch, Session(report["top"]))
++                if session.error:
++                    raise DataError("Depth updates continued after an invalid epoch")
++                try:
++                    session.take(row)
++                except (DataError, KeyError) as exc:
++                    session.error = str(exc)
+     expected = {e["epoch"]: e.get("final") for e in report["epochs"]}
+     summaries = {e: s.summary() for e, s in sessions.items()}
+     matches = json_bytes(summaries) == json_bytes(expected)
+     checks = [c for s in sessions.values() for c in s.checks]
+     pending_checks = sum(s.pending is not None for s in sessions.values())
+     valid = (
+-        bool(rows)
++        bool(row_count)
+         and matches
+         and report.get("complete", False)
+         and all(s.book and s.book.synced and not s.error for s in sessions.values())
+@@ -395,7 +396,7 @@
+     return {
+         "collection_id": record["id"],
+         "state": record["state"],
+-        "rows": len(rows),
++        "rows": row_count,
+         "segments": [r["id"] for r in records],
+         "epochs": summaries,
+         "replay_matches_live": matches,
+--- /dev/null
++++ b/scripts/run_stream_soak.py
+@@ -0,0 +1,232 @@
++"""Run two bounded public collectors together and retain process/collection telemetry."""
++
++import argparse
++import json
++import os
++import shutil
++import signal
++import sqlite3
++import subprocess
++import sys
++import time
++from pathlib import Path
++
++from marketdata.domain import json_bytes, now, sha256, utc
++from marketdata.store import atomic_write
++
++
++def process_metrics(pid):
++    try:
++        status = Path(f"/proc/{pid}/status").read_text()
++        stat = Path(f"/proc/{pid}/stat").read_text().rsplit(") ", 1)[1].split()
++        memory = {
++            line.split(":", 1)[0]: int(line.split()[1]) * 1024
++            for line in status.splitlines()
++            if line.startswith(("VmRSS:", "VmHWM:"))
++        }
++        return {**memory, "cpu_seconds": (int(stat[11]) + int(stat[12])) / os.sysconf("SC_CLK_TCK")}
++    except (FileNotFoundError, ProcessLookupError):
++        return None
++
++
++def collection_metrics(root, started):
++    db = sqlite3.connect(f"file:{root / 'state/catalog.sqlite'}?mode=ro", uri=True)
++    db.row_factory = sqlite3.Row
++    result = {}
++    try:
++        for dataset in ("agg_trades", "book_depth"):
++            row = db.execute(
++                "SELECT * FROM event_collections WHERE dataset=? AND kind='websocket' "
++                "AND started_at>=? ORDER BY started_at DESC LIMIT 1",
++                (dataset, started.isoformat()),
++            ).fetchone()
++            if row is None:
++                result[dataset] = None
++                continue
++            report = json.loads(row["report"])
++            received = report.get("last_received_at")
++            result[dataset] = {
++                "id": row["id"],
++                "state": row["state"],
++                **{
++                    key: report.get(key)
++                    for key in (
++                        "messages",
++                        "persisted_messages",
++                        "connections",
++                        "connection_errors",
++                        "sync_losses",
++                        "unrepaired_gaps",
++                        "repaired_gaps",
++                        "synchronized",
++                    )
++                },
++                "receive_age_seconds": (now() - utc(received)).total_seconds()
++                if received
++                else None,
++            }
++        return result
++    finally:
++        db.close()
++
++
++def run(root, output, seconds=3600, rotate_seconds=900, interval=30):
++    if not 60 <= seconds <= 3600 or not 60 <= rotate_seconds <= 3600 or not 5 <= interval <= 60:
++        raise ValueError("Soak seconds/rotation: 60..3600; sample interval: 5..60")
++    root, output = root.resolve(), output.resolve()
++    output.mkdir(parents=True, exist_ok=False)
++    started = now()
++    common = [sys.executable, "-m", "marketdata.cli", "--root", str(root)]
++    commands = {
++        "aggtrade": [
++            *common,
++            "aggtrade-stream",
++            "--fresh-start",
++            "--seconds",
++            str(seconds),
++            "--rotate-seconds",
++            str(rotate_seconds),
++            "--report",
++            str(output / "aggtrade.json"),
++        ],
++        "depth": [
++            *common,
++            "depth-stream",
++            "--seconds",
++            str(seconds),
++            "--rotate-seconds",
++            str(rotate_seconds),
++            "--verify-seconds",
++            "60",
++            "--report",
++            str(output / "depth.json"),
++        ],
++    }
++    source_paths = [
++        "packages/marketdata/src/marketdata/aggtrade_stream.py",
++        "packages/marketdata/src/marketdata/aggtrades.py",
++        "packages/marketdata/src/marketdata/depth.py",
++        "packages/marketdata/src/marketdata/depth_stream.py",
++        "packages/marketdata/src/marketdata/cli.py",
++        "scripts/run_stream_soak.py",
++    ]
++    report = {
++        "started_at": started,
++        "seconds_requested": seconds,
++        "rotate_seconds": rotate_seconds,
++        "sample_interval": interval,
++        "root": str(root),
++        "commands": commands,
++        "state": "running",
++        "source_hashes": {p: sha256((root / p).read_bytes()) for p in source_paths},
++        "samples": 0,
++    }
++    children, handles = {}, []
++
++    def operations(label):
++        with (output / f"operations-{label}.stdout").open("wb") as stdout:
++            result = subprocess.run(
++                [*common, "status", "--report", str(output / f"operations-{label}.json")],
++                stdout=stdout,
++                stderr=subprocess.STDOUT,
++                timeout=45,
++            )
++        return {"at": now(), "label": label, "exit_code": result.returncode}
++
++    try:
++        report["operations_before"] = operations("before")
++        for name, command in commands.items():
++            handle = (output / f"{name}.log").open("wb")
++            handles.append(handle)
++            children[name] = subprocess.Popen(
++                command, cwd=root, stdout=handle, stderr=subprocess.STDOUT
++            )
++        report["pids"] = {name: child.pid for name, child in children.items()}
++        atomic_write(output / "run.json", json_bytes(report))
++        print(
++            json_bytes({"output": str(output), **report["pids"], "started_at": started}).decode(),
++            flush=True,
++        )
++        began = last_operations = time.monotonic()
++        with (output / "telemetry.jsonl").open("a") as telemetry:
++            while True:
++                sample = {
++                    "at": now(),
++                    "elapsed_seconds": time.monotonic() - began,
++                    "processes": {
++                        name: {
++                            "pid": p.pid,
++                            "exit_code": p.poll(),
++                            "metrics": process_metrics(p.pid),
++                        }
++                        for name, p in children.items()
++                    },
++                    "collections": collection_metrics(root, started),
++                    "free_bytes": shutil.disk_usage(root).free,
++                }
++                if time.monotonic() - last_operations >= 300:
++                    sample["operations"] = operations(f"{report['samples']:04d}")
++                    last_operations = time.monotonic()
++                telemetry.write(json_bytes(sample).decode() + "\n")
++                telemetry.flush()
++                report["samples"] += 1
++                atomic_write(output / "latest.json", json_bytes(sample))
++                if all(p.poll() is not None for p in children.values()):
++                    break
++                if time.monotonic() - began > seconds + 120:
++                    raise TimeoutError("Collector exceeded bounded soak deadline")
++                time.sleep(interval)
++        report["exit_codes"] = {name: p.returncode for name, p in children.items()}
++        report["operations_after"] = operations("after")
++        report["state"] = (
++            "complete"
++            if all(code == 0 for code in report["exit_codes"].values())
++            else "needs_review"
++        )
++    except BaseException as exc:
++        report.update(
++            state="interrupted" if isinstance(exc, KeyboardInterrupt) else "failed",
++            error=f"{type(exc).__name__}: {exc}",
++        )
++        raise
++    finally:
++        for child in children.values():
++            if child.poll() is None:
++                child.send_signal(signal.SIGINT)
++        for child in children.values():
++            if child.poll() is None:
++                try:
++                    child.wait(timeout=90)
++                except subprocess.TimeoutExpired:
++                    child.kill()
++                    child.wait()
++        for handle in handles:
++            handle.close()
++        report["finished_at"] = now()
++        atomic_write(output / "run.json", json_bytes(report))
++    print(
++        json_bytes(
++            {
++                "state": report["state"],
++                "samples": report["samples"],
++                "exit_codes": report["exit_codes"],
++            }
++        ).decode(),
++        flush=True,
++    )
++    return 0 if report["state"] == "complete" else 2
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--root", type=Path, default=Path("."))
++    parser.add_argument("--output", type=Path, required=True)
++    parser.add_argument("--seconds", type=int, default=3600)
++    parser.add_argument("--rotate-seconds", type=int, default=900)
++    parser.add_argument("--sample-interval", type=int, default=30)
++    args = parser.parse_args()
++    return run(args.root, args.output, args.seconds, args.rotate_seconds, args.sample_interval)
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())

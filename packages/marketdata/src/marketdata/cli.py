@@ -127,6 +127,11 @@ def parser():
     p.add_argument("--max-pages", type=int, default=100)
     p.add_argument("--report", type=Path)
     p = sub.add_parser("aggtrade-stream", help="Capture public aggregate trades with ID recovery")
+    p.add_argument(
+        "--fresh-start",
+        action="store_true",
+        help="Start a new scope and record, without repairing, the prior-session gap",
+    )
     p.add_argument("--seconds", type=int, default=300, help="0 runs continuously")
     p.add_argument("--flush-seconds", type=int, default=5)
     p.add_argument("--rotate-seconds", type=int, default=3600)
@@ -356,6 +361,7 @@ def main(argv=None):
                     flush_seconds=args.flush_seconds,
                     rotate_seconds=args.rotate_seconds,
                     min_free_gib=args.min_free_gib,
+                    fresh_start=args.fresh_start,
                     progress=lambda p: emit(p, error=True),
                 )
                 ok = result["complete"]

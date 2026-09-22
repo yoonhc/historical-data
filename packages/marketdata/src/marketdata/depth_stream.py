@@ -179,6 +179,7 @@ def capture(
                     "rotate_seconds": rotate_seconds,
                     "verify_seconds": verify_seconds,
                     "top": top,
+                    "refresh_from_checks": True,
                     "messages": 0,
                     "persisted_messages": 0,
                     "snapshots": 0,
@@ -248,7 +249,7 @@ def capture(
                         ) as socket:
                             connected = last_message = last_check = time.monotonic()
                             report["connections"] += 1
-                            session = depth.Session(top)
+                            session = depth.Session(top, refresh_from_checks=True)
                             epoch_report = {
                                 "epoch": len(report["epochs"]),
                                 "started_at": now(),
@@ -307,7 +308,24 @@ def capture(
                                 if (
                                     session.book.synced
                                     and not session.pending
-                                    and time.monotonic() - last_check >= verify_seconds
+                                    and (
+                                        time.monotonic() - last_check >= verify_seconds
+                                        or (
+                                            (
+                                                len(session.book.bids)
+                                                < min(
+                                                    max(100, top * 5),
+                                                    session.book.snapshot_bid_levels // 2,
+                                                )
+                                                or len(session.book.asks)
+                                                < min(
+                                                    max(100, top * 5),
+                                                    session.book.snapshot_ask_levels // 2,
+                                                )
+                                            )
+                                            and time.monotonic() - last_check >= 5
+                                        )
+                                    )
                                 ):
                                     get_snapshot("check")
                                     last_check = time.monotonic()

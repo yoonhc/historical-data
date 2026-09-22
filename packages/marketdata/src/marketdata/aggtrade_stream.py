@@ -119,6 +119,7 @@ def capture(
     flush_seconds=5,
     rotate_seconds=3600,
     min_free_gib=10,
+    fresh_start=False,
     connector=connect,
     recover=None,
     progress=None,
@@ -178,7 +179,11 @@ def capture(
                 "boundary_semantics": "first_session_start_and_final_stop_are_not_complete_time_windows",
             },
         )
-        sequence = Sequence(latest_trade(store))
+        previous = latest_trade(store)
+        sequence = Sequence(None if fresh_start else previous)
+        report["fresh_start"] = fresh_start
+        report["previous_persisted_id"] = previous["agg_trade_id"] if previous else None
+        report["uncollected_before_start"] = None
         report["resume_after_id"] = sequence.last["agg_trade_id"] if sequence.last else None
         messages = []
         started, last_flush = time.monotonic(), time.monotonic()
@@ -248,6 +253,16 @@ def capture(
                                 websocket=True,
                             )
                             event = sequence.observe(row)
+                            if report["messages"] == 1 and fresh_start and previous:
+                                first = previous["agg_trade_id"] + 1
+                                last = row["agg_trade_id"] - 1
+                                if first <= last:
+                                    report["uncollected_before_start"] = {
+                                        "first_id": first,
+                                        "last_id": last,
+                                        "reason": "explicit_fresh_start_outside_capture_scope",
+                                        "repaired": False,
+                                    }
                             report["last_id"] = row["agg_trade_id"]
                             report["last_trade_time"] = row["timestamp"]
                             report["last_received_at"] = received

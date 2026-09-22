@@ -420,3 +420,26 @@ def test_reader_budget_and_missing_cli_arguments_fail_cleanly(store, capsys):
         agg.read_trades(store, BASE, BASE + timedelta(seconds=1), max_rows=1)
     assert main(["--root", str(store.root), "aggtrade-rest"]) == 1
     assert "Supply both" in capsys.readouterr().err
+
+
+def test_fresh_scope_records_prior_gap_and_still_repairs_new_gaps(store, monkeypatch):
+    insert(store, [trade(1, ws=True)], "websocket")
+    connector = connector_factory(monkeypatch, [[trade(100, ws=True), trade(103, ws=True)]])
+    recovered = []
+
+    def recover(first, last):
+        recovered.append([first, last])
+        return {"id": "repair", "complete": True}
+
+    report = live.capture(
+        store, seconds=11, fresh_start=True, connector=connector, recover=recover, min_free_gib=0
+    )
+    assert report["complete"] and report["resume_after_id"] is None
+    assert report["previous_persisted_id"] == 1
+    assert report["uncollected_before_start"] == {
+        "first_id": 2,
+        "last_id": 99,
+        "reason": "explicit_fresh_start_outside_capture_scope",
+        "repaired": False,
+    }
+    assert recovered == [[101, 102]]

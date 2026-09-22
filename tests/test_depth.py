@@ -1,8 +1,10 @@
 import gzip
 import json
+import runpy
 from contextlib import contextmanager
 from datetime import timedelta
 from decimal import Decimal
+from pathlib import Path
 from types import SimpleNamespace
 
 import httpx
@@ -194,6 +196,76 @@ def test_independent_snapshot_difference_and_unalignable_check_are_explicit():
     session.take(row(snapshot(101), "check"))
     session.take(row(update(103, first=102, previous=100)))
     assert session.checks[-1]["comparable"] is False
+
+
+def test_verified_snapshot_refresh_extends_coverage_without_breaking_update_chain():
+    session = depth.Session(top=2, refresh_from_checks=True)
+    session.take(row(snapshot(), "anchor"))
+    session.take(row(update()))
+    fresh = snapshot(102)
+    fresh["asks"].append(["104", "9"])
+    session.take(row(fresh, "check", 2))
+    session.take(row(update(101)))
+    assert session.refreshes == 0
+    session.take(row(update(102)))
+    assert session.refreshes == 1 and session.book.ask_ceiling == 104
+    assert session.checks[-1]["refreshed"] and session.checks[-1]["equal"]
+    session.take(row(update(102)))
+    assert session.counts["duplicate"] == 1
+    session.take(row(update(103, asks=[["101", "0"], ["102", "0"], ["103", "0"]])))
+    assert min(session.book.asks) == 104 and session.book.last == 103
+
+
+def test_equal_id_refresh_preserves_duplicate_detection_and_legacy_policy():
+    fresh = snapshot()
+    fresh["asks"].append(["104", "9"])
+    for refresh in (False, True):
+        session = depth.Session(top=2, refresh_from_checks=refresh)
+        session.take(row(snapshot(), "anchor"))
+        session.take(row(update()))
+        session.take(row(fresh, "check"))
+        session.take(row(update()))
+        assert session.counts["duplicate"] == 1
+        assert session.book.ask_ceiling == (104 if refresh else 103)
+
+
+def test_capture_refreshes_thinning_coverage_before_periodic_check(store, monkeypatch):
+    anchor = snapshot()
+    anchor["asks"] = [[str(p), "1"] for p in range(101, 301)]
+    fresh = snapshot()
+    fresh["asks"] = [[str(p), "1"] for p in [*range(101, 141), *range(301, 461)]]
+    deletes = [[str(p), "0"] for p in range(141, 301)]
+    report = capture(
+        store, monkeypatch, [[update(100, asks=deletes), update(101)]], [anchor, fresh]
+    )
+    assert report["snapshots"] == 2 and report["sync_losses"] == 0
+    assert report["epochs"][0]["final"]["refreshes"] == 1
+    result = depth.replay(store, report["id"])
+    assert result["valid"] and result["verification_equal"] == 1
+
+
+@pytest.mark.parametrize("quantity,equal", [("2", True), ("9", False)])
+def test_offline_delayed_snapshot_check_uses_prior_deltas_and_detects_mismatch(
+    store, monkeypatch, quantity, equal
+):
+    report = capture(
+        store,
+        monkeypatch,
+        [[update(i) for i in range(100, 105)]],
+        [snapshot(), snapshot(101, bid_quantity=quantity)],
+        seconds=21,
+        verify_seconds=15,
+    )
+    original = depth.replay(store, report["id"])
+    assert original["valid"] and not original["verification_complete"]
+    verify = runpy.run_path(str(Path(__file__).parents[1] / "scripts/verify_depth_capture.py"))[
+        "verify"
+    ]
+    result = verify(store, report["id"])
+    assert result["delayed_snapshot_checks"][0]["equal"] is equal
+    assert result["all_snapshot_checks_verified"] is equal
+    assert not result["verification_complete"]  # Original live evidence is unchanged.
+    assert depth.replay(store, report["id"]) == original
 
 
 def test_planned_rotation_starts_new_epoch_and_offline_replay_matches(store, monkeypatch):
