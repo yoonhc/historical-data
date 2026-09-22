@@ -88,6 +88,13 @@ def catalog_inventory(path):
         revisions = {row["id"]: dict(row) for row in db.execute("SELECT * FROM revisions")}
         for row in revisions.values():
             add(row["path"], row["file_sha"], "canonical")
+        tables = {row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        for table in ("event_collections", "event_segments"):
+            if table in tables:
+                counts[table] = db.execute(f"SELECT count(*) FROM {table}").fetchone()[0]
+        if "event_segments" in tables:
+            for row in db.execute("SELECT * FROM event_segments"):
+                add(row["path"], row["file_sha"], "canonical")
         for row in db.execute("SELECT * FROM active"):
             revision = revisions[row["revision_id"]]
             if (row["key_id"], row["day"]) != (revision["key_id"], revision["day"]):

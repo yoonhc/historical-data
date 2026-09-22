@@ -7,7 +7,12 @@ name = "marketdata"
 version = "0.1.0"
 description = "Independent, auditable Binance historical market data"
 requires-python = ">=3.12"
-dependencies = ["pyarrow>=19,<24", "duckdb>=1.2,<2", "httpx>=0.28,<1"]
+dependencies = [
+    "pyarrow>=19,<24",
+    "duckdb>=1.2,<2",
+    "httpx>=0.28,<1",
+    "websockets>=17,<18",
+]
 
 [project.scripts]
 marketdata = "marketdata.cli:main"

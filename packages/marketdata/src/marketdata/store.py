@@ -94,6 +94,19 @@ class Store:
             CREATE INDEX IF NOT EXISTS sync_runs_key_time ON sync_runs(key_id, started_at);
             CREATE TABLE IF NOT EXISTS sync_coverage (
                 revision_id TEXT PRIMARY KEY REFERENCES revisions(id), coverage TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS event_collections (
+                id TEXT PRIMARY KEY, dataset TEXT NOT NULL, kind TEXT NOT NULL,
+                started_at TEXT NOT NULL, updated_at TEXT NOT NULL,
+                state TEXT NOT NULL, report TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS event_segments (
+                id TEXT PRIMARY KEY, collection_id TEXT NOT NULL REFERENCES event_collections(id),
+                dataset TEXT NOT NULL, instrument_id TEXT NOT NULL, kind TEXT NOT NULL,
+                path TEXT NOT NULL, file_sha TEXT NOT NULL,
+                source_id TEXT NOT NULL REFERENCES artifacts(id),
+                first_time TEXT NOT NULL, last_time TEXT NOT NULL,
+                first_id INTEGER NOT NULL, last_id INTEGER NOT NULL, row_count INTEGER NOT NULL);
+            CREATE INDEX IF NOT EXISTS event_segments_time
+                ON event_segments(dataset, instrument_id, first_time, last_time);
         """)
 
     def close(self):
@@ -506,6 +519,12 @@ class Store:
             if not path.exists() or sha256(path.read_bytes()) != record["id"]:
                 failures.append(str(path))
         for record in self.db.execute("SELECT * FROM revisions"):
+            count += 1
+            try:
+                self._revision_table(record)
+            except (OSError, DataError) as exc:
+                failures.append(str(exc))
+        for record in self.db.execute("SELECT * FROM event_segments"):
             count += 1
             try:
                 self._revision_table(record)

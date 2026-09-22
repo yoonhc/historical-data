@@ -1,0 +1,80 @@
+{
+  "checked_at": "2026-09-22T14:04:42.855870+00:00",
+  "pytest_passed": 137,
+  "new_aggtrade_tests": 26,
+  "ruff_check": "passed",
+  "ruff_format": "passed",
+  "git_diff_check": "passed",
+  "source_base_commit": "2aad0b0743146f89043383a7a323387f6235af8d",
+  "dependency_versions": {
+    "websockets": "17.1"
+  },
+  "backup_manifest_path": "backups/aggtrade-pilot-2026-09-22/backup.json",
+  "backup_manifest_sha256": "271299a80dcc1276860b927c6af876d7a0b8171c0c5388b888524e87a36c03d7",
+  "source_hashes": {
+    "packages/marketdata/src/marketdata/aggtrades.py": "a7a60abd625c8405e05167f1b8671ddafbcdf2af4b2b9c44c774f909513425e4",
+    "packages/marketdata/src/marketdata/aggtrade_stream.py": "f1ba5b33ff1b252e529673c76c3225de3c881ca2ee32882bef4af328b7b5d27c",
+    "packages/marketdata/src/marketdata/backup.py": "eda5fea0d54056164977c3592d01c4378975d2b3e780aec9cfb36ac3f090a8f1",
+    "packages/marketdata/src/marketdata/cli.py": "7ed8e5a9f9d6827cb5e3bc373b270cefdd43caafb654cfd753db7d7291c1c008",
+    "packages/marketdata/src/marketdata/store.py": "d00aab3d9ff62c07f2f0b07940966fc51e5a5f42443e07fa5fc296da879318eb",
+    "packages/marketdata/pyproject.toml": "1f5eb8648d80dd7d1a72e823db20fb673d3943ac8c4dde8f54d47cfa008cc3c4",
+    "uv.lock": "3212f957822f52344deccae221f57891c1296747bda6d17594e26069f4100e40",
+    "tests/test_aggtrades.py": "a8d0310f977aadc43f87fa6550b8b9e37a67bdda28eaf3b349af6903c3e72cf0",
+    "docs/aggtrades.md": "3ca00b5f816dd83c68d24df30fcd161f82447482849f8392fdc8f5c2fd4a7856",
+    "docs/backup-and-storage.md": "348ec1e0550807d46f01a1075f8d9174e0439d23e34fdea67c5b5a6dd4232c7e",
+    "docs/operations.md": "57ad16f062811ffe96eaf86154a3726a1584575d20adafcad6a9315ebed7ad39",
+    "docs/data-platform-design.md": "b718bdb359ecbe332be0a92d87e58ed3bfe6887aa346580abe2672bf8a0c4923",
+    "README.md": "585c12ab746b1488b9e6e2d8bea77a262c75b24eb5fac651334154ced4c81d17",
+    "reports/README.md": "677da41d20393e2a377e6d7bea2f79266e6c82f6b26242ee24d0a0dfeb62f7c4"
+  },
+  "evidence_hashes": {
+    "backup.json": "76bf331281661103783c7767c94975ed0a83c7eddcee016e46a0eedf4797a7ba",
+    "candle-parity.json": "7433426ef8cf7ad427153e1ffd246d48a7811e8e3563bcc97b9cd1a788343b54",
+    "capacity.json": "93caf7474ecbdda25548a7d087e643a89a08557ff6169210c30709ce42fcbc3d",
+    "live-integrity.json": "5453f4de34493b214886e88f0ce8d372dc8a0ec66f60142a3028ec11d88f610f",
+    "operations-status.json": "cc7744d30931dcd1e8dc31619269a4255d92e9c198b7079c8e5c4152b7255611",
+    "previous-backup-verify.json": "26db456e242c4bdb553d8d5b005ecdbae488593476205671a7bb1577c91854a7",
+    "rest-live-window.json": "c2d75fdf37b5420f6ef91262001e67f3c5448880ffd6644ecd2fbac30f4d2c11",
+    "rest-pilot.json": "30ad3e106eb4bbd2bce9fa6148ac1ac1d38c3dbd32ed9aa06fe29c4c86e52a4e",
+    "restore.json": "65afeba9494d916b8eb9acab1cfb1dc46106d418ed38001231653904530a70a0",
+    "restored-check.json": "7663761039036532a26308083ff0261e800dc628e5b038615464b08c5b079bab",
+    "source-parity.json": "a4aad3fd4c7573f64d02c471282f629057741662aa08b8e5fbb341cbb2e0c491",
+    "status.json": "e6c04aaf2baf6e372b31e21c855c3e1d6cca4c7bd889bc1f4f1d8ff481b60088",
+    "storage.json": "8052316e9132ec630002c13606a59793f886b399e81a4daf68da0820da528cb3",
+    "stream-pilot.json": "c5550f80b27fdd1072fa8bb5c1d90ee5b29e8a9bd3dd01a54195397edc3bc10b",
+    "stream-segments.json": "511ce454680c4fe877bf1150afb5f06bbebf55c6fd7ca8623c3953196bdc3959",
+    "summary.md": "bef7a34d99cc687d41b8b3cf4dcac50a90e7432c889a68934fa9d4678b7a2b74",
+    "tests.xml": "150b4598e39d2421581185457a607fe1c11cccf7e0c9d93c42c5486e4f7bb729"
+  },
+  "commands": [
+    ".venv/bin/pytest -q --junitxml=reports/aggtrade-tests.xml",
+    ".venv/bin/ruff check .",
+    ".venv/bin/ruff format --check .",
+    "git diff --check",
+    ".venv/bin/marketdata aggtrade-rest --start 2026-09-21T23:00 --end 2026-09-21T23:10 --report reports/aggtrade-rest-pilot.json",
+    ".venv/bin/marketdata aggtrade-compare-candles --start 2026-09-21T23:00 --end 2026-09-21T23:10 --report reports/aggtrade-candle-parity.json",
+    ".venv/bin/marketdata aggtrade-stream --seconds 180 --rotate-seconds 60 --report reports/aggtrade-stream-pilot.json",
+    ".venv/bin/marketdata aggtrade-rest --first-id 3460990388 --last-id 3460997422 --report reports/aggtrade-rest-live-window.json",
+    ".venv/bin/marketdata aggtrade-compare-sources --start 2026-09-22T13:44:26.984 --end 2026-09-22T13:47:26.638 --report reports/aggtrade-source-parity.json",
+    ".venv/bin/marketdata backup-verify backups/pre-streaming-2026-09-22",
+    ".venv/bin/marketdata backup --output backups/aggtrade-pilot-2026-09-22",
+    ".venv/bin/marketdata restore backups/aggtrade-pilot-2026-09-22 --output restore-checks/aggtrade-pilot-2026-09-22",
+    ".venv/bin/marketdata status --report reports/aggtrade-operations-status.json --table",
+    ".venv/bin/marketdata validate",
+    ".venv/bin/marketdata storage --report reports/aggtrade-storage.json",
+    ".venv/bin/marketdata aggtrade-status --report reports/aggtrade-status.json"
+  ],
+  "expected_nonzero_exit_codes": {
+    "aggtrade-compare-sources": "2: raw WebSocket contains two gaps, all recovered through REST; no economic mismatches",
+    "aggtrade-status": "2: bounded capture completed, no running service"
+  },
+  "limits": [
+    "BTCUSDT USD-M futures only; no spot, archive backfill or orderbook depth collector.",
+    "180-second live pilot ended; no new systemd service enabled and no long-term uptime verification.",
+    "Continuity is between observed IDs, not proof of complete collection at time-window edges.",
+    "received_at is application receive-return time including potential queue latency.",
+    "Event queries support at most one hour and one million input rows; existing Store.read, snapshots and Freqtrade trade/orderflow adapter do not yet include event segments.",
+    "Local backup and restored copy share a filesystem with the source; no external backup or schedule configured.",
+    "Recorded capacity covers only WebSocket raw/Parquet pilot files and cannot establish daily requirements."
+  ]
+}

@@ -87,3 +87,7 @@ REST OI는 기간 종료 시각을 라벨로 사용합니다. 5분 경계 후 45
 `marketdata backup`은 짧은 카탈로그 고정 후 모든 등록된 불변 파일을 독립 복사하며,
 `backup-verify`와 `restore`로 무결성 검사 및 새 경로 복원을 수행합니다. `marketdata storage`는
 여유 공간과 디렉터리별 크기를 확인합니다. [사용법·보존 범위·제한](backup-and-storage.md)
+
+선물 aggTrade 표본 수집은 별도 명령으로 실행하고 `marketdata aggtrade-status`로 상태를
+확인합니다. 기존 일별/OI 운영 범위와 타이머에는 포함하지 않았습니다. 실시간 자료의 작은
+파일 확정·ID 누락 복구와 한계는 [aggTrade 운영 문서](aggtrades.md)를 확인하세요.

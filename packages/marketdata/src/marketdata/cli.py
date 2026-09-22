@@ -8,6 +8,8 @@ import time
 import tomllib
 from pathlib import Path
 
+from .aggtrade_stream import capture, stream_status
+from .aggtrades import collect_rest, compare_candles, compare_sources, read_trades
 from .backfill import backfill_set
 from .backup import create_backup, restore_backup, storage_report, verify_backup
 from .binance import SourceError, archive_units, archive_url
@@ -114,6 +116,31 @@ def parser():
         help="Release the writer between archive/REST batches and pause this long",
     )
     sub.add_parser("validate")
+    p = sub.add_parser("aggtrade-rest", help="BTCUSDT USD-M aggregate trades: bounded REST pilot")
+    p.add_argument("--start")
+    p.add_argument("--end")
+    p.add_argument("--first-id", type=int)
+    p.add_argument("--last-id", type=int)
+    p.add_argument("--max-pages", type=int, default=100)
+    p.add_argument("--report", type=Path)
+    p = sub.add_parser("aggtrade-stream", help="Capture public aggregate trades with ID recovery")
+    p.add_argument("--seconds", type=int, default=300, help="0 runs continuously")
+    p.add_argument("--flush-seconds", type=int, default=5)
+    p.add_argument("--rotate-seconds", type=int, default=3600)
+    p.add_argument("--min-free-gib", type=float, default=10)
+    p.add_argument("--report", type=Path)
+    for name in ("aggtrade-audit", "aggtrade-compare-candles", "aggtrade-compare-sources"):
+        p = sub.add_parser(name)
+        range_args(p)
+        p.add_argument("--report", type=Path)
+        if name != "aggtrade-compare-sources":
+            p.add_argument(
+                "--kind",
+                choices=["rest", "websocket"],
+                default="rest" if name == "aggtrade-compare-candles" else None,
+            )
+    p = sub.add_parser("aggtrade-status")
+    p.add_argument("--report", type=Path)
     p = sub.add_parser(
         "backup", help="Copy a consistent catalog and all referenced immutable files"
     )
@@ -267,6 +294,44 @@ def main(argv=None):
         if args.command == "backup" and not (args.root / "state/catalog.sqlite").is_file():
             raise DataError("Cannot back up a missing catalog")
         store = Store(args.root)
+        if args.command.startswith("aggtrade-"):
+            if args.command == "aggtrade-rest":
+                result = collect_rest(
+                    store,
+                    args.start,
+                    args.end,
+                    first_id=args.first_id,
+                    last_id=args.last_id,
+                    max_pages=args.max_pages,
+                    progress=lambda p: emit(p, error=True),
+                )
+                ok = result["complete"]
+            elif args.command == "aggtrade-stream":
+                result = capture(
+                    store,
+                    seconds=args.seconds,
+                    flush_seconds=args.flush_seconds,
+                    rotate_seconds=args.rotate_seconds,
+                    min_free_gib=args.min_free_gib,
+                    progress=lambda p: emit(p, error=True),
+                )
+                ok = result["complete"]
+            elif args.command == "aggtrade-audit":
+                _, result = read_trades(store, args.start, args.end, kind=args.kind)
+                ok = result["valid"]
+            elif args.command == "aggtrade-compare-candles":
+                result = compare_candles(store, args.start, args.end, kind=args.kind)
+                ok = result["equal"]
+            elif args.command == "aggtrade-compare-sources":
+                result = compare_sources(store, args.start, args.end)
+                ok = result["equal"]
+            else:
+                result = stream_status(store)
+                ok = result["healthy"]
+            if args.report:
+                atomic_write(args.report, json_bytes(result))
+            emit(result)
+            return 0 if ok else 2
         if args.command == "backup":
             result = create_backup(
                 store,
