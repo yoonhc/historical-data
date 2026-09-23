@@ -1,0 +1,44 @@
+import argparse,json,sqlite3,hashlib
+from pathlib import Path
+from contextlib import closing
+from marketdata.store import Store,atomic_write
+from marketdata.backup import open_catalog
+from marketdata.depth import replay
+from marketdata.aggtrades import read_trades
+from marketdata.domain import json_bytes,now
+p=argparse.ArgumentParser()
+p.add_argument('--root',type=Path,required=True)
+p.add_argument('--report',type=Path,required=True)
+p.add_argument('--original-catalog',type=Path)
+a=p.parse_args()
+s=Store(a.root)
+try:
+ result={'checked_at':now(),'root':str(a.root),'logical_catalog_equal':None}
+ if a.original_catalog:
+  with closing(open_catalog(a.original_catalog)) as old:
+   tables=[r[0] for r in old.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'") if r[0] not in {'file_packs','packed_files'}]
+   checks=[]
+   for table in tables:
+    left=sorted(json_bytes(dict(r)) for r in old.execute(f'SELECT * FROM {table}'))
+    right=sorted(json_bytes(dict(r)) for r in s.db.execute(f'SELECT * FROM {table}'))
+    checks.append({'table':table,'rows':len(left),'equal':left==right,'sha256':hashlib.sha256(b'\n'.join(right)).hexdigest()})
+   result['catalog_tables']=checks
+   result['logical_catalog_equal']=all(c['equal'] for c in checks)
+ baselines=[('reports/baseline/stream-soak-2026-09-23/depth-replay.json','soak'),('reports/baseline/stream-soak-2026-09-23/diagnostic/depth-replay.json','diagnostic'),('reports/baseline/depth-2026-09-22/replay-pilot.json','pilot'),('reports/baseline/depth-2026-09-22/smoke-replay.json','smoke')]
+ result['depth']=[]
+ for name,label in baselines:
+  expected=json.loads(Path(name).read_bytes())
+  actual=replay(s,expected['collection_id'])
+  result['depth'].append({'collection_id':actual['collection_id'],'label':label,'rows':actual['rows'],'valid':actual['valid'],'equal':json_bytes(expected)==json_bytes(actual)})
+ expected=json.loads(Path('reports/baseline/stream-soak-2026-09-23/aggtrade-audit.json').read_bytes())
+ result['aggtrade']=[]
+ for chunk in expected['chunks']:
+  _,audit=read_trades(s,chunk['start'],chunk['end'])
+  result['aggtrade'].append({'start':chunk['start'],'end':chunk['end'],'rows':audit['rows'],'equal':json_bytes(audit)==json_bytes(chunk)})
+ result['integrity']=s.validate()
+ result['ok']=result['logical_catalog_equal'] is not False and result['integrity']['ok'] and all(r['equal'] for r in result['depth']+result['aggtrade'])
+ atomic_write(a.report,json_bytes(result))
+ print(json_bytes(result).decode())
+ assert result['ok']
+finally:
+ s.close()

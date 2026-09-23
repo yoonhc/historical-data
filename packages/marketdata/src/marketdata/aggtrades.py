@@ -163,8 +163,8 @@ def publish_segment(store, collection_id, kind, rows, source_id):
     }
     with store.writer(timeout=60):
         path = store.root / relative
-        if path.exists():
-            if sha256(path.read_bytes()) != identity:
+        if store.file_exists(relative):
+            if sha256(store.file_bytes(relative)) != identity:
                 raise DataError("Corrupted existing aggregate trade segment")
         else:
             atomic_write(path, blob)

@@ -119,14 +119,22 @@ def summarize(root, output):
                 store.db.execute("SELECT * FROM artifacts WHERE id=?", (identity,)).fetchone()
                 for identity in source_ids
             ]
+            physical = [store.file_info(r["path"]) for r in [*segments, *raw]]
+            packed = sorted({r["pack_id"] for r in physical if r["pack_id"]})
             storage[dataset] = {
                 "segments": len(segments),
                 "raw_files": len(raw),
                 "stored_rows_with_duplicates": sum(r["row_count"] for r in segments),
-                "canonical_bytes": sum((store.root / r["path"]).stat().st_size for r in segments),
+                "canonical_bytes": sum(r["bytes"] for r in physical[: len(segments)]),
                 "raw_bytes": sum(r["bytes"] for r in raw),
-                "allocated_bytes": sum(
-                    (store.root / r["path"]).stat().st_blocks * 512 for r in [*segments, *raw]
+                "allocated_bytes": None if packed else sum(r["allocated_bytes"] for r in physical),
+                **(
+                    {
+                        "shared_pack_ids": packed,
+                        "allocation_note": "Pack allocation is shared; logical payload bytes are retained.",
+                    }
+                    if packed
+                    else {}
                 ),
             }
         operations = []

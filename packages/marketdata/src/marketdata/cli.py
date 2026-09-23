@@ -20,6 +20,7 @@ from .domain import DAY, DataError, Key, json_bytes, json_default, now, utc
 from .oi_probe import probe_once
 from .oi_quality import SHIFTS, quality_report, write_report
 from .operations import SyncPolicy, status, update
+from .packing import pack_events, prune_loose, verify_packs
 from .pipeline import Collector
 from .store import Store, atomic_write
 
@@ -119,6 +120,30 @@ def parser():
         help="Release the writer between archive/REST batches and pause this long",
     )
     sub.add_parser("validate")
+    p = sub.add_parser(
+        "pack-events", help="Plan or publish byte-preserving packs for closed event collections"
+    )
+    p.add_argument("--collection-id", action="append", default=[])
+    p.add_argument(
+        "--before", help="Only collections closed by this UTC time; default one hour ago"
+    )
+    p.add_argument("--target-mib", type=int, default=64)
+    p.add_argument("--max-members", type=int, default=1024)
+    p.add_argument("--max-files", type=int, default=20000)
+    p.add_argument("--min-free-gib", type=float, default=10)
+    p.add_argument("--apply", action="store_true")
+    p.add_argument("--report", type=Path)
+    p = sub.add_parser(
+        "pack-prune",
+        help="Plan or remove only byte-identical loose copies already preserved in verified packs",
+    )
+    p.add_argument("--pack-id", action="append", default=[])
+    p.add_argument("--apply", action="store_true")
+    p.add_argument("--report", type=Path)
+    p = sub.add_parser(
+        "pack-verify", help="Verify pack bytes, member hashes and catalog references"
+    )
+    p.add_argument("--report", type=Path)
     p = sub.add_parser("aggtrade-rest", help="BTCUSDT USD-M aggregate trades: bounded REST pilot")
     p.add_argument("--start")
     p.add_argument("--end")
@@ -318,7 +343,35 @@ def main(argv=None):
             return 2 if result.get("healthy") is False else 0
         if args.command == "backup" and not (args.root / "state/catalog.sqlite").is_file():
             raise DataError("Cannot back up a missing catalog")
+        if args.command.startswith("pack-"):
+            if (
+                not (args.root / "state/catalog.sqlite").is_file()
+                or (args.root / "backup.json").exists()
+            ):
+                raise DataError(
+                    "Packing requires an existing live/restored store, not an archived backup"
+                )
         store = Store(args.root)
+        if args.command.startswith("pack-"):
+            if args.command == "pack-events":
+                result = pack_events(
+                    store,
+                    apply=args.apply,
+                    collection_ids=args.collection_id,
+                    before=args.before,
+                    target_mib=args.target_mib,
+                    max_members=args.max_members,
+                    max_files=args.max_files,
+                    min_free_gib=args.min_free_gib,
+                )
+            elif args.command == "pack-prune":
+                result = prune_loose(store, pack_ids=args.pack_id, apply=args.apply)
+            else:
+                result = verify_packs(store)
+            if args.report:
+                atomic_write(args.report, json_bytes(result))
+            emit(result)
+            return 0
         if args.command.startswith("depth-"):
             if args.command == "depth-stream":
                 result = depth_capture(

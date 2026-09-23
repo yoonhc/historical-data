@@ -27,6 +27,7 @@ from .domain import (
     sha256,
     utc,
 )
+from .fileio import packed_record, read_file
 from .schema import economic_row, row_key, schema
 
 
@@ -107,9 +108,21 @@ class Store:
                 first_id INTEGER NOT NULL, last_id INTEGER NOT NULL, row_count INTEGER NOT NULL);
             CREATE INDEX IF NOT EXISTS event_segments_time
                 ON event_segments(dataset, instrument_id, first_time, last_time);
+            CREATE TABLE IF NOT EXISTS file_packs (
+                id TEXT PRIMARY KEY, path TEXT NOT NULL UNIQUE, bytes INTEGER NOT NULL,
+                members INTEGER NOT NULL, created_at TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS packed_files (
+                path TEXT PRIMARY KEY, pack_id TEXT NOT NULL REFERENCES file_packs(id),
+                sha256 TEXT NOT NULL, bytes INTEGER NOT NULL, kind TEXT NOT NULL);
         """)
+        # Logical queries may keep an older SQLite read snapshot. Physical lookup
+        # must always see the latest committed layout after a pack/prune operation.
+        catalog_uri = (self.root / "state/catalog.sqlite").as_uri()
+        self._files_db = sqlite3.connect(f"{catalog_uri}?mode=ro", uri=True, isolation_level=None)
+        self._files_db.row_factory = sqlite3.Row
 
     def close(self):
+        self._files_db.close()
         self.db.close()
 
     @contextmanager
@@ -135,8 +148,8 @@ class Store:
         identity = sha256(blob)
         relative = f"data/raw/{identity[:2]}/{identity}/payload"
         path = self.root / relative
-        if path.exists():
-            if sha256(path.read_bytes()) != identity:
+        if path.exists() or packed_record(self._files_db, relative):
+            if sha256(self.file_bytes(relative)) != identity:
                 raise DataError("Corrupted raw content-addressed file")
         else:
             atomic_write(path, blob)
@@ -155,7 +168,7 @@ class Store:
         record = self.db.execute("SELECT * FROM artifacts WHERE id=?", (source_id,)).fetchone()
         if record is None:
             raise DataError("Unknown raw artifact")
-        blob = (self.root / record["path"]).read_bytes()
+        blob = self.file_bytes(record["path"])
         if sha256(blob) != source_id:
             raise DataError("Raw artifact hash mismatch")
         return blob, utc(record["observed_at"])
@@ -213,9 +226,30 @@ class Store:
 
     def _revision_table(self, record, *, columns=None):
         path = self.root / record["path"]
-        if sha256(path.read_bytes()) != record["file_sha"]:
+        blob = self.file_bytes(record["path"])
+        if sha256(blob) != record["file_sha"]:
             raise DataError(f"Canonical hash mismatch: {path}")
-        return pq.ParquetFile(path).read(columns=columns)
+        return pq.ParquetFile(pa.BufferReader(blob)).read(columns=columns)
+
+    def file_bytes(self, relative):
+        return read_file(self.root, self._files_db, relative)
+
+    def file_info(self, relative):
+        from .fileio import layout_lock, safe_file
+
+        with layout_lock(self.root):
+            packed = packed_record(self._files_db, relative)
+            if packed:
+                return {
+                    "bytes": packed["bytes"],
+                    "pack_id": packed["pack_id"],
+                    "allocated_bytes": None,
+                }
+            stat = safe_file(self.root, relative).stat()
+            return {"bytes": stat.st_size, "pack_id": None, "allocated_bytes": stat.st_blocks * 512}
+
+    def file_exists(self, relative):
+        return bool(packed_record(self._files_db, relative)) or (self.root / relative).exists()
 
     def _revision_rows(self, record):
         return self._revision_table(record).to_pylist()
@@ -516,7 +550,11 @@ class Store:
         for record in self.db.execute("SELECT * FROM artifacts"):
             count += 1
             path = self.root / record["path"]
-            if not path.exists() or sha256(path.read_bytes()) != record["id"]:
+            try:
+                valid = sha256(self.file_bytes(record["path"])) == record["id"]
+            except (OSError, DataError):
+                valid = False
+            if not valid:
                 failures.append(str(path))
         for record in self.db.execute("SELECT * FROM revisions"):
             count += 1
@@ -530,4 +568,10 @@ class Store:
                 self._revision_table(record)
             except (OSError, DataError) as exc:
                 failures.append(str(exc))
+        from .packing import verify_packs
+
+        try:
+            verify_packs(self)
+        except (OSError, DataError) as exc:
+            failures.append(str(exc))
         return {"checked": count, "failures": failures, "ok": not failures}

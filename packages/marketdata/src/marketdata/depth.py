@@ -332,8 +332,8 @@ def publish(store, collection_id, rows, source_id):
     relative = f"data/canonical/{DATASET}/{identity[:2]}/{identity}.parquet"
     with store.writer(timeout=60):
         path = store.root / relative
-        if path.exists():
-            if sha256(path.read_bytes()) != identity:
+        if store.file_exists(relative):
+            if sha256(store.file_bytes(relative)) != identity:
                 raise DataError("Corrupted existing depth segment")
         else:
             atomic_write(path, blob)

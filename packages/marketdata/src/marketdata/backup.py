@@ -8,9 +8,10 @@ import shutil
 import sqlite3
 import time
 from contextlib import closing
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 
 from .domain import DataError, json_bytes, now, sha256
+from .fileio import layout_lock, safe_file
 from .store import atomic_write
 
 GIB = 1024**3
@@ -22,18 +23,6 @@ def reserve_bytes(min_free_gib):
     if not math.isfinite(min_free_gib) or min_free_gib < 0:
         raise DataError("min-free-gib must be finite and nonnegative")
     return math.ceil(min_free_gib * GIB)
-
-
-def safe_file(root, relative):
-    path = PurePosixPath(relative)
-    if path.is_absolute() or ".." in path.parts or path.as_posix() != relative or not path.parts:
-        raise DataError(f"Unsafe backup path: {relative}")
-    result = root
-    for part in path.parts:
-        result = result / part
-        if result.is_symlink():
-            raise DataError(f"Symlink is not a backup file: {result}")
-    return result
 
 
 def digest_file(path):
@@ -107,7 +96,35 @@ def catalog_inventory(path):
                 if revision != revisions.get(revision["id"]):
                     raise DataError("Snapshot references a missing or changed revision")
             add(row["path"], row["id"], "snapshots")
+        if "file_packs" in tables:
+            counts["file_packs"] = db.execute("SELECT count(*) FROM file_packs").fetchone()[0]
+            counts["packed_files"] = db.execute("SELECT count(*) FROM packed_files").fetchone()[0]
+            for row in db.execute("SELECT * FROM packed_files"):
+                expected = {k: row[k] for k in ("path", "sha256", "kind")}
+                if files.get(row["path"]) != expected or row["bytes"] < 0:
+                    raise DataError("Packed member differs from logical catalog reference")
+                del files[row["path"]]
+            for row in db.execute("SELECT * FROM file_packs"):
+                count = db.execute(
+                    "SELECT count(*) FROM packed_files WHERE pack_id=?", (row["id"],)
+                ).fetchone()[0]
+                if count != row["members"] or not 1 <= count <= 4096 or row["bytes"] <= 0:
+                    raise DataError("Invalid file pack inventory")
+                add(row["path"], row["id"], "packs")
     return sorted(files.values(), key=lambda item: item["path"]), counts
+
+
+def verify_packed_layout(root):
+    # Import here to keep packing's capacity helpers independent of Store startup.
+    from .packing import verify_archive
+
+    with closing(open_catalog(root / CATALOG)) as db:
+        tables = {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        if "file_packs" not in tables:
+            return
+        for pack in db.execute("SELECT * FROM file_packs"):
+            members = list(db.execute("SELECT * FROM packed_files WHERE pack_id=?", (pack["id"],)))
+            verify_archive(root, pack, members)
 
 
 def new_destination(destination, source):
@@ -182,6 +199,12 @@ def sync_directories(root):
 
 
 def create_backup(store, destination, *, min_free_gib=10, progress=None):
+    # Pin the catalog's file layout throughout copying, without holding the writer.
+    with layout_lock(store.root):
+        return _create_backup(store, destination, min_free_gib=min_free_gib, progress=progress)
+
+
+def _create_backup(store, destination, *, min_free_gib=10, progress=None):
     minimum = reserve_bytes(min_free_gib)
     if store.db.in_transaction:
         raise DataError("Finish the catalog transaction before creating a backup")
@@ -220,8 +243,9 @@ def create_backup(store, destination, *, min_free_gib=10, progress=None):
         }
     )
     verify_files(destination, copied)
+    verify_packed_layout(destination)
     manifest = {
-        "format_version": 1,
+        "format_version": 2 if counts.get("file_packs") else 1,
         "scope": SCOPE,
         "source_root": str(store.root),
         "started_at": started,
@@ -266,7 +290,7 @@ def load_backup(source):
     if sha256(json_bytes(manifest)) != identity:
         raise DataError("Backup manifest hash mismatch")
     manifest["backup_id"] = identity
-    if manifest["format_version"] != 1 or manifest["scope"] != SCOPE:
+    if manifest["format_version"] not in {1, 2} or manifest["scope"] != SCOPE:
         raise DataError("Unsupported backup format or scope")
     catalog_record = [item for item in manifest["files"] if item["path"] == CATALOG]
     if len(catalog_record) != 1:
@@ -290,6 +314,7 @@ def load_backup(source):
 def verify_backup(source):
     source, manifest = load_backup(source)
     verify_files(source, manifest["files"])
+    verify_packed_layout(source)
     return {
         "backup_id": manifest["backup_id"],
         "path": str(source),
@@ -316,6 +341,7 @@ def restore_backup(source, destination, *, min_free_gib=10, progress=None):
         if progress and index % 1000 == 0:
             progress({"phase": "restore", "copied": index, "total": len(records)})
     verify_files(destination, records)
+    verify_packed_layout(destination)
     _, counts = catalog_inventory(destination / CATALOG)
     if counts != manifest["catalog_counts"]:
         raise DataError("Restored catalog counts mismatch")
@@ -345,6 +371,7 @@ def storage_report(root, *, min_free_gib=10):
     for relative in (
         "data/raw",
         "data/canonical",
+        "data/packs",
         "data/snapshots",
         "data/exports",
         "state",
