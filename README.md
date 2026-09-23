@@ -42,7 +42,8 @@ REST OI는 최초 최근 28일을 확보한 뒤 5분마다 수집하고, 상품 
 [최대 1시간 검증 절차](docs/stream-soak.md)도 제공합니다.
 [1시간 동시 수집 결과](reports/baseline/stream-soak-2026-09-23/summary.md)에는 호가 범위 소진
 문제의 수정, 90,009건의 체결 감사와 35,349행의 호가 재생·대조 결과를 기록했습니다.
-두 스트림의 상시 서비스, 현물 스트림과 장기 aggTrades 아카이브는 후속 확장 항목입니다.
+두 스트림은 [1시간 세션을 반복하는 상시 서비스](docs/stream-services.md)로 운영합니다.
+현물 스트림과 장기 aggTrades 아카이브는 후속 확장 항목입니다.
 종료된 스트림 파일을 원문 바이트와 ID를 보존한 채 묶는 기능도 제공합니다.
 [파일 묶음 저장·무기한 보관 정책](docs/file-packing-and-retention.md)을 확인하세요.
 
@@ -172,7 +173,7 @@ archive OI는 별도 시계열로 유지합니다. 단일 저장소는 쓰기 �
 
 [`integrations/systemd/`](integrations/systemd/README.md)에는 이 머신에 연결한 사용자 서비스·타이머를 두었습니다.
 다른 위치에서 사용할 때는 서비스 파일의 절대 경로를 먼저 수정하세요.
-현재는 네 타이머와 `yoonhc`의 linger가 활성화되어 로그아웃 후에도 실행됩니다.
+현재는 여섯 타이머·두 스트림 서비스와 `yoonhc`의 linger가 활성화되어 로그아웃 후에도 실행됩니다.
 일별 작업은 한국 시각 12:20 이후 약 5분 이내, REST OI는 매 5분 경계의 45초 이후에 실행합니다.
 새 머신에 설치하려면 사용자 systemd에 다음과 같이 연결합니다.
 
@@ -181,7 +182,9 @@ systemctl --user link "$PWD"/integrations/systemd/marketdata-*.service \
   "$PWD"/integrations/systemd/marketdata-*.timer
 systemctl --user daemon-reload
 systemctl --user enable --now marketdata-daily.timer marketdata-oi.timer \
-  marketdata-oi-probe.timer marketdata-oi-quality.timer
+  marketdata-oi-probe.timer marketdata-oi-quality.timer \
+  marketdata-pack.timer marketdata-backup.timer \
+  marketdata-aggtrade.service marketdata-depth.service
 systemctl --user list-timers 'marketdata-*'
 loginctl enable-linger "$USER"
 ```

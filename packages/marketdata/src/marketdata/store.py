@@ -114,6 +114,7 @@ class Store:
             CREATE TABLE IF NOT EXISTS packed_files (
                 path TEXT PRIMARY KEY, pack_id TEXT NOT NULL REFERENCES file_packs(id),
                 sha256 TEXT NOT NULL, bytes INTEGER NOT NULL, kind TEXT NOT NULL);
+            CREATE INDEX IF NOT EXISTS packed_files_pack ON packed_files(pack_id);
         """)
         # Logical queries may keep an older SQLite read snapshot. Physical lookup
         # must always see the latest committed layout after a pack/prune operation.

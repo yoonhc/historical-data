@@ -12,11 +12,21 @@
   [관측 정책·보고서·종료 코드](../../docs/oi-quality.md)를 함께 확인하세요.
 - 기존 daily/oi 타이머는 활성화 후 30초부터 첫 수집을 실행합니다. 일별 작업에는 최대 5분의
   분산 지연이 추가됩니다. 관측기는 2초, 품질 보고서는 5초 후 첫 실행을 예약합니다.
-- 네 타이머는 enabled/active이며 실제 자동 실행 성공을 확인했습니다. `yoonhc`의 linger도 활성화했습니다.
-- 작업은 `Type=oneshot`이므로 성공한 서비스가 `inactive (dead)`인 것은 정상입니다. 타이머의 active 여부와 서비스의 `Result`를 확인하세요.
+- 기존 네 타이머는 enabled/active이며 실제 자동 실행 성공을 확인했습니다. `yoonhc`의 linger도 활성화했습니다.
+- 타이머가 실행하는 작업은 `Type=oneshot`이므로 성공한 서비스가 `inactive (dead)`인 것은 정상입니다. 타이머의 active 여부와 서비스의 `Result`를 확인하세요.
 - 실패 시 일별 작업은 60초, OI는 30초 후 재시도합니다. 일별 작업은 10분간 5회, OI는 5분간 4회로 시작 횟수를 제한합니다.
 - 최신 완료 보고서는 `state/daily-latest.json`, `state/oi-latest.json`입니다. 실행 이력은 SQLite에도 남습니다.
 - 정기 수집기는 쓰기 잠금을 최대 60초 기다립니다. 장기 `backfill-set`은 배치마다 잠금을 반납해 함께 실행할 수 있습니다.
+
+추가한 상시 수집·유지보수 구성은 다음과 같습니다.
+
+- `marketdata-aggtrade.service`, `marketdata-depth.service`: 1시간 세션 후 15초 뒤 재시작.
+  `Type=simple`, `Restart=always`이며 `SIGINT`로 안전한 종료를 요청합니다.
+- `marketdata-pack.timer`: 매시 UTC 15분 및 활성화 5분 후 종료된 이벤트 파일을 묶고 검증된 개별 사본을 정리합니다.
+- `marketdata-backup.timer`: UTC 04:10 / 한국 시각 13:10에 전체 검증 후 당일 백업을 생성합니다.
+- 유지보수는 전용 잠금으로 직렬화하며 실패 시 120초 후 재시도합니다(1시간 최대 4회).
+  원문·표준 데이터와 백업은 날짜에 따른 자동 삭제 없이 보존합니다.
+- [세션 간 공백·재접속 제한·백업 경로·상태 확인](../../docs/stream-services.md)을 확인하세요.
 
 ```bash
 systemctl --user list-timers --all 'marketdata-*'

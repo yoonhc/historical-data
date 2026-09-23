@@ -17,6 +17,8 @@ from .depth import replay as depth_replay
 from .depth import status as depth_status
 from .depth_stream import capture as depth_capture
 from .domain import DAY, DataError, Key, json_bytes, json_default, now, utc
+from .maintenance import run as maintenance_run
+from .maintenance import status as maintenance_status
 from .oi_probe import probe_once
 from .oi_quality import SHIFTS, quality_report, write_report
 from .operations import SyncPolicy, status, update
@@ -120,6 +122,17 @@ def parser():
         help="Release the writer between archive/REST batches and pause this long",
     )
     sub.add_parser("validate")
+    p = sub.add_parser(
+        "maintenance", help="Apply verified packing; daily mode validates and backs up"
+    )
+    p.add_argument("--mode", choices=["hourly", "daily"], default="hourly")
+    p.add_argument("--min-free-gib", type=float, default=10)
+    p.add_argument("--max-files", type=int, default=20000)
+    p = sub.add_parser(
+        "maintenance-status", help="Check maintenance freshness and storage capacity"
+    )
+    p.add_argument("--min-free-gib", type=float, default=10)
+    p.add_argument("--report", type=Path)
     p = sub.add_parser(
         "pack-events", help="Plan or publish byte-preserving packs for closed event collections"
     )
@@ -343,15 +356,32 @@ def main(argv=None):
             return 2 if result.get("healthy") is False else 0
         if args.command == "backup" and not (args.root / "state/catalog.sqlite").is_file():
             raise DataError("Cannot back up a missing catalog")
-        if args.command.startswith("pack-"):
+        if args.command.startswith(("pack-", "maintenance")):
             if (
                 not (args.root / "state/catalog.sqlite").is_file()
                 or (args.root / "backup.json").exists()
             ):
                 raise DataError(
-                    "Packing requires an existing live/restored store, not an archived backup"
+                    "Packing/maintenance requires an existing live/restored store, not an archived backup"
                 )
         store = Store(args.root)
+        if args.command.startswith("maintenance"):
+            if args.command == "maintenance":
+                result = maintenance_run(
+                    store,
+                    mode=args.mode,
+                    min_free_gib=args.min_free_gib,
+                    max_files=args.max_files,
+                    progress=lambda p: emit(p, error=True),
+                )
+                ok = result["ok"]
+            else:
+                result = maintenance_status(store, min_free_gib=args.min_free_gib)
+                ok = result["healthy"]
+                if args.report:
+                    atomic_write(args.report, json_bytes(result))
+            emit(result)
+            return 0 if ok else 2
         if args.command.startswith("pack-"):
             if args.command == "pack-events":
                 result = pack_events(

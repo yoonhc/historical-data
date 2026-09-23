@@ -17,6 +17,7 @@ from .binance import Fetcher, SourceError
 from .domain import DataError, WriterBusy, json_bytes, now, sha256, utc
 from .oi_probe import retry_delay
 from .store import atomic_write
+from .stream_guard import check_cooldown, rate_limited
 
 
 @contextmanager
@@ -150,6 +151,7 @@ def capture(
     fetcher = fetcher or Fetcher(retries=0, max_bytes=2_000_000)
     try:
         with stream_lock(store):
+            check_cooldown(store, "depth")
             with store.writer(timeout=60), store.db:
                 for previous in store.db.execute(
                     "SELECT * FROM event_collections WHERE dataset=? AND state='running'",
@@ -361,9 +363,7 @@ def capture(
                             418,
                             429,
                         }:
-                            raise DataError(
-                                "WebSocket rate limit: inspect Retry-After before restarting"
-                            ) from exc
+                            rate_limited(store, "depth", exc.response)
                         if failures >= 5:
                             raise DataError("Five consecutive depth connection failures") from exc
                         reason = "reconnect_after_disconnect"

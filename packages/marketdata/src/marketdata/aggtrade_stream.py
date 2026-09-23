@@ -24,6 +24,7 @@ from .aggtrades import (
 from .backup import reserve_bytes
 from .domain import DataError, WriterBusy, json_bytes, now, sha256, utc
 from .store import atomic_write
+from .stream_guard import check_cooldown, rate_limited
 
 
 @contextmanager
@@ -135,6 +136,7 @@ def capture(
     minimum = reserve_bytes(min_free_gib)
     recover = recover or (lambda a, b: collect_rest(store, first_id=a, last_id=b, max_pages=20))
     with stream_lock(store):
+        check_cooldown(store, "aggtrade")
         with store.writer(timeout=60), store.db:
             for prior in store.db.execute(
                 """SELECT id,report FROM event_collections WHERE dataset=?
@@ -312,9 +314,7 @@ def capture(
                     )[-20:]
                     failures += 1
                     if isinstance(exc, InvalidStatus) and exc.response.status_code in {418, 429}:
-                        raise DataError(
-                            "WebSocket rate limit: stop and inspect Retry-After before restarting"
-                        ) from exc
+                        rate_limited(store, "aggtrade", exc.response)
                     if failures >= 5:
                         raise DataError("Five consecutive WebSocket connection failures") from exc
                     if time.monotonic() < deadline:
