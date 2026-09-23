@@ -18,7 +18,7 @@ DATASETS = {
     "open_interest",
     "instrument_metadata",
 }
-PARSER_VERSION = "1"
+PARSER_VERSION = "3"
 POLICY_VERSION = "1"
 
 

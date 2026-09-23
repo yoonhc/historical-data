@@ -95,6 +95,14 @@ class SyncLost(DataError):
     """A fresh snapshot is needed; missing depth history cannot be backfilled."""
 
 
+class CoverageExhausted(SyncLost):
+    """The stream can remain connected while bounded snapshot coverage is renewed."""
+
+
+class SnapshotBehind(SyncLost):
+    """The anchor predates the first available update; do not invent a bridge."""
+
+
 class Book:
     def __init__(self, snapshot):
         self.bids = {r["price"]: r["quantity"] for r in snapshot["bids"]}
@@ -110,7 +118,7 @@ class Book:
     @staticmethod
     def validate(bids, asks):
         if not bids or not asks:
-            raise SyncLost("Known snapshot price range exhausted")
+            raise CoverageExhausted("Known snapshot price range exhausted")
         if max(bids) >= min(asks):
             raise SyncLost("Crossed or locked reconstructed order book")
         if len(bids) + len(asks) > 100000:
@@ -138,7 +146,7 @@ class Book:
             if last < self.last:
                 return "stale"
             if first > self.last:
-                raise SyncLost("Snapshot bridge missing: expected U <= lastUpdateId <= u")
+                raise SnapshotBehind("Snapshot bridge missing: expected U <= lastUpdateId <= u")
         else:
             if last == self.last and signature == self.last_signature:
                 return "duplicate"
@@ -397,11 +405,18 @@ def replay(store, identity=None, *, max_rows=100000):
                     ),
                 )
                 if session.error:
+                    if (
+                        report.get("lagged_snapshot_policy") == "retain_unsynchronized_updates_v1"
+                        and isinstance(getattr(session, "failure", None), SnapshotBehind)
+                        and row["kind"] == "update"
+                    ):
+                        continue
                     raise DataError("Depth updates continued after an invalid epoch")
                 try:
                     session.take(row)
                 except (DataError, KeyError) as exc:
                     session.error = str(exc)
+                    session.failure = exc
     expected = {e["epoch"]: e.get("final") for e in report["epochs"]}
     summaries = {e: s.summary() for e, s in sessions.items()}
     matches = json_bytes(summaries) == json_bytes(expected)

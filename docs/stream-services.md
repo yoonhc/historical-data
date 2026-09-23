@@ -8,7 +8,7 @@ BTCUSDT USD-M 선물의 aggTrade와 비 RPI depth를 독립된 사용자 systemd
 | 유닛 | 실행과 범위 |
 |---|---|
 | `marketdata-aggtrade.service` | 3,600초 세션, 5초 flush, 마지막 저장 ID부터 다음 세션 재개 |
-| `marketdata-depth.service` | 3,600초 세션, 5초 flush, 900초 연결 회전, 30초마다 독립 top 20 대조 |
+| `marketdata-depth.service` | 3,600초 세션, 5초 flush, 900초 연결 회전, 10초마다 독립 top 20 대조 |
 | `marketdata-pack.timer` | 매시 UTC 15분, 활성화 후 5분에도 실행. 종료 후 1시간 지난 수집만 묶음 |
 | `marketdata-backup.timer` | 매일 UTC 04:10 / 한국 시각 13:10에 전체 검증·백업 |
 
@@ -36,6 +36,10 @@ WebSocket 429/418은 응답 헤더와 cooldown을 `state/*-ws-cooldown.json`에 
 - depth는 매 연결마다 새 REST snapshot과 WebSocket 증분을 연결한다. 15분 회전 및
   시간별 세션 전환·장애 사이의 호가 이벤트 공백은 복구할 수 없다. 저장 구간의 `pu` 연결과
   snapshot 대조를 검증한 것이며, 24시간 무손실 호가 기록을 의미하지 않는다.
+  알려진 가격 범위가 소진되면 같은 소켓에서 새 epoch와 snapshot을 시작한다.
+  실패한 epoch는 보존하며, REST가 뒤처져 ID를 연결할 수 없으면 계속 불완전으로 표시한다.
+  이때 소켓의 미복원 증분은 계속 저장하고 10초 간격으로 새 기준 스냅샷을 시도한다.
+  [과거 확장 시 점검한 복구 범위](history-extension.md)를 참고한다.
 - 호스트 종료·절전 중에는 수집할 수 없다. 기존 linger 설정은 로그아웃 후 실행을 유지한다.
 
 ## 유지보수 순서와 보존

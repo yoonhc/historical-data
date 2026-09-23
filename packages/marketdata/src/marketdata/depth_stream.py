@@ -188,6 +188,11 @@ def capture(
                     "connections": 0,
                     "connection_errors": 0,
                     "sync_losses": 0,
+                    "coverage_resets": 0,
+                    "coverage_reset_policy": "same_socket_new_epoch_v1",
+                    "lagged_snapshot_policy": "retain_unsynchronized_updates_v1",
+                    "lagged_snapshots": 0,
+                    "unreconstructed_messages": 0,
                     "epochs": [],
                     "errors": [],
                     "synchronized": False,
@@ -249,7 +254,7 @@ def capture(
                             max_size=1_000_000,
                             max_queue=128,
                         ) as socket:
-                            connected = last_message = last_check = time.monotonic()
+                            connected = epoch_started = last_message = last_check = time.monotonic()
                             report["connections"] += 1
                             session = depth.Session(top, refresh_from_checks=True)
                             epoch_report = {
@@ -293,11 +298,76 @@ def capture(
                                     len(messages) - 1,
                                     received,
                                 )
-                                session.take(row)
+                                last_message, failures = time.monotonic(), 0
+                                if session.error:
+                                    # A lagged anchor cannot reconstruct these rows. Keep
+                                    # their exact journal while waiting for a fresh anchor.
+                                    report["unreconstructed_messages"] += 1
+                                    if (
+                                        len(messages) >= 500
+                                        or buffered_bytes >= 4 * 1024**2
+                                        or time.monotonic() - last_flush >= flush_seconds
+                                    ):
+                                        flush()
+                                    if time.monotonic() - last_check >= 10:
+                                        epoch_report.update(ended_at=now())
+                                        flush()
+                                        session = depth.Session(top, refresh_from_checks=True)
+                                        epoch_report = {
+                                            "epoch": len(report["epochs"]),
+                                            "started_at": now(),
+                                            "reason": "same_socket_after_lagged_snapshot",
+                                        }
+                                        report["epochs"].append(epoch_report)
+                                        epoch_started = time.monotonic()
+                                        get_snapshot("anchor")
+                                        last_check = time.monotonic()
+                                    continue
+                                try:
+                                    session.take(row)
+                                except depth.SnapshotBehind as exc:
+                                    session.error = str(exc)
+                                    report["sync_losses"] += 1
+                                    report["lagged_snapshots"] += 1
+                                    report["unreconstructed_messages"] += 1
+                                    report["synchronized"] = False
+                                    epoch_report.update(end_reason="lagged_snapshot")
+                                    last_check = time.monotonic()
+                                    flush()
+                                    continue
+                                except depth.CoverageExhausted as exc:
+                                    # The ID stream is intact, but its bounded snapshot no
+                                    # longer covers the market. Keep the socket and queued
+                                    # updates; preserve the failed epoch before re-anchoring.
+                                    session.error = str(exc)
+                                    report["sync_losses"] += 1
+                                    report["coverage_resets"] += 1
+                                    report["synchronized"] = False
+                                    epoch_report.update(
+                                        ended_at=now(), end_reason="coverage_exhausted"
+                                    )
+                                    flush()
+                                    if report["coverage_resets"] >= 10:
+                                        raise DataError(
+                                            "Ten depth synchronization failures"
+                                        ) from exc
+                                    session = depth.Session(top, refresh_from_checks=True)
+                                    epoch_report = {
+                                        "epoch": len(report["epochs"]),
+                                        "started_at": now(),
+                                        "reason": "same_socket_after_coverage_exhausted",
+                                    }
+                                    report["epochs"].append(epoch_report)
+                                    epoch_started = time.monotonic()
+                                    get_snapshot("anchor")
+                                    last_check = time.monotonic()
+                                    continue
                                 report["synchronized"] = session.book.synced
                                 report["last_update_id"] = session.book.last
-                                last_message, failures = time.monotonic(), 0
-                                if not session.book.synced and time.monotonic() - connected > 15:
+                                if (
+                                    not session.book.synced
+                                    and time.monotonic() - epoch_started > 15
+                                ):
                                     raise depth.SyncLost(
                                         "Snapshot bridge not found within 15 seconds"
                                     )
@@ -316,12 +386,12 @@ def capture(
                                             (
                                                 len(session.book.bids)
                                                 < min(
-                                                    max(100, top * 5),
+                                                    max(500, top * 10),
                                                     session.book.snapshot_bid_levels // 2,
                                                 )
                                                 or len(session.book.asks)
                                                 < min(
-                                                    max(100, top * 5),
+                                                    max(500, top * 10),
                                                     session.book.snapshot_ask_levels // 2,
                                                 )
                                             )

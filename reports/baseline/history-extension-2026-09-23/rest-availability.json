@@ -1,0 +1,78 @@
+{
+  "checked_at": "2026-09-23T13:49:59.133869+00:00",
+  "sources": {
+    "futures_1m": {
+      "url": "https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=1m&startTime=1567296000000&limit=1",
+      "rows": [
+        [
+          1567965420000,
+          "10000",
+          "10000",
+          "10000",
+          "10000",
+          "0.001",
+          1567965479999,
+          "10",
+          1,
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    },
+    "mark_1m": {
+      "url": "https://fapi.binance.com/fapi/v1/markPriceKlines?symbol=BTCUSDT&interval=1m&startTime=1567296000000&limit=1",
+      "rows": [
+        [
+          1577102280000,
+          "7559.44418192",
+          "7560.05502911",
+          "7558.87262955",
+          "7559.81115166",
+          "0",
+          1577102339999,
+          "0",
+          57,
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    },
+    "index_1m": {
+      "url": "https://fapi.binance.com/fapi/v1/indexPriceKlines?pair=BTCUSDT&interval=1m&startTime=1567296000000&limit=1",
+      "rows": [
+        [
+          1577102280000,
+          "7559.51052632",
+          "7559.67421053",
+          "7558.49263158",
+          "7559.42631579",
+          "0",
+          1577102339999,
+          "0",
+          57,
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    },
+    "funding": {
+      "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&startTime=1567296000000&limit=1",
+      "rows": [
+        {
+          "symbol": "BTCUSDT",
+          "fundingTime": 1568102400000,
+          "fundingRate": "0.00010000",
+          "markPrice": "",
+          "rateType": "Regular"
+        }
+      ]
+    }
+  },
+  "futures_daily_first": [
+    "data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2019-12-31.zip",
+    "data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2019-12-31.zip.CHECKSUM"
+  ]
+}

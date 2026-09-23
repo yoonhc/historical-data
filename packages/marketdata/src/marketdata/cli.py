@@ -113,6 +113,7 @@ def parser():
     p.add_argument("--allow-gaps", action="store_true")
     p = sub.add_parser("backfill-set")
     p.add_argument("--config", type=Path, required=True)
+    p.add_argument("--source", choices=["auto", "archive", "rest"], default="auto")
     range_args(p)
     p.add_argument("--report", type=Path)
     p.add_argument(
@@ -473,7 +474,7 @@ def main(argv=None):
             )
             emit(result)
             return 0
-        collector = Collector(store)
+        collector = Collector(store, cooperative=args.command == "backfill-set")
         if args.command == "oi-probe":
             result = probe_once(store)
         elif args.command == "oi-quality":
@@ -567,6 +568,7 @@ def main(argv=None):
                 args.start,
                 args.end,
                 pause=args.pause_seconds,
+                source=args.source,
                 progress=lambda p: emit(p, error=True),
                 checkpoint=(lambda r: atomic_write(args.report, json_bytes(r)))
                 if args.report

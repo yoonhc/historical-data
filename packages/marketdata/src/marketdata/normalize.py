@@ -42,6 +42,16 @@ def common(key, ts, source_id, row_no, observed):
 
 
 def validate_order(batch, key):
+    for row in batch.rows:
+        if "short_source_bar" in row["quality_flags"]:
+            batch.issues.append(
+                {
+                    "kind": "short_source_bar",
+                    "timestamp": row["timestamp"],
+                    "source_bar_end": row["bar_end"],
+                    "nominal_bar_end": row["timestamp"] + timedelta(seconds=key.step),
+                }
+            )
     keys = [row_key(r, key) for r in batch.rows]
     if len(keys) != len(set(keys)):
         raise DataError("Duplicate key inside one source; cannot silently deduplicate")
@@ -64,6 +74,7 @@ def normalize_archive(blob, key: Key, source_id, observed, member=None):
         required = {"create_time", "symbol", "sum_open_interest", "sum_open_interest_value"}
         if not required <= set(header) or len(header) != len(set(header)):
             raise DataError("Invalid metrics header")
+        seen = {}
         for ordinal, values in enumerate(data, 2):
             if len(values) != len(header):
                 raise DataError("Metrics row/header length mismatch")
@@ -73,6 +84,21 @@ def normalize_archive(blob, key: Key, source_id, observed, member=None):
             ts = utc(raw_row["create_time"])
             if micros(ts) % 300_000_000:
                 raise DataError("Off-grid OI label")
+            if ts in seen:
+                previous_values, previous_row = seen[ts]
+                if values != previous_values:
+                    raise DataError("Conflicting duplicate metrics label")
+                if "exact_source_duplicate" not in previous_row["quality_flags"]:
+                    previous_row["quality_flags"].append("exact_source_duplicate")
+                batch.issues.append(
+                    {
+                        "kind": "exact_source_duplicate",
+                        "timestamp": ts,
+                        "kept_source_row": previous_row["source_row"],
+                        "duplicate_source_row": ordinal,
+                    }
+                )
+                continue
             row = common(key, ts, source_id, ordinal, observed)
             row.update(
                 quantity=number(raw_row["sum_open_interest"], nonnegative=True),
@@ -87,6 +113,7 @@ def normalize_archive(blob, key: Key, source_id, observed, member=None):
                 batch.quarantine = True
                 batch.issues.append({"kind": "zero_oi", "source_row": ordinal, "timestamp": ts})
             batch.rows.append(row)
+            seen[ts] = (values, row)
     elif key.dataset.endswith("_bars"):
         # Spot archives before 2025 use ms; later use us. REST always requests ms.
         first_data = 1 if raw and raw[0][0] in {"open_time", "Open time"} else 0
@@ -124,10 +151,13 @@ def bar_row(values, key, source_id, ordinal, observed, unit="ms"):
         raise DataError("Off-grid candle")
     end = ts + timedelta(seconds=key.step)
     tick = timedelta(microseconds=1 if unit == "us" else 1000)
-    if from_epoch(values[6], unit) != end - tick:
+    source_close = from_epoch(values[6], unit)
+    if not ts <= source_close <= end - tick:
         raise DataError("Unexpected candle close time")
     row = common(key, ts, source_id, ordinal, observed)
-    row.update(bar_end=end)
+    row.update(bar_end=source_close + tick)
+    if row["bar_end"] != end:
+        row["quality_flags"].append("short_source_bar")
     row.update(
         {k: number(v, positive=True) for k, v in zip(("open", "high", "low", "close"), values[1:5])}
     )

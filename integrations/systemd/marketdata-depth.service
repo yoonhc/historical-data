@@ -8,7 +8,7 @@ StartLimitIntervalSec=0
 Type=simple
 WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
 Environment=SESSION_SECONDS=3600
-ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . depth-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 900 --verify-seconds 30 --top 20 --min-free-gib 10
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . depth-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 900 --verify-seconds 10 --top 20 --min-free-gib 10
 Restart=always
 RestartSec=15s
 KillSignal=SIGINT

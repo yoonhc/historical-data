@@ -1,5 +1,7 @@
 """One ingestion path for backfills, updates, local imports and repairs."""
 
+import time
+from contextlib import nullcontext
 from datetime import timedelta
 from pathlib import Path
 
@@ -9,6 +11,7 @@ from .domain import (
     POLICY_VERSION,
     DataError,
     Key,
+    day_ranges,
     full_days,
     json_bytes,
     now,
@@ -19,12 +22,45 @@ from .normalize import Batch, normalize_archive, normalize_rest
 
 
 class Collector:
-    def __init__(self, store, fetcher=None):
+    def __init__(self, store, fetcher=None, *, cooperative=False):
         self.store = store
         self.fetcher = fetcher or Fetcher()
+        self.cooperative = cooperative
+        self.writer_seconds = 0.0
+        self.writer_max_seconds = 0.0
+
+    def _write(self, function, *args, **kwargs):
+        with self.store.writer(timeout=60) if self.cooperative else nullcontext():
+            started = time.monotonic()
+            try:
+                return function(*args, **kwargs)
+            finally:
+                elapsed = time.monotonic() - started
+                self.writer_seconds += elapsed
+                self.writer_max_seconds = max(self.writer_max_seconds, elapsed)
+
+    def _publish(self, key, batch, start, end, source_id, **options):
+        if not self.cooperative:
+            return self.store.publish(key, batch, start, end, source_id, **options)
+        output = []
+        # Parsing/HTTP waits happen outside the writer. Recheck and publish one
+        # UTC day at a time so streaming flushes can acquire the same writer.
+        by_day = {}
+        for row in batch.rows:
+            by_day.setdefault(row["timestamp"].date(), []).append(row)
+        for begin, stop in day_ranges(start, end):
+            part = Batch(
+                by_day.get(begin.date(), []), batch.issues, batch.quarantine, batch.query_complete
+            )
+            output.extend(
+                self._write(self.store.publish, key, part, begin, stop, source_id, **options)
+            )
+            time.sleep(0.01)
+        return output
 
     def _save_response(self, response, kind):
-        return self.store.put_raw(
+        return self._write(
+            self.store.put_raw,
             response.body,
             response.url,
             kind,
@@ -38,9 +74,9 @@ class Collector:
         blob = path.read_bytes()
         check = checksum.read_bytes()
         self._verify_checksum(blob, check, path.name)
-        check_id = self.store.put_raw(check, checksum.as_uri(), "checksum")
-        identity = self.store.put_raw(
-            blob, path.as_uri(), "archive", metadata={"checksum_id": check_id}
+        check_id = self._write(self.store.put_raw, check, checksum.as_uri(), "checksum")
+        identity = self._write(
+            self.store.put_raw, blob, path.as_uri(), "archive", metadata={"checksum_id": check_id}
         )
         _, observed = self.store.raw(identity)
         return self._ingest_archive(
@@ -58,14 +94,14 @@ class Collector:
         token = sha256(
             json_bytes([identity, key.asdict(), start, end, PARSER_VERSION, POLICY_VERSION])
         )
-        self.store.job(token, key, start, end, "running", identity)
+        self._write(self.store.job, token, key, start, end, "running", identity)
         try:
             batch = normalize_archive(blob, key, identity, observed, member)
             if any(not start <= r["timestamp"] < end for r in batch.rows):
                 raise DataError("Archive row outside declared source interval")
             if key.dataset.endswith("_bars") and any(r["bar_end"] > now() for r in batch.rows):
                 raise DataError("Archive contains an unfinished candle")
-            results = self.store.publish(
+            results = self._publish(
                 key,
                 batch,
                 start,
@@ -77,10 +113,10 @@ class Collector:
             state = (
                 "quarantined" if any(r["state"] == "quarantined" for r in results) else "published"
             )
-            self.store.job(token, key, start, end, state, identity)
+            self._write(self.store.job, token, key, start, end, state, identity)
             return results
         except Exception as exc:
-            self.store.job(token, key, start, end, "failed", identity, str(exc))
+            self._write(self.store.job, token, key, start, end, "failed", identity, str(exc))
             raise
 
     def archive(
@@ -106,7 +142,7 @@ class Collector:
                 continue
             url = archive_url(key, begin, month)
             token = sha256(json_bytes([url, key.asdict(), begin, stop]))
-            self.store.job(token, key, begin, stop, "running")
+            self._write(self.store.job, token, key, begin, stop, "running")
             try:
                 zip_response = self.fetcher.fetch(url)
                 identity = self._save_response(zip_response, "archive")
@@ -131,14 +167,19 @@ class Collector:
                     if any(r["state"] == "quarantined" for r in result)
                     else "published"
                 )
-                self.store.job(token, key, begin, stop, state, identity)
+                self._write(self.store.job, token, key, begin, stop, state, identity)
                 output.extend(result)
             except SourceError as exc:
                 if exc.body:
-                    self.store.put_raw(
-                        exc.body, exc.url, "http_error", metadata={"status": exc.status}
+                    self._write(
+                        self.store.put_raw,
+                        exc.body,
+                        exc.url,
+                        "http_error",
+                        metadata={"status": exc.status},
                     )
-                self.store.job(
+                self._write(
+                    self.store.job,
                     token,
                     key,
                     begin,
@@ -165,7 +206,7 @@ class Collector:
                 else:
                     raise
             except Exception as exc:
-                self.store.job(token, key, begin, stop, "failed", error=str(exc))
+                self._write(self.store.job, token, key, begin, stop, "failed", error=str(exc))
                 raise
             if progress:
                 progress({"key": key.id, "through": stop, "requests": self.fetcher.requests})
@@ -183,7 +224,7 @@ class Collector:
             raise DataError("Cannot collect a future interval")
         cursor, collected, source_ids, issues, quarantined = start, [], [], [], False
         token = sha256(json_bytes([key.asdict(), start, end, "rest"]))
-        self.store.job(token, key, start, end, "running")
+        self._write(self.store.job, token, key, start, end, "running")
         try:
             while cursor < end:
                 # OI endpoints can return the LAST `limit` rows of a wide range.
@@ -234,18 +275,24 @@ class Collector:
                     "pagination_complete": True,
                 }
             )
-            manifest_id = self.store.put_raw(
-                request_manifest, "internal:rest-query", "query_manifest"
+            manifest_id = self._write(
+                self.store.put_raw, request_manifest, "internal:rest-query", "query_manifest"
             )
-            result = self.store.publish(
+            result = self._publish(
                 key, batch, start, end, manifest_id, accept_revisions=accept_revisions
             )
-            self.store.job(
-                token, key, start, end, "quarantined" if quarantined else "published", manifest_id
+            self._write(
+                self.store.job,
+                token,
+                key,
+                start,
+                end,
+                "quarantined" if quarantined else "published",
+                manifest_id,
             )
             return result
         except Exception as exc:
-            self.store.job(token, key, start, end, "failed", error=str(exc))
+            self._write(self.store.job, token, key, start, end, "failed", error=str(exc))
             raise
 
     def import_legacy(

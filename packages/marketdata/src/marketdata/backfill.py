@@ -2,6 +2,7 @@
 
 import time
 from collections import deque
+from contextlib import nullcontext
 from datetime import timedelta
 
 from .binance import SourceError, archive_units
@@ -19,6 +20,7 @@ def backfill_set(
     pause=1,
     sleep=time.sleep,
     lock_timeout=60,
+    source="auto",
 ):
     start, end = utc(start), utc(end)
     list(full_days(start, end))
@@ -26,6 +28,8 @@ def backfill_set(
         raise DataError("Batch backfill requires completed UTC days")
     if pause < 0:
         raise DataError("Batch pause must be nonnegative")
+    if source not in {"auto", "archive", "rest"}:
+        raise DataError("Unknown historical source")
     if any(k.dataset == "instrument_metadata" for k in keys):
         raise DataError("Metadata observations are not historical backfills")
     if any(k.series == "rest" and start < now() - timedelta(days=29) for k in keys):
@@ -39,14 +43,20 @@ def backfill_set(
             "state": "running",
             "batches": [],
             "complete": False,
+            "source": source,
         }
         output.append(report)
-        units = deque(archive_units(key, start, end))
+        # REST ranges are day-bounded, including sparse pre-archive launch periods.
+        units = deque(archive_units(key, start, end, monthly=source != "rest"))
         while units:
             begin, stop, monthly = units.popleft()
             batch = {"start": begin, "end": stop, "monthly": monthly}
             try:
-                with store.writer(timeout=lock_timeout):
+                with (
+                    nullcontext()
+                    if getattr(collector, "cooperative", False)
+                    else store.writer(timeout=lock_timeout)
+                ):
                     coverage = store.coverage(key, begin, stop)
                     if coverage["complete"]:
                         batch["state"] = "already_complete"
@@ -57,7 +67,10 @@ def backfill_set(
                         else:
                             batch.update(state="blocked", issues=coverage["blocking_issues"])
                     else:
-                        if key.dataset == "funding_events" or key.series == "rest":
+                        if source == "rest" or (
+                            source == "auto"
+                            and (key.dataset == "funding_events" or key.series == "rest")
+                        ):
                             result = collector.rest(key, begin, stop)
                         else:
                             result = collector.archive(
@@ -79,6 +92,9 @@ def backfill_set(
                 if isinstance(exc, ConflictError) and monthly:
                     # Earlier days may already be committed. Replan daily and skip the conflict.
                     units.extendleft(reversed(list(archive_units(key, begin, stop, False))))
+            if getattr(collector, "cooperative", False):
+                report["writer_seconds"] = collector.writer_seconds
+                report["writer_max_seconds"] = collector.writer_max_seconds
             report["batches"].append(batch)
             # Reporting and the courtesy pause happen after the writer is released.
             if checkpoint:

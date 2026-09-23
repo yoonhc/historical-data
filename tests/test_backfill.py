@@ -3,8 +3,9 @@ from threading import Event, Thread
 
 import httpx
 import pytest
+from conftest import kline, zip_csv
 from marketdata.backfill import backfill_set
-from marketdata.binance import Fetcher, SourceError
+from marketdata.binance import Fetcher, Response, SourceError
 from marketdata.domain import DataError, Key, WriterBusy, micros, utc
 from marketdata.pipeline import Collector
 from test_operations import Source, publish_range
@@ -133,6 +134,22 @@ def test_historical_rest_oi_is_rejected_before_any_collection(store):
     assert not source.calls
 
 
+def test_explicit_rest_backfill_before_archive_availability_uses_bounded_days(store):
+    source = Source(store)
+    key = Key("trade_bars", interval="1h")
+
+    def archive(*args, **kwargs):
+        pytest.fail("Pre-archive REST backfill must not request archive files")
+
+    source.archive = archive
+    result = backfill_set(
+        source, [key], "2019-09-09", "2019-09-12", source="rest", sleep=lambda _: None
+    )[0]
+    assert result["complete"] and result["coverage"]["rows"] == 72
+    assert len(source.calls) == 3
+    assert all(stop - begin == timedelta(days=1) for _, begin, stop in source.calls)
+
+
 @pytest.mark.parametrize("fallback, requests", [(False, 1), (True, 32)])
 def test_archive_transport_can_defer_daily_fallback_to_batch_runner(store, fallback, requests):
     with httpx.Client(transport=httpx.MockTransport(lambda _: httpx.Response(404))) as client:
@@ -154,3 +171,96 @@ def test_timestamp_only_coverage_still_detects_canonical_file_corruption(store):
         store.coverage(key, "2024-01-01", "2024-01-02")
     report = store.validate()
     assert not report["ok"] and len(report["failures"]) == 1
+
+
+def test_cooperative_archive_releases_writer_during_network_parse_and_between_days(
+    store, monkeypatch
+):
+    import marketdata.pipeline as pipeline
+    from marketdata.domain import sha256
+
+    key = Key("trade_bars", market="spot")
+    start, end = utc("2024-01-01"), utc("2024-01-04")
+    rows = [kline(start + timedelta(minutes=i)) for i in range(3 * 1440)]
+    blob = zip_csv(rows, "BTCUSDT-1m-2024-01-01.csv")
+    # Exercise a single source containing several days via the normal ingest method.
+    parsed, released, published = [], [], []
+    original_normalize, original_publish = pipeline.normalize_archive, store.publish
+
+    def normalize(*args, **kwargs):
+        with store.writer():
+            parsed.append(True)
+        return original_normalize(*args, **kwargs)
+
+    def publish(key, batch, begin, stop, *args, **kwargs):
+        assert stop - begin == timedelta(days=1) and len(batch.rows) == 1440
+        with pytest.raises(WriterBusy):
+            with store.writer():
+                pass
+        published.append(begin)
+        return original_publish(key, batch, begin, stop, *args, **kwargs)
+
+    def sleep(_):
+        with store.writer():
+            released.append(True)
+
+    monkeypatch.setattr(pipeline, "normalize_archive", normalize)
+    monkeypatch.setattr(store, "publish", publish)
+    monkeypatch.setattr(pipeline.time, "sleep", sleep)
+    collector = Collector(store, cooperative=True)
+    with store.writer():
+        identity = store.put_raw(blob, "test:archive", "archive", start)
+    collector._ingest_archive(
+        blob, key, start, end, identity, start, "BTCUSDT-1m-2024-01-01.csv", False
+    )
+    assert parsed and len(published) == len(released) == 3
+    assert store.coverage(key, start, end)["complete"]
+    assert collector.writer_max_seconds > 0
+    assert store.raw(identity)[0] == blob and sha256(blob) == identity
+
+
+def test_cooperative_backfill_fetches_without_lock_and_resumes_after_partial_publication(
+    store, monkeypatch
+):
+    from marketdata.domain import sha256
+
+    start, end = utc("2024-01-01"), utc("2024-02-01")
+    key = Key("trade_bars", market="spot", interval="1h")
+    # Kline source must use the requested interval's close timestamp.
+    rows = []
+    for i in range(31 * 24):
+        stamp = start + timedelta(hours=i)
+        item = kline(stamp)
+        item[6] = str(micros(stamp + timedelta(hours=1)) // 1000 - 1)
+        rows.append(item)
+    blob = zip_csv(rows, "BTCUSDT-1h-2024-01.csv")
+    calls = []
+
+    class Transport:
+        def fetch(self, url, **kwargs):
+            with store.writer():
+                calls.append(url)
+            body = (
+                f"{sha256(blob)}  BTCUSDT-1h-2024-01.zip\n".encode()
+                if url.endswith("CHECKSUM")
+                else blob
+            )
+            return Response(body, url, end, {})
+
+    collector = Collector(store, Transport(), cooperative=True)
+    publish = store.publish
+
+    def interrupt(key, batch, begin, stop, *args, **kwargs):
+        if begin == start + timedelta(days=2):
+            raise KeyboardInterrupt()
+        return publish(key, batch, begin, stop, *args, **kwargs)
+
+    with monkeypatch.context() as patch:
+        patch.setattr(store, "publish", interrupt)
+        with pytest.raises(KeyboardInterrupt):
+            backfill_set(collector, [key], start, end, sleep=lambda _: None)
+    assert store.coverage(key, start, start + timedelta(days=2))["complete"]
+    result = backfill_set(collector, [key], start, end, sleep=lambda _: None)[0]
+    assert result["complete"] and result["coverage"]["rows"] == 31 * 24
+    assert len(calls) == 4  # Original ZIP/checksum then retry; no synthetic daily fallback.
+    assert store.db.execute("SELECT count(*) FROM revisions").fetchone()[0] == 31

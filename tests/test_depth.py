@@ -315,6 +315,91 @@ def test_missing_update_resynchronizes_but_missing_history_remains_invalid(store
     assert "pu" in result["epochs"][0]["error"]
 
 
+def test_coverage_exhaustion_keeps_socket_and_every_queued_update(store, monkeypatch):
+    report = capture(
+        store,
+        monkeypatch,
+        [
+            [
+                update(100),
+                update(101, asks=[[str(p), "0"] for p in (101, 102, 103)]),
+                update(102),
+                update(103),
+                update(104),
+            ]
+        ],
+        [snapshot(), snapshot(103)],
+        seconds=24,
+    )
+    assert report["connections"] == 1 and report["connection_errors"] == 0
+    assert report["messages"] == report["persisted_messages"] == 5
+    assert report["sync_losses"] == report["coverage_resets"] == 1
+    assert not report["complete"]  # A new snapshot cannot reconstruct the lost book coverage.
+    assert report["epochs"][0]["end_reason"] == "coverage_exhausted"
+    assert report["epochs"][1]["reason"] == "same_socket_after_coverage_exhausted"
+    replay = depth.replay(store)
+    assert replay["replay_matches_live"] and not replay["valid"]
+    assert replay["epochs"][1]["counts"] == {"applied": 2, "stale": 1, "duplicate": 0}
+    rows = [
+        r
+        for segment in store.db.execute("SELECT * FROM event_segments ORDER BY first_id")
+        for r in store._revision_table(segment).to_pylist()
+        if r["kind"] == "update"
+    ]
+    assert [r["final_update_id"] for r in rows] == list(range(100, 105))
+    assert all(b["previous_update_id"] == a["final_update_id"] for a, b in zip(rows, rows[1:]))
+
+
+def test_coverage_reset_gets_its_own_snapshot_bridge_deadline(store, monkeypatch):
+    report = capture(
+        store,
+        monkeypatch,
+        [
+            [
+                update(100),
+                update(101),
+                update(102),
+                update(103, asks=[[str(p), "0"] for p in (101, 102, 103)]),
+                update(104),
+                update(105),
+                update(106),
+            ]
+        ],
+        [snapshot(), snapshot(106)],
+        seconds=34,
+    )
+    assert report["connections"] == 1 and report["sync_losses"] == 1
+    assert report["epochs"][1]["final"]["book"]["synced"]
+    assert depth.replay(store)["replay_matches_live"]
+
+
+def test_lagged_snapshots_keep_all_raw_updates_until_source_recovers(store, monkeypatch):
+    report = capture(
+        store,
+        monkeypatch,
+        [[update(i) for i in range(101, 109)]],
+        [snapshot(90), snapshot(95), snapshot(107)],
+        seconds=39,
+    )
+    assert report["connections"] == 1 and report["snapshots"] == 3
+    assert report["lagged_snapshots"] == report["sync_losses"] == 2
+    assert report["unreconstructed_messages"] == 6
+    assert report["messages"] == report["persisted_messages"] == 8
+    assert report["epochs"][-1]["final"]["book"]["synced"]
+    replay = depth.replay(store)
+    assert replay["replay_matches_live"] and not replay["valid"]
+    assert replay["rows"] == 11
+    verify = runpy.run_path(str(Path(__file__).parents[1] / "scripts/verify_depth_capture.py"))[
+        "verify"
+    ]
+    assert verify(store, report["id"])["raw_to_canonical_equal"]
+    # Retaining updates after a failed epoch is opt-in; old journals stay strict.
+    report.pop("lagged_snapshot_policy")
+    depth.save_collection(store, report, "partial")
+    with pytest.raises(DataError, match="continued after an invalid epoch"):
+        depth.replay(store)
+
+
 def test_disconnect_starts_fresh_book_and_records_unrecoverable_boundary(store, monkeypatch):
     report = capture(
         store,

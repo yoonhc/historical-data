@@ -62,6 +62,44 @@ def test_bad_ohlc_and_close_time():
         normalize_archive(zip_csv([row]), Key("trade_bars"), "raw", utc("2026-01-01"))
 
 
+def test_historical_short_bar_preserves_source_end_and_flag_for_archive_and_rest():
+    raw = [
+        1582112100000,
+        "10150.00000000",
+        "10150.00000000",
+        "10147.51000000",
+        "10148.93000000",
+        "2.70658300",
+        1582112132286,
+        "27468.11354286",
+        65,
+        "1.06532700",
+        "10812.94997016",
+        "0",
+    ]
+    key = Key("trade_bars", "spot")
+    archive = normalize_archive(zip_csv([raw]), key, "raw", utc("2026-01-01"))
+    rest = normalize_rest(json.dumps([raw]).encode(), key, "raw", utc("2026-01-01"))
+    for batch in (archive, rest):
+        row = batch.rows[0]
+        assert row["bar_end"] == utc("2020-02-19T11:35:32.287")
+        assert row["bar_end"] - row["timestamp"] == timedelta(milliseconds=32287)
+        assert row["quality_flags"] == ["short_source_bar"]
+        assert batch.issues[0]["nominal_bar_end"] == utc("2020-02-19T11:36")
+        assert not batch.quarantine
+    raw[6] = raw[0] - 1
+    with pytest.raises(DataError, match="close time"):
+        normalize_rest(json.dumps([raw]).encode(), key, "raw", utc("2026-01-01"))
+
+
+def test_short_microsecond_bar_preserves_one_microsecond_inclusive_end():
+    raw = kline("2025-01-01", unit="us")
+    raw[6] = str(int(raw[0]) + 12345678)
+    batch = normalize_archive(zip_csv([raw]), Key("trade_bars", "spot"), "raw", utc("2026-01-01"))
+    assert batch.rows[0]["bar_end"] == utc("2025-01-01T00:00:12.345679")
+    assert "short_source_bar" in batch.rows[0]["quality_flags"]
+
+
 def test_idempotent_import_and_snapshot_revision(store, tmp_path):
     key = Key("trade_bars")
     collector = Collector(store)
@@ -147,6 +185,47 @@ def test_oi_label_retained_unordered_flag_and_zero_quarantine(store, tmp_path):
 def test_oi_series_cannot_be_mixed():
     with pytest.raises(DataError):
         Key("open_interest", interval="5m")
+
+
+def test_exact_archive_metrics_duplicates_preserve_source_and_audit_ordinals(store, tmp_path):
+    key = Key("open_interest", interval="5m", series="archive")
+    header = ["create_time", "symbol", "sum_open_interest", "sum_open_interest_value"]
+    value = ["2020-09-01 00:00:00", "BTCUSDT", "39080.23100000", "456144339.23360443"]
+    path = source_file(tmp_path, [header, value, value], "BTCUSDT-metrics-2020-09-01.zip")
+    original = path.read_bytes()
+    collector = Collector(store)
+    try:
+        collector.import_archive(path, key, "2020-09-01", "2020-09-02")
+        rows = store.read(key, "2020-09-01", "2020-09-02").to_pylist()
+        assert len(rows) == 1 and rows[0]["source_row"] == 2
+        assert "exact_source_duplicate" in rows[0]["quality_flags"]
+        assert store.raw(rows[0]["source_id"])[0] == original
+        batch = normalize_archive(original, key, "source", utc("2026-01-01"))
+        assert batch.issues == [
+            {
+                "kind": "exact_source_duplicate",
+                "timestamp": utc("2020-09-01"),
+                "kept_source_row": 2,
+                "duplicate_source_row": 3,
+            }
+        ]
+        # Exact duplicates of a zero observation must still quarantine the day.
+        value[2] = "0"
+        batch = normalize_archive(zip_csv([header, value, value]), key, "source", utc("2026-01-01"))
+        assert batch.quarantine and len(batch.rows) == 1
+    finally:
+        collector.fetcher.close()
+
+
+@pytest.mark.parametrize("column", [2, 4])
+def test_metrics_duplicate_with_any_different_field_is_rejected(column):
+    key = Key("open_interest", interval="5m", series="archive")
+    header = ["create_time", "symbol", "sum_open_interest", "sum_open_interest_value", "ratio"]
+    value = ["2020-09-01 00:00:00", "BTCUSDT", "10", "100", "1.2"]
+    other = value.copy()
+    other[column] = "20"
+    with pytest.raises(DataError, match="Conflicting duplicate"):
+        normalize_archive(zip_csv([header, value, other]), key, "source", utc("2026-01-01"))
 
 
 def test_canonical_integrity_and_snapshot_bounds(store, tmp_path):

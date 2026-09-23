@@ -75,7 +75,8 @@ REST OI는 기간 종료 시각을 라벨로 사용합니다. 5분 경계 후 45
 .venv/bin/marketdata update --config configs/oi-live.toml --report reports/oi-update.json
 ```
 
-장기 과거 수집에는 배치마다 쓰기 잠금을 반납하는 `backfill-set`을 사용합니다.
+장기 과거 수집에는 다운로드·정규화를 잠금 밖에서 수행하고 하루 단위로 게시하는
+`backfill-set`을 사용합니다. [과거 확장](history-extension.md)에 원천 선택과 재개 방법이 있습니다.
 `update`/`watch`/`repair`는 다른 쓰기 작업을 최대 60초 기다린 뒤 진행합니다. 세부 수집·보고서·
 스냅샷 절차는 [3년 연구 데이터셋 문서](research-dataset.md)를 봅니다.
 
