@@ -1,0 +1,14 @@
+Sep 25 09:29:46 hclm systemd[1719]: Starting marketdata-pack.service - Market data hourly verified maintenance...
+Sep 25 09:29:46 hclm marketdata[852534]: {"error": "WriterBusy", "message": "Another maintenance job is running; retry later"}
+Sep 25 09:29:46 hclm systemd[1719]: marketdata-pack.service: Main process exited, code=exited, status=1/FAILURE
+Sep 25 09:29:46 hclm systemd[1719]: marketdata-pack.service: Failed with result 'exit-code'.
+Sep 25 09:29:46 hclm systemd[1719]: Failed to start marketdata-pack.service - Market data hourly verified maintenance.
+Sep 25 09:31:46 hclm systemd[1719]: marketdata-pack.service: Scheduled restart job, restart counter is at 1.
+Sep 25 09:31:46 hclm systemd[1719]: Starting marketdata-pack.service - Market data hourly verified maintenance...
+Sep 25 09:31:46 hclm marketdata[853506]: {"phase": "capacity", "id": "bdfa81e9d4324079be127178278a14f4"}
+Sep 25 09:31:46 hclm marketdata[853506]: {"phase": "prune_pending", "id": "bdfa81e9d4324079be127178278a14f4"}
+Sep 25 09:31:52 hclm marketdata[853506]: {"phase": "pack", "id": "bdfa81e9d4324079be127178278a14f4"}
+Sep 25 09:31:53 hclm marketdata[853506]: {"phase": "prune_new", "id": "bdfa81e9d4324079be127178278a14f4"}
+Sep 25 09:31:53 hclm marketdata[853506]: {"id": "bdfa81e9d4324079be127178278a14f4", "mode": "hourly", "started_at": "2026-09-25T00:31:46.813043+00:00", "state": "complete", "ok": true, "retention": "indefinite", "logical_files_deleted": 0, "phase": "finished", "updated_at": "2026-09-25T00:31:53.988131+00:00", "capacity_before": {"free_bytes": 215014944768, "free_inodes": 17104619, "total_inodes": 18751488, "min_free_bytes": 10737418240, "warnings": [], "healthy": true}, "pending_prune": {"packs": [], "removed": 0, "limit_reached": false}, "packing": {"checked_at": "2026-09-25T00:31:53.975572+00:00", "applied": true, "retention": "indefinite", "packs": [], "files": 0, "source_bytes": 0, "loose_files_removed": 0}, "new_prune": {"packs": [], "removed": 0}, "capacity_after": {"free_bytes": 215014543360, "free_inodes": 17104605, "total_inodes": 18751488, "min_free_bytes": 10737418240, "warnings": [], "healthy": true}, "finished_at": "2026-09-25T00:31:53.988128+00:00"}
+Sep 25 09:31:54 hclm systemd[1719]: Finished marketdata-pack.service - Market data hourly verified maintenance.
+Sep 25 09:31:54 hclm systemd[1719]: marketdata-pack.service: Consumed 6.966s CPU time.

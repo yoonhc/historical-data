@@ -24,6 +24,11 @@
   `Type=simple`, `Restart=always`이며 `SIGINT`로 안전한 종료를 요청합니다.
 - `marketdata-pack.timer`: 매시 UTC 15분 및 활성화 5분 후 종료된 이벤트 파일을 묶고 검증된 개별 사본을 정리합니다.
 - `marketdata-backup.timer`: UTC 04:10 / 한국 시각 13:10에 전체 검증 후 당일 백업을 생성합니다.
+  현재 두 번째 SSD의 `/mnt/backup/marketdata-historical/automatic`으로 저장하며
+  `--incremental`로 이전 날짜 사본의 동일 파일을 재사용합니다. 첫 사본은 전체 복사합니다.
+  `--backup-mount /mnt/backup`으로 마운트가 없는 경우 로컬 경로에 대신 쓰지 않게 합니다.
+  다른 머신으로 옮기면 `ExecStart`의 백업 경로·마운트도 변경하고 전용 폴더를 미리 만드세요.
+  명시한 목적지가 없으면 실패합니다. 서비스 수정 후 `systemctl --user daemon-reload`가 필요합니다.
 - 유지보수는 전용 잠금으로 직렬화하며 실패 시 120초 후 재시도합니다(1시간 최대 4회).
   원문·표준 데이터와 백업은 날짜에 따른 자동 삭제 없이 보존합니다.
 - [세션 간 공백·재접속 제한·백업 경로·상태 확인](../../docs/stream-services.md)을 확인하세요.

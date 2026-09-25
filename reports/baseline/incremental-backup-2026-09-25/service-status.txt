@@ -1,0 +1,35 @@
+Result=success
+ExecMainStartTimestamp=Fri 2026-09-25 09:24:46 KST
+ExecMainExitTimestamp=Fri 2026-09-25 09:31:27 KST
+ExecMainStatus=0
+ExecStart={ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup ; ignore_errors=no ; start_time=[Fri 2026-09-25 09:24:46 KST] ; stop_time=[Fri 2026-09-25 09:31:27 KST] ; pid=849135 ; code=exited ; status=0 }
+Id=marketdata-backup.service
+ActiveState=inactive
+SubState=dead
+
+Result=success
+ExecMainStartTimestamp=Fri 2026-09-25 09:31:46 KST
+ExecMainExitTimestamp=Fri 2026-09-25 09:31:54 KST
+ExecMainStatus=0
+ExecStart={ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode hourly --min-free-gib 10 ; ignore_errors=no ; start_time=[Fri 2026-09-25 09:31:46 KST] ; stop_time=[Fri 2026-09-25 09:31:54 KST] ; pid=853506 ; code=exited ; status=0 }
+Id=marketdata-pack.service
+ActiveState=inactive
+SubState=dead
+
+Result=success
+ExecMainStartTimestamp=Fri 2026-09-25 09:14:08 KST
+ExecMainExitTimestamp=
+ExecMainStatus=0
+ExecStart={ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . aggtrade-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 3600 --min-free-gib 10 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+Id=marketdata-aggtrade.service
+ActiveState=active
+SubState=running
+
+Result=success
+ExecMainStartTimestamp=Fri 2026-09-25 08:32:23 KST
+ExecMainExitTimestamp=
+ExecMainStatus=0
+ExecStart={ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . depth-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 900 --verify-seconds 10 --top 20 --min-free-gib 10 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+Id=marketdata-depth.service
+ActiveState=active
+SubState=running

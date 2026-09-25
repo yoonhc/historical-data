@@ -6,8 +6,9 @@ import os
 import shutil
 import uuid
 from contextlib import contextmanager
+from pathlib import Path
 
-from .backup import create_backup, reserve_bytes, verify_backup
+from .backup import create_backup, load_backup, reserve_bytes, verify_backup
 from .domain import DataError, WriterBusy, json_bytes, now, utc
 from .fileio import layout_lock, safe_file
 from .packing import pack_events, prune_loose
@@ -59,19 +60,78 @@ def pending_prune(store, limit=32):
     return pending
 
 
-def daily_backup(store, day, min_free_gib, progress):
+def backup_location(store, directory=None, required_mount=None):
+    """Resolve a dedicated destination; an explicit missing target is never recreated."""
+    target = Path(directory) if directory is not None else Path("backups/automatic")
+    if not target.is_absolute():
+        target = store.root / target
+    if target.is_symlink():
+        raise DataError("Backup directory must not be a symlink")
+    target = target.resolve()
+    if target == store.root or target in store.root.parents:
+        raise DataError("Backup directory overlaps the store")
+    if any(target.is_relative_to(store.root / part) for part in ("data", "state")):
+        raise DataError("Backup directory must be outside data/ and state/")
+    if (target / "backup.json").exists():
+        raise DataError("Backup directory must not be an archived backup")
+    if (directory is not None or target.exists()) and not target.is_dir():
+        raise DataError(f"Configured backup directory is missing: {target}")
+    if required_mount is not None:
+        mount = Path(required_mount)
+        if not mount.is_absolute():
+            mount = store.root / mount
+        mount = mount.resolve()
+        if not mount.is_mount() or not target.is_relative_to(mount):
+            raise DataError(
+                f"Required backup mount is unavailable or does not contain target: {mount}"
+            )
+    return target
+
+
+def daily_backup(
+    store, day, min_free_gib, progress, *, directory=None, incremental=False, required_mount=None
+):
     # A stable date groups attempts. Incomplete attempts remain for investigation;
     # only a verified completion marker can satisfy this day's backup.
-    directory = safe_file(store.root, f"backups/automatic/{day}")
-    for marker in sorted(directory.glob("*/backup.json")):
+    root = backup_location(store, directory, required_mount)
+    destination_day = safe_file(root, day)
+    for marker in sorted(destination_day.glob("*/backup.json")):
+        _, manifest = load_backup(marker.parent)
+        if manifest["source_root"] != str(store.root):
+            raise DataError("Backup directory belongs to another source; use a dedicated directory")
         result = verify_backup(marker.parent)
         return {**result, "path": str(marker.parent), "reused": True}
-    destination = directory / uuid.uuid4().hex
-    result = create_backup(store, destination, min_free_gib=min_free_gib, progress=progress)
+    previous = None
+    if incremental:
+        candidates = sorted(
+            (p for p in root.glob("*/*/backup.json") if p.parent.parent.name < day), reverse=True
+        )
+        if candidates:
+            previous = candidates[0].parent
+            _, manifest = load_backup(previous)
+            if manifest["source_root"] != str(store.root):
+                raise DataError(
+                    "Backup directory belongs to another source; use a dedicated directory"
+                )
+    destination = destination_day / uuid.uuid4().hex
+    result = create_backup(
+        store, destination, min_free_gib=min_free_gib, progress=progress, reuse_from=previous
+    )
+    backup_location(store, directory, required_mount)
     return {**result, "reused": False}
 
 
-def run(store, *, mode="hourly", min_free_gib=10, max_files=20000, progress=None):
+def run(
+    store,
+    *,
+    mode="hourly",
+    min_free_gib=10,
+    max_files=20000,
+    progress=None,
+    backup_dir=None,
+    incremental=False,
+    backup_mount=None,
+):
     if mode not in {"hourly", "daily"} or not 2 <= max_files <= 100000:
         raise DataError("Expected hourly/daily mode and max_files 2..100000")
     reserve_bytes(min_free_gib)
@@ -101,6 +161,21 @@ def run(store, *, mode="hourly", min_free_gib=10, max_files=20000, progress=None
                 progress({"phase": name, "id": report["id"]})
 
         try:
+            if mode == "daily":
+                phase("backup_configuration")
+                directory = backup_location(store, backup_dir, backup_mount)
+                report["backup_configuration"] = {
+                    "directory": str(directory),
+                    "incremental": incremental,
+                    "required_mount": str((store.root / backup_mount).resolve())
+                    if backup_mount
+                    else None,
+                }
+                report["backup_capacity_before"] = capacity(
+                    directory if directory.exists() else store.root, min_free_gib
+                )
+                if not report["backup_capacity_before"]["healthy"]:
+                    raise DataError("Insufficient backup destination capacity")
             phase("capacity")
             report["capacity_before"] = capacity(store.root, min_free_gib)
             # Recover interrupted cleanup first; the verified pack retains all bytes.
@@ -130,12 +205,23 @@ def run(store, *, mode="hourly", min_free_gib=10, max_files=20000, progress=None
                     raise DataError("Store validation failed; no backup created")
                 phase("backup")
                 report["backup"] = daily_backup(
-                    store, started.date().isoformat(), min_free_gib, progress
+                    store,
+                    started.date().isoformat(),
+                    min_free_gib,
+                    progress,
+                    directory=backup_dir,
+                    incremental=incremental,
+                    required_mount=backup_mount,
                 )
+                report["backup_capacity_after"] = capacity(directory, min_free_gib)
             report["capacity_after"] = capacity(store.root, min_free_gib)
+            healthy = (
+                report["capacity_after"]["healthy"]
+                and report.get("backup_capacity_after", {"healthy": True})["healthy"]
+            )
             report.update(
-                ok=report["capacity_after"]["healthy"],
-                state="complete" if report["capacity_after"]["healthy"] else "partial",
+                ok=healthy,
+                state="complete" if healthy else "partial",
                 phase="finished",
             )
             return report
@@ -163,9 +249,22 @@ def status(store, *, min_free_gib=10):
             "report": report,
         }
     space = capacity(store.root, min_free_gib)
+    configuration = (modes["daily"]["report"] or {}).get("backup_configuration")
+    backup_space = None
+    if configuration:
+        try:
+            target = backup_location(
+                store, configuration["directory"], configuration.get("required_mount")
+            )
+            backup_space = {"path": str(target), **capacity(target, min_free_gib)}
+        except (DataError, OSError) as exc:
+            backup_space = {"healthy": False, "error": str(exc)}
     return {
         "checked_at": current,
-        "healthy": space["healthy"] and all(m["healthy"] for m in modes.values()),
+        "healthy": space["healthy"]
+        and all(m["healthy"] for m in modes.values())
+        and (backup_space is None or backup_space["healthy"]),
         "capacity": space,
+        "backup_capacity": backup_space,
         "modes": modes,
     }

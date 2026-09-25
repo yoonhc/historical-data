@@ -129,6 +129,21 @@ def parser():
     p.add_argument("--mode", choices=["hourly", "daily"], default="hourly")
     p.add_argument("--min-free-gib", type=float, default=10)
     p.add_argument("--max-files", type=int, default=20000)
+    p.add_argument(
+        "--incremental",
+        action="store_true",
+        help="Daily: share verified files with the prior backup",
+    )
+    p.add_argument(
+        "--backup-dir",
+        type=Path,
+        help="Daily: existing dedicated backup directory; relative to store root",
+    )
+    p.add_argument(
+        "--backup-mount",
+        type=Path,
+        help="Daily: require this mount point to contain the backup directory",
+    )
     p = sub.add_parser(
         "maintenance-status", help="Check maintenance freshness and storage capacity"
     )
@@ -209,6 +224,11 @@ def parser():
         "backup", help="Copy a consistent catalog and all referenced immutable files"
     )
     p.add_argument("--output", type=Path, required=True, help="New backup directory")
+    p.add_argument(
+        "--reuse-from",
+        type=Path,
+        help="Share immutable files with this completed same-filesystem backup",
+    )
     p.add_argument("--min-free-gib", type=float, default=10)
     p = sub.add_parser("backup-verify", help="Verify a completed standalone backup")
     p.add_argument("path", type=Path)
@@ -357,6 +377,10 @@ def main(argv=None):
             return 2 if result.get("healthy") is False else 0
         if args.command == "backup" and not (args.root / "state/catalog.sqlite").is_file():
             raise DataError("Cannot back up a missing catalog")
+        if args.command == "backup" and (args.root / "backup.json").exists():
+            raise DataError(
+                "Back up a live/restored store; do not open an archived backup as a store"
+            )
         if args.command.startswith(("pack-", "maintenance")):
             if (
                 not (args.root / "state/catalog.sqlite").is_file()
@@ -373,6 +397,9 @@ def main(argv=None):
                     mode=args.mode,
                     min_free_gib=args.min_free_gib,
                     max_files=args.max_files,
+                    backup_dir=args.backup_dir,
+                    incremental=args.incremental,
+                    backup_mount=args.backup_mount,
                     progress=lambda p: emit(p, error=True),
                 )
                 ok = result["ok"]
@@ -471,6 +498,7 @@ def main(argv=None):
                 args.output,
                 min_free_gib=args.min_free_gib,
                 progress=lambda p: emit(p, error=True),
+                reuse_from=args.reuse_from,
             )
             emit(result)
             return 0

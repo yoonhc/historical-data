@@ -204,7 +204,9 @@ loginctl enable-linger "$USER"
 `state/catalog.sqlite`로 구성됩니다. 원본과 수정 이력은 자동 삭제하지 않습니다.
 백업은 수집기를 멈춘 상태에서 `data/`와 `state/`를 함께 복사하거나 SQLite 백업 API를 사용합니다.
 수집 중에도 일관된 복구 지점을 만드는 `marketdata backup`, `backup-verify`, `restore` 명령을
-제공합니다. [백업 범위·별도 경로 복원·용량 점검](docs/backup-and-storage.md)을 확인하세요.
+제공합니다. 자동 백업은 두 번째 SSD에 보관하고, 이전 사본의 동일 파일을 재사용해 반복 저장을
+줄입니다. 원본과 복원본은 독립 사본이며 보관 기간 제한은 없습니다.
+[백업 범위·증분 저장·별도 경로 복원·용량 점검](docs/backup-and-storage.md)을 확인하세요.
 활성 revision을 무시하고 모든 Parquet을 glob으로 읽으면 수정 전후 데이터가 중복됩니다.
 
 ## Python 조회

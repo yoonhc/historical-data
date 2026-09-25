@@ -6,7 +6,7 @@ StartLimitBurst=4
 [Service]
 Type=oneshot
 WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
-ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup
 TimeoutStartSec=6h
 KillSignal=SIGINT
 TimeoutStopSec=120s

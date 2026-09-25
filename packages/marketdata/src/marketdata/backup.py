@@ -1,4 +1,4 @@
-"""Verified catalog checkpoints and independent copies of every referenced immutable file."""
+"""Verified catalog checkpoints with optional immutable file sharing between backups."""
 
 import hashlib
 import json
@@ -198,17 +198,46 @@ def sync_directories(root):
         os.close(fd)
 
 
-def create_backup(store, destination, *, min_free_gib=10, progress=None):
+def link_verified(source, previous, destination, record):
+    """Share only archived bytes; never link a backup to a live store or catalog."""
+    live = safe_file(source, record["path"])
+    archived = safe_file(previous, record["path"])
+    target = safe_file(destination, record["path"])
+    if live.samefile(archived):
+        raise DataError("Reuse backup file shares an inode with the live store")
+    # A good prior copy must not hide a damaged live input. The linked archive is
+    # independently hashed by verify_files before publishing the completion marker.
+    verify_files(source, [record])
+    target.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        os.link(archived, target, follow_symlinks=False)
+    except OSError as exc:
+        raise DataError(
+            f"Cannot hard-link backup file; reuse requires hard-link support: {exc}"
+        ) from exc
+    return record
+
+
+def create_backup(store, destination, *, min_free_gib=10, progress=None, reuse_from=None):
     # Pin the catalog's file layout throughout copying, without holding the writer.
     with layout_lock(store.root):
-        return _create_backup(store, destination, min_free_gib=min_free_gib, progress=progress)
+        return _create_backup(
+            store, destination, min_free_gib=min_free_gib, progress=progress, reuse_from=reuse_from
+        )
 
 
-def _create_backup(store, destination, *, min_free_gib=10, progress=None):
+def _create_backup(store, destination, *, min_free_gib=10, progress=None, reuse_from=None):
     minimum = reserve_bytes(min_free_gib)
     if store.db.in_transaction:
         raise DataError("Finish the catalog transaction before creating a backup")
+    previous, previous_manifest = (
+        load_backup(reuse_from) if reuse_from is not None else (None, None)
+    )
+    if previous is not None and Path(destination).resolve().is_relative_to(previous):
+        raise DataError("New backup destination must be outside the reuse backup")
     destination = new_destination(destination, store.root)
+    if previous is not None and previous.stat().st_dev != destination.stat().st_dev:
+        raise DataError("Reuse backup and destination must be on the same filesystem")
     require_capacity(destination, (store.root / CATALOG).stat().st_size, minimum)
     (destination / "state").mkdir()
     catalog = destination / CATALOG
@@ -223,13 +252,28 @@ def _create_backup(store, destination, *, min_free_gib=10, progress=None):
         writer_seconds = time.monotonic() - lock_started
     # The source files are immutable and retained; copying does not hold the live writer.
     records, counts = catalog_inventory(catalog)
-    size = sum(safe_file(store.root, item["path"]).stat().st_size for item in records)
+    previous_records = (
+        {item["path"]: item for item in previous_manifest["files"]} if previous_manifest else {}
+    )
+    reusable = set()
+    for record in records:
+        record["bytes"] = safe_file(store.root, record["path"]).stat().st_size
+        old = previous_records.get(record["path"])
+        if old and old["sha256"] == record["sha256"] and old["kind"] == record["kind"]:
+            if old["bytes"] != record["bytes"]:
+                raise DataError(f"Reuse input size mismatch: {record['path']}")
+            reusable.add(record["path"])
+    size = sum(item["bytes"] for item in records if item["path"] not in reusable)
     require_capacity(destination, size, minimum)
     if progress:
         progress({"phase": "checkpoint", "files": len(records), "writer_seconds": writer_seconds})
-    copied = []
+    copied, reused_bytes = [], 0
     for index, record in enumerate(records, 1):
-        copied.append(copy_verified(store.root, destination, record))
+        if record["path"] in reusable:
+            copied.append(link_verified(store.root, previous, destination, record))
+            reused_bytes += record["bytes"]
+        else:
+            copied.append(copy_verified(store.root, destination, record))
         if progress and index % 1000 == 0:
             progress({"phase": "copy", "copied": index, "total": len(records)})
     with catalog.open("rb") as handle:
@@ -244,6 +288,16 @@ def _create_backup(store, destination, *, min_free_gib=10, progress=None):
     )
     verify_files(destination, copied)
     verify_packed_layout(destination)
+    storage = {
+        "mode": "linked_snapshot" if previous is not None else "independent_copy",
+        "reuse_from": str(previous) if previous is not None else None,
+        "reuse_backup_id": previous_manifest["backup_id"] if previous_manifest else None,
+        "reused_files": len(reusable),
+        "reused_bytes": reused_bytes,
+        "new_files": len(copied) - len(reusable),
+        "new_bytes": sum(item["bytes"] for item in copied) - reused_bytes,
+        "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata",
+    }
     manifest = {
         "format_version": 2 if counts.get("file_packs") else 1,
         "scope": SCOPE,
@@ -255,6 +309,7 @@ def _create_backup(store, destination, *, min_free_gib=10, progress=None):
         "writer_lock_seconds": writer_seconds,
         "same_filesystem_as_source": store.root.stat().st_dev == destination.stat().st_dev,
         "catalog_counts": counts,
+        "storage": storage,
         "files": sorted(copied, key=lambda item: item["path"]),
         "excluded": [
             "unregistered/orphan files",
@@ -266,6 +321,7 @@ def _create_backup(store, destination, *, min_free_gib=10, progress=None):
     }
     manifest["backup_id"] = sha256(json_bytes(manifest))
     sync_directories(destination)
+    require_capacity(destination, 0, minimum)
     # A directory without this marker is incomplete and cannot be verified/restored.
     atomic_write(destination / "backup.json", json_bytes(manifest))
     return {
@@ -277,6 +333,7 @@ def _create_backup(store, destination, *, min_free_gib=10, progress=None):
         "catalog_counts": counts,
         "writer_lock_seconds": writer_seconds,
         "same_filesystem_as_source": manifest["same_filesystem_as_source"],
+        "storage": storage,
     }
 
 
@@ -323,6 +380,7 @@ def verify_backup(source):
         "files": len(manifest["files"]),
         "bytes": sum(item["bytes"] for item in manifest["files"]),
         "catalog_counts": manifest["catalog_counts"],
+        "storage": manifest.get("storage"),
     }
 
 
@@ -367,7 +425,7 @@ def storage_report(root, *, min_free_gib=10):
     if not root.is_dir():
         raise DataError("Store directory does not exist")
     disk, stats = shutil.disk_usage(root), os.statvfs(root)
-    directories = {}
+    directories, all_inodes, unique_allocated = {}, set(), 0
     for relative in (
         "data/raw",
         "data/canonical",
@@ -378,7 +436,8 @@ def storage_report(root, *, min_free_gib=10):
         "backups",
         "restore-checks",
     ):
-        count, size, allocated = 0, 0, 0
+        count, size, allocated, unique_directory_allocated = 0, 0, 0, 0
+        inodes = set()
         directory = root / relative
         if directory.is_symlink():
             raise DataError(f"Storage directory is a symlink: {directory}")
@@ -391,7 +450,20 @@ def storage_report(root, *, min_free_gib=10):
                 count += 1
                 size += stat.st_size
                 allocated += stat.st_blocks * 512
-        directories[relative] = {"files": count, "bytes": size, "allocated_bytes": allocated}
+                identity = (stat.st_dev, stat.st_ino)
+                if identity not in inodes:
+                    unique_directory_allocated += stat.st_blocks * 512
+                    inodes.add(identity)
+                if identity not in all_inodes:
+                    unique_allocated += stat.st_blocks * 512
+                    all_inodes.add(identity)
+        directories[relative] = {
+            "files": count,
+            "bytes": size,
+            "allocated_bytes": allocated,
+            "unique_allocated_bytes": unique_directory_allocated,
+            "hardlink_duplicate_paths": count - len(inodes),
+        }
     warnings = []
     if disk.free < minimum:
         warnings.append("low_free_space")
@@ -411,5 +483,8 @@ def storage_report(root, *, min_free_gib=10):
         },
         "min_free_bytes": minimum,
         "directories": directories,
-        "note": "Sizes are a live scan, not a catalog checkpoint; no retention or deletion applied.",
+        "unique_allocated_bytes": unique_allocated,
+        "note": "Live scan of listed local directories, not a catalog checkpoint. "
+        "Unique allocation counts each inode once; reflink/snapshot sharing is not resolved. "
+        "External backup directories are excluded. No retention or deletion applied.",
     }
