@@ -1,5 +1,10 @@
 # 검증 기록
 
+`baseline/observation-2026-09-25/`은 상시 수집 전환 후 최근 24시간을 점검한 기록입니다.
+[요약](baseline/observation-2026-09-25/summary.md)에 체결 전체 ID 연속성, 호가의 부분 실패와
+표본 재생, OI 관측, 자동 유지보수·백업, 실제 저장량과 전체 사본 백업의 용량 시나리오를
+보존합니다. 호가 전 기간 무손실이나 모든 데이터셋의 정상 판정을 의미하지 않습니다.
+
 `baseline/history-extension-2026-09-23/`은 2019년 이후 원천별 제공 시작점까지 확장한 기록입니다.
 [요약](baseline/history-extension-2026-09-23/summary.md), 최종 자료별 ledger, 원천 가용 범위,
 REST 복구, 과거 형식 예외, 실시간 depth의 스냅샷 지연과 증분 보존, 기존 스냅샷 보존,

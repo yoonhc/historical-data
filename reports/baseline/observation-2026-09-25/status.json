@@ -1,0 +1,444 @@
+{
+  "checked_at": "2026-09-24T23:44:48.260435+00:00",
+  "healthy": false,
+  "datasets": [
+    {
+      "key": {
+        "dataset": "funding_events",
+        "market": "linear_perpetual",
+        "symbol": "BTCUSDT",
+        "interval": "event",
+        "series": "primary"
+      },
+      "state": "healthy",
+      "data": {
+        "partitions": 2571,
+        "rows": 7712,
+        "first_day": "2019-09-10",
+        "last_day": "2026-09-23",
+        "latest_timestamp": "2026-09-23T16:00:00.004000+00:00",
+        "latest_first_observed_at": "2026-09-24T03:22:05.312298+00:00"
+      },
+      "age_seconds": 114288.256435,
+      "stale_after_seconds": 129600,
+      "scope_registered": true,
+      "coverage": {
+        "start": "2026-09-14T00:00:00+00:00",
+        "end": "2026-09-24T00:00:00+00:00",
+        "missing_rows": null,
+        "missing_ranges": [],
+        "missing_days": 0,
+        "blocked_days": [],
+        "complete": true,
+        "semantics": "source_query_coverage_not_proof_of_event_completeness"
+      },
+      "expired_missing_ranges": [],
+      "historical_blocking_issues": [],
+      "historical_blocked_days": 0,
+      "last_run": {
+        "id": "c24edbb329bf4abe8e7e5e99967cdd6a",
+        "state": "complete",
+        "started_at": "2026-09-24T03:26:25.578835+00:00",
+        "updated_at": "2026-09-24T03:26:30.313078+00:00",
+        "finished_at": "2026-09-24T03:26:30.313078+00:00",
+        "errors": []
+      },
+      "latest_source_job": {
+        "state": "published",
+        "updated_at": "2026-09-24T03:26:30.298079+00:00",
+        "error": null
+      }
+    },
+    {
+      "key": {
+        "dataset": "index_price_bars",
+        "market": "linear_perpetual",
+        "symbol": "BTCUSDT",
+        "interval": "1m",
+        "series": "primary"
+      },
+      "state": "stale",
+      "data": {
+        "partitions": 2466,
+        "rows": 3550262,
+        "first_day": "2019-12-23",
+        "last_day": "2026-09-22",
+        "latest_timestamp": "2026-09-22T23:59:00+00:00",
+        "latest_first_observed_at": "2026-09-24T03:22:04.517545+00:00"
+      },
+      "age_seconds": 171948.260435,
+      "stale_after_seconds": 129600,
+      "scope_registered": true,
+      "coverage": {
+        "start": "2026-09-14T00:00:00+00:00",
+        "end": "2026-09-24T00:00:00+00:00",
+        "missing_rows": 1440,
+        "missing_ranges": [
+          [
+            "2026-09-23T00:00:00+00:00",
+            "2026-09-24T00:00:00+00:00"
+          ]
+        ],
+        "missing_days": 1,
+        "blocked_days": [],
+        "complete": false,
+        "semantics": "bar_grid"
+      },
+      "expired_missing_ranges": [],
+      "historical_blocking_issues": [],
+      "historical_blocked_days": 0,
+      "last_run": {
+        "id": "fdb9d9bc6c324f95b7d12648a6ecdb07",
+        "state": "partial",
+        "started_at": "2026-09-24T03:26:25.578835+00:00",
+        "updated_at": "2026-09-24T03:26:29.737329+00:00",
+        "finished_at": "2026-09-24T03:26:29.737329+00:00",
+        "errors": []
+      },
+      "latest_source_job": {
+        "state": "waiting_source",
+        "updated_at": "2026-09-24T03:26:29.725334+00:00",
+        "error": "HTTP 404: https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-09-23.zip"
+      }
+    },
+    {
+      "key": {
+        "dataset": "instrument_metadata",
+        "market": "linear_perpetual",
+        "symbol": "BTCUSDT",
+        "interval": "event",
+        "series": "primary"
+      },
+      "state": "healthy",
+      "data": {
+        "partitions": 4,
+        "rows": 16,
+        "first_day": "2026-09-21",
+        "last_day": "2026-09-24",
+        "latest_timestamp": "2026-09-24T03:26:31.496628+00:00",
+        "latest_first_observed_at": "2026-09-24T03:26:31.496628+00:00"
+      },
+      "age_seconds": 73096.763807,
+      "stale_after_seconds": 129600,
+      "scope_registered": true,
+      "coverage": {
+        "complete": true,
+        "semantics": "observation_only_no_historical_inference"
+      },
+      "expired_missing_ranges": [],
+      "historical_blocking_issues": [],
+      "historical_blocked_days": 0,
+      "last_run": {
+        "id": "6dfd7c37fb7a4ff79a6d4e8d73dd2dfe",
+        "state": "complete",
+        "started_at": "2026-09-24T03:26:25.578835+00:00",
+        "updated_at": "2026-09-24T03:26:31.512689+00:00",
+        "finished_at": "2026-09-24T03:26:31.512689+00:00",
+        "errors": []
+      },
+      "latest_source_job": {
+        "state": "published",
+        "updated_at": "2026-09-24T03:26:31.511485+00:00",
+        "error": null
+      }
+    },
+    {
+      "key": {
+        "dataset": "mark_price_bars",
+        "market": "linear_perpetual",
+        "symbol": "BTCUSDT",
+        "interval": "1m",
+        "series": "primary"
+      },
+      "state": "stale",
+      "data": {
+        "partitions": 2466,
+        "rows": 3550267,
+        "first_day": "2019-12-23",
+        "last_day": "2026-09-22",
+        "latest_timestamp": "2026-09-22T23:59:00+00:00",
+        "latest_first_observed_at": "2026-09-24T03:22:03.592606+00:00"
+      },
+      "age_seconds": 171948.260435,
+      "stale_after_seconds": 129600,
+      "scope_registered": true,
+      "coverage": {
+        "start": "2026-09-14T00:00:00+00:00",
+        "end": "2026-09-24T00:00:00+00:00",
+        "missing_rows": 1440,
+        "missing_ranges": [
+          [
+            "2026-09-23T00:00:00+00:00",
+            "2026-09-24T00:00:00+00:00"
+          ]
+        ],
+        "missing_days": 1,
+        "blocked_days": [],
+        "complete": false,
+        "semantics": "bar_grid"
+      },
+      "expired_missing_ranges": [],
+      "historical_blocking_issues": [],
+      "historical_blocked_days": 0,
+      "last_run": {
+        "id": "fd974b7301d64455a82d054924a7275f",
+        "state": "partial",
+        "started_at": "2026-09-24T03:26:25.578835+00:00",
+        "updated_at": "2026-09-24T03:26:28.694781+00:00",
+        "finished_at": "2026-09-24T03:26:28.694781+00:00",
+        "errors": []
+      },
+      "latest_source_job": {
+        "state": "waiting_source",
+        "updated_at": "2026-09-24T03:26:28.683368+00:00",
+        "error": "HTTP 404: https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-09-23.zip"
+      }
+    },
+    {
+      "key": {
+        "dataset": "open_interest",
+        "market": "linear_perpetual",
+        "symbol": "BTCUSDT",
+        "interval": "5m",
+        "series": "archive"
+      },
+      "state": "stale",
+      "data": {
+        "partitions": 2189,
+        "rows": 629798,
+        "first_day": "2020-09-01",
+        "last_day": "2026-09-22",
+        "latest_timestamp": "2026-09-22T23:55:00+00:00",
+        "latest_first_observed_at": "2026-09-24T03:22:05.813997+00:00"
+      },
+      "age_seconds": 172188.260435,
+      "stale_after_seconds": 129600,
+      "scope_registered": true,
+      "coverage": {
+        "start": "2026-09-14T00:00:00+00:00",
+        "end": "2026-09-24T00:00:00+00:00",
+        "missing_rows": 288,
+        "missing_ranges": [
+          [
+            "2026-09-23T00:00:00+00:00",
+            "2026-09-24T00:00:00+00:00"
+          ]
+        ],
+        "missing_days": 1,
+        "blocked_days": [],
+        "complete": false,
+        "semantics": "source_label_grid_only"
+      },
+      "expired_missing_ranges": [],
+      "historical_blocking_issues": [
+        {
+          "kind": "quarantined_zero_oi",
+          "days": 24
+        }
+      ],
+      "historical_blocked_days": 24,
+      "last_run": {
+        "id": "e58587e15cd940bd8df1d3e0a4bed455",
+        "state": "partial",
+        "started_at": "2026-09-24T03:26:25.578835+00:00",
+        "updated_at": "2026-09-24T03:26:31.043292+00:00",
+        "finished_at": "2026-09-24T03:26:31.043292+00:00",
+        "errors": []
+      },
+      "latest_source_job": {
+        "state": "waiting_source",
+        "updated_at": "2026-09-24T03:26:31.013624+00:00",
+        "error": "HTTP 404: https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-09-23.zip"
+      }
+    },
+    {
+      "key": {
+        "dataset": "open_interest",
+        "market": "linear_perpetual",
+        "symbol": "BTCUSDT",
+        "interval": "5m",
+        "series": "rest"
+      },
+      "state": "healthy",
+      "data": {
+        "partitions": 31,
+        "rows": 8816,
+        "first_day": "2026-08-25",
+        "last_day": "2026-09-24",
+        "latest_timestamp": "2026-09-24T23:40:00+00:00",
+        "latest_first_observed_at": "2026-09-24T23:40:46.091862+00:00"
+      },
+      "age_seconds": 288.260435,
+      "stale_after_seconds": 900,
+      "scope_registered": true,
+      "coverage": {
+        "start": "2026-08-25T09:05:00+00:00",
+        "end": "2026-09-24T23:45:00+00:00",
+        "missing_rows": 0,
+        "missing_ranges": [],
+        "missing_days": 0,
+        "blocked_days": [],
+        "complete": true,
+        "semantics": "source_label_grid_only"
+      },
+      "expired_missing_ranges": [],
+      "historical_blocking_issues": [],
+      "historical_blocked_days": 0,
+      "last_run": {
+        "id": "fd73f9b11a33465b9e712fc77b28a9dc",
+        "state": "complete",
+        "started_at": "2026-09-24T23:40:46.015013+00:00",
+        "updated_at": "2026-09-24T23:40:46.138541+00:00",
+        "finished_at": "2026-09-24T23:40:46.138541+00:00",
+        "errors": []
+      },
+      "latest_source_job": {
+        "state": "published",
+        "updated_at": "2026-09-24T23:40:46.136257+00:00",
+        "error": null
+      }
+    },
+    {
+      "key": {
+        "dataset": "trade_bars",
+        "market": "linear_perpetual",
+        "symbol": "BTCUSDT",
+        "interval": "1m",
+        "series": "primary"
+      },
+      "state": "stale",
+      "data": {
+        "partitions": 2572,
+        "rows": 3702602,
+        "first_day": "2019-09-08",
+        "last_day": "2026-09-22",
+        "latest_timestamp": "2026-09-22T23:59:00+00:00",
+        "latest_first_observed_at": "2026-09-24T03:22:02.845175+00:00"
+      },
+      "age_seconds": 171948.260435,
+      "stale_after_seconds": 129600,
+      "scope_registered": true,
+      "coverage": {
+        "start": "2026-09-14T00:00:00+00:00",
+        "end": "2026-09-24T00:00:00+00:00",
+        "missing_rows": 1440,
+        "missing_ranges": [
+          [
+            "2026-09-23T00:00:00+00:00",
+            "2026-09-24T00:00:00+00:00"
+          ]
+        ],
+        "missing_days": 1,
+        "blocked_days": [],
+        "complete": false,
+        "semantics": "bar_grid"
+      },
+      "expired_missing_ranges": [],
+      "historical_blocking_issues": [],
+      "historical_blocked_days": 0,
+      "last_run": {
+        "id": "8dac4c1274514957a65d8dd1e899b733",
+        "state": "partial",
+        "started_at": "2026-09-24T03:26:25.578835+00:00",
+        "updated_at": "2026-09-24T03:26:27.707534+00:00",
+        "finished_at": "2026-09-24T03:26:27.707534+00:00",
+        "errors": []
+      },
+      "latest_source_job": {
+        "state": "waiting_source",
+        "updated_at": "2026-09-24T03:26:27.694655+00:00",
+        "error": "HTTP 404: https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-09-23.zip"
+      }
+    },
+    {
+      "key": {
+        "dataset": "instrument_metadata",
+        "market": "spot",
+        "symbol": "BTCUSDT",
+        "interval": "event",
+        "series": "primary"
+      },
+      "state": "healthy",
+      "data": {
+        "partitions": 4,
+        "rows": 16,
+        "first_day": "2026-09-21",
+        "last_day": "2026-09-24",
+        "latest_timestamp": "2026-09-24T03:26:31.248501+00:00",
+        "latest_first_observed_at": "2026-09-24T03:26:31.248501+00:00"
+      },
+      "age_seconds": 73097.011934,
+      "stale_after_seconds": 129600,
+      "scope_registered": true,
+      "coverage": {
+        "complete": true,
+        "semantics": "observation_only_no_historical_inference"
+      },
+      "expired_missing_ranges": [],
+      "historical_blocking_issues": [],
+      "historical_blocked_days": 0,
+      "last_run": {
+        "id": "5aee25223780416dac46e579e4864f36",
+        "state": "complete",
+        "started_at": "2026-09-24T03:26:25.578835+00:00",
+        "updated_at": "2026-09-24T03:26:31.440494+00:00",
+        "finished_at": "2026-09-24T03:26:31.440494+00:00",
+        "errors": []
+      },
+      "latest_source_job": {
+        "state": "published",
+        "updated_at": "2026-09-24T03:26:31.437645+00:00",
+        "error": null
+      }
+    },
+    {
+      "key": {
+        "dataset": "trade_bars",
+        "market": "spot",
+        "symbol": "BTCUSDT",
+        "interval": "1m",
+        "series": "primary"
+      },
+      "state": "healthy",
+      "data": {
+        "partitions": 2823,
+        "rows": 4061009,
+        "first_day": "2019-01-01",
+        "last_day": "2026-09-23",
+        "latest_timestamp": "2026-09-23T23:59:00+00:00",
+        "latest_first_observed_at": "2026-09-24T03:22:01.981549+00:00"
+      },
+      "age_seconds": 85548.260435,
+      "stale_after_seconds": 129600,
+      "scope_registered": true,
+      "coverage": {
+        "start": "2026-09-14T00:00:00+00:00",
+        "end": "2026-09-24T00:00:00+00:00",
+        "missing_rows": 0,
+        "missing_ranges": [],
+        "missing_days": 0,
+        "blocked_days": [],
+        "complete": true,
+        "semantics": "bar_grid"
+      },
+      "expired_missing_ranges": [],
+      "historical_blocking_issues": [],
+      "historical_blocked_days": 0,
+      "last_run": {
+        "id": "04882c9bc6e246a68550fa67371e5de0",
+        "state": "complete",
+        "started_at": "2026-09-24T03:26:25.578835+00:00",
+        "updated_at": "2026-09-24T03:26:26.710395+00:00",
+        "finished_at": "2026-09-24T03:26:26.710395+00:00",
+        "errors": []
+      },
+      "latest_source_job": {
+        "state": "published",
+        "updated_at": "2026-09-24T03:26:26.697748+00:00",
+        "error": null
+      }
+    }
+  ],
+  "coverage_note": "Operational scopes only; older imported history may have separate gaps",
+  "integrity_note": "Cached immutable revision coverage; use validate for full file integrity checks"
+}

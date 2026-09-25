@@ -1,0 +1,43 @@
+{
+  "source_bytes_excluding_exports": 6046541779,
+  "stream_growth_bytes_per_24h": 2167909964,
+  "free_bytes": 221346426880,
+  "min_free_bytes": 10737418240,
+  "scenario": [
+    {
+      "days": 7,
+      "additional_source_GiB": 14.133164424449205,
+      "additional_full_backup_GiB": 95.95162369776517,
+      "remaining_GiB": 96.06013604160398
+    },
+    {
+      "days": 10,
+      "additional_source_GiB": 20.190234892070293,
+      "additional_full_backup_GiB": 167.35910047776997,
+      "remaining_GiB": 18.595588793978095
+    },
+    {
+      "days": 11,
+      "additional_source_GiB": 22.209258381277323,
+      "additional_full_backup_GiB": 195.19963971618563,
+      "remaining_GiB": -11.263973933644593
+    },
+    {
+      "days": 14,
+      "additional_source_GiB": 28.26632884889841,
+      "additional_full_backup_GiB": 290.8353983666748,
+      "remaining_GiB": -112.95680305175483
+    },
+    {
+      "days": 30,
+      "additional_source_GiB": 60.57070467621088,
+      "additional_full_backup_GiB": 1107.7843481954187,
+      "remaining_GiB": -962.2101287078112
+    }
+  ],
+  "assumptions": [
+    "single 24h stream sample held constant; not a forecast",
+    "one independent full backup daily, no deletion or deduplication",
+    "OI/candles/catalog future growth and filesystem overhead excluded, so this is optimistic"
+  ]
+}

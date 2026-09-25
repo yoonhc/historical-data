@@ -1,0 +1,20 @@
+{
+  "start": "2026-09-23T23:30:00+00:00",
+  "end": "2026-09-24T23:30:00+00:00",
+  "datasets": {
+    "book_depth": {
+      "segments": 25436,
+      "rows_in_intersecting_segments": 850087,
+      "raw_bytes": 840384199,
+      "canonical_bytes": 1162577093
+    },
+    "agg_trades": {
+      "segments": 16446,
+      "rows_in_intersecting_segments": 1556317,
+      "raw_bytes": 36259934,
+      "canonical_bytes": 128688738
+    }
+  },
+  "missing_size_paths": [],
+  "semantics": "all bytes of intersecting immutable segments, including boundary overhang; excludes catalog/ZIP overhead, OI/bars, exports and backups"
+}

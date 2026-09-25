@@ -1,0 +1,82 @@
+{
+  "count": 5760,
+  "states": {
+    "ok": 5760
+  },
+  "http_status": {
+    "200": 5760
+  },
+  "clock_flags": 0,
+  "max_request_gap_seconds": 15.672193,
+  "gaps_over_45_seconds": 0,
+  "max_elapsed_seconds": 5.082147071021609,
+  "latest_quality_report": {
+    "files": {
+      "anomalies.jsonl": "4388ea6894403921010f377cd7d72700d40cd83099a7633327153cc8c12561df",
+      "availability.csv": "0218ddb930cfedd7a06ade7eec14da9bdabe8fc60aee253d74cb6fc2a90c9deb",
+      "parity.csv": "76ef77d41d6c8d25f391a79846d525464d9ef96d6fb018b6c1a966b2e8f865b8",
+      "report.json": "3ca09122a9b999acd005c6c277f8f0620cd737c0e8109851496c50424532602a"
+    },
+    "generated_at": "2026-09-24T03:40:01.006909+00:00",
+    "needs_review": true,
+    "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/oi-quality/20260924T034001-8bd134320b64",
+    "report_id": "8bd134320b64ccc85318ab67199c4e42e3cd3a1b153402f32f53f5aa903a044f",
+    "observation_summary": {
+      "late_threshold_seconds": 60,
+      "latest_probe_age_seconds": 15.001515,
+      "observation_status": "active",
+      "probe_end": "2026-09-24T03:39:46.005394+00:00",
+      "probe_start": "2026-09-22T12:00:04.930239+00:00",
+      "semantics": "Sampled response transitions, not global publication bounds. First presence without prior absence is left-censored. Successful collector receipts can prove presence, but only v2 timed probes provide absence evidence. Network errors are not absence. Local clock uncertainty and inconsistent or cached responses remain limitations.",
+      "timing_probe_end": "2026-09-24T03:39:46.005394+00:00",
+      "timing_probe_start": "2026-09-22T12:24:01.005003+00:00"
+    },
+    "observation_lists": {
+      "anomalies": 0,
+      "availability": 484,
+      "input_fetch_ids": 10087,
+      "probe_gaps_over_45_seconds": 1
+    },
+    "parity_totals": [
+      {
+        "blocked": 0,
+        "comparable": 1728,
+        "exact": 0,
+        "exact_rate": 0.0,
+        "expected": 2016,
+        "mismatch": 1728,
+        "missing_archive": 288,
+        "missing_rest": 0,
+        "quantity_exact": 0,
+        "shift_seconds": -300,
+        "value_exact": 0
+      },
+      {
+        "blocked": 0,
+        "comparable": 1728,
+        "exact": 0,
+        "exact_rate": 0.0,
+        "expected": 2016,
+        "mismatch": 1728,
+        "missing_archive": 288,
+        "missing_rest": 0,
+        "quantity_exact": 0,
+        "shift_seconds": 0,
+        "value_exact": 0
+      },
+      {
+        "blocked": 0,
+        "comparable": 1728,
+        "exact": 1728,
+        "exact_rate": 1.0,
+        "expected": 2016,
+        "mismatch": 0,
+        "missing_archive": 288,
+        "missing_rest": 0,
+        "quantity_exact": 1728,
+        "shift_seconds": 300,
+        "value_exact": 1728
+      }
+    ]
+  }
+}
