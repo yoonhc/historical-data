@@ -1,5 +1,9 @@
 # 검증 기록
 
+`baseline/depth-bootstrap-2026-09-25/`는 호가 초기 동기화 실패의 원인 점검과 개선 기록입니다.
+[요약](baseline/depth-bootstrap-2026-09-25/summary.md)에 최근 실패의 시각·ID 대조,
+초기 수신 버퍼, 실제 연결 교체 시험·원문 대조·재생과 적용 범위를 보존합니다.
+
 `baseline/incremental-backup-2026-09-25/`는 두 번째 SSD로 자동 백업을 전환한 기록입니다.
 [요약](baseline/incremental-backup-2026-09-25/summary.md)에 파일 단위 증분 저장, 실제 두 사본의
 절약량, 독립 복원·조회 대조, 마운트 누락 시 실패 처리와 225개 테스트를 보존합니다.

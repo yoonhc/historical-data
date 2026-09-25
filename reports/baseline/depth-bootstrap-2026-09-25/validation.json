@@ -1,0 +1,31 @@
+{
+  "source_parent_commit": "55f62ee",
+  "full_suite": {
+    "passed": 232,
+    "failures": 0,
+    "errors": 0
+  },
+  "checks": {
+    "ruff_check": "passed",
+    "ruff_format": "passed",
+    "git_diff_check": "passed"
+  },
+  "sha256": {
+    "packages/marketdata/src/marketdata/depth_stream.py": "c1c788991ea3094b83312790a8c613d9e1992de2b828bca5d0773f912211bdad",
+    "packages/marketdata/src/marketdata/depth.py": "644ef146add5a8ad594adc83a5bac53b3e5d02418bfcb9bbe36960f31a8ca587",
+    "tests/test_depth.py": "1ebc6437fdc67c2f067064e31a9a39f3d50303b57d42776a89248cfe2b45614d",
+    "tests/test_depth_bootstrap.py": "a3f9bbc97c2ebac48d42b6731dcf69d9a495bfecf26bc2098c504f1031bbfb5a",
+    "docs/orderbook-depth.md": "245e08f25e310ea6ac5a67f3f953383c2c5bb5765ceeeced3c0aaa85a540a540",
+    "docs/stream-services.md": "b101c887f82bb574fc4cef03344291eff9bac14e1b84479393435149b311bc7a",
+    "reports/baseline/depth-bootstrap-2026-09-25/verify.py": "deb9cd205259f772d5523c4daeff93291dbfc9b82cde975a33963cb4b4e7c3b8"
+  },
+  "official_reference": "https://developers.binance.com/en/docs/products/derivatives-trading-usds-futures/websocket-market-streams/How-to-manage-a-local-order-book-correctly",
+  "unchanged": [
+    "strict inclusive futures bridge",
+    "pu continuity",
+    "old journal replay semantics",
+    "service rotation and session durations",
+    "backup retention and schedule"
+  ],
+  "live_validation_scope": "short bounded captures; not a 24-hour no-loss claim"
+}

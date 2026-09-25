@@ -5,6 +5,7 @@ import gzip
 import json
 import shutil
 import time
+from collections import deque
 from contextlib import contextmanager
 from datetime import timedelta
 
@@ -123,6 +124,47 @@ def persist_messages(store, collection_id, messages):
     return len(rows)
 
 
+def buffer_before_anchor(store, socket, collection_id, epoch, deadline):
+    """Require an actual first event before REST; retain it if REST later fails."""
+    buffered = deque()
+    until = min(deadline, time.monotonic() + 2)
+    try:
+        while time.monotonic() < until:
+            try:
+                message = socket.recv(timeout=min(1, max(0.01, until - time.monotonic())))
+            except TimeoutError:
+                continue
+            received = now()
+            if isinstance(message, bytes):
+                message = message.decode("utf-8")
+            buffered.append({"message": message, "received_at": received.isoformat()})
+            # One received event establishes buffering before REST without a
+            # fixed warm-up delay. Later events remain in the client's bounded queue.
+            break
+    finally:
+        if buffered:
+            blob = json_bytes(list(buffered))
+            with store.writer(timeout=60):
+                store.put_raw(
+                    gzip.compress(blob, mtime=0),
+                    depth.WS,
+                    "depth_bootstrap",
+                    utc(buffered[0]["received_at"]),
+                    {
+                        "collection_id": collection_id,
+                        "epoch": epoch,
+                        "compression": "gzip",
+                        "uncompressed_sha256": sha256(blob),
+                        "messages": len(buffered),
+                        "purpose": "pre_anchor_receipts; also journaled after successful anchor",
+                        "timestamp_semantics": "application_recv_return_not_wire_arrival",
+                    },
+                )
+    if not buffered:
+        raise OSError("No depth messages received before initial snapshot")
+    return buffered
+
+
 def capture(
     store,
     *,
@@ -190,6 +232,9 @@ def capture(
                     "sync_losses": 0,
                     "coverage_resets": 0,
                     "coverage_reset_policy": "same_socket_new_epoch_v1",
+                    "bootstrap_policy": "buffer_before_anchor_v1",
+                    "bootstrap_timeout_seconds": 2,
+                    "bootstrap_messages": 0,
                     "lagged_snapshot_policy": "retain_unsynchronized_updates_v1",
                     "lagged_snapshots": 0,
                     "unreconstructed_messages": 0,
@@ -263,12 +308,29 @@ def capture(
                                 "reason": reason,
                             }
                             report["epochs"].append(epoch_report)
+                            if shutil.disk_usage(store.root).free < minimum:
+                                raise DataError("Depth capture stopped: free space below reserve")
+                            prefetched = buffer_before_anchor(
+                                store, socket, report["id"], epoch_report["epoch"], deadline
+                            )
+                            report["bootstrap_messages"] += len(prefetched)
                             get_snapshot("anchor")
-                            while time.monotonic() < min(deadline, connected + rotate_seconds):
+                            epoch_started = time.monotonic()
+                            while prefetched or time.monotonic() < min(
+                                deadline, connected + rotate_seconds
+                            ):
                                 try:
-                                    message = socket.recv(
-                                        timeout=min(1, max(0.01, deadline - time.monotonic()))
-                                    )
+                                    if prefetched:
+                                        incoming = prefetched.popleft()
+                                        message, received = (
+                                            incoming["message"],
+                                            utc(incoming["received_at"]),
+                                        )
+                                    else:
+                                        message = socket.recv(
+                                            timeout=min(1, max(0.01, deadline - time.monotonic()))
+                                        )
+                                        received = now()
                                 except TimeoutError:
                                     if time.monotonic() - last_message > 10:
                                         raise OSError("No BTCUSDT depth messages for 10 seconds")
@@ -277,7 +339,6 @@ def capture(
                                     continue
                                 if isinstance(message, bytes):
                                     message = message.decode("utf-8")
-                                received = now()
                                 item = {
                                     "message": message,
                                     "received_at": received.isoformat(),

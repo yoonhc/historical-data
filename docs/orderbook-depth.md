@@ -25,12 +25,23 @@ BTCUSDT USD-M 선물의 공개 100ms 증분 스트림과 REST 최대 1,000호가
 
 ## 동기화와 공백
 
-WebSocket 연결의 수신 큐를 먼저 열고 REST 스냅샷을 요청한다. 스냅샷보다 오래된 이벤트는
+WebSocket 연결 후 실제 첫 증분을 먼저 받고 즉시 REST 스냅샷을 요청한다.
+첫 메시지의 수신 대기는 최대 2초이며, 뒤따르는 메시지는 WebSocket의 제한된 큐에 남는다.
+이는 연결만 열고 첫 증분이 도착하기 전에 스냅샷을 요청하던 초기 동기화 실패를 줄이기 위한
+버퍼다. 거래소의 장기 스냅샷 지연까지 해결하는 것은 아니며 ID 연결 조건은 유지한다.
+스냅샷보다 오래된 이벤트는
 원본에 남긴 채 적용에서 제외한다. 처음 적용하는 이벤트는 `U <= lastUpdateId <= u`를
 만족해야 하며, 이후에는 매 이벤트의 `pu`와 직전 `u`가 같아야 한다. 선물의 업데이트 ID가
 매번 정수 1씩 증가한다고 가정하지 않는다. 수량은 증감량이 아닌 해당 가격의 최종 절대량이다.
 수량 0은 삭제이며, 없던 호가의 삭제도 정상 처리한다.
 [공식 로컬 호가장 규칙](https://developers.binance.com/en/docs/products/derivatives-trading-usds-futures/websocket-market-streams/How-to-manage-a-local-order-book-correctly)
+
+초기 버퍼는 REST 요청 전에 `depth_bootstrap` 원문으로 보존한다. REST 오류나 Ctrl-C가
+스냅샷 생성 전에 발생해도 이미 받은 원문은 남지만, 호가장이나 완전한 journal을 확보했다고
+판정하지 않는다. 정상 진행 시 같은 메시지를 원래 수신 시각으로 기존 증분 journal에도 기록한다.
+`bootstrap_policy=buffer_before_anchor_v1`, `bootstrap_timeout_seconds`, `bootstrap_messages`가
+새 수집 보고서에 남는다. 이 필드가 없는 이전 journal의 해석·실패 판정은 바꾸지 않는다.
+초기 스냅샷보다 앞선 버퍼 구간의 과거 호가장을 소급 복구한 것은 아니다.
 
 연결 교체·단절·프로세스 재시작 때마다 새 REST 스냅샷과 새 `epoch`를 시작한다.
 ID 연결 누락, 충돌하는 중복, 역순 업데이트, 교차 호가, 알려진 가격 범위 소진도 기존 epoch를
@@ -79,6 +90,7 @@ REST는 현재 호가장만 제공하므로 aggTrade처럼 과거 누락 이벤�
 |---|---|
 | REST 원문 | 응답 JSON 바이트, URL·헤더·요청 시작·수신 시각 |
 | WebSocket 원문 | 메시지 문자열과 수신 시각·epoch·로컬 sequence 배열의 gzip |
+| 초기 수신 원문 | `depth_bootstrap`: 스냅샷 요청 전에 받은 메시지·수신 시각 배열의 gzip |
 | `data/canonical/book_depth/` | 스냅샷과 증분을 담은 불변 Parquet 세그먼트 |
 | `event_collections` | 수집 상태, 연결·재동기화 이력, epoch별 최종 호가와 검증 결과 |
 | `event_segments` | 파일·원문 해시, 수집 ID, 로컬 sequence 범위와 행 수 |
@@ -129,3 +141,5 @@ CLI 종료 코드는 정상 수집·재생 0, 불완전한 수집·재생 또는
 `healthy=true`다. 과거 자료 검증은 `depth-replay`로 확인한다.
 
 실제 표본의 결과와 저장량은 [검증 기록](../reports/baseline/depth-2026-09-22/summary.md)에 남긴다.
+초기 동기화 개선과 연결 교체 시험은
+[2026-09-25 기록](../reports/baseline/depth-bootstrap-2026-09-25/summary.md)을 참고한다.
