@@ -1,0 +1,2126 @@
+{
+  "checked_at": "2026-09-26T02:27:04.116193+00:00",
+  "checks": {
+    "equal": 8403,
+    "uncomparable": 20
+  },
+  "counts": {
+    "bootstrap_messages": 96,
+    "complete": 23,
+    "connection_errors": 0,
+    "connections": 96,
+    "coverage_resets": 2,
+    "lagged_snapshots": 1,
+    "messages": 845457,
+    "partial": 1,
+    "persisted_messages": 845457,
+    "sync_losses": 3,
+    "unreconstructed_messages": 103
+  },
+  "epoch_reasons": {
+    "initial": 24,
+    "planned_rotation": 72,
+    "same_socket_after_coverage_exhausted": 2,
+    "same_socket_after_lagged_snapshot": 1
+  },
+  "failures": [
+    {
+      "checks": 55,
+      "collection_id": "ed201401a9d0445f995aa12f3a8f3c49",
+      "counts": {
+        "applied": 5545,
+        "duplicate": 0,
+        "stale": 1
+      },
+      "end_reason": "coverage_exhausted",
+      "ended_at": "2026-09-25T12:13:54.749766+00:00",
+      "epoch": 3,
+      "error": "Known snapshot price range exhausted",
+      "pending": null,
+      "reason": "planned_rotation",
+      "started_at": "2026-09-25T12:04:28.892475+00:00",
+      "synced": true
+    },
+    {
+      "checks": 1,
+      "collection_id": "ed201401a9d0445f995aa12f3a8f3c49",
+      "counts": {
+        "applied": 61,
+        "duplicate": 0,
+        "stale": 0
+      },
+      "end_reason": "coverage_exhausted",
+      "ended_at": "2026-09-25T12:14:01.251338+00:00",
+      "epoch": 4,
+      "error": "Known snapshot price range exhausted",
+      "pending": null,
+      "reason": "same_socket_after_coverage_exhausted",
+      "started_at": "2026-09-25T12:13:54.959041+00:00",
+      "synced": true
+    },
+    {
+      "checks": 0,
+      "collection_id": "ed201401a9d0445f995aa12f3a8f3c49",
+      "counts": {
+        "applied": 0,
+        "duplicate": 0,
+        "stale": 0
+      },
+      "end_reason": "lagged_snapshot",
+      "ended_at": "2026-09-25T12:14:11.500576+00:00",
+      "epoch": 5,
+      "error": "Snapshot bridge missing: expected U <= lastUpdateId <= u",
+      "pending": null,
+      "reason": "same_socket_after_coverage_exhausted",
+      "started_at": "2026-09-25T12:14:01.278817+00:00",
+      "synced": false
+    }
+  ],
+  "fixed_window_end": "2026-09-26T02:16:46.550407+00:00",
+  "fixed_window_start": "2026-09-25T02:16:46.550407+00:00",
+  "scope": "Totals for 24 completed sessions starting inside the fixed window, including trailing overhang.",
+  "session_end": "2026-09-26T02:23:25.869334+00:00",
+  "session_start": "2026-09-25T02:16:46.550407+00:00",
+  "sessions": [
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T02:31:46.785216+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T02:16:46.699673+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T02:46:48.989730+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T02:31:48.945183+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T03:01:51.185358+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T02:46:51.149812+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T03:16:46.563461+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T03:01:53.347836+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "b438cd280d7e4624af0a1d3fcb5b2a13",
+      "lagged_snapshots": 0,
+      "messages": 35229,
+      "persisted_messages": 35229,
+      "started_at": "2026-09-25T02:16:46.550407+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T03:16:48.585136+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 85,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T03:32:03.991150+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T03:17:03.965505+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T03:47:06.197132+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T03:32:06.177998+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T04:02:08.451558+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T03:47:08.363780+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8755,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T04:17:03.835224+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T04:02:10.610708+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "2cabc156c17c44d3bf034a0ef206bdfe",
+      "lagged_snapshots": 0,
+      "messages": 35227,
+      "persisted_messages": 35227,
+      "started_at": "2026-09-25T03:17:03.834065+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T04:17:05.890813+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T04:32:21.256136+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T04:17:21.235557+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T04:47:23.442764+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T04:32:23.415878+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T05:02:25.649704+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T04:47:25.600216+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T05:17:21.107301+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T05:02:27.810363+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "f78a94c369964edc8d7d43b9c8bd310d",
+      "lagged_snapshots": 0,
+      "messages": 35229,
+      "persisted_messages": 35229,
+      "started_at": "2026-09-25T04:17:21.106014+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T05:17:23.137103+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T05:32:38.487129+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T05:17:38.484422+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T05:47:40.723322+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T05:32:40.681658+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T06:02:42.956831+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T05:47:42.884952+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T06:17:38.343398+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T06:02:45.134029+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "b152e1015c4f4463a91345ad0933940a",
+      "lagged_snapshots": 0,
+      "messages": 35228,
+      "persisted_messages": 35228,
+      "started_at": "2026-09-25T05:17:38.331467+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T06:17:40.399601+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T06:32:56.028727+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T06:17:55.962842+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T06:47:58.238030+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T06:32:58.186111+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T07:03:00.460059+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T06:48:00.437034+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8754,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T07:17:55.831506+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T07:03:02.653456+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "c12f46f9a37840a9a987a829eb0e1b46",
+      "lagged_snapshots": 0,
+      "messages": 35226,
+      "persisted_messages": 35226,
+      "started_at": "2026-09-25T06:17:55.819380+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T07:17:57.882626+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T07:33:13.256545+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T07:18:13.225036+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T07:48:15.447309+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T07:33:15.419516+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T08:03:17.675795+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T07:48:17.620263+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T08:18:13.085393+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T08:03:19.820736+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "d5e4aa0c3e234699a48c44bfe2f594f2",
+      "lagged_snapshots": 0,
+      "messages": 35227,
+      "persisted_messages": 35227,
+      "started_at": "2026-09-25T07:18:13.072726+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T08:18:15.099210+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T08:33:30.515946+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T08:18:30.474132+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T08:48:32.718719+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T08:33:32.695155+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T09:03:34.930102+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T08:48:34.913584+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T09:18:30.341319+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T09:03:37.101438+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "67d9f162f3bf44d291513fccd13d40b5",
+      "lagged_snapshots": 0,
+      "messages": 35227,
+      "persisted_messages": 35227,
+      "started_at": "2026-09-25T08:18:30.330154+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T09:18:32.372981+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T09:33:47.837439+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T09:18:47.729323+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T09:48:50.227830+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T09:33:50.179258+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T10:03:52.424817+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T09:48:52.393295+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8754,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T10:18:47.595452+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T10:03:54.618262+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "9a693ed168714db88ef0794bc793bb42",
+      "lagged_snapshots": 0,
+      "messages": 35227,
+      "persisted_messages": 35227,
+      "started_at": "2026-09-25T09:18:47.582687+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T10:18:49.619407+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8821,
+            "duplicate": 0,
+            "stale": 2
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T10:34:05.000686+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T10:19:04.974815+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T10:49:07.223029+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T10:34:07.167331+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T11:04:09.425240+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T10:49:09.416686+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8755,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T11:19:04.845377+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T11:04:11.586669+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "05667839b3c94d77ad9cc20a71a563b4",
+      "lagged_snapshots": 0,
+      "messages": 35225,
+      "persisted_messages": 35225,
+      "started_at": "2026-09-25T10:19:04.818492+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T11:19:06.880413+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 2,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T11:34:22.331489+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T11:19:22.229963+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T11:49:24.525335+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T11:34:24.508519+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T12:04:26.728319+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T11:49:26.706556+00:00",
+          "synced": true
+        },
+        {
+          "checks": 55,
+          "counts": {
+            "applied": 5545,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "coverage_exhausted",
+          "ended_at": "2026-09-25T12:13:54.749766+00:00",
+          "epoch": 3,
+          "error": "Known snapshot price range exhausted",
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T12:04:28.892475+00:00",
+          "synced": true
+        },
+        {
+          "checks": 1,
+          "counts": {
+            "applied": 61,
+            "duplicate": 0,
+            "stale": 0
+          },
+          "end_reason": "coverage_exhausted",
+          "ended_at": "2026-09-25T12:14:01.251338+00:00",
+          "epoch": 4,
+          "error": "Known snapshot price range exhausted",
+          "pending": null,
+          "reason": "same_socket_after_coverage_exhausted",
+          "started_at": "2026-09-25T12:13:54.959041+00:00",
+          "synced": true
+        },
+        {
+          "checks": 0,
+          "counts": {
+            "applied": 0,
+            "duplicate": 0,
+            "stale": 0
+          },
+          "end_reason": "lagged_snapshot",
+          "ended_at": "2026-09-25T12:14:11.500576+00:00",
+          "epoch": 5,
+          "error": "Snapshot bridge missing: expected U <= lastUpdateId <= u",
+          "pending": null,
+          "reason": "same_socket_after_coverage_exhausted",
+          "started_at": "2026-09-25T12:14:01.278817+00:00",
+          "synced": false
+        },
+        {
+          "checks": 30,
+          "counts": {
+            "applied": 3043,
+            "duplicate": 0,
+            "stale": 2
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T12:19:22.090428+00:00",
+          "epoch": 6,
+          "error": null,
+          "pending": null,
+          "reason": "same_socket_after_lagged_snapshot",
+          "started_at": "2026-09-25T12:14:11.688682+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "ed201401a9d0445f995aa12f3a8f3c49",
+      "lagged_snapshots": 1,
+      "messages": 35227,
+      "persisted_messages": 35227,
+      "started_at": "2026-09-25T11:19:22.077193+00:00",
+      "state": "partial",
+      "sync_losses": 3,
+      "unreconstructed_messages": 103,
+      "updated_at": "2026-09-25T12:19:24.165682+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T12:34:39.793416+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T12:19:39.711460+00:00",
+          "synced": true
+        },
+        {
+          "checks": 89,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T12:49:42.070039+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T12:34:41.999435+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T13:04:44.254694+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T12:49:44.240626+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8755,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T13:19:39.575784+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T13:04:46.417930+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "ba79c13c3e08426095abb76021c48ff5",
+      "lagged_snapshots": 0,
+      "messages": 35227,
+      "persisted_messages": 35227,
+      "started_at": "2026-09-25T12:19:39.574375+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T13:19:41.606030+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T13:34:57.008780+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T13:19:56.980796+00:00",
+          "synced": true
+        },
+        {
+          "checks": 89,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T13:49:59.333062+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T13:34:59.233046+00:00",
+          "synced": true
+        },
+        {
+          "checks": 90,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T14:05:01.542074+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T13:50:01.541482+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8754,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T14:19:56.830759+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T14:05:03.740080+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "992b6855712e4113ad7b806a100b8e32",
+      "lagged_snapshots": 0,
+      "messages": 35226,
+      "persisted_messages": 35226,
+      "started_at": "2026-09-25T13:19:56.818364+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T14:19:58.863190+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T14:35:14.501981+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": 8912,
+          "reason": "initial",
+          "started_at": "2026-09-25T14:20:14.223139+00:00",
+          "synced": true
+        },
+        {
+          "checks": 89,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T14:50:16.698134+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T14:35:16.638848+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T15:05:18.901662+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T14:50:18.849905+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8754,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T15:20:14.095916+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T15:05:21.066355+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "2e19c7488f2548afb35528a497902d96",
+      "lagged_snapshots": 0,
+      "messages": 35227,
+      "persisted_messages": 35227,
+      "started_at": "2026-09-25T14:20:14.084188+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T15:20:16.146195+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 89,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T15:35:31.494283+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T15:20:31.468714+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T15:50:33.662175+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T15:35:33.635703+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T16:05:35.877681+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T15:50:35.822866+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T16:20:31.330426+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T16:05:38.042689+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "b11ec86493bb425aaedcbe7f5454c5c0",
+      "lagged_snapshots": 0,
+      "messages": 35229,
+      "persisted_messages": 35229,
+      "started_at": "2026-09-25T15:20:31.318045+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T16:20:33.389230+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 89,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T16:35:48.731622+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T16:20:48.726896+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T16:50:50.922584+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T16:35:50.920713+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T17:05:53.134677+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T16:50:53.079059+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T17:20:48.597755+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T17:05:55.298988+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "501a214b11574f64b3a0ea628e60b553",
+      "lagged_snapshots": 0,
+      "messages": 35228,
+      "persisted_messages": 35228,
+      "started_at": "2026-09-25T16:20:48.586205+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T17:20:50.623205+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T17:36:06.024959+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T17:21:05.984248+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T17:51:08.308259+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T17:36:08.224468+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T18:06:10.502785+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T17:51:10.475220+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8754,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T18:21:05.851374+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T18:06:12.674920+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "521502ed81b14fb8be3c36427bc95e63",
+      "lagged_snapshots": 0,
+      "messages": 35226,
+      "persisted_messages": 35226,
+      "started_at": "2026-09-25T17:21:05.826003+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T18:21:07.886434+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T18:36:23.240957+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T18:21:23.233003+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T18:51:25.439654+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T18:36:25.415170+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T19:06:27.650685+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T18:51:27.608647+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T19:21:23.094055+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T19:06:29.811335+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "9c4b0f55554d459ebfc92c1a3c77bcaf",
+      "lagged_snapshots": 0,
+      "messages": 35229,
+      "persisted_messages": 35229,
+      "started_at": "2026-09-25T18:21:23.079848+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T19:21:25.121118+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T19:36:40.491988+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T19:21:40.465929+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T19:51:42.691017+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T19:36:42.675268+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 2
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T20:06:44.885462+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T19:51:44.854901+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T20:21:40.336031+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T20:06:47.056781+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "2551dc8ffe6746809d043a29464d0b60",
+      "lagged_snapshots": 0,
+      "messages": 35228,
+      "persisted_messages": 35228,
+      "started_at": "2026-09-25T19:21:40.324128+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T20:21:42.373508+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T20:36:57.729165+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T20:21:57.722343+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T20:52:00.000888+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T20:36:59.917387+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T21:07:02.239956+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T20:52:02.188323+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8755,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T21:21:57.582130+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T21:07:04.416914+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "877986c96a2249c2b3fe02c53e22db02",
+      "lagged_snapshots": 0,
+      "messages": 35228,
+      "persisted_messages": 35228,
+      "started_at": "2026-09-25T20:21:57.570845+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T21:21:59.615809+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T21:37:15.012817+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T21:22:14.974442+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T21:52:17.205486+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T21:37:17.178162+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T22:07:19.402300+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T21:52:19.367605+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T22:22:14.836897+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T22:07:21.576905+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "6e7338a09ebb48658927160373b3f2b5",
+      "lagged_snapshots": 0,
+      "messages": 35228,
+      "persisted_messages": 35228,
+      "started_at": "2026-09-25T21:22:14.825442+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T22:22:16.859513+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T22:37:32.273616+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T22:22:32.215635+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T22:52:34.467107+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T22:37:34.434707+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T23:07:36.662761+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T22:52:36.647035+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8755,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-25T23:22:32.088366+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T23:07:38.829267+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "ae0d5e5b08334d2cb33ff2900aeb9bdb",
+      "lagged_snapshots": 0,
+      "messages": 35226,
+      "persisted_messages": 35226,
+      "started_at": "2026-09-25T22:22:32.074238+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-25T23:22:34.114054+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T23:37:49.488990+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-25T23:22:49.468383+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-25T23:52:51.670590+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T23:37:51.657753+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-26T00:07:53.878548+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-25T23:52:53.833316+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8755,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-26T00:22:49.331411+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-26T00:07:56.059834+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "f123b7e49320481da28351269baa8637",
+      "lagged_snapshots": 0,
+      "messages": 35228,
+      "persisted_messages": 35228,
+      "started_at": "2026-09-25T23:22:49.318840+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-26T00:22:51.364046+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-26T00:38:06.745588+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-26T00:23:06.718565+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-26T00:53:08.932817+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-26T00:38:08.919876+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-26T01:08:11.123339+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-26T00:53:11.107979+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8756,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-26T01:23:06.578671+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-26T01:08:13.296364+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "925f69619181456eae4194c48ed51725",
+      "lagged_snapshots": 0,
+      "messages": 35228,
+      "persisted_messages": 35228,
+      "started_at": "2026-09-26T00:23:06.566881+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-26T01:23:08.600931+00:00"
+    },
+    {
+      "bootstrap_messages": 4,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 4,
+      "coverage_resets": 0,
+      "epochs": [
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8823,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-26T01:38:24.070439+00:00",
+          "epoch": 0,
+          "error": null,
+          "pending": null,
+          "reason": "initial",
+          "started_at": "2026-09-26T01:23:23.975999+00:00",
+          "synced": true
+        },
+        {
+          "checks": 88,
+          "counts": {
+            "applied": 8824,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-26T01:53:26.361018+00:00",
+          "epoch": 1,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-26T01:38:26.261528+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8822,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "rotation",
+          "ended_at": "2026-09-26T02:08:28.549614+00:00",
+          "epoch": 2,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-26T01:53:28.543443+00:00",
+          "synced": true
+        },
+        {
+          "checks": 87,
+          "counts": {
+            "applied": 8754,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "end_reason": "duration",
+          "ended_at": "2026-09-26T02:23:23.844288+00:00",
+          "epoch": 3,
+          "error": null,
+          "pending": null,
+          "reason": "planned_rotation",
+          "started_at": "2026-09-26T02:08:30.747707+00:00",
+          "synced": true
+        }
+      ],
+      "finished_at": null,
+      "id": "b17f5ce3e25a4ea9a59c6924fcf3a356",
+      "lagged_snapshots": 0,
+      "messages": 35227,
+      "persisted_messages": 35227,
+      "started_at": "2026-09-26T01:23:23.833018+00:00",
+      "state": "complete",
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-09-26T02:23:25.869334+00:00"
+    }
+  ]
+}

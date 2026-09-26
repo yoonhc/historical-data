@@ -1,6 +1,7 @@
 """BTCUSDT USD-M depth: exact quantities, bounded known coverage, journal replay."""
 
 import json
+from collections import deque
 from uuid import uuid4
 
 import pyarrow as pa
@@ -14,6 +15,9 @@ DATASET = "book_depth"
 INSTRUMENT = "binance:linear_perpetual:BTCUSDT"
 WS = "wss://fstream.binance.com/public/ws/btcusdt@depth@100ms"
 REST = "https://fapi.binance.com/fapi/v1/depth?symbol=BTCUSDT&limit=1000"
+HISTORY_POLICY = "bounded_same_socket_v1"
+HISTORY_LIMITS = {"events": 128, "levels": 50000, "serialized_bytes": 8 * 1024**2}
+SAME_SOCKET_REASONS = {"same_socket_after_coverage_exhausted", "same_socket_after_lagged_snapshot"}
 LEVEL = pa.list_(pa.struct([pa.field("price", VALUE, False), pa.field("quantity", VALUE, False)]))
 SCHEMA = pa.schema(
     [
@@ -193,10 +197,104 @@ class Book:
         }
 
 
+class History:
+    """Bounded, already-received updates from one physical WebSocket connection."""
+
+    def __init__(self):
+        self.events = deque()
+        self.levels = 0
+        self.serialized_bytes = 0
+
+    def append(self, row):
+        if row["kind"] != "update":
+            raise DataError("Only depth updates belong in recent history")
+        # Exclude persistence provenance: live rows are still pending, while
+        # replay rows already have source hashes. Keep byte accounting identical.
+        saved = {
+            k: row[k]
+            for k in (
+                "sequence",
+                "epoch",
+                "kind",
+                "timestamp",
+                "event_time",
+                "received_at",
+                "first_update_id",
+                "final_update_id",
+                "previous_update_id",
+            )
+        }
+        for side in ("bids", "asks"):
+            saved[side] = [dict(level) for level in row[side]]
+        count = len(saved["bids"]) + len(saved["asks"])
+        size = len(json_bytes(saved))
+        self.events.append((saved, count, size))
+        self.levels += count
+        self.serialized_bytes += size
+        while (
+            len(self.events) > HISTORY_LIMITS["events"]
+            or self.levels > HISTORY_LIMITS["levels"]
+            or self.serialized_bytes > HISTORY_LIMITS["serialized_bytes"]
+        ):
+            _, removed_count, removed_size = self.events.popleft()
+            self.levels -= removed_count
+            self.serialized_bytes -= removed_size
+
+    def align(self, snapshot):
+        """Build privately; a failed bridge must never partly replace the live book."""
+        candidate = Book(snapshot)
+        proof = {
+            "events": len(self.events),
+            "levels": self.levels,
+            "serialized_bytes": self.serialized_bytes,
+            "applied": 0,
+            "first_sequence": None,
+            "last_sequence": None,
+            "aligned": False,
+        }
+        try:
+            for row, _, _ in self.events:
+                if not candidate.synced and row["final_update_id"] < candidate.last:
+                    continue
+                if candidate.apply(row) == "applied":
+                    proof["applied"] += 1
+                    if proof["first_sequence"] is None:
+                        proof["first_sequence"] = row["sequence"]
+                    proof["last_sequence"] = row["sequence"]
+        except SyncLost as exc:
+            proof["reason"] = str(exc)
+            return None, proof
+        if not candidate.synced:
+            proof["reason"] = "No snapshot bridge retained in recent history"
+            return None, proof
+        proof.update(aligned=True, last_update_id=candidate.last)
+        return candidate, proof
+
+
+def new_session(report, reason, previous=None):
+    """One policy dispatch for capture and replay; absent policy preserves old journals."""
+    policy = report.get("history_policy")
+    if policy not in (None, HISTORY_POLICY):
+        raise DataError("Unknown depth history policy")
+    history = None
+    if policy is not None:
+        if report.get("history_limits") != HISTORY_LIMITS:
+            raise DataError("Depth history limits differ from the recorded policy")
+        if reason in SAME_SOCKET_REASONS:
+            if previous is None or previous.history is None:
+                raise DataError("Same-socket depth epoch has no preceding history")
+            history = previous.history
+        else:
+            history = History()
+    return Session(
+        report["top"], refresh_from_checks=report.get("refresh_from_checks", False), history=history
+    )
+
+
 class Session:
     """Same deterministic state machine is used live and for offline replay."""
 
-    def __init__(self, top=20, *, refresh_from_checks=False):
+    def __init__(self, top=20, *, refresh_from_checks=False, history=None):
         self.book = None
         self.pending = None
         self.top = top
@@ -205,8 +303,10 @@ class Session:
         self.error = None
         self.refresh_from_checks = refresh_from_checks
         self.refreshes = 0
+        self.history = history
+        self.anchor_history = None
 
-    def compare(self, candidate, sequence):
+    def compare(self, candidate, sequence, *, history_alignment=None):
         a, b = self.book.view(self.top), candidate.view(self.top)
         comparable = (
             a["last_update_id"] == b["last_update_id"] and a["top_complete"] and b["top_complete"]
@@ -218,6 +318,11 @@ class Session:
                 "top": self.top,
                 "comparable": comparable,
                 "equal": comparable and a["bids"] == b["bids"] and a["asks"] == b["asks"],
+                **(
+                    {"history_alignment": history_alignment}
+                    if history_alignment is not None
+                    else {}
+                ),
             }
         )
         if comparable and not self.checks[-1]["equal"]:
@@ -234,11 +339,19 @@ class Session:
                 self.book = candidate
                 self.refreshes += 1
 
+    def remember(self, row):
+        if self.history is not None:
+            self.history.append(row)
+
     def take(self, row):
         if row["kind"] == "anchor":
             if self.book is not None:
                 raise DataError("Multiple anchors in one depth epoch")
             self.book = Book(row)
+            if self.history is not None:
+                candidate, self.anchor_history = self.history.align(row)
+                if candidate is not None:
+                    self.book = candidate
         elif self.book is None:
             raise DataError("Depth journal has no preceding anchor")
         elif row["kind"] == "check":
@@ -246,12 +359,19 @@ class Session:
                 raise DataError("Previous depth verification has not aligned")
             candidate = Book(row)
             if candidate.last < self.book.last:
+                alignment = None
+                if self.history is not None:
+                    aligned, alignment = self.history.align(row)
+                    if aligned is not None and aligned.last == self.book.last:
+                        self.compare(aligned, row["sequence"], history_alignment=alignment)
+                        return
                 self.checks.append(
                     {
                         "snapshot_sequence": row["sequence"],
                         "comparable": False,
                         "equal": False,
                         "reason": "snapshot_behind_live_book",
+                        **({"history_alignment": alignment} if alignment is not None else {}),
                     }
                 )
             elif candidate.last == self.book.last and self.book.synced:
@@ -259,6 +379,9 @@ class Session:
             else:
                 self.pending = (candidate, row["sequence"])
         else:
+            # Retain the event even if applying it exhausts coverage or proves
+            # the anchor is behind; the same socket may reuse it for a new anchor.
+            self.remember(row)
             result = self.book.apply(row)
             self.counts[result] += 1
             if result == "applied" and self.pending:
@@ -288,6 +411,7 @@ class Session:
             "pending_check_sequence": self.pending[1] if self.pending else None,
             "error": self.error,
             **({"refreshes": self.refreshes} if self.refresh_from_checks else {}),
+            **({"anchor_history": self.anchor_history} if self.history is not None else {}),
         }
 
 
@@ -380,6 +504,7 @@ def collection_record(store, identity=None):
 def replay(store, identity=None, *, max_rows=100000):
     record = collection_record(store, identity)
     report = json.loads(record["report"])
+    epoch_reports = {e["epoch"]: e for e in report["epochs"]}
     records = list(
         store.db.execute(
             "SELECT * FROM event_segments WHERE dataset=? AND collection_id=? ORDER BY first_id",
@@ -398,18 +523,22 @@ def replay(store, identity=None, *, max_rows=100000):
                     raise DataError("Depth journal sequence is missing or duplicated")
                 row_count += 1
                 epoch = row["epoch"]
-                session = sessions.setdefault(
-                    epoch,
-                    Session(
-                        report["top"], refresh_from_checks=report.get("refresh_from_checks", False)
-                    ),
-                )
+                if epoch not in sessions:
+                    if report.get("history_policy") is not None and epoch != len(sessions):
+                        raise DataError("Depth history epochs are not consecutive")
+                    sessions[epoch] = new_session(
+                        report,
+                        epoch_reports[epoch].get("reason", "initial"),
+                        sessions.get(epoch - 1),
+                    )
+                session = sessions[epoch]
                 if session.error:
                     if (
                         report.get("lagged_snapshot_policy") == "retain_unsynchronized_updates_v1"
                         and isinstance(getattr(session, "failure", None), SnapshotBehind)
                         and row["kind"] == "update"
                     ):
+                        session.remember(row)
                         continue
                     raise DataError("Depth updates continued after an invalid epoch")
                 try:

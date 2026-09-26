@@ -79,7 +79,14 @@ def verify(store, collection_id=None, *, replayed=None):
     identity = collection_record(store, collection_id)["id"]
     replayed = replayed if replayed is not None else replay(store, identity)
     report = json.loads(collection_record(store, identity)["report"])
-    delayed = DelayedChecks(report) if replayed["verification_uncomparable"] else None
+    # New history-aware captures already attempted bounded alignment in the
+    # production state machine. Extra legacy-only reconstruction must not alter
+    # their interpretation or cross their recorded connection boundaries.
+    delayed = (
+        DelayedChecks(report)
+        if replayed["verification_uncomparable"] and not report.get("history_policy")
+        else None
+    )
     source_ids, rows_checked, levels_checked = set(), 0, 0
     for segment in store.db.execute(
         "SELECT * FROM event_segments WHERE dataset=? AND collection_id=? ORDER BY first_id",

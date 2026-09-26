@@ -1,0 +1,19 @@
+Read-only command: systemctl --user list-timers marketdata-backup.timer --all --no-pager
+Observed on 2026-09-25 KST during this analysis:
+
+NEXT                            LEFT LAST                         PASSED UNIT                    ACTIVATES
+Fri 2026-09-25 13:10:00 KST 1h 38min Thu 2026-09-24 13:10:00 KST 22h ago marketdata-backup.timer marketdata-backup.service
+
+1 timers listed.
+
+Installed timer: /home/yoonhc/.config/systemd/user/marketdata-backup.timer
+OnCalendar=*-*-* 04:10:00 UTC
+Persistent=true
+AccuracySec=1s
+
+Installed service: /home/yoonhc/.config/systemd/user/marketdata-backup.service
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup
+
+LAST is the timer's last activation, not the separate manual service run on September 25.
+No timer or service was changed by this analysis.

@@ -1,0 +1,339 @@
+{
+  "aggtrade-status": {
+    "exit_code": 0,
+    "healthy": true,
+    "historical_collections_with_recorded_errors": [
+      "bd12719ece5440e5896ce42dfc742d31"
+    ],
+    "last_receive_age_seconds": 4.329642,
+    "note": "A completed bounded capture is not a running service. Inspect aggtrade-audit for stored data continuity.",
+    "report": {
+      "connections": 1,
+      "coverage_resets": null,
+      "detected_gaps": 1,
+      "id": "b417885e3bee4735b1808c344a96b80f",
+      "lagged_snapshots": null,
+      "last_received_at": "2026-09-26T02:31:07.510556+00:00",
+      "messages": 1851,
+      "repaired_gaps": 1,
+      "started_at": "2026-09-26T02:23:01.322125+00:00",
+      "state": "running",
+      "sync_losses": null,
+      "synchronized": null,
+      "unrepaired_gaps": 0,
+      "updated_at": "2026-09-26T02:31:07.515894+00:00"
+    },
+    "state": "running"
+  },
+  "checked_at": "2026-09-26T02:31:11.987666+00:00",
+  "depth-status": {
+    "exit_code": 0,
+    "healthy": true,
+    "last_receive_age_seconds": 2.16917,
+    "note": "A completed pilot is not a running depth service. Epoch boundaries do not have historical repair.",
+    "recent_incomplete_collection_ids": [
+      "ed201401a9d0445f995aa12f3a8f3c49",
+      "d9e1fb6152e448d3a73f67555d09c727",
+      "98e1aeb976a04e02bc9fbdbd28b89c6a",
+      "8603679e4a404900b3462c1accc18291",
+      "a91aafc272244f6a9e56a160dc870d97",
+      "5039a296a6164759a0c5fe9ae9c21390",
+      "e39d4ed7840e49509b417af000a1f31b",
+      "0c0f01a9477f43eba975f304da14cf48",
+      "1f01b44a839c4cbebe4b3fdd385d382a",
+      "ee35f61e7f2d4cf082a74f0035962c31",
+      "5b56928e0416421e9f977961dff940cc",
+      "a6d516af31bb41b3ad1290584cdb98d2",
+      "7ef01bbf60fd4c668e573dcf6cd78245",
+      "ab8b95b33b3142c29b011065c064295c",
+      "d918502a198040a88b5f9f5796e76b86",
+      "f429f1b3edab4dc8822b94d814619b8a",
+      "d8181c49abc64014afaae34b3bd3c440",
+      "d7c08c26a2f242ee870bf92ca4e6116b",
+      "2d006ceac31a4b54a8e894a74f48e485",
+      "990843943ceb424f8e6612b89eb9bae5",
+      "85f61653003c4bf0bc423486b361e71e",
+      "4fcdf41075de4ffb9385178d0e5fd424",
+      "65f308eda742494dbb472243b3a9c2b3",
+      "69a77f3fb0654ba6ad5781029cb9efba",
+      "85e3bd1d997c4b1da73f0d16a4b81439",
+      "c535a05d60484550a65ed01d44171fe8",
+      "49e142ae55664543b516a92a4ffbc27a",
+      "996f82540671456590c8db12336638a5",
+      "da1f125ee6c74bfbb0921a136440033d",
+      "0979534d39394c32a363f96102562068",
+      "0d2d15aa297a43e28cf52546d87ca7b1",
+      "101bdcbc67b14bcbaa531446dd61ad6f",
+      "b6bb223b0d614167ba49b1a1dbe38c9f",
+      "0befbaf8b23d40a395057ddf55a0cbe7",
+      "e12dc2ad4fb44f52921adb9913833672",
+      "a1f649034a7e463aa9c9e9ad547fdabc",
+      "4e502fc5c8e54830a3a0c228b659bff3",
+      "af9292cfdc054ecab2db8942ece1af99",
+      "75de430f95e44976b0411d7cf5caa702"
+    ],
+    "report": {
+      "connections": 1,
+      "coverage_resets": 0,
+      "detected_gaps": null,
+      "id": "ddb845c2f56b4e58b808468aa5cf5b41",
+      "lagged_snapshots": 0,
+      "last_received_at": "2026-09-26T02:31:09.541303+00:00",
+      "messages": 4396,
+      "repaired_gaps": null,
+      "started_at": "2026-09-26T02:23:41.082130+00:00",
+      "state": "running",
+      "sync_losses": 0,
+      "synchronized": true,
+      "unrepaired_gaps": null,
+      "updated_at": "2026-09-26T02:31:09.589981+00:00"
+    },
+    "state": "running"
+  },
+  "maintenance-status": {
+    "backup_capacity": {
+      "free_bytes": 949076668416,
+      "free_inodes": 62427137,
+      "healthy": true,
+      "min_free_bytes": 10737418240,
+      "path": "/mnt/backup/marketdata-historical/automatic",
+      "total_inodes": 62513152,
+      "warnings": []
+    },
+    "capacity": {
+      "free_bytes": 210828918784,
+      "free_inodes": 17101830,
+      "healthy": true,
+      "min_free_bytes": 10737418240,
+      "total_inodes": 18751488,
+      "warnings": []
+    },
+    "checked_at": "2026-09-26T02:31:11.967170+00:00",
+    "exit_code": 0,
+    "healthy": true,
+    "modes": {
+      "daily": {
+        "age_seconds": 80470.972822,
+        "healthy": true,
+        "report": {
+          "backup": {
+            "backup_id": "e6d4a8f8936990f158cb5a8cc91f419a933eb0f19610e5c4ad30c71a877a2240",
+            "bytes": 6071500012,
+            "catalog_counts": {
+              "active": 15127,
+              "artifacts": 81719,
+              "event_collections": 163,
+              "event_segments": 72753,
+              "fetches": 96255,
+              "file_packs": 201,
+              "issues": 24,
+              "jobs": 6132,
+              "packed_files": 140170,
+              "queries": 15993,
+              "revisions": 15929,
+              "snapshots": 20,
+              "sync_coverage": 832,
+              "sync_runs": 882,
+              "sync_targets": 9
+            },
+            "checked_at": "2026-09-25T04:17:20.441029+00:00",
+            "files": 30453,
+            "ok": true,
+            "path": "/mnt/backup/marketdata-historical/automatic/2026-09-25/initial",
+            "reused": true,
+            "storage": {
+              "mode": "independent_copy",
+              "new_bytes": 6071500012,
+              "new_files": 30453,
+              "reuse_backup_id": null,
+              "reuse_from": null,
+              "reused_bytes": 0,
+              "reused_files": 0,
+              "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata"
+            }
+          },
+          "backup_capacity_after": {
+            "free_bytes": 949076668416,
+            "free_inodes": 62427137,
+            "healthy": true,
+            "min_free_bytes": 10737418240,
+            "total_inodes": 62513152,
+            "warnings": []
+          },
+          "backup_capacity_before": {
+            "free_bytes": 949076668416,
+            "free_inodes": 62427137,
+            "healthy": true,
+            "min_free_bytes": 10737418240,
+            "total_inodes": 62513152,
+            "warnings": []
+          },
+          "backup_configuration": {
+            "directory": "/mnt/backup/marketdata-historical/automatic",
+            "incremental": true,
+            "required_mount": "/mnt/backup"
+          },
+          "capacity_after": {
+            "free_bytes": 214519115776,
+            "free_inodes": 17101353,
+            "healthy": true,
+            "min_free_bytes": 10737418240,
+            "total_inodes": 18751488,
+            "warnings": []
+          },
+          "capacity_before": {
+            "free_bytes": 214528327680,
+            "free_inodes": 17099667,
+            "healthy": true,
+            "min_free_bytes": 10737418240,
+            "total_inodes": 18751488,
+            "warnings": []
+          },
+          "finished_at": "2026-09-25T04:17:20.451976+00:00",
+          "id": "aa733df5f4974785b033fd66dc0d580b",
+          "logical_files_deleted": 0,
+          "mode": "daily",
+          "new_prune": {
+            "packs": [
+              "b3ff7f843c8ebc8a318d57f42435c1bc479e7f295f6d1347837eeeeee22fc34a",
+              "de8a4cf89ff91a55bb4c724ee4d5cb7a3a4afa47802f04c856d22eeaa8aec45e"
+            ],
+            "removed": 1552
+          },
+          "ok": true,
+          "packing": {
+            "applied": true,
+            "checked_at": "2026-09-25T04:10:08.962081+00:00",
+            "files": 1552,
+            "loose_files_removed": 0,
+            "packs": [
+              {
+                "bytes": 40723147,
+                "created_at": "2026-09-25T04:10:08.607894+00:00",
+                "id": "b3ff7f843c8ebc8a318d57f42435c1bc479e7f295f6d1347837eeeeee22fc34a",
+                "members": 1024,
+                "path": "data/packs/b3/b3ff7f843c8ebc8a318d57f42435c1bc479e7f295f6d1347837eeeeee22fc34a.zip"
+              },
+              {
+                "bytes": 16209673,
+                "created_at": "2026-09-25T04:10:08.904351+00:00",
+                "id": "de8a4cf89ff91a55bb4c724ee4d5cb7a3a4afa47802f04c856d22eeaa8aec45e",
+                "members": 528,
+                "path": "data/packs/de/de8a4cf89ff91a55bb4c724ee4d5cb7a3a4afa47802f04c856d22eeaa8aec45e.zip"
+              }
+            ],
+            "retention": "indefinite",
+            "source_bytes": 56527704
+          },
+          "pending_prune": {
+            "limit_reached": false,
+            "packs": [],
+            "removed": 0
+          },
+          "phase": "finished",
+          "retention": "indefinite",
+          "started_at": "2026-09-25T04:10:00.994348+00:00",
+          "state": "complete",
+          "updated_at": "2026-09-25T04:17:20.451978+00:00",
+          "validation": {
+            "checked": 184035,
+            "failures": [],
+            "ok": true
+          }
+        }
+      },
+      "hourly": {
+        "age_seconds": 970.979212,
+        "healthy": true,
+        "report": {
+          "capacity_after": {
+            "free_bytes": 210857689088,
+            "free_inodes": 17103278,
+            "healthy": true,
+            "min_free_bytes": 10737418240,
+            "total_inodes": 18751488,
+            "warnings": []
+          },
+          "capacity_before": {
+            "free_bytes": 210844753920,
+            "free_inodes": 17098109,
+            "healthy": true,
+            "min_free_bytes": 10737418240,
+            "total_inodes": 18751488,
+            "warnings": []
+          },
+          "finished_at": "2026-09-26T02:15:17.072776+00:00",
+          "id": "0464250290024ff59c59a9da6812aca1",
+          "logical_files_deleted": 0,
+          "mode": "hourly",
+          "new_prune": {
+            "packs": [
+              "0a6a0e348e22152202920ba28f9fd735674205048108347c947936107bc5bb7c",
+              "8846a3d3774fe611fefff6973412b8147195fbe3d5af6778b13ce5f00c245878",
+              "f512aad9e644b7141953a1918b31d201fd2f0616ef11ae9bebe16a624c527526",
+              "18f252ba530820827005b188d546ba1091c5001957b9e9725402b9f90e5e145f",
+              "3e8707f04e774271ab8ab7fc36d67c49a36bdf6162693363844b5937acb723ad"
+            ],
+            "removed": 3462
+          },
+          "ok": true,
+          "packing": {
+            "applied": true,
+            "checked_at": "2026-09-26T02:15:12.939505+00:00",
+            "files": 3462,
+            "loose_files_removed": 0,
+            "packs": [
+              {
+                "bytes": 2798762,
+                "created_at": "2026-09-26T02:15:11.871447+00:00",
+                "id": "0a6a0e348e22152202920ba28f9fd735674205048108347c947936107bc5bb7c",
+                "members": 844,
+                "path": "data/packs/0a/0a6a0e348e22152202920ba28f9fd735674205048108347c947936107bc5bb7c.zip"
+              },
+              {
+                "bytes": 1828651,
+                "created_at": "2026-09-26T02:15:12.056783+00:00",
+                "id": "8846a3d3774fe611fefff6973412b8147195fbe3d5af6778b13ce5f00c245878",
+                "members": 496,
+                "path": "data/packs/88/8846a3d3774fe611fefff6973412b8147195fbe3d5af6778b13ce5f00c245878.zip"
+              },
+              {
+                "bytes": 26842460,
+                "created_at": "2026-09-26T02:15:12.396332+00:00",
+                "id": "f512aad9e644b7141953a1918b31d201fd2f0616ef11ae9bebe16a624c527526",
+                "members": 1024,
+                "path": "data/packs/f5/f512aad9e644b7141953a1918b31d201fd2f0616ef11ae9bebe16a624c527526.zip"
+              },
+              {
+                "bytes": 6245957,
+                "created_at": "2026-09-26T02:15:12.591387+00:00",
+                "id": "18f252ba530820827005b188d546ba1091c5001957b9e9725402b9f90e5e145f",
+                "members": 292,
+                "path": "data/packs/18/18f252ba530820827005b188d546ba1091c5001957b9e9725402b9f90e5e145f.zip"
+              },
+              {
+                "bytes": 21987622,
+                "created_at": "2026-09-26T02:15:12.855297+00:00",
+                "id": "3e8707f04e774271ab8ab7fc36d67c49a36bdf6162693363844b5937acb723ad",
+                "members": 806,
+                "path": "data/packs/3e/3e8707f04e774271ab8ab7fc36d67c49a36bdf6162693363844b5937acb723ad.zip"
+              }
+            ],
+            "retention": "indefinite",
+            "source_bytes": 58786370
+          },
+          "pending_prune": {
+            "limit_reached": false,
+            "packs": [],
+            "removed": 0
+          },
+          "phase": "finished",
+          "retention": "indefinite",
+          "started_at": "2026-09-26T02:15:00.987958+00:00",
+          "state": "complete",
+          "updated_at": "2026-09-26T02:15:17.072779+00:00"
+        }
+      }
+    }
+  }
+}

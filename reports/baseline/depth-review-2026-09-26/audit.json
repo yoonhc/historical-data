@@ -1,0 +1,137 @@
+{
+  "cases": [
+    {
+      "collection_id": "ee35f61e7f2d4cf082a74f0035962c31",
+      "epoch": 0,
+      "recorded_scenario_reproduced": true,
+      "rows_raw_equal": 300,
+      "scenario_failed_sequence": null
+    },
+    {
+      "collection_id": "1f01b44a839c4cbebe4b3fdd385d382a",
+      "epoch": 1,
+      "recorded_scenario_reproduced": true,
+      "rows_raw_equal": 3975,
+      "scenario_failed_sequence": 12888
+    },
+    {
+      "collection_id": "5039a296a6164759a0c5fe9ae9c21390",
+      "epoch": 2,
+      "recorded_scenario_reproduced": true,
+      "rows_raw_equal": 8846,
+      "scenario_failed_sequence": null
+    },
+    {
+      "collection_id": "ed201401a9d0445f995aa12f3a8f3c49",
+      "epoch": 3,
+      "recorded_scenario_reproduced": true,
+      "rows_raw_equal": 5603,
+      "scenario_failed_sequence": 32339
+    },
+    {
+      "collection_id": "ed201401a9d0445f995aa12f3a8f3c49",
+      "epoch": 4,
+      "recorded_scenario_reproduced": true,
+      "rows_raw_equal": 64,
+      "scenario_failed_sequence": null
+    },
+    {
+      "collection_id": "ed201401a9d0445f995aa12f3a8f3c49",
+      "epoch": 5,
+      "recorded_scenario_reproduced": true,
+      "rows_raw_equal": 104,
+      "scenario_failed_sequence": null
+    }
+  ],
+  "checked_at": "2026-09-26T03:54:33.876231+00:00",
+  "input_evidence_sha256": "1e84eb6a9d67d9c75fd4f763ebc562ce713a4582c45b64534caa929ca8d9e771",
+  "live_observation": {
+    "checks": 92,
+    "connections": 2,
+    "coverage_resets": 0,
+    "equal": 92,
+    "history_checks": 0,
+    "history_policy": "bounded_same_socket_v1",
+    "id": "015232156eb4415a926100df9d2199ce",
+    "lagged_snapshots": 0,
+    "last_receive_age_seconds": 0.821257,
+    "messages": 9323,
+    "persisted_messages": 9323,
+    "started_at": "2026-09-26T03:38:39.783009+00:00",
+    "state": "running",
+    "sync_losses": 0,
+    "synchronized": true,
+    "updated_at": "2026-09-26T03:54:33.093724+00:00"
+  },
+  "raw_reference_alignments": [
+    {
+      "aligned_last_update_id": 11643944548897,
+      "all_inputs_precede_snapshot_receipt": true,
+      "applied_sequences": [
+        251
+      ],
+      "collection_id": "ee35f61e7f2d4cf082a74f0035962c31",
+      "epoch": 0,
+      "kind": "check",
+      "known_ask_levels_equal": 1005,
+      "known_bid_levels_equal": 998,
+      "snapshot_last_update_id": 11643944530939,
+      "snapshot_sequence": 252,
+      "snapshot_source_id": "44012236c313741c39efe05692ec51020eac618b96f264bd5feb3b474c71c9fd"
+    },
+    {
+      "aligned_last_update_id": 11648070203357,
+      "all_inputs_precede_snapshot_receipt": true,
+      "applied_sequences": [
+        26655,
+        26656,
+        26657
+      ],
+      "collection_id": "5039a296a6164759a0c5fe9ae9c21390",
+      "epoch": 2,
+      "kind": "check",
+      "known_ask_levels_equal": 1104,
+      "known_bid_levels_equal": 1004,
+      "snapshot_last_update_id": 11648069998037,
+      "snapshot_sequence": 26658,
+      "snapshot_source_id": "ee5078850b5a8fc99aab059d65f3f08ca6735fdcdab0a6e9aa477cdf63dfe49c"
+    },
+    {
+      "aligned_last_update_id": 11655620408716,
+      "all_inputs_precede_snapshot_receipt": true,
+      "applied_sequences": [
+        32401
+      ],
+      "collection_id": "ed201401a9d0445f995aa12f3a8f3c49",
+      "epoch": 4,
+      "kind": "check",
+      "known_ask_levels_equal": 1071,
+      "known_bid_levels_equal": 843,
+      "snapshot_last_update_id": 11655620314448,
+      "snapshot_sequence": 32402,
+      "snapshot_source_id": "e9326eeb5a816839a8f7e1149421af4e57778278a540b846390d70b823e9e6c0"
+    },
+    {
+      "aligned_last_update_id": 11655620514752,
+      "all_inputs_precede_snapshot_receipt": true,
+      "applied_sequences": [
+        32401,
+        32403
+      ],
+      "collection_id": "ed201401a9d0445f995aa12f3a8f3c49",
+      "epoch": 5,
+      "kind": "anchor",
+      "known_ask_levels_equal": 1089,
+      "known_bid_levels_equal": 578,
+      "snapshot_last_update_id": 11655620359315,
+      "snapshot_sequence": 32404,
+      "snapshot_source_id": "86a2e217d6737bdb6a916119ef51b14c797e8702f3e328e329018a84e6b94683"
+    }
+  ],
+  "scope": "Original receipt order and epoch boundaries; no live failure-rate estimate.",
+  "source_sha256": {
+    "audit_history.py": "ed83181817ee5e2529942e7910f2f1fe66e0383dea88aba8a46c1fa5d1fc769c",
+    "depth.py": "541d4a4f24fcb3fd6523dfb66173c53f71f09314a4aad76a4d450f26fcab931d",
+    "test_depth_reference.py": "98a7d8a03cffcbd5b96ec7bc5ff35ed6b05f4213d5408176f3d087a94d3d0430"
+  }
+}

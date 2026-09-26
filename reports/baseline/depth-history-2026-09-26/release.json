@@ -1,0 +1,47 @@
+{
+  "source_root": "/tmp/marketdata-depth-history-20260926",
+  "destination_root": "/home/yoonhc/projects/algoTrade/historical_data",
+  "parent_commit": "2afe10d61a02d84d70240d5053b276e4ec95b734",
+  "files": {
+    "packages/marketdata/src/marketdata/depth.py": {
+      "old_sha256": "644ef146add5a8ad594adc83a5bac53b3e5d02418bfcb9bbe36960f31a8ca587",
+      "new_sha256": "541d4a4f24fcb3fd6523dfb66173c53f71f09314a4aad76a4d450f26fcab931d"
+    },
+    "packages/marketdata/src/marketdata/depth_stream.py": {
+      "old_sha256": "c1c788991ea3094b83312790a8c613d9e1992de2b828bca5d0773f912211bdad",
+      "new_sha256": "f1923e8fb9595bb1d981e2e65dea38db91a007ff2c4a3682eba76b91e6f24b23"
+    },
+    "scripts/verify_depth_capture.py": {
+      "old_sha256": "7c0e0554f523bdad7c2a80f452fe2ff52f25ee3c323d4936f26966f481a6c425",
+      "new_sha256": "221da25e62886c6c06d4336b7a88a9fbf6479dde5ceb3f2c94b5955d90760256"
+    },
+    "tests/test_depth.py": {
+      "old_sha256": "1ebc6437fdc67c2f067064e31a9a39f3d50303b57d42776a89248cfe2b45614d",
+      "new_sha256": "1ced452084de4dfbd24c6fdd315034387c372aef05f89d468039d8681702ae93"
+    },
+    "tests/test_depth_history.py": {
+      "old_sha256": null,
+      "new_sha256": "241fb1180dce8861be518132f1bb411e385674047e24503b0c946b435fe48afd"
+    },
+    "docs/orderbook-depth.md": {
+      "old_sha256": "245e08f25e310ea6ac5a67f3f953383c2c5bb5765ceeeced3c0aaa85a540a540",
+      "new_sha256": "e6d27b1718195b1bc2a547330777405bf27724f6c81d3d248b14cc1c0e8fdac7"
+    },
+    "docs/stream-services.md": {
+      "old_sha256": "b101c887f82bb574fc4cef03344291eff9bac14e1b84479393435149b311bc7a",
+      "new_sha256": "00ee145724eded945ed9fed0fdf6258d0794171fb72e0021faaf5e50821766ce"
+    }
+  },
+  "full_suite": {
+    "passed": 256,
+    "failures": 0,
+    "errors": 0,
+    "junit_sha256": "cd403b3785693d6a46134cf8ba3a8db30c59ef7d66a7d044a951a3182db4e97c"
+  },
+  "checks": {
+    "ruff": "passed",
+    "format": "passed"
+  },
+  "service": "marketdata-depth.service",
+  "service_configuration_change": false
+}

@@ -1,0 +1,122 @@
+{
+  "aggtrade-status": {
+    "exit_code": 0,
+    "healthy": true,
+    "last_receive_age_seconds": 4.551707,
+    "report": {
+      "bootstrap_policy": null,
+      "connection_errors": 0,
+      "connections": 1,
+      "coverage_resets": null,
+      "detected_gaps": 1,
+      "id": "771d00a0031846568e841a98c2bd94ce",
+      "lagged_snapshots": null,
+      "last_received_at": "2026-09-25T02:33:45.654249+00:00",
+      "messages": 15172,
+      "persisted_messages": 15172,
+      "repaired_gaps": 1,
+      "started_at": "2026-09-25T02:14:50.071645+00:00",
+      "state": "running",
+      "sync_losses": null,
+      "synchronized": null,
+      "unrepaired_gaps": 0,
+      "updated_at": "2026-09-25T02:33:45.660342+00:00"
+    }
+  },
+  "checked_at": "2026-09-25T02:33:49.939860+00:00",
+  "depth-status": {
+    "checks": {
+      "equal": 99,
+      "total": 99,
+      "uncomparable": 0
+    },
+    "exit_code": 0,
+    "healthy": true,
+    "last_receive_age_seconds": 3.931027,
+    "report": {
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "connection_errors": 0,
+      "connections": 2,
+      "coverage_resets": 0,
+      "detected_gaps": null,
+      "id": "b438cd280d7e4624af0a1d3fcb5b2a13",
+      "lagged_snapshots": 0,
+      "last_received_at": "2026-09-25T02:33:46.130012+00:00",
+      "messages": 9973,
+      "persisted_messages": 9973,
+      "repaired_gaps": null,
+      "started_at": "2026-09-25T02:16:46.550407+00:00",
+      "state": "running",
+      "sync_losses": 0,
+      "synchronized": true,
+      "unrepaired_gaps": null,
+      "updated_at": "2026-09-25T02:33:46.187150+00:00"
+    }
+  },
+  "maintenance-status": {
+    "backup_capacity": {
+      "free_bytes": 949076668416,
+      "free_inodes": 62427137,
+      "healthy": true,
+      "min_free_bytes": 10737418240,
+      "path": "/mnt/backup/marketdata-historical/automatic",
+      "total_inodes": 62513152,
+      "warnings": []
+    },
+    "daily": {
+      "backup": {
+        "backup_id": "e6d4a8f8936990f158cb5a8cc91f419a933eb0f19610e5c4ad30c71a877a2240",
+        "bytes": 6071500012,
+        "catalog_counts": {
+          "active": 15127,
+          "artifacts": 81719,
+          "event_collections": 163,
+          "event_segments": 72753,
+          "fetches": 96255,
+          "file_packs": 201,
+          "issues": 24,
+          "jobs": 6132,
+          "packed_files": 140170,
+          "queries": 15993,
+          "revisions": 15929,
+          "snapshots": 20,
+          "sync_coverage": 832,
+          "sync_runs": 882,
+          "sync_targets": 9
+        },
+        "checked_at": "2026-09-25T00:31:27.453866+00:00",
+        "files": 30453,
+        "ok": true,
+        "path": "/mnt/backup/marketdata-historical/automatic/2026-09-25/initial",
+        "reused": true,
+        "storage": {
+          "mode": "independent_copy",
+          "new_bytes": 6071500012,
+          "new_files": 30453,
+          "reuse_backup_id": null,
+          "reuse_from": null,
+          "reused_bytes": 0,
+          "reused_files": 0,
+          "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata"
+        }
+      },
+      "backup_configuration": {
+        "directory": "/mnt/backup/marketdata-historical/automatic",
+        "incremental": true,
+        "required_mount": "/mnt/backup"
+      },
+      "finished_at": "2026-09-25T00:31:27.463861+00:00",
+      "id": "cb28db234d2e4571b508c06228eaac70",
+      "ok": true,
+      "started_at": "2026-09-25T00:24:46.434460+00:00",
+      "state": "complete",
+      "validation": {
+        "checked": 170715,
+        "failures": [],
+        "ok": true
+      }
+    },
+    "exit_code": 0,
+    "healthy": true
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-09-26T03:57:42.126061+00:00",
+  "verdict": "No correctness defect found in the reviewed recovery paths; fast finite-range exhaustion remains a known availability limitation.",
+  "runtime_code_changed_during_review": false,
+  "service_restarted_during_review": false,
+  "deployed_release_files_unchanged": {
+    "packages/marketdata/src/marketdata/depth.py": "541d4a4f24fcb3fd6523dfb66173c53f71f09314a4aad76a4d450f26fcab931d",
+    "packages/marketdata/src/marketdata/depth_stream.py": "f1923e8fb9595bb1d981e2e65dea38db91a007ff2c4a3682eba76b91e6f24b23",
+    "scripts/verify_depth_capture.py": "221da25e62886c6c06d4336b7a88a9fbf6479dde5ceb3f2c94b5955d90760256",
+    "tests/test_depth.py": "1ced452084de4dfbd24c6fdd315034387c372aef05f89d468039d8681702ae93",
+    "tests/test_depth_history.py": "241fb1180dce8861be518132f1bb411e385674047e24503b0c946b435fe48afd",
+    "docs/orderbook-depth.md": "e6d27b1718195b1bc2a547330777405bf27724f6c81d3d248b14cc1c0e8fdac7",
+    "docs/stream-services.md": "00ee145724eded945ed9fed0fdf6258d0794171fb72e0021faaf5e50821766ce"
+  },
+  "release_manifest_sha256": "809059783b40b34932eab4bf1878d4e0d932bb0022988dcb72e61ac17e992930",
+  "tests_run_this_review": [
+    {
+      "path": "reports/depth-review-2026-09-26/reference-tests.xml",
+      "tests": 33,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "81f98b32a39c35d657dbb6ffaf0eb208bc82ecfcc8ce41a035ca9940292908f2"
+    },
+    {
+      "path": "reports/depth-review-2026-09-26/depth-tests.xml",
+      "tests": 64,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "e4ff1dd5719c4665e7cfe07d38742945935377dab393f1699ac5be033a37c2f9"
+    }
+  ],
+  "checks": {
+    "ruff": "passed",
+    "format": "passed",
+    "git_diff_check": "passed"
+  },
+  "review_artifact_sha256": {
+    "audit.json": "5ac6fdab788f35039151bd853d60ffe1260cf49d63283e7c104b161d85af1cfa",
+    "audit_history.py": "ed83181817ee5e2529942e7910f2f1fe66e0383dea88aba8a46c1fa5d1fc769c",
+    "summary.md": "08f48939b0a8a4ef75c2e7f0e065bd549d3d9a25165d3be3842b6b0229db997f"
+  },
+  "test_depth_reference_sha256": "98a7d8a03cffcbd5b96ec7bc5ff35ed6b05f4213d5408176f3d087a94d3d0430"
+}

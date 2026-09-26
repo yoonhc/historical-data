@@ -255,6 +255,7 @@ def test_offline_delayed_snapshot_check_uses_prior_deltas_and_detects_mismatch(
         [snapshot(), snapshot(101, bid_quantity=quantity)],
         seconds=21,
         verify_seconds=15,
+        history_policy=None,
     )
     original = depth.replay(store, report["id"])
     assert original["valid"] and not original["verification_complete"]

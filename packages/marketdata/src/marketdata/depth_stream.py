@@ -177,7 +177,10 @@ def capture(
     connector=connect,
     fetcher=None,
     progress=None,
+    history_policy=depth.HISTORY_POLICY,
 ):
+    if history_policy not in (None, depth.HISTORY_POLICY):
+        raise DataError("Unknown depth history policy")
     if not (
         1 <= seconds <= 3600
         and 1 <= flush_seconds <= 30
@@ -224,6 +227,14 @@ def capture(
                     "verify_seconds": verify_seconds,
                     "top": top,
                     "refresh_from_checks": True,
+                    **(
+                        {
+                            "history_policy": history_policy,
+                            "history_limits": dict(depth.HISTORY_LIMITS),
+                        }
+                        if history_policy is not None
+                        else {}
+                    ),
                     "messages": 0,
                     "persisted_messages": 0,
                     "snapshots": 0,
@@ -282,6 +293,8 @@ def capture(
                 sequence += 1
                 report["snapshots"] += 1
                 session.take(row)
+                report["synchronized"] = session.book.synced
+                report["last_update_id"] = session.book.last
 
             try:
                 while time.monotonic() < deadline:
@@ -301,7 +314,7 @@ def capture(
                         ) as socket:
                             connected = epoch_started = last_message = last_check = time.monotonic()
                             report["connections"] += 1
-                            session = depth.Session(top, refresh_from_checks=True)
+                            session = depth.new_session(report, reason)
                             epoch_report = {
                                 "epoch": len(report["epochs"]),
                                 "started_at": now(),
@@ -364,6 +377,7 @@ def capture(
                                     # A lagged anchor cannot reconstruct these rows. Keep
                                     # their exact journal while waiting for a fresh anchor.
                                     report["unreconstructed_messages"] += 1
+                                    session.remember(row)
                                     if (
                                         len(messages) >= 500
                                         or buffered_bytes >= 4 * 1024**2
@@ -373,7 +387,9 @@ def capture(
                                     if time.monotonic() - last_check >= 10:
                                         epoch_report.update(ended_at=now())
                                         flush()
-                                        session = depth.Session(top, refresh_from_checks=True)
+                                        session = depth.new_session(
+                                            report, "same_socket_after_lagged_snapshot", session
+                                        )
                                         epoch_report = {
                                             "epoch": len(report["epochs"]),
                                             "started_at": now(),
@@ -412,7 +428,9 @@ def capture(
                                         raise DataError(
                                             "Ten depth synchronization failures"
                                         ) from exc
-                                    session = depth.Session(top, refresh_from_checks=True)
+                                    session = depth.new_session(
+                                        report, "same_socket_after_coverage_exhausted", session
+                                    )
                                     epoch_report = {
                                         "epoch": len(report["epochs"]),
                                         "started_at": now(),
