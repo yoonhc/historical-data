@@ -77,10 +77,18 @@ WebSocket 429/418은 응답 헤더와 cooldown을 `state/*-ws-cooldown.json`에 
 [공유 파일 손상의 범위·복원·이식 방법](backup-and-storage.md#증분-저장과-외부-디스크)을 참고한다.
 별도 장비·원격 사본은 아직 설정하지 않았다.
 
-유지보수 실패는 120초 후 재시도하며 1시간에 4회로 제한한다. 두 유지보수가 겹치면 후발 작업이
-잠금 오류로 종료한 후 재시도한다. 다음 예약 실행은 다시 시도한다. 백업보다 수집기의 writer를
-오래 붙잡지 않도록 파일 복사 중에는 writer를 놓는다. 공간/inode 부족 시 데이터 자동 삭제 대신
-오류로 보고한다. 감시·경보는 로컬 상태와 journal 범위이며 외부 메시지를 보내지 않는다.
+두 유지보수 서비스는 `--wait-for-lock`으로 실행한다. 겹치면 후발 프로세스가
+`waiting_for_maintenance_lock`을 journal에 남기고 같은 프로세스에서 잠금을 기다린다.
+잠금을 얻은 뒤 실제 작업을 수행하며, 정상적인 대기는 실패 재시도 횟수를 소모하지 않는다.
+대기 중에는 수집용 writer·파일 배치 잠금이나 DB 트랜잭션을 보유하지 않는다.
+동일 서비스가 진행 중일 때 타이머가 다시 만료돼도 프로세스를 추가하지 않는다.
+
+서비스의 `TimeoutStartSec=6h`는 대기와 실제 작업을 합친 제한이며 `SIGINT`로 대기를 중단할
+수 있다. CLI에서 직접 이 옵션을 쓰면 자체 시간 제한은 없으며, 옵션을 생략하면 잠금 충돌을
+즉시 오류로 보고한다. 검증 실패·디스크 오류·시간 초과 등 실제 실패는 기존대로 120초 후
+재시도하며 1시간에 4회로 제한한다. 파일 복사 중에는 수집기의 writer를 놓는다.
+공간/inode 부족 시 데이터 자동 삭제 대신 오류로 보고한다.
+감시·경보는 로컬 상태와 journal 범위이며 외부 메시지를 보내지 않는다.
 
 ## 확인과 중지
 
@@ -104,6 +112,11 @@ systemctl --user stop marketdata-pack.service marketdata-backup.service
 
 `state/maintenance-{hourly,daily}-latest.json`은 최신 상태이고 전체 실행 기록은
 `reports/maintenance/<UTC 날짜>/<실행 ID>.json`이다. 실패 지점과 오류도 남는다.
+잠금 대기 중에는 이 파일들을 덮어쓰지 않는다. 따라서 대기는 journal과 systemd의
+`activating` 상태에서 확인하고, 기존 최신 보고서를 대기 중인 작업의 완료로 해석하지 않는다.
+잠금 획득 후 생성되는 보고서의 `requested_at`은 요청 시각, `started_at`은 작업 시작 시각,
+`lock_wait_seconds`는 단조 시계로 측정한 잠금 획득 소요 시간이다.
+`wait_for_lock`은 대기 옵션 사용 여부다.
 `maintenance-status`는 마지막 성공 상태와 시작 시각 기준 hourly 3시간/daily 36시간 이내인지,
 원본과 설정된 백업 목적지의 디스크 여유 10 GiB 및 free inode 5% 이상인지를 확인한다.
 외부 마운트 가용성도 점검한다. 미실행·실행 중·오류·기한 초과는

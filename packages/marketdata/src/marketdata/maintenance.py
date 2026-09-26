@@ -4,6 +4,7 @@ import fcntl
 import json
 import os
 import shutil
+import time
 import uuid
 from contextlib import contextmanager
 from pathlib import Path
@@ -16,14 +17,23 @@ from .store import atomic_write
 
 
 @contextmanager
-def maintenance_lock(store):
+def maintenance_lock(store, *, wait=False, progress=None):
+    """Serialize maintenance without holding the collector's writer/layout locks."""
     with (store.root / "state/maintenance.lock").open("a") as handle:
+        requested = time.monotonic()
         try:
             fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError as exc:
-            raise WriterBusy("Another maintenance job is running; retry later") from exc
+            if not wait:
+                raise WriterBusy("Another maintenance job is running; retry later") from exc
+            if progress:
+                progress({"phase": "waiting_for_maintenance_lock"})
+            # Stay in this process: normal contention must not consume systemd's
+            # failure retries. SIGINT still interrupts this wait; the service's
+            # TimeoutStartSec bounds the combined wait and work.
+            fcntl.flock(handle, fcntl.LOCK_EX)
         try:
-            yield
+            yield time.monotonic() - requested
         finally:
             fcntl.flock(handle, fcntl.LOCK_UN)
 
@@ -131,16 +141,21 @@ def run(
     backup_dir=None,
     incremental=False,
     backup_mount=None,
+    wait_for_lock=False,
 ):
     if mode not in {"hourly", "daily"} or not 2 <= max_files <= 100000:
         raise DataError("Expected hourly/daily mode and max_files 2..100000")
     reserve_bytes(min_free_gib)
-    with maintenance_lock(store):
+    requested = now()
+    with maintenance_lock(store, wait=wait_for_lock, progress=progress) as wait_seconds:
         started = now()
         report = {
             "id": uuid.uuid4().hex,
             "mode": mode,
+            "requested_at": requested,
             "started_at": started,
+            "wait_for_lock": wait_for_lock,
+            "lock_wait_seconds": wait_seconds,
             "state": "running",
             "ok": False,
             "retention": "indefinite",

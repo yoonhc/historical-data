@@ -1,0 +1,571 @@
+{
+  "started_at": "2026-09-26T04:48:10.636481+00:00",
+  "work": "/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85",
+  "retry_interval_seconds": 0.1,
+  "start_limit_interval_seconds": 30,
+  "start_limit_burst": 4,
+  "cases": [
+    {
+      "unit": "marketdata-lock-pilot-old-a1da0e85.service",
+      "mode": "hourly",
+      "command": [
+        "systemd-run",
+        "--user",
+        "--wait",
+        "--unit=marketdata-lock-pilot-old-a1da0e85.service",
+        "--service-type=oneshot",
+        "--property=Restart=on-failure",
+        "--property=RestartSec=100ms",
+        "--property=StartLimitIntervalSec=30s",
+        "--property=StartLimitBurst=4",
+        "--property=TimeoutStartSec=30s",
+        "--property=TimeoutStopSec=5s",
+        "--property=KillSignal=SIGINT",
+        "--property=StandardOutput=append:/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/stdout.jsonl",
+        "--property=StandardError=append:/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/stderr.jsonl",
+        "--setenv=PYTHONPATH=/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src",
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "-m",
+        "marketdata.cli",
+        "--root",
+        "/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/store",
+        "maintenance",
+        "--mode",
+        "hourly",
+        "--min-free-gib=0"
+      ],
+      "while_locked_first": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "30s",
+        "MainPID": "1140563",
+        "Result": "success",
+        "NRestarts": "0",
+        "ExecMainStatus": "0",
+        "LoadState": "loaded",
+        "ActiveState": "activating",
+        "SubState": "start",
+        "StartLimitBurst": "4"
+      },
+      "failure": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "30s",
+        "MainPID": "0",
+        "Result": "exit-code",
+        "NRestarts": "4",
+        "ExecMainStatus": "1",
+        "LoadState": "loaded",
+        "ActiveState": "failed",
+        "SubState": "failed",
+        "StartLimitBurst": "4"
+      },
+      "journal": "Starting marketdata-lock-pilot-old-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/store maintenance --mode hourly --min-free-gib=0...\nmarketdata-lock-pilot-old-a1da0e85.service: Main process exited, code=exited, status=1/FAILURE\nmarketdata-lock-pilot-old-a1da0e85.service: Failed with result 'exit-code'.\nFailed to start marketdata-lock-pilot-old-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/store maintenance --mode hourly --min-free-gib=0.\nmarketdata-lock-pilot-old-a1da0e85.service: Scheduled restart job, restart counter is at 1.\nStarting marketdata-lock-pilot-old-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/store maintenance --mode hourly --min-free-gib=0...\nmarketdata-lock-pilot-old-a1da0e85.service: Main process exited, code=exited, status=1/FAILURE\nmarketdata-lock-pilot-old-a1da0e85.service: Failed with result 'exit-code'.\nFailed to start marketdata-lock-pilot-old-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/store maintenance --mode hourly --min-free-gib=0.\nmarketdata-lock-pilot-old-a1da0e85.service: Scheduled restart job, restart counter is at 2.\nStarting marketdata-lock-pilot-old-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/store maintenance --mode hourly --min-free-gib=0...\nmarketdata-lock-pilot-old-a1da0e85.service: Main process exited, code=exited, status=1/FAILURE\nmarketdata-lock-pilot-old-a1da0e85.service: Failed with result 'exit-code'.\nFailed to start marketdata-lock-pilot-old-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/store maintenance --mode hourly --min-free-gib=0.\nmarketdata-lock-pilot-old-a1da0e85.service: Scheduled restart job, restart counter is at 3.\nStarting marketdata-lock-pilot-old-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/store maintenance --mode hourly --min-free-gib=0...\nmarketdata-lock-pilot-old-a1da0e85.service: Main process exited, code=exited, status=1/FAILURE\nmarketdata-lock-pilot-old-a1da0e85.service: Failed with result 'exit-code'.\nFailed to start marketdata-lock-pilot-old-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/store maintenance --mode hourly --min-free-gib=0.\nmarketdata-lock-pilot-old-a1da0e85.service: Scheduled restart job, restart counter is at 4.\nmarketdata-lock-pilot-old-a1da0e85.service: Start request repeated too quickly.\nmarketdata-lock-pilot-old-a1da0e85.service: Failed with result 'exit-code'.\nFailed to start marketdata-lock-pilot-old-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/old/store maintenance --mode hourly --min-free-gib=0.\n",
+      "prior_report_preserved_while_waiting": true,
+      "runner_exit_code": 1,
+      "runner_stdout": "",
+      "runner_stderr": "Job for marketdata-lock-pilot-old-a1da0e85.service failed because the control process exited with error code.\nSee \"systemctl --user status marketdata-lock-pilot-old-a1da0e85.service\" and \"journalctl --user -xeu marketdata-lock-pilot-old-a1da0e85.service\" for details.\n",
+      "stderr_events": [
+        {
+          "error": "WriterBusy",
+          "message": "Another maintenance job is running; retry later"
+        },
+        {
+          "error": "WriterBusy",
+          "message": "Another maintenance job is running; retry later"
+        },
+        {
+          "error": "WriterBusy",
+          "message": "Another maintenance job is running; retry later"
+        },
+        {
+          "error": "WriterBusy",
+          "message": "Another maintenance job is running; retry later"
+        }
+      ],
+      "final_service": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "30s",
+        "MainPID": "0",
+        "Result": "exit-code",
+        "NRestarts": "4",
+        "ExecMainStatus": "1",
+        "LoadState": "loaded",
+        "ActiveState": "failed",
+        "SubState": "failed",
+        "StartLimitBurst": "4"
+      },
+      "ok": true
+    },
+    {
+      "unit": "marketdata-lock-pilot-hourly-a1da0e85.service",
+      "mode": "hourly",
+      "command": [
+        "systemd-run",
+        "--user",
+        "--wait",
+        "--unit=marketdata-lock-pilot-hourly-a1da0e85.service",
+        "--service-type=oneshot",
+        "--property=Restart=on-failure",
+        "--property=RestartSec=100ms",
+        "--property=StartLimitIntervalSec=30s",
+        "--property=StartLimitBurst=4",
+        "--property=TimeoutStartSec=30s",
+        "--property=TimeoutStopSec=5s",
+        "--property=KillSignal=SIGINT",
+        "--property=StandardOutput=append:/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/hourly/stdout.jsonl",
+        "--property=StandardError=append:/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/hourly/stderr.jsonl",
+        "--setenv=PYTHONPATH=/tmp/marketdata-maintenance-wait-20260926/packages/marketdata/src",
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "-m",
+        "marketdata.cli",
+        "--root",
+        "/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/hourly/store",
+        "maintenance",
+        "--mode",
+        "hourly",
+        "--min-free-gib=0",
+        "--wait-for-lock"
+      ],
+      "while_locked_first": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "30s",
+        "MainPID": "1140609",
+        "Result": "success",
+        "NRestarts": "0",
+        "ExecMainStatus": "0",
+        "LoadState": "loaded",
+        "ActiveState": "activating",
+        "SubState": "start",
+        "StartLimitBurst": "4"
+      },
+      "while_locked_last": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "30s",
+        "MainPID": "1140609",
+        "Result": "success",
+        "NRestarts": "0",
+        "ExecMainStatus": "0",
+        "LoadState": "loaded",
+        "ActiveState": "activating",
+        "SubState": "start",
+        "StartLimitBurst": "4"
+      },
+      "prior_report_preserved_while_waiting": true,
+      "report": {
+        "capacity_after": {
+          "free_bytes": 80596553728,
+          "free_inodes": 5622652,
+          "healthy": true,
+          "min_free_bytes": 0,
+          "total_inodes": 6250496,
+          "warnings": []
+        },
+        "capacity_before": {
+          "free_bytes": 80596504576,
+          "free_inodes": 5622634,
+          "healthy": true,
+          "min_free_bytes": 0,
+          "total_inodes": 6250496,
+          "warnings": []
+        },
+        "finished_at": "2026-09-26T04:48:14.099633+00:00",
+        "id": "867bca8a1fda437788b98785efc48a98",
+        "lock_wait_seconds": 2.0510418649646454,
+        "logical_files_deleted": 0,
+        "mode": "hourly",
+        "new_prune": {
+          "packs": [
+            "9244803e386d44a48a338202bed5e7b7a38c8e3b182d15cd3e11c08d6e0782e2"
+          ],
+          "removed": 8
+        },
+        "ok": true,
+        "packing": {
+          "applied": true,
+          "checked_at": "2026-09-26T04:48:14.084756+00:00",
+          "files": 8,
+          "loose_files_removed": 0,
+          "packs": [
+            {
+              "bytes": 21394,
+              "created_at": "2026-09-26T04:48:14.082662+00:00",
+              "id": "9244803e386d44a48a338202bed5e7b7a38c8e3b182d15cd3e11c08d6e0782e2",
+              "members": 8,
+              "path": "data/packs/92/9244803e386d44a48a338202bed5e7b7a38c8e3b182d15cd3e11c08d6e0782e2.zip"
+            }
+          ],
+          "retention": "indefinite",
+          "source_bytes": 19244
+        },
+        "pending_prune": {
+          "limit_reached": false,
+          "packs": [],
+          "removed": 0
+        },
+        "phase": "finished",
+        "requested_at": "2026-09-26T04:48:12.011233+00:00",
+        "retention": "indefinite",
+        "started_at": "2026-09-26T04:48:14.062324+00:00",
+        "state": "complete",
+        "updated_at": "2026-09-26T04:48:14.099635+00:00",
+        "wait_for_lock": true
+      },
+      "collection_write_while_waiting": true,
+      "validation_after": true,
+      "runner_exit_code": 0,
+      "runner_stdout": "",
+      "runner_stderr": "Running as unit: marketdata-lock-pilot-hourly-a1da0e85.service; invocation ID: 52202f42e4ba4eea8e19a0062396045f\nFinished with result: success\nMain processes terminated with: code=exited/status=0\nService runtime: 2.218s\nCPU time consumed: 137ms\nMemory peak: 25.9M\nMemory swap peak: 0B\n",
+      "stderr_events": [
+        {
+          "phase": "waiting_for_maintenance_lock"
+        },
+        {
+          "phase": "capacity",
+          "id": "867bca8a1fda437788b98785efc48a98"
+        },
+        {
+          "phase": "prune_pending",
+          "id": "867bca8a1fda437788b98785efc48a98"
+        },
+        {
+          "phase": "pack",
+          "id": "867bca8a1fda437788b98785efc48a98"
+        },
+        {
+          "phase": "prune_new",
+          "id": "867bca8a1fda437788b98785efc48a98"
+        }
+      ],
+      "final_service": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "1min 30s",
+        "MainPID": "0",
+        "Result": "success",
+        "NRestarts": "0",
+        "ExecMainStatus": "0",
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "SubState": "dead",
+        "StartLimitBurst": "5"
+      },
+      "ok": true
+    },
+    {
+      "unit": "marketdata-lock-pilot-daily-a1da0e85.service",
+      "mode": "daily",
+      "command": [
+        "systemd-run",
+        "--user",
+        "--wait",
+        "--unit=marketdata-lock-pilot-daily-a1da0e85.service",
+        "--service-type=oneshot",
+        "--property=Restart=on-failure",
+        "--property=RestartSec=100ms",
+        "--property=StartLimitIntervalSec=30s",
+        "--property=StartLimitBurst=4",
+        "--property=TimeoutStartSec=30s",
+        "--property=TimeoutStopSec=5s",
+        "--property=KillSignal=SIGINT",
+        "--property=StandardOutput=append:/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/daily/stdout.jsonl",
+        "--property=StandardError=append:/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/daily/stderr.jsonl",
+        "--setenv=PYTHONPATH=/tmp/marketdata-maintenance-wait-20260926/packages/marketdata/src",
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "-m",
+        "marketdata.cli",
+        "--root",
+        "/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/daily/store",
+        "maintenance",
+        "--mode",
+        "daily",
+        "--min-free-gib=0",
+        "--wait-for-lock"
+      ],
+      "while_locked_first": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "30s",
+        "MainPID": "1140635",
+        "Result": "success",
+        "NRestarts": "0",
+        "ExecMainStatus": "0",
+        "LoadState": "loaded",
+        "ActiveState": "activating",
+        "SubState": "start",
+        "StartLimitBurst": "4"
+      },
+      "while_locked_last": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "30s",
+        "MainPID": "1140635",
+        "Result": "success",
+        "NRestarts": "0",
+        "ExecMainStatus": "0",
+        "LoadState": "loaded",
+        "ActiveState": "activating",
+        "SubState": "start",
+        "StartLimitBurst": "4"
+      },
+      "prior_report_preserved_while_waiting": true,
+      "report": {
+        "backup": {
+          "backup_id": "04a905dabd448e7c400cc5f3ac871d849e6910a2cfba47d2fe42d059a74559a2",
+          "bytes": 168877,
+          "catalog_counts": {
+            "active": 0,
+            "artifacts": 5,
+            "event_collections": 4,
+            "event_segments": 4,
+            "fetches": 5,
+            "file_packs": 1,
+            "issues": 0,
+            "jobs": 0,
+            "packed_files": 8,
+            "queries": 0,
+            "revisions": 0,
+            "snapshots": 0,
+            "sync_coverage": 0,
+            "sync_runs": 0,
+            "sync_targets": 0
+          },
+          "files": 3,
+          "ok": true,
+          "path": "/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/daily/store/backups/automatic/2026-09-26/333f39270010471189406860938ad621",
+          "reused": false,
+          "same_filesystem_as_source": true,
+          "storage": {
+            "mode": "independent_copy",
+            "new_bytes": 168877,
+            "new_files": 3,
+            "reuse_backup_id": null,
+            "reuse_from": null,
+            "reused_bytes": 0,
+            "reused_files": 0,
+            "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata"
+          },
+          "writer_lock_seconds": 0.0030366430291906
+        },
+        "backup_capacity_after": {
+          "free_bytes": 80596074496,
+          "free_inodes": 5622614,
+          "healthy": true,
+          "min_free_bytes": 0,
+          "total_inodes": 6250496,
+          "warnings": []
+        },
+        "backup_capacity_before": {
+          "free_bytes": 80596250624,
+          "free_inodes": 5622611,
+          "healthy": true,
+          "min_free_bytes": 0,
+          "total_inodes": 6250496,
+          "warnings": []
+        },
+        "backup_configuration": {
+          "directory": "/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/daily/store/backups/automatic",
+          "incremental": false,
+          "required_mount": null
+        },
+        "capacity_after": {
+          "free_bytes": 80596074496,
+          "free_inodes": 5622614,
+          "healthy": true,
+          "min_free_bytes": 0,
+          "total_inodes": 6250496,
+          "warnings": []
+        },
+        "capacity_before": {
+          "free_bytes": 80596250624,
+          "free_inodes": 5622611,
+          "healthy": true,
+          "min_free_bytes": 0,
+          "total_inodes": 6250496,
+          "warnings": []
+        },
+        "finished_at": "2026-09-26T04:48:16.405268+00:00",
+        "id": "79510e95ba954afbb2366dfaa5dc9f83",
+        "lock_wait_seconds": 2.050966370035894,
+        "logical_files_deleted": 0,
+        "mode": "daily",
+        "new_prune": {
+          "packs": [
+            "9244803e386d44a48a338202bed5e7b7a38c8e3b182d15cd3e11c08d6e0782e2"
+          ],
+          "removed": 8
+        },
+        "ok": true,
+        "packing": {
+          "applied": true,
+          "checked_at": "2026-09-26T04:48:16.372720+00:00",
+          "files": 8,
+          "loose_files_removed": 0,
+          "packs": [
+            {
+              "bytes": 21394,
+              "created_at": "2026-09-26T04:48:16.370206+00:00",
+              "id": "9244803e386d44a48a338202bed5e7b7a38c8e3b182d15cd3e11c08d6e0782e2",
+              "members": 8,
+              "path": "data/packs/92/9244803e386d44a48a338202bed5e7b7a38c8e3b182d15cd3e11c08d6e0782e2.zip"
+            }
+          ],
+          "retention": "indefinite",
+          "source_bytes": 19244
+        },
+        "pending_prune": {
+          "limit_reached": false,
+          "packs": [],
+          "removed": 0
+        },
+        "phase": "finished",
+        "requested_at": "2026-09-26T04:48:14.307078+00:00",
+        "retention": "indefinite",
+        "started_at": "2026-09-26T04:48:16.358094+00:00",
+        "state": "complete",
+        "updated_at": "2026-09-26T04:48:16.405269+00:00",
+        "validation": {
+          "checked": 9,
+          "failures": [],
+          "ok": true
+        },
+        "wait_for_lock": true
+      },
+      "collection_write_while_waiting": true,
+      "validation_after": true,
+      "runner_exit_code": 0,
+      "runner_stdout": "",
+      "runner_stderr": "Running as unit: marketdata-lock-pilot-daily-a1da0e85.service; invocation ID: 015e2a22cd32477cadf815f817397017\nFinished with result: success\nMain processes terminated with: code=exited/status=0\nService runtime: 2.230s\nCPU time consumed: 156ms\nMemory peak: 25.6M\nMemory swap peak: 0B\n",
+      "stderr_events": [
+        {
+          "phase": "waiting_for_maintenance_lock"
+        },
+        {
+          "phase": "backup_configuration",
+          "id": "79510e95ba954afbb2366dfaa5dc9f83"
+        },
+        {
+          "phase": "capacity",
+          "id": "79510e95ba954afbb2366dfaa5dc9f83"
+        },
+        {
+          "phase": "prune_pending",
+          "id": "79510e95ba954afbb2366dfaa5dc9f83"
+        },
+        {
+          "phase": "pack",
+          "id": "79510e95ba954afbb2366dfaa5dc9f83"
+        },
+        {
+          "phase": "prune_new",
+          "id": "79510e95ba954afbb2366dfaa5dc9f83"
+        },
+        {
+          "phase": "validate",
+          "id": "79510e95ba954afbb2366dfaa5dc9f83"
+        },
+        {
+          "phase": "backup",
+          "id": "79510e95ba954afbb2366dfaa5dc9f83"
+        },
+        {
+          "phase": "checkpoint",
+          "files": 2,
+          "writer_seconds": 0.0030366430291906
+        }
+      ],
+      "final_service": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "1min 30s",
+        "MainPID": "0",
+        "Result": "success",
+        "NRestarts": "0",
+        "ExecMainStatus": "0",
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "SubState": "dead",
+        "StartLimitBurst": "5"
+      },
+      "ok": true
+    },
+    {
+      "unit": "marketdata-lock-pilot-timeout-a1da0e85.service",
+      "mode": "hourly",
+      "command": [
+        "systemd-run",
+        "--user",
+        "--wait",
+        "--unit=marketdata-lock-pilot-timeout-a1da0e85.service",
+        "--service-type=oneshot",
+        "--property=Restart=no",
+        "--property=RestartSec=100ms",
+        "--property=StartLimitIntervalSec=30s",
+        "--property=StartLimitBurst=4",
+        "--property=TimeoutStartSec=3s",
+        "--property=TimeoutStopSec=5s",
+        "--property=KillSignal=SIGINT",
+        "--property=StandardOutput=append:/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/timeout/stdout.jsonl",
+        "--property=StandardError=append:/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/timeout/stderr.jsonl",
+        "--setenv=PYTHONPATH=/tmp/marketdata-maintenance-wait-20260926/packages/marketdata/src",
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "-m",
+        "marketdata.cli",
+        "--root",
+        "/tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/timeout/store",
+        "maintenance",
+        "--mode",
+        "hourly",
+        "--min-free-gib=0",
+        "--wait-for-lock"
+      ],
+      "while_locked_first": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "3s",
+        "MainPID": "1140662",
+        "Result": "success",
+        "NRestarts": "0",
+        "ExecMainStatus": "0",
+        "LoadState": "loaded",
+        "ActiveState": "activating",
+        "SubState": "start",
+        "StartLimitBurst": "4"
+      },
+      "failure": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "3s",
+        "MainPID": "0",
+        "Result": "timeout",
+        "NRestarts": "0",
+        "ExecMainStatus": "130",
+        "LoadState": "loaded",
+        "ActiveState": "failed",
+        "SubState": "failed",
+        "StartLimitBurst": "4"
+      },
+      "journal": "Starting marketdata-lock-pilot-timeout-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/timeout/store maintenance --mode hourly --min-free-gib=0 --wait-for-lock...\nmarketdata-lock-pilot-timeout-a1da0e85.service: start operation timed out. Terminating.\nmarketdata-lock-pilot-timeout-a1da0e85.service: Main process exited, code=exited, status=130/n/a\nmarketdata-lock-pilot-timeout-a1da0e85.service: Failed with result 'timeout'.\nFailed to start marketdata-lock-pilot-timeout-a1da0e85.service - /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m marketdata.cli --root /tmp/marketdata-maintenance-wait-20260926/reports/maintenance-wait-2026-09-26/pilot-stores/a1da0e85/timeout/store maintenance --mode hourly --min-free-gib=0 --wait-for-lock.\n",
+      "prior_report_preserved_while_waiting": true,
+      "runner_exit_code": 1,
+      "runner_stdout": "",
+      "runner_stderr": "Job for marketdata-lock-pilot-timeout-a1da0e85.service failed because a timeout was exceeded.\nSee \"systemctl --user status marketdata-lock-pilot-timeout-a1da0e85.service\" and \"journalctl --user -xeu marketdata-lock-pilot-timeout-a1da0e85.service\" for details.\n",
+      "stderr_events": [
+        {
+          "phase": "waiting_for_maintenance_lock"
+        },
+        {
+          "state": "interrupted",
+          "message": "Raw files retained; rerun the same command"
+        }
+      ],
+      "final_service": {
+        "RestartUSec": "100ms",
+        "TimeoutStartUSec": "3s",
+        "MainPID": "0",
+        "Result": "timeout",
+        "NRestarts": "0",
+        "ExecMainStatus": "130",
+        "LoadState": "loaded",
+        "ActiveState": "failed",
+        "SubState": "failed",
+        "StartLimitBurst": "4"
+      },
+      "ok": true
+    }
+  ],
+  "finished_at": "2026-09-26T04:48:19.765621+00:00",
+  "ok": true
+}

@@ -1,0 +1,250 @@
+{
+  "installed_at": "2026-09-26T04:51:27.631957+00:00",
+  "installed_hashes_match": true,
+  "units_before": {
+    "marketdata-pack.service": {
+      "RestartUSec": "2min",
+      "TimeoutStartUSec": "6h",
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:24:58 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode hourly --min-free-gib 10 ; ignore_errors=no ; start_time=[Sat 2026-09-26 13:24:58 KST] ; stop_time=[Sat 2026-09-26 13:25:16 KST] ; pid=1135543 ; code=exited ; status=0 }",
+      "Id": "marketdata-pack.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "StartLimitBurst": "4"
+    },
+    "marketdata-backup.service": {
+      "RestartUSec": "2min",
+      "TimeoutStartUSec": "6h",
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:10:00 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup ; ignore_errors=no ; start_time=[Sat 2026-09-26 13:10:00 KST] ; stop_time=[Sat 2026-09-26 13:21:57 KST] ; pid=1132209 ; code=exited ; status=0 }",
+      "Id": "marketdata-backup.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "StartLimitBurst": "4"
+    },
+    "marketdata-depth.service": {
+      "RestartUSec": "15s",
+      "TimeoutStartUSec": "1min 30s",
+      "MainPID": "1138471",
+      "Result": "success",
+      "NRestarts": "1",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:38:56 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . depth-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 900 --verify-seconds 10 --top 20 --min-free-gib 10 ; ignore_errors=no ; start_time=[Sat 2026-09-26 13:38:56 KST] ; stop_time=[n/a] ; pid=1138471 ; code=(null) ; status=0/0 }",
+      "Id": "marketdata-depth.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "StartLimitBurst": "5"
+    },
+    "marketdata-aggtrade.service": {
+      "RestartUSec": "15s",
+      "TimeoutStartUSec": "1min 30s",
+      "MainPID": "1135355",
+      "Result": "success",
+      "NRestarts": "69",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:23:41 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . aggtrade-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 3600 --min-free-gib 10 ; ignore_errors=no ; start_time=[Sat 2026-09-26 13:23:41 KST] ; stop_time=[n/a] ; pid=1135355 ; code=(null) ; status=0/0 }",
+      "Id": "marketdata-aggtrade.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "StartLimitBurst": "5"
+    },
+    "marketdata-pack.timer": {
+      "NextElapseUSecRealtime": "Sat 2026-09-26 14:15:00 KST",
+      "Result": "success",
+      "Id": "marketdata-pack.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "StartLimitBurst": "5"
+    },
+    "marketdata-backup.timer": {
+      "NextElapseUSecRealtime": "Sun 2026-09-27 13:10:00 KST",
+      "Result": "success",
+      "Id": "marketdata-backup.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "StartLimitBurst": "5"
+    }
+  },
+  "units_after_reload": {
+    "marketdata-pack.service": {
+      "RestartUSec": "2min",
+      "TimeoutStartUSec": "6h",
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:24:58 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode hourly --min-free-gib 10 --wait-for-lock ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+      "Id": "marketdata-pack.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "StartLimitBurst": "4"
+    },
+    "marketdata-backup.service": {
+      "RestartUSec": "2min",
+      "TimeoutStartUSec": "6h",
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:10:00 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup --wait-for-lock ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+      "Id": "marketdata-backup.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "StartLimitBurst": "4"
+    },
+    "marketdata-depth.service": {
+      "RestartUSec": "15s",
+      "TimeoutStartUSec": "1min 30s",
+      "MainPID": "1138471",
+      "Result": "success",
+      "NRestarts": "1",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:38:56 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . depth-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 900 --verify-seconds 10 --top 20 --min-free-gib 10 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+      "Id": "marketdata-depth.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "StartLimitBurst": "5"
+    },
+    "marketdata-aggtrade.service": {
+      "RestartUSec": "15s",
+      "TimeoutStartUSec": "1min 30s",
+      "MainPID": "1135355",
+      "Result": "success",
+      "NRestarts": "69",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:23:41 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . aggtrade-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 3600 --min-free-gib 10 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+      "Id": "marketdata-aggtrade.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "StartLimitBurst": "5"
+    },
+    "marketdata-pack.timer": {
+      "NextElapseUSecRealtime": "Sat 2026-09-26 14:15:00 KST",
+      "Result": "success",
+      "Id": "marketdata-pack.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "StartLimitBurst": "5"
+    },
+    "marketdata-backup.timer": {
+      "NextElapseUSecRealtime": "Sun 2026-09-27 13:10:00 KST",
+      "Result": "success",
+      "Id": "marketdata-backup.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "StartLimitBurst": "5"
+    }
+  },
+  "collector_restart_commands": [],
+  "finished_at": "2026-09-26T04:51:41.081278+00:00",
+  "units_after_smoke": {
+    "marketdata-pack.service": {
+      "RestartUSec": "2min",
+      "TimeoutStartUSec": "6h",
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:51:27 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode hourly --min-free-gib 10 --wait-for-lock ; ignore_errors=no ; start_time=[Sat 2026-09-26 13:51:27 KST] ; stop_time=[Sat 2026-09-26 13:51:41 KST] ; pid=1141206 ; code=exited ; status=0 }",
+      "Id": "marketdata-pack.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "StartLimitBurst": "4"
+    },
+    "marketdata-backup.service": {
+      "RestartUSec": "2min",
+      "TimeoutStartUSec": "6h",
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:10:00 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup --wait-for-lock ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+      "Id": "marketdata-backup.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "StartLimitBurst": "4"
+    },
+    "marketdata-depth.service": {
+      "RestartUSec": "15s",
+      "TimeoutStartUSec": "1min 30s",
+      "MainPID": "1138471",
+      "Result": "success",
+      "NRestarts": "1",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:38:56 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . depth-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 900 --verify-seconds 10 --top 20 --min-free-gib 10 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+      "Id": "marketdata-depth.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "StartLimitBurst": "5"
+    },
+    "marketdata-aggtrade.service": {
+      "RestartUSec": "15s",
+      "TimeoutStartUSec": "1min 30s",
+      "MainPID": "1135355",
+      "Result": "success",
+      "NRestarts": "69",
+      "ExecMainStartTimestamp": "Sat 2026-09-26 13:23:41 KST",
+      "ExecMainStatus": "0",
+      "ExecStart": "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . aggtrade-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 3600 --min-free-gib 10 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+      "Id": "marketdata-aggtrade.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "StartLimitBurst": "5"
+    },
+    "marketdata-pack.timer": {
+      "NextElapseUSecRealtime": "Sat 2026-09-26 14:15:00 KST",
+      "Result": "success",
+      "Id": "marketdata-pack.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "StartLimitBurst": "5"
+    },
+    "marketdata-backup.timer": {
+      "NextElapseUSecRealtime": "Sun 2026-09-27 13:10:00 KST",
+      "Result": "success",
+      "Id": "marketdata-backup.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "StartLimitBurst": "5"
+    }
+  },
+  "collector_pids_unchanged": true,
+  "timer_deadlines_unchanged": true,
+  "hourly_smoke": {
+    "id": "a603fc6c0030410183e79d9d951dd0af",
+    "ok": true,
+    "wait_for_lock": true
+  },
+  "statuses": {
+    "depth-status": {
+      "exit_code": 0,
+      "healthy": true
+    },
+    "aggtrade-status": {
+      "exit_code": 0,
+      "healthy": true
+    },
+    "maintenance-status": {
+      "exit_code": 0,
+      "healthy": true
+    }
+  },
+  "ok": true
+}

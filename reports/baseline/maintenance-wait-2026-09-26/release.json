@@ -1,0 +1,63 @@
+{
+  "created_at": "2026-09-26T04:51:12.655337+00:00",
+  "base_commit": "839dbda9bef8f1c504943c295fa687699ff0d023",
+  "source_root": "/tmp/marketdata-maintenance-wait-20260926",
+  "destination_root": "/home/yoonhc/projects/algoTrade/historical_data",
+  "files": {
+    "packages/marketdata/src/marketdata/maintenance.py": {
+      "old_sha256": "373e7b0105e9b6e22428828df1ab5b19961b804b8d9b63bde6511c823352e3ec",
+      "new_sha256": "d284e83dca37971fd3ff7423a01a831222e6bdb71e824c1a55f3e7495e81546a"
+    },
+    "packages/marketdata/src/marketdata/cli.py": {
+      "old_sha256": "b8b4efc0af85002118b25ee5d830bc52b3dae43b077fd08016e34e73b1a22e2e",
+      "new_sha256": "dd189b97460afcafdefd434e7597a8f50c3b817afa09e809ae4cacb7da9b3402"
+    },
+    "integrations/systemd/marketdata-pack.service": {
+      "old_sha256": "a5b2fba6924db214ff303e8a440fc35c66547176271826aeacaea088b51001bb",
+      "new_sha256": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2"
+    },
+    "integrations/systemd/marketdata-backup.service": {
+      "old_sha256": "70b5ec7c0ba7b5467660d14a3a43cde043394bfb3d51bb21951162a00345fcf6",
+      "new_sha256": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389"
+    },
+    "tests/test_maintenance_wait.py": {
+      "old_sha256": null,
+      "new_sha256": "9e245ddaf50f2ab775034ed2e0b872a269effb2213b0915df0e72c4075feef08"
+    },
+    "docs/stream-services.md": {
+      "old_sha256": "00ee145724eded945ed9fed0fdf6258d0794171fb72e0021faaf5e50821766ce",
+      "new_sha256": "5f238354f8693ae41d42e551ae8b1030a53fda411335f14e58fae0016477d117"
+    },
+    "integrations/systemd/README.md": {
+      "old_sha256": "15c2beed84517cb55e4f83d01093dbae20304558ab7e75aaee22fbf43fe024e2",
+      "new_sha256": "f739821c1d7633cccb8cc7407e742bc019c07c439382d096cbce181728c587ce"
+    },
+    "reports/README.md": {
+      "old_sha256": "a0b14588245167a3db23a290a0a30b6bd5e70e870586f8436a1ebbd1c5a270a8",
+      "new_sha256": "5f311493307fe044e0e71678733f10c3c2b2a9cd63c84a46889b06b7ee1e3e16"
+    }
+  },
+  "tests": {
+    "passed": 295,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 19.104,
+    "junit_sha256": "22d7a6ae2c20da6aec39cd45bd72694f64289732458cc4ecba0f1b815f0c6e5c",
+    "command": "PYTHONPATH=packages/marketdata/src:packages/marketdata_freqtrade/src /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m pytest -q --junitxml=reports/maintenance-wait-2026-09-26/pytest.xml"
+  },
+  "lint": {
+    "packages_tests_new_evidence": "passed",
+    "changed_python_format": "passed",
+    "whole_tree_existing_warnings": [
+      "reports/baseline/observation-2026-09-25/audit.py I001",
+      "reports/baseline/observation-2026-09-25/collect_evidence.py I001"
+    ]
+  },
+  "systemd_analyze_verify": {
+    "exit_code": 0,
+    "host_execution": true
+  },
+  "pilot_sha256": "62937ad8a4ab0740c948a080dff764b8f0c1ebb7677f4702245bd76a5ddbca6c",
+  "pilot_script_sha256": "93b6ee7abda1ccbb5664499fef4ac6d2af34670a186ed1e659542fd01243583c",
+  "deployment_script_sha256": "a7adec9d2612fcda91a1d9f4c7fb9ec357be83ce9548f4133396905a64d21539"
+}

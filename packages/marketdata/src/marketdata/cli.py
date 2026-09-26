@@ -130,6 +130,11 @@ def parser():
     p.add_argument("--min-free-gib", type=float, default=10)
     p.add_argument("--max-files", type=int, default=20000)
     p.add_argument(
+        "--wait-for-lock",
+        action="store_true",
+        help="Wait for other maintenance in this process; interrupt with SIGINT",
+    )
+    p.add_argument(
         "--incremental",
         action="store_true",
         help="Daily: share verified files with the prior backup",
@@ -400,6 +405,7 @@ def main(argv=None):
                     backup_dir=args.backup_dir,
                     incremental=args.incremental,
                     backup_mount=args.backup_mount,
+                    wait_for_lock=args.wait_for_lock,
                     progress=lambda p: emit(p, error=True),
                 )
                 ok = result["ok"]
