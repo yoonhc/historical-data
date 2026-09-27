@@ -1,5 +1,9 @@
 # 검증 기록
 
+9/23 이후 변경과 아래 운영 검증을 묶은
+[9/27 마일스톤](../docs/milestones/2026-09-27-collection-and-backup-stabilization.md)에
+restic 시험 전의 기준 상태와 후속 순서를 정리했습니다. 각 baseline의 관측 시각·범위는 유지합니다.
+
 `baseline/scheduled-maintenance-2026-09-27/`는 다음 날 실제 예약에서 잠금 대기를 확인한 기록입니다.
 [요약](baseline/scheduled-maintenance-2026-09-27/summary.md)에 623.883초 대기·재시작 0회·
 백업 후 정리 완료, 무결성 353,024건 통과·신규 증분 사본, 수집 병행 상태와 재부팅 구간의
