@@ -213,6 +213,8 @@ loginctl enable-linger "$USER"
 [백업 범위·증분 저장·별도 경로 복원·용량 점검](docs/backup-and-storage.md)을 확인하세요.
 하드링크 백업과 restic의 용량·복구 비교, VM 이전을 위한 호스트 설정 분리는
 [restic 독립 시험 절차](docs/restic-trial.md)에 정리했습니다.
+후속 [restic 일일 백업 연결 설계](docs/restic-operations-plan.md)는 완료된 사본의 별도 보관,
+중단 후 재개·성공 판정·예약 관찰 기준을 정의합니다. 운영 자동화는 아직 적용 전입니다.
 활성 revision을 무시하고 모든 Parquet을 glob으로 읽으면 수정 전후 데이터가 중복됩니다.
 
 ## Python 조회
