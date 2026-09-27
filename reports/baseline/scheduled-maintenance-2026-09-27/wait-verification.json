@@ -1,0 +1,91 @@
+{
+  "checked_at": "2026-09-27T04:27:38.234096+00:00",
+  "ok": true,
+  "daily_id": "029c548e6842457d92f3f26df1557531",
+  "hourly_id": "0c566355ab714f37a4910b65bed0cef9",
+  "daily_started_at": "2026-09-27T04:10:00.419898+00:00",
+  "daily_finished_at": "2026-09-27T04:25:24.291071+00:00",
+  "hourly_requested_at": "2026-09-27T04:15:00.422281+00:00",
+  "hourly_started_at": "2026-09-27T04:25:24.304928+00:00",
+  "hourly_finished_at": "2026-09-27T04:25:42.148231+00:00",
+  "lock_wait_seconds": 623.8825965670003,
+  "wall_wait_seconds": 623.882647,
+  "daily_finish_to_hourly_start_seconds": 0.013857,
+  "waiting_pid": "15474",
+  "waiting_unit_samples": 62,
+  "waiting_report_samples": 62,
+  "prior_hourly_report_preserved": true,
+  "restart_count": 0,
+  "wait_events_in_journal": 1,
+  "final_units": {
+    "marketdata-backup.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sun 2026-09-27 13:10:00 KST",
+      "ExecMainExitTimestamp": "Sun 2026-09-27 13:25:24 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-backup.service",
+      "ActiveState": "inactive",
+      "SubState": "dead"
+    },
+    "marketdata-pack.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sun 2026-09-27 13:15:00 KST",
+      "ExecMainExitTimestamp": "Sun 2026-09-27 13:25:42 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-pack.service",
+      "ActiveState": "inactive",
+      "SubState": "dead"
+    },
+    "marketdata-backup.timer": {
+      "NextElapseUSecRealtime": "Mon 2026-09-28 13:10:00 KST",
+      "LastTriggerUSec": "Sun 2026-09-27 13:10:00 KST",
+      "Result": "success",
+      "Id": "marketdata-backup.timer",
+      "ActiveState": "active",
+      "SubState": "waiting"
+    },
+    "marketdata-pack.timer": {
+      "NextElapseUSecRealtime": "Sun 2026-09-27 14:15:00 KST",
+      "LastTriggerUSec": "Sun 2026-09-27 13:15:00 KST",
+      "Result": "success",
+      "Id": "marketdata-pack.timer",
+      "ActiveState": "active",
+      "SubState": "waiting"
+    },
+    "marketdata-depth.service": {
+      "MainPID": "11157",
+      "Result": "success",
+      "NRestarts": "3",
+      "ExecMainStartTimestamp": "Sun 2026-09-27 12:37:57 KST",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-depth.service",
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "marketdata-aggtrade.service": {
+      "MainPID": "11166",
+      "Result": "success",
+      "NRestarts": "3",
+      "ExecMainStartTimestamp": "Sun 2026-09-27 12:38:07 KST",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-aggtrade.service",
+      "ActiveState": "active",
+      "SubState": "running"
+    }
+  },
+  "collector_pids_during_maintenance": {
+    "marketdata-depth.service": [
+      "11157"
+    ],
+    "marketdata-aggtrade.service": [
+      "11166"
+    ]
+  },
+  "scope": "Existing timers and real lock contention; no manual maintenance start or restart."
+}

@@ -1,5 +1,10 @@
 # 검증 기록
 
+`baseline/scheduled-maintenance-2026-09-27/`는 다음 날 실제 예약에서 잠금 대기를 확인한 기록입니다.
+[요약](baseline/scheduled-maintenance-2026-09-27/summary.md)에 623.883초 대기·재시작 0회·
+백업 후 정리 완료, 무결성 353,024건 통과·신규 증분 사본, 수집 병행 상태와 재부팅 구간의
+호가 재생·24시간 체결/OI 감사를 남깁니다. 무중단 호가 수집 판정은 아닙니다.
+
 `baseline/maintenance-wait-2026-09-26/`는 백업과 파일 정리의 잠금 경합 개선 기록입니다.
 [요약](baseline/maintenance-wait-2026-09-26/summary.md)에 전체 테스트 295개, 실제 systemd의
 기존 시작 제한 재현·대기 후 완료·시간 초과 시험, 수집 재시작 없는 적용과 운영 확인을 남깁니다.
