@@ -4,6 +4,12 @@
 [9/27 마일스톤](../docs/milestones/2026-09-27-collection-and-backup-stabilization.md)에
 restic 시험 전의 기준 상태와 후속 순서를 정리했습니다. 각 baseline의 관측 시각·범위는 유지합니다.
 
+`baseline/restic-trial-2026-09-27/`는 현재 하드링크 사본과 restic의 독립 비교입니다.
+[요약](baseline/restic-trial-2026-09-27/summary.md)에 같은 두 복구 지점의 할당량 37.61% 감소,
+두 날짜의 추출·별도 경로 복원·조회·새 독립 백업 검증, 원래 manifest와 source-root 검사 보존,
+관련 테스트 41개·수집 상태 222개 표본과 호스트 설정 분리를 기록합니다. 캐시·시험 작업 공간은
+따로 집계하며 운영 백업 예약을 전환한 것은 아닙니다.
+
 `baseline/scheduled-maintenance-2026-09-27/`는 다음 날 실제 예약에서 잠금 대기를 확인한 기록입니다.
 [요약](baseline/scheduled-maintenance-2026-09-27/summary.md)에 623.883초 대기·재시작 0회·
 백업 후 정리 완료, 무결성 353,024건 통과·신규 증분 사본, 수집 병행 상태와 재부팅 구간의

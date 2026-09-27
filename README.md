@@ -211,6 +211,8 @@ loginctl enable-linger "$USER"
 제공합니다. 자동 백업은 두 번째 SSD에 보관하고, 이전 사본의 동일 파일을 재사용해 반복 저장을
 줄입니다. 원본과 복원본은 독립 사본이며 보관 기간 제한은 없습니다.
 [백업 범위·증분 저장·별도 경로 복원·용량 점검](docs/backup-and-storage.md)을 확인하세요.
+하드링크 백업과 restic의 용량·복구 비교, VM 이전을 위한 호스트 설정 분리는
+[restic 독립 시험 절차](docs/restic-trial.md)에 정리했습니다.
 활성 revision을 무시하고 모든 Parquet을 glob으로 읽으면 수정 전후 데이터가 중복됩니다.
 
 ## Python 조회

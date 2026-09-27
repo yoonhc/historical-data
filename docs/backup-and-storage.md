@@ -136,3 +136,8 @@ SHA-256, SQLite 무결성·외래키, active revision 및 snapshot 참조를 검
 최초 실데이터 검증은 [2026-09-22 백업·복원 보고서](../reports/baseline/backup-2026-09-22/summary.md)에 있다.
 증분 저장·두 번째 SSD 전환과 복원 검증은
 [2026-09-25 보고서](../reports/baseline/incremental-backup-2026-09-25/summary.md)에 있다.
+
+기존 하드링크 사본을 대상으로 한 restic 비교와 VM 이전을 위한 호스트 설정 분리는
+[독립 시험 절차](restic-trial.md)에 있다. 원래 manifest와 source-root 검사를 유지하고,
+다른 경로로 복원한 저장소의 첫 백업은 새 전용 폴더에 만든다. 이 시험으로 운영 예약이
+restic으로 바뀌는 것은 아니다.
