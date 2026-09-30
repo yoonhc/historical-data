@@ -384,7 +384,7 @@ def test_lagged_snapshots_keep_all_raw_updates_until_source_recovers(store, monk
     )
     assert report["connections"] == 1 and report["snapshots"] == 3
     assert report["lagged_snapshots"] == report["sync_losses"] == 2
-    assert report["unreconstructed_messages"] == 6
+    assert report["unreconstructed_messages"] == 4
     assert report["messages"] == report["persisted_messages"] == 8
     assert report["epochs"][-1]["final"]["book"]["synced"]
     replay = depth.replay(store)

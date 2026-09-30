@@ -1,0 +1,3685 @@
+{
+  "bootstrap_messages": 4,
+  "bootstrap_policy": "buffer_before_anchor_v1",
+  "bootstrap_timeout_seconds": 2,
+  "boundary_semantics": "new_snapshot_on_every_connection; no_historical_gap_repair",
+  "complete": true,
+  "connection_errors": 0,
+  "connections": 4,
+  "coverage_reset_policy": "same_socket_new_epoch_v1",
+  "coverage_resets": 0,
+  "dataset": "book_depth",
+  "epochs": [
+    {
+      "end_reason": "rotation",
+      "ended_at": "2026-09-29T11:08:47.703169+00:00",
+      "epoch": 0,
+      "final": {
+        "anchor_history": {
+          "aligned": false,
+          "applied": 0,
+          "events": 0,
+          "first_sequence": null,
+          "last_sequence": null,
+          "levels": 0,
+          "reason": "No snapshot bridge retained in recent history",
+          "serialized_bytes": 0
+        },
+        "book": {
+          "ask_ceiling": "84168.200000000000000000",
+          "asks": [
+            [
+              "84033.600000000000000000",
+              "1.662000000000000000"
+            ],
+            [
+              "84033.700000000000000000",
+              "0.004000000000000000"
+            ],
+            [
+              "84033.900000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84034.100000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84034.700000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84035.000000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84035.400000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84035.600000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84035.700000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84035.800000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84035.900000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84036.000000000000000000",
+              "0.479000000000000000"
+            ],
+            [
+              "84036.100000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84036.200000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84036.300000000000000000",
+              "0.146000000000000000"
+            ],
+            [
+              "84036.400000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84036.500000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84036.700000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84036.800000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84036.900000000000000000",
+              "0.005000000000000000"
+            ]
+          ],
+          "bid_floor": "83893.700000000000000000",
+          "bids": [
+            [
+              "84033.500000000000000000",
+              "6.691000000000000000"
+            ],
+            [
+              "84033.400000000000000000",
+              "0.038000000000000000"
+            ],
+            [
+              "84033.300000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84033.100000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84033.000000000000000000",
+              "0.060000000000000000"
+            ],
+            [
+              "84032.600000000000000000",
+              "0.004000000000000000"
+            ],
+            [
+              "84032.500000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84032.400000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84032.300000000000000000",
+              "0.237000000000000000"
+            ],
+            [
+              "84032.000000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84031.900000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84031.800000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84031.700000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84031.600000000000000000",
+              "0.533000000000000000"
+            ],
+            [
+              "84031.500000000000000000",
+              "0.243000000000000000"
+            ],
+            [
+              "84031.400000000000000000",
+              "0.005000000000000000"
+            ],
+            [
+              "84031.300000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84031.100000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84030.600000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84030.500000000000000000",
+              "0.365000000000000000"
+            ]
+          ],
+          "book_sha256": "a6c07e1452f03d7e2db69776b6365305a80f2a2490664465ec3725a330f5b017",
+          "known_ask_levels": 1004,
+          "known_bid_levels": 1003,
+          "last_update_id": 11688627610379,
+          "synced": true,
+          "timestamp": "2026-09-29T11:08:47.665000+00:00",
+          "top_complete": true,
+          "top_requested": 20
+        },
+        "checks": [
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688539492778,
+            "refreshed": true,
+            "snapshot_sequence": 100,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688540509576,
+            "refreshed": true,
+            "snapshot_sequence": 201,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688541266545,
+            "refreshed": true,
+            "snapshot_sequence": 302,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688542064941,
+            "refreshed": true,
+            "snapshot_sequence": 403,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688542814174,
+            "refreshed": true,
+            "snapshot_sequence": 504,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688543632876,
+            "refreshed": true,
+            "snapshot_sequence": 605,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688544428301,
+            "refreshed": true,
+            "snapshot_sequence": 706,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688545460007,
+            "refreshed": true,
+            "snapshot_sequence": 807,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688546639335,
+            "refreshed": true,
+            "snapshot_sequence": 908,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688547790869,
+            "refreshed": true,
+            "snapshot_sequence": 1009,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688548688530,
+            "refreshed": true,
+            "snapshot_sequence": 1110,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688549557537,
+            "refreshed": true,
+            "snapshot_sequence": 1211,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688550337728,
+            "refreshed": true,
+            "snapshot_sequence": 1312,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688551507231,
+            "refreshed": true,
+            "snapshot_sequence": 1413,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688552757130,
+            "refreshed": true,
+            "snapshot_sequence": 1514,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688553708856,
+            "refreshed": true,
+            "snapshot_sequence": 1615,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688554720667,
+            "refreshed": true,
+            "snapshot_sequence": 1716,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688555496159,
+            "refreshed": true,
+            "snapshot_sequence": 1817,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688556247250,
+            "refreshed": true,
+            "snapshot_sequence": 1918,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688557187036,
+            "refreshed": true,
+            "snapshot_sequence": 2019,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688558270033,
+            "refreshed": true,
+            "snapshot_sequence": 2120,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688559203405,
+            "refreshed": true,
+            "snapshot_sequence": 2221,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688559959203,
+            "refreshed": true,
+            "snapshot_sequence": 2322,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688560662810,
+            "refreshed": true,
+            "snapshot_sequence": 2423,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688561401057,
+            "refreshed": true,
+            "snapshot_sequence": 2524,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688562129483,
+            "refreshed": true,
+            "snapshot_sequence": 2625,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688563242081,
+            "refreshed": true,
+            "snapshot_sequence": 2726,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688564288947,
+            "refreshed": true,
+            "snapshot_sequence": 2827,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688565418842,
+            "refreshed": true,
+            "snapshot_sequence": 2928,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688566200655,
+            "refreshed": true,
+            "snapshot_sequence": 3029,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688567305984,
+            "refreshed": true,
+            "snapshot_sequence": 3130,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688568331648,
+            "refreshed": true,
+            "snapshot_sequence": 3231,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688569261110,
+            "refreshed": true,
+            "snapshot_sequence": 3332,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688570029604,
+            "refreshed": true,
+            "snapshot_sequence": 3433,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688570793700,
+            "refreshed": true,
+            "snapshot_sequence": 3534,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688571479675,
+            "refreshed": true,
+            "snapshot_sequence": 3635,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688572369482,
+            "refreshed": true,
+            "snapshot_sequence": 3737,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688573572227,
+            "refreshed": true,
+            "snapshot_sequence": 3838,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688574550413,
+            "refreshed": true,
+            "snapshot_sequence": 3939,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688575661087,
+            "refreshed": true,
+            "snapshot_sequence": 4040,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688576828940,
+            "refreshed": true,
+            "snapshot_sequence": 4141,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688577488919,
+            "refreshed": true,
+            "snapshot_sequence": 4242,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688578640656,
+            "refreshed": true,
+            "snapshot_sequence": 4343,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688579548549,
+            "refreshed": true,
+            "snapshot_sequence": 4444,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688580519777,
+            "refreshed": true,
+            "snapshot_sequence": 4545,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688581529967,
+            "refreshed": true,
+            "snapshot_sequence": 4646,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688582593392,
+            "refreshed": true,
+            "snapshot_sequence": 4747,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688583575860,
+            "refreshed": true,
+            "snapshot_sequence": 4848,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688584738099,
+            "refreshed": true,
+            "snapshot_sequence": 4949,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688585740846,
+            "refreshed": true,
+            "snapshot_sequence": 5050,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688587208107,
+            "refreshed": true,
+            "snapshot_sequence": 5151,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688588097862,
+            "refreshed": true,
+            "snapshot_sequence": 5252,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688588897179,
+            "refreshed": true,
+            "snapshot_sequence": 5353,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688589689571,
+            "refreshed": true,
+            "snapshot_sequence": 5454,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688590834071,
+            "refreshed": true,
+            "snapshot_sequence": 5555,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688591816509,
+            "refreshed": true,
+            "snapshot_sequence": 5656,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688592693560,
+            "refreshed": true,
+            "snapshot_sequence": 5757,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688593864307,
+            "refreshed": true,
+            "snapshot_sequence": 5858,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688594987786,
+            "refreshed": true,
+            "snapshot_sequence": 5959,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688596736533,
+            "refreshed": true,
+            "snapshot_sequence": 6060,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688597939364,
+            "refreshed": true,
+            "snapshot_sequence": 6162,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688599014477,
+            "refreshed": true,
+            "snapshot_sequence": 6263,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688600350075,
+            "refreshed": true,
+            "snapshot_sequence": 6364,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688601439941,
+            "refreshed": true,
+            "snapshot_sequence": 6465,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688602460282,
+            "refreshed": true,
+            "snapshot_sequence": 6566,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688603427511,
+            "refreshed": true,
+            "snapshot_sequence": 6667,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688604571634,
+            "refreshed": true,
+            "snapshot_sequence": 6768,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688605675462,
+            "refreshed": true,
+            "snapshot_sequence": 6869,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688606538481,
+            "refreshed": true,
+            "snapshot_sequence": 6971,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688607506150,
+            "refreshed": true,
+            "snapshot_sequence": 7071,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688608647365,
+            "refreshed": true,
+            "snapshot_sequence": 7172,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688609857673,
+            "refreshed": true,
+            "snapshot_sequence": 7273,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688611193493,
+            "refreshed": true,
+            "snapshot_sequence": 7374,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688612330651,
+            "refreshed": true,
+            "snapshot_sequence": 7475,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688613242472,
+            "refreshed": true,
+            "snapshot_sequence": 7576,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688614314614,
+            "refreshed": true,
+            "snapshot_sequence": 7676,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688615623515,
+            "refreshed": true,
+            "snapshot_sequence": 7777,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688616565061,
+            "refreshed": true,
+            "snapshot_sequence": 7878,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688617933174,
+            "refreshed": true,
+            "snapshot_sequence": 7980,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688618927045,
+            "refreshed": true,
+            "snapshot_sequence": 8081,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688620189331,
+            "refreshed": true,
+            "snapshot_sequence": 8182,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688621064193,
+            "refreshed": true,
+            "snapshot_sequence": 8283,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688622038647,
+            "refreshed": true,
+            "snapshot_sequence": 8384,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688623019962,
+            "refreshed": true,
+            "snapshot_sequence": 8485,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688623944484,
+            "refreshed": true,
+            "snapshot_sequence": 8586,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688624776858,
+            "refreshed": true,
+            "snapshot_sequence": 8687,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688625949238,
+            "refreshed": true,
+            "snapshot_sequence": 8788,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688627450769,
+            "refreshed": true,
+            "snapshot_sequence": 8889,
+            "top": 20
+          }
+        ],
+        "counts": {
+          "applied": 8823,
+          "duplicate": 0,
+          "stale": 1
+        },
+        "error": null,
+        "pending_check_sequence": null,
+        "refreshes": 88
+      },
+      "reason": "initial",
+      "started_at": "2026-09-29T10:53:47.690951+00:00"
+    },
+    {
+      "end_reason": "rotation",
+      "ended_at": "2026-09-29T11:23:49.915346+00:00",
+      "epoch": 1,
+      "final": {
+        "anchor_history": {
+          "aligned": false,
+          "applied": 0,
+          "events": 0,
+          "first_sequence": null,
+          "last_sequence": null,
+          "levels": 0,
+          "reason": "No snapshot bridge retained in recent history",
+          "serialized_bytes": 0
+        },
+        "book": {
+          "ask_ceiling": "84159.800000000000000000",
+          "asks": [
+            [
+              "84020.200000000000000000",
+              "5.158000000000000000"
+            ],
+            [
+              "84020.300000000000000000",
+              "0.207000000000000000"
+            ],
+            [
+              "84020.400000000000000000",
+              "0.062000000000000000"
+            ],
+            [
+              "84020.500000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84020.600000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84020.700000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84020.800000000000000000",
+              "0.012000000000000000"
+            ],
+            [
+              "84020.900000000000000000",
+              "0.016000000000000000"
+            ],
+            [
+              "84021.000000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84021.100000000000000000",
+              "0.063000000000000000"
+            ],
+            [
+              "84021.200000000000000000",
+              "0.006000000000000000"
+            ],
+            [
+              "84021.300000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84021.400000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84021.500000000000000000",
+              "0.358000000000000000"
+            ],
+            [
+              "84021.600000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84021.700000000000000000",
+              "0.060000000000000000"
+            ],
+            [
+              "84021.900000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84022.100000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84022.200000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84022.300000000000000000",
+              "0.004000000000000000"
+            ]
+          ],
+          "bid_floor": "83881.900000000000000000",
+          "bids": [
+            [
+              "84020.100000000000000000",
+              "4.275000000000000000"
+            ],
+            [
+              "84020.000000000000000000",
+              "0.009000000000000000"
+            ],
+            [
+              "84019.900000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84019.800000000000000000",
+              "0.159000000000000000"
+            ],
+            [
+              "84019.700000000000000000",
+              "0.419000000000000000"
+            ],
+            [
+              "84019.600000000000000000",
+              "0.006000000000000000"
+            ],
+            [
+              "84019.200000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84019.100000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84019.000000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84018.900000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84018.800000000000000000",
+              "0.503000000000000000"
+            ],
+            [
+              "84018.700000000000000000",
+              "0.024000000000000000"
+            ],
+            [
+              "84018.600000000000000000",
+              "0.015000000000000000"
+            ],
+            [
+              "84018.500000000000000000",
+              "0.010000000000000000"
+            ],
+            [
+              "84018.300000000000000000",
+              "0.061000000000000000"
+            ],
+            [
+              "84018.200000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84018.100000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84018.000000000000000000",
+              "0.025000000000000000"
+            ],
+            [
+              "84017.900000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84017.700000000000000000",
+              "0.001000000000000000"
+            ]
+          ],
+          "book_sha256": "7e2b7559e25604ebef4f56581fa3bd10b64fe28f1d1127145400c8add7ca2235",
+          "known_ask_levels": 1000,
+          "known_bid_levels": 1020,
+          "last_update_id": 11688713667305,
+          "synced": true,
+          "timestamp": "2026-09-29T11:23:49.873000+00:00",
+          "top_complete": true,
+          "top_requested": 20
+        },
+        "checks": [
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688628989433,
+            "refreshed": true,
+            "snapshot_sequence": 9013,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688630370105,
+            "refreshed": true,
+            "snapshot_sequence": 9114,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688631506455,
+            "refreshed": true,
+            "snapshot_sequence": 9215,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688632532194,
+            "refreshed": true,
+            "snapshot_sequence": 9316,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688633829425,
+            "refreshed": true,
+            "snapshot_sequence": 9417,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688634785723,
+            "refreshed": true,
+            "snapshot_sequence": 9518,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688635684739,
+            "refreshed": true,
+            "snapshot_sequence": 9619,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688636806788,
+            "refreshed": true,
+            "snapshot_sequence": 9720,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688638043407,
+            "refreshed": true,
+            "snapshot_sequence": 9821,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688638858733,
+            "refreshed": true,
+            "snapshot_sequence": 9922,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688640007669,
+            "refreshed": true,
+            "snapshot_sequence": 10023,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688640869937,
+            "refreshed": true,
+            "snapshot_sequence": 10124,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688642349521,
+            "refreshed": true,
+            "snapshot_sequence": 10225,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688643615630,
+            "refreshed": true,
+            "snapshot_sequence": 10326,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688644611339,
+            "refreshed": true,
+            "snapshot_sequence": 10427,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688645479008,
+            "refreshed": true,
+            "snapshot_sequence": 10528,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688646259474,
+            "refreshed": true,
+            "snapshot_sequence": 10629,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688647018291,
+            "refreshed": true,
+            "snapshot_sequence": 10730,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688648127784,
+            "refreshed": true,
+            "snapshot_sequence": 10831,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688648865236,
+            "refreshed": true,
+            "snapshot_sequence": 10932,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688649980026,
+            "refreshed": true,
+            "snapshot_sequence": 11032,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688650861630,
+            "refreshed": true,
+            "snapshot_sequence": 11133,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688651823326,
+            "refreshed": true,
+            "snapshot_sequence": 11234,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688652622296,
+            "refreshed": true,
+            "snapshot_sequence": 11335,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688653487911,
+            "refreshed": true,
+            "snapshot_sequence": 11436,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688654498937,
+            "refreshed": true,
+            "snapshot_sequence": 11537,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688655402803,
+            "refreshed": true,
+            "snapshot_sequence": 11638,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688656375164,
+            "refreshed": true,
+            "snapshot_sequence": 11739,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688657163402,
+            "refreshed": true,
+            "snapshot_sequence": 11840,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688657874889,
+            "refreshed": true,
+            "snapshot_sequence": 11941,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688658736178,
+            "refreshed": true,
+            "snapshot_sequence": 12042,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688659807485,
+            "refreshed": true,
+            "snapshot_sequence": 12143,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688660654465,
+            "refreshed": true,
+            "snapshot_sequence": 12244,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688661484795,
+            "refreshed": true,
+            "snapshot_sequence": 12345,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688662452651,
+            "refreshed": true,
+            "snapshot_sequence": 12446,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688663284538,
+            "refreshed": true,
+            "snapshot_sequence": 12547,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688664590967,
+            "refreshed": true,
+            "snapshot_sequence": 12648,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688665812345,
+            "refreshed": true,
+            "snapshot_sequence": 12749,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688667140036,
+            "refreshed": true,
+            "snapshot_sequence": 12850,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688668088399,
+            "refreshed": true,
+            "snapshot_sequence": 12981,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688669210990,
+            "refreshed": true,
+            "snapshot_sequence": 13082,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688670245835,
+            "refreshed": true,
+            "snapshot_sequence": 13183,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688671213441,
+            "refreshed": true,
+            "snapshot_sequence": 13284,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688672041738,
+            "refreshed": true,
+            "snapshot_sequence": 13385,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688672859966,
+            "refreshed": true,
+            "snapshot_sequence": 13486,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688673744701,
+            "refreshed": true,
+            "snapshot_sequence": 13587,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688674955157,
+            "refreshed": true,
+            "snapshot_sequence": 13688,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688675746082,
+            "refreshed": true,
+            "snapshot_sequence": 13789,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688676672844,
+            "refreshed": true,
+            "snapshot_sequence": 13890,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688677435138,
+            "refreshed": true,
+            "snapshot_sequence": 13991,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688678530008,
+            "refreshed": true,
+            "snapshot_sequence": 14092,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688679510448,
+            "refreshed": true,
+            "snapshot_sequence": 14193,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688680396696,
+            "refreshed": true,
+            "snapshot_sequence": 14294,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688681269154,
+            "refreshed": true,
+            "snapshot_sequence": 14395,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688682094120,
+            "refreshed": true,
+            "snapshot_sequence": 14496,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688683357769,
+            "refreshed": true,
+            "snapshot_sequence": 14597,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688684565719,
+            "refreshed": true,
+            "snapshot_sequence": 14698,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688685776409,
+            "refreshed": true,
+            "snapshot_sequence": 14799,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688686697533,
+            "refreshed": true,
+            "snapshot_sequence": 14900,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688687692173,
+            "refreshed": true,
+            "snapshot_sequence": 15001,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688688593689,
+            "refreshed": true,
+            "snapshot_sequence": 15102,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688689284516,
+            "refreshed": true,
+            "snapshot_sequence": 15203,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688690429901,
+            "refreshed": true,
+            "snapshot_sequence": 15304,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688691441631,
+            "refreshed": true,
+            "snapshot_sequence": 15405,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688692478718,
+            "refreshed": true,
+            "snapshot_sequence": 15506,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688693401459,
+            "refreshed": true,
+            "snapshot_sequence": 15607,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688694635682,
+            "refreshed": true,
+            "snapshot_sequence": 15708,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688695647819,
+            "refreshed": true,
+            "snapshot_sequence": 15809,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688696608152,
+            "refreshed": true,
+            "snapshot_sequence": 15910,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688697644054,
+            "refreshed": true,
+            "snapshot_sequence": 16011,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688698543618,
+            "refreshed": true,
+            "snapshot_sequence": 16112,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688699640943,
+            "refreshed": true,
+            "snapshot_sequence": 16213,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688700517713,
+            "refreshed": true,
+            "snapshot_sequence": 16314,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688701404898,
+            "refreshed": true,
+            "snapshot_sequence": 16415,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688702423396,
+            "refreshed": true,
+            "snapshot_sequence": 16516,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688703324893,
+            "refreshed": true,
+            "snapshot_sequence": 16617,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688704247160,
+            "refreshed": true,
+            "snapshot_sequence": 16718,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688705479067,
+            "refreshed": true,
+            "snapshot_sequence": 16819,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688706235940,
+            "refreshed": true,
+            "snapshot_sequence": 16920,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688707012596,
+            "refreshed": true,
+            "snapshot_sequence": 17021,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688707915542,
+            "refreshed": true,
+            "snapshot_sequence": 17122,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688708579283,
+            "refreshed": true,
+            "snapshot_sequence": 17223,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688709248283,
+            "refreshed": true,
+            "snapshot_sequence": 17324,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688709986683,
+            "refreshed": true,
+            "snapshot_sequence": 17425,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688711181382,
+            "refreshed": true,
+            "snapshot_sequence": 17526,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688712028023,
+            "refreshed": true,
+            "snapshot_sequence": 17627,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688712841047,
+            "refreshed": true,
+            "snapshot_sequence": 17728,
+            "top": 20
+          }
+        ],
+        "counts": {
+          "applied": 8823,
+          "duplicate": 0,
+          "stale": 1
+        },
+        "error": null,
+        "pending_check_sequence": null,
+        "refreshes": 87
+      },
+      "reason": "planned_rotation",
+      "started_at": "2026-09-29T11:08:49.878170+00:00"
+    },
+    {
+      "end_reason": "rotation",
+      "ended_at": "2026-09-29T11:38:52.122090+00:00",
+      "epoch": 2,
+      "final": {
+        "anchor_history": {
+          "aligned": false,
+          "applied": 0,
+          "events": 0,
+          "first_sequence": null,
+          "last_sequence": null,
+          "levels": 0,
+          "reason": "No snapshot bridge retained in recent history",
+          "serialized_bytes": 0
+        },
+        "book": {
+          "ask_ceiling": "84344.300000000000000000",
+          "asks": [
+            [
+              "84231.900000000000000000",
+              "2.468000000000000000"
+            ],
+            [
+              "84232.000000000000000000",
+              "0.008000000000000000"
+            ],
+            [
+              "84232.100000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84232.600000000000000000",
+              "0.004000000000000000"
+            ],
+            [
+              "84232.700000000000000000",
+              "0.021000000000000000"
+            ],
+            [
+              "84232.800000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84233.000000000000000000",
+              "0.026000000000000000"
+            ],
+            [
+              "84233.100000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84233.400000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84233.600000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84233.800000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84233.900000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84234.000000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84234.400000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84234.500000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84234.600000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84234.700000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84234.800000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84234.900000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84235.000000000000000000",
+              "0.320000000000000000"
+            ]
+          ],
+          "bid_floor": "84077.300000000000000000",
+          "bids": [
+            [
+              "84231.800000000000000000",
+              "14.407000000000000000"
+            ],
+            [
+              "84231.700000000000000000",
+              "0.056000000000000000"
+            ],
+            [
+              "84231.600000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84231.100000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84231.000000000000000000",
+              "0.005000000000000000"
+            ],
+            [
+              "84230.900000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84230.800000000000000000",
+              "0.866000000000000000"
+            ],
+            [
+              "84230.700000000000000000",
+              "1.817000000000000000"
+            ],
+            [
+              "84230.300000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84230.200000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84230.100000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84230.000000000000000000",
+              "0.603000000000000000"
+            ],
+            [
+              "84229.900000000000000000",
+              "0.109000000000000000"
+            ],
+            [
+              "84229.800000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84229.500000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84229.400000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "84229.200000000000000000",
+              "0.475000000000000000"
+            ],
+            [
+              "84229.000000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84228.800000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84228.300000000000000000",
+              "0.074000000000000000"
+            ]
+          ],
+          "book_sha256": "db617cc6ddd5b3b45b72fa07e5e1ae50612f13b5a854fcda9ede78165603cda4",
+          "known_ask_levels": 885,
+          "known_bid_levels": 1081,
+          "last_update_id": 11688806746609,
+          "synced": true,
+          "timestamp": "2026-09-29T11:38:52.074000+00:00",
+          "top_complete": true,
+          "top_requested": 20
+        },
+        "checks": [
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688714704855,
+            "refreshed": true,
+            "snapshot_sequence": 17925,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688715658528,
+            "refreshed": true,
+            "snapshot_sequence": 18026,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688716467492,
+            "refreshed": true,
+            "snapshot_sequence": 18127,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688717328647,
+            "refreshed": true,
+            "snapshot_sequence": 18228,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688718294994,
+            "refreshed": true,
+            "snapshot_sequence": 18329,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688719096471,
+            "refreshed": true,
+            "snapshot_sequence": 18430,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688720000279,
+            "refreshed": true,
+            "snapshot_sequence": 18531,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688720763384,
+            "refreshed": true,
+            "snapshot_sequence": 18632,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688721883736,
+            "refreshed": true,
+            "snapshot_sequence": 18733,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688722714828,
+            "refreshed": true,
+            "snapshot_sequence": 18834,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688723584359,
+            "refreshed": true,
+            "snapshot_sequence": 18935,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688724677390,
+            "refreshed": true,
+            "snapshot_sequence": 19036,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688725513054,
+            "refreshed": true,
+            "snapshot_sequence": 19137,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688726588843,
+            "refreshed": true,
+            "snapshot_sequence": 19238,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688727243469,
+            "refreshed": true,
+            "snapshot_sequence": 19339,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688728098167,
+            "refreshed": true,
+            "snapshot_sequence": 19440,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688728803626,
+            "refreshed": true,
+            "snapshot_sequence": 19541,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688729764422,
+            "refreshed": true,
+            "snapshot_sequence": 19642,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688730566100,
+            "refreshed": true,
+            "snapshot_sequence": 19743,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688731923577,
+            "refreshed": true,
+            "snapshot_sequence": 19844,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688732800783,
+            "refreshed": true,
+            "snapshot_sequence": 19945,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688733600960,
+            "refreshed": true,
+            "snapshot_sequence": 20046,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688734297644,
+            "refreshed": true,
+            "snapshot_sequence": 20146,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688735092067,
+            "refreshed": true,
+            "snapshot_sequence": 20247,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688735805235,
+            "refreshed": true,
+            "snapshot_sequence": 20348,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688736642341,
+            "refreshed": true,
+            "snapshot_sequence": 20449,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688737397943,
+            "refreshed": true,
+            "snapshot_sequence": 20550,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688738114752,
+            "refreshed": true,
+            "snapshot_sequence": 20651,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688738721943,
+            "refreshed": true,
+            "snapshot_sequence": 20752,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688739345856,
+            "refreshed": true,
+            "snapshot_sequence": 20853,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688740370337,
+            "refreshed": true,
+            "snapshot_sequence": 20954,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688741494661,
+            "refreshed": true,
+            "snapshot_sequence": 21055,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688742199699,
+            "refreshed": true,
+            "snapshot_sequence": 21156,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688742796549,
+            "refreshed": true,
+            "snapshot_sequence": 21257,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688743408989,
+            "refreshed": true,
+            "snapshot_sequence": 21358,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688743917467,
+            "refreshed": true,
+            "snapshot_sequence": 21459,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688745142222,
+            "refreshed": true,
+            "snapshot_sequence": 21560,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688745918784,
+            "refreshed": true,
+            "snapshot_sequence": 21661,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688746889311,
+            "refreshed": true,
+            "snapshot_sequence": 21762,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688747985933,
+            "refreshed": true,
+            "snapshot_sequence": 21863,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688748928837,
+            "refreshed": true,
+            "snapshot_sequence": 21964,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688749747251,
+            "refreshed": true,
+            "snapshot_sequence": 22065,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688751063401,
+            "refreshed": true,
+            "snapshot_sequence": 22166,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688751937545,
+            "refreshed": true,
+            "snapshot_sequence": 22267,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688752876760,
+            "refreshed": true,
+            "snapshot_sequence": 22368,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688753624600,
+            "refreshed": true,
+            "snapshot_sequence": 22469,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688754475858,
+            "refreshed": true,
+            "snapshot_sequence": 22570,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688755274205,
+            "refreshed": true,
+            "snapshot_sequence": 22671,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688756559136,
+            "refreshed": true,
+            "snapshot_sequence": 22772,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688757843267,
+            "refreshed": true,
+            "snapshot_sequence": 22873,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688758941106,
+            "refreshed": true,
+            "snapshot_sequence": 22974,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688760959323,
+            "refreshed": true,
+            "snapshot_sequence": 23075,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688762303174,
+            "refreshed": true,
+            "snapshot_sequence": 23177,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688763645729,
+            "refreshed": true,
+            "snapshot_sequence": 23278,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688764979428,
+            "refreshed": true,
+            "snapshot_sequence": 23379,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688766271240,
+            "refreshed": true,
+            "snapshot_sequence": 23480,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688767347829,
+            "refreshed": true,
+            "snapshot_sequence": 23581,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688768747710,
+            "refreshed": true,
+            "snapshot_sequence": 23682,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688769857098,
+            "refreshed": true,
+            "snapshot_sequence": 23783,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688771112139,
+            "refreshed": true,
+            "snapshot_sequence": 23884,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688772756211,
+            "refreshed": true,
+            "snapshot_sequence": 23985,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688774044271,
+            "refreshed": true,
+            "snapshot_sequence": 24086,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688775205414,
+            "refreshed": true,
+            "snapshot_sequence": 24187,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688776125489,
+            "refreshed": true,
+            "snapshot_sequence": 24288,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688777425009,
+            "refreshed": true,
+            "snapshot_sequence": 24389,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688779217051,
+            "refreshed": true,
+            "snapshot_sequence": 24490,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688780874360,
+            "refreshed": true,
+            "snapshot_sequence": 24591,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688782489707,
+            "refreshed": true,
+            "snapshot_sequence": 24692,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688783784821,
+            "refreshed": true,
+            "snapshot_sequence": 24794,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688784964001,
+            "refreshed": true,
+            "snapshot_sequence": 24895,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688785996563,
+            "refreshed": true,
+            "snapshot_sequence": 24996,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688787166742,
+            "refreshed": true,
+            "snapshot_sequence": 25097,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688789004807,
+            "refreshed": true,
+            "snapshot_sequence": 25198,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688790543014,
+            "refreshed": true,
+            "snapshot_sequence": 25299,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688791969536,
+            "refreshed": true,
+            "snapshot_sequence": 25400,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688793237832,
+            "refreshed": true,
+            "snapshot_sequence": 25501,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688794113721,
+            "refreshed": true,
+            "snapshot_sequence": 25602,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688795423366,
+            "refreshed": true,
+            "snapshot_sequence": 25703,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688796708055,
+            "refreshed": true,
+            "snapshot_sequence": 25804,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688797983406,
+            "refreshed": true,
+            "snapshot_sequence": 25905,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688799415433,
+            "refreshed": true,
+            "snapshot_sequence": 26006,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688800379499,
+            "refreshed": true,
+            "snapshot_sequence": 26107,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688801151510,
+            "refreshed": true,
+            "snapshot_sequence": 26208,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688802189950,
+            "refreshed": true,
+            "snapshot_sequence": 26309,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688803048208,
+            "refreshed": true,
+            "snapshot_sequence": 26410,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688804097200,
+            "refreshed": true,
+            "snapshot_sequence": 26511,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688805513380,
+            "refreshed": true,
+            "snapshot_sequence": 26612,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688806386031,
+            "refreshed": true,
+            "snapshot_sequence": 26713,
+            "top": 20
+          }
+        ],
+        "counts": {
+          "applied": 8823,
+          "duplicate": 0,
+          "stale": 1
+        },
+        "error": null,
+        "pending_check_sequence": null,
+        "refreshes": 88
+      },
+      "reason": "planned_rotation",
+      "started_at": "2026-09-29T11:23:52.091910+00:00"
+    },
+    {
+      "end_reason": "duration",
+      "ended_at": "2026-09-29T11:53:47.555884+00:00",
+      "epoch": 3,
+      "final": {
+        "anchor_history": {
+          "aligned": false,
+          "applied": 0,
+          "events": 0,
+          "first_sequence": null,
+          "last_sequence": null,
+          "levels": 0,
+          "reason": "No snapshot bridge retained in recent history",
+          "serialized_bytes": 0
+        },
+        "book": {
+          "ask_ceiling": "84548.200000000000000000",
+          "asks": [
+            [
+              "84419.100000000000000000",
+              "2.995000000000000000"
+            ],
+            [
+              "84419.300000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84419.600000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84419.700000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84419.800000000000000000",
+              "0.033000000000000000"
+            ],
+            [
+              "84419.900000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84420.000000000000000000",
+              "0.811000000000000000"
+            ],
+            [
+              "84420.100000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84420.400000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84420.600000000000000000",
+              "0.006000000000000000"
+            ],
+            [
+              "84420.700000000000000000",
+              "0.033000000000000000"
+            ],
+            [
+              "84421.100000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84421.200000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84421.300000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84421.500000000000000000",
+              "0.005000000000000000"
+            ],
+            [
+              "84421.900000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84422.000000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84422.100000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84422.200000000000000000",
+              "0.004000000000000000"
+            ],
+            [
+              "84422.400000000000000000",
+              "0.001000000000000000"
+            ]
+          ],
+          "bid_floor": "84276.000000000000000000",
+          "bids": [
+            [
+              "84419.000000000000000000",
+              "13.927000000000000000"
+            ],
+            [
+              "84418.900000000000000000",
+              "0.349000000000000000"
+            ],
+            [
+              "84418.800000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84418.000000000000000000",
+              "0.004000000000000000"
+            ],
+            [
+              "84417.800000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84417.200000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84417.000000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84416.900000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84416.800000000000000000",
+              "0.021000000000000000"
+            ],
+            [
+              "84416.700000000000000000",
+              "0.118000000000000000"
+            ],
+            [
+              "84416.500000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84416.100000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84415.300000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84415.200000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84415.000000000000000000",
+              "0.095000000000000000"
+            ],
+            [
+              "84414.900000000000000000",
+              "0.356000000000000000"
+            ],
+            [
+              "84414.700000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84414.500000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84414.200000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84414.100000000000000000",
+              "0.001000000000000000"
+            ]
+          ],
+          "book_sha256": "7f6dc4dc70c45b41443b5ad01444540ff1e869dc62754339a04c80f4b4a8710b",
+          "known_ask_levels": 1010,
+          "known_bid_levels": 999,
+          "last_update_id": 11688917496733,
+          "synced": true,
+          "timestamp": "2026-09-29T11:53:47.443000+00:00",
+          "top_complete": true,
+          "top_requested": 20
+        },
+        "checks": [
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688808004743,
+            "refreshed": true,
+            "snapshot_sequence": 26838,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688809117405,
+            "refreshed": true,
+            "snapshot_sequence": 26939,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688810224163,
+            "refreshed": true,
+            "snapshot_sequence": 27040,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688811432361,
+            "refreshed": true,
+            "snapshot_sequence": 27141,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688812392035,
+            "refreshed": true,
+            "snapshot_sequence": 27242,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688813357899,
+            "refreshed": true,
+            "snapshot_sequence": 27343,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688814531853,
+            "refreshed": true,
+            "snapshot_sequence": 27444,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688815600642,
+            "refreshed": true,
+            "snapshot_sequence": 27545,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688816540296,
+            "refreshed": true,
+            "snapshot_sequence": 27646,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688817584141,
+            "refreshed": true,
+            "snapshot_sequence": 27747,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688818485381,
+            "refreshed": true,
+            "snapshot_sequence": 27848,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688819160654,
+            "refreshed": true,
+            "snapshot_sequence": 27949,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688820097863,
+            "refreshed": true,
+            "snapshot_sequence": 28050,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688821282496,
+            "refreshed": true,
+            "snapshot_sequence": 28151,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688822032806,
+            "refreshed": true,
+            "snapshot_sequence": 28252,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688823120407,
+            "refreshed": true,
+            "snapshot_sequence": 28353,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688824141106,
+            "refreshed": true,
+            "snapshot_sequence": 28454,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688825059849,
+            "refreshed": true,
+            "snapshot_sequence": 28555,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688826067311,
+            "refreshed": true,
+            "snapshot_sequence": 28656,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688827091168,
+            "refreshed": true,
+            "snapshot_sequence": 28757,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688828238562,
+            "refreshed": true,
+            "snapshot_sequence": 28858,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688829211778,
+            "refreshed": true,
+            "snapshot_sequence": 28959,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688830123031,
+            "refreshed": true,
+            "snapshot_sequence": 29060,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688830868284,
+            "refreshed": true,
+            "snapshot_sequence": 29161,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688831965747,
+            "refreshed": true,
+            "snapshot_sequence": 29262,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688832896116,
+            "refreshed": true,
+            "snapshot_sequence": 29363,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688834077089,
+            "refreshed": true,
+            "snapshot_sequence": 29464,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688835418393,
+            "refreshed": true,
+            "snapshot_sequence": 29565,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688836191341,
+            "refreshed": true,
+            "snapshot_sequence": 29666,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688837032822,
+            "refreshed": true,
+            "snapshot_sequence": 29767,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688838264016,
+            "refreshed": true,
+            "snapshot_sequence": 29868,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688839349337,
+            "refreshed": true,
+            "snapshot_sequence": 29969,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688840215918,
+            "refreshed": true,
+            "snapshot_sequence": 30070,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688841136110,
+            "refreshed": true,
+            "snapshot_sequence": 30171,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688842214310,
+            "refreshed": true,
+            "snapshot_sequence": 30272,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688843354229,
+            "refreshed": true,
+            "snapshot_sequence": 30373,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688844789670,
+            "refreshed": true,
+            "snapshot_sequence": 30474,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688846203877,
+            "refreshed": true,
+            "snapshot_sequence": 30575,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688847633477,
+            "refreshed": true,
+            "snapshot_sequence": 30676,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688848838572,
+            "refreshed": true,
+            "snapshot_sequence": 30777,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688849745360,
+            "refreshed": true,
+            "snapshot_sequence": 30878,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688850785344,
+            "refreshed": true,
+            "snapshot_sequence": 30979,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688852327751,
+            "refreshed": true,
+            "snapshot_sequence": 31080,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688853650900,
+            "refreshed": true,
+            "snapshot_sequence": 31181,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688854911090,
+            "refreshed": true,
+            "snapshot_sequence": 31282,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688856035497,
+            "refreshed": true,
+            "snapshot_sequence": 31383,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688856997220,
+            "refreshed": true,
+            "snapshot_sequence": 31484,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688858165477,
+            "refreshed": true,
+            "snapshot_sequence": 31585,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688859499580,
+            "refreshed": true,
+            "snapshot_sequence": 31686,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688860529056,
+            "refreshed": true,
+            "snapshot_sequence": 31787,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688861905687,
+            "refreshed": true,
+            "snapshot_sequence": 31888,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688863066146,
+            "refreshed": true,
+            "snapshot_sequence": 31989,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688864088683,
+            "refreshed": true,
+            "snapshot_sequence": 32090,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688865428530,
+            "refreshed": true,
+            "snapshot_sequence": 32191,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688866404066,
+            "refreshed": true,
+            "snapshot_sequence": 32292,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688867443842,
+            "refreshed": true,
+            "snapshot_sequence": 32393,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688868580380,
+            "refreshed": true,
+            "snapshot_sequence": 32494,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688869487464,
+            "refreshed": true,
+            "snapshot_sequence": 32595,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688870368138,
+            "refreshed": true,
+            "snapshot_sequence": 32696,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688871329439,
+            "refreshed": true,
+            "snapshot_sequence": 32797,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688872277903,
+            "refreshed": true,
+            "snapshot_sequence": 32898,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688873494892,
+            "refreshed": true,
+            "snapshot_sequence": 32999,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688876996236,
+            "refreshed": true,
+            "snapshot_sequence": 33100,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688879076028,
+            "refreshed": true,
+            "snapshot_sequence": 33147,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688881024925,
+            "refreshed": true,
+            "snapshot_sequence": 33254,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688882889745,
+            "refreshed": true,
+            "snapshot_sequence": 33356,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688885551859,
+            "refreshed": true,
+            "snapshot_sequence": 33457,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688887245996,
+            "refreshed": true,
+            "snapshot_sequence": 33559,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688889050639,
+            "refreshed": true,
+            "snapshot_sequence": 33660,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688891078461,
+            "refreshed": true,
+            "snapshot_sequence": 33761,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688892648901,
+            "refreshed": true,
+            "snapshot_sequence": 33862,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688894329776,
+            "refreshed": true,
+            "snapshot_sequence": 33964,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688896832180,
+            "refreshed": true,
+            "snapshot_sequence": 34058,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688899269016,
+            "refreshed": true,
+            "snapshot_sequence": 34160,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688900859048,
+            "refreshed": true,
+            "snapshot_sequence": 34261,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688902039078,
+            "refreshed": true,
+            "snapshot_sequence": 34362,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688902954379,
+            "refreshed": true,
+            "snapshot_sequence": 34463,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688904155477,
+            "refreshed": true,
+            "snapshot_sequence": 34564,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688905498354,
+            "refreshed": true,
+            "snapshot_sequence": 34665,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688906940033,
+            "refreshed": true,
+            "snapshot_sequence": 34766,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688908586159,
+            "refreshed": true,
+            "snapshot_sequence": 34867,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688909911643,
+            "refreshed": true,
+            "snapshot_sequence": 34969,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688911223008,
+            "refreshed": true,
+            "snapshot_sequence": 35070,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688912409591,
+            "refreshed": true,
+            "snapshot_sequence": 35171,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688913846301,
+            "refreshed": true,
+            "snapshot_sequence": 35272,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688915201185,
+            "refreshed": true,
+            "snapshot_sequence": 35373,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688916343208,
+            "refreshed": true,
+            "snapshot_sequence": 35474,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11688917434171,
+            "refreshed": true,
+            "snapshot_sequence": 35575,
+            "top": 20
+          }
+        ],
+        "counts": {
+          "applied": 8756,
+          "duplicate": 0,
+          "stale": 1
+        },
+        "error": null,
+        "pending_check_sequence": null,
+        "refreshes": 88
+      },
+      "reason": "planned_rotation",
+      "started_at": "2026-09-29T11:38:54.329096+00:00"
+    }
+  ],
+  "errors": [],
+  "flush_seconds": 5,
+  "history_limits": {
+    "events": 128,
+    "levels": 50000,
+    "serialized_bytes": 8388608
+  },
+  "history_policy": "bounded_same_socket_v1",
+  "id": "efdbaf30988f41849fd7242c1c84861d",
+  "kind": "websocket",
+  "lagged_retry_budget": {
+    "max_requests": 8,
+    "scope": "retry anchor calls within this capture; survives resync/reconnect",
+    "window_seconds": 60
+  },
+  "lagged_retry_delays_seconds": [
+    1,
+    2,
+    4,
+    8,
+    10
+  ],
+  "lagged_retry_policy": "same_socket_backoff_v1",
+  "lagged_retry_requests": 0,
+  "lagged_snapshot_policy": "retain_unsynchronized_updates_v1",
+  "lagged_snapshots": 0,
+  "last_received_at": "2026-09-29T11:53:47.492418+00:00",
+  "last_update_id": 11688917496733,
+  "messages": 35229,
+  "persisted_messages": 35229,
+  "refresh_from_checks": true,
+  "rotate_seconds": 900,
+  "scope": "BTCUSDT USD-M non-RPI depth; known snapshot price range only",
+  "seconds_requested": 3600,
+  "snapshots": 355,
+  "started_at": "2026-09-29T10:53:47.543931+00:00",
+  "state": "complete",
+  "sync_losses": 0,
+  "synchronized": false,
+  "top": 20,
+  "unreconstructed_messages": 0,
+  "updated_at": "2026-09-29T11:53:49.591423+00:00",
+  "verify_seconds": 10
+}

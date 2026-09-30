@@ -1,0 +1,170 @@
+{
+  "checked_at": "2026-09-29T10:34:08.861523+00:00",
+  "scope": "implemented, isolated tests passed, source installed; operating activation recorded separately",
+  "tests": {
+    "targeted_depth_passed": 113,
+    "new_regression_cases": 11,
+    "full_first_run": {
+      "tests": 383,
+      "passed": 382,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "environment_retest": {
+      "tests": 1,
+      "passed": 1,
+      "failures": 0
+    },
+    "unique_tests_final_passed": 383,
+    "initial_failure": [
+      "tests.test_restic_trial::test_real_restic_two_checkpoints_restore_relocate_and_new_backup"
+    ],
+    "failure_reason": "Isolated tree had no .git for the real restic trial report git rev-parse HEAD; backup and restore steps passed",
+    "retest_environment": {
+      "GIT_DIR": "/home/yoonhc/projects/algoTrade/historical_data/.git",
+      "GIT_WORK_TREE": "/tmp/marketdata-depth-retry-20260929"
+    },
+    "git_metadata_written": false,
+    "test_or_product_code_weakened": false,
+    "reports": [
+      "depth-retry-tests.xml",
+      "depth-retry-environment-retest.xml"
+    ]
+  },
+  "static_checks": {
+    "ruff": "passed",
+    "format": "passed",
+    "git_diff_check": "passed"
+  },
+  "installed_files_equal_tested_staging": true,
+  "root_python_import_verified": true,
+  "source_files": {
+    "packages/marketdata/src/marketdata/depth_stream.py": {
+      "old_sha256": "f1923e8fb9595bb1d981e2e65dea38db91a007ff2c4a3682eba76b91e6f24b23",
+      "new_sha256": "f56903e317351541546927855ada7fb689427af1447bf7afd269c9ba367b097c"
+    },
+    "tests/test_depth.py": {
+      "old_sha256": "1ced452084de4dfbd24c6fdd315034387c372aef05f89d468039d8681702ae93",
+      "new_sha256": "739171f682ab9e4fc02ec3f38963ffd1e9b11319031ab3ec765f0802dc0b2d28"
+    },
+    "tests/test_depth_history.py": {
+      "old_sha256": "241fb1180dce8861be518132f1bb411e385674047e24503b0c946b435fe48afd",
+      "new_sha256": "e9148b13ac35eeab16e5554792ccb99bb4160376fa3e340a4c8e80d822b8c8cc"
+    },
+    "tests/test_depth_retry.py": {
+      "old_sha256": null,
+      "new_sha256": "dc905c7f922e101ee5e04f79f4a2efce0ddd9f8b9380a7852d3dc52cb633b818"
+    },
+    "docs/orderbook-depth.md": {
+      "old_sha256": "b98ef0ff8500c189ca2a24e3f9c8c4145b806dbca584d3c67c9aee5cbdf35048",
+      "new_sha256": "65cf644f061b2edd35c092be6843b7d8341ca3b96d9a170b3eb2b6ebca6dc536"
+    },
+    "docs/stream-services.md": {
+      "old_sha256": "5f238354f8693ae41d42e551ae8b1030a53fda411335f14e58fae0016477d117",
+      "new_sha256": "7c081fc1a6caa296ea66e96a9f232c3fe5cb5551604d512df39b78e4f4f9ebcb"
+    }
+  },
+  "legacy_replays": {
+    "collections": 3,
+    "rows": 106741,
+    "all_live_verdicts_preserved": true,
+    "all_remain_partial": true
+  },
+  "isolated_live_pilot": {
+    "id": "71b96afbf811489b9981e1247ac97e69",
+    "state": "complete",
+    "started_at": "2026-09-29T10:17:24.713810+00:00",
+    "updated_at": "2026-09-29T10:20:26.749150+00:00",
+    "messages": 1655,
+    "persisted_messages": 1655,
+    "snapshots": 17,
+    "connections": 6,
+    "connection_errors": 0,
+    "sync_losses": 0,
+    "coverage_resets": 0,
+    "lagged_snapshots": 0,
+    "lagged_retry_requests": 0,
+    "unreconstructed_messages": 0
+  },
+  "pilot_parity": {
+    "all_snapshot_checks_verified": true,
+    "checked_at": "2026-09-29T10:21:27.687190+00:00",
+    "collection_id": "71b96afbf811489b9981e1247ac97e69",
+    "delayed_snapshot_checks": [],
+    "price_quantity_pairs_checked": 178796,
+    "raw_to_canonical_equal": true,
+    "replay_matches_live": true,
+    "replay_valid": true,
+    "rows_checked": 1672,
+    "source_artifacts": 51,
+    "verification_checks": 11,
+    "verification_complete": true,
+    "verification_equal": 11
+  },
+  "real_lagged_retry_branch_observed_in_pilot": false,
+  "protected_file_hashes_unchanged": 22,
+  "services_or_timers_reconfigured": false,
+  "forced_service_restart": false,
+  "current_streams": {
+    "depth": {
+      "id": "6b90cbf7daae478ba17d8ff1b30c1241",
+      "state": "running",
+      "started_at": "2026-09-29T09:53:30.052400+00:00",
+      "last_received_at": "2026-09-29T10:34:07.577447+00:00",
+      "synchronized": true,
+      "messages": 23853,
+      "persisted_messages": 23853,
+      "sync_losses": 0,
+      "lagged_retry_policy": null
+    },
+    "aggtrade": {
+      "id": "a93687df579a4364b5b5aaefa7d9dce9",
+      "state": "running",
+      "started_at": "2026-09-29T09:56:39.519950+00:00",
+      "last_received_at": "2026-09-29T10:34:05.558671+00:00",
+      "synchronized": null,
+      "messages": 22644,
+      "persisted_messages": 22644,
+      "sync_losses": null,
+      "lagged_retry_policy": null
+    }
+  },
+  "activation_at_report_time": {
+    "status": "waiting_for_natural_rotation",
+    "started_at": "2026-09-29T10:30:39.985400+00:00",
+    "original_collection_id": "6b90cbf7daae478ba17d8ff1b30c1241",
+    "expected_next_start_at": "2026-09-29T10:53:45.052400+00:00",
+    "max_observation_seconds": 1685.067,
+    "no_services_restarted": true,
+    "scope": "new operating session policy and 20 seconds of healthy samples; no claim of retry branch occurrence or 24-hour stability",
+    "last_sample": {
+      "at": "2026-09-29T10:34:00.012725+00:00",
+      "collection_id": "6b90cbf7daae478ba17d8ff1b30c1241",
+      "started_at": "2026-09-29T09:53:30.052400+00:00",
+      "state": "running",
+      "policy": null,
+      "new_policy": false,
+      "healthy": false,
+      "receive_age_seconds": 2.637444,
+      "messages": 23753,
+      "persisted_messages": 23753,
+      "sync_losses": 0,
+      "lagged_retry_requests": null
+    },
+    "samples": 21
+  },
+  "activation_current_evidence": "activation.json",
+  "pending": [
+    "natural operating session activation",
+    "real exchange lagged retry recovery observation",
+    "24-hour depth quality observation"
+  ],
+  "separate_followup": "price coverage refresh urgency; existing five-second minimum unchanged",
+  "restic_observation": {
+    "qualifying_dates": 1,
+    "required_dates": 3,
+    "source": "../restic-observation-2026-09-29/summary.md",
+    "new_dates_counted_by_this_change": 0
+  }
+}

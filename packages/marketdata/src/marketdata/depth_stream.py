@@ -20,6 +20,55 @@ from .oi_probe import retry_delay
 from .store import atomic_write
 from .stream_guard import check_cooldown, rate_limited
 
+LAGGED_RETRY_POLICY = "same_socket_backoff_v1"
+LAGGED_RETRY_DELAYS = (1, 2, 4, 8, 10)
+LAGGED_RETRY_REQUESTS = 8
+LAGGED_RETRY_WINDOW = 60
+
+
+class LaggedRetry:
+    """Monotonic retry deadlines; the rolling budget survives successful resyncs."""
+
+    def __init__(self):
+        self.requests = deque()
+        self.reset()
+
+    def reset(self):
+        self.failures = 0
+        self.failed_at = self.retry_at = None
+
+    def ready_at(self, current):
+        while self.requests and self.requests[0] <= current - LAGGED_RETRY_WINDOW:
+            self.requests.popleft()
+        if self.retry_at is None:
+            return None
+        return max(
+            self.retry_at,
+            self.requests[0] + LAGGED_RETRY_WINDOW
+            if len(self.requests) >= LAGGED_RETRY_REQUESTS
+            else self.retry_at,
+        )
+
+    def failed(self, current):
+        delay = LAGGED_RETRY_DELAYS[min(self.failures, len(LAGGED_RETRY_DELAYS) - 1)]
+        self.failures += 1
+        self.failed_at, self.retry_at = current, current + delay
+        due = self.ready_at(current)
+        return {
+            "consecutive_failure": self.failures,
+            "delay_seconds": delay,
+            "budget_delay_seconds": due - self.retry_at,
+            "not_before": now() + timedelta(seconds=due - current),
+        }
+
+    def claim(self, current):
+        due = self.ready_at(current)
+        if due is None or current < due:
+            raise DataError("Lagged snapshot retry requested before its deadline/budget")
+        self.requests.append(current)
+        self.retry_at = None
+        return current - self.failed_at
+
 
 @contextmanager
 def stream_lock(store):
@@ -247,6 +296,14 @@ def capture(
                     "bootstrap_timeout_seconds": 2,
                     "bootstrap_messages": 0,
                     "lagged_snapshot_policy": "retain_unsynchronized_updates_v1",
+                    "lagged_retry_policy": LAGGED_RETRY_POLICY,
+                    "lagged_retry_delays_seconds": list(LAGGED_RETRY_DELAYS),
+                    "lagged_retry_budget": {
+                        "max_requests": LAGGED_RETRY_REQUESTS,
+                        "window_seconds": LAGGED_RETRY_WINDOW,
+                        "scope": "retry anchor calls within this capture; survives resync/reconnect",
+                    },
+                    "lagged_retry_requests": 0,
                     "lagged_snapshots": 0,
                     "unreconstructed_messages": 0,
                     "epochs": [],
@@ -261,6 +318,7 @@ def capture(
             buffered_bytes = 0
             start = last_flush = time.monotonic()
             deadline, failures, reason = start + seconds, 0, "initial"
+            lagged_retry = LaggedRetry()
 
             def flush():
                 nonlocal last_flush, buffered_bytes
@@ -284,17 +342,53 @@ def capture(
                         }
                     )
 
-            def get_snapshot(kind):
+            def get_snapshot(kind, *, already_flushed=False):
                 nonlocal sequence
                 if shutil.disk_usage(store.root).free < minimum:
                     raise DataError("Depth capture stopped: free space below reserve")
-                flush()
+                if not already_flushed:
+                    flush()
                 row = snapshot(store, fetcher, report["id"], epoch_report["epoch"], sequence, kind)
                 sequence += 1
                 report["snapshots"] += 1
                 session.take(row)
                 report["synchronized"] = session.book.synced
                 report["last_update_id"] = session.book.last
+                if session.book.synced:
+                    lagged_retry.reset()
+
+            def retry_lagged_anchor(stop_at):
+                nonlocal session, epoch_report, epoch_started, last_check
+                current = time.monotonic()
+                due = lagged_retry.ready_at(current)
+                if not session.error or due is None or current < due or current >= stop_at:
+                    return
+                # Preserve every received update before changing epochs. Recheck
+                # after a potentially blocking flush; never begin a retry once
+                # the session or physical connection is due to end.
+                flush()
+                current = time.monotonic()
+                if current >= stop_at:
+                    return
+                waited = lagged_retry.claim(current)
+                requested = now()
+                previous_epoch = epoch_report["epoch"]
+                epoch_report["lagged_retry"].update(
+                    requested_at=requested, actual_wait_seconds=waited
+                )
+                epoch_report.update(ended_at=requested)
+                session = depth.new_session(report, "same_socket_after_lagged_snapshot", session)
+                epoch_report = {
+                    "epoch": len(report["epochs"]),
+                    "started_at": requested,
+                    "reason": "same_socket_after_lagged_snapshot",
+                    "retry_of_epoch": previous_epoch,
+                }
+                report["epochs"].append(epoch_report)
+                report["lagged_retry_requests"] += 1
+                epoch_started = current
+                get_snapshot("anchor", already_flushed=True)
+                last_check = time.monotonic()
 
             try:
                 while time.monotonic() < deadline:
@@ -314,6 +408,9 @@ def capture(
                         ) as socket:
                             connected = epoch_started = last_message = last_check = time.monotonic()
                             report["connections"] += 1
+                            # This is a new failure episode, but not a fresh
+                            # rolling request budget.
+                            lagged_retry.reset()
                             session = depth.new_session(report, reason)
                             epoch_report = {
                                 "epoch": len(report["epochs"]),
@@ -332,6 +429,11 @@ def capture(
                             while prefetched or time.monotonic() < min(
                                 deadline, connected + rotate_seconds
                             ):
+                                retry_lagged_anchor(min(deadline, connected + rotate_seconds))
+                                if not prefetched and time.monotonic() >= min(
+                                    deadline, connected + rotate_seconds
+                                ):
+                                    break
                                 try:
                                     if prefetched:
                                         incoming = prefetched.popleft()
@@ -384,21 +486,7 @@ def capture(
                                         or time.monotonic() - last_flush >= flush_seconds
                                     ):
                                         flush()
-                                    if time.monotonic() - last_check >= 10:
-                                        epoch_report.update(ended_at=now())
-                                        flush()
-                                        session = depth.new_session(
-                                            report, "same_socket_after_lagged_snapshot", session
-                                        )
-                                        epoch_report = {
-                                            "epoch": len(report["epochs"]),
-                                            "started_at": now(),
-                                            "reason": "same_socket_after_lagged_snapshot",
-                                        }
-                                        report["epochs"].append(epoch_report)
-                                        epoch_started = time.monotonic()
-                                        get_snapshot("anchor")
-                                        last_check = time.monotonic()
+                                    retry_lagged_anchor(min(deadline, connected + rotate_seconds))
                                     continue
                                 try:
                                     session.take(row)
@@ -409,6 +497,9 @@ def capture(
                                     report["unreconstructed_messages"] += 1
                                     report["synchronized"] = False
                                     epoch_report.update(end_reason="lagged_snapshot")
+                                    epoch_report["lagged_retry"] = lagged_retry.failed(
+                                        time.monotonic()
+                                    )
                                     last_check = time.monotonic()
                                     flush()
                                     continue
@@ -443,6 +534,8 @@ def capture(
                                     continue
                                 report["synchronized"] = session.book.synced
                                 report["last_update_id"] = session.book.last
+                                if session.book.synced:
+                                    lagged_retry.reset()
                                 if (
                                     not session.book.synced
                                     and time.monotonic() - epoch_started > 15

@@ -1,0 +1,79 @@
+{
+  "sampled_at": "2026-09-29T09:44:36.029734+00:00",
+  "since": "2026-09-26T03:38:00+00:00",
+  "sessions": 79,
+  "states": {
+    "complete": 70,
+    "interrupted": 2,
+    "partial": 6,
+    "running": 1
+  },
+  "epoch_reasons": {
+    "initial": 77,
+    "planned_rotation": 234,
+    "reconnect_after_disconnect": 2,
+    "same_socket_after_coverage_exhausted": 4,
+    "same_socket_after_lagged_snapshot": 2
+  },
+  "failed_epoch_reasons": {
+    "coverage_exhausted": 4,
+    "lagged_snapshot": 2
+  },
+  "failures": [
+    {
+      "collection_id": "e0c081881cac458798a7ae7f424e1af3",
+      "epoch": 2,
+      "reason": "planned_rotation",
+      "end_reason": "coverage_exhausted",
+      "ended_at": "2026-09-28T00:21:01.086548+00:00",
+      "error": "Known snapshot price range exhausted",
+      "unreconstructed_messages_in_collection": 0
+    },
+    {
+      "collection_id": "d59f0bdbd3db4c1ba6ba54f0b1bee4d8",
+      "epoch": 3,
+      "reason": "planned_rotation",
+      "end_reason": "lagged_snapshot",
+      "ended_at": "2026-09-28T03:29:51.765206+00:00",
+      "error": "Snapshot bridge missing: expected U <= lastUpdateId <= u",
+      "unreconstructed_messages_in_collection": 101
+    },
+    {
+      "collection_id": "5f2ff1f136714e4abf4b1973d75e6846",
+      "epoch": 3,
+      "reason": "planned_rotation",
+      "end_reason": "coverage_exhausted",
+      "ended_at": "2026-09-28T05:38:51.050126+00:00",
+      "error": "Known snapshot price range exhausted",
+      "unreconstructed_messages_in_collection": 0
+    },
+    {
+      "collection_id": "884a5a24e6e8431ea04f71d3950a731d",
+      "epoch": 1,
+      "reason": "planned_rotation",
+      "end_reason": "coverage_exhausted",
+      "ended_at": "2026-09-28T16:16:44.130801+00:00",
+      "error": "Known snapshot price range exhausted",
+      "unreconstructed_messages_in_collection": 0
+    },
+    {
+      "collection_id": "d915979fa3f54359bc53492103b89932",
+      "epoch": 1,
+      "reason": "planned_rotation",
+      "end_reason": "lagged_snapshot",
+      "ended_at": "2026-09-28T17:03:50.206570+00:00",
+      "error": "Snapshot bridge missing: expected U <= lastUpdateId <= u",
+      "unreconstructed_messages_in_collection": 102
+    },
+    {
+      "collection_id": "d915979fa3f54359bc53492103b89932",
+      "epoch": 2,
+      "reason": "same_socket_after_lagged_snapshot",
+      "end_reason": "coverage_exhausted",
+      "ended_at": "2026-09-28T17:11:29.757177+00:00",
+      "error": "Known snapshot price range exhausted",
+      "unreconstructed_messages_in_collection": 102
+    }
+  ],
+  "scope": "catalog session reports since deployment; denominator includes current running session; not independently replayed in full"
+}

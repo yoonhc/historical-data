@@ -193,10 +193,10 @@ def test_lagged_epoch_retains_skipped_updates_for_same_socket_retry(store, monke
         [snapshot(90), snapshot(101)],
         seconds=19,
     )
-    assert report["lagged_snapshots"] == 1 and report["unreconstructed_messages"] == 3
+    assert report["lagged_snapshots"] == 1 and report["unreconstructed_messages"] == 2
     assert report["epochs"][0]["final"]["counts"]["applied"] == 0
     final = report["epochs"][1]["final"]
-    assert final["anchor_history"]["applied"] == 2 and final["counts"]["applied"] == 1
+    assert final["anchor_history"]["applied"] == 1 and final["counts"]["applied"] == 2
     assert final["book"]["last_update_id"] == 103
     replayed = depth.replay(store)
     assert replayed["replay_matches_live"] and not replayed["valid"]

@@ -1,0 +1,102 @@
+{
+  "actual_last_session_end": "2026-09-30T11:00:27.077339+00:00",
+  "aggtrade_report_connection_errors": 0,
+  "aggtrade_report_states": {
+    "complete": 24
+  },
+  "aggtrade_report_unrepaired_gaps": 0,
+  "all_epoch_books_synced": true,
+  "catalog_rows_all_match_reports": true,
+  "epoch_errors": [],
+  "finished_at": "2026-09-30T11:43:34.435679+00:00",
+  "previous_first_session_proof": "../depth-retry-2026-09-29/operating-check.json",
+  "protected_hash_matches": {
+    "/home/yoonhc/.config/systemd/user/marketdata-aggtrade.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-depth.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-25/initial/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-25/linked/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-26/d4e81e6b027349cdb2e372da4f47288d/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-27/0650d76dddf94cbeb7ff1d998f9065e5/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-28/0c547ccdd29647d2a76f7083d786f140/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-29/0d84de71d71643a38d0250e061cc68e8/backup.json": true
+  },
+  "raw_parity_scope": "the explicitly selected samples only; no claim of complete raw parity over all 24 sessions",
+  "recorded_at": "2026-09-30T11:40:28.755563+00:00",
+  "requested_window_end_exclusive": "2026-09-30T10:53:47.543931+00:00",
+  "requested_window_start": "2026-09-29T10:53:47.543931+00:00",
+  "retry_observed": false,
+  "sample_collection_ids": [
+    "9b68dfa8a9b2401cba1e3b4ec6a698fa",
+    "2d316b8db1f34820bf04b8fd3246bc9d"
+  ],
+  "sample_selection": "one complete session covering today's daily work, and the latest complete session",
+  "sample_verification": "passed",
+  "samples": [
+    {
+      "all_snapshot_checks_verified": true,
+      "checked_at": "2026-09-30T11:42:00.104441+00:00",
+      "collection_id": "9b68dfa8a9b2401cba1e3b4ec6a698fa",
+      "delayed_snapshot_checks": [],
+      "price_quantity_pairs_checked": 3627462,
+      "raw_to_canonical_equal": true,
+      "replay_matches_live": true,
+      "replay_valid": true,
+      "rows_checked": 35584,
+      "source_artifacts": 1063,
+      "verification_checks": 351,
+      "verification_complete": true,
+      "verification_equal": 351
+    },
+    {
+      "all_snapshot_checks_verified": true,
+      "checked_at": "2026-09-30T11:43:34.435392+00:00",
+      "collection_id": "2d316b8db1f34820bf04b8fd3246bc9d",
+      "delayed_snapshot_checks": [],
+      "price_quantity_pairs_checked": 4243631,
+      "raw_to_canonical_equal": true,
+      "replay_matches_live": true,
+      "replay_valid": true,
+      "rows_checked": 35570,
+      "source_artifacts": 1063,
+      "verification_checks": 351,
+      "verification_complete": true,
+      "verification_equal": 351
+    }
+  ],
+  "selection": "whole completed sessions starting within the first 24 hours of activation; last session retained to its actual end",
+  "source_matches_deployment": true,
+  "states": {
+    "complete": 24
+  },
+  "totals": {
+    "canonical_rows": 853943,
+    "connection_errors": 0,
+    "connections": 96,
+    "coverage_resets": 0,
+    "lagged_retry_requests": 0,
+    "lagged_snapshots": 0,
+    "messages": 845439,
+    "persisted_messages": 845439,
+    "snapshots": 8504,
+    "sync_losses": 0,
+    "unreconstructed_messages": 0,
+    "verification_checks": 8407,
+    "verification_equal": 8407,
+    "verification_pending": 1,
+    "verification_uncomparable": 0
+  }
+}

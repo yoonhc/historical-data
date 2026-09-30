@@ -1,0 +1,89 @@
+{
+  "bootstrap_byte_comparisons": [
+    {
+      "bootstrap_message_bytes_equal_journal": true,
+      "bridge_absent_between_captured_connections": true,
+      "collection_id": "d59f0bdbd3db4c1ba6ba54f0b1bee4d8",
+      "epoch": 3,
+      "first_new_socket_U": 11675542721528,
+      "first_new_socket_pu": 11675542721465,
+      "previous_socket_final_id": 11675541626712,
+      "receipt_time_equal": true,
+      "snapshot_id": 11675542716168
+    },
+    {
+      "bootstrap_message_bytes_equal_journal": true,
+      "bridge_absent_between_captured_connections": true,
+      "collection_id": "d915979fa3f54359bc53492103b89932",
+      "epoch": 1,
+      "first_new_socket_U": 11681741471761,
+      "first_new_socket_pu": 11681741471631,
+      "previous_socket_final_id": 11681741036339,
+      "receipt_time_equal": true,
+      "snapshot_id": 11681741470964
+    }
+  ],
+  "checked_at": "2026-09-29T09:51:29.474083+00:00",
+  "independent_same_socket_recoveries": [
+    {
+      "all_used_events_received_before_new_anchor": true,
+      "applied_sequences": [
+        16839,
+        16840
+      ],
+      "collection_id": "884a5a24e6e8431ea04f71d3950a731d",
+      "failed_coverage_event_included": true,
+      "failed_epoch": 1,
+      "independent_raw_reduction_matches": true,
+      "known_ask_levels": 880,
+      "known_bid_levels": 1066,
+      "last_update_id": 11681323355141,
+      "new_epoch": 2,
+      "recorded_anchor_history": {
+        "aligned": true,
+        "applied": 2,
+        "events": 108,
+        "first_sequence": 16839,
+        "last_sequence": 16840,
+        "last_update_id": 11681323355141,
+        "levels": 49854,
+        "serialized_bytes": 3419268
+      },
+      "snapshot_sequence": 16841
+    },
+    {
+      "all_used_events_received_before_new_anchor": true,
+      "applied_sequences": [
+        13547,
+        13548,
+        13549,
+        13550
+      ],
+      "collection_id": "d915979fa3f54359bc53492103b89932",
+      "failed_coverage_event_included": true,
+      "failed_epoch": 2,
+      "independent_raw_reduction_matches": true,
+      "known_ask_levels": 795,
+      "known_bid_levels": 1073,
+      "last_update_id": 11681799340711,
+      "new_epoch": 3,
+      "recorded_anchor_history": {
+        "aligned": true,
+        "applied": 4,
+        "events": 38,
+        "first_sequence": 13547,
+        "last_sequence": 13550,
+        "last_update_id": 11681799340711,
+        "levels": 49221,
+        "serialized_bytes": 3325120
+      },
+      "snapshot_sequence": 13551
+    }
+  ],
+  "live_report_hashes_unchanged": [
+    "d59f0bdbd3db4c1ba6ba54f0b1bee4d8",
+    "884a5a24e6e8431ea04f71d3950a731d",
+    "d915979fa3f54359bc53492103b89932"
+  ],
+  "scope": "exact bootstrap bytes; missing bridge at captured connection boundary; independent raw reducer for two actual same-socket recovery candidates; no historical quality changes"
+}
