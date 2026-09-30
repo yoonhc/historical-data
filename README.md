@@ -209,12 +209,16 @@ loginctl enable-linger "$USER"
 백업은 수집기를 멈춘 상태에서 `data/`와 `state/`를 함께 복사하거나 SQLite 백업 API를 사용합니다.
 수집 중에도 일관된 복구 지점을 만드는 `marketdata backup`, `backup-verify`, `restore` 명령을
 제공합니다. 자동 백업은 두 번째 SSD에 보관하고, 이전 사본의 동일 파일을 재사용해 반복 저장을
-줄입니다. 원본과 복원본은 독립 사본이며 보관 기간 제한은 없습니다.
+줄입니다. 원본과 복원본은 독립 사본입니다. 현재 사본 삭제·기간 제한을 적용하지 않으며,
+원본·revision 보존과 날짜별 백업 복구 지점의 최종 보관 정책은 별도로 다룹니다.
 [백업 범위·증분 저장·별도 경로 복원·용량 점검](docs/backup-and-storage.md)을 확인하세요.
 하드링크 백업과 restic의 용량·복구 비교, VM 이전을 위한 호스트 설정 분리는
 [restic 독립 시험 절차](docs/restic-trial.md)에 정리했습니다.
 후속 [restic 일일 백업 연결 설계](docs/restic-operations-plan.md)는 완료된 사본의 별도 보관,
-중단 후 재개·성공 판정·예약 관찰 기준을 정의합니다. 운영 자동화는 아직 적용 전입니다.
+중단 후 재개·성공 판정·예약 관찰 기준을 정의합니다.
+[병행 보관 도구 실행 안내](docs/restic-archive.md)에 구현 명령과 설정·시각·복원 계약을 정리했습니다.
+9/27 별도 타이머를 적용했습니다. [예약 운영·날짜별 관찰·새 예약만 중지하는 절차](docs/restic-scheduled-operations.md)를
+확인하세요. 새 날짜 3개와 새 사본 복원은 실제 예약 기록으로 별도 관찰합니다.
 활성 revision을 무시하고 모든 Parquet을 glob으로 읽으면 수정 전후 데이터가 중복됩니다.
 
 ## Python 조회

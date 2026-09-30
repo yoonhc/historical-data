@@ -1,0 +1,486 @@
+[
+  {
+    "complete": true,
+    "coverage": {
+      "blocked_days": [],
+      "complete": true,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 0,
+      "missing_ranges": [],
+      "missing_rows": 0,
+      "semantics": "bar_grid",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "coverage_before": {
+      "blocked_days": [],
+      "complete": true,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 0,
+      "missing_ranges": [],
+      "missing_rows": 0,
+      "semantics": "bar_grid",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "end": "2026-09-30T00:00:00+00:00",
+    "errors": [],
+    "key": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+    "plan": {
+      "deferred_days": 0,
+      "expired_missing_ranges": [],
+      "ranges": [
+        [
+          "2026-09-27T00:00:00+00:00",
+          "2026-09-28T00:00:00+00:00"
+        ],
+        [
+          "2026-09-28T00:00:00+00:00",
+          "2026-09-29T00:00:00+00:00"
+        ],
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "retention_floor": null
+    },
+    "results": [
+      {
+        "date": "2026-09-27",
+        "revision": "fba380f8418852b36c4ac1ae1c76d0836c3d6bfd13e7d599af6acf349755e696",
+        "rows": 1440,
+        "state": "published"
+      },
+      {
+        "date": "2026-09-28",
+        "revision": "82c568d5064244e1b5dd032a7ef24d59981e21cdce414e5bda7bcabbf5dd3d90",
+        "rows": 1440,
+        "state": "published"
+      },
+      {
+        "date": "2026-09-29",
+        "revision": "7a04ac2f14b2fab7038ce131d6423d9bdb798bc4dc3a103840e48fb2175c08c9",
+        "rows": 1440,
+        "state": "published"
+      }
+    ],
+    "run_id": "350232c5917d4f1b8639ff8b70f0e3c9",
+    "start": "2026-09-14T00:00:00+00:00",
+    "state": "complete"
+  },
+  {
+    "complete": false,
+    "coverage": {
+      "blocked_days": [],
+      "complete": false,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 1,
+      "missing_ranges": [
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "missing_rows": 1440,
+      "semantics": "bar_grid",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "coverage_before": {
+      "blocked_days": [],
+      "complete": false,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 1,
+      "missing_ranges": [
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "missing_rows": 1440,
+      "semantics": "bar_grid",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "end": "2026-09-30T00:00:00+00:00",
+    "errors": [],
+    "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+    "plan": {
+      "deferred_days": 0,
+      "expired_missing_ranges": [],
+      "ranges": [
+        [
+          "2026-09-27T00:00:00+00:00",
+          "2026-09-28T00:00:00+00:00"
+        ],
+        [
+          "2026-09-28T00:00:00+00:00",
+          "2026-09-29T00:00:00+00:00"
+        ],
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "retention_floor": null
+    },
+    "results": [
+      {
+        "date": "2026-09-27",
+        "revision": "8609fc1ae0edec0320de3a1803256f3477c9ec829496d147fc376788b6f3d02f",
+        "rows": 1440,
+        "state": "published"
+      },
+      {
+        "date": "2026-09-28",
+        "revision": "25c479b1d7c5bf6895629b5d2a9730630010c48886c9b7ffe2584a317ddabd62",
+        "rows": 1440,
+        "state": "published"
+      },
+      {
+        "end": "2026-09-30T00:00:00+00:00",
+        "start": "2026-09-29T00:00:00+00:00",
+        "state": "waiting_source",
+        "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-09-29.zip"
+      }
+    ],
+    "run_id": "b76a4b0e4cc743e2a76b1dd79d643b42",
+    "start": "2026-09-14T00:00:00+00:00",
+    "state": "partial"
+  },
+  {
+    "complete": false,
+    "coverage": {
+      "blocked_days": [],
+      "complete": false,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 1,
+      "missing_ranges": [
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "missing_rows": 1440,
+      "semantics": "bar_grid",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "coverage_before": {
+      "blocked_days": [],
+      "complete": false,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 1,
+      "missing_ranges": [
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "missing_rows": 1440,
+      "semantics": "bar_grid",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "end": "2026-09-30T00:00:00+00:00",
+    "errors": [],
+    "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+    "plan": {
+      "deferred_days": 0,
+      "expired_missing_ranges": [],
+      "ranges": [
+        [
+          "2026-09-27T00:00:00+00:00",
+          "2026-09-28T00:00:00+00:00"
+        ],
+        [
+          "2026-09-28T00:00:00+00:00",
+          "2026-09-29T00:00:00+00:00"
+        ],
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "retention_floor": null
+    },
+    "results": [
+      {
+        "date": "2026-09-27",
+        "revision": "e49437d780adb43fef03d1f84597660275cd9b372f1f2d526c805981ea49570c",
+        "rows": 1440,
+        "state": "published"
+      },
+      {
+        "date": "2026-09-28",
+        "revision": "4db81b7332485f0bfdf6ba3998ce355a53356a206a6cedf509bc999a8adafeaa",
+        "rows": 1440,
+        "state": "published"
+      },
+      {
+        "end": "2026-09-30T00:00:00+00:00",
+        "start": "2026-09-29T00:00:00+00:00",
+        "state": "waiting_source",
+        "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-09-29.zip"
+      }
+    ],
+    "run_id": "32be48011eec495cbd3f9dc81688ac80",
+    "start": "2026-09-14T00:00:00+00:00",
+    "state": "partial"
+  },
+  {
+    "complete": false,
+    "coverage": {
+      "blocked_days": [],
+      "complete": false,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 1,
+      "missing_ranges": [
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "missing_rows": 1440,
+      "semantics": "bar_grid",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "coverage_before": {
+      "blocked_days": [],
+      "complete": false,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 1,
+      "missing_ranges": [
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "missing_rows": 1440,
+      "semantics": "bar_grid",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "end": "2026-09-30T00:00:00+00:00",
+    "errors": [],
+    "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+    "plan": {
+      "deferred_days": 0,
+      "expired_missing_ranges": [],
+      "ranges": [
+        [
+          "2026-09-27T00:00:00+00:00",
+          "2026-09-28T00:00:00+00:00"
+        ],
+        [
+          "2026-09-28T00:00:00+00:00",
+          "2026-09-29T00:00:00+00:00"
+        ],
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "retention_floor": null
+    },
+    "results": [
+      {
+        "date": "2026-09-27",
+        "revision": "c655644902beccc95705c6fe6808fca64d7a02d50b7f2413bbf666b7a923f629",
+        "rows": 1440,
+        "state": "published"
+      },
+      {
+        "date": "2026-09-28",
+        "revision": "575de3ca9f4bde15aac2f41a87b31182ac433b91fe00f64a1bfffdfaa2491d2e",
+        "rows": 1440,
+        "state": "published"
+      },
+      {
+        "end": "2026-09-30T00:00:00+00:00",
+        "start": "2026-09-29T00:00:00+00:00",
+        "state": "waiting_source",
+        "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-09-29.zip"
+      }
+    ],
+    "run_id": "56aec590bc7c431e89cdc82133ce92ad",
+    "start": "2026-09-14T00:00:00+00:00",
+    "state": "partial"
+  },
+  {
+    "complete": true,
+    "coverage": {
+      "blocked_days": [],
+      "complete": true,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 0,
+      "missing_ranges": [],
+      "missing_rows": null,
+      "semantics": "source_query_coverage_not_proof_of_event_completeness",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "coverage_before": {
+      "blocked_days": [],
+      "complete": true,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 0,
+      "missing_ranges": [],
+      "missing_rows": null,
+      "semantics": "source_query_coverage_not_proof_of_event_completeness",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "end": "2026-09-30T00:00:00+00:00",
+    "errors": [],
+    "key": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+    "plan": {
+      "deferred_days": 0,
+      "expired_missing_ranges": [],
+      "ranges": [
+        [
+          "2026-09-27T00:00:00+00:00",
+          "2026-09-28T00:00:00+00:00"
+        ],
+        [
+          "2026-09-28T00:00:00+00:00",
+          "2026-09-29T00:00:00+00:00"
+        ],
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "retention_floor": null
+    },
+    "results": [
+      {
+        "date": "2026-09-27",
+        "revision": "909ee042d50979e941c2abe6684dcbf9efd4c7380000807ac574d1ac3d507d1f",
+        "rows": 3,
+        "state": "published"
+      },
+      {
+        "date": "2026-09-28",
+        "revision": "21e4e1f89e3e19556d66b72349340f24767e34a9bd2033cf02da1c415ed54e25",
+        "rows": 3,
+        "state": "published"
+      },
+      {
+        "date": "2026-09-29",
+        "revision": "55bed64a9e47bb690605a995432364807df149debb9f34a2efbd06829b79522e",
+        "rows": 3,
+        "state": "published"
+      }
+    ],
+    "run_id": "58ec0be59ff640f48398d5bb83afd865",
+    "start": "2026-09-14T00:00:00+00:00",
+    "state": "complete"
+  },
+  {
+    "complete": false,
+    "coverage": {
+      "blocked_days": [],
+      "complete": false,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 1,
+      "missing_ranges": [
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "missing_rows": 288,
+      "semantics": "source_label_grid_only",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "coverage_before": {
+      "blocked_days": [],
+      "complete": false,
+      "end": "2026-09-30T00:00:00+00:00",
+      "missing_days": 1,
+      "missing_ranges": [
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "missing_rows": 288,
+      "semantics": "source_label_grid_only",
+      "start": "2026-09-14T00:00:00+00:00"
+    },
+    "end": "2026-09-30T00:00:00+00:00",
+    "errors": [],
+    "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+    "plan": {
+      "deferred_days": 0,
+      "expired_missing_ranges": [],
+      "ranges": [
+        [
+          "2026-09-27T00:00:00+00:00",
+          "2026-09-28T00:00:00+00:00"
+        ],
+        [
+          "2026-09-28T00:00:00+00:00",
+          "2026-09-29T00:00:00+00:00"
+        ],
+        [
+          "2026-09-29T00:00:00+00:00",
+          "2026-09-30T00:00:00+00:00"
+        ]
+      ],
+      "retention_floor": null
+    },
+    "results": [
+      {
+        "date": "2026-09-27",
+        "revision": "f12d3138899aeaa494eb7bd1ba69d693049f8c12bda79065b5b32b0502c4cd4a",
+        "rows": 288,
+        "state": "published"
+      },
+      {
+        "date": "2026-09-28",
+        "revision": "5ba5341651b6aa8c2723208e46b300d050c04910982f445dd0ca72a144091572",
+        "rows": 288,
+        "state": "published"
+      },
+      {
+        "end": "2026-09-30T00:00:00+00:00",
+        "start": "2026-09-29T00:00:00+00:00",
+        "state": "waiting_source",
+        "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-09-29.zip"
+      }
+    ],
+    "run_id": "0c27392f0b964797ba5793d9c13e0c45",
+    "start": "2026-09-14T00:00:00+00:00",
+    "state": "partial"
+  },
+  {
+    "complete": true,
+    "end": "2026-09-30T03:25:36.790293+00:00",
+    "errors": [],
+    "key": "binance:spot:BTCUSDT:instrument_metadata:event:primary",
+    "results": [
+      {
+        "date": "2026-09-30",
+        "revision": "abfad22ad98f6f743fab262dff9f6e506d56ee56c402fe94fb4dfd26e64d3aeb",
+        "rows": 5,
+        "state": "published"
+      }
+    ],
+    "run_id": "f381fd7886464480a255232c01ee7e5e",
+    "semantics": "current_observation_only",
+    "start": "2026-09-14T00:00:00+00:00",
+    "state": "complete"
+  },
+  {
+    "complete": true,
+    "end": "2026-09-30T03:25:36.790293+00:00",
+    "errors": [],
+    "key": "binance:linear_perpetual:BTCUSDT:instrument_metadata:event:primary",
+    "results": [
+      {
+        "date": "2026-09-30",
+        "revision": "6bb9845a3cf5d03b5c6602f8b36eaf4eed515bc09d35deeaa6c31df627ebe287",
+        "rows": 5,
+        "state": "published"
+      }
+    ],
+    "run_id": "a7d30ed5ef054b2d92cda333d21a3361",
+    "semantics": "current_observation_only",
+    "start": "2026-09-14T00:00:00+00:00",
+    "state": "complete"
+  }
+]

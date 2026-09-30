@@ -1,0 +1,457 @@
+{
+  "recorded_at": "2026-09-27T13:18:14.973710+00:00",
+  "scope": "new restic timer activation; future distinct daily dates and new-snapshot restoration pending",
+  "preflight": {
+    "checked_at": "2026-09-27T13:05:50.497709+00:00",
+    "uid": 1000,
+    "user": "yoonhc",
+    "python_executable": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+    "python_resolved": "/usr/bin/python3.12",
+    "python_version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "restic_version": "restic 0.19.1 compiled with go1.26.4 on linux/amd64",
+    "restic_binary": "/home/yoonhc/projects/algoTrade/historical_data/.cache/restic/0.19.1/restic",
+    "restic_sha256": "20d4142678d0d95ec11a4759def1b73fd9190abc9ca19e4b62d067c0b387e639",
+    "profile": "/home/yoonhc/.config/marketdata/restic-archive.toml",
+    "profile_mode": "0600",
+    "profile_sha256": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+    "password_file": "/home/yoonhc/.config/marketdata/secrets/restic-password",
+    "password_mode": "0600",
+    "password_readable": true,
+    "repository_id": "b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558",
+    "filesystem_uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+    "repository_identity_verified": true,
+    "mount_uuid_verified": true,
+    "linger": "UID=1000\nState=active\nLinger=yes\n",
+    "unit_verify": {
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "existing_units_sha256": {
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.service": "7ba5289fc742422fd1935bfe4515c274775262a5e6195214b2533311ab8d9d5c",
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+      "/home/yoonhc/.config/systemd/user/marketdata-depth.service": "ae49746c2c248f9b57d427c434215bda356a321c30c65d4f98d1de8620d4e833",
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676",
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+      "/home/yoonhc/.config/systemd/user/marketdata-aggtrade.service": "5a1b6b51c1a5669db24d08b8b5d66e8c84fe541e23c6863dc9e67cf0eb29099d",
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.service": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2",
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.service": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": "c67b3d1268e6b38f9ccee07d12192579708b826851e7269be5c0b7a61eee03dd",
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.service": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389"
+    },
+    "existing_manifests_sha256": {
+      "/mnt/backup/marketdata-historical/automatic/2026-09-27/0650d76dddf94cbeb7ff1d998f9065e5/backup.json": "f2bb27dd39d5dd92ab3520278e957b03c9402059f68da5c92124be995458c6eb",
+      "/mnt/backup/marketdata-historical/automatic/2026-09-25/linked/backup.json": "5c6795cf1014cdf06cc0f168c24f771e6a1ebe8a5447c2ed2d18ea88ac73171d",
+      "/mnt/backup/marketdata-historical/automatic/2026-09-25/initial/backup.json": "f7fd6c07acb86c920504cf01d2df230870ebb6f54783ba6fbf991491cf900246",
+      "/mnt/backup/marketdata-historical/automatic/2026-09-26/d4e81e6b027349cdb2e372da4f47288d/backup.json": "ec8537202d08af3d20841c3f7c7efb209b51e830cd5d73459aafe61a3446e2a2"
+    },
+    "source_sha256": {
+      "/home/yoonhc/projects/algoTrade/historical_data/scripts/restic_schedule.py": "2c38ecd13264d25577f65d459690305509019e624d78063047c34c20aaa6b645",
+      "/home/yoonhc/projects/algoTrade/historical_data/scripts/archive_backups.py": "106a6de29c27c34656481fab8845e289cb7182739569c96349562ad358634de5",
+      "/home/yoonhc/projects/algoTrade/historical_data/scripts/restic_trial.py": "c0be167b772af2df6a0d2c1e3ae05acbd3f7f76f94df8ba93fc3e9227ae2144e"
+    },
+    "no_service_restarted": true,
+    "discovered_input_ids": [
+      "07af2f97fe8471c91f409bb7ac81c16b34add0ec8c549f2415b92f22122aefe3"
+    ]
+  },
+  "installation": {
+    "units": {
+      "marketdata-restic-archive.service": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+      "marketdata-restic-archive.timer": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b"
+    },
+    "environment_file": "/home/yoonhc/.config/marketdata/restic-service.env",
+    "environment_sha256": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9",
+    "observation_started_at": "2026-09-27T13:07:27.772948+00:00",
+    "manual_service_properties": "Result=success\nExecMainStartTimestamp=\nExecMainExitTimestamp=\nExecMainStatus=0\nWorkingDirectory=/home/yoonhc\nNice=10\nUser=\nId=marketdata-restic-archive.service\nActiveState=inactive\nSubState=dead\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service\nInvocationID=\n",
+    "timer_enabled": false,
+    "existing_services_restarted": false
+  },
+  "application": {
+    "runs": [
+      {
+        "archive": {
+          "action": "run",
+          "binary_sha256": "20d4142678d0d95ec11a4759def1b73fd9190abc9ca19e4b62d067c0b387e639",
+          "finished_at": "2026-09-27T13:07:32.211034+00:00",
+          "ok": true,
+          "profile_sha256": "3dff81754b14edef5b03c1827a9d1654ae5d694433caa34550c9195c0bf138be",
+          "restic_version": "restic 0.19.1 compiled with go1.26.4 on linux/amd64",
+          "result": {
+            "ok": true,
+            "processed": 0,
+            "stored_snapshots": [
+              "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1"
+            ]
+          },
+          "run_id": "89d2bf47f1de48bea28d23c13100bd45",
+          "started_at": "2026-09-27T13:07:28.092999+00:00"
+        },
+        "context": {
+          "classification": "manual_service_or_unknown",
+          "cwd": "/home/yoonhc",
+          "environment": {
+            "INVOCATION_ID": "046ea74610fa4f83bd8869e3f326d11a",
+            "TRIGGER_TIMER_MONOTONIC_USEC": null,
+            "TRIGGER_TIMER_REALTIME_USEC": null,
+            "TRIGGER_UNIT": null
+          },
+          "module": "/home/yoonhc/projects/algoTrade/historical_data/scripts/restic_schedule.py",
+          "module_sha256": "2c38ecd13264d25577f65d459690305509019e624d78063047c34c20aaa6b645",
+          "pid": 99896,
+          "python": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+          "scheduled": false,
+          "service_properties": {
+            "Id": "marketdata-restic-archive.service",
+            "InvocationID": "046ea74610fa4f83bd8869e3f326d11a",
+            "MainPID": "99896"
+          },
+          "service_verified": true,
+          "uid": 1000,
+          "user": "yoonhc"
+        },
+        "counted_dates": [],
+        "finished_at": "2026-09-27T13:07:32.213890+00:00",
+        "ok": true,
+        "progress": {
+          "complete": false,
+          "completed_dates": 0,
+          "date_evidence": {},
+          "qualified_dates": [],
+          "recorded_runs": 1,
+          "remaining_dates": 3,
+          "required_distinct_dates": 3,
+          "restore": {
+            "status": "awaiting_new_snapshot"
+          },
+          "started_at": "2026-09-27T13:07:27.772948+00:00"
+        },
+        "restore": null,
+        "run_id": "1662e13cb10d4f84acd7711eeead8409",
+        "started_at": "2026-09-27T13:07:28.088094+00:00"
+      },
+      {
+        "archive": {
+          "action": "run",
+          "binary_sha256": "20d4142678d0d95ec11a4759def1b73fd9190abc9ca19e4b62d067c0b387e639",
+          "finished_at": "2026-09-27T13:08:41.406252+00:00",
+          "ok": true,
+          "profile_sha256": "3dff81754b14edef5b03c1827a9d1654ae5d694433caa34550c9195c0bf138be",
+          "restic_version": "restic 0.19.1 compiled with go1.26.4 on linux/amd64",
+          "result": {
+            "ok": true,
+            "processed": 0,
+            "stored_snapshots": [
+              "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1"
+            ]
+          },
+          "run_id": "62c994073cfa46efaa7d680ecc6a1f42",
+          "started_at": "2026-09-27T13:08:37.305662+00:00"
+        },
+        "context": {
+          "classification": "verified_timer",
+          "cwd": "/home/yoonhc",
+          "environment": {
+            "INVOCATION_ID": "d0c4c20a9b814644a7f9537995289f03",
+            "TRIGGER_TIMER_MONOTONIC_USEC": "45098294050",
+            "TRIGGER_TIMER_REALTIME_USEC": "1790514517155875",
+            "TRIGGER_UNIT": "marketdata-restic-archive.timer"
+          },
+          "module": "/home/yoonhc/projects/algoTrade/historical_data/scripts/restic_schedule.py",
+          "module_sha256": "2c38ecd13264d25577f65d459690305509019e624d78063047c34c20aaa6b645",
+          "pid": 100150,
+          "python": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+          "scheduled": true,
+          "service_properties": {
+            "Id": "marketdata-restic-archive.service",
+            "InvocationID": "d0c4c20a9b814644a7f9537995289f03",
+            "MainPID": "100150"
+          },
+          "service_verified": true,
+          "trigger_at": "2026-09-27T13:08:37.155875+00:00",
+          "uid": 1000,
+          "user": "yoonhc"
+        },
+        "counted_dates": [],
+        "finished_at": "2026-09-27T13:08:41.409063+00:00",
+        "ok": true,
+        "progress": {
+          "complete": false,
+          "completed_dates": 0,
+          "date_evidence": {},
+          "qualified_dates": [],
+          "recorded_runs": 2,
+          "remaining_dates": 3,
+          "required_distinct_dates": 3,
+          "restore": {
+            "status": "awaiting_new_snapshot"
+          },
+          "started_at": "2026-09-27T13:07:27.772948+00:00"
+        },
+        "restore": null,
+        "run_id": "6ac15b2516704d0abe69ce1f01d52bda",
+        "started_at": "2026-09-27T13:08:37.301498+00:00"
+      }
+    ],
+    "observation": {
+      "date_basis": "checkpoint_finished_at UTC",
+      "excluded_backup_ids": [
+        "07af2f97fe8471c91f409bb7ac81c16b34add0ec8c549f2415b92f22122aefe3"
+      ],
+      "identity": {
+        "archive_scope": "historical-data-original-v1",
+        "repository_id": "b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558",
+        "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "last_run": {
+        "finished_at": "2026-09-27T13:08:41.409063+00:00",
+        "ok": true,
+        "report": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/scheduled/6ac15b2516704d0abe69ce1f01d52bda.json",
+        "run_id": "6ac15b2516704d0abe69ce1f01d52bda"
+      },
+      "qualified_dates": {},
+      "required_distinct_dates": 3,
+      "restore": {
+        "status": "awaiting_new_snapshot"
+      },
+      "runs": [
+        {
+          "report": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/scheduled/1662e13cb10d4f84acd7711eeead8409.json",
+          "run_id": "1662e13cb10d4f84acd7711eeead8409",
+          "started_at": "2026-09-27T13:07:28.088094+00:00"
+        },
+        {
+          "report": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/scheduled/6ac15b2516704d0abe69ce1f01d52bda.json",
+          "run_id": "6ac15b2516704d0abe69ce1f01d52bda",
+          "started_at": "2026-09-27T13:08:37.301498+00:00"
+        }
+      ],
+      "started_at": "2026-09-27T13:07:27.772948+00:00",
+      "updated_at": "2026-09-27T13:08:41.409072+00:00",
+      "version": 1
+    },
+    "archive_status": {
+      "identity": {
+        "repository_id": "b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558",
+        "archive_scope": "historical-data-original-v1",
+        "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "latest_checkpoint": {
+        "backup_id": "07af2f97fe8471c91f409bb7ac81c16b34add0ec8c549f2415b92f22122aefe3",
+        "path": "/mnt/backup/marketdata-historical/automatic/2026-09-27/0650d76dddf94cbeb7ff1d998f9065e5",
+        "source_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "manifest_sha256": "f2bb27dd39d5dd92ab3520278e957b03c9402059f68da5c92124be995458c6eb",
+        "checkpoint_at": "2026-09-27T04:23:59.463214+00:00",
+        "checkpoint_started_at": "2026-09-27T04:23:58.538040+00:00",
+        "completed_at": "2026-09-27T04:25:23.118468+00:00",
+        "snapshot_time_basis": "checkpoint_finished_at",
+        "snapshot_timezone": "UTC",
+        "bytes": 10545588298
+      },
+      "latest_stored": {
+        "attempts": [
+          {
+            "command": {
+              "arguments": [
+                "backup",
+                ".",
+                "--time",
+                "2026-09-27 04:23:59.463214",
+                "--tag",
+                "archive_scope=historical-data-original-v1",
+                "--tag",
+                "attempt_id=e26edc7c42e840419552705e50ccc2c7",
+                "--tag",
+                "backup_id=07af2f97fe8471c91f409bb7ac81c16b34add0ec8c549f2415b92f22122aefe3",
+                "--tag",
+                "marketdata-archive-v1",
+                "--force"
+              ],
+              "cwd": "/mnt/backup/marketdata-historical/automatic/2026-09-27/0650d76dddf94cbeb7ff1d998f9065e5",
+              "finished_at": "2026-09-27T12:35:17.322058+00:00",
+              "operation": "backup",
+              "returncode": 0,
+              "started_at": "2026-09-27T12:34:31.280074+00:00",
+              "stderr": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/4ab2d425051745288ae547a24d94379e/8a402e1d711b4c2ea00aabc5a0c416f3.stderr",
+              "stdout": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/4ab2d425051745288ae547a24d94379e/8a402e1d711b4c2ea00aabc5a0c416f3.stdout",
+              "wall_seconds": 46.04186618800304
+            },
+            "finished_at": "2026-09-27T12:35:18.971191+00:00",
+            "id": "e26edc7c42e840419552705e50ccc2c7",
+            "parent": null,
+            "profile_sha256": "3dff81754b14edef5b03c1827a9d1654ae5d694433caa34550c9195c0bf138be",
+            "returncode": 0,
+            "snapshot_id": "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1",
+            "started_at": "2026-09-27T12:34:31.274037+00:00",
+            "status": "stored",
+            "tool_version": 1
+          }
+        ],
+        "entry": {
+          "backup_id": "07af2f97fe8471c91f409bb7ac81c16b34add0ec8c549f2415b92f22122aefe3",
+          "bytes": 10545588298,
+          "checkpoint_at": "2026-09-27T04:23:59.463214+00:00",
+          "checkpoint_started_at": "2026-09-27T04:23:58.538040+00:00",
+          "completed_at": "2026-09-27T04:25:23.118468+00:00",
+          "manifest_sha256": "f2bb27dd39d5dd92ab3520278e957b03c9402059f68da5c92124be995458c6eb",
+          "path": "/mnt/backup/marketdata-historical/automatic/2026-09-27/0650d76dddf94cbeb7ff1d998f9065e5",
+          "snapshot_time_basis": "checkpoint_finished_at",
+          "snapshot_timezone": "UTC",
+          "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+        },
+        "input_verified_at": "2026-09-27T12:34:31.272579+00:00",
+        "reconciliations": [],
+        "stored": {
+          "archive_finished_at": "2026-09-27T12:35:17.322058+00:00",
+          "archive_started_at": "2026-09-27T12:34:31.280074+00:00",
+          "evidence": "exit_0_summary_metadata_manifest",
+          "snapshot_id": "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1"
+        }
+      },
+      "pending": [],
+      "incomplete_folders": [],
+      "repository_check": {
+        "finished_at": "2026-09-27T12:35:27.625880+00:00",
+        "ok": true,
+        "read_data": true,
+        "receipt": {
+          "arguments": [
+            "check",
+            "--read-data"
+          ],
+          "cwd": null,
+          "finished_at": "2026-09-27T12:35:27.625880+00:00",
+          "operation": "check",
+          "returncode": 0,
+          "started_at": "2026-09-27T12:35:18.977292+00:00",
+          "stderr": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/4ab2d425051745288ae547a24d94379e/7f366cf470af4ff8a043fb653311e5ba.stderr",
+          "stdout": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/4ab2d425051745288ae547a24d94379e/7f366cf470af4ff8a043fb653311e5ba.stdout",
+          "wall_seconds": 8.648472246000892
+        },
+        "snapshot_ids": [
+          "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1"
+        ],
+        "started_at": "2026-09-27T12:35:18.972569+00:00",
+        "status": "complete"
+      },
+      "restore_checks": [],
+      "repository_live_checked": false,
+      "last_operation": {
+        "action": "run",
+        "binary_sha256": "20d4142678d0d95ec11a4759def1b73fd9190abc9ca19e4b62d067c0b387e639",
+        "finished_at": "2026-09-27T13:08:41.404804+00:00",
+        "ok": true,
+        "profile_sha256": "3dff81754b14edef5b03c1827a9d1654ae5d694433caa34550c9195c0bf138be",
+        "restic_version": "restic 0.19.1 compiled with go1.26.4 on linux/amd64",
+        "result": {
+          "ok": true,
+          "processed": 0,
+          "stored_snapshots": [
+            "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1"
+          ]
+        },
+        "run_id": "62c994073cfa46efaa7d680ecc6a1f42",
+        "started_at": "2026-09-27T13:08:37.305662+00:00"
+      },
+      "environment": {
+        "ok": true,
+        "expected_filesystem_uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+        "mount": "/mnt/backup",
+        "filesystem_uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+        "free_bytes": 870146203648,
+        "free_inodes": 61964514
+      },
+      "active_operation_record": null,
+      "last_phase_started": {
+        "at": "2026-09-27T12:33:31.023008+00:00",
+        "name": "verify-input"
+      },
+      "daily_stale": false,
+      "oldest_pending_seconds": 0,
+      "archive_late": false,
+      "checkpoint_errors": {},
+      "pending_count": 0,
+      "lock_busy": false,
+      "unchecked_snapshot_ids": [],
+      "healthy": true
+    },
+    "existing_units_unchanged": true,
+    "existing_manifests_unchanged": true,
+    "streams_after": {
+      "at": "2026-09-27 13:13:38.810045+00:00",
+      "aggtrade": {
+        "id": "9b881b7c14e4405288ccf0cc48e7b516",
+        "state": "running",
+        "updated_at": "2026-09-27T13:13:36.564649+00:00",
+        "last_received_at": "2026-09-27T13:13:36.558483+00:00",
+        "sync_losses": null,
+        "synchronized": null,
+        "unreconstructed_messages": null,
+        "lagged_snapshots": null,
+        "unrepaired_gaps": 0,
+        "out_of_order_messages": 0,
+        "connection_errors": 0,
+        "error": null,
+        "flush_error": null,
+        "receive_age_seconds": 2.252671
+      },
+      "depth": {
+        "id": "43131dcfddd0440ab733b951bbfd6cdd",
+        "state": "running",
+        "updated_at": "2026-09-27T13:13:35.831213+00:00",
+        "last_received_at": "2026-09-27T13:13:35.789166+00:00",
+        "sync_losses": 0,
+        "synchronized": true,
+        "unreconstructed_messages": 0,
+        "lagged_snapshots": 0,
+        "unrepaired_gaps": null,
+        "out_of_order_messages": null,
+        "connection_errors": 0,
+        "error": null,
+        "flush_error": null,
+        "receive_age_seconds": 3.02572
+      }
+    }
+  },
+  "systemd": {
+    "marketdata-restic-archive.timer": "TimersMonotonic={ OnActiveUSec=5s ; next_elapse=12h 31min 37.989561s }\nTimersCalendar={ OnCalendar=*-*-* *:05,35:00 UTC ; next_elapse=Sun 2026-09-27 22:35:00 KST }\nNextElapseUSecRealtime=Sun 2026-09-27 22:35:00 KST\nLastTriggerUSec=Sun 2026-09-27 22:08:37 KST\nResult=success\nAccuracyUSec=1s\nPersistent=yes\nId=marketdata-restic-archive.timer\nActiveState=active\nSubState=waiting\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer\nUnitFileState=enabled\nInvocationID=6371724325864d559be1e19fbebea3b8\n",
+    "marketdata-restic-archive.service": "Restart=no\nTimeoutStartUSec=6h\nTimeoutStopUSec=2min\nResult=success\nExecMainStartTimestamp=Sun 2026-09-27 22:08:37 KST\nExecMainExitTimestamp=Sun 2026-09-27 22:08:41 KST\nExecMainStatus=0\nExecStart={ path=/usr/bin/env ; argv[]=/usr/bin/env ${MARKETDATA_PYTHON} -m scripts.restic_schedule --profile ${MARKETDATA_RESTIC_PROFILE} run ; ignore_errors=no ; start_time=[Sun 2026-09-27 22:08:37 KST] ; stop_time=[Sun 2026-09-27 22:08:41 KST] ; pid=100150 ; code=exited ; status=0 }\nEnvironmentFiles=/home/yoonhc/.config/marketdata/restic-service.env (ignore_errors=no)\nUMask=0077\nWorkingDirectory=/home/yoonhc\nNice=10\nIOSchedulingClass=2\nIOSchedulingPriority=7\nUser=\nKillSignal=2\nId=marketdata-restic-archive.service\nActiveState=inactive\nSubState=dead\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service\nUnitFileState=static\nInvocationID=d0c4c20a9b814644a7f9537995289f03\n",
+    "marketdata-backup.timer": "TimersCalendar={ OnCalendar=*-*-* 04:10:00 UTC ; next_elapse=Mon 2026-09-28 13:10:00 KST }\nNextElapseUSecRealtime=Mon 2026-09-28 13:10:00 KST\nLastTriggerUSec=Sun 2026-09-27 13:10:00 KST\nResult=success\nAccuracyUSec=1s\nPersistent=yes\nId=marketdata-backup.timer\nActiveState=active\nSubState=waiting\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-backup.timer\nUnitFileState=enabled\nInvocationID=44c01d51c2d24b78a810976b5ab86d9e\n",
+    "marketdata-backup.service": "Restart=on-failure\nTimeoutStartUSec=6h\nTimeoutStopUSec=2min\nResult=success\nExecMainStartTimestamp=Sun 2026-09-27 13:10:00 KST\nExecMainExitTimestamp=Sun 2026-09-27 13:25:24 KST\nExecMainStatus=0\nExecStart={ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup --wait-for-lock ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nUMask=0002\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nNice=0\nIOSchedulingClass=2\nIOSchedulingPriority=4\nUser=\nKillSignal=2\nId=marketdata-backup.service\nActiveState=inactive\nSubState=dead\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-backup.service\nUnitFileState=linked\nInvocationID=b8006b9df0724425b0a431ccd68c6ce1\n",
+    "marketdata-aggtrade.service": "Restart=always\nTimeoutStartUSec=1min 30s\nTimeoutStopUSec=2min\nResult=success\nExecMainStartTimestamp=Sun 2026-09-27 21:41:11 KST\nExecMainExitTimestamp=\nExecMainStatus=0\nExecStart={ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . aggtrade-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 3600 --min-free-gib 10 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nUMask=0002\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nNice=0\nIOSchedulingClass=2\nIOSchedulingPriority=4\nUser=\nKillSignal=2\nId=marketdata-aggtrade.service\nActiveState=active\nSubState=running\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-aggtrade.service\nUnitFileState=enabled\nInvocationID=693dcd67d7bc439cb38b5ed65891419f\n",
+    "marketdata-depth.service": "Restart=always\nTimeoutStartUSec=1min 30s\nTimeoutStopUSec=2min\nResult=success\nExecMainStartTimestamp=Sun 2026-09-27 21:40:32 KST\nExecMainExitTimestamp=\nExecMainStatus=0\nExecStart={ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . depth-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 900 --verify-seconds 10 --top 20 --min-free-gib 10 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nUMask=0002\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nNice=0\nIOSchedulingClass=2\nIOSchedulingPriority=4\nUser=\nKillSignal=2\nId=marketdata-depth.service\nActiveState=active\nSubState=running\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-depth.service\nUnitFileState=enabled\nInvocationID=7960404bd3f2490891e01701e7dbe02b\n",
+    "linger": "UID=1000\nState=active\nLinger=yes\n",
+    "user_manager": "MainPID=1189\nUser=1000\nActiveState=active\n",
+    "timers": "NEXT                         LEFT LAST                          PASSED UNIT                            ACTIVATES\nSun 2026-09-27 22:35:00 KST 19min Sun 2026-09-27 22:08:37 KST 7min ago marketdata-restic-archive.timer marketdata-restic-archive.service\n\n1 timers listed.\n"
+  },
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "22",
+    "time": "28.070",
+    "timestamp": "2026-09-27T22:04:17.494481+09:00",
+    "hostname": "hclm"
+  },
+  "source_sha256": {
+    "scripts/restic_schedule.py": "2c38ecd13264d25577f65d459690305509019e624d78063047c34c20aaa6b645",
+    "tests/test_restic_schedule.py": "2400694d1d389988ce2252a8fae3bea6f1ba396f56b5bd9a41e10674b806d980",
+    "scripts/archive_backups.py": "106a6de29c27c34656481fab8845e289cb7182739569c96349562ad358634de5",
+    "scripts/restic_trial.py": "c0be167b772af2df6a0d2c1e3ae05acbd3f7f76f94df8ba93fc3e9227ae2144e",
+    "integrations/systemd/marketdata-restic-archive.service": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+    "integrations/systemd/marketdata-restic-archive.timer": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+    "configs/restic-service.example.env": "dc1a34bec579520988ef9f0392abeccb6b8b680f6c52db9cd57aacd686b84419"
+  },
+  "observation_complete": false,
+  "counted_dates": 0,
+  "required_dates": 3,
+  "new_snapshot_restore": "awaiting_new_snapshot",
+  "rollback_command": "systemctl --user disable --now marketdata-restic-archive.timer",
+  "rollback_executed": false,
+  "reboot_or_logout_test_performed": false
+}

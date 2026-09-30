@@ -1,0 +1,85 @@
+{
+  "uid": 1000,
+  "user": "yoonhc",
+  "pid": 207972,
+  "python": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+  "cwd": "/home/yoonhc",
+  "module": "/home/yoonhc/projects/algoTrade/historical_data/scripts/restic_schedule.py",
+  "module_sha256": "3b8eb67923287b6414116c2ee760722e51f7d70f6f14ed99a5afef499f6b321e",
+  "environment": {
+    "INVOCATION_ID": "55eda25b64b5450d8c7f19c81486924e",
+    "TRIGGER_UNIT": "marketdata-restic-provenance-probe-09518669dc144a069cb6da532cc0a109.timer",
+    "TRIGGER_TIMER_REALTIME_USEC": "1790577272405531",
+    "TRIGGER_TIMER_MONOTONIC_USEC": "107853543706"
+  },
+  "scheduled": true,
+  "service_verified": true,
+  "provenance_method": "current_start_job_activation_details",
+  "manager_evidence": {
+    "/org/freedesktop/systemd1/unit/marketdata_2drestic_2dprovenance_2dprobe_2d09518669dc144a069cb6da532cc0a109_2eservice:Unit.Job": {
+      "type": "(uo)",
+      "data": [
+        228813,
+        "/org/freedesktop/systemd1/job/228813"
+      ]
+    },
+    "/org/freedesktop/systemd1/job/228813:Job.Unit": {
+      "type": "(so)",
+      "data": [
+        "marketdata-restic-provenance-probe-09518669dc144a069cb6da532cc0a109.service",
+        "/org/freedesktop/systemd1/unit/marketdata_2drestic_2dprovenance_2dprobe_2d09518669dc144a069cb6da532cc0a109_2eservice"
+      ]
+    },
+    "/org/freedesktop/systemd1/job/228813:Job.JobType": {
+      "type": "s",
+      "data": "start"
+    },
+    "/org/freedesktop/systemd1/job/228813:Job.State": {
+      "type": "s",
+      "data": "running"
+    },
+    "/org/freedesktop/systemd1/job/228813:Job.ActivationDetails": {
+      "type": "a(ss)",
+      "data": [
+        [
+          "trigger_unit",
+          "marketdata-restic-provenance-probe-09518669dc144a069cb6da532cc0a109.timer"
+        ],
+        [
+          "trigger_timer_realtime_usec",
+          "1790577272405531"
+        ],
+        [
+          "trigger_timer_monotonic_usec",
+          "107853543706"
+        ]
+      ]
+    },
+    "/org/freedesktop/systemd1/unit/marketdata_2drestic_2dprovenance_2dprobe_2d09518669dc144a069cb6da532cc0a109_2etimer:Timer.LastTriggerUSec": {
+      "type": "t",
+      "data": 1790577272405531
+    },
+    "/org/freedesktop/systemd1/unit/marketdata_2drestic_2dprovenance_2dprobe_2d09518669dc144a069cb6da532cc0a109_2etimer:Timer.LastTriggerUSecMonotonic": {
+      "type": "t",
+      "data": 107853543706
+    }
+  },
+  "service_properties": {
+    "Type": "oneshot",
+    "MainPID": "207972",
+    "Id": "marketdata-restic-provenance-probe-09518669dc144a069cb6da532cc0a109.service",
+    "InvocationID": "55eda25b64b5450d8c7f19c81486924e"
+  },
+  "start_job": {
+    "id": 228813,
+    "path": "/org/freedesktop/systemd1/job/228813",
+    "activation_details": {
+      "trigger_unit": "marketdata-restic-provenance-probe-09518669dc144a069cb6da532cc0a109.timer",
+      "trigger_timer_realtime_usec": "1790577272405531",
+      "trigger_timer_monotonic_usec": "107853543706"
+    }
+  },
+  "classification": "verified_timer",
+  "trigger_at": "2026-09-28T06:34:32.405531+00:00",
+  "environment_matches_job": true
+}

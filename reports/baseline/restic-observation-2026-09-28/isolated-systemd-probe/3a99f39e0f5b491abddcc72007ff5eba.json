@@ -1,0 +1,58 @@
+{
+  "uid": 1000,
+  "user": "yoonhc",
+  "pid": 208005,
+  "python": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+  "cwd": "/home/yoonhc",
+  "module": "/home/yoonhc/projects/algoTrade/historical_data/scripts/restic_schedule.py",
+  "module_sha256": "3b8eb67923287b6414116c2ee760722e51f7d70f6f14ed99a5afef499f6b321e",
+  "environment": {
+    "INVOCATION_ID": "3a99f39e0f5b491abddcc72007ff5eba",
+    "TRIGGER_UNIT": "marketdata-restic-provenance-probe-09518669dc144a069cb6da532cc0a109.timer",
+    "TRIGGER_TIMER_REALTIME_USEC": "1790577272405531",
+    "TRIGGER_TIMER_MONOTONIC_USEC": "107853543706"
+  },
+  "scheduled": false,
+  "service_verified": true,
+  "provenance_method": "current_start_job_activation_details",
+  "manager_evidence": {
+    "/org/freedesktop/systemd1/unit/marketdata_2drestic_2dprovenance_2dprobe_2d09518669dc144a069cb6da532cc0a109_2eservice:Unit.Job": {
+      "type": "(uo)",
+      "data": [
+        228873,
+        "/org/freedesktop/systemd1/job/228873"
+      ]
+    },
+    "/org/freedesktop/systemd1/job/228873:Job.Unit": {
+      "type": "(so)",
+      "data": [
+        "marketdata-restic-provenance-probe-09518669dc144a069cb6da532cc0a109.service",
+        "/org/freedesktop/systemd1/unit/marketdata_2drestic_2dprovenance_2dprobe_2d09518669dc144a069cb6da532cc0a109_2eservice"
+      ]
+    },
+    "/org/freedesktop/systemd1/job/228873:Job.JobType": {
+      "type": "s",
+      "data": "start"
+    },
+    "/org/freedesktop/systemd1/job/228873:Job.State": {
+      "type": "s",
+      "data": "running"
+    },
+    "/org/freedesktop/systemd1/job/228873:Job.ActivationDetails": {
+      "type": "a(ss)",
+      "data": []
+    }
+  },
+  "service_properties": {
+    "Type": "oneshot",
+    "MainPID": "208005",
+    "Id": "marketdata-restic-provenance-probe-09518669dc144a069cb6da532cc0a109.service",
+    "InvocationID": "3a99f39e0f5b491abddcc72007ff5eba"
+  },
+  "start_job": {
+    "id": 228873,
+    "path": "/org/freedesktop/systemd1/job/228873",
+    "activation_details": {}
+  },
+  "classification": "manual_service_or_unknown"
+}

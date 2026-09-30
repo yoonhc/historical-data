@@ -4,6 +4,33 @@
 [9/27 마일스톤](../docs/milestones/2026-09-27-collection-and-backup-stabilization.md)에
 restic 시험 전의 기준 상태와 후속 순서를 정리했습니다. 각 baseline의 관측 시각·범위는 유지합니다.
 
+`baseline/restic-observation-2026-09-30/`는 두 번째 새 날짜의 예약 성공 기록입니다.
+[요약](baseline/restic-observation-2026-09-30/summary.md)에 daily 무결성 607,815건 통과,
+14:05 예약의 새 사본 저장·전체 검사와 실제 날짜 집계 **2/3**, 55회 예약의 성공·54회 no-op 제외,
+기존 복원 증거 유지와 별도 일별 원천 갱신의 9/29 자료 4종 대기를 기록했습니다.
+
+`baseline/restic-observation-2026-09-29/`는 수정 후 첫 새 날짜의 예약 성공 기록입니다.
+[요약](baseline/restic-observation-2026-09-29/summary.md)에 daily 무결성 522,952건 통과,
+13:35 예약의 새 사본 저장·전체 저장소 검사와 실제 날짜 집계 **1/3**, 반복 예약 50회 판별,
+어제 복원 시험의 유지와 기존 파일 해시 대조를 남겼습니다. 새 호가 partial 2개와 미재구성
+102개는 백업 무결성과 구분한 후속 분석 항목입니다. 남은 두 날짜는 실제 실행 후 집계합니다.
+
+`baseline/restic-observation-2026-09-28/`는 첫 새 사본의 중간점검과 예약 판별 수정 기록입니다.
+[요약](baseline/restic-observation-2026-09-28/summary.md)에 실제 저장·전체 검사, 오래된 systemd
+환경변수의 반복 실행 재현과 현재 Job 기반 수정, 테스트 38개, 새 스냅샷의 수동 복원·독립 백업
+검증을 남겼습니다. 날짜별 예약 성공은 엄격한 증거 기준으로 0/3이며, 복원 시험은 통과했습니다.
+호가 partial 3개와 원천 제공 대기도 백업 무결성과 구분해 기록합니다.
+
+`baseline/restic-timer-2026-09-27/`는 별도 restic 사용자 타이머 적용과 첫 실제 실행 검증입니다.
+[요약](baseline/restic-timer-2026-09-27/summary.md)에 설치 전 점검·linger·서비스/타이머 성공·다음 예약·롤백,
+새 테스트 22개를 남겼습니다. 최초 탐색은 처리 0개이므로 새 날짜 집계 0/3이며, 새 snapshot 복원도 대기입니다.
+이후 집계는 실행 중인 observation 기록에서 확인하며 미래 성공을 미리 기록하지 않습니다.
+
+`baseline/restic-archive-2026-09-27/`는 기존 완료 사본의 restic 병행 보관 구현과 수동 검증입니다.
+[요약](baseline/restic-archive-2026-09-27/summary.md)에 관련 테스트 70개, checkpoint 기준 snapshot time,
+실제 사본 저장·전체 저장소 검사·재실행 시 snapshot 1개 유지, 원래 사본과 유닛 보존을 기록합니다.
+별도 타이머 적용과 날짜별 장기 보관 정책·중복 사본 정리는 후속 단계입니다.
+
 `baseline/restic-trial-2026-09-27/`는 현재 하드링크 사본과 restic의 독립 비교입니다.
 [요약](baseline/restic-trial-2026-09-27/summary.md)에 같은 두 복구 지점의 할당량 37.61% 감소,
 두 날짜의 추출·별도 경로 복원·조회·새 독립 백업 검증, 원래 manifest와 source-root 검사 보존,

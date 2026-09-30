@@ -5,7 +5,8 @@
 전체 복사하는 방식이 아니라 `/mnt/backup`의 **하드링크 증분 백업**이다.
 실행 결과는 [9/27 시험 기록](../reports/baseline/restic-trial-2026-09-27/summary.md)에 남긴다.
 시험 다음 단계의 예약·실패 재개·상태 판정은 [운영 연결 설계](restic-operations-plan.md)에
-정리했다. 해당 자동화는 아직 구현·활성화하지 않았다.
+정리했다. 후속 [병행 보관 도구](restic-archive.md)는 별도 구현이며,
+9/27 [예약 운영](restic-scheduled-operations.md)을 적용했다. 날짜별 관찰은 최초 시험 결과와 구분한다.
 
 ## 설정과 실행 환경
 
