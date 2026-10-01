@@ -1,0 +1,49 @@
+{
+  "started_at": "2026-10-01T10:46:59.009320+00:00",
+  "collection_ids": [
+    "079691756a6e496c909e9019ef4d34d8",
+    "517f5709097f4383889425c292347475",
+    "ac31dd2ebf954619911b26fd004e3309"
+  ],
+  "selection": "all closed sessions with new lagged anchors or exhausted price coverage since the previous audit",
+  "catalog_mode": "ro; live WAL honored; normal layout-lock file reads",
+  "source_sha256": {
+    "reports/baseline/depth-followup-2026-09-29/analyze.py": "9073f18393c053f0a65faee348bde84333096b1c81f3dc19dbae874e736e0f6b",
+    "reports/baseline/depth-retry-2026-09-29/check_operating_capture.py": "9a04a1a49bef8b0181308b72ad70820b9e62e4c4fe82904c3674bea0f756ceee",
+    "packages/marketdata/src/marketdata/depth.py": "541d4a4f24fcb3fd6523dfb66173c53f71f09314a4aad76a4d450f26fcab931d"
+  },
+  "complete": true,
+  "completed_collections": [
+    {
+      "collection_id": "079691756a6e496c909e9019ef4d34d8",
+      "state": "partial",
+      "rows_checked": 35582,
+      "price_quantity_pairs_checked": 8838879,
+      "raw_to_canonical_equal": true,
+      "replay_matches_live": true,
+      "unreconstructed_messages": 24,
+      "same_socket_chain_errors": 0
+    },
+    {
+      "collection_id": "517f5709097f4383889425c292347475",
+      "state": "partial",
+      "rows_checked": 35588,
+      "price_quantity_pairs_checked": 11137384,
+      "raw_to_canonical_equal": true,
+      "replay_matches_live": true,
+      "unreconstructed_messages": 0,
+      "same_socket_chain_errors": 0
+    },
+    {
+      "collection_id": "ac31dd2ebf954619911b26fd004e3309",
+      "state": "partial",
+      "rows_checked": 35586,
+      "price_quantity_pairs_checked": 11254369,
+      "raw_to_canonical_equal": true,
+      "replay_matches_live": true,
+      "unreconstructed_messages": 0,
+      "same_socket_chain_errors": 0
+    }
+  ],
+  "finished_at": "2026-10-01T10:53:12.207743+00:00"
+}

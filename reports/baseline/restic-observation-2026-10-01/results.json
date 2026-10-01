@@ -1,0 +1,109 @@
+{
+  "recorded_at": "2026-10-01T10:46:59.073525+00:00",
+  "previous_recorded_at": "2026-09-30T11:49:55.839683+00:00",
+  "daily": {
+    "started_at": "2026-10-01T04:10:00.409241+00:00",
+    "finished_at": "2026-10-01T04:39:57.892565+00:00",
+    "validation": {
+      "checked": 692746,
+      "failures": [],
+      "ok": true
+    },
+    "backup": {
+      "backup_id": "d3455e94e474ff5356c63fb86af6b80e016c23aea0ade8c617cf70d992ffa509",
+      "bytes": 19720187887,
+      "catalog_counts": {
+        "active": 15189,
+        "artifacts": 345819,
+        "event_collections": 612,
+        "event_segments": 330377,
+        "fetches": 395402,
+        "file_packs": 942,
+        "issues": 24,
+        "jobs": 8152,
+        "packed_files": 654206,
+        "queries": 17965,
+        "revisions": 17835,
+        "snapshots": 20,
+        "sync_coverage": 2647,
+        "sync_runs": 3004,
+        "sync_targets": 9
+      },
+      "files": 40788,
+      "ok": true,
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-01/4f6a16890e6146e788e13e1af117490c",
+      "reused": false,
+      "same_filesystem_as_source": false,
+      "storage": {
+        "mode": "linked_snapshot",
+        "new_bytes": 3469569951,
+        "new_files": 8008,
+        "reuse_backup_id": "11b8326f40d3c00e3526fad36e7377b5ae211e7375baa76745ec644fd01186cf",
+        "reuse_from": "/mnt/backup/marketdata-historical/automatic/2026-09-30/294884c6224e4e60a18522d8446e9892",
+        "reused_bytes": 16250617936,
+        "reused_files": 32780,
+        "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata"
+      },
+      "writer_lock_seconds": 2.4491294809849933
+    }
+  },
+  "daily_wall_seconds": 1797.483324,
+  "daily_validation_phase_seconds": 1531.6756920814514,
+  "scheduled_runs": {
+    "count": 46,
+    "classifications": {
+      "verified_timer": 46
+    },
+    "failed": [],
+    "processed_runs": 1,
+    "no_op_runs": 45
+  },
+  "completed_dates": 3,
+  "qualified_dates": [
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01"
+  ],
+  "remaining_dates": 0,
+  "overall_complete": true,
+  "date_evidence_recomputed_matches": true,
+  "journal_receipt_matches_file": true,
+  "journal_pid_and_invocation_match": true,
+  "journal_completed_job": 773270,
+  "prior_date_evidence_unchanged": true,
+  "restore_proof_unchanged": true,
+  "restore_checks_count": 1,
+  "protected_hash_matches": {
+    "/home/yoonhc/.config/systemd/user/marketdata-aggtrade.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-depth.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-25/initial/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-25/linked/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-26/d4e81e6b027349cdb2e372da4f47288d/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-27/0650d76dddf94cbeb7ff1d998f9065e5/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-28/0c547ccdd29647d2a76f7083d786f140/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-29/0d84de71d71643a38d0250e061cc68e8/backup.json": true,
+    "/mnt/backup/marketdata-historical/automatic/2026-09-30/294884c6224e4e60a18522d8446e9892/backup.json": true
+  },
+  "source_hashes": {
+    "scripts/restic_schedule.py": "6a1deb90bca139f60cae3505fb522a2a4d7017887edf9fa0d9c7961de252d855",
+    "tests/test_restic_schedule.py": "dd1cc5907a3c84b842cfe4cbe2943e2f1ec8fe91190359e57e6b22bc53d3c8eb"
+  },
+  "full_check_or_restore_rerun_by_this_audit": false,
+  "future_dates_counted": false,
+  "services_changed_or_restarted": false,
+  "retention_or_backup_replacement_changed": false
+}

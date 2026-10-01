@@ -4,6 +4,17 @@
 [9/27 마일스톤](../docs/milestones/2026-09-27-collection-and-backup-stabilization.md)에
 restic 시험 전의 기준 상태와 후속 순서를 정리했습니다. 각 baseline의 관측 시각·범위는 유지합니다.
 
+`baseline/restic-observation-2026-10-01/`는 첫 병행 예약 관찰을 완료한 기록입니다.
+[요약](baseline/restic-observation-2026-10-01/summary.md)에 실제 날짜별 성공 **3/3**, 기존 복원
+증거 유지, daily 무결성 692,746건 통과, 지연됐던 9/29 자료 4종 4,608행의 조회·체크섬 검증을
+남겼습니다. 9/30 자료의 정오 대기와 수집 품질 후속 항목은 구분하며 사본 삭제·백업 대체는 하지 않았습니다.
+
+`baseline/stream-followup-2026-10-01/`는 첫 실제 지연 재시도와 새 호가 실패·통신 장애 점검입니다.
+[요약](baseline/stream-followup-2026-10-01/summary.md)에 재시도 2회 복구, 범위 소진 5회와
+미재구성 24개, 실패 세션 3개의 106,756행·가격 수량 쌍 31,230,632개 대조를 남겼습니다.
+네트워크 장애 시 호가 수신 공백과 aggTrade 자동 REST 보충 4,218행을 구분했고,
+고정 50분의 51,964개 체결 ID 연속성과 OI REST 라벨 24개를 확인했습니다.
+
 `baseline/depth-observation-2026-09-30/`는 새 재시도 정책의 첫 24시간 운영 점검입니다.
 [요약](baseline/depth-observation-2026-09-30/summary.md)에 완료 24개 세션의 증분 845,439개
 수신·저장 일치, 동기화 손실·미재구성 0개, REST 일치 8,407회와 종료 경계의 검증 대기 1건,

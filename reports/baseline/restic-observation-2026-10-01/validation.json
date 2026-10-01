@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-10-01T11:15:24.048558+00:00",
+  "git_head": "67cd1d84112ad3e2ac733fefa65ff3e92d0d201b",
+  "production_source_changed": false,
+  "lint": "ruff check: passed (5 audit scripts)",
+  "format": "ruff format --check: passed (5 audit scripts)",
+  "git_diff_check": "passed",
+  "markdown_links_checked": 56,
+  "historical_evidence_preserved": true,
+  "audit_source_sha256": {
+    "scripts/archive_backups.py": "106a6de29c27c34656481fab8845e289cb7182739569c96349562ad358634de5",
+    "scripts/restic_schedule.py": "6a1deb90bca139f60cae3505fb522a2a4d7017887edf9fa0d9c7961de252d855",
+    "packages/marketdata/src/marketdata/depth.py": "541d4a4f24fcb3fd6523dfb66173c53f71f09314a4aad76a4d450f26fcab931d",
+    "packages/marketdata/src/marketdata/depth_stream.py": "f56903e317351541546927855ada7fb689427af1447bf7afd269c9ba367b097c",
+    "packages/marketdata/src/marketdata/aggtrades.py": "02539d60382afa3333f068399777395ca170a579f8fb33be7209fb14b7a365fe",
+    "reports/baseline/restic-observation-2026-10-01/verify_receipts.py": "b4cdba4ae816ec9a47b339e95a04d4ee628b5aa5998f7284541c6ea4caca9a55",
+    "reports/baseline/restic-observation-2026-10-01/verify_daily.py": "93c0f74d3f80f54befc29a9dc452b253cb9e6bcf8081b3eab405af15f4473721",
+    "reports/baseline/stream-followup-2026-10-01/analyze_depth.py": "6d0804129ff28651f5fd141652645b99475727565a589c3b902a08af7a9afebf",
+    "reports/baseline/stream-followup-2026-10-01/audit.py": "806dadd1d36f1f2ceab2c0cc4d37870e3fafabb8c51a07f4a75d5de1983fa02f",
+    "reports/baseline/stream-followup-2026-10-01/verify_network.py": "5c6cce5fd9307e5bc7dbeed48e3052d2320a4e48d5798ff7145bed8fa907ea15"
+  },
+  "validation_scope": "recorded timer receipts and manifest hashes, four recovered daily datasets, closed stream report/catalog counts, three full failed-book raw/replay audits, two REST trade backfills and 50-minute ID continuity; no full production test suite or full repository integrity rerun"
+}

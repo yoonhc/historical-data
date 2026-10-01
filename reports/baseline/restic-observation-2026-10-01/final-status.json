@@ -1,0 +1,73 @@
+{
+  "recorded_at": "2026-10-01T11:14:30.668107+00:00",
+  "archive": {
+    "healthy": true,
+    "pending_count": 0,
+    "incomplete_folders": [],
+    "checkpoint_errors": {},
+    "environment": {
+      "ok": true,
+      "expected_filesystem_uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+      "mount": "/mnt/backup",
+      "filesystem_uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+      "free_bytes": 811182804992,
+      "free_inodes": 61600640
+    },
+    "repository_live_checked": false
+  },
+  "observation": {
+    "completed_dates": 3,
+    "qualified_dates": [
+      "2026-09-29",
+      "2026-09-30",
+      "2026-10-01"
+    ],
+    "remaining_dates": 0,
+    "complete": true,
+    "last_run": {
+      "classification": "verified_timer",
+      "finished_at": "2026-10-01T11:05:08.404968+00:00",
+      "ok": true,
+      "provenance_error": null,
+      "report": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/scheduled/3f108fe999624793a30a078112b79978.json",
+      "run_id": "3f108fe999624793a30a078112b79978",
+      "scheduled": true
+    }
+  },
+  "restore_status": "passed",
+  "streams": {
+    "depth": {
+      "id": "f4a262f2b2874d2ea31e0fda4b0b3684",
+      "state": "running",
+      "messages": 4898,
+      "persisted_messages": 4898,
+      "synchronized": true,
+      "connection_errors": 0,
+      "sync_losses": 0,
+      "unreconstructed_messages": 0,
+      "unrepaired_gaps": null,
+      "last_received_at": "2026-10-01T11:14:29.800000+00:00",
+      "receive_age_seconds": 0.868107
+    },
+    "aggtrade": {
+      "id": "a89a83f5b95f4665b6a87c9fdb7a63af",
+      "state": "running",
+      "messages": 4224,
+      "persisted_messages": 4224,
+      "synchronized": null,
+      "connection_errors": 0,
+      "sync_losses": null,
+      "unreconstructed_messages": null,
+      "unrepaired_gaps": 0,
+      "last_received_at": "2026-10-01T11:14:25.828066+00:00",
+      "receive_age_seconds": 4.840041
+    }
+  },
+  "hourly": {
+    "id": "40466bd0fa1d4306a56fd404d8963813",
+    "state": "complete",
+    "ok": true,
+    "started_at": "2026-10-01T10:15:00.410619+00:00",
+    "finished_at": "2026-10-01T10:15:39.935248+00:00"
+  }
+}

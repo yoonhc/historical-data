@@ -1,0 +1,294 @@
+{
+  "network_fetches_or_recollection": false,
+  "oi_rest_network_period_coverage": {
+    "blocking_issues": [],
+    "complete": true,
+    "expected": 24,
+    "gap_ranges_us": [],
+    "key": {
+      "dataset": "open_interest",
+      "interval": "5m",
+      "market": "linear_perpetual",
+      "series": "rest",
+      "symbol": "BTCUSDT"
+    },
+    "missing": 0,
+    "rows": 24,
+    "semantics": "source_label_grid_only"
+  },
+  "oi_scope": "5-minute source-label coverage; not proof of uninterrupted reception or availability time",
+  "recorded_at": "2026-10-01T10:49:52.283674+00:00",
+  "recovered": [
+    {
+      "active_revision": {
+        "created_at": "2026-10-01T03:24:02.142876+00:00",
+        "day": "2026-09-29",
+        "file_sha": "88d9148965382ba0bfbc1a9e2b91075fa4a2a55d8b0ac55d6034bd9e46253536",
+        "id": "584d6e0c16bb177387d7f934331cf5ea44595a471110741030a7b81ed337c14f",
+        "key_id": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+        "key_json": "{\"dataset\":\"trade_bars\",\"interval\":\"1m\",\"market\":\"linear_perpetual\",\"series\":\"primary\",\"symbol\":\"BTCUSDT\"}",
+        "path": "data/canonical/trade_bars/3e5ef2998eabb603/2026-09-29/584d6e0c16bb177387d7f934331cf5ea44595a471110741030a7b81ed337c14f.parquet",
+        "quality": "{\"accepted_revision\":false,\"issues\":[],\"source_id\":\"3b585081acfe52f701868e6ce0a6212fa2d496b72d0a3c4470b3c712c7b5fdb7\"}",
+        "row_count": 1440
+      },
+      "canonical_checksum_verified_by_reader": true,
+      "coverage": {
+        "blocking_issues": [],
+        "complete": true,
+        "expected": 1440,
+        "gap_ranges_us": [],
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "missing": 0,
+        "rows": 1440,
+        "semantics": "bar_grid"
+      },
+      "daily_published_record": {
+        "date": "2026-09-29",
+        "revision": "584d6e0c16bb177387d7f934331cf5ea44595a471110741030a7b81ed337c14f",
+        "rows": 1440,
+        "state": "published"
+      },
+      "first_timestamp": "2026-09-29T00:00:00+00:00",
+      "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+      "last_timestamp": "2026-09-29T23:59:00+00:00",
+      "rows_read": 1440
+    },
+    {
+      "active_revision": {
+        "created_at": "2026-10-01T03:24:03.040737+00:00",
+        "day": "2026-09-29",
+        "file_sha": "5e75518b9dd44e93c0c175013e2adbd60b564a0f3cd6d714ed815dd641063822",
+        "id": "37c20e0a7aa500cd5df153036cfb3e50c1d6a5aa2a58a7102cec32abe7b9eefe",
+        "key_id": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+        "key_json": "{\"dataset\":\"mark_price_bars\",\"interval\":\"1m\",\"market\":\"linear_perpetual\",\"series\":\"primary\",\"symbol\":\"BTCUSDT\"}",
+        "path": "data/canonical/mark_price_bars/aab829a4fb93e4c7/2026-09-29/37c20e0a7aa500cd5df153036cfb3e50c1d6a5aa2a58a7102cec32abe7b9eefe.parquet",
+        "quality": "{\"accepted_revision\":false,\"issues\":[],\"source_id\":\"4d22bff20278de37509d5216ea0e51e7978dc4d79921fdb271a4428af1fa657b\"}",
+        "row_count": 1440
+      },
+      "canonical_checksum_verified_by_reader": true,
+      "coverage": {
+        "blocking_issues": [],
+        "complete": true,
+        "expected": 1440,
+        "gap_ranges_us": [],
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "missing": 0,
+        "rows": 1440,
+        "semantics": "bar_grid"
+      },
+      "daily_published_record": {
+        "date": "2026-09-29",
+        "revision": "37c20e0a7aa500cd5df153036cfb3e50c1d6a5aa2a58a7102cec32abe7b9eefe",
+        "rows": 1440,
+        "state": "published"
+      },
+      "first_timestamp": "2026-09-29T00:00:00+00:00",
+      "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+      "last_timestamp": "2026-09-29T23:59:00+00:00",
+      "rows_read": 1440
+    },
+    {
+      "active_revision": {
+        "created_at": "2026-10-01T03:24:03.970128+00:00",
+        "day": "2026-09-29",
+        "file_sha": "f019441375b9b69a450e723572cc9c77e8ddd2f03de17e1b7514eac5814fe107",
+        "id": "133e75f4a3c9d8031b4430e5fe1258e5a1d77d95aeb5c4cb953e473726e4f00d",
+        "key_id": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+        "key_json": "{\"dataset\":\"index_price_bars\",\"interval\":\"1m\",\"market\":\"linear_perpetual\",\"series\":\"primary\",\"symbol\":\"BTCUSDT\"}",
+        "path": "data/canonical/index_price_bars/e4bf940934cd7d22/2026-09-29/133e75f4a3c9d8031b4430e5fe1258e5a1d77d95aeb5c4cb953e473726e4f00d.parquet",
+        "quality": "{\"accepted_revision\":false,\"issues\":[],\"source_id\":\"71ccf7c32c6d4cdeb1712d2df3abe3758bd6b18b8432612bb8c65f84e40fa0eb\"}",
+        "row_count": 1440
+      },
+      "canonical_checksum_verified_by_reader": true,
+      "coverage": {
+        "blocking_issues": [],
+        "complete": true,
+        "expected": 1440,
+        "gap_ranges_us": [],
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "missing": 0,
+        "rows": 1440,
+        "semantics": "bar_grid"
+      },
+      "daily_published_record": {
+        "date": "2026-09-29",
+        "revision": "133e75f4a3c9d8031b4430e5fe1258e5a1d77d95aeb5c4cb953e473726e4f00d",
+        "rows": 1440,
+        "state": "published"
+      },
+      "first_timestamp": "2026-09-29T00:00:00+00:00",
+      "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+      "last_timestamp": "2026-09-29T23:59:00+00:00",
+      "rows_read": 1440
+    },
+    {
+      "active_revision": {
+        "created_at": "2026-10-01T03:24:05.353652+00:00",
+        "day": "2026-09-29",
+        "file_sha": "132b53646ed07e7eb9bd0ee1e150af54ecb3eea5e6eaec22e0cff8e989733934",
+        "id": "345b18ff1531beafc698672c5f135d797d0bf1e451b1c6b0fffb4c22eec04f26",
+        "key_id": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+        "key_json": "{\"dataset\":\"open_interest\",\"interval\":\"5m\",\"market\":\"linear_perpetual\",\"series\":\"archive\",\"symbol\":\"BTCUSDT\"}",
+        "path": "data/canonical/open_interest/cd9522cf50e33271/2026-09-29/345b18ff1531beafc698672c5f135d797d0bf1e451b1c6b0fffb4c22eec04f26.parquet",
+        "quality": "{\"accepted_revision\":false,\"issues\":[{\"adjacent_count\":37,\"kind\":\"source_order_reversed\"}],\"source_id\":\"7ad985ec9da902b0fecafc19230d1d2f8ae3e2c8c1cf2cf888fc5d1ad47d083c\"}",
+        "row_count": 288
+      },
+      "canonical_checksum_verified_by_reader": true,
+      "coverage": {
+        "blocking_issues": [],
+        "complete": true,
+        "expected": 288,
+        "gap_ranges_us": [],
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "missing": 0,
+        "rows": 288,
+        "semantics": "source_label_grid_only"
+      },
+      "daily_published_record": {
+        "date": "2026-09-29",
+        "revision": "345b18ff1531beafc698672c5f135d797d0bf1e451b1c6b0fffb4c22eec04f26",
+        "rows": 288,
+        "state": "published"
+      },
+      "first_timestamp": "2026-09-29T00:00:00+00:00",
+      "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+      "last_timestamp": "2026-09-29T23:55:00+00:00",
+      "rows_read": 288
+    }
+  ],
+  "recovered_utc_day": "2026-09-29",
+  "still_waiting_from_daily_run": [
+    {
+      "coverage": {
+        "blocked_days": [],
+        "complete": false,
+        "end": "2026-10-01T00:00:00+00:00",
+        "missing_days": 1,
+        "missing_ranges": [
+          [
+            "2026-09-30T00:00:00+00:00",
+            "2026-10-01T00:00:00+00:00"
+          ]
+        ],
+        "missing_rows": 1440,
+        "semantics": "bar_grid",
+        "start": "2026-09-14T00:00:00+00:00"
+      },
+      "errors": [],
+      "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+      "waiting": [
+        {
+          "end": "2026-10-01T00:00:00+00:00",
+          "start": "2026-09-30T00:00:00+00:00",
+          "state": "waiting_source",
+          "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-09-30.zip"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "blocked_days": [],
+        "complete": false,
+        "end": "2026-10-01T00:00:00+00:00",
+        "missing_days": 1,
+        "missing_ranges": [
+          [
+            "2026-09-30T00:00:00+00:00",
+            "2026-10-01T00:00:00+00:00"
+          ]
+        ],
+        "missing_rows": 1440,
+        "semantics": "bar_grid",
+        "start": "2026-09-14T00:00:00+00:00"
+      },
+      "errors": [],
+      "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+      "waiting": [
+        {
+          "end": "2026-10-01T00:00:00+00:00",
+          "start": "2026-09-30T00:00:00+00:00",
+          "state": "waiting_source",
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-09-30.zip"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "blocked_days": [],
+        "complete": false,
+        "end": "2026-10-01T00:00:00+00:00",
+        "missing_days": 1,
+        "missing_ranges": [
+          [
+            "2026-09-30T00:00:00+00:00",
+            "2026-10-01T00:00:00+00:00"
+          ]
+        ],
+        "missing_rows": 1440,
+        "semantics": "bar_grid",
+        "start": "2026-09-14T00:00:00+00:00"
+      },
+      "errors": [],
+      "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+      "waiting": [
+        {
+          "end": "2026-10-01T00:00:00+00:00",
+          "start": "2026-09-30T00:00:00+00:00",
+          "state": "waiting_source",
+          "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-09-30.zip"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "blocked_days": [],
+        "complete": false,
+        "end": "2026-10-01T00:00:00+00:00",
+        "missing_days": 1,
+        "missing_ranges": [
+          [
+            "2026-09-30T00:00:00+00:00",
+            "2026-10-01T00:00:00+00:00"
+          ]
+        ],
+        "missing_rows": 288,
+        "semantics": "source_label_grid_only",
+        "start": "2026-09-14T00:00:00+00:00"
+      },
+      "errors": [],
+      "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+      "waiting": [
+        {
+          "end": "2026-10-01T00:00:00+00:00",
+          "start": "2026-09-30T00:00:00+00:00",
+          "state": "waiting_source",
+          "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-09-30.zip"
+        }
+      ]
+    }
+  ]
+}
