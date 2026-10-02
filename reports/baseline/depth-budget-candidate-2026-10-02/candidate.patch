@@ -1,0 +1,1005 @@
+diff --git a/packages/marketdata/src/marketdata/depth_refresh.py b/packages/marketdata/src/marketdata/depth_refresh.py
+--- a/packages/marketdata/src/marketdata/depth_refresh.py
++++ b/packages/marketdata/src/marketdata/depth_refresh.py
+@@ -9,6 +9,8 @@
+ WINDOW = 60.0
+ LEVEL_FRACTION = Decimal("0.75")
+ PRICE_FRACTION = Decimal("0.25")
++CRITICAL_LEVEL_FRACTION = Decimal("0.50")
++DECISION_LOG_POLICY = "coverage_decisions_v1"
+ 
+ 
+ def headroom(book, top):
+@@ -19,6 +21,7 @@
+         span = getattr(book, "snapshot_bid_span" if bid else "snapshot_ask_span")
+         distance = max(levels) - book.bid_floor if bid else book.ask_ceiling - min(levels)
+         threshold = int(initial * LEVEL_FRACTION)
++        critical_threshold = min(initial, max(top * 2, int(initial * CRITICAL_LEVEL_FRACTION)))
+         sides[side] = {
+             "levels": len(levels),
+             "level_threshold": threshold,
+@@ -26,10 +29,13 @@
+             "snapshot_price_span": span,
+             "low_levels": len(levels) < threshold,
+             "low_price_room": span > 0 and distance < span * PRICE_FRACTION,
++            "critical_level_threshold": critical_threshold,
++            "critical_levels": len(levels) < critical_threshold,
+         }
+     return {
+         "top_complete": all(s["levels"] >= top for s in sides.values()),
+         "low": any(s["low_levels"] or s["low_price_room"] for s in sides.values()),
++        "critical": any(s["critical_levels"] or s["low_price_room"] for s in sides.values()),
+         "sides": sides,
+     }
+ 
+@@ -37,38 +43,152 @@
+ class RefreshChecks:
+     """Nonblocking quota for extra checks; never reset it on epoch/reconnect."""
+ 
+-    def __init__(self):
++    def __init__(self, reserved=0):
++        if type(reserved) is not int or not 0 <= reserved < EXTRA_REQUESTS:
++            raise ValueError("Reserved critical slots must be an integer in 0..11")
++        self.reserved = reserved
+         self.extra = deque()
++        self.normal_extra = deque()
++
++    def budget(self, current):
++        for queue in (self.extra, self.normal_extra):
++            while queue and queue[0] <= current - WINDOW:
++                queue.popleft()
++        return {
++            "extra_used": len(self.extra),
++            "extra_limit": EXTRA_REQUESTS,
++            "normal_used": len(self.normal_extra),
++            "normal_limit": EXTRA_REQUESTS - self.reserved,
++            "reserved_for_critical": self.reserved,
++            "oldest_extra_expires_in_seconds": max(0, self.extra[0] + WINDOW - current)
++            if self.extra
++            else None,
++        }
++
++    def assess(
++        self,
++        book,
++        top,
++        *,
++        current,
++        last_request,
++        periodic_seconds,
++        synchronized=True,
++        pending=False,
++        stop_at=None,
++    ):
++        """One decision and every applicable gate; no request or sleep is performed."""
++        budget = self.budget(current)
++        margin = headroom(book, top)
++        age = current - last_request
++        trigger = "periodic" if age >= periodic_seconds else "headroom" if margin["low"] else None
++        priority = "critical" if margin["critical"] else "normal"
++        result = {
++            "action": "idle",
++            "reason": "not_due",
++            "trigger": trigger,
++            "priority": priority,
++            "headroom": margin,
++            "budget": budget,
++            "age_seconds": age,
++            "blockers": [],
++        }
++        if trigger is None:
++            return result
++        blockers = result["blockers"]
++        if stop_at is not None and current >= stop_at:
++            blockers.append("deadline")
++        if not synchronized:
++            blockers.append("not_synchronized")
++        if pending:
++            blockers.append("pending_verification")
++        if age < MIN_INTERVAL:
++            blockers.append("minimum_interval")
++        if trigger == "headroom":
++            if budget["extra_used"] >= EXTRA_REQUESTS:
++                blockers.append("extra_budget")
++            elif priority == "normal" and budget["normal_used"] >= EXTRA_REQUESTS - self.reserved:
++                blockers.append("critical_reserve")
++        result.update(
++            action="defer" if blockers else "request", reason=blockers[0] if blockers else trigger
++        )
++        return result
+ 
+     def decision(self, book, top, *, current, last_request, periodic_seconds):
+-        while self.extra and self.extra[0] <= current - WINDOW:
+-            self.extra.popleft()
+-        age = current - last_request
+-        if age < MIN_INTERVAL:
+-            return None
+-        margin = headroom(book, top)
+-        if age >= periodic_seconds:
+-            return {"reason": "periodic", "headroom": margin}
+-        if margin["low"] and len(self.extra) < EXTRA_REQUESTS:
+-            return {"reason": "headroom", "headroom": margin}
+-        return None
++        result = self.assess(
++            book, top, current=current, last_request=last_request, periodic_seconds=periodic_seconds
++        )
++        return result if result["action"] == "request" else None
+ 
+     def claim(self, decision, current):
++        if decision.get("action") != "request":
++            raise RuntimeError("Cannot claim a deferred or idle depth check")
+         if decision["reason"] == "headroom":
+-            while self.extra and self.extra[0] <= current - WINDOW:
+-                self.extra.popleft()
+-            if len(self.extra) >= EXTRA_REQUESTS:
++            budget = self.budget(current)
++            normal = decision["priority"] == "normal"
++            if budget["extra_used"] >= EXTRA_REQUESTS or (
++                normal and budget["normal_used"] >= EXTRA_REQUESTS - self.reserved
++            ):
+                 raise RuntimeError("Extra depth check quota exceeded")
+             self.extra.append(current)
++            if normal:
++                self.normal_extra.append(current)
+ 
+ 
+-def metadata():
++def metadata(reserved=0):
+     return {
+-        "policy": POLICY,
++        "policy": "bounded_headroom_reserve_v1" if reserved else POLICY,
+         "min_interval_seconds": MIN_INTERVAL,
+         "extra_requests": EXTRA_REQUESTS,
+         "window_seconds": WINDOW,
+         "level_fraction": str(LEVEL_FRACTION),
+         "price_fraction": str(PRICE_FRACTION),
++        "reserved_for_critical": reserved,
++        "normal_extra_limit": EXTRA_REQUESTS - reserved,
++        "critical_level_fraction": str(CRITICAL_LEVEL_FRACTION),
++        "critical_top_multiplier": 2,
++        "reservation_rule": "normal extra requests <= normal limit AND all extra requests <= extra limit; critical requests may use any remaining extra slot",
+         "scope": "extra checks within this capture; survives resync/reconnect; periodic checks and recovery anchors are separate",
+     }
++
++
++def new_decision_log():
++    return {
++        "policy": DECISION_LOG_POLICY,
++        "evaluations": 0,
++        "deferred_evaluations": 0,
++        "primary_reason_counts": {},
++        "blocker_counts": {},
++        "first_by_reason": {},
++        "last_by_reason": {},
++        "recent_deferrals": [],
++        "last": None,
++        "count_semantics": "one terminal assessment per check_coverage invocation; deferred evaluations are neither HTTP calls nor unique outage episodes",
++    }
++
++
++def record_decision(log, decision, *, epoch, after_sequence, at, phase):
++    """Bounded summaries, with first/last direct evidence for every blocking reason."""
++    log["evaluations"] += 1
++    if decision["action"] == "idle":
++        return
++    record = {
++        "epoch": epoch,
++        "after_sequence": after_sequence,
++        "evaluated_at": at,
++        "phase": phase,
++        **decision,
++    }
++    log["last"] = record
++    if decision["action"] != "defer":
++        return
++    log["deferred_evaluations"] += 1
++    reason = decision["reason"]
++    counts = log["primary_reason_counts"]
++    counts[reason] = counts.get(reason, 0) + 1
++    for blocker in decision["blockers"]:
++        counts = log["blocker_counts"]
++        counts[blocker] = counts.get(blocker, 0) + 1
++        log["first_by_reason"].setdefault(blocker, record)
++        log["last_by_reason"][blocker] = record
++    log["recent_deferrals"] = (log["recent_deferrals"] + [record])[-8:]
+diff --git a/packages/marketdata/src/marketdata/depth_stream.py b/packages/marketdata/src/marketdata/depth_stream.py
+--- a/packages/marketdata/src/marketdata/depth_stream.py
++++ b/packages/marketdata/src/marketdata/depth_stream.py
+@@ -7,6 +7,7 @@
+ import time
+ from collections import deque
+ from contextlib import contextmanager
++from copy import deepcopy
+ from datetime import timedelta
+ 
+ from websockets.exceptions import ConnectionClosed, InvalidStatus, WebSocketException
+@@ -15,7 +16,7 @@
+ from . import depth
+ from .backup import reserve_bytes
+ from .binance import Fetcher, SourceError
+-from .depth_refresh import RefreshChecks, headroom
++from .depth_refresh import RefreshChecks, headroom, new_decision_log, record_decision
+ from .depth_refresh import metadata as refresh_metadata
+ from .domain import DataError, WriterBusy, json_bytes, now, sha256, utc
+ from .oi_probe import retry_delay
+@@ -85,7 +86,7 @@
+             fcntl.flock(handle, fcntl.LOCK_UN)
+ 
+ 
+-def snapshot(store, fetcher, collection_id, epoch, sequence, kind):
++def snapshot(store, fetcher, collection_id, epoch, sequence, kind, *, refresh_context=None):
+     started = now()
+     cooldown = store.root / "state/depth-rest-cooldown.json"
+     if cooldown.exists() and started < utc(json.loads(cooldown.read_bytes())["until"]):
+@@ -105,6 +106,7 @@
+                     "headers": exc.headers,
+                     "request_started_at": started,
+                     "error": str(exc),
++                    **({"refresh_context": refresh_context} if refresh_context is not None else {}),
+                 },
+             )
+             atomic_write(
+@@ -132,6 +134,7 @@
+                 "request_started_at": started,
+                 "received_at": response.received_at,
+                 "headers": response.headers,
++                **({"refresh_context": refresh_context} if refresh_context is not None else {}),
+             },
+         )
+     row = depth.parse(
+@@ -229,7 +232,9 @@
+     fetcher=None,
+     progress=None,
+     history_policy=depth.HISTORY_POLICY,
++    refresh_reserved=0,
+ ):
++    refresh_checks = RefreshChecks(refresh_reserved)
+     if history_policy not in (None, depth.HISTORY_POLICY):
+         raise DataError("Unknown depth history policy")
+     if not (
+@@ -294,8 +299,10 @@
+                     "sync_losses": 0,
+                     "coverage_resets": 0,
+                     "coverage_top_shortfalls": 0,
+-                    "coverage_refresh": refresh_metadata(),
++                    "coverage_refresh": refresh_metadata(refresh_reserved),
++                    "refresh_decisions": new_decision_log(),
+                     "coverage_check_requests": 0,
++                    "critical_check_requests": 0,
+                     "periodic_check_requests": 0,
+                     "recent_coverage_checks": [],
+                     "coverage_reset_policy": "same_socket_new_epoch_v1",
+@@ -326,7 +333,6 @@
+             start = last_flush = time.monotonic()
+             deadline, failures, reason = start + seconds, 0, "initial"
+             lagged_retry = LaggedRetry()
+-            refresh_checks = RefreshChecks()
+ 
+             def flush():
+                 nonlocal last_flush, buffered_bytes
+@@ -350,13 +356,21 @@
+                         }
+                     )
+ 
+-            def get_snapshot(kind, *, already_flushed=False):
++            def get_snapshot(kind, *, already_flushed=False, refresh_context=None):
+                 nonlocal sequence
+                 if shutil.disk_usage(store.root).free < minimum:
+                     raise DataError("Depth capture stopped: free space below reserve")
+                 if not already_flushed:
+                     flush()
+-                row = snapshot(store, fetcher, report["id"], epoch_report["epoch"], sequence, kind)
++                row = snapshot(
++                    store,
++                    fetcher,
++                    report["id"],
++                    epoch_report["epoch"],
++                    sequence,
++                    kind,
++                    refresh_context=refresh_context,
++                )
+                 sequence += 1
+                 report["snapshots"] += 1
+                 session.take(row)
+@@ -406,6 +420,7 @@
+                 report["coverage_top_shortfalls"] += int(incomplete)
+                 report["synchronized"] = False
+                 epoch_report.update(ended_at=now(), end_reason=reason)
++                epoch_report["prior_refresh_decisions"] = deepcopy(report["refresh_decisions"])
+                 if incomplete:
+                     # Keep the state machine's true result: IDs may be aligned
+                     # even though the requested top is no longer known. Do not
+@@ -430,32 +445,36 @@
+ 
+             def check_coverage(stop_at):
+                 nonlocal last_check
+-                if not session.book.synced or session.pending:
++
++                def assess():
++                    return refresh_checks.assess(
++                        session.book,
++                        top,
++                        current=time.monotonic(),
++                        last_request=last_check,
++                        periodic_seconds=verify_seconds,
++                        synchronized=session.book.synced,
++                        pending=bool(session.pending),
++                        stop_at=stop_at,
++                    )
++
++                decision, phase = assess(), "before_flush"
++                if decision["action"] == "request":
++                    # Persistence can block. Re-evaluate gates after it without
++                    # double-counting this invocation's terminal decision.
++                    flush()
++                    decision, phase = assess(), "after_flush"
++                record_decision(
++                    report["refresh_decisions"],
++                    decision,
++                    epoch=epoch_report["epoch"],
++                    after_sequence=sequence - 1,
++                    at=now(),
++                    phase=phase,
++                )
++                if decision["action"] != "request":
+                     return
+-                decision = refresh_checks.decision(
+-                    session.book,
+-                    top,
+-                    current=time.monotonic(),
+-                    last_request=last_check,
+-                    periodic_seconds=verify_seconds,
+-                )
+-                if decision is None:
+-                    return
+-                # Persistence can block. Re-evaluate both the quota and deadline
+-                # after flushing, before making a new external request.
+-                flush()
+                 current = time.monotonic()
+-                if current >= stop_at:
+-                    return
+-                decision = refresh_checks.decision(
+-                    session.book,
+-                    top,
+-                    current=current,
+-                    last_request=last_check,
+-                    periodic_seconds=verify_seconds,
+-                )
+-                if decision is None:
+-                    return
+                 refresh_checks.claim(decision, current)
+                 counter = (
+                     "coverage_check_requests"
+@@ -463,16 +482,19 @@
+                     else "periodic_check_requests"
+                 )
+                 report[counter] += 1
++                if decision["reason"] == "headroom" and decision["priority"] == "critical":
++                    report["critical_check_requests"] += 1
+                 record = {
+                     "epoch": epoch_report["epoch"],
+                     "sequence": sequence,
+                     "requested_at": now(),
+                     **decision,
++                    "budget_after_claim": refresh_checks.budget(current),
+                 }
+                 report["recent_coverage_checks"] = (report["recent_coverage_checks"] + [record])[
+                     -32:
+                 ]
+-                get_snapshot("check", already_flushed=True)
++                get_snapshot("check", already_flushed=True, refresh_context=record)
+                 last_check = time.monotonic()
+ 
+             try:
+diff --git a/tests/test_depth_budget.py b/tests/test_depth_budget.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_depth_budget.py
+@@ -0,0 +1,196 @@
++"""Request budgeting and durable direct evidence, independent of historical gap repair."""
++
++import json
++
++import httpx
++import pytest
++from marketdata import depth
++from marketdata import depth_stream as live
++from marketdata.binance import Fetcher, SourceError
++from marketdata.depth_refresh import RefreshChecks, new_decision_log, record_decision
++from test_depth import BASE, row
++from test_depth_refresh import Exchange
++
++
++def book(asks=700):
++    payload = {
++        "lastUpdateId": 100,
++        "T": 1704067200000,
++        "E": 1704067200001,
++        "bids": [[str(p), "1"] for p in range(1000, 0, -1)],
++        "asks": [[str(p), "1"] for p in range(1001, 2001)],
++    }
++    result = depth.Book(row(payload, "anchor"))
++    for p in sorted(result.asks)[: 1000 - asks]:
++        del result.asks[p]
++    return result
++
++
++def assess(controller, value, at, *, last=None, **kwargs):
++    return controller.assess(
++        value,
++        20,
++        current=at,
++        last_request=at - 1 if last is None else last,
++        periodic_seconds=10,
++        **kwargs,
++    )
++
++
++@pytest.mark.parametrize("reserve", [2, 4])
++def test_reserve_still_enforces_total_and_normal_rolling_limits(reserve):
++    controller = RefreshChecks(reserve)
++    normal, critical = book(700), book(300)
++    for stamp in range(1, 13 - reserve):
++        decision = assess(controller, normal, stamp)
++        assert decision["action"] == "request" and decision["priority"] == "normal"
++        controller.claim(decision, stamp)
++    withheld = assess(controller, normal, 13 - reserve)
++    assert withheld["reason"] == "critical_reserve"
++    for stamp in range(13 - reserve, 13):
++        decision = assess(controller, critical, stamp)
++        assert decision["action"] == "request" and decision["priority"] == "critical"
++        controller.claim(decision, stamp)
++    assert assess(controller, critical, 13)["reason"] == "extra_budget"
++    assert assess(controller, critical, 22, last=12)["reason"] == "periodic"
++    decision = assess(controller, normal, 61)
++    assert decision["action"] == "request"
++    controller.claim(decision, 61)
++    assert controller.budget(61)["extra_used"] == 12
++    assert controller.budget(61)["normal_used"] == 12 - reserve
++
++
++def test_critical_calls_can_use_unused_normal_capacity_but_never_raise_total_limit():
++    controller, critical = RefreshChecks(4), book(300)
++    for stamp in range(1, 13):
++        decision = assess(controller, critical, stamp)
++        controller.claim(decision, stamp)
++    assert controller.budget(12)["normal_used"] == 0
++    assert assess(controller, critical, 13)["reason"] == "extra_budget"
++
++
++@pytest.mark.parametrize(
++    "settings,reason",
++    [
++        ({"last": 9.5}, "minimum_interval"),
++        ({"pending": True}, "pending_verification"),
++        ({"stop_at": 10}, "deadline"),
++        ({"synchronized": False}, "not_synchronized"),
++    ],
++)
++def test_critical_priority_never_bypasses_another_gate(settings, reason):
++    decision = assess(RefreshChecks(2), book(300), 10, **settings)
++    assert decision["action"] == "defer" and reason in decision["blockers"]
++
++
++def test_idle_evaluations_are_not_counted_as_blocked_requests():
++    controller = RefreshChecks()
++    log = new_decision_log()
++    record_decision(
++        log,
++        assess(controller, book(1000), 0, last=0),
++        epoch=0,
++        after_sequence=1,
++        at=BASE,
++        phase="before_flush",
++    )
++    assert log["evaluations"] == 1 and log["deferred_evaluations"] == 0
++    assert not log["first_by_reason"] and log["last"] is None
++
++
++def test_all_applicable_blockers_are_direct_evidence_but_one_evaluation_is_counted_once():
++    controller, critical = RefreshChecks(), book(300)
++    for stamp in range(1, 13):
++        controller.claim(assess(controller, critical, stamp), stamp)
++    decision = assess(controller, critical, 12.5, last=12, pending=True)
++    assert decision["blockers"] == ["pending_verification", "minimum_interval", "extra_budget"]
++    log = new_decision_log()
++    for seq in range(100):
++        record_decision(log, decision, epoch=0, after_sequence=seq, at=BASE, phase="before_flush")
++    assert log["deferred_evaluations"] == 100
++    assert sum(log["primary_reason_counts"].values()) == 100
++    assert sum(log["blocker_counts"].values()) == 300
++    assert len(log["recent_deferrals"]) == 8
++    assert log["first_by_reason"]["extra_budget"]["after_sequence"] == 0
++    assert log["last_by_reason"]["extra_budget"]["after_sequence"] == 99
++
++
++def test_pending_capture_is_explained_and_successful_request_context_is_durable(store, monkeypatch):
++    exchange = Exchange(monkeypatch, future=True)
++    report = exchange.capture(store, seconds=2)
++    log = report["refresh_decisions"]
++    assert log["blocker_counts"]["pending_verification"] > 0
++    assert log["blocker_counts"]["minimum_interval"] > 0
++    assert len(exchange.calls) == 2
++    metadata = [json.loads(r[0]) for r in store.db.execute("SELECT metadata FROM fetches")]
++    contexts = [m["refresh_context"] for m in metadata if m.get("kind") == "check"]
++    assert len(contexts) == 1
++    assert contexts[0]["budget"]["extra_used"] == 0
++    assert contexts[0]["budget_after_claim"]["extra_used"] == 1
++    assert contexts[0]["priority"] == "normal"
++    assert depth.replay(store)["replay_matches_live"]
++
++
++@pytest.mark.parametrize("reserved", [-1, 12, 1.5, True])
++def test_invalid_reserve_is_rejected(reserved):
++    with pytest.raises(ValueError):
++        RefreshChecks(reserved)
++
++
++def test_flush_recheck_records_deadline_once_and_sends_no_request(store, monkeypatch):
++    exchange = Exchange(monkeypatch)
++    original = live.persist_messages
++
++    def slow(*args):
++        result = original(*args)
++        if exchange.ms >= 1300:
++            exchange.ms += 6000
++        return result
++
++    monkeypatch.setattr(live, "persist_messages", slow)
++    report = exchange.capture(store, seconds=3)
++    log = report["refresh_decisions"]
++    assert len(exchange.calls) == 1 and report["coverage_check_requests"] == 0
++    assert log["primary_reason_counts"]["deadline"] == 1
++    assert log["last"]["phase"] == "after_flush"
++    assert log["evaluations"] == report["messages"]
++    assert report["messages"] == report["persisted_messages"]
++
++
++def test_failed_request_preserves_budget_context_and_existing_cooldown(store, monkeypatch):
++    exchange = Exchange(monkeypatch)
++    original = exchange.fetch
++
++    def limited(request):
++        if not exchange.calls:
++            return original(request)
++        exchange.calls.append(exchange.ms / 1000)
++        return httpx.Response(429, content=b"limited early check")
++
++    exchange.fetcher.client.close()
++    exchange.fetcher = Fetcher(
++        httpx.Client(transport=httpx.MockTransport(limited)), retries=0, sleep=exchange.sleep
++    )
++    with pytest.raises(SourceError):
++        exchange.capture(store, refresh_reserved=2)
++    report = json.loads((store.root / "state/depth-latest.json").read_bytes())
++    metadata = [json.loads(r[0]) for r in store.db.execute("SELECT metadata FROM fetches")]
++    error = next(m for m in metadata if m.get("status") == 429)
++    context = error["refresh_context"]
++    assert context["budget_after_claim"]["extra_used"] == 1
++    assert context["budget_after_claim"]["reserved_for_critical"] == 2
++    assert len(exchange.calls) == 2 and report["state"] == "failed"
++    assert report["messages"] == report["persisted_messages"] == len(exchange.receipts)
++    assert (store.root / "state/depth-rest-cooldown.json").exists()
++
++
++def test_failure_pins_prior_decisions_as_independent_evidence(store, monkeypatch):
++    exchange = Exchange(monkeypatch, shock=True)
++    report = exchange.capture(store, seconds=2, refresh_reserved=4)
++    prior = report["epochs"][0]["prior_refresh_decisions"]
++    assert report["state"] == "partial" and report["coverage_resets"] == 1
++    assert prior["evaluations"] < report["refresh_decisions"]["evaluations"]
++    assert prior is not report["refresh_decisions"]
++    prior["primary_reason_counts"]["test_mutation"] = 1
++    assert "test_mutation" not in report["refresh_decisions"]["primary_reason_counts"]
++    assert depth.replay(store)["replay_matches_live"]
+diff --git a/scripts/compare_depth_reserve.py b/scripts/compare_depth_reserve.py
+new file mode 100644
+--- /dev/null
++++ b/scripts/compare_depth_reserve.py
+@@ -0,0 +1,308 @@
++"""Synthetic full-market comparison through the actual capture/REST/replay pipeline.
++
++No network, live store, or historical counterfactual REST is used. Market events
++continue during simulated REST/flush delays. Closed-form full-market top levels
++are checked independently at every synchronized event.
++"""
++
++import argparse
++import hashlib
++import inspect
++import json
++import math
++from collections import deque
++from contextlib import ExitStack, contextmanager
++from datetime import timedelta
++from pathlib import Path
++from types import SimpleNamespace
++from unittest.mock import patch
++
++import httpx
++from marketdata import binance, depth, depth_refresh
++from marketdata import depth_stream as live
++from marketdata.domain import json_bytes, micros, utc
++from marketdata.store import Store
++
++from scripts.verify_depth_capture import verify
++
++BASE = utc("2024-01-01")
++PRICE = 100000
++SCENARIOS = {
++    "quiet": {"seconds": 35, "latency_ms": 50, "flush_ms": 0},
++    "steady": {"seconds": 70, "latency_ms": 50, "flush_ms": 0},
++    "fast": {"seconds": 50, "latency_ms": 50, "flush_ms": 0},
++    "oscillation": {"seconds": 35, "latency_ms": 50, "flush_ms": 0},
++    "reserve_help": {"seconds": 30, "latency_ms": 50, "flush_ms": 0},
++    "reserve_delay_risk": {"seconds": 25, "latency_ms": 250, "flush_ms": 0},
++    "slow_rest": {"seconds": 30, "latency_ms": 700, "flush_ms": 0, "path": "reserve_help"},
++    "slow_flush": {"seconds": 30, "latency_ms": 50, "flush_ms": 150, "path": "reserve_help"},
++    "single_jump": {"seconds": 15, "latency_ms": 50, "flush_ms": 0},
++    "critical_pressure": {"seconds": 45, "latency_ms": 50, "flush_ms": 0},
++    "rotating": {
++        "seconds": 45,
++        "latency_ms": 50,
++        "flush_ms": 0,
++        "path": "oscillation",
++        "rotate_seconds": 10,
++    },
++}
++
++
++def position(name, tick):
++    ms = tick * 100
++    if name == "quiet":
++        return round(10 * math.sin(ms / 2000))
++    if name == "steady":
++        return ms * 80 // 1000
++    if name == "fast":
++        return ms * 200 // 1000
++    if name == "single_jump":
++        return 1200 if ms >= 5000 else 0
++    if name == "critical_pressure":
++        return (ms // 2000) * 600
++    if name == "reserve_help" and ms >= 21000:
++        return 650 if ms < 21200 else 950 if ms < 21400 else 1250
++    if name == "reserve_delay_risk" and ms >= 18000:
++        return 300 if ms < 18100 else 700 if ms < 18300 else 1100
++    waves = 10 if name == "reserve_delay_risk" else 12 if name == "reserve_help" else 100
++    return (min(waves, ms // 1500) % 2) * 260
++
++
++class Market:
++    def __init__(self, name):
++        self.config = SCENARIOS[name]
++        self.path = self.config.get("path", name)
++        self.ms = self.tick = self.received = self.comparisons = self.max_queue = 0
++        self.queue = None
++        self.calls = []
++        self.min_known_levels = 1000
++        self.top_incomplete_events = 0
++
++    def advance(self, ms):
++        until = self.ms + round(ms)
++        while (self.tick + 1) * 100 <= until:
++            old = position(self.path, self.tick)
++            self.tick += 1
++            new = position(self.path, self.tick)
++            if self.queue is not None:
++                prices = range(PRICE + min(old, new) + 1, PRICE + max(old, new) + 1)
++                increasing = new > old
++                raw = {
++                    "e": "depthUpdate",
++                    "s": "BTCUSDT",
++                    "st": 1,
++                    "U": 1000 + self.tick,
++                    "u": 1000 + self.tick,
++                    "pu": 999 + self.tick,
++                    "T": micros(BASE) // 1000 + self.tick * 100,
++                    "E": micros(BASE) // 1000 + self.tick * 100,
++                    "b": [[str(p), "1" if increasing else "0"] for p in prices],
++                    "a": [[str(p), "0" if increasing else "1"] for p in prices],
++                }
++                self.queue.append(raw)
++                self.max_queue = max(self.max_queue, len(self.queue))
++                assert len(self.queue) <= 128, (
++                    "Synthetic receive queue exceeded real configured bound"
++                )
++        self.ms = until
++
++    def sleep(self, seconds):
++        self.advance(seconds * 1000)
++
++    @contextmanager
++    def connector(self, *args, **kwargs):
++        assert self.queue is None
++        self.queue = deque()
++
++        def recv(timeout):
++            if not self.queue:
++                self.advance((self.tick + 1) * 100 - self.ms)
++            self.received += 1
++            return json.dumps(self.queue.popleft())
++
++        try:
++            yield SimpleNamespace(recv=recv)
++        finally:
++            self.queue = None
++
++    def fetch(self, request):
++        start = self.ms
++        self.advance(self.config["latency_ms"])
++        best = PRICE + position(self.path, self.tick)
++        self.calls.append(
++            {"started_ms": start, "finished_ms": self.ms, "update_id": 1000 + self.tick}
++        )
++        payload = {
++            "lastUpdateId": 1000 + self.tick,
++            "T": micros(BASE) // 1000 + self.tick * 100,
++            "E": micros(BASE) // 1000 + self.tick * 100,
++            "bids": [[str(best - n), "1"] for n in range(1000)],
++            "asks": [[str(best + 1 + n), "1"] for n in range(1000)],
++        }
++        return httpx.Response(200, json=payload)
++
++    def check_book(self, session):
++        book = session.book
++        if book is None or not book.synced:
++            return
++        self.min_known_levels = min(self.min_known_levels, len(book.bids), len(book.asks))
++        if min(len(book.bids), len(book.asks)) < session.top:
++            self.top_incomplete_events += 1
++            return
++        best = PRICE + position(self.path, book.last - 1000)
++        expected_bids = [(best - n, 1) for n in range(session.top)]
++        expected_asks = [(best + 1 + n, 1) for n in range(session.top)]
++        view = book.view(session.top)
++        assert view["bids"] == expected_bids and view["asks"] == expected_asks
++        self.comparisons += 1
++
++
++def run(output, scenario, reserved):
++    output.mkdir(parents=True, exist_ok=False)
++    market, store = Market(scenario), Store(output / "store")
++    fetcher = binance.Fetcher(
++        httpx.Client(transport=httpx.MockTransport(market.fetch)), retries=0, sleep=market.sleep
++    )
++    original_take, original_persist = depth.Session.take, live.persist_messages
++
++    def take(session, row):
++        original_take(session, row)
++        market.check_book(session)
++
++    def persist(*args):
++        received = original_persist(*args)
++        if received:
++            market.advance(market.config["flush_ms"])
++        return received
++
++    options = (
++        {"refresh_reserved": reserved}
++        if "refresh_reserved" in inspect.signature(live.capture).parameters
++        else {}
++    )
++    assert options or reserved == 0, "Baseline capture supports only its original policy"
++    try:
++        with ExitStack() as stack:
++            for obj, attr, replacement in [
++                (live.time, "monotonic", lambda: market.ms / 1000),
++                (live.time, "sleep", market.sleep),
++                (live, "now", lambda: BASE + timedelta(milliseconds=market.ms)),
++                (binance, "now", lambda: BASE + timedelta(milliseconds=market.ms)),
++                (depth, "now", lambda: BASE + timedelta(milliseconds=market.ms)),
++                (depth.Session, "take", take),
++                (live, "persist_messages", persist),
++            ]:
++                stack.enter_context(patch.object(obj, attr, replacement))
++            report = live.capture(
++                store,
++                seconds=market.config["seconds"],
++                verify_seconds=10,
++                rotate_seconds=market.config.get("rotate_seconds", 900),
++                flush_seconds=5,
++                top=20,
++                min_free_gib=0,
++                connector=market.connector,
++                fetcher=fetcher,
++                **options,
++            )
++        replay = depth.replay(store, report["id"])
++        verification = verify(store, report["id"], replayed=replay)
++        assert report["messages"] == report["persisted_messages"] == market.received
++        assert verification["raw_to_canonical_equal"] and verification["replay_matches_live"]
++        contexts = [
++            json.loads(r[0])["refresh_context"]
++            for r in store.db.execute("SELECT metadata FROM fetches")
++            if "refresh_context" in json.loads(r[0])
++        ]
++        extra = [x for x in contexts if x["reason"] == "headroom"]
++        if options:
++            assert len(extra) == report["coverage_check_requests"]
++            assert len(contexts) - len(extra) == report["periodic_check_requests"]
++        max_extra = max_normal = 0
++        for entry in extra:
++            window = [
++                x
++                for x in extra
++                if 0 <= (utc(entry["requested_at"]) - utc(x["requested_at"])).total_seconds() < 60
++            ]
++            assert len(window) <= 12
++            assert sum(x["priority"] == "normal" for x in window) <= 12 - reserved
++            max_extra = max(max_extra, len(window))
++            max_normal = max(max_normal, sum(x["priority"] == "normal" for x in window))
++        result = {
++            "scenario": scenario,
++            "parameters": market.config,
++            "reserved": reserved,
++            "state": report["state"],
++            "messages": report["messages"],
++            "connections": report["connections"],
++            "coverage_resets": report["coverage_resets"],
++            "top_shortfalls": report.get("coverage_top_shortfalls"),
++            "extra_requests": report["coverage_check_requests"],
++            "periodic_requests": report["periodic_check_requests"],
++            "rest_verifications": {
++                **{
++                    key: replay[key]
++                    for key in (
++                        "verification_checks",
++                        "verification_equal",
++                        "verification_pending",
++                        "verification_uncomparable",
++                    )
++                },
++                "verification_mismatch": sum(
++                    c["comparable"] and not c["equal"]
++                    for epoch in replay["epochs"].values()
++                    for c in epoch["checks"]
++                ),
++            },
++            "unreconstructed_messages": report["unreconstructed_messages"],
++            "rolling_extra_budget": {
++                "maximum_total": max_extra,
++                "maximum_normal": max_normal,
++                "verified_from_durable_request_contexts": bool(options),
++            },
++            "all_rest_calls": market.calls,
++            "exact_full_market_comparisons": market.comparisons,
++            "minimum_known_levels": market.min_known_levels,
++            "maximum_receive_queue": market.max_queue,
++            "deferral_counts": report.get("refresh_decisions", {}).get("primary_reason_counts"),
++            "verification": verification,
++            "source_hashes": {
++                str(Path(m.__file__)): hashlib.sha256(Path(m.__file__).read_bytes()).hexdigest()
++                for m in (depth, depth_refresh, live)
++            },
++            "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
++        }
++        for name, data in [
++            ("capture.json", report),
++            ("verification.json", verification),
++            ("request-contexts.json", contexts),
++            ("result.json", result),
++        ]:
++            (output / name).write_bytes(json_bytes(data))
++        print(
++            json.dumps(
++                {
++                    k: result[k]
++                    for k in ("scenario", "reserved", "state", "coverage_resets", "extra_requests")
++                }
++            )
++        )
++        return result
++    finally:
++        fetcher.client.close()
++        store.close()
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--output", required=True, type=Path)
++    parser.add_argument("--scenario", required=True, choices=SCENARIOS)
++    parser.add_argument("--reserved", required=True, type=int, choices=(0, 2, 4))
++    args = parser.parse_args()
++    run(args.output.resolve(), args.scenario, args.reserved)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/run_depth_reserve_matrix.py b/scripts/run_depth_reserve_matrix.py
+new file mode 100644
+--- /dev/null
++++ b/scripts/run_depth_reserve_matrix.py
+@@ -0,0 +1,93 @@
++"""Run preserved, isolated baseline/candidate processes for each synthetic market."""
++
++import argparse
++import json
++import os
++import subprocess
++import sys
++from datetime import datetime, timezone
++from pathlib import Path
++
++from compare_depth_reserve import SCENARIOS
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--baseline", type=Path, required=True)
++    parser.add_argument("--candidate", type=Path, required=True)
++    parser.add_argument("--output", type=Path, required=True)
++    args = parser.parse_args()
++    args.output.mkdir(parents=True, exist_ok=False)
++    started = datetime.now(timezone.utc).isoformat()
++    results, commands = {}, []
++    for scenario in SCENARIOS:
++        results[scenario] = {}
++        for variant, code, reserve in (
++            ("baseline", args.baseline, 0),
++            ("candidate-0", args.candidate, 0),
++            ("candidate-2", args.candidate, 2),
++            ("candidate-4", args.candidate, 4),
++        ):
++            output = args.output / variant / scenario
++            command = [
++                sys.executable,
++                str(args.candidate / "scripts/compare_depth_reserve.py"),
++                "--output",
++                str(output),
++                "--scenario",
++                scenario,
++                "--reserved",
++                str(reserve),
++            ]
++            env = {
++                **os.environ,
++                "PYTHONPATH": os.pathsep.join(
++                    str(p)
++                    for p in (
++                        code / "packages/marketdata/src",
++                        code / "packages/marketdata_freqtrade/src",
++                        code,
++                    )
++                ),
++            }
++            commands.append({"command": command, "pythonpath": env["PYTHONPATH"]})
++            subprocess.run(command, env=env, cwd=code, check=True)
++            results[scenario][variant] = json.loads((output / "result.json").read_bytes())
++        baseline, instrumented = results[scenario]["baseline"], results[scenario]["candidate-0"]
++        # The old baseline has no decision log or durable context. Compare externally
++        # visible request scheduling and quality, independently of its new metadata.
++        for key in (
++            "state",
++            "messages",
++            "connections",
++            "coverage_resets",
++            "top_shortfalls",
++            "extra_requests",
++            "periodic_requests",
++            "all_rest_calls",
++            "exact_full_market_comparisons",
++            "minimum_known_levels",
++            "maximum_receive_queue",
++            "rest_verifications",
++            "unreconstructed_messages",
++        ):
++            assert baseline[key] == instrumented[key], (
++                scenario,
++                key,
++                baseline[key],
++                instrumented[key],
++            )
++    summary = {
++        "started_at": started,
++        "completed_at": datetime.now(timezone.utc).isoformat(),
++        "baseline_matches_candidate_0": True,
++        "scenario_count": len(SCENARIOS),
++        "capture_count": sum(len(v) for v in results.values()),
++        "results": results,
++        "commands": commands,
++    }
++    (args.output / "matrix.json").write_text(json.dumps(summary, indent=2) + "\n")
++
++
++if __name__ == "__main__":
++    main()

@@ -1,0 +1,59 @@
+{
+  "checked_at": "2026-10-02T10:59:33.352696+00:00",
+  "runtime_sha256_unchanged": {
+    "packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+    "packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+    "packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141",
+    "integrations/systemd/marketdata-depth.service": "ae49746c2c248f9b57d427c434215bda356a321c30c65d4f98d1de8620d4e833"
+  },
+  "collectors": {
+    "depth": {
+      "id": "cfe1844cb944491d911b3752e5675fb1",
+      "state": "running",
+      "started_at": "2026-10-02T10:12:47.297941+00:00",
+      "updated_at": "2026-10-02T10:59:28.565688+00:00",
+      "last_received_at": "2026-10-02T10:59:28.519721+00:00",
+      "messages": 27349,
+      "persisted_messages": 27349,
+      "connections": 4,
+      "connection_errors": 0,
+      "coverage_resets": 0,
+      "coverage_refresh": {
+        "extra_requests": 12,
+        "level_fraction": "0.75",
+        "min_interval_seconds": 1.0,
+        "policy": "bounded_headroom_v1",
+        "price_fraction": "0.25",
+        "scope": "extra checks within this capture; survives resync/reconnect; periodic checks and recovery anchors are separate",
+        "window_seconds": 60.0
+      },
+      "unreconstructed_messages": 0,
+      "candidate_decision_logging_active": false,
+      "same_capture_as_1927_read_only_check": true
+    },
+    "aggtrade": {
+      "id": "494d0e2c3f234aaa82848af89d9cb8eb",
+      "state": "running",
+      "started_at": "2026-10-02T10:14:39.023741+00:00",
+      "updated_at": "2026-10-02T10:59:32.552528+00:00",
+      "last_received_at": "2026-10-02T10:59:31.534105+00:00",
+      "messages": 29518,
+      "persisted_messages": 29518,
+      "connections": 1,
+      "connection_errors": 0,
+      "coverage_resets": null,
+      "coverage_refresh": null,
+      "unreconstructed_messages": null
+    },
+    "network": {
+      "started_at": "2026-10-02T10:59:20.341456+00:00",
+      "finished_at": "2026-10-02T10:59:20.481194+00:00",
+      "status": "ok",
+      "failed_probes": []
+    }
+  },
+  "deployment_performed": false,
+  "service_restart_performed": false,
+  "production_writes": "only new reviewed reports and reports index; no catalog, data, unit, profile, password, snapshot or backup changes",
+  "patch_apply_check": "git apply --check succeeded without applying"
+}

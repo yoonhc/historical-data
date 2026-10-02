@@ -4,6 +4,12 @@
 [9/27 마일스톤](../docs/milestones/2026-09-27-collection-and-backup-stabilization.md)에
 restic 시험 전의 기준 상태와 후속 순서를 정리했습니다. 각 baseline의 관측 시각·범위는 유지합니다.
 
+`baseline/depth-budget-candidate-2026-10-02/`는 운영에 적용하지 않은 호가 보류 기록과 예산
+예약 후보의 격리 검증입니다. [요약](baseline/depth-budget-candidate-2026-10-02/summary.md)에
+428개 테스트, 11개 조건·44회 비교, 예약 0회의 기존 요청 시각·품질 일치, 2회·4회 예약의
+이점과 악화 반례를 보존했습니다. 후보 패치는 별도로 남겼으며 운영 코드·설정은 유지했습니다.
+기존 정책의 10/3 08:30 이후 24시간 점검과 기록 보강의 운영 적용 판단은 후속입니다.
+
 `baseline/depth-refresh-2026-10-01/`는 호가 조기 갱신·top 부족 처리와 별도 네트워크 관측의
 구현·검증 기록입니다. [요약](baseline/depth-refresh-2026-10-01/summary.md)에 411개 검사,
 실시간 증분 1,741개·REST 대조 16회 일치, 기존 장애 3개 재생 판정 유지, 10/2 소스 반영과
