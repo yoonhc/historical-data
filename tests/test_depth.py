@@ -236,7 +236,11 @@ def test_capture_refreshes_thinning_coverage_before_periodic_check(store, monkey
     fresh["asks"] = [[str(p), "1"] for p in [*range(101, 141), *range(301, 461)]]
     deletes = [[str(p), "0"] for p in range(141, 301)]
     report = capture(
-        store, monkeypatch, [[update(100, asks=deletes), update(101)]], [anchor, fresh]
+        store,
+        monkeypatch,
+        [[update(100, asks=deletes), update(101), update(102)]],
+        [anchor, fresh],
+        seconds=14,
     )
     assert report["snapshots"] == 2 and report["sync_losses"] == 0
     assert report["epochs"][0]["final"]["refreshes"] == 1

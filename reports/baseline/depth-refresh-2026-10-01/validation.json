@@ -1,0 +1,52 @@
+{
+  "recorded_at": "2026-10-01T22:29:39.879960+00:00",
+  "source_sha256": {
+    "packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+    "packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141",
+    "packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+    "scripts/network_observer.py": "e09165fd1f5934bce1249ca1a70819dc043297a6707ce69cd191a4a13a99476d",
+    "tests/test_depth.py": "e1d7615debe278b568571e8f76dc0aa83c4e96eaafff16047e573d6741731127",
+    "tests/test_depth_history.py": "ca0f0e988c4cc442af745ef09cad3981870fd29a534bd1c81e28aeece5034bc8",
+    "tests/test_depth_refresh.py": "64446885837be6c8df08230783c1f57cc740a454296b3fca60db98dc22cd182f",
+    "tests/test_network_observer.py": "c8a09e230a6dfd18ddf56084cac752a229a7be22b6a5637d7ade4a1040242547",
+    "integrations/systemd/marketdata-network-observer.service": "447c9f1c1688b2d6a23e4c087e7d59d80d3ec3004f28f70678b59cb33e64b8ff",
+    "integrations/systemd/marketdata-network-observer.timer": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+    "configs/network-observer.example.toml": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12"
+  },
+  "test_results": {
+    "tests.xml": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "411",
+      "time": "282.977",
+      "timestamp": "2026-10-01T21:41:27.534576+09:00",
+      "hostname": "hclm"
+    },
+    "network-final-tests.xml": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "15",
+      "time": "0.027",
+      "timestamp": "2026-10-02T07:20:53.065862+09:00",
+      "hostname": "hclm"
+    }
+  },
+  "full_suite_note": "Full suite from isolated checkout, then numeric external-IP default adjusted to tested 8.8.8.8 and all 15 observer tests rerun. Depth runtime sources still exactly match live pilot hashes.",
+  "checks": [
+    "ruff check packages scripts tests and new baseline scripts",
+    "ruff format --check same paths",
+    "git diff --check",
+    "systemd-analyze --user verify both new units",
+    "first configured oneshot and scheduled network probes successful"
+  ],
+  "pending": [
+    "24 hours of actual operation and audit"
+  ],
+  "unit_template_note": "Removed one trailing blank line from tracked service template after actual installation; installed unit differs only by that blank line.",
+  "activation_observed_at": "2026-10-01T23:10:10.189269+00:00",
+  "operating_followup": "10 closed captures: 9 complete and 1 partial; exact first/partial source parity and policy-preserving replay passed. Extra quota exhaustion inferred from original request timestamps; 24-hour audit and quota allocation review remain pending."
+}

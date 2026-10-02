@@ -1,0 +1,77 @@
+{
+  "started_at": "2026-10-01T22:23:59.031324+00:00",
+  "status": "applied",
+  "uid": 1000,
+  "user": "yoonhc",
+  "commands": {
+    "reload": "",
+    "first_service": "",
+    "timer": "Created symlink /home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-network-observer.timer → /home/yoonhc/.config/systemd/user/marketdata-network-observer.timer.\n",
+    "finite_watcher": "Running as unit: marketdata-depth-refresh-observe-20261002.service; invocation ID: e9da597da7da40e6b4a861de850125fc\n"
+  },
+  "protected_before": {
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.service": "7ba5289fc742422fd1935bfe4515c274775262a5e6195214b2533311ab8d9d5c",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+    "/home/yoonhc/.config/systemd/user/marketdata-depth.service": "ae49746c2c248f9b57d427c434215bda356a321c30c65d4f98d1de8620d4e833",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+    "/home/yoonhc/.config/systemd/user/marketdata-aggtrade.service": "5a1b6b51c1a5669db24d08b8b5d66e8c84fe541e23c6863dc9e67cf0eb29099d",
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.service": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.service": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": "c67b3d1268e6b38f9ccee07d12192579708b826851e7269be5c0b7a61eee03dd",
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389",
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+    "/home/yoonhc/.config/marketdata/restic-archive.toml": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+    "/home/yoonhc/.config/marketdata/restic-service.env": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9"
+  },
+  "python": "Python 3.12.3\n",
+  "linger": "Linger=yes\n",
+  "unit_validation": "",
+  "installed": {
+    "/home/yoonhc/.config/marketdata/network-observer.toml": {
+      "sha256": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12",
+      "mode": "0o600"
+    },
+    "/home/yoonhc/.config/marketdata/network-observer.env": {
+      "sha256": "ebdf2cb3264d8152b0fadcc22932e2809a6d122d487215c942b70282b3e8eb13",
+      "mode": "0o600"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+      "sha256": "2ffe783c9341d78fc93526d3f401126932951e6e69788fdc3d69ce18c619bca8",
+      "mode": "0o644"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+      "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+      "mode": "0o644"
+    }
+  },
+  "first_probe_status": "ok",
+  "unit_status": "Result=success\nExecMainStartTimestamp=Fri 2026-10-02 07:24:05 KST\nExecMainExitTimestamp=Fri 2026-10-02 07:24:05 KST\nExecMainStatus=0\nId=marketdata-network-observer.service\nActiveState=inactive\nSubState=dead\nUnitFileState=static\nInvocationID=0cf5bdd2688a4444b7990aeb01c3bd3e\n\nNextElapseUSecRealtime=Fri 2026-10-02 07:24:20 KST\nLastTriggerUSec=Fri 2026-10-02 07:24:05 KST\nResult=success\nId=marketdata-network-observer.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=f64c8f4af0a74f30ba8b46b1b55b0328\n",
+  "collector_status": "MainPID=818788\nExecMainStartTimestamp=Fri 2026-10-02 07:09:19 KST\nId=marketdata-depth.service\nActiveState=active\n\nMainPID=818879\nExecMainStartTimestamp=Fri 2026-10-02 07:10:30 KST\nId=marketdata-aggtrade.service\nActiveState=active\n",
+  "protected_after": {
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.service": "7ba5289fc742422fd1935bfe4515c274775262a5e6195214b2533311ab8d9d5c",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+    "/home/yoonhc/.config/systemd/user/marketdata-depth.service": "ae49746c2c248f9b57d427c434215bda356a321c30c65d4f98d1de8620d4e833",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+    "/home/yoonhc/.config/systemd/user/marketdata-aggtrade.service": "5a1b6b51c1a5669db24d08b8b5d66e8c84fe541e23c6863dc9e67cf0eb29099d",
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.service": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.service": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": "c67b3d1268e6b38f9ccee07d12192579708b826851e7269be5c0b7a61eee03dd",
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389",
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+    "/home/yoonhc/.config/marketdata/restic-archive.toml": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+    "/home/yoonhc/.config/marketdata/restic-service.env": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9"
+  },
+  "finished_at": "2026-10-01T22:24:06.668129+00:00"
+}

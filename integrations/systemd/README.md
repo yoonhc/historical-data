@@ -36,6 +36,10 @@
   실제 실패는 120초 후 재시도합니다(1시간 최대 4회).
   원문·표준 데이터와 백업은 날짜에 따른 자동 삭제 없이 보존합니다.
 - [세션 간 공백·재접속 제한·백업 경로·상태 확인](../../docs/stream-services.md)을 확인하세요.
+- `marketdata-network-observer.timer`: 매분 20초 및 활성화 5초 뒤에 독립 네트워크 관측을
+  실행합니다. 호스트별 Python·스크립트·프로필은 `~/.config/marketdata/network-observer.env`에,
+  출력 경로·인터페이스·외부 시험 IP는 별도 TOML에 둡니다. 기존 유닛을 수정하지 않습니다.
+  [관측 범위·이식·새 예약만 중지](../../docs/network-observer.md)를 참고하세요.
 
 ```bash
 systemctl --user list-timers --all 'marketdata-*'

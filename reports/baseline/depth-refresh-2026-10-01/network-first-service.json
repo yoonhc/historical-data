@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "started_at": "2026-10-01T22:23:59.318424+00:00",
+  "finished_at": "2026-10-01T22:23:59.452628+00:00",
+  "status": "ok",
+  "failed_probes": [],
+  "probes": {
+    "selected_route": {
+      "started_at": "2026-10-01T22:23:59.318432+00:00",
+      "finished_at": "2026-10-01T22:23:59.320353+00:00",
+      "elapsed_seconds": 0.001929,
+      "returncode": 0,
+      "stderr": "",
+      "ok": true,
+      "interface": "enp2s0",
+      "gateway": "192.168.10.254",
+      "routes": [
+        {
+          "dst": "8.8.8.8",
+          "gateway": "192.168.10.254",
+          "dev": "enp2s0",
+          "prefsrc": "192.168.10.102",
+          "flags": [],
+          "uid": 1000,
+          "cache": []
+        }
+      ],
+      "expected_interface": "enp2s0"
+    },
+    "link": {
+      "interface": "enp2s0",
+      "observed_at": "2026-10-01T22:23:59.320413+00:00",
+      "ok": true,
+      "carrier": "1",
+      "operstate": "up"
+    },
+    "gateway_icmp": {
+      "started_at": "2026-10-01T22:23:59.320831+00:00",
+      "finished_at": "2026-10-01T22:23:59.324246+00:00",
+      "elapsed_seconds": 0.003414,
+      "returncode": 0,
+      "stdout": "PING 192.168.10.254 (192.168.10.254) from 192.168.10.102 enp2s0: 56(84) bytes of data.\n64 bytes from 192.168.10.254: icmp_seq=1 ttl=64 time=0.555 ms\n\n--- 192.168.10.254 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 0.555/0.555/0.555/0.000 ms\n",
+      "stderr": "",
+      "ok": true,
+      "gateway": "192.168.10.254"
+    },
+    "external_numeric_tcp": {
+      "address": "8.8.8.8",
+      "port": 443,
+      "started_at": "2026-10-01T22:23:59.321061+00:00",
+      "ok": true,
+      "local_address": "192.168.10.102",
+      "finished_at": "2026-10-01T22:23:59.354171+00:00",
+      "elapsed_seconds": 0.033111
+    },
+    "rest_dns": {
+      "started_at": "2026-10-01T22:23:59.321351+00:00",
+      "finished_at": "2026-10-01T22:23:59.336748+00:00",
+      "elapsed_seconds": 0.015401,
+      "returncode": 0,
+      "stderr": "",
+      "host": "fapi.binance.com",
+      "addresses": [
+        "13.225.117.109",
+        "13.225.117.117",
+        "13.225.117.59",
+        "13.225.117.67"
+      ],
+      "ok": true
+    },
+    "stream_dns": {
+      "started_at": "2026-10-01T22:23:59.321620+00:00",
+      "finished_at": "2026-10-01T22:23:59.337933+00:00",
+      "elapsed_seconds": 0.016314,
+      "returncode": 0,
+      "stderr": "",
+      "host": "fstream.binance.com",
+      "addresses": [
+        "13.113.106.166",
+        "52.192.9.142",
+        "52.193.62.0",
+        "52.198.112.104",
+        "54.178.14.135",
+        "54.65.212.74",
+        "54.92.116.238",
+        "54.95.119.204"
+      ],
+      "ok": true
+    },
+    "rest_https": {
+      "started_at": "2026-10-01T22:23:59.321772+00:00",
+      "finished_at": "2026-10-01T22:23:59.403068+00:00",
+      "elapsed_seconds": 0.081308,
+      "returncode": 0,
+      "stderr": "",
+      "url": "https://fapi.binance.com/fapi/v1/ping",
+      "kind": "http_ping",
+      "ok": true,
+      "timings": {
+        "http_code": 200,
+        "remote_ip": "13.225.117.109",
+        "remote_port": 443,
+        "local_ip": "192.168.10.102",
+        "time_namelookup": 0.010395,
+        "time_connect": 0.013879,
+        "time_appconnect": 0.03279,
+        "time_total": 0.073317,
+        "ssl_verify_result": 0
+      },
+      "http_reachable": true
+    },
+    "stream_https_transport": {
+      "started_at": "2026-10-01T22:23:59.322299+00:00",
+      "finished_at": "2026-10-01T22:23:59.452076+00:00",
+      "elapsed_seconds": 0.129787,
+      "returncode": 0,
+      "stderr": "",
+      "url": "https://fstream.binance.com/",
+      "kind": "https_head_transport",
+      "ok": true,
+      "timings": {
+        "http_code": 404,
+        "remote_ip": "52.192.9.142",
+        "remote_port": 443,
+        "local_ip": "192.168.10.102",
+        "time_namelookup": 0.011553,
+        "time_connect": 0.046906,
+        "time_appconnect": 0.084743,
+        "time_total": 0.121411,
+        "ssl_verify_result": 0
+      },
+      "http_reachable": true
+    }
+  },
+  "context": {
+    "uid": 1000,
+    "python": "/usr/bin/python3",
+    "script": "/home/yoonhc/projects/algoTrade/historical_data/scripts/network_observer.py",
+    "script_sha256": "e09165fd1f5934bce1249ca1a70819dc043297a6707ce69cd191a4a13a99476d",
+    "invocation_id": "e8c47c1ef05c4f5793c232211e94f033"
+  },
+  "scope": "one point sample; independent probes are not simultaneous; direct connections without proxies; no root-cause verdict; stream TLS is not a WebSocket health check",
+  "profile_sha256": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12"
+}

@@ -17,7 +17,11 @@ WS = "wss://fstream.binance.com/public/ws/btcusdt@depth@100ms"
 REST = "https://fapi.binance.com/fapi/v1/depth?symbol=BTCUSDT&limit=1000"
 HISTORY_POLICY = "bounded_same_socket_v1"
 HISTORY_LIMITS = {"events": 128, "levels": 50000, "serialized_bytes": 8 * 1024**2}
-SAME_SOCKET_REASONS = {"same_socket_after_coverage_exhausted", "same_socket_after_lagged_snapshot"}
+SAME_SOCKET_REASONS = {
+    "same_socket_after_coverage_exhausted",
+    "same_socket_after_lagged_snapshot",
+    "same_socket_after_incomplete_top",
+}
 LEVEL = pa.list_(pa.struct([pa.field("price", VALUE, False), pa.field("quantity", VALUE, False)]))
 SCHEMA = pa.schema(
     [
@@ -113,6 +117,8 @@ class Book:
         self.asks = {r["price"]: r["quantity"] for r in snapshot["asks"]}
         self.bid_floor, self.ask_ceiling = min(self.bids), max(self.asks)
         self.snapshot_bid_levels, self.snapshot_ask_levels = len(self.bids), len(self.asks)
+        self.snapshot_bid_span = max(self.bids) - self.bid_floor
+        self.snapshot_ask_span = self.ask_ceiling - min(self.asks)
         self.last = snapshot["final_update_id"]
         self.timestamp = snapshot["timestamp"]
         self.synced = False

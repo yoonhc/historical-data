@@ -15,6 +15,8 @@ from websockets.sync.client import connect
 from . import depth
 from .backup import reserve_bytes
 from .binance import Fetcher, SourceError
+from .depth_refresh import RefreshChecks, headroom
+from .depth_refresh import metadata as refresh_metadata
 from .domain import DataError, WriterBusy, json_bytes, now, sha256, utc
 from .oi_probe import retry_delay
 from .store import atomic_write
@@ -291,6 +293,11 @@ def capture(
                     "connection_errors": 0,
                     "sync_losses": 0,
                     "coverage_resets": 0,
+                    "coverage_top_shortfalls": 0,
+                    "coverage_refresh": refresh_metadata(),
+                    "coverage_check_requests": 0,
+                    "periodic_check_requests": 0,
+                    "recent_coverage_checks": [],
                     "coverage_reset_policy": "same_socket_new_epoch_v1",
                     "bootstrap_policy": "buffer_before_anchor_v1",
                     "bootstrap_timeout_seconds": 2,
@@ -319,6 +326,7 @@ def capture(
             start = last_flush = time.monotonic()
             deadline, failures, reason = start + seconds, 0, "initial"
             lagged_retry = LaggedRetry()
+            refresh_checks = RefreshChecks()
 
             def flush():
                 nonlocal last_flush, buffered_bytes
@@ -390,6 +398,83 @@ def capture(
                 get_snapshot("anchor", already_flushed=True)
                 last_check = time.monotonic()
 
+            def renew_coverage(stop_at, *, incomplete=False):
+                nonlocal session, epoch_report, epoch_started, last_check
+                reason = "incomplete_top" if incomplete else "coverage_exhausted"
+                report["sync_losses"] += 1
+                report["coverage_resets"] += 1
+                report["coverage_top_shortfalls"] += int(incomplete)
+                report["synchronized"] = False
+                epoch_report.update(ended_at=now(), end_reason=reason)
+                if incomplete:
+                    # Keep the state machine's true result: IDs may be aligned
+                    # even though the requested top is no longer known. Do not
+                    # invent a successful REST comparison or a replay exception.
+                    epoch_report["coverage_shortfall"] = headroom(session.book, top)
+                flush()
+                if report["coverage_resets"] >= 10:
+                    raise DataError("Ten depth coverage resets")
+                if time.monotonic() >= stop_at:
+                    return False
+                session = depth.new_session(report, "same_socket_after_" + reason, session)
+                epoch_report = {
+                    "epoch": len(report["epochs"]),
+                    "started_at": now(),
+                    "reason": "same_socket_after_" + reason,
+                }
+                report["epochs"].append(epoch_report)
+                epoch_started = time.monotonic()
+                get_snapshot("anchor", already_flushed=True)
+                last_check = time.monotonic()
+                return True
+
+            def check_coverage(stop_at):
+                nonlocal last_check
+                if not session.book.synced or session.pending:
+                    return
+                decision = refresh_checks.decision(
+                    session.book,
+                    top,
+                    current=time.monotonic(),
+                    last_request=last_check,
+                    periodic_seconds=verify_seconds,
+                )
+                if decision is None:
+                    return
+                # Persistence can block. Re-evaluate both the quota and deadline
+                # after flushing, before making a new external request.
+                flush()
+                current = time.monotonic()
+                if current >= stop_at:
+                    return
+                decision = refresh_checks.decision(
+                    session.book,
+                    top,
+                    current=current,
+                    last_request=last_check,
+                    periodic_seconds=verify_seconds,
+                )
+                if decision is None:
+                    return
+                refresh_checks.claim(decision, current)
+                counter = (
+                    "coverage_check_requests"
+                    if decision["reason"] == "headroom"
+                    else "periodic_check_requests"
+                )
+                report[counter] += 1
+                record = {
+                    "epoch": epoch_report["epoch"],
+                    "sequence": sequence,
+                    "requested_at": now(),
+                    **decision,
+                }
+                report["recent_coverage_checks"] = (report["recent_coverage_checks"] + [record])[
+                    -32:
+                ]
+                get_snapshot("check", already_flushed=True)
+                last_check = time.monotonic()
+
             try:
                 while time.monotonic() < deadline:
                     epoch_report = None
@@ -425,7 +510,7 @@ def capture(
                             )
                             report["bootstrap_messages"] += len(prefetched)
                             get_snapshot("anchor")
-                            epoch_started = time.monotonic()
+                            epoch_started = last_check = time.monotonic()
                             while prefetched or time.monotonic() < min(
                                 deadline, connected + rotate_seconds
                             ):
@@ -508,29 +593,18 @@ def capture(
                                     # longer covers the market. Keep the socket and queued
                                     # updates; preserve the failed epoch before re-anchoring.
                                     session.error = str(exc)
-                                    report["sync_losses"] += 1
-                                    report["coverage_resets"] += 1
-                                    report["synchronized"] = False
-                                    epoch_report.update(
-                                        ended_at=now(), end_reason="coverage_exhausted"
-                                    )
-                                    flush()
-                                    if report["coverage_resets"] >= 10:
-                                        raise DataError(
-                                            "Ten depth synchronization failures"
-                                        ) from exc
-                                    session = depth.new_session(
-                                        report, "same_socket_after_coverage_exhausted", session
-                                    )
-                                    epoch_report = {
-                                        "epoch": len(report["epochs"]),
-                                        "started_at": now(),
-                                        "reason": "same_socket_after_coverage_exhausted",
-                                    }
-                                    report["epochs"].append(epoch_report)
-                                    epoch_started = time.monotonic()
-                                    get_snapshot("anchor")
-                                    last_check = time.monotonic()
+                                    if not renew_coverage(
+                                        min(deadline, connected + rotate_seconds)
+                                    ):
+                                        break
+                                    continue
+                                if session.book.synced and (
+                                    len(session.book.bids) < top or len(session.book.asks) < top
+                                ):
+                                    if not renew_coverage(
+                                        min(deadline, connected + rotate_seconds), incomplete=True
+                                    ):
+                                        break
                                     continue
                                 report["synchronized"] = session.book.synced
                                 report["last_update_id"] = session.book.last
@@ -549,30 +623,7 @@ def capture(
                                     or time.monotonic() - last_flush >= flush_seconds
                                 ):
                                     flush()
-                                if (
-                                    session.book.synced
-                                    and not session.pending
-                                    and (
-                                        time.monotonic() - last_check >= verify_seconds
-                                        or (
-                                            (
-                                                len(session.book.bids)
-                                                < min(
-                                                    max(500, top * 10),
-                                                    session.book.snapshot_bid_levels // 2,
-                                                )
-                                                or len(session.book.asks)
-                                                < min(
-                                                    max(500, top * 10),
-                                                    session.book.snapshot_ask_levels // 2,
-                                                )
-                                            )
-                                            and time.monotonic() - last_check >= 5
-                                        )
-                                    )
-                                ):
-                                    get_snapshot("check")
-                                    last_check = time.monotonic()
+                                check_coverage(min(deadline, connected + rotate_seconds))
                             reason = "planned_rotation"
                             epoch_report.update(
                                 ended_at=now(),

@@ -4,6 +4,14 @@
 [9/27 마일스톤](../docs/milestones/2026-09-27-collection-and-backup-stabilization.md)에
 restic 시험 전의 기준 상태와 후속 순서를 정리했습니다. 각 baseline의 관측 시각·범위는 유지합니다.
 
+`baseline/depth-refresh-2026-10-01/`는 호가 조기 갱신·top 부족 처리와 별도 네트워크 관측의
+구현·검증 기록입니다. [요약](baseline/depth-refresh-2026-10-01/summary.md)에 411개 검사,
+실시간 증분 1,741개·REST 대조 16회 일치, 기존 장애 3개 재생 판정 유지, 10/2 소스 반영과
+실제 네트워크 타이머 실행을 남겼습니다. 10/2 08:09:37에 정기 교체로 적용됐고, 약 10시간의
+종료 세션 10개 중 9 complete·1 partial을 확인했습니다. 352,278개 증분 저장 및 REST
+3,595회 일치는 확인했으나 추가 조회 예산 소진 중 범위 소진 1회와 지연 snapshot 1회가
+남았습니다. 24시간 관찰과 예산 배분 검토는 후속입니다.
+
 `baseline/restic-observation-2026-10-01/`는 첫 병행 예약 관찰을 완료한 기록입니다.
 [요약](baseline/restic-observation-2026-10-01/summary.md)에 실제 날짜별 성공 **3/3**, 기존 복원
 증거 유지, daily 무결성 692,746건 통과, 지연됐던 9/29 자료 4종 4,608행의 조회·체크섬 검증을

@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-02T09:28:36.521317+00:00",
+  "collectors": {
+    "depth-latest.json": {
+      "id": "366be0a2d9ee4bbfbfe82020f720e275",
+      "started_at": "2026-10-02T09:12:30.040283+00:00",
+      "state": "running",
+      "last_received_at": "2026-10-02T09:28:33.726907+00:00",
+      "messages": 9426,
+      "persisted_messages": 9426,
+      "connection_errors": 0,
+      "sync_losses": 0,
+      "coverage_refresh": {
+        "extra_requests": 12,
+        "level_fraction": "0.75",
+        "min_interval_seconds": 1.0,
+        "policy": "bounded_headroom_v1",
+        "price_fraction": "0.25",
+        "scope": "extra checks within this capture; survives resync/reconnect; periodic checks and recovery anchors are separate",
+        "window_seconds": 60.0
+      }
+    },
+    "aggtrade-latest.json": {
+      "id": "92cc5743658f48c3bba76842092d819f",
+      "started_at": "2026-10-02T09:14:18.524152+00:00",
+      "state": "running",
+      "last_received_at": "2026-10-02T09:28:33.626794+00:00",
+      "messages": 10695,
+      "persisted_messages": 10695,
+      "connection_errors": 0,
+      "sync_losses": null,
+      "coverage_refresh": null
+    }
+  }
+}

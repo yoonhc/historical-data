@@ -11,6 +11,7 @@ BTCUSDT USD-M 선물의 aggTrade와 비 RPI depth를 독립된 사용자 systemd
 | `marketdata-depth.service` | 3,600초 세션, 5초 flush, 900초 연결 회전, 10초마다 독립 top 20 대조 |
 | `marketdata-pack.timer` | 매시 UTC 15분, 활성화 후 5분에도 실행. 종료 후 1시간 지난 수집만 묶음 |
 | `marketdata-backup.timer` | 매일 UTC 04:10 / 한국 시각 13:10에 전체 검증·백업 |
+| `marketdata-network-observer.timer` | 매분 20초에 링크·gateway·이름 해석·외부/거래소 접속 관측 |
 
 스트림은 세션 종료 후 15초 뒤 새 프로세스로 재시작한다. `SESSION_SECONDS=3600`은 서비스
 환경 변수다. 정확한 정시 분할이 아니라 **실행 시작부터 1시간**이며, 요청·flush·종료 처리로
@@ -53,6 +54,13 @@ WebSocket 429/418은 응답 헤더와 cooldown을 `state/*-ws-cooldown.json`에 
   [최근 이벤트 정책과 한도](orderbook-depth.md#검증과-저장)
   [과거 확장 시 점검한 복구 범위](history-extension.md)를 참고한다.
 - 호스트 종료·절전 중에는 수집할 수 없다. 기존 linger 설정은 로그아웃 후 실행을 유지한다.
+
+새 호가 수집은 가격 여유·호가 개수 감소를 감지해 정기 검증 전에 snapshot을 요청한다.
+최소 1초 간격·수집 세션의 최근 60초 추가 요청 12회 상한을 적용하며, 상위 20호가가 부족해진
+구간은 `partial`로 보존한 뒤 같은 소켓에서 재동기화한다.
+[조기 갱신 정책과 범위](orderbook-depth.md#검증과-저장)를 참고한다.
+별도 [네트워크 관측기](network-observer.md)는 1분 간격의 진단 자료만 남기며 수집 서비스나
+DNS 설정을 바꾸지 않는다. 수집기 정상 여부와 네트워크 표본의 결과는 별개로 확인한다.
 
 ## 유지보수 순서와 보존
 

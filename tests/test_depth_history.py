@@ -58,7 +58,8 @@ def test_capture_and_replay_adopt_a_delayed_equal_check(store, monkeypatch):
     )
     final = report["epochs"][0]["final"]
     assert report["complete"] and final["checks"][0]["equal"]
-    assert final["checks"][0]["history_alignment"]["applied"] == 2
+    # Periodic time now starts at the completed anchor, after initial buffering.
+    assert final["checks"][0]["history_alignment"]["applied"] == 3
     assert final["refreshes"] == 1 and final["book"]["ask_ceiling"] == 105
     replayed = depth.replay(store)
     assert replayed["valid"] and replayed["replay_matches_live"]
@@ -72,7 +73,7 @@ def test_capture_and_replay_preserve_delayed_mismatch_then_reconnect(store, monk
     report = capture(
         store,
         monkeypatch,
-        [[update(i) for i in range(100, 103)], [update(200), update(201)]],
+        [[update(i) for i in range(100, 104)], [update(200), update(201)]],
         [snapshot(), snapshot(101, bid_quantity="9"), snapshot(200)],
         seconds=26,
         verify_seconds=15,
@@ -164,11 +165,13 @@ def test_same_socket_coverage_reset_uses_failed_event_but_keeps_failure_and_coun
     removal = update(
         101, asks=[[str(p), "0"] for p in (101, 102, 103)] + [["104", "3"], ["105", "4"]]
     )
+    fresh = expanded_snapshot(101)
+    fresh["asks"] = [["104", "3"], ["105", "4"], ["106", "1"], ["107", "1"], ["108", "1"]]
     report = capture(
         store,
         monkeypatch,
         [[update(100), removal, removal, update(102)]],
-        [snapshot(), expanded_snapshot()],
+        [snapshot(), expanded_snapshot(), fresh],
         seconds=19,
     )
     assert report["connections"] == 1 and report["sync_losses"] == report["coverage_resets"] == 1
@@ -177,6 +180,8 @@ def test_same_socket_coverage_reset_uses_failed_event_but_keeps_failure_and_coun
     assert first["final"]["error"] == "Known snapshot price range exhausted"
     assert second["final"]["anchor_history"]["applied"] == 2
     assert second["final"]["counts"] == {"applied": 1, "stale": 0, "duplicate": 1}
+    assert report["coverage_check_requests"] == 1
+    assert second["final"]["checks"][0]["equal"]
     replayed = depth.replay(store)
     assert replayed["replay_matches_live"] and not replayed["valid"]
     verify = runpy.run_path(str(Path(__file__).parents[1] / "scripts/verify_depth_capture.py"))[
