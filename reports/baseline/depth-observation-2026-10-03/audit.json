@@ -1,0 +1,251 @@
+{
+  "candidate_applied": false,
+  "captured_at": "2026-10-03T01:19:04.637202+00:00",
+  "catalog_access": "mode=ro with live WAL; existing shared layout locks for file reads",
+  "daily_overlap_collection_ids": [],
+  "deep_checks": "completed_with_original_partial_and_pending_verdicts_preserved",
+  "deep_selection": "all newly partial sessions, the pending session, and the final day-window session; the previously audited partial overlaps daily work and retains its earlier evidence",
+  "following_sessions": {
+    "agg_trades": {
+      "closed": [
+        {
+          "canonical_rows": 14404,
+          "catalog_matches_report": true,
+          "connection_errors": 0,
+          "connections": 1,
+          "coverage_check_requests": 0,
+          "coverage_resets": 0,
+          "coverage_top_shortfalls": 0,
+          "detected_gaps": 1,
+          "first_sequence_or_id": 3474064945,
+          "id": "94e52f817ed04677b3a56afacf287d1f",
+          "lagged_retry_requests": 0,
+          "lagged_snapshots": 0,
+          "last_sequence_or_id": 3474079348,
+          "messages": 14404,
+          "messages_match_storage": true,
+          "periodic_check_requests": 0,
+          "persisted_messages": 14404,
+          "repaired_gaps": 1,
+          "report_sha256": "01818d2d4535bcae2faae560dec975b6f03fe8ad5e482a5cdd3405216ecf5e50",
+          "segments": 675,
+          "snapshots": 0,
+          "started_at": "2026-10-02T23:19:11.279384+00:00",
+          "state": "complete",
+          "sync_losses": 0,
+          "unreconstructed_messages": 0,
+          "unrepaired_gaps": 0,
+          "updated_at": "2026-10-03T00:19:16.446255+00:00",
+          "verification_checks": 0,
+          "verification_equal": 0,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        }
+      ],
+      "running_excluded": [
+        "657e8af44fec46b7b905b95a3115d94a"
+      ]
+    },
+    "book_depth": {
+      "closed": [
+        {
+          "canonical_rows": 35583,
+          "catalog_matches_report": true,
+          "connection_errors": 0,
+          "connections": 4,
+          "coverage_check_requests": 1,
+          "coverage_resets": 0,
+          "coverage_top_shortfalls": 0,
+          "detected_gaps": 0,
+          "first_sequence_or_id": 0,
+          "id": "38754e9e64e543d7a3304ffee51bf428",
+          "lagged_retry_requests": 0,
+          "lagged_snapshots": 0,
+          "last_sequence_or_id": 35582,
+          "messages": 35229,
+          "messages_match_storage": true,
+          "periodic_check_requests": 349,
+          "persisted_messages": 35229,
+          "repaired_gaps": 0,
+          "report_sha256": "5e5273ccfea66143507a4d70ca92a8bac375a7eb25ec126374b02ef3a5da15b2",
+          "segments": 1063,
+          "snapshots": 354,
+          "started_at": "2026-10-02T23:16:38.070159+00:00",
+          "state": "complete",
+          "sync_losses": 0,
+          "unreconstructed_messages": 0,
+          "unrepaired_gaps": 0,
+          "updated_at": "2026-10-03T00:16:40.132986+00:00",
+          "verification_checks": 350,
+          "verification_equal": 350,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        {
+          "canonical_rows": 35583,
+          "catalog_matches_report": true,
+          "connection_errors": 0,
+          "connections": 4,
+          "coverage_check_requests": 2,
+          "coverage_resets": 0,
+          "coverage_top_shortfalls": 0,
+          "detected_gaps": 0,
+          "first_sequence_or_id": 0,
+          "id": "3f7ac6ae6a3d4522a6bf9df8d4e00812",
+          "lagged_retry_requests": 0,
+          "lagged_snapshots": 0,
+          "last_sequence_or_id": 35582,
+          "messages": 35228,
+          "messages_match_storage": true,
+          "periodic_check_requests": 349,
+          "persisted_messages": 35228,
+          "repaired_gaps": 0,
+          "report_sha256": "08733261982e82159d4bf204af969141e16567363b641e88140fb56218c2a9c4",
+          "segments": 1061,
+          "snapshots": 355,
+          "started_at": "2026-10-03T00:16:55.541796+00:00",
+          "state": "complete",
+          "sync_losses": 0,
+          "unreconstructed_messages": 0,
+          "unrepaired_gaps": 0,
+          "updated_at": "2026-10-03T01:16:57.577708+00:00",
+          "verification_checks": 351,
+          "verification_equal": 351,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        }
+      ],
+      "running_excluded": [
+        "af36f40790f64b4ea7071c152a8ca873"
+      ]
+    }
+  },
+  "last_closed_sample_id": "cc04e4b2b9b64106b9f61c076af75268",
+  "network": {
+    "failures": [],
+    "first": "2026-10-01T23:10:20.341842+00:00",
+    "last": "2026-10-02T23:09:20.337811+00:00",
+    "max_sample_interval_seconds": 60.258715,
+    "requested_end_exclusive": "2026-10-02T23:09:37.298977+00:00",
+    "requested_start": "2026-10-01T23:09:37.298977+00:00",
+    "samples": 1440,
+    "scope": "minute point samples; cannot exclude shorter outages or prove WebSocket delivery",
+    "states": {
+      "ok": 1440
+    }
+  },
+  "new_partial_collection_ids": [
+    "29549c4ed9a24cd19038a27e46dfe0c3",
+    "fd0595a1dbca496686583f024ab837ac"
+  ],
+  "partial_collection_ids": [
+    "2a26a4f6aec34730b2603a388633387a",
+    "29549c4ed9a24cd19038a27e46dfe0c3",
+    "fd0595a1dbca496686583f024ab837ac"
+  ],
+  "pending_collection_ids": [
+    "cfe1844cb944491d911b3752e5675fb1"
+  ],
+  "previous_partial_evidence": "../depth-refresh-2026-10-01/operating-failure-verification.json",
+  "production_sha256_unchanged": {
+    "integrations/systemd/marketdata-depth.service": "ae49746c2c248f9b57d427c434215bda356a321c30c65d4f98d1de8620d4e833",
+    "packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+    "packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+    "packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+  },
+  "report_and_catalog_audit_complete": true,
+  "selection": "whole closed sessions starting in the first 24 hours after activation; final session kept to its recorded end; no running sessions counted",
+  "services_restarted": false,
+  "summaries": {
+    "agg_trades": {
+      "all_catalog_counts_match": true,
+      "all_messages_preserved": true,
+      "first_started_at": "2026-10-01T23:10:51.023160+00:00",
+      "last_finished_at": "2026-10-02T23:18:55.941433+00:00",
+      "sessions": 24,
+      "states": {
+        "complete": 24
+      },
+      "totals": {
+        "canonical_rows": 1745368,
+        "connection_errors": 0,
+        "connections": 24,
+        "coverage_check_requests": 0,
+        "coverage_resets": 0,
+        "coverage_top_shortfalls": 0,
+        "detected_gaps": 24,
+        "lagged_retry_requests": 0,
+        "lagged_snapshots": 0,
+        "messages": 1745368,
+        "periodic_check_requests": 0,
+        "persisted_messages": 1745368,
+        "repaired_gaps": 24,
+        "segments": 16617,
+        "snapshots": 0,
+        "sync_losses": 0,
+        "unreconstructed_messages": 0,
+        "unrepaired_gaps": 0,
+        "verification_checks": 0,
+        "verification_equal": 0,
+        "verification_mismatch": 0,
+        "verification_pending": 0,
+        "verification_uncomparable": 0
+      }
+    },
+    "book_depth": {
+      "all_catalog_counts_match": true,
+      "all_messages_preserved": true,
+      "first_started_at": "2026-10-01T23:09:37.298977+00:00",
+      "last_finished_at": "2026-10-02T23:16:22.847462+00:00",
+      "sessions": 24,
+      "states": {
+        "complete": 21,
+        "partial": 3
+      },
+      "totals": {
+        "canonical_rows": 854202,
+        "connection_errors": 0,
+        "connections": 96,
+        "coverage_check_requests": 796,
+        "coverage_resets": 4,
+        "coverage_top_shortfalls": 1,
+        "detected_gaps": 0,
+        "lagged_retry_requests": 3,
+        "lagged_snapshots": 3,
+        "messages": 845353,
+        "periodic_check_requests": 7950,
+        "persisted_messages": 845353,
+        "repaired_gaps": 0,
+        "segments": 26183,
+        "snapshots": 8849,
+        "sync_losses": 7,
+        "unreconstructed_messages": 31,
+        "unrepaired_gaps": 0,
+        "verification_checks": 8745,
+        "verification_equal": 8745,
+        "verification_mismatch": 0,
+        "verification_pending": 1,
+        "verification_uncomparable": 0
+      }
+    }
+  },
+  "window_elapsed": true,
+  "window_end_exclusive": "2026-10-02T23:09:37.298977+00:00",
+  "window_start": "2026-10-01T23:09:37.298977+00:00",
+  "completed_at": "2026-10-03T01:30:03.775301+00:00",
+  "deep_results": {
+    "new_partial_sessions": 2,
+    "full_raw_sessions": 3,
+    "full_raw_rows": 106825,
+    "full_raw_price_quantity_pairs": 19107632,
+    "pending_boundary_raw_rows": 2,
+    "pending_boundary_raw_pairs": 2091,
+    "all_24_session_canonical_rows": 854202,
+    "same_socket_chain_errors": 0
+  },
+  "all_selected_reports_unchanged": true,
+  "prior_partial_proof_matches_frozen_report": true
+}
