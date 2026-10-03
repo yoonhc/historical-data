@@ -1,0 +1,56 @@
+{
+  "at": "2026-10-03T15:21:08.491255+00:00",
+  "development_root": "/tmp/marketdata-retention-guard-20261004-g_j_pap7",
+  "base_commit": "86561bee2b0a142db21221f786e2e6380af07f72",
+  "tests": {
+    "command": "PYTHONPATH=.:packages/marketdata/src:packages/marketdata_freqtrade/src /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python -m pytest -q tests/test_checkpoint_code.py tests/test_checkpoint_retention.py --junitxml=retention-guards-tests.xml",
+    "passed": 14,
+    "failed": 0,
+    "seconds": 208.78,
+    "new_cases": 9,
+    "existing_retention_integration_cases": 5
+  },
+  "lint": {
+    "scope": [
+      "packages",
+      "scripts",
+      "tests"
+    ],
+    "ok": true
+  },
+  "format": {
+    "files": [
+      "scripts/checkpoint_code.py",
+      "scripts/retire_checkpoints.py",
+      "tests/test_checkpoint_code.py",
+      "tests/test_checkpoint_retention.py"
+    ],
+    "ok": true
+  },
+  "git_diff_check": {
+    "source_docs_and_new_guard_evidence_ok": true,
+    "scope": [
+      "README.md",
+      "configs",
+      "docs",
+      "packages",
+      "scripts",
+      "tests",
+      "reports/README.md",
+      "reports/baseline/checkpoint-retention-guards-2026-10-04"
+    ],
+    "staged_all_files_returncode": 2,
+    "preserved_verbatim_historical_pytest_output_warnings": [
+      "reports/baseline/checkpoint-retention-2026-10-03/final-focused.txt",
+      "reports/baseline/checkpoint-retention-2026-10-03/final-focused.xml",
+      "reports/baseline/checkpoint-retention-2026-10-03/full-tests.txt",
+      "reports/baseline/checkpoint-retention-2026-10-03/full-tests.xml",
+      "reports/baseline/checkpoint-retention-2026-10-03/trial-recheck.txt",
+      "reports/baseline/checkpoint-retention-2026-10-03/trial-recheck.xml"
+    ],
+    "old_raw_outputs_modified": false
+  },
+  "whole_suite_rerun": false,
+  "prior_full_validation": "../checkpoint-retention-2026-10-03/validation.json",
+  "operational_deletion_applied": false
+}

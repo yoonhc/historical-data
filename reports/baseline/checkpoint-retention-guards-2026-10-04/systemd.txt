@@ -1,0 +1,37 @@
+NextElapseUSecRealtime=Sun 2026-10-04 13:10:00 KST
+LastTriggerUSec=Sat 2026-10-03 13:10:00 KST
+Result=success
+Id=marketdata-backup.timer
+ActiveState=active
+SubState=waiting
+UnitFileState=enabled
+
+NextElapseUSecRealtime=Sun 2026-10-04 00:35:00 KST
+LastTriggerUSec=Sun 2026-10-04 00:05:00 KST
+Result=success
+Id=marketdata-restic-archive.timer
+ActiveState=active
+SubState=waiting
+UnitFileState=enabled
+
+Type=oneshot
+MainPID=0
+Result=success
+ExecMainStartTimestamp=Sat 2026-10-03 13:12:45 KST
+ExecMainExitTimestamp=Sat 2026-10-03 13:50:29 KST
+ExecMainStatus=0
+Id=marketdata-backup.service
+ActiveState=inactive
+SubState=dead
+UnitFileState=linked
+
+Type=oneshot
+MainPID=0
+Result=success
+ExecMainStartTimestamp=Sun 2026-10-04 00:05:00 KST
+ExecMainExitTimestamp=Sun 2026-10-04 00:05:11 KST
+ExecMainStatus=0
+Id=marketdata-restic-archive.service
+ActiveState=inactive
+SubState=dead
+UnitFileState=static

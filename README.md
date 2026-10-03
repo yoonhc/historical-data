@@ -223,6 +223,9 @@ loginctl enable-linger "$USER"
 [병행 보관 도구 실행 안내](docs/restic-archive.md)에 구현 명령과 설정·시각·복원 계약을 정리했습니다.
 9/27 별도 타이머를 적용했습니다. [예약 운영·날짜별 관찰·새 예약만 중지하는 절차](docs/restic-scheduled-operations.md)를
 확인하세요. 새 날짜 3개와 새 사본 복원은 실제 예약 기록으로 별도 관찰합니다.
+후속 [독립 복구와 보관 정책](docs/restic-transition-and-retention.md)은 작업용 최근 3개,
+날짜별 restic 보관과 정리 조건·제외 범위를 정리합니다. 작업용 사본 정리의 미리보기·명시적 적용·
+중단 후 재개 도구를 제공하며, 운영 삭제와 자동 정리 예약은 아직 적용하지 않았습니다.
 활성 revision을 무시하고 모든 Parquet을 glob으로 읽으면 수정 전후 데이터가 중복됩니다.
 
 ## Python 조회

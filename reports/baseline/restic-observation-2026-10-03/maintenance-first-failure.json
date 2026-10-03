@@ -1,0 +1,87 @@
+{
+  "backup_capacity_before": {
+    "free_bytes": 805376040960,
+    "free_inodes": 61552979,
+    "healthy": true,
+    "min_free_bytes": 10737418240,
+    "total_inodes": 62513152,
+    "warnings": []
+  },
+  "backup_configuration": {
+    "directory": "/mnt/backup/marketdata-historical/automatic",
+    "incremental": true,
+    "required_mount": "/mnt/backup"
+  },
+  "capacity_before": {
+    "free_bytes": 180261867520,
+    "free_inodes": 17013154,
+    "healthy": true,
+    "min_free_bytes": 10737418240,
+    "total_inodes": 18751488,
+    "warnings": []
+  },
+  "error": "WriterBusy: File layout is in use by a reader or backup; retry later",
+  "finished_at": "2026-10-03T04:10:45.352802+00:00",
+  "id": "3f90bd386efa4d9f8b4faf6edf4d0485",
+  "lock_wait_seconds": 3.99700365960598e-06,
+  "logical_files_deleted": 0,
+  "mode": "daily",
+  "ok": false,
+  "packing": {
+    "applied": true,
+    "checked_at": "2026-10-03T04:10:44.311915+00:00",
+    "files": 3484,
+    "loose_files_removed": 0,
+    "packs": [
+      {
+        "bytes": 4372453,
+        "created_at": "2026-10-03T04:10:43.122028+00:00",
+        "id": "77786f0d898dd27f294915a09ce2a15f02821b83b9339915e578e5fab44e92b9",
+        "members": 1024,
+        "path": "data/packs/77/77786f0d898dd27f294915a09ce2a15f02821b83b9339915e578e5fab44e92b9.zip"
+      },
+      {
+        "bytes": 294670,
+        "created_at": "2026-10-03T04:10:43.289550+00:00",
+        "id": "f8c13cb0b32321299477dc2a243e23a412b2ff974677cc38dd5d2a99a5e21cec",
+        "members": 334,
+        "path": "data/packs/f8/f8c13cb0b32321299477dc2a243e23a412b2ff974677cc38dd5d2a99a5e21cec.zip"
+      },
+      {
+        "bytes": 32445481,
+        "created_at": "2026-10-03T04:10:43.681120+00:00",
+        "id": "398180d6c4171664b562f07b2134e810af3a3b38387ba6cf42b2e7efe6a69a2e",
+        "members": 1024,
+        "path": "data/packs/39/398180d6c4171664b562f07b2134e810af3a3b38387ba6cf42b2e7efe6a69a2e.zip"
+      },
+      {
+        "bytes": 24562977,
+        "created_at": "2026-10-03T04:10:44.139878+00:00",
+        "id": "41c2ae44567734ba37d58c2d2d5fefb91c7d1daa63008e24356fda85f8765fbc",
+        "members": 1024,
+        "path": "data/packs/41/41c2ae44567734ba37d58c2d2d5fefb91c7d1daa63008e24356fda85f8765fbc.zip"
+      },
+      {
+        "bytes": 1956680,
+        "created_at": "2026-10-03T04:10:44.301113+00:00",
+        "id": "05f2810f774af24642cf15144cce40b4770c3664e010cef10007c1dcafb4b20f",
+        "members": 78,
+        "path": "data/packs/05/05f2810f774af24642cf15144cce40b4770c3664e010cef10007c1dcafb4b20f.zip"
+      }
+    ],
+    "retention": "indefinite",
+    "source_bytes": 62709257
+  },
+  "pending_prune": {
+    "limit_reached": false,
+    "packs": [],
+    "removed": 0
+  },
+  "phase": "prune_new",
+  "requested_at": "2026-10-03T04:10:00.426647+00:00",
+  "retention": "indefinite",
+  "started_at": "2026-10-03T04:10:00.426695+00:00",
+  "state": "failed",
+  "updated_at": "2026-10-03T04:10:45.352806+00:00",
+  "wait_for_lock": true
+}

@@ -24,6 +24,7 @@ from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
 from marketdata import backup
+from marketdata.checkpoint_locks import checkpoint_locks
 from marketdata.domain import json_bytes, now, sha256
 from marketdata.fileio import safe_file
 from marketdata.store import Store, atomic_write
@@ -201,9 +202,10 @@ class Profile:
 
 
 def checkpoint(root, profile):
-    no_symlinks(root / "backup.json")
-    raw = (root / "backup.json").read_bytes()
-    return checkpoint_bytes(raw, root, profile)
+    with checkpoint_locks([root]):
+        no_symlinks(root / "backup.json")
+        raw = (root / "backup.json").read_bytes()
+        return checkpoint_bytes(raw, root, profile)
 
 
 def checkpoint_bytes(raw, root, profile):
@@ -565,6 +567,10 @@ class Archive:
             "Repository check incomplete/failed; run verify successfully before storing more",
         )
         entries, _ = discover(self.p)
+        with checkpoint_locks([entry["path"] for entry in entries]):
+            return self._run(entries)
+
+    def _run(self, entries):
         snapshots = self.restic.snapshots()
         by_id = {s["id"]: s for s in snapshots}
         # Audit every known success, including input folders no longer discoverable.

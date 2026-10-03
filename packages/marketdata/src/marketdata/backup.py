@@ -10,6 +10,7 @@ import time
 from contextlib import closing
 from pathlib import Path
 
+from .checkpoint_locks import checkpoint_locks
 from .domain import DataError, json_bytes, now, sha256
 from .fileio import layout_lock, safe_file
 from .store import atomic_write
@@ -220,7 +221,8 @@ def link_verified(source, previous, destination, record):
 
 def create_backup(store, destination, *, min_free_gib=10, progress=None, reuse_from=None):
     # Pin the catalog's file layout throughout copying, without holding the writer.
-    with layout_lock(store.root):
+    # Acquire input protection before layout/writer; cleanup cannot retire reuse_from.
+    with checkpoint_locks([reuse_from] if reuse_from is not None else []), layout_lock(store.root):
         return _create_backup(
             store, destination, min_free_gib=min_free_gib, progress=progress, reuse_from=reuse_from
         )
@@ -338,6 +340,11 @@ def _create_backup(store, destination, *, min_free_gib=10, progress=None, reuse_
 
 
 def load_backup(source):
+    with checkpoint_locks([source]):
+        return _load_backup(source)
+
+
+def _load_backup(source):
     source = Path(source).resolve()
     marker = safe_file(source, "backup.json")
     if not marker.is_file():
@@ -369,6 +376,11 @@ def load_backup(source):
 
 
 def verify_backup(source):
+    with checkpoint_locks([source]):
+        return _verify_backup(source)
+
+
+def _verify_backup(source):
     source, manifest = load_backup(source)
     verify_files(source, manifest["files"])
     verify_packed_layout(source)
@@ -385,6 +397,11 @@ def verify_backup(source):
 
 
 def restore_backup(source, destination, *, min_free_gib=10, progress=None):
+    with checkpoint_locks([source]):
+        return _restore_backup(source, destination, min_free_gib=min_free_gib, progress=progress)
+
+
+def _restore_backup(source, destination, *, min_free_gib=10, progress=None):
     minimum = reserve_bytes(min_free_gib)
     source, manifest = load_backup(source)
     # Never overlay an existing store; keep the archived backup independent of its restore.

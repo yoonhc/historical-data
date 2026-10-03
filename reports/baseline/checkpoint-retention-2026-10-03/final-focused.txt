@@ -1,0 +1,184 @@
+..............F                                                          [100%]
+=================================== FAILURES ===================================
+_______ test_real_restic_two_checkpoints_restore_relocate_and_new_backup _______
+
+store = <marketdata.store.Store object at 0x761e3feebb60>
+tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-28/test_real_restic_two_checkpoin0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x761e3feeae40>
+
+    @pytest.mark.skipif(
+        not BINARY.is_file(), reason="Pinned restic binary is an opt-in integration tool"
+    )
+    def test_real_restic_two_checkpoints_restore_relocate_and_new_backup(store, tmp_path, monkeypatch):
+        populate(store, tmp_path)
+        populate_events(store)
+        with monkeypatch.context() as m:
+            capture(store, m, [[update(100), update(101)]], [snapshot()])
+        apply_pack(store)
+        from marketdata.packing import prune_loose
+    
+        prune_loose(store, apply=True)
+        profile = profile_at(tmp_path, store.root)
+        profile.backup_dir.mkdir(parents=True)
+        profile.restic_password_file.write_text("temporary isolated test password\n")
+        profile.restic_password_file.chmod(0o600)
+        specs, previous = [], None
+        for label in ("first", "second"):
+            if previous:
+                store.put_raw(b"incremental data", "test:increment", "test")
+            root = profile.backup_dir / label
+            result = backup.create_backup(store, root, min_free_gib=0, reuse_from=previous)
+            specs.append({"label": label, "relative_path": label, "backup_id": result["backup_id"]})
+            previous = root
+        config = tmp_path / "inputs.toml"
+        config.write_text(
+            "\n".join(
+                "[[checkpoints]]\n" + "\n".join(f"{k} = {json.dumps(v)}" for k, v in item.items())
+                for item in specs
+            )
+        )
+        profile = Profile.load(write_profile(tmp_path / "host.toml", profile))
+        # Only the filesystem mount is simulated; real restic and every marketdata guard run.
+        original_is_mount = Path.is_mount
+        monkeypatch.setattr(
+            Path, "is_mount", lambda p: p == profile.backup_mount or original_is_mount(p)
+        )
+        trial = Trial(profile, TRIAL["checkpoints"](profile, config))
+        trial.prepare()
+        trial.back_up(0)
+        trial.back_up(1)
+        trial.check()
+        trial.recover(0)
+        trial.recover(1)
+        # A newly started live session may not have published report.state yet.
+        sample = TRIAL["sample_streams"](store.root)
+        sample["depth"]["state"] = None
+        (profile.reports_root / "monitor.jsonl").write_bytes(json_bytes(sample) + b"\n")
+        summary_path = tmp_path / "summary.json"
+        summarizer = runpy.run_path(
+            str(Path(__file__).resolve().parents[1] / "scripts/summarize_restic_trial.py")
+        )
+        with monkeypatch.context() as m:
+            m.setattr(
+                sys, "argv", ["summarize", str(profile.reports_root), "--output", str(summary_path)]
+            )
+>           summarizer["main"]()
+
+tests/test_restic_trial.py:187: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/summarize_restic_trial.py:116: in main
+    "source_code_base": subprocess.check_output(
+/usr/lib/python3.12/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'rev-parse', 'HEAD'],)
+kwargs = {'stdout': -1, 'cwd': PosixPath('/tmp/marketdata-retention-20261003-w8kraqjz'), 'text': True}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.
+
+/usr/lib/python3.12/subprocess.py:571: CalledProcessError
+----------------------------- Captured stdout call -----------------------------
+{"phase":"init","started_at":"2026-10-03T12:31:22.569236+00:00"}
+{"phase":"backup-first","started_at":"2026-10-03T12:31:25.535077+00:00"}
+{"phase":"backup-second","started_at":"2026-10-03T12:31:26.294242+00:00"}
+{"phase":"check-read-data","started_at":"2026-10-03T12:31:27.049606+00:00"}
+{"phase":"extract-first","started_at":"2026-10-03T12:31:27.785116+00:00"}
+{"phase":"verify-extracted-first","started_at":"2026-10-03T12:31:28.510041+00:00"}
+{"finished_at":"2026-10-03T12:31:28.514626+00:00","phase":"verify-extracted-first"}
+{"phase":"restore-first","started_at":"2026-10-03T12:31:28.514708+00:00"}
+{"finished_at":"2026-10-03T12:31:28.530303+00:00","phase":"restore-first"}
+{"phase":"readback-first","started_at":"2026-10-03T12:31:28.530376+00:00"}
+{"finished_at":"2026-10-03T12:31:28.550477+00:00","phase":"readback-first"}
+{"phase":"validate-first","started_at":"2026-10-03T12:31:28.551977+00:00"}
+{"finished_at":"2026-10-03T12:31:28.558927+00:00","phase":"validate-first"}
+{"phase":"new-backup-first","started_at":"2026-10-03T12:31:28.559008+00:00"}
+{"finished_at":"2026-10-03T12:31:28.578180+00:00","phase":"new-backup-first"}
+{"phase":"verify-new-backup-first","started_at":"2026-10-03T12:31:28.578437+00:00"}
+{"finished_at":"2026-10-03T12:31:28.582772+00:00","phase":"verify-new-backup-first"}
+{"phase":"extract-second","started_at":"2026-10-03T12:31:28.593770+00:00"}
+{"phase":"verify-extracted-second","started_at":"2026-10-03T12:31:29.325759+00:00"}
+{"finished_at":"2026-10-03T12:31:29.330303+00:00","phase":"verify-extracted-second"}
+{"phase":"restore-second","started_at":"2026-10-03T12:31:29.330380+00:00"}
+{"finished_at":"2026-10-03T12:31:29.347101+00:00","phase":"restore-second"}
+{"phase":"readback-second","started_at":"2026-10-03T12:31:29.347189+00:00"}
+{"finished_at":"2026-10-03T12:31:29.367978+00:00","phase":"readback-second"}
+{"phase":"validate-second","started_at":"2026-10-03T12:31:29.369715+00:00"}
+{"finished_at":"2026-10-03T12:31:29.376563+00:00","phase":"validate-second"}
+{"phase":"new-backup-second","started_at":"2026-10-03T12:31:29.376630+00:00"}
+{"finished_at":"2026-10-03T12:31:29.395215+00:00","phase":"new-backup-second"}
+{"phase":"verify-new-backup-second","started_at":"2026-10-03T12:31:29.395453+00:00"}
+{"finished_at":"2026-10-03T12:31:29.400273+00:00","phase":"verify-new-backup-second"}
+----------------------------- Captured stderr call -----------------------------
+fatal: not a git repository (or any of the parent directories): .git
+=========================== short test summary info ============================
+FAILED tests/test_restic_trial.py::test_real_restic_two_checkpoints_restore_relocate_and_new_backup
+1 failed, 14 passed in 207.71s (0:03:27)

@@ -1,0 +1,196 @@
+........................................................................ [ 16%]
+........................................................................ [ 33%]
+........................................................................ [ 49%]
+........................................................................ [ 66%]
+........................................................................ [ 82%]
+........................................................F............... [ 99%]
+..                                                                       [100%]
+=================================== FAILURES ===================================
+_______ test_real_restic_two_checkpoints_restore_relocate_and_new_backup _______
+
+store = <marketdata.store.Store object at 0x7fb409c92c00>
+tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-27/test_real_restic_two_checkpoin0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fb409c90380>
+
+    @pytest.mark.skipif(
+        not BINARY.is_file(), reason="Pinned restic binary is an opt-in integration tool"
+    )
+    def test_real_restic_two_checkpoints_restore_relocate_and_new_backup(store, tmp_path, monkeypatch):
+        populate(store, tmp_path)
+        populate_events(store)
+        with monkeypatch.context() as m:
+            capture(store, m, [[update(100), update(101)]], [snapshot()])
+        apply_pack(store)
+        from marketdata.packing import prune_loose
+    
+        prune_loose(store, apply=True)
+        profile = profile_at(tmp_path, store.root)
+        profile.backup_dir.mkdir(parents=True)
+        profile.restic_password_file.write_text("temporary isolated test password\n")
+        profile.restic_password_file.chmod(0o600)
+        specs, previous = [], None
+        for label in ("first", "second"):
+            if previous:
+                store.put_raw(b"incremental data", "test:increment", "test")
+            root = profile.backup_dir / label
+            result = backup.create_backup(store, root, min_free_gib=0, reuse_from=previous)
+            specs.append({"label": label, "relative_path": label, "backup_id": result["backup_id"]})
+            previous = root
+        config = tmp_path / "inputs.toml"
+        config.write_text(
+            "\n".join(
+                "[[checkpoints]]\n" + "\n".join(f"{k} = {json.dumps(v)}" for k, v in item.items())
+                for item in specs
+            )
+        )
+        profile = Profile.load(write_profile(tmp_path / "host.toml", profile))
+        # Only the filesystem mount is simulated; real restic and every marketdata guard run.
+        original_is_mount = Path.is_mount
+        monkeypatch.setattr(
+            Path, "is_mount", lambda p: p == profile.backup_mount or original_is_mount(p)
+        )
+        trial = Trial(profile, TRIAL["checkpoints"](profile, config))
+        trial.prepare()
+        trial.back_up(0)
+        trial.back_up(1)
+        trial.check()
+        trial.recover(0)
+        trial.recover(1)
+        # A newly started live session may not have published report.state yet.
+        sample = TRIAL["sample_streams"](store.root)
+        sample["depth"]["state"] = None
+        (profile.reports_root / "monitor.jsonl").write_bytes(json_bytes(sample) + b"\n")
+        summary_path = tmp_path / "summary.json"
+        summarizer = runpy.run_path(
+            str(Path(__file__).resolve().parents[1] / "scripts/summarize_restic_trial.py")
+        )
+        with monkeypatch.context() as m:
+            m.setattr(
+                sys, "argv", ["summarize", str(profile.reports_root), "--output", str(summary_path)]
+            )
+>           summarizer["main"]()
+
+tests/test_restic_trial.py:187: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/summarize_restic_trial.py:116: in main
+    "source_code_base": subprocess.check_output(
+/usr/lib/python3.12/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'rev-parse', 'HEAD'],)
+kwargs = {'stdout': -1, 'cwd': PosixPath('/tmp/marketdata-retention-20261003-w8kraqjz'), 'text': True}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.
+
+/usr/lib/python3.12/subprocess.py:571: CalledProcessError
+----------------------------- Captured stdout call -----------------------------
+{"phase":"init","started_at":"2026-10-03T12:32:51.332097+00:00"}
+{"phase":"backup-first","started_at":"2026-10-03T12:32:54.352797+00:00"}
+{"phase":"backup-second","started_at":"2026-10-03T12:32:55.130546+00:00"}
+{"phase":"check-read-data","started_at":"2026-10-03T12:32:55.908750+00:00"}
+{"phase":"extract-first","started_at":"2026-10-03T12:32:56.654685+00:00"}
+{"phase":"verify-extracted-first","started_at":"2026-10-03T12:32:57.390321+00:00"}
+{"finished_at":"2026-10-03T12:32:57.394583+00:00","phase":"verify-extracted-first"}
+{"phase":"restore-first","started_at":"2026-10-03T12:32:57.394670+00:00"}
+{"finished_at":"2026-10-03T12:32:57.420682+00:00","phase":"restore-first"}
+{"phase":"readback-first","started_at":"2026-10-03T12:32:57.420751+00:00"}
+{"finished_at":"2026-10-03T12:32:57.439340+00:00","phase":"readback-first"}
+{"phase":"validate-first","started_at":"2026-10-03T12:32:57.440855+00:00"}
+{"finished_at":"2026-10-03T12:32:57.447291+00:00","phase":"validate-first"}
+{"phase":"new-backup-first","started_at":"2026-10-03T12:32:57.447354+00:00"}
+{"finished_at":"2026-10-03T12:32:57.463818+00:00","phase":"new-backup-first"}
+{"phase":"verify-new-backup-first","started_at":"2026-10-03T12:32:57.464021+00:00"}
+{"finished_at":"2026-10-03T12:32:57.469338+00:00","phase":"verify-new-backup-first"}
+{"phase":"extract-second","started_at":"2026-10-03T12:32:57.480501+00:00"}
+{"phase":"verify-extracted-second","started_at":"2026-10-03T12:32:58.226290+00:00"}
+{"finished_at":"2026-10-03T12:32:58.231420+00:00","phase":"verify-extracted-second"}
+{"phase":"restore-second","started_at":"2026-10-03T12:32:58.231500+00:00"}
+{"finished_at":"2026-10-03T12:32:58.260093+00:00","phase":"restore-second"}
+{"phase":"readback-second","started_at":"2026-10-03T12:32:58.260163+00:00"}
+{"finished_at":"2026-10-03T12:32:58.278648+00:00","phase":"readback-second"}
+{"phase":"validate-second","started_at":"2026-10-03T12:32:58.280187+00:00"}
+{"finished_at":"2026-10-03T12:32:58.286879+00:00","phase":"validate-second"}
+{"phase":"new-backup-second","started_at":"2026-10-03T12:32:58.286942+00:00"}
+{"finished_at":"2026-10-03T12:32:58.303921+00:00","phase":"new-backup-second"}
+{"phase":"verify-new-backup-second","started_at":"2026-10-03T12:32:58.304083+00:00"}
+{"finished_at":"2026-10-03T12:32:58.308094+00:00","phase":"verify-new-backup-second"}
+----------------------------- Captured stderr call -----------------------------
+fatal: not a git repository (or any of the parent directories): .git
+=============================== warnings summary ===============================
+tests/test_checkpoint_locks.py::test_fork_does_not_inherit_python_lock_ownership
+  /tmp/marketdata-retention-20261003-w8kraqjz/tests/test_checkpoint_locks.py:123: DeprecationWarning: This process (pid=2) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    child = os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_restic_trial.py::test_real_restic_two_checkpoints_restore_relocate_and_new_backup
+1 failed, 433 passed, 1 warning in 485.44s (0:08:05)

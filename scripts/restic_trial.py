@@ -123,7 +123,9 @@ def checkpoints(profile, path):
         )
         require(re.fullmatch(r"[a-zA-Z0-9_-]+", item["label"]), "Unsafe checkpoint label")
         root = safe_file(profile.backup_dir, item["relative_path"])
-        _, manifest = backup.load_backup(root)
+        with backup.checkpoint_locks([root]):
+            _, manifest = backup.load_backup(root)
+            manifest_sha = sha256((root / "backup.json").read_bytes())
         require(manifest["backup_id"] == item["backup_id"], "Checkpoint identity differs")
         require(
             manifest["source_root"] == str(profile.store_root), "Checkpoint source_root differs"
@@ -132,7 +134,7 @@ def checkpoints(profile, path):
             {
                 **item,
                 "path": str(root),
-                "manifest_sha256": sha256((root / "backup.json").read_bytes()),
+                "manifest_sha256": manifest_sha,
                 "manifest": manifest,
             }
         )
@@ -174,6 +176,15 @@ class ArchiveReader(Store):
     """Immutable archive reader: no schema initialization or layout lock file creation."""
 
     def __init__(self, root):
+        self._input_lock = backup.checkpoint_locks([root])
+        self._input_lock.__enter__()
+        try:
+            self._open(root)
+        except BaseException:
+            self.close()
+            raise
+
+    def _open(self, root):
         self.root = Path(root).resolve()
         self.db = sqlite3.connect(
             (self.root / backup.CATALOG).as_uri() + "?mode=ro&immutable=1",
@@ -188,6 +199,16 @@ class ArchiveReader(Store):
         )
         self._files_db.row_factory = sqlite3.Row
 
+    def close(self):
+        try:
+            for name in ("db", "_files_db"):
+                if connection := getattr(self, name, None):
+                    connection.close()
+        finally:
+            if self._input_lock is not None:
+                self._input_lock.__exit__(None, None, None)
+                self._input_lock = None
+
     def file_bytes(self, relative):
         safe_file(self.root, relative)
         record = packed_record(self._files_db, relative)
@@ -199,7 +220,17 @@ class ArchiveReader(Store):
 
 
 def compare_readers(archive, restored):
-    expected, actual = ArchiveReader(archive), ArchiveReader(restored)
+    with backup.checkpoint_locks([archive, restored]):
+        return _compare_readers(archive, restored)
+
+
+def _compare_readers(archive, restored):
+    expected = ArchiveReader(archive)
+    try:
+        actual = ArchiveReader(restored)
+    except BaseException:
+        expected.close()
+        raise
     reads, segments, raw = [], [], []
     try:
         snapshots = list(expected.db.execute("SELECT id FROM snapshots ORDER BY id"))
@@ -417,6 +448,10 @@ class Trial:
         self.save("repository-initial", disk_usage([p.restic_repository]))
 
     def back_up(self, index):
+        with backup.checkpoint_locks([entry["path"] for entry in self.inputs]):
+            return self._back_up(index)
+
+    def _back_up(self, index):
         entry = self.inputs[index]
         self.unchanged()
         previous = self.read("backup-" + self.inputs[0]["label"])["snapshot_id"] if index else None
@@ -446,6 +481,10 @@ class Trial:
         self.save("check", {"ok": True, "at": now(), "read_data": True})
 
     def recover(self, index):
+        with backup.checkpoint_locks([entry["path"] for entry in self.inputs]):
+            return self._recover(index)
+
+    def _recover(self, index):
         entry, p = self.inputs[index], self.profile
         label, original = entry["label"], Path(entry["path"])
         snapshot = self.read("backup-" + label)["snapshot_id"]
@@ -536,7 +575,8 @@ class Trial:
     def phase(self, name, action):
         print(json_bytes({"phase": name, "started_at": now()}).decode(), flush=True)
         start = time.monotonic()
-        result = action()
+        with backup.checkpoint_locks([entry["path"] for entry in self.inputs]):
+            result = action()
         self.save(
             name + "-timing", {"wall_seconds": time.monotonic() - start, "finished_at": now()}
         )

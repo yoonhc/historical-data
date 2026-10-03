@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="10" time="7.308" timestamp="2026-10-03T23:39:23.953067+09:00" hostname="hclm"><testcase classname="tests.test_restic_trial" name="test_profile_rejects_unsafe_paths_before_writing[overlap]" time="0.003" /><testcase classname="tests.test_restic_trial" name="test_profile_rejects_unsafe_paths_before_writing[password]" time="0.002" /><testcase classname="tests.test_restic_trial" name="test_profile_rejects_unsafe_paths_before_writing[relative]" time="0.001" /><testcase classname="tests.test_restic_trial" name="test_profile_rejects_unsafe_paths_before_writing[symlink]" time="0.001" /><testcase classname="tests.test_restic_trial" name="test_missing_mount_fails_before_repo_or_cache_creation" time="0.001" /><testcase classname="tests.test_restic_trial" name="test_physical_accounting_counts_shared_files_once" time="0.001" /><testcase classname="tests.test_restic_trial" name="test_relocated_store_cannot_reuse_original_automatic_folder[2024-01-01]" time="0.115" /><testcase classname="tests.test_restic_trial" name="test_relocated_store_cannot_reuse_original_automatic_folder[2024-01-02]" time="0.089" /><testcase classname="tests.test_restic_trial" name="test_live_monitor_reads_wal_without_mutating_store" time="0.014" /><testcase classname="tests.test_restic_trial" name="test_real_restic_two_checkpoints_restore_relocate_and_new_backup" time="6.986"><failure message="subprocess.CalledProcessError: Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.">store = &lt;marketdata.store.Store object at 0x748385ea6a80&gt;
+tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-29/test_real_restic_two_checkpoin0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x748385ea6870&gt;
+
+    @pytest.mark.skipif(
+        not BINARY.is_file(), reason="Pinned restic binary is an opt-in integration tool"
+    )
+    def test_real_restic_two_checkpoints_restore_relocate_and_new_backup(store, tmp_path, monkeypatch):
+        populate(store, tmp_path)
+        populate_events(store)
+        with monkeypatch.context() as m:
+            capture(store, m, [[update(100), update(101)]], [snapshot()])
+        apply_pack(store)
+        from marketdata.packing import prune_loose
+    
+        prune_loose(store, apply=True)
+        profile = profile_at(tmp_path, store.root)
+        profile.backup_dir.mkdir(parents=True)
+        profile.restic_password_file.write_text("temporary isolated test password\n")
+        profile.restic_password_file.chmod(0o600)
+        specs, previous = [], None
+        for label in ("first", "second"):
+            if previous:
+                store.put_raw(b"incremental data", "test:increment", "test")
+            root = profile.backup_dir / label
+            result = backup.create_backup(store, root, min_free_gib=0, reuse_from=previous)
+            specs.append({"label": label, "relative_path": label, "backup_id": result["backup_id"]})
+            previous = root
+        config = tmp_path / "inputs.toml"
+        config.write_text(
+            "\n".join(
+                "[[checkpoints]]\n" + "\n".join(f"{k} = {json.dumps(v)}" for k, v in item.items())
+                for item in specs
+            )
+        )
+        profile = Profile.load(write_profile(tmp_path / "host.toml", profile))
+        # Only the filesystem mount is simulated; real restic and every marketdata guard run.
+        original_is_mount = Path.is_mount
+        monkeypatch.setattr(
+            Path, "is_mount", lambda p: p == profile.backup_mount or original_is_mount(p)
+        )
+        trial = Trial(profile, TRIAL["checkpoints"](profile, config))
+        trial.prepare()
+        trial.back_up(0)
+        trial.back_up(1)
+        trial.check()
+        trial.recover(0)
+        trial.recover(1)
+        # A newly started live session may not have published report.state yet.
+        sample = TRIAL["sample_streams"](store.root)
+        sample["depth"]["state"] = None
+        (profile.reports_root / "monitor.jsonl").write_bytes(json_bytes(sample) + b"\n")
+        summary_path = tmp_path / "summary.json"
+        summarizer = runpy.run_path(
+            str(Path(__file__).resolve().parents[1] / "scripts/summarize_restic_trial.py")
+        )
+        with monkeypatch.context() as m:
+            m.setattr(
+                sys, "argv", ["summarize", str(profile.reports_root), "--output", str(summary_path)]
+            )
+&gt;           summarizer["main"]()
+
+tests/test_restic_trial.py:187: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/summarize_restic_trial.py:116: in main
+    "source_code_base": subprocess.check_output(
+/usr/lib/python3.12/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'rev-parse', 'HEAD'],)
+kwargs = {'stdout': -1, 'cwd': PosixPath('/tmp/marketdata-retention-20261003-w8kraqjz'), 'text': True}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.
+
+/usr/lib/python3.12/subprocess.py:571: CalledProcessError</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,411 @@
+{
+  "all_request_gates_and_quota_counts_consistent": true,
+  "all_request_headroom_matches_reconstructed_book": true,
+  "anchors_checked": 4,
+  "blocker_counts": {
+    "minimum_interval": 1,
+    "pending_verification": 1
+  },
+  "checked_at": "2026-10-03T04:12:41.246928+00:00",
+  "collection_id": "6d39cd17a2604b97a53e2932ac829e19",
+  "deferral": {
+    "extra_budget_exhausted": false,
+    "extra_claims_in_prior_60_wall_seconds": 1,
+    "headroom_matches": true,
+    "minimum_interval_supported_by_response_time_bound": true,
+    "pending_gate_matches": true,
+    "previous_snapshot": {
+      "collection_id": "6d39cd17a2604b97a53e2932ac829e19",
+      "epoch": 3,
+      "kind": "check",
+      "received_at": "2026-10-03T03:16:01.993179+00:00",
+      "refresh_context": {
+        "action": "request",
+        "age_seconds": 4.0408360860310495,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 1,
+          "oldest_extra_expires_in_seconds": 60.0
+        },
+        "epoch": 3,
+        "headroom": {
+          "low": true,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 736,
+              "low_levels": true,
+              "low_price_room": false,
+              "price_room": "90.900000000000000000",
+              "snapshot_price_span": "127.000000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1190,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "162.900000000000000000",
+              "snapshot_price_span": "126.800000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "headroom",
+        "requested_at": "2026-10-03T03:16:01.952598+00:00",
+        "sequence": 34711,
+        "trigger": "headroom"
+      },
+      "request_started_at": "2026-10-03T03:16:01.952613+00:00",
+      "sequence": 34711,
+      "source_id": "744d08f9d6c62ba07ac777e4d13fb257ad5c774cec3ea63bf90993b8b33ed0fc"
+    },
+    "reconstructed_live_update_id": 11723970561692,
+    "reconstructed_pending_sequence": 34711,
+    "reconstructed_snapshot_update_id": 11723970567166,
+    "record": {
+      "action": "defer",
+      "after_sequence": 34712,
+      "age_seconds": 0.0028651319444179535,
+      "blockers": [
+        "pending_verification",
+        "minimum_interval"
+      ],
+      "budget": {
+        "extra_limit": 12,
+        "extra_used": 1,
+        "oldest_extra_expires_in_seconds": 59.94529149401933
+      },
+      "epoch": 3,
+      "evaluated_at": "2026-10-03T03:16:02.007353+00:00",
+      "headroom": {
+        "low": true,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 728,
+            "low_levels": true,
+            "low_price_room": false,
+            "price_room": "90.900000000000000000",
+            "snapshot_price_span": "127.000000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 1189,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "162.900000000000000000",
+            "snapshot_price_span": "126.800000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "phase": "before_flush",
+      "reason": "pending_verification",
+      "trigger": "headroom"
+    },
+    "wall_seconds_since_rest_received": 0.014174
+  },
+  "deferred_evaluations": 1,
+  "evaluations": 35229,
+  "limits": [
+    "One closed capture and one observed deferral, not a 24-hour verdict.",
+    "Monotonic request completion timestamps are not separately persisted; exact age cannot be independently replayed.",
+    "Wall-clock request times corroborate quota counts away from 60-second boundaries.",
+    "Next receive time is not the exact comparison processing time.",
+    "Physical connection gaps are not reconstructed or declared continuous."
+  ],
+  "maximum_update_receive_gap_seconds": 5.409975,
+  "minimum_wall_quota_boundary_distance_seconds": 1.1483360000000005,
+  "nearby_rows": [
+    {
+      "book_last_update_id": 11723970512715,
+      "epoch": 3,
+      "final_update_id": 11723970512715,
+      "first_update_id": 11723970500520,
+      "headroom_after": {
+        "low": false,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 755,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "94.700000000000000000",
+            "snapshot_price_span": "127.000000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 1168,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "159.100000000000000000",
+            "snapshot_price_span": "126.800000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "kind": "update",
+      "pending_snapshot_sequence": null,
+      "pending_snapshot_update_id": null,
+      "previous_update_id": 11723970500461,
+      "received_at": "2026-10-03T03:16:01.742353+00:00",
+      "sequence": 34709,
+      "source_id": "b75cebd0d10d738b1db4156aac475166c4d7bf8ef755378264d74ea41253de7f",
+      "timestamp": "2026-10-03T03:16:01.713000+00:00"
+    },
+    {
+      "book_last_update_id": 11723970542736,
+      "epoch": 3,
+      "final_update_id": 11723970542736,
+      "first_update_id": 11723970512997,
+      "headroom_after": {
+        "low": true,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 736,
+            "low_levels": true,
+            "low_price_room": false,
+            "price_room": "90.900000000000000000",
+            "snapshot_price_span": "127.000000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 1190,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "162.900000000000000000",
+            "snapshot_price_span": "126.800000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "kind": "update",
+      "pending_snapshot_sequence": null,
+      "pending_snapshot_update_id": null,
+      "previous_update_id": 11723970512715,
+      "received_at": "2026-10-03T03:16:01.845578+00:00",
+      "sequence": 34710,
+      "source_id": "b75cebd0d10d738b1db4156aac475166c4d7bf8ef755378264d74ea41253de7f",
+      "timestamp": "2026-10-03T03:16:01.816000+00:00"
+    },
+    {
+      "book_last_update_id": 11723970542736,
+      "epoch": 3,
+      "final_update_id": 11723970567166,
+      "first_update_id": null,
+      "headroom_after": {
+        "low": true,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 736,
+            "low_levels": true,
+            "low_price_room": false,
+            "price_room": "90.900000000000000000",
+            "snapshot_price_span": "127.000000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 1190,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "162.900000000000000000",
+            "snapshot_price_span": "126.800000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "kind": "check",
+      "pending_snapshot_sequence": 34711,
+      "pending_snapshot_update_id": 11723970567166,
+      "previous_update_id": null,
+      "received_at": "2026-10-03T03:16:01.993179+00:00",
+      "sequence": 34711,
+      "source_id": "744d08f9d6c62ba07ac777e4d13fb257ad5c774cec3ea63bf90993b8b33ed0fc",
+      "timestamp": "2026-10-03T03:16:01.949000+00:00"
+    },
+    {
+      "book_last_update_id": 11723970561692,
+      "epoch": 3,
+      "final_update_id": 11723970561692,
+      "first_update_id": 11723970542745,
+      "headroom_after": {
+        "low": true,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 728,
+            "low_levels": true,
+            "low_price_room": false,
+            "price_room": "90.900000000000000000",
+            "snapshot_price_span": "127.000000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 1189,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "162.900000000000000000",
+            "snapshot_price_span": "126.800000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "kind": "update",
+      "pending_snapshot_sequence": 34711,
+      "pending_snapshot_update_id": 11723970567166,
+      "previous_update_id": 11723970542736,
+      "received_at": "2026-10-03T03:16:02.004454+00:00",
+      "sequence": 34712,
+      "source_id": "2f22295b09a3c940e58cae8eed67e6fbef8934e6093591b217947c2ba7c1411c",
+      "timestamp": "2026-10-03T03:16:01.918000+00:00"
+    },
+    {
+      "book_last_update_id": 11723970578847,
+      "epoch": 3,
+      "final_update_id": 11723970578847,
+      "first_update_id": 11723970561724,
+      "headroom_after": {
+        "low": false,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 1000,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "135.300000000000000000",
+            "snapshot_price_span": "135.300000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 999,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "134.200000000000000000",
+            "snapshot_price_span": "134.200000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "kind": "update",
+      "pending_snapshot_sequence": null,
+      "pending_snapshot_update_id": null,
+      "previous_update_id": 11723970561692,
+      "received_at": "2026-10-03T03:16:02.048746+00:00",
+      "sequence": 34713,
+      "source_id": "2f22295b09a3c940e58cae8eed67e6fbef8934e6093591b217947c2ba7c1411c",
+      "timestamp": "2026-10-03T03:16:02.019000+00:00"
+    },
+    {
+      "book_last_update_id": 11723970596333,
+      "epoch": 3,
+      "final_update_id": 11723970596333,
+      "first_update_id": 11723970579065,
+      "headroom_after": {
+        "low": false,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 1005,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "135.300000000000000000",
+            "snapshot_price_span": "135.300000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 997,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "134.200000000000000000",
+            "snapshot_price_span": "134.200000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "kind": "update",
+      "pending_snapshot_sequence": null,
+      "pending_snapshot_update_id": null,
+      "previous_update_id": 11723970578847,
+      "received_at": "2026-10-03T03:16:02.150671+00:00",
+      "sequence": 34714,
+      "source_id": "2f22295b09a3c940e58cae8eed67e6fbef8934e6093591b217947c2ba7c1411c",
+      "timestamp": "2026-10-03T03:16:02.122000+00:00"
+    }
+  ],
+  "physical_connection_boundaries": [
+    {
+      "next_epoch": 1,
+      "next_sequence": 8914,
+      "previous_epoch": 0,
+      "previous_sequence": 8912,
+      "receive_gap_seconds": 2.243559
+    },
+    {
+      "next_epoch": 2,
+      "next_sequence": 17827,
+      "previous_epoch": 1,
+      "previous_sequence": 17825,
+      "receive_gap_seconds": 2.244381
+    },
+    {
+      "next_epoch": 3,
+      "next_sequence": 26740,
+      "previous_epoch": 2,
+      "previous_sequence": 26738,
+      "receive_gap_seconds": 2.244678
+    }
+  ],
+  "primary_reason_counts": {
+    "pending_verification": 1
+  },
+  "request_reason_counts": {
+    "headroom": 2,
+    "periodic": 349
+  },
+  "requests_checked": 351,
+  "resolved_on": {
+    "check": {
+      "comparable": true,
+      "equal": true,
+      "last_update_id": 11723970578847,
+      "refreshed": true,
+      "snapshot_sequence": 34711,
+      "top": 20
+    },
+    "epoch": 3,
+    "headroom_after": {
+      "low": false,
+      "sides": {
+        "asks": {
+          "level_threshold": 750,
+          "levels": 1000,
+          "low_levels": false,
+          "low_price_room": false,
+          "price_room": "135.300000000000000000",
+          "snapshot_price_span": "135.300000000000000000"
+        },
+        "bids": {
+          "level_threshold": 750,
+          "levels": 999,
+          "low_levels": false,
+          "low_price_room": false,
+          "price_room": "134.200000000000000000",
+          "snapshot_price_span": "134.200000000000000000"
+        }
+      },
+      "top_complete": true
+    },
+    "receive_time_minus_deferral_time_seconds": 0.041393,
+    "received_at": "2026-10-03T03:16:02.048746+00:00",
+    "sequence": 34713
+  },
+  "same_connection_update_id_links_checked": 35225
+}

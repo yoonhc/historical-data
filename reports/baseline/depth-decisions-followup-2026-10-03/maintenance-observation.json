@@ -1,0 +1,30 @@
+{
+  "sampled_at": "2026-10-03T04:14:57.831039+00:00",
+  "receipts": {
+    "daily-first-attempt.json": {
+      "source": "reports/maintenance/2026-10-03/3f90bd386efa4d9f8b4faf6edf4d0485.json",
+      "sha256": "ccd30d26e4fc8923b52cb726908e5d068664a0b73fefed997d58a07b46bfa795",
+      "id": "3f90bd386efa4d9f8b4faf6edf4d0485",
+      "state": "failed",
+      "started_at": "2026-10-03T04:10:00.426695+00:00",
+      "finished_at": "2026-10-03T04:10:45.352802+00:00",
+      "updated_at": "2026-10-03T04:10:45.352806+00:00",
+      "phase": "prune_new",
+      "error": "WriterBusy: File layout is in use by a reader or backup; retry later"
+    },
+    "daily-retry-sample.json": {
+      "source": "reports/maintenance/2026-10-03/d8159f8d97634a82a1b95887f4a4ddcf.json",
+      "sha256": "85004aa59890aeeffebcc0f9ab8d1a494a0a5bb78a11d31eb684612e1854c734",
+      "id": "d8159f8d97634a82a1b95887f4a4ddcf",
+      "state": "running",
+      "started_at": "2026-10-03T04:12:45.706234+00:00",
+      "finished_at": null,
+      "updated_at": "2026-10-03T04:13:33.453039+00:00",
+      "phase": "validate",
+      "error": null
+    }
+  },
+  "manual_service_control": false,
+  "lock_holder_identity_verified": false,
+  "observation": "The first daily attempt hit WriterBusy during prune_new while the read-only audit was running; the configured automatic retry has reached validate."
+}

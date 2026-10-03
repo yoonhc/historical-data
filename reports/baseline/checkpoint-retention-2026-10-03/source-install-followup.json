@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-03T14:46:44.347556+00:00",
+  "reason": "Reject reappearance of completed retired checkpoints; real integration retested",
+  "files": {
+    "scripts/retire_checkpoints.py": {
+      "before_sha256": "5d55b77e7658fd421095e4a39ee41e80885b646c1774544f0bde8785c6c118ff",
+      "sha256": "b71419dee0e79c395949c628702a55e2341e4f2007250b1a13c2d2f684ded5ae",
+      "matches_tested_source": true
+    },
+    "tests/test_checkpoint_retention.py": {
+      "before_sha256": "8ad529480d01f5dcb7f040b06a81120b70e50edcf46ac2a9e812b33ed8543d59",
+      "sha256": "9180eb9af1159da8177f8de1d9ec2a41b80eb0d5ca61a5f9d3b06dd0cfdefbc3",
+      "matches_tested_source": true
+    }
+  },
+  "services_restarted": false,
+  "operational_deletion_applied": false
+}

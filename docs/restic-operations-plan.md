@@ -4,6 +4,8 @@
 구현·격리 시험·실제 사본 수동 처리 결과 확인 후 승인받아 타이머를 적용했다.
 현재 설치·실행 근거는 [타이머 적용 기록](../reports/baseline/restic-timer-2026-09-27/summary.md)에 있다.
 기존 daily를 대체하는 단계가 아니다. 운영 명령은 [실행 안내](restic-archive.md)를 참고한다.
+10/3 후속 독립 복구와 작업용 3개·날짜별 보관의 구체적인 범위·조건은
+[전환 전 복구 및 보관 정책](restic-transition-and-retention.md)에 정리한다. 실제 삭제는 적용하지 않았다.
 [실제 시험 결과](../reports/baseline/restic-trial-2026-09-27/summary.md)와
 [기존 백업·복원 계약](backup-and-storage.md)을 기준으로 다음 구현 범위를 정한다.
 
