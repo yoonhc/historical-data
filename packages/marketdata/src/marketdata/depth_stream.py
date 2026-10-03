@@ -7,6 +7,7 @@ import shutil
 import time
 from collections import deque
 from contextlib import contextmanager
+from copy import deepcopy
 from datetime import timedelta
 
 from websockets.exceptions import ConnectionClosed, InvalidStatus, WebSocketException
@@ -15,7 +16,7 @@ from websockets.sync.client import connect
 from . import depth
 from .backup import reserve_bytes
 from .binance import Fetcher, SourceError
-from .depth_refresh import RefreshChecks, headroom
+from .depth_refresh import RefreshChecks, headroom, new_decision_log, record_decision
 from .depth_refresh import metadata as refresh_metadata
 from .domain import DataError, WriterBusy, json_bytes, now, sha256, utc
 from .oi_probe import retry_delay
@@ -85,7 +86,7 @@ def stream_lock(store):
             fcntl.flock(handle, fcntl.LOCK_UN)
 
 
-def snapshot(store, fetcher, collection_id, epoch, sequence, kind):
+def snapshot(store, fetcher, collection_id, epoch, sequence, kind, *, refresh_context=None):
     started = now()
     cooldown = store.root / "state/depth-rest-cooldown.json"
     if cooldown.exists() and started < utc(json.loads(cooldown.read_bytes())["until"]):
@@ -105,6 +106,7 @@ def snapshot(store, fetcher, collection_id, epoch, sequence, kind):
                     "headers": exc.headers,
                     "request_started_at": started,
                     "error": str(exc),
+                    **({"refresh_context": refresh_context} if refresh_context is not None else {}),
                 },
             )
             atomic_write(
@@ -132,6 +134,7 @@ def snapshot(store, fetcher, collection_id, epoch, sequence, kind):
                 "request_started_at": started,
                 "received_at": response.received_at,
                 "headers": response.headers,
+                **({"refresh_context": refresh_context} if refresh_context is not None else {}),
             },
         )
     row = depth.parse(
@@ -295,6 +298,7 @@ def capture(
                     "coverage_resets": 0,
                     "coverage_top_shortfalls": 0,
                     "coverage_refresh": refresh_metadata(),
+                    "refresh_decisions": new_decision_log(),
                     "coverage_check_requests": 0,
                     "periodic_check_requests": 0,
                     "recent_coverage_checks": [],
@@ -350,13 +354,21 @@ def capture(
                         }
                     )
 
-            def get_snapshot(kind, *, already_flushed=False):
+            def get_snapshot(kind, *, already_flushed=False, refresh_context=None):
                 nonlocal sequence
                 if shutil.disk_usage(store.root).free < minimum:
                     raise DataError("Depth capture stopped: free space below reserve")
                 if not already_flushed:
                     flush()
-                row = snapshot(store, fetcher, report["id"], epoch_report["epoch"], sequence, kind)
+                row = snapshot(
+                    store,
+                    fetcher,
+                    report["id"],
+                    epoch_report["epoch"],
+                    sequence,
+                    kind,
+                    refresh_context=refresh_context,
+                )
                 sequence += 1
                 report["snapshots"] += 1
                 session.take(row)
@@ -406,6 +418,7 @@ def capture(
                 report["coverage_top_shortfalls"] += int(incomplete)
                 report["synchronized"] = False
                 epoch_report.update(ended_at=now(), end_reason=reason)
+                epoch_report["prior_refresh_decisions"] = deepcopy(report["refresh_decisions"])
                 if incomplete:
                     # Keep the state machine's true result: IDs may be aligned
                     # even though the requested top is no longer known. Do not
@@ -430,32 +443,36 @@ def capture(
 
             def check_coverage(stop_at):
                 nonlocal last_check
-                if not session.book.synced or session.pending:
-                    return
-                decision = refresh_checks.decision(
-                    session.book,
-                    top,
-                    current=time.monotonic(),
-                    last_request=last_check,
-                    periodic_seconds=verify_seconds,
+
+                def assess():
+                    return refresh_checks.assess(
+                        session.book,
+                        top,
+                        current=time.monotonic(),
+                        last_request=last_check,
+                        periodic_seconds=verify_seconds,
+                        synchronized=session.book.synced,
+                        pending=bool(session.pending),
+                        stop_at=stop_at,
+                    )
+
+                decision, phase = assess(), "before_flush"
+                if decision["action"] == "request":
+                    # Persistence can block. Re-evaluate gates after it without
+                    # double-counting this invocation's terminal decision.
+                    flush()
+                    decision, phase = assess(), "after_flush"
+                record_decision(
+                    report["refresh_decisions"],
+                    decision,
+                    epoch=epoch_report["epoch"],
+                    after_sequence=sequence - 1,
+                    at=now(),
+                    phase=phase,
                 )
-                if decision is None:
+                if decision["action"] != "request":
                     return
-                # Persistence can block. Re-evaluate both the quota and deadline
-                # after flushing, before making a new external request.
-                flush()
                 current = time.monotonic()
-                if current >= stop_at:
-                    return
-                decision = refresh_checks.decision(
-                    session.book,
-                    top,
-                    current=current,
-                    last_request=last_check,
-                    periodic_seconds=verify_seconds,
-                )
-                if decision is None:
-                    return
                 refresh_checks.claim(decision, current)
                 counter = (
                     "coverage_check_requests"
@@ -468,11 +485,12 @@ def capture(
                     "sequence": sequence,
                     "requested_at": now(),
                     **decision,
+                    "budget_after_claim": refresh_checks.budget(current),
                 }
                 report["recent_coverage_checks"] = (report["recent_coverage_checks"] + [record])[
                     -32:
                 ]
-                get_snapshot("check", already_flushed=True)
+                get_snapshot("check", already_flushed=True, refresh_context=record)
                 last_check = time.monotonic()
 
             try:

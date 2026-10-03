@@ -1,0 +1,84 @@
+{
+  "depth": {
+    "id": "6d39cd17a2604b97a53e2932ac829e19",
+    "started_at": "2026-10-03T02:17:30.060370+00:00",
+    "updated_at": "2026-10-03T02:23:32.419057+00:00",
+    "state": "running",
+    "synchronized": true,
+    "messages": 3551,
+    "persisted_messages": 3551,
+    "connection_errors": 0,
+    "sync_losses": 0,
+    "unreconstructed_messages": 0,
+    "refresh_decisions": {
+      "blocker_counts": {},
+      "count_semantics": "one terminal assessment per check_coverage invocation; deferred evaluations are neither HTTP calls nor unique outage episodes",
+      "deferred_evaluations": 0,
+      "evaluations": 3550,
+      "first_by_reason": {},
+      "last": {
+        "action": "request",
+        "after_sequence": 3535,
+        "age_seconds": 10.120893517974764,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "evaluated_at": "2026-10-03T02:23:27.319872+00:00",
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1003,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "123.700000000000000000",
+              "snapshot_price_span": "123.700000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1005,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "129.400000000000000000",
+              "snapshot_price_span": "129.400000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "phase": "after_flush",
+        "reason": "periodic",
+        "trigger": "periodic"
+      },
+      "last_by_reason": {},
+      "policy": "coverage_decisions_v1",
+      "primary_reason_counts": {},
+      "recent_deferrals": []
+    },
+    "coverage_refresh": {
+      "extra_requests": 12,
+      "level_fraction": "0.75",
+      "min_interval_seconds": 1.0,
+      "policy": "bounded_headroom_v1",
+      "price_fraction": "0.25",
+      "scope": "extra checks within this capture; survives resync/reconnect; periodic checks and recovery anchors are separate",
+      "window_seconds": 60.0
+    }
+  },
+  "aggtrade": {
+    "id": "1ba864c017814356ab778713eaf71444",
+    "started_at": "2026-10-03T02:20:12.775271+00:00",
+    "updated_at": "2026-10-03T02:23:30.938687+00:00",
+    "state": "running",
+    "synchronized": null,
+    "messages": 512,
+    "persisted_messages": 512,
+    "connection_errors": 0,
+    "sync_losses": null,
+    "unreconstructed_messages": null
+  }
+}

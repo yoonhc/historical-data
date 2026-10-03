@@ -1,0 +1,523 @@
+{
+  "bootstrap_messages": 1,
+  "bootstrap_policy": "buffer_before_anchor_v1",
+  "bootstrap_timeout_seconds": 2,
+  "boundary_semantics": "new_snapshot_on_every_connection; no_historical_gap_repair",
+  "complete": false,
+  "connection_errors": 0,
+  "connections": 1,
+  "coverage_check_requests": 0,
+  "coverage_refresh": {
+    "extra_requests": 12,
+    "level_fraction": "0.75",
+    "min_interval_seconds": 1.0,
+    "policy": "bounded_headroom_v1",
+    "price_fraction": "0.25",
+    "scope": "extra checks within this capture; survives resync/reconnect; periodic checks and recovery anchors are separate",
+    "window_seconds": 60.0
+  },
+  "coverage_reset_policy": "same_socket_new_epoch_v1",
+  "coverage_resets": 0,
+  "coverage_top_shortfalls": 0,
+  "dataset": "book_depth",
+  "epochs": [
+    {
+      "epoch": 0,
+      "final": {
+        "anchor_history": {
+          "aligned": false,
+          "applied": 0,
+          "events": 0,
+          "first_sequence": null,
+          "last_sequence": null,
+          "levels": 0,
+          "reason": "No snapshot bridge retained in recent history",
+          "serialized_bytes": 0
+        },
+        "book": {
+          "ask_ceiling": "84732.600000000000000000",
+          "asks": [
+            [
+              "84604.500000000000000000",
+              "3.235000000000000000"
+            ],
+            [
+              "84604.600000000000000000",
+              "0.097000000000000000"
+            ],
+            [
+              "84604.700000000000000000",
+              "0.005000000000000000"
+            ],
+            [
+              "84604.800000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84604.900000000000000000",
+              "0.302000000000000000"
+            ],
+            [
+              "84605.000000000000000000",
+              "0.067000000000000000"
+            ],
+            [
+              "84605.100000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84605.200000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84605.400000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84605.500000000000000000",
+              "0.086000000000000000"
+            ],
+            [
+              "84605.600000000000000000",
+              "1.002000000000000000"
+            ],
+            [
+              "84605.700000000000000000",
+              "0.105000000000000000"
+            ],
+            [
+              "84605.900000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84606.000000000000000000",
+              "0.008000000000000000"
+            ],
+            [
+              "84606.200000000000000000",
+              "0.024000000000000000"
+            ],
+            [
+              "84606.500000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84606.600000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84606.700000000000000000",
+              "0.024000000000000000"
+            ],
+            [
+              "84607.000000000000000000",
+              "0.024000000000000000"
+            ],
+            [
+              "84607.400000000000000000",
+              "0.004000000000000000"
+            ]
+          ],
+          "bid_floor": "84479.000000000000000000",
+          "bids": [
+            [
+              "84604.400000000000000000",
+              "9.914000000000000000"
+            ],
+            [
+              "84604.300000000000000000",
+              "0.679000000000000000"
+            ],
+            [
+              "84604.200000000000000000",
+              "0.046000000000000000"
+            ],
+            [
+              "84604.100000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84603.900000000000000000",
+              "0.105000000000000000"
+            ],
+            [
+              "84603.800000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84603.700000000000000000",
+              "0.254000000000000000"
+            ],
+            [
+              "84603.500000000000000000",
+              "0.026000000000000000"
+            ],
+            [
+              "84603.200000000000000000",
+              "0.003000000000000000"
+            ],
+            [
+              "84603.000000000000000000",
+              "0.005000000000000000"
+            ],
+            [
+              "84602.300000000000000000",
+              "0.060000000000000000"
+            ],
+            [
+              "84602.200000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84602.100000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84602.000000000000000000",
+              "0.700000000000000000"
+            ],
+            [
+              "84601.800000000000000000",
+              "0.086000000000000000"
+            ],
+            [
+              "84601.700000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84601.600000000000000000",
+              "0.002000000000000000"
+            ],
+            [
+              "84601.500000000000000000",
+              "0.001000000000000000"
+            ],
+            [
+              "84601.400000000000000000",
+              "0.359000000000000000"
+            ],
+            [
+              "84601.100000000000000000",
+              "0.001000000000000000"
+            ]
+          ],
+          "book_sha256": "a50386d28210adbec7342fba15b7a67d562977c6efd37c8b7e567a06d8fe253d",
+          "known_ask_levels": 1001,
+          "known_bid_levels": 994,
+          "last_update_id": 11723715272051,
+          "synced": true,
+          "timestamp": "2026-10-03T02:18:21.225000+00:00",
+          "top_complete": true,
+          "top_requested": 20
+        },
+        "checks": [
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11723711731546,
+            "refreshed": true,
+            "snapshot_sequence": 102,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11723712737167,
+            "refreshed": true,
+            "snapshot_sequence": 203,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11723713422348,
+            "refreshed": true,
+            "snapshot_sequence": 304,
+            "top": 20
+          },
+          {
+            "comparable": true,
+            "equal": true,
+            "last_update_id": 11723714302632,
+            "refreshed": true,
+            "snapshot_sequence": 405,
+            "top": 20
+          }
+        ],
+        "counts": {
+          "applied": 499,
+          "duplicate": 0,
+          "stale": 2
+        },
+        "error": null,
+        "pending_check_sequence": null,
+        "refreshes": 4
+      },
+      "reason": "initial",
+      "started_at": "2026-10-03T02:17:30.202379+00:00"
+    }
+  ],
+  "errors": [],
+  "flush_seconds": 5,
+  "history_limits": {
+    "events": 128,
+    "levels": 50000,
+    "serialized_bytes": 8388608
+  },
+  "history_policy": "bounded_same_socket_v1",
+  "id": "6d39cd17a2604b97a53e2932ac829e19",
+  "kind": "websocket",
+  "lagged_retry_budget": {
+    "max_requests": 8,
+    "scope": "retry anchor calls within this capture; survives resync/reconnect",
+    "window_seconds": 60
+  },
+  "lagged_retry_delays_seconds": [
+    1,
+    2,
+    4,
+    8,
+    10
+  ],
+  "lagged_retry_policy": "same_socket_backoff_v1",
+  "lagged_retry_requests": 0,
+  "lagged_snapshot_policy": "retain_unsynchronized_updates_v1",
+  "lagged_snapshots": 0,
+  "last_received_at": "2026-10-03T02:18:21.278841+00:00",
+  "last_update_id": 11723715272051,
+  "messages": 501,
+  "periodic_check_requests": 4,
+  "persisted_messages": 501,
+  "recent_coverage_checks": [
+    {
+      "action": "request",
+      "age_seconds": 10.067655639024451,
+      "blockers": [],
+      "budget": {
+        "extra_limit": 12,
+        "extra_used": 0,
+        "oldest_extra_expires_in_seconds": null
+      },
+      "budget_after_claim": {
+        "extra_limit": 12,
+        "extra_used": 0,
+        "oldest_extra_expires_in_seconds": null
+      },
+      "epoch": 0,
+      "headroom": {
+        "low": false,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 950,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "121.900000000000000000",
+            "snapshot_price_span": "126.400000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 1029,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "131.000000000000000000",
+            "snapshot_price_span": "126.500000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "reason": "periodic",
+      "requested_at": "2026-10-03T02:17:40.517174+00:00",
+      "sequence": 102,
+      "trigger": "periodic"
+    },
+    {
+      "action": "request",
+      "age_seconds": 10.133326764917001,
+      "blockers": [],
+      "budget": {
+        "extra_limit": 12,
+        "extra_used": 0,
+        "oldest_extra_expires_in_seconds": null
+      },
+      "budget_after_claim": {
+        "extra_limit": 12,
+        "extra_used": 0,
+        "oldest_extra_expires_in_seconds": null
+      },
+      "epoch": 0,
+      "headroom": {
+        "low": false,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 1003,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "129.600000000000000000",
+            "snapshot_price_span": "129.600000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 996,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "126.100000000000000000",
+            "snapshot_price_span": "126.100000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "reason": "periodic",
+      "requested_at": "2026-10-03T02:17:50.720626+00:00",
+      "sequence": 203,
+      "trigger": "periodic"
+    },
+    {
+      "action": "request",
+      "age_seconds": 10.126240834011696,
+      "blockers": [],
+      "budget": {
+        "extra_limit": 12,
+        "extra_used": 0,
+        "oldest_extra_expires_in_seconds": null
+      },
+      "budget_after_claim": {
+        "extra_limit": 12,
+        "extra_used": 0,
+        "oldest_extra_expires_in_seconds": null
+      },
+      "epoch": 0,
+      "headroom": {
+        "low": false,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 1003,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "129.300000000000000000",
+            "snapshot_price_span": "129.300000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 1001,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "126.500000000000000000",
+            "snapshot_price_span": "126.500000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "reason": "periodic",
+      "requested_at": "2026-10-03T02:18:00.924397+00:00",
+      "sequence": 304,
+      "trigger": "periodic"
+    },
+    {
+      "action": "request",
+      "age_seconds": 10.12330772797577,
+      "blockers": [],
+      "budget": {
+        "extra_limit": 12,
+        "extra_used": 0,
+        "oldest_extra_expires_in_seconds": null
+      },
+      "budget_after_claim": {
+        "extra_limit": 12,
+        "extra_used": 0,
+        "oldest_extra_expires_in_seconds": null
+      },
+      "epoch": 0,
+      "headroom": {
+        "low": false,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 1006,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "128.800000000000000000",
+            "snapshot_price_span": "128.800000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 1009,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "126.600000000000000000",
+            "snapshot_price_span": "126.600000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "reason": "periodic",
+      "requested_at": "2026-10-03T02:18:11.115503+00:00",
+      "sequence": 405,
+      "trigger": "periodic"
+    }
+  ],
+  "refresh_decisions": {
+    "blocker_counts": {},
+    "count_semantics": "one terminal assessment per check_coverage invocation; deferred evaluations are neither HTTP calls nor unique outage episodes",
+    "deferred_evaluations": 0,
+    "evaluations": 500,
+    "first_by_reason": {},
+    "last": {
+      "action": "request",
+      "after_sequence": 404,
+      "age_seconds": 10.12330772797577,
+      "blockers": [],
+      "budget": {
+        "extra_limit": 12,
+        "extra_used": 0,
+        "oldest_extra_expires_in_seconds": null
+      },
+      "epoch": 0,
+      "evaluated_at": "2026-10-03T02:18:11.115499+00:00",
+      "headroom": {
+        "low": false,
+        "sides": {
+          "asks": {
+            "level_threshold": 750,
+            "levels": 1006,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "128.800000000000000000",
+            "snapshot_price_span": "128.800000000000000000"
+          },
+          "bids": {
+            "level_threshold": 750,
+            "levels": 1009,
+            "low_levels": false,
+            "low_price_room": false,
+            "price_room": "126.600000000000000000",
+            "snapshot_price_span": "126.600000000000000000"
+          }
+        },
+        "top_complete": true
+      },
+      "phase": "after_flush",
+      "reason": "periodic",
+      "trigger": "periodic"
+    },
+    "last_by_reason": {},
+    "policy": "coverage_decisions_v1",
+    "primary_reason_counts": {},
+    "recent_deferrals": []
+  },
+  "refresh_from_checks": true,
+  "rotate_seconds": 900,
+  "scope": "BTCUSDT USD-M non-RPI depth; known snapshot price range only",
+  "seconds_requested": 3600,
+  "snapshots": 5,
+  "started_at": "2026-10-03T02:17:30.060370+00:00",
+  "state": "running",
+  "sync_losses": 0,
+  "synchronized": true,
+  "top": 20,
+  "unreconstructed_messages": 0,
+  "updated_at": "2026-10-03T02:18:21.318843+00:00",
+  "verify_seconds": 10
+}

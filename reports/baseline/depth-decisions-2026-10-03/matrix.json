@@ -1,0 +1,3067 @@
+{
+  "started_at": "2026-10-03T01:48:32.065562+00:00",
+  "completed_at": "2026-10-03T01:49:05.787000+00:00",
+  "baseline_matches_logging": true,
+  "scenario_count": 11,
+  "capture_count": 22,
+  "results": {
+    "quiet": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 10250,
+            "started_ms": 10200,
+            "update_id": 1102
+          },
+          {
+            "finished_ms": 20350,
+            "started_ms": 20300,
+            "update_id": 1203
+          },
+          {
+            "finished_ms": 30450,
+            "started_ms": 30400,
+            "update_id": 1304
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.607740036,
+          "report_bytes": 6438,
+          "wall_seconds": 0.6639345040312037
+        },
+        "connections": 1,
+        "coverage_resets": 0,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 353,
+        "extra_requests": 0,
+        "maximum_receive_queue": 1,
+        "messages": 350,
+        "minimum_known_levels": 981,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 35
+        },
+        "periodic_requests": 3,
+        "rest_verifications": {
+          "verification_checks": 3,
+          "verification_equal": 3,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "quiet",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "complete",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:33.071017+00:00",
+          "collection_id": "0928264b4d4d4507b79e638e4a2d03f9",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 8220,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": true,
+          "rows_checked": 354,
+          "source_artifacts": 14,
+          "verification_checks": 3,
+          "verification_complete": true,
+          "verification_equal": 3
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 10250,
+            "started_ms": 10200,
+            "update_id": 1102
+          },
+          {
+            "finished_ms": 20350,
+            "started_ms": 20300,
+            "update_id": 1203
+          },
+          {
+            "finished_ms": 30450,
+            "started_ms": 30400,
+            "update_id": 1304
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.569774957,
+          "report_bytes": 8268,
+          "wall_seconds": 0.6251869179541245
+        },
+        "connections": 1,
+        "coverage_resets": 0,
+        "deferral_counts": {},
+        "exact_full_market_comparisons": 353,
+        "extra_requests": 0,
+        "maximum_receive_queue": 1,
+        "messages": 350,
+        "minimum_known_levels": 981,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 35
+        },
+        "periodic_requests": 3,
+        "rest_verifications": {
+          "verification_checks": 3,
+          "verification_equal": 3,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "quiet",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "complete",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:34.081851+00:00",
+          "collection_id": "4c954a36eaab43ed98d8aa35610d5077",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 8220,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": true,
+          "rows_checked": 354,
+          "source_artifacts": 14,
+          "verification_checks": 3,
+          "verification_complete": true,
+          "verification_equal": 3
+        }
+      }
+    },
+    "steady": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 3350,
+            "started_ms": 3300,
+            "update_id": 1033
+          },
+          {
+            "finished_ms": 6550,
+            "started_ms": 6500,
+            "update_id": 1065
+          },
+          {
+            "finished_ms": 9750,
+            "started_ms": 9700,
+            "update_id": 1097
+          },
+          {
+            "finished_ms": 12950,
+            "started_ms": 12900,
+            "update_id": 1129
+          },
+          {
+            "finished_ms": 16150,
+            "started_ms": 16100,
+            "update_id": 1161
+          },
+          {
+            "finished_ms": 19350,
+            "started_ms": 19300,
+            "update_id": 1193
+          },
+          {
+            "finished_ms": 22550,
+            "started_ms": 22500,
+            "update_id": 1225
+          },
+          {
+            "finished_ms": 25750,
+            "started_ms": 25700,
+            "update_id": 1257
+          },
+          {
+            "finished_ms": 28950,
+            "started_ms": 28900,
+            "update_id": 1289
+          },
+          {
+            "finished_ms": 32150,
+            "started_ms": 32100,
+            "update_id": 1321
+          },
+          {
+            "finished_ms": 35350,
+            "started_ms": 35300,
+            "update_id": 1353
+          },
+          {
+            "finished_ms": 38550,
+            "started_ms": 38500,
+            "update_id": 1385
+          },
+          {
+            "finished_ms": 48650,
+            "started_ms": 48600,
+            "update_id": 1486
+          },
+          {
+            "finished_ms": 58750,
+            "started_ms": 58700,
+            "update_id": 1587
+          },
+          {
+            "finished_ms": 63450,
+            "started_ms": 63400,
+            "update_id": 1634
+          },
+          {
+            "finished_ms": 66650,
+            "started_ms": 66600,
+            "update_id": 1666
+          },
+          {
+            "finished_ms": 69850,
+            "started_ms": 69800,
+            "update_id": 1698
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 1.345540397,
+          "report_bytes": 14845,
+          "wall_seconds": 1.485361753962934
+        },
+        "connections": 1,
+        "coverage_resets": 0,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 717,
+        "extra_requests": 15,
+        "maximum_receive_queue": 1,
+        "messages": 700,
+        "minimum_known_levels": 192,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 70
+        },
+        "periodic_requests": 2,
+        "rest_verifications": {
+          "verification_checks": 17,
+          "verification_equal": 17,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "steady",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "complete",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:36.329835+00:00",
+          "collection_id": "dddae9bf74c649da93a70dfc5b2fa1b8",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 47200,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": true,
+          "rows_checked": 718,
+          "source_artifacts": 40,
+          "verification_checks": 17,
+          "verification_complete": true,
+          "verification_equal": 17
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 3350,
+            "started_ms": 3300,
+            "update_id": 1033
+          },
+          {
+            "finished_ms": 6550,
+            "started_ms": 6500,
+            "update_id": 1065
+          },
+          {
+            "finished_ms": 9750,
+            "started_ms": 9700,
+            "update_id": 1097
+          },
+          {
+            "finished_ms": 12950,
+            "started_ms": 12900,
+            "update_id": 1129
+          },
+          {
+            "finished_ms": 16150,
+            "started_ms": 16100,
+            "update_id": 1161
+          },
+          {
+            "finished_ms": 19350,
+            "started_ms": 19300,
+            "update_id": 1193
+          },
+          {
+            "finished_ms": 22550,
+            "started_ms": 22500,
+            "update_id": 1225
+          },
+          {
+            "finished_ms": 25750,
+            "started_ms": 25700,
+            "update_id": 1257
+          },
+          {
+            "finished_ms": 28950,
+            "started_ms": 28900,
+            "update_id": 1289
+          },
+          {
+            "finished_ms": 32150,
+            "started_ms": 32100,
+            "update_id": 1321
+          },
+          {
+            "finished_ms": 35350,
+            "started_ms": 35300,
+            "update_id": 1353
+          },
+          {
+            "finished_ms": 38550,
+            "started_ms": 38500,
+            "update_id": 1385
+          },
+          {
+            "finished_ms": 48650,
+            "started_ms": 48600,
+            "update_id": 1486
+          },
+          {
+            "finished_ms": 58750,
+            "started_ms": 58700,
+            "update_id": 1587
+          },
+          {
+            "finished_ms": 63450,
+            "started_ms": 63400,
+            "update_id": 1634
+          },
+          {
+            "finished_ms": 66650,
+            "started_ms": 66600,
+            "update_id": 1666
+          },
+          {
+            "finished_ms": 69850,
+            "started_ms": 69800,
+            "update_id": 1698
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 1.373332423,
+          "report_bytes": 27865,
+          "wall_seconds": 1.515050177986268
+        },
+        "connections": 1,
+        "coverage_resets": 0,
+        "deferral_counts": {
+          "extra_budget": 153
+        },
+        "exact_full_market_comparisons": 717,
+        "extra_requests": 15,
+        "maximum_receive_queue": 1,
+        "messages": 700,
+        "minimum_known_levels": 192,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 70
+        },
+        "periodic_requests": 2,
+        "rest_verifications": {
+          "verification_checks": 17,
+          "verification_equal": 17,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 12,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "steady",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "complete",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:38.662504+00:00",
+          "collection_id": "c98c0254101047aeb914b56a3b5dd676",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 47200,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": true,
+          "rows_checked": 718,
+          "source_artifacts": 40,
+          "verification_checks": 17,
+          "verification_complete": true,
+          "verification_equal": 17
+        }
+      }
+    },
+    "fast": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 1450,
+            "started_ms": 1400,
+            "update_id": 1014
+          },
+          {
+            "finished_ms": 2750,
+            "started_ms": 2700,
+            "update_id": 1027
+          },
+          {
+            "finished_ms": 4050,
+            "started_ms": 4000,
+            "update_id": 1040
+          },
+          {
+            "finished_ms": 5350,
+            "started_ms": 5300,
+            "update_id": 1053
+          },
+          {
+            "finished_ms": 6650,
+            "started_ms": 6600,
+            "update_id": 1066
+          },
+          {
+            "finished_ms": 7950,
+            "started_ms": 7900,
+            "update_id": 1079
+          },
+          {
+            "finished_ms": 9250,
+            "started_ms": 9200,
+            "update_id": 1092
+          },
+          {
+            "finished_ms": 10550,
+            "started_ms": 10500,
+            "update_id": 1105
+          },
+          {
+            "finished_ms": 11850,
+            "started_ms": 11800,
+            "update_id": 1118
+          },
+          {
+            "finished_ms": 13150,
+            "started_ms": 13100,
+            "update_id": 1131
+          },
+          {
+            "finished_ms": 14450,
+            "started_ms": 14400,
+            "update_id": 1144
+          },
+          {
+            "finished_ms": 15750,
+            "started_ms": 15700,
+            "update_id": 1157
+          },
+          {
+            "finished_ms": 20750,
+            "started_ms": 20700,
+            "update_id": 1207
+          },
+          {
+            "finished_ms": 25750,
+            "started_ms": 25700,
+            "update_id": 1257
+          },
+          {
+            "finished_ms": 30750,
+            "started_ms": 30700,
+            "update_id": 1307
+          },
+          {
+            "finished_ms": 35750,
+            "started_ms": 35700,
+            "update_id": 1357
+          },
+          {
+            "finished_ms": 40750,
+            "started_ms": 40700,
+            "update_id": 1407
+          },
+          {
+            "finished_ms": 45750,
+            "started_ms": 45700,
+            "update_id": 1457
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 1.139765017,
+          "report_bytes": 29769,
+          "wall_seconds": 1.2789022010401823
+        },
+        "connections": 1,
+        "coverage_resets": 6,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 512,
+        "extra_requests": 12,
+        "maximum_receive_queue": 1,
+        "messages": 500,
+        "minimum_known_levels": 20,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 50
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "fast",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:40.736431+00:00",
+          "collection_id": "7c9dc88868734bfd875d06b9e770480d",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 58000,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 519,
+          "source_artifacts": 38,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 1450,
+            "started_ms": 1400,
+            "update_id": 1014
+          },
+          {
+            "finished_ms": 2750,
+            "started_ms": 2700,
+            "update_id": 1027
+          },
+          {
+            "finished_ms": 4050,
+            "started_ms": 4000,
+            "update_id": 1040
+          },
+          {
+            "finished_ms": 5350,
+            "started_ms": 5300,
+            "update_id": 1053
+          },
+          {
+            "finished_ms": 6650,
+            "started_ms": 6600,
+            "update_id": 1066
+          },
+          {
+            "finished_ms": 7950,
+            "started_ms": 7900,
+            "update_id": 1079
+          },
+          {
+            "finished_ms": 9250,
+            "started_ms": 9200,
+            "update_id": 1092
+          },
+          {
+            "finished_ms": 10550,
+            "started_ms": 10500,
+            "update_id": 1105
+          },
+          {
+            "finished_ms": 11850,
+            "started_ms": 11800,
+            "update_id": 1118
+          },
+          {
+            "finished_ms": 13150,
+            "started_ms": 13100,
+            "update_id": 1131
+          },
+          {
+            "finished_ms": 14450,
+            "started_ms": 14400,
+            "update_id": 1144
+          },
+          {
+            "finished_ms": 15750,
+            "started_ms": 15700,
+            "update_id": 1157
+          },
+          {
+            "finished_ms": 20750,
+            "started_ms": 20700,
+            "update_id": 1207
+          },
+          {
+            "finished_ms": 25750,
+            "started_ms": 25700,
+            "update_id": 1257
+          },
+          {
+            "finished_ms": 30750,
+            "started_ms": 30700,
+            "update_id": 1307
+          },
+          {
+            "finished_ms": 35750,
+            "started_ms": 35700,
+            "update_id": 1357
+          },
+          {
+            "finished_ms": 40750,
+            "started_ms": 40700,
+            "update_id": 1407
+          },
+          {
+            "finished_ms": 45750,
+            "started_ms": 45700,
+            "update_id": 1457
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 1.179916354,
+          "report_bytes": 91738,
+          "wall_seconds": 1.3134936949936673
+        },
+        "connections": 1,
+        "coverage_resets": 6,
+        "deferral_counts": {
+          "deadline": 1,
+          "extra_budget": 252
+        },
+        "exact_full_market_comparisons": 512,
+        "extra_requests": 12,
+        "maximum_receive_queue": 1,
+        "messages": 500,
+        "minimum_known_levels": 20,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 50
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 12,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "fast",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:42.872571+00:00",
+          "collection_id": "619b5f9eb8d148c6a48f2aad2a565a23",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 58000,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 519,
+          "source_artifacts": 38,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      }
+    },
+    "oscillation": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 1550,
+            "started_ms": 1500,
+            "update_id": 1015
+          },
+          {
+            "finished_ms": 3050,
+            "started_ms": 3000,
+            "update_id": 1030
+          },
+          {
+            "finished_ms": 4550,
+            "started_ms": 4500,
+            "update_id": 1045
+          },
+          {
+            "finished_ms": 6050,
+            "started_ms": 6000,
+            "update_id": 1060
+          },
+          {
+            "finished_ms": 7550,
+            "started_ms": 7500,
+            "update_id": 1075
+          },
+          {
+            "finished_ms": 9050,
+            "started_ms": 9000,
+            "update_id": 1090
+          },
+          {
+            "finished_ms": 10550,
+            "started_ms": 10500,
+            "update_id": 1105
+          },
+          {
+            "finished_ms": 12050,
+            "started_ms": 12000,
+            "update_id": 1120
+          },
+          {
+            "finished_ms": 13550,
+            "started_ms": 13500,
+            "update_id": 1135
+          },
+          {
+            "finished_ms": 15050,
+            "started_ms": 15000,
+            "update_id": 1150
+          },
+          {
+            "finished_ms": 16550,
+            "started_ms": 16500,
+            "update_id": 1165
+          },
+          {
+            "finished_ms": 18050,
+            "started_ms": 18000,
+            "update_id": 1180
+          },
+          {
+            "finished_ms": 28150,
+            "started_ms": 28100,
+            "update_id": 1281
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.818686402,
+          "report_bytes": 12402,
+          "wall_seconds": 0.9265923220082186
+        },
+        "connections": 1,
+        "coverage_resets": 0,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 363,
+        "extra_requests": 12,
+        "maximum_receive_queue": 1,
+        "messages": 350,
+        "minimum_known_levels": 740,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 35
+        },
+        "periodic_requests": 1,
+        "rest_verifications": {
+          "verification_checks": 13,
+          "verification_equal": 13,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "oscillation",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "complete",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:44.410238+00:00",
+          "collection_id": "401eb4881cbf4a90bc089edb797039cb",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 39960,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": true,
+          "rows_checked": 364,
+          "source_artifacts": 31,
+          "verification_checks": 13,
+          "verification_complete": true,
+          "verification_equal": 13
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 1550,
+            "started_ms": 1500,
+            "update_id": 1015
+          },
+          {
+            "finished_ms": 3050,
+            "started_ms": 3000,
+            "update_id": 1030
+          },
+          {
+            "finished_ms": 4550,
+            "started_ms": 4500,
+            "update_id": 1045
+          },
+          {
+            "finished_ms": 6050,
+            "started_ms": 6000,
+            "update_id": 1060
+          },
+          {
+            "finished_ms": 7550,
+            "started_ms": 7500,
+            "update_id": 1075
+          },
+          {
+            "finished_ms": 9050,
+            "started_ms": 9000,
+            "update_id": 1090
+          },
+          {
+            "finished_ms": 10550,
+            "started_ms": 10500,
+            "update_id": 1105
+          },
+          {
+            "finished_ms": 12050,
+            "started_ms": 12000,
+            "update_id": 1120
+          },
+          {
+            "finished_ms": 13550,
+            "started_ms": 13500,
+            "update_id": 1135
+          },
+          {
+            "finished_ms": 15050,
+            "started_ms": 15000,
+            "update_id": 1150
+          },
+          {
+            "finished_ms": 16550,
+            "started_ms": 16500,
+            "update_id": 1165
+          },
+          {
+            "finished_ms": 18050,
+            "started_ms": 18000,
+            "update_id": 1180
+          },
+          {
+            "finished_ms": 28150,
+            "started_ms": 28100,
+            "update_id": 1281
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.826298736,
+          "report_bytes": 27023,
+          "wall_seconds": 0.9385325820185244
+        },
+        "connections": 1,
+        "coverage_resets": 0,
+        "deferral_counts": {
+          "deadline": 1,
+          "extra_budget": 73,
+          "minimum_interval": 7
+        },
+        "exact_full_market_comparisons": 363,
+        "extra_requests": 12,
+        "maximum_receive_queue": 1,
+        "messages": 350,
+        "minimum_known_levels": 740,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 35
+        },
+        "periodic_requests": 1,
+        "rest_verifications": {
+          "verification_checks": 13,
+          "verification_equal": 13,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 12,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "oscillation",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "complete",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:45.949196+00:00",
+          "collection_id": "a1c22b4bee724934aa8eac9e6ecf2c19",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 39960,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": true,
+          "rows_checked": 364,
+          "source_artifacts": 31,
+          "verification_checks": 13,
+          "verification_complete": true,
+          "verification_equal": 13
+        }
+      }
+    },
+    "reserve_help": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 1550,
+            "started_ms": 1500,
+            "update_id": 1015
+          },
+          {
+            "finished_ms": 3050,
+            "started_ms": 3000,
+            "update_id": 1030
+          },
+          {
+            "finished_ms": 4550,
+            "started_ms": 4500,
+            "update_id": 1045
+          },
+          {
+            "finished_ms": 6050,
+            "started_ms": 6000,
+            "update_id": 1060
+          },
+          {
+            "finished_ms": 7550,
+            "started_ms": 7500,
+            "update_id": 1075
+          },
+          {
+            "finished_ms": 9050,
+            "started_ms": 9000,
+            "update_id": 1090
+          },
+          {
+            "finished_ms": 10550,
+            "started_ms": 10500,
+            "update_id": 1105
+          },
+          {
+            "finished_ms": 12050,
+            "started_ms": 12000,
+            "update_id": 1120
+          },
+          {
+            "finished_ms": 13550,
+            "started_ms": 13500,
+            "update_id": 1135
+          },
+          {
+            "finished_ms": 15050,
+            "started_ms": 15000,
+            "update_id": 1150
+          },
+          {
+            "finished_ms": 16550,
+            "started_ms": 16500,
+            "update_id": 1165
+          },
+          {
+            "finished_ms": 18050,
+            "started_ms": 18000,
+            "update_id": 1180
+          },
+          {
+            "finished_ms": 21450,
+            "started_ms": 21400,
+            "update_id": 1214
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.725116842,
+          "report_bytes": 14791,
+          "wall_seconds": 0.8221240479615517
+        },
+        "connections": 1,
+        "coverage_resets": 1,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 312,
+        "extra_requests": 12,
+        "maximum_receive_queue": 1,
+        "messages": 300,
+        "minimum_known_levels": 50,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 30
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "reserve_help",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:47.325321+00:00",
+          "collection_id": "1e279069dff1477b8622590e542ee819",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 36740,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 314,
+          "source_artifacts": 29,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 1550,
+            "started_ms": 1500,
+            "update_id": 1015
+          },
+          {
+            "finished_ms": 3050,
+            "started_ms": 3000,
+            "update_id": 1030
+          },
+          {
+            "finished_ms": 4550,
+            "started_ms": 4500,
+            "update_id": 1045
+          },
+          {
+            "finished_ms": 6050,
+            "started_ms": 6000,
+            "update_id": 1060
+          },
+          {
+            "finished_ms": 7550,
+            "started_ms": 7500,
+            "update_id": 1075
+          },
+          {
+            "finished_ms": 9050,
+            "started_ms": 9000,
+            "update_id": 1090
+          },
+          {
+            "finished_ms": 10550,
+            "started_ms": 10500,
+            "update_id": 1105
+          },
+          {
+            "finished_ms": 12050,
+            "started_ms": 12000,
+            "update_id": 1120
+          },
+          {
+            "finished_ms": 13550,
+            "started_ms": 13500,
+            "update_id": 1135
+          },
+          {
+            "finished_ms": 15050,
+            "started_ms": 15000,
+            "update_id": 1150
+          },
+          {
+            "finished_ms": 16550,
+            "started_ms": 16500,
+            "update_id": 1165
+          },
+          {
+            "finished_ms": 18050,
+            "started_ms": 18000,
+            "update_id": 1180
+          },
+          {
+            "finished_ms": 21450,
+            "started_ms": 21400,
+            "update_id": 1214
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.71906469,
+          "report_bytes": 28560,
+          "wall_seconds": 0.8099846110562794
+        },
+        "connections": 1,
+        "coverage_resets": 1,
+        "deferral_counts": {
+          "extra_budget": 4
+        },
+        "exact_full_market_comparisons": 312,
+        "extra_requests": 12,
+        "maximum_receive_queue": 1,
+        "messages": 300,
+        "minimum_known_levels": 50,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 30
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 12,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "reserve_help",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:48.718797+00:00",
+          "collection_id": "68845cd6567844cd8d32d7894dc714b8",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 36740,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 314,
+          "source_artifacts": 29,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      }
+    },
+    "reserve_delay_risk": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 350,
+            "started_ms": 100,
+            "update_id": 1003
+          },
+          {
+            "finished_ms": 1750,
+            "started_ms": 1500,
+            "update_id": 1017
+          },
+          {
+            "finished_ms": 3250,
+            "started_ms": 3000,
+            "update_id": 1032
+          },
+          {
+            "finished_ms": 4750,
+            "started_ms": 4500,
+            "update_id": 1047
+          },
+          {
+            "finished_ms": 6250,
+            "started_ms": 6000,
+            "update_id": 1062
+          },
+          {
+            "finished_ms": 7750,
+            "started_ms": 7500,
+            "update_id": 1077
+          },
+          {
+            "finished_ms": 9250,
+            "started_ms": 9000,
+            "update_id": 1092
+          },
+          {
+            "finished_ms": 10750,
+            "started_ms": 10500,
+            "update_id": 1107
+          },
+          {
+            "finished_ms": 12250,
+            "started_ms": 12000,
+            "update_id": 1122
+          },
+          {
+            "finished_ms": 13750,
+            "started_ms": 13500,
+            "update_id": 1137
+          },
+          {
+            "finished_ms": 15250,
+            "started_ms": 15000,
+            "update_id": 1152
+          },
+          {
+            "finished_ms": 18250,
+            "started_ms": 18000,
+            "update_id": 1182
+          },
+          {
+            "finished_ms": 19550,
+            "started_ms": 19300,
+            "update_id": 1195
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.619503028,
+          "report_bytes": 11803,
+          "wall_seconds": 0.7117994110449217
+        },
+        "connections": 1,
+        "coverage_resets": 0,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 260,
+        "extra_requests": 12,
+        "maximum_receive_queue": 2,
+        "messages": 250,
+        "minimum_known_levels": 300,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 250,
+          "seconds": 25
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "reserve_delay_risk",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "complete",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:49.955829+00:00",
+          "collection_id": "d0a6e7ebfbc7448fbcfcfb4bdb68ff43",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 33400,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": true,
+          "rows_checked": 263,
+          "source_artifacts": 27,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 350,
+            "started_ms": 100,
+            "update_id": 1003
+          },
+          {
+            "finished_ms": 1750,
+            "started_ms": 1500,
+            "update_id": 1017
+          },
+          {
+            "finished_ms": 3250,
+            "started_ms": 3000,
+            "update_id": 1032
+          },
+          {
+            "finished_ms": 4750,
+            "started_ms": 4500,
+            "update_id": 1047
+          },
+          {
+            "finished_ms": 6250,
+            "started_ms": 6000,
+            "update_id": 1062
+          },
+          {
+            "finished_ms": 7750,
+            "started_ms": 7500,
+            "update_id": 1077
+          },
+          {
+            "finished_ms": 9250,
+            "started_ms": 9000,
+            "update_id": 1092
+          },
+          {
+            "finished_ms": 10750,
+            "started_ms": 10500,
+            "update_id": 1107
+          },
+          {
+            "finished_ms": 12250,
+            "started_ms": 12000,
+            "update_id": 1122
+          },
+          {
+            "finished_ms": 13750,
+            "started_ms": 13500,
+            "update_id": 1137
+          },
+          {
+            "finished_ms": 15250,
+            "started_ms": 15000,
+            "update_id": 1152
+          },
+          {
+            "finished_ms": 18250,
+            "started_ms": 18000,
+            "update_id": 1182
+          },
+          {
+            "finished_ms": 19550,
+            "started_ms": 19300,
+            "update_id": 1195
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.6317753970000001,
+          "report_bytes": 26318,
+          "wall_seconds": 0.7297950419597328
+        },
+        "connections": 1,
+        "coverage_resets": 0,
+        "deferral_counts": {
+          "minimum_interval": 10,
+          "pending_verification": 12
+        },
+        "exact_full_market_comparisons": 260,
+        "extra_requests": 12,
+        "maximum_receive_queue": 2,
+        "messages": 250,
+        "minimum_known_levels": 300,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 250,
+          "seconds": 25
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 12,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "reserve_delay_risk",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "complete",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:51.197946+00:00",
+          "collection_id": "2435329b46a344ffa8a2f3136ae9fff5",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 33400,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": true,
+          "rows_checked": 263,
+          "source_artifacts": 27,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      }
+    },
+    "slow_rest": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 800,
+            "started_ms": 100,
+            "update_id": 1008
+          },
+          {
+            "finished_ms": 2500,
+            "started_ms": 1800,
+            "update_id": 1025
+          },
+          {
+            "finished_ms": 4200,
+            "started_ms": 3500,
+            "update_id": 1042
+          },
+          {
+            "finished_ms": 5900,
+            "started_ms": 5200,
+            "update_id": 1059
+          },
+          {
+            "finished_ms": 7600,
+            "started_ms": 6900,
+            "update_id": 1076
+          },
+          {
+            "finished_ms": 9700,
+            "started_ms": 9000,
+            "update_id": 1097
+          },
+          {
+            "finished_ms": 11400,
+            "started_ms": 10700,
+            "update_id": 1114
+          },
+          {
+            "finished_ms": 13100,
+            "started_ms": 12400,
+            "update_id": 1131
+          },
+          {
+            "finished_ms": 14800,
+            "started_ms": 14100,
+            "update_id": 1148
+          },
+          {
+            "finished_ms": 16500,
+            "started_ms": 15800,
+            "update_id": 1165
+          },
+          {
+            "finished_ms": 18700,
+            "started_ms": 18000,
+            "update_id": 1187
+          },
+          {
+            "finished_ms": 21700,
+            "started_ms": 21000,
+            "update_id": 1217
+          },
+          {
+            "finished_ms": 22400,
+            "started_ms": 21700,
+            "update_id": 1224
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.674784121,
+          "report_bytes": 14147,
+          "wall_seconds": 0.772766666021198
+        },
+        "connections": 1,
+        "coverage_resets": 1,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 294,
+        "extra_requests": 11,
+        "maximum_receive_queue": 10,
+        "messages": 300,
+        "minimum_known_levels": 50,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 700,
+          "path": "reserve_help",
+          "seconds": 30
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 10,
+          "verification_equal": 10,
+          "verification_mismatch": 0,
+          "verification_pending": 1,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "slow_rest",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": false,
+          "checked_at": "2026-10-03T01:48:52.540608+00:00",
+          "collection_id": "4d79ed018b3c44e89355ee17bd11b399",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 34740,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 313,
+          "source_artifacts": 27,
+          "verification_checks": 10,
+          "verification_complete": false,
+          "verification_equal": 10
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 800,
+            "started_ms": 100,
+            "update_id": 1008
+          },
+          {
+            "finished_ms": 2500,
+            "started_ms": 1800,
+            "update_id": 1025
+          },
+          {
+            "finished_ms": 4200,
+            "started_ms": 3500,
+            "update_id": 1042
+          },
+          {
+            "finished_ms": 5900,
+            "started_ms": 5200,
+            "update_id": 1059
+          },
+          {
+            "finished_ms": 7600,
+            "started_ms": 6900,
+            "update_id": 1076
+          },
+          {
+            "finished_ms": 9700,
+            "started_ms": 9000,
+            "update_id": 1097
+          },
+          {
+            "finished_ms": 11400,
+            "started_ms": 10700,
+            "update_id": 1114
+          },
+          {
+            "finished_ms": 13100,
+            "started_ms": 12400,
+            "update_id": 1131
+          },
+          {
+            "finished_ms": 14800,
+            "started_ms": 14100,
+            "update_id": 1148
+          },
+          {
+            "finished_ms": 16500,
+            "started_ms": 15800,
+            "update_id": 1165
+          },
+          {
+            "finished_ms": 18700,
+            "started_ms": 18000,
+            "update_id": 1187
+          },
+          {
+            "finished_ms": 21700,
+            "started_ms": 21000,
+            "update_id": 1217
+          },
+          {
+            "finished_ms": 22400,
+            "started_ms": 21700,
+            "update_id": 1224
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.696534134,
+          "report_bytes": 37246,
+          "wall_seconds": 0.7935018279822543
+        },
+        "connections": 1,
+        "coverage_resets": 1,
+        "deferral_counts": {
+          "minimum_interval": 44,
+          "pending_verification": 62
+        },
+        "exact_full_market_comparisons": 294,
+        "extra_requests": 11,
+        "maximum_receive_queue": 10,
+        "messages": 300,
+        "minimum_known_levels": 50,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 700,
+          "path": "reserve_help",
+          "seconds": 30
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 10,
+          "verification_equal": 10,
+          "verification_mismatch": 0,
+          "verification_pending": 1,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 11,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "slow_rest",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": false,
+          "checked_at": "2026-10-03T01:48:53.892993+00:00",
+          "collection_id": "12a1311ca1b1446fb4b3d6b606cac0d2",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 34740,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 313,
+          "source_artifacts": 27,
+          "verification_checks": 10,
+          "verification_complete": false,
+          "verification_equal": 10
+        }
+      }
+    },
+    "slow_flush": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 1700,
+            "started_ms": 1650,
+            "update_id": 1017
+          },
+          {
+            "finished_ms": 3200,
+            "started_ms": 3150,
+            "update_id": 1032
+          },
+          {
+            "finished_ms": 4700,
+            "started_ms": 4650,
+            "update_id": 1047
+          },
+          {
+            "finished_ms": 6200,
+            "started_ms": 6150,
+            "update_id": 1062
+          },
+          {
+            "finished_ms": 7700,
+            "started_ms": 7650,
+            "update_id": 1077
+          },
+          {
+            "finished_ms": 9200,
+            "started_ms": 9150,
+            "update_id": 1092
+          },
+          {
+            "finished_ms": 10700,
+            "started_ms": 10650,
+            "update_id": 1107
+          },
+          {
+            "finished_ms": 12200,
+            "started_ms": 12150,
+            "update_id": 1122
+          },
+          {
+            "finished_ms": 13700,
+            "started_ms": 13650,
+            "update_id": 1137
+          },
+          {
+            "finished_ms": 15200,
+            "started_ms": 15150,
+            "update_id": 1152
+          },
+          {
+            "finished_ms": 16700,
+            "started_ms": 16650,
+            "update_id": 1167
+          },
+          {
+            "finished_ms": 18200,
+            "started_ms": 18150,
+            "update_id": 1182
+          },
+          {
+            "finished_ms": 21600,
+            "started_ms": 21550,
+            "update_id": 1216
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.7561901470000001,
+          "report_bytes": 14878,
+          "wall_seconds": 0.8589620179845951
+        },
+        "connections": 1,
+        "coverage_resets": 1,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 310,
+        "extra_requests": 12,
+        "maximum_receive_queue": 2,
+        "messages": 300,
+        "minimum_known_levels": 50,
+        "parameters": {
+          "flush_ms": 150,
+          "latency_ms": 50,
+          "path": "reserve_help",
+          "seconds": 30
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "slow_flush",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:55.315601+00:00",
+          "collection_id": "b41698570bd740cab7f4447c9c9b0c6c",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 36740,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 314,
+          "source_artifacts": 29,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 1700,
+            "started_ms": 1650,
+            "update_id": 1017
+          },
+          {
+            "finished_ms": 3200,
+            "started_ms": 3150,
+            "update_id": 1032
+          },
+          {
+            "finished_ms": 4700,
+            "started_ms": 4650,
+            "update_id": 1047
+          },
+          {
+            "finished_ms": 6200,
+            "started_ms": 6150,
+            "update_id": 1062
+          },
+          {
+            "finished_ms": 7700,
+            "started_ms": 7650,
+            "update_id": 1077
+          },
+          {
+            "finished_ms": 9200,
+            "started_ms": 9150,
+            "update_id": 1092
+          },
+          {
+            "finished_ms": 10700,
+            "started_ms": 10650,
+            "update_id": 1107
+          },
+          {
+            "finished_ms": 12200,
+            "started_ms": 12150,
+            "update_id": 1122
+          },
+          {
+            "finished_ms": 13700,
+            "started_ms": 13650,
+            "update_id": 1137
+          },
+          {
+            "finished_ms": 15200,
+            "started_ms": 15150,
+            "update_id": 1152
+          },
+          {
+            "finished_ms": 16700,
+            "started_ms": 16650,
+            "update_id": 1167
+          },
+          {
+            "finished_ms": 18200,
+            "started_ms": 18150,
+            "update_id": 1182
+          },
+          {
+            "finished_ms": 21600,
+            "started_ms": 21550,
+            "update_id": 1216
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.720984978,
+          "report_bytes": 41000,
+          "wall_seconds": 0.8211982930079103
+        },
+        "connections": 1,
+        "coverage_resets": 1,
+        "deferral_counts": {
+          "extra_budget": 4,
+          "pending_verification": 12
+        },
+        "exact_full_market_comparisons": 310,
+        "extra_requests": 12,
+        "maximum_receive_queue": 2,
+        "messages": 300,
+        "minimum_known_levels": 50,
+        "parameters": {
+          "flush_ms": 150,
+          "latency_ms": 50,
+          "path": "reserve_help",
+          "seconds": 30
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 12,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "slow_flush",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:56.716832+00:00",
+          "collection_id": "5463540ee67a45d6a7d8b610fe98dcc4",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 36740,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 314,
+          "source_artifacts": 29,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      }
+    },
+    "single_jump": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 5050,
+            "started_ms": 5000,
+            "update_id": 1050
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.266882144,
+          "report_bytes": 7622,
+          "wall_seconds": 0.2900407339911908
+        },
+        "connections": 1,
+        "coverage_resets": 1,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 150,
+        "extra_requests": 0,
+        "maximum_receive_queue": 1,
+        "messages": 150,
+        "minimum_known_levels": 1000,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 15
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 0,
+          "verification_equal": 0,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "single_jump",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": false,
+          "checked_at": "2026-10-03T01:48:57.278787+00:00",
+          "collection_id": "7696449bc2d64f18acce08812fef6d21",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 6400,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 152,
+          "source_artifacts": 5,
+          "verification_checks": 0,
+          "verification_complete": false,
+          "verification_equal": 0
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 5050,
+            "started_ms": 5000,
+            "update_id": 1050
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 0.262257872,
+          "report_bytes": 8359,
+          "wall_seconds": 0.28622093104058877
+        },
+        "connections": 1,
+        "coverage_resets": 1,
+        "deferral_counts": {},
+        "exact_full_market_comparisons": 150,
+        "extra_requests": 0,
+        "maximum_receive_queue": 1,
+        "messages": 150,
+        "minimum_known_levels": 1000,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 15
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 0,
+          "verification_equal": 0,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "single_jump",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": false,
+          "checked_at": "2026-10-03T01:48:57.828453+00:00",
+          "collection_id": "0969e40235f84a5c9e0c9264bfae4688",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 6400,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 152,
+          "source_artifacts": 5,
+          "verification_checks": 0,
+          "verification_complete": false,
+          "verification_equal": 0
+        }
+      }
+    },
+    "critical_pressure": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 2050,
+            "started_ms": 2000,
+            "update_id": 1020
+          },
+          {
+            "finished_ms": 4050,
+            "started_ms": 4000,
+            "update_id": 1040
+          },
+          {
+            "finished_ms": 6050,
+            "started_ms": 6000,
+            "update_id": 1060
+          },
+          {
+            "finished_ms": 8050,
+            "started_ms": 8000,
+            "update_id": 1080
+          },
+          {
+            "finished_ms": 10050,
+            "started_ms": 10000,
+            "update_id": 1100
+          },
+          {
+            "finished_ms": 12050,
+            "started_ms": 12000,
+            "update_id": 1120
+          },
+          {
+            "finished_ms": 14050,
+            "started_ms": 14000,
+            "update_id": 1140
+          },
+          {
+            "finished_ms": 16050,
+            "started_ms": 16000,
+            "update_id": 1160
+          },
+          {
+            "finished_ms": 18050,
+            "started_ms": 18000,
+            "update_id": 1180
+          },
+          {
+            "finished_ms": 20050,
+            "started_ms": 20000,
+            "update_id": 1200
+          },
+          {
+            "finished_ms": 22050,
+            "started_ms": 22000,
+            "update_id": 1220
+          },
+          {
+            "finished_ms": 24050,
+            "started_ms": 24000,
+            "update_id": 1240
+          },
+          {
+            "finished_ms": 28050,
+            "started_ms": 28000,
+            "update_id": 1280
+          },
+          {
+            "finished_ms": 32050,
+            "started_ms": 32000,
+            "update_id": 1320
+          },
+          {
+            "finished_ms": 36050,
+            "started_ms": 36000,
+            "update_id": 1360
+          },
+          {
+            "finished_ms": 40050,
+            "started_ms": 40000,
+            "update_id": 1400
+          },
+          {
+            "finished_ms": 44050,
+            "started_ms": 44000,
+            "update_id": 1440
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 1.145948581,
+          "report_bytes": 26645,
+          "wall_seconds": 1.2750694299465977
+        },
+        "connections": 1,
+        "coverage_resets": 5,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 462,
+        "extra_requests": 12,
+        "maximum_receive_queue": 1,
+        "messages": 450,
+        "minimum_known_levels": 400,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 45
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "critical_pressure",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:48:59.895315+00:00",
+          "collection_id": "13f89ba9d0ad48b39b73d13e9aa8d04b",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 62400,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 468,
+          "source_artifacts": 36,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 2050,
+            "started_ms": 2000,
+            "update_id": 1020
+          },
+          {
+            "finished_ms": 4050,
+            "started_ms": 4000,
+            "update_id": 1040
+          },
+          {
+            "finished_ms": 6050,
+            "started_ms": 6000,
+            "update_id": 1060
+          },
+          {
+            "finished_ms": 8050,
+            "started_ms": 8000,
+            "update_id": 1080
+          },
+          {
+            "finished_ms": 10050,
+            "started_ms": 10000,
+            "update_id": 1100
+          },
+          {
+            "finished_ms": 12050,
+            "started_ms": 12000,
+            "update_id": 1120
+          },
+          {
+            "finished_ms": 14050,
+            "started_ms": 14000,
+            "update_id": 1140
+          },
+          {
+            "finished_ms": 16050,
+            "started_ms": 16000,
+            "update_id": 1160
+          },
+          {
+            "finished_ms": 18050,
+            "started_ms": 18000,
+            "update_id": 1180
+          },
+          {
+            "finished_ms": 20050,
+            "started_ms": 20000,
+            "update_id": 1200
+          },
+          {
+            "finished_ms": 22050,
+            "started_ms": 22000,
+            "update_id": 1220
+          },
+          {
+            "finished_ms": 24050,
+            "started_ms": 24000,
+            "update_id": 1240
+          },
+          {
+            "finished_ms": 28050,
+            "started_ms": 28000,
+            "update_id": 1280
+          },
+          {
+            "finished_ms": 32050,
+            "started_ms": 32000,
+            "update_id": 1320
+          },
+          {
+            "finished_ms": 36050,
+            "started_ms": 36000,
+            "update_id": 1360
+          },
+          {
+            "finished_ms": 40050,
+            "started_ms": 40000,
+            "update_id": 1400
+          },
+          {
+            "finished_ms": 44050,
+            "started_ms": 44000,
+            "update_id": 1440
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 1.1801897620000001,
+          "report_bytes": 79162,
+          "wall_seconds": 1.3061008210061118
+        },
+        "connections": 1,
+        "coverage_resets": 5,
+        "deferral_counts": {
+          "extra_budget": 100
+        },
+        "exact_full_market_comparisons": 462,
+        "extra_requests": 12,
+        "maximum_receive_queue": 1,
+        "messages": 450,
+        "minimum_known_levels": 400,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "seconds": 45
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 12,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "critical_pressure",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "partial",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:49:02.014203+00:00",
+          "collection_id": "d811d5125559422292f92b84e13dbc9c",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 62400,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": false,
+          "rows_checked": 468,
+          "source_artifacts": 36,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      }
+    },
+    "rotating": {
+      "baseline": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 1550,
+            "started_ms": 1500,
+            "update_id": 1015
+          },
+          {
+            "finished_ms": 3050,
+            "started_ms": 3000,
+            "update_id": 1030
+          },
+          {
+            "finished_ms": 4550,
+            "started_ms": 4500,
+            "update_id": 1045
+          },
+          {
+            "finished_ms": 6050,
+            "started_ms": 6000,
+            "update_id": 1060
+          },
+          {
+            "finished_ms": 7550,
+            "started_ms": 7500,
+            "update_id": 1075
+          },
+          {
+            "finished_ms": 9050,
+            "started_ms": 9000,
+            "update_id": 1090
+          },
+          {
+            "finished_ms": 10150,
+            "started_ms": 10100,
+            "update_id": 1101
+          },
+          {
+            "finished_ms": 11250,
+            "started_ms": 11200,
+            "update_id": 1112
+          },
+          {
+            "finished_ms": 12350,
+            "started_ms": 12300,
+            "update_id": 1123
+          },
+          {
+            "finished_ms": 13550,
+            "started_ms": 13500,
+            "update_id": 1135
+          },
+          {
+            "finished_ms": 15050,
+            "started_ms": 15000,
+            "update_id": 1150
+          },
+          {
+            "finished_ms": 16550,
+            "started_ms": 16500,
+            "update_id": 1165
+          },
+          {
+            "finished_ms": 18050,
+            "started_ms": 18000,
+            "update_id": 1180
+          },
+          {
+            "finished_ms": 20150,
+            "started_ms": 20100,
+            "update_id": 1201
+          },
+          {
+            "finished_ms": 30150,
+            "started_ms": 30100,
+            "update_id": 1301
+          },
+          {
+            "finished_ms": 40150,
+            "started_ms": 40100,
+            "update_id": 1401
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 1.019519017,
+          "report_bytes": 23463,
+          "wall_seconds": 1.150379387952853
+        },
+        "connections": 5,
+        "coverage_resets": 0,
+        "deferral_counts": null,
+        "exact_full_market_comparisons": 462,
+        "extra_requests": 12,
+        "maximum_receive_queue": 1,
+        "messages": 450,
+        "minimum_known_levels": 740,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "path": "oscillation",
+          "rotate_seconds": 10,
+          "seconds": 45
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 0,
+          "verified_from_durable_request_contexts": false
+        },
+        "scenario": "rotating",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": "577a5c3a2085253d1ed18c06ba6acf25e5fcca91bdd83518cf68f7070f8c929d",
+          "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": "a806cf1821b334bb12dd047c5e067815a108c1930050ee628914c27cd7599141"
+        },
+        "state": "complete",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:49:03.860228+00:00",
+          "collection_id": "8c7aa5af31504eb38bef1875cfa75cc7",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 49600,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": true,
+          "rows_checked": 467,
+          "source_artifacts": 36,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      },
+      "logging": {
+        "all_rest_calls": [
+          {
+            "finished_ms": 150,
+            "started_ms": 100,
+            "update_id": 1001
+          },
+          {
+            "finished_ms": 1550,
+            "started_ms": 1500,
+            "update_id": 1015
+          },
+          {
+            "finished_ms": 3050,
+            "started_ms": 3000,
+            "update_id": 1030
+          },
+          {
+            "finished_ms": 4550,
+            "started_ms": 4500,
+            "update_id": 1045
+          },
+          {
+            "finished_ms": 6050,
+            "started_ms": 6000,
+            "update_id": 1060
+          },
+          {
+            "finished_ms": 7550,
+            "started_ms": 7500,
+            "update_id": 1075
+          },
+          {
+            "finished_ms": 9050,
+            "started_ms": 9000,
+            "update_id": 1090
+          },
+          {
+            "finished_ms": 10150,
+            "started_ms": 10100,
+            "update_id": 1101
+          },
+          {
+            "finished_ms": 11250,
+            "started_ms": 11200,
+            "update_id": 1112
+          },
+          {
+            "finished_ms": 12350,
+            "started_ms": 12300,
+            "update_id": 1123
+          },
+          {
+            "finished_ms": 13550,
+            "started_ms": 13500,
+            "update_id": 1135
+          },
+          {
+            "finished_ms": 15050,
+            "started_ms": 15000,
+            "update_id": 1150
+          },
+          {
+            "finished_ms": 16550,
+            "started_ms": 16500,
+            "update_id": 1165
+          },
+          {
+            "finished_ms": 18050,
+            "started_ms": 18000,
+            "update_id": 1180
+          },
+          {
+            "finished_ms": 20150,
+            "started_ms": 20100,
+            "update_id": 1201
+          },
+          {
+            "finished_ms": 30150,
+            "started_ms": 30100,
+            "update_id": 1301
+          },
+          {
+            "finished_ms": 40150,
+            "started_ms": 40100,
+            "update_id": 1401
+          }
+        ],
+        "capture_cost": {
+          "cpu_seconds": 1.03471773,
+          "report_bytes": 37810,
+          "wall_seconds": 1.1665365499793552
+        },
+        "connections": 5,
+        "coverage_resets": 0,
+        "deferral_counts": {
+          "deadline": 2,
+          "extra_budget": 116,
+          "minimum_interval": 19
+        },
+        "exact_full_market_comparisons": 462,
+        "extra_requests": 12,
+        "maximum_receive_queue": 1,
+        "messages": 450,
+        "minimum_known_levels": 740,
+        "parameters": {
+          "flush_ms": 0,
+          "latency_ms": 50,
+          "path": "oscillation",
+          "rotate_seconds": 10,
+          "seconds": 45
+        },
+        "periodic_requests": 0,
+        "rest_verifications": {
+          "verification_checks": 12,
+          "verification_equal": 12,
+          "verification_mismatch": 0,
+          "verification_pending": 0,
+          "verification_uncomparable": 0
+        },
+        "rolling_extra_budget": {
+          "maximum_total": 12,
+          "verified_from_durable_request_contexts": true
+        },
+        "scenario": "rotating",
+        "scope": "synthetic full market and simulated delays; no network or historical counterfactual responses; comparison does not establish production efficacy",
+        "source_hashes": {
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth.py": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+          "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src/marketdata/depth_stream.py": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f"
+        },
+        "state": "complete",
+        "top_shortfalls": 0,
+        "unreconstructed_messages": 0,
+        "verification": {
+          "all_snapshot_checks_verified": true,
+          "checked_at": "2026-10-03T01:49:05.751092+00:00",
+          "collection_id": "f0a9dae7964f421eb21ae58e34431acd",
+          "delayed_snapshot_checks": [],
+          "price_quantity_pairs_checked": 49600,
+          "raw_to_canonical_equal": true,
+          "replay_matches_live": true,
+          "replay_valid": true,
+          "rows_checked": 467,
+          "source_artifacts": 36,
+          "verification_checks": 12,
+          "verification_complete": true,
+          "verification_equal": 12
+        }
+      }
+    }
+  },
+  "commands": [
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/quiet",
+        "--scenario",
+        "quiet"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/quiet",
+        "--scenario",
+        "quiet"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/steady",
+        "--scenario",
+        "steady"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/steady",
+        "--scenario",
+        "steady"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/fast",
+        "--scenario",
+        "fast"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/fast",
+        "--scenario",
+        "fast"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/oscillation",
+        "--scenario",
+        "oscillation"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/oscillation",
+        "--scenario",
+        "oscillation"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/reserve_help",
+        "--scenario",
+        "reserve_help"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/reserve_help",
+        "--scenario",
+        "reserve_help"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/reserve_delay_risk",
+        "--scenario",
+        "reserve_delay_risk"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/reserve_delay_risk",
+        "--scenario",
+        "reserve_delay_risk"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/slow_rest",
+        "--scenario",
+        "slow_rest"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/slow_rest",
+        "--scenario",
+        "slow_rest"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/slow_flush",
+        "--scenario",
+        "slow_flush"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/slow_flush",
+        "--scenario",
+        "slow_flush"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/single_jump",
+        "--scenario",
+        "single_jump"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/single_jump",
+        "--scenario",
+        "single_jump"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/critical_pressure",
+        "--scenario",
+        "critical_pressure"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/critical_pressure",
+        "--scenario",
+        "critical_pressure"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/baseline/rotating",
+        "--scenario",
+        "rotating"
+      ],
+      "pythonpath": "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src:/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src:/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "/tmp/marketdata-depth-decisions-20261003/scripts/compare_depth_decisions.py",
+        "--output",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/depth-decisions-20261003/matrix/logging/rotating",
+        "--scenario",
+        "rotating"
+      ],
+      "pythonpath": "/tmp/marketdata-depth-decisions-20261003/packages/marketdata/src:/tmp/marketdata-depth-decisions-20261003/packages/marketdata_freqtrade/src:/tmp/marketdata-depth-decisions-20261003"
+    }
+  ]
+}
