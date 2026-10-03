@@ -4,6 +4,11 @@
 [9/27 마일스톤](../docs/milestones/2026-09-27-collection-and-backup-stabilization.md)에
 restic 시험 전의 기준 상태와 후속 순서를 정리했습니다. 각 baseline의 관측 시각·범위는 유지합니다.
 
+그 이후 restic 병행 운영·예약 성공 3/3과 운영 사본 복원, 호가 재시도·조기 갱신·보류 기록,
+네트워크 관측은 [10/3 마일스톤](../docs/milestones/2026-10-03-restic-and-depth-observability.md)에
+종합했습니다. 10/3 11:23까지 확보한 근거를 사용하며, 새 보류 기록의 첫 종료 세션·24시간
+감사와 최종 백업 보관 정책은 후속 항목으로 남겼습니다.
+
 `baseline/depth-decisions-2026-10-03/`는 조회 보류 사유 기록만 분리해 운영에 설치한 결과입니다.
 [요약](baseline/depth-decisions-2026-10-03/summary.md)에 422개 테스트, 11개 조건·22회 요청·품질
 일치 비교와 기록 비용 표본을 남겼습니다. 요청 예산·간격은 유지하며 긴급 예약 기능은 제외했습니다.
