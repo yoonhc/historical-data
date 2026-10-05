@@ -326,6 +326,7 @@ def capture(
                 },
             )
             messages, sequence, session, epoch_report = [], 0, None, None
+            pending_failure = None
             buffered_bytes = 0
             start = last_flush = time.monotonic()
             deadline, failures, reason = start + seconds, 0, "initial"
@@ -333,15 +334,25 @@ def capture(
             refresh_checks = RefreshChecks()
 
             def flush():
-                nonlocal last_flush, buffered_bytes
+                nonlocal last_flush, buffered_bytes, pending_failure
+                if pending_failure is not None:
+                    report["failure_notice"] = depth.publish_failure(store, pending_failure)
+                    pending_failure = None
                 if shutil.disk_usage(store.root).free < minimum:
                     raise DataError("Depth capture stopped: free space below reserve")
-                report["persisted_messages"] += persist_messages(store, report["id"], messages)
+                try:
+                    persisted = persist_messages(store, report["id"], messages)
+                except OSError as exc:
+                    raise DataError(f"Depth event persistence failed: {exc}") from exc
+                report["persisted_messages"] += persisted
                 messages.clear()
                 buffered_bytes = 0
                 if epoch_report is not None:
                     epoch_report["final"] = session.summary()
-                depth.save_collection(store, report, "running")
+                try:
+                    depth.save_collection(store, report, "running")
+                except OSError as exc:
+                    raise DataError(f"Depth report persistence failed: {exc}") from exc
                 last_flush = time.monotonic()
                 if progress:
                     progress(
@@ -410,14 +421,27 @@ def capture(
                 get_snapshot("anchor", already_flushed=True)
                 last_check = time.monotonic()
 
-            def renew_coverage(stop_at, *, incomplete=False):
-                nonlocal session, epoch_report, epoch_started, last_check
+            def renew_coverage(stop_at, failed_row, *, incomplete=False):
+                nonlocal session, epoch_report, epoch_started, last_check, pending_failure
                 reason = "incomplete_top" if incomplete else "coverage_exhausted"
                 report["sync_losses"] += 1
                 report["coverage_resets"] += 1
                 report["coverage_top_shortfalls"] += int(incomplete)
                 report["synchronized"] = False
                 epoch_report.update(ended_at=now(), end_reason=reason)
+                report["failure_notice"] = pending_failure = {
+                    "collection_id": report["id"],
+                    "epoch": epoch_report["epoch"],
+                    "sequence": failed_row["sequence"],
+                    "reason": reason,
+                    "observed_at": epoch_report["ended_at"],
+                    "observed_received_at": failed_row["received_at"],
+                    "observed_update_id": failed_row["final_update_id"],
+                    **{
+                        k: report[k]
+                        for k in ("sync_losses", "coverage_resets", "coverage_top_shortfalls")
+                    },
+                }
                 epoch_report["prior_refresh_decisions"] = deepcopy(report["refresh_decisions"])
                 if incomplete:
                     # Keep the state machine's true result: IDs may be aligned
@@ -612,7 +636,7 @@ def capture(
                                     # updates; preserve the failed epoch before re-anchoring.
                                     session.error = str(exc)
                                     if not renew_coverage(
-                                        min(deadline, connected + rotate_seconds)
+                                        min(deadline, connected + rotate_seconds), row
                                     ):
                                         break
                                     continue
@@ -620,7 +644,9 @@ def capture(
                                     len(session.book.bids) < top or len(session.book.asks) < top
                                 ):
                                     if not renew_coverage(
-                                        min(deadline, connected + rotate_seconds), incomplete=True
+                                        min(deadline, connected + rotate_seconds),
+                                        row,
+                                        incomplete=True,
                                     ):
                                         break
                                     continue
@@ -699,16 +725,20 @@ def capture(
                         ended_at=now(),
                         end_reason="interrupted" if isinstance(exc, KeyboardInterrupt) else "error",
                     )
+                flush_failed = False
                 try:
                     flush()
                 except Exception as flush_exc:
+                    flush_failed = True
                     report["flush_error"] = str(flush_exc)
                 report.update(
                     complete=False, synchronized=False, error=f"{type(exc).__name__}: {exc}"
                 )
-                depth.save_collection(
-                    store, report, "interrupted" if isinstance(exc, KeyboardInterrupt) else "failed"
-                )
+                state = "interrupted" if isinstance(exc, KeyboardInterrupt) else "failed"
+                if flush_failed:
+                    depth.save_flush_failure(store, report, state)
+                else:
+                    depth.save_collection(store, report, state)
                 raise
     finally:
         if own:

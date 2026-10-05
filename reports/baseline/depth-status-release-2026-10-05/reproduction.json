@@ -1,0 +1,153 @@
+{
+  "release_id": "depth-status-20261005-7be8e3da868f9308",
+  "destination": "/tmp/marketdata-depth-status-clean-20261005",
+  "started_at": "2026-10-05T13:34:50.977046+09:00",
+  "steps": [
+    {
+      "name": "apply_check",
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-status-release-2026-10-05/candidate.patch"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "apply",
+      "command": [
+        "git",
+        "apply",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-status-release-2026-10-05/candidate.patch"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "import_origins",
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "-c",
+        "import json; from marketdata import depth,depth_stream,depth_refresh; print(json.dumps({m.__name__:m.__file__ for m in (depth,depth_stream,depth_refresh)}))"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"marketdata.depth\": \"/tmp/marketdata-depth-status-clean-20261005/packages/marketdata/src/marketdata/depth.py\", \"marketdata.depth_stream\": \"/tmp/marketdata-depth-status-clean-20261005/packages/marketdata/src/marketdata/depth_stream.py\", \"marketdata.depth_refresh\": \"/tmp/marketdata-depth-status-clean-20261005/packages/marketdata/src/marketdata/depth_refresh.py\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ruff_check",
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "packages/marketdata/src/marketdata/depth.py",
+        "packages/marketdata/src/marketdata/depth_stream.py",
+        "tests/test_depth_independent_cases.py",
+        "tests/depth_failure_harness.py",
+        "tests/test_depth_failure_publication.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "name": "ruff_format",
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "packages/marketdata/src/marketdata/depth.py",
+        "packages/marketdata/src/marketdata/depth_stream.py",
+        "tests/test_depth_independent_cases.py",
+        "tests/depth_failure_harness.py",
+        "tests/test_depth_failure_publication.py"
+      ],
+      "exit_code": 0,
+      "stdout": "5 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "name": "depth_regression",
+      "command": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_depth.py",
+        "tests/test_depth_bootstrap.py",
+        "tests/test_depth_decisions.py",
+        "tests/test_depth_failure_publication.py",
+        "tests/test_depth_history.py",
+        "tests/test_depth_independent_cases.py",
+        "tests/test_depth_reference.py",
+        "tests/test_depth_refresh.py",
+        "tests/test_depth_retry.py",
+        "--junitxml=/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-status-release-2026-10-05/reproduction.xml"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 43%]\n........................................................................ [ 86%]\n.......................                                                  [100%]\n167 passed in 12.81s\n",
+      "stderr": ""
+    },
+    {
+      "name": "rollback_check",
+      "command": [
+        "git",
+        "apply",
+        "--reverse",
+        "--check",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-status-release-2026-10-05/candidate.patch"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "rollback",
+      "command": [
+        "git",
+        "apply",
+        "--reverse",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-status-release-2026-10-05/candidate.patch"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "reapply",
+      "command": [
+        "git",
+        "apply",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-status-release-2026-10-05/candidate.patch"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "state": "passed",
+  "module_origins": {
+    "marketdata.depth": "/tmp/marketdata-depth-status-clean-20261005/packages/marketdata/src/marketdata/depth.py",
+    "marketdata.depth_stream": "/tmp/marketdata-depth-status-clean-20261005/packages/marketdata/src/marketdata/depth_stream.py",
+    "marketdata.depth_refresh": "/tmp/marketdata-depth-status-clean-20261005/packages/marketdata/src/marketdata/depth_refresh.py"
+  },
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "167",
+    "time": "12.808",
+    "timestamp": "2026-10-05T13:34:51.647896+09:00",
+    "hostname": "hclm"
+  },
+  "final_hashes_match": true,
+  "rollback_baseline_match": true,
+  "finished_at": "2026-10-05T13:35:04.641172+09:00"
+}

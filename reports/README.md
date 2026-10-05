@@ -1,5 +1,47 @@
 # 검증 기록
 
+`baseline/depth-status-deploy-2026-10-05/`는 승인한 호가 상태 공개 버전의 실제 운영 반영입니다.
+[요약](baseline/depth-status-deploy-2026-10-05/summary.md)에 14:01 호가 서비스만 종료·기동,
+이전 17,522개 저장 완료와 interrupted 보존, 새 1,350개 저장·REST 13회 일치·CLI 정상 결과를
+남겼습니다. 첫 정기 종료는 15:05 이후 확인할 미완료 항목이며, 기존 데이터 갱신의
+waiting_source와 정기 백업·restic 진행 상태를 배포 결과와 구분했습니다.
+
+`baseline/depth-status-release-2026-10-05/`는 일반 저장 오류 후속 검증과 배포 후보 고정입니다.
+[요약](baseline/depth-status-release-2026-10-05/summary.md)에 호가 부족 없는 지속 저장 실패에서
+메모리 ID·epoch가 섞이는 문제의 재현·보완, 일반 오류 4건 추가와 호가 167건 통과를 남겼습니다.
+기준 소스·미커밋 입력을 함께 고정하고 깨끗한 경로의 적용·167건 재현·역패치 검증을 마쳤습니다.
+이 검증 당시에는 운영에 적용하지 않았으며, 별도 승인 후 반영 결과는 위 운영 기록으로 이어집니다.
+
+`baseline/depth-status-candidate-2026-10-05/`는 호가 실패 상태를 이벤트 저장보다 먼저
+공개하는 후보의 격리 검증입니다. [요약](baseline/depth-status-candidate-2026-10-05/summary.md)에
+0개·8개 경로의 저장 정지 중 외부 CLI 거부, DB·JSON·원문 오류와 강제 종료·재시도,
+호가 관련 163건 통과를 남겼습니다. 미저장 건수·ID는 앞당기지 않으며 DB 기록 자체가
+실패하면 이전 상태가 남는 한계도 구분했습니다. 후보 패치만 보관했고 운영에는 적용하지 않았습니다.
+
+`baseline/depth-independent-2026-10-05/`는 두 범위 손실의 독립 원문 계산과 소비 경로 시험입니다.
+[요약](baseline/depth-independent-2026-10-05/summary.md)에 8,221행·81회 범위 채택의 공통 가격·수량
+일치와 마지막 교체를 생략해도 두 사건의 부족한 쪽이 0개가 되는 결과를 남겼습니다.
+새 회귀 테스트 6건은 저장 전 상태 조회가 이전 `healthy=true`를 보일 수 있다는 한계도
+고정했습니다. 보고서 저장 뒤의 거부와 복구 후 partial 유지는 확인했고 운영 코드는 변경하지 않았습니다.
+
+`baseline/depth-decisions-observation-2026-10-05/`는 보류 기록 적용 뒤 45개 종료 세션의 점검입니다.
+[요약](baseline/depth-decisions-observation-2026-10-05/summary.md)에 첫 24시간 관찰 완료,
+보류 평가 105회·남은 문맥 67개 검산, 실패 2세션의 원문·재생 일치와 급격한 범위 손실을 기록했습니다.
+추가 예산 소진은 0회이며 한 실패는 사전 보류 없이, 다른 실패는 대조 해소·범위 갱신 뒤 발생했습니다. 운영 정책은 유지했고,
+검증 대기 1건·연결 공백 및 감사와 겹친 정기 정리의 첫 실패·자동 재시도 완료도 함께 보존했습니다.
+
+`baseline/checkpoint-retirement-apply-2026-10-05/`는 승인한 작업용 사본 5개의 첫 수동 정리 결과입니다.
+[요약](baseline/checkpoint-retirement-apply-2026-10-05/summary.md)에 9/27~10/1 정리 완료,
+남은 로컬 사본 6개·restic 8개 보존, 여유 공간 증가 관측 5.56GB와 동일 계획 재실행의 추가 삭제 없음을
+남겼습니다. 정리 후 예약 11회는 모두 처리 0개 성공이며, 10/5 새 daily → 예약 restic 연결은 후속입니다.
+수집·기존 예약은 유지했고 자동 정리·forget/prune·시험 사본 정리는 적용하지 않았습니다.
+
+`baseline/checkpoint-retention-readiness-2026-10-05/`는 최종 코드로 실행된 10/4 정기 백업 확인입니다.
+[요약](baseline/checkpoint-retention-readiness-2026-10-05/summary.md)에 daily 무결성 948,193건 통과,
+같은 새 사본의 예약 restic 저장·전체 읽기 검사와 journal/ID 연결을 남겼습니다. 정리 후보 5개·
+예상 회수 5.56GB의 [특정 승인 계획](baseline/checkpoint-retention-readiness-2026-10-05/plan-review.md)을
+준비했습니다. 이 승인 전 기록 시점에는 실제 삭제 0건이며, 이후 승인·적용 결과는 위 기록으로 이어집니다.
+
 `baseline/checkpoint-retention-guards-2026-10-04/`는 정리 계획의 코드·시간·공간 기록 보강입니다.
 [요약](baseline/checkpoint-retention-guards-2026-10-04/summary.md)에 관련 14개 테스트 통과,
 코드 변경·snapshot 연결 변경 거부와 적용 전후 공간 관측을 기록했습니다. 운영 적용은 비활성화이며,

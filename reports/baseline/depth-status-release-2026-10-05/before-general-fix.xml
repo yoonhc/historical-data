@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="4" time="0.290" timestamp="2026-10-05T13:28:26.436225+09:00" hostname="hclm"><testcase classname="tests.test_depth_failure_publication" name="test_normal_book_flush_faults_preserve_confirmed_bounds_without_reconnecting[raw_always]" time="0.041"><failure message="assert (False)">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-42/test_normal_book_flush_faults_0')
+mode = 'raw_always'
+
+    @pytest.mark.parametrize("mode", ["raw_always", "raw_once", "json_once", "json_always"])
+    def test_normal_book_flush_faults_preserve_confirmed_bounds_without_reconnecting(tmp_path, mode):
+        result = Rig(tmp_path / "store", 8, "healthy_" + mode).run()
+        baseline = next(e for e in result["events"] if e["phase"] == "healthy_before_failure")
+        assert baseline["healthy"] and result["error"] is not None
+        final, report = result["final"], result["final"]["report"]
+        assert not final["healthy"] and final["state"] == "failed"
+        assert "failure_notice" not in report and report["sync_losses"] == 0
+        assert report["coverage_resets"] == report["coverage_top_shortfalls"] == 0
+        assert report["connections"] == 1 and report["connection_errors"] == 0
+        assert not any(e["phase"] == "before_recovery_snapshot" for e in result["events"])
+        assert report["persisted_messages"] == result["update_rows"]
+&gt;       assert result["replay"]["replay_matches_live"] and not result["replay"]["valid"]
+E       assert (False)
+
+tests/test_depth_failure_publication.py:254: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_normal_book_flush_faults_preserve_confirmed_bounds_without_reconnecting[raw_once]" time="0.050" /><testcase classname="tests.test_depth_failure_publication" name="test_normal_book_flush_faults_preserve_confirmed_bounds_without_reconnecting[json_once]" time="0.045" /><testcase classname="tests.test_depth_failure_publication" name="test_normal_book_flush_faults_preserve_confirmed_bounds_without_reconnecting[json_always]" time="0.045" /></testsuite></testsuites>

@@ -1,0 +1,171 @@
+{
+  "base_commit": "c2d02e784b0456560ec734b9ef88f4d960dc6b78",
+  "candidate": "/tmp/marketdata-depth-status-20261005",
+  "changes": [
+    {
+      "path": "packages/marketdata/src/marketdata/depth.py",
+      "before_sha256": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+      "after_sha256": "828a6c5a6482dd5c9410406e5de75e0b351876aaee20493b209c90ccec0a358b",
+      "added_lines": 72,
+      "removed_lines": 0
+    },
+    {
+      "path": "packages/marketdata/src/marketdata/depth_stream.py",
+      "before_sha256": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f",
+      "after_sha256": "ce404e56d6fb3c088b3d9b3f0aa0e6dcc05c7de1f3fd97df99fb7cffd1a1f7ee",
+      "added_lines": 46,
+      "removed_lines": 10
+    },
+    {
+      "path": "tests/test_depth_independent_cases.py",
+      "before_sha256": "827cd7ae3fcc69caae5698dfd85507876aa4b4df370c8c82ba5511dcb7a5f0e1",
+      "after_sha256": "a69eded52c9d5c6f621b1f076d73e0918ad3a7628009e04f27e6182456b634aa",
+      "added_lines": 6,
+      "removed_lines": 5
+    },
+    {
+      "path": "tests/depth_failure_harness.py",
+      "before_sha256": null,
+      "after_sha256": "24130e993b540a617da0af4dd18774695e43cd599e57c3ad30517234ec15b93b",
+      "added_lines": 232,
+      "removed_lines": 0
+    },
+    {
+      "path": "tests/test_depth_failure_publication.py",
+      "before_sha256": null,
+      "after_sha256": "88db161af05d6e87875e14ec9072e1fa10509205d6eb555b3673f217d6fcc81a",
+      "added_lines": 239,
+      "removed_lines": 0
+    }
+  ],
+  "ast_review": {
+    "packages/marketdata/src/marketdata/depth.py": {
+      "unchanged_existing_symbols": [
+        "integer",
+        "levels",
+        "parse",
+        "SyncLost",
+        "CoverageExhausted",
+        "SnapshotBehind",
+        "Book",
+        "History",
+        "new_session",
+        "Session",
+        "start_collection",
+        "save_collection",
+        "publish",
+        "collection_record",
+        "replay",
+        "status"
+      ],
+      "changed_existing_symbols": [],
+      "added_symbols": [
+        "publish_failure",
+        "_commit_failure"
+      ]
+    },
+    "packages/marketdata/src/marketdata/depth_stream.py": {
+      "unchanged_existing_symbols": [
+        "LaggedRetry",
+        "stream_lock",
+        "snapshot",
+        "persist_messages",
+        "buffer_before_anchor"
+      ],
+      "changed_existing_symbols": [
+        "capture"
+      ],
+      "added_symbols": []
+    }
+  },
+  "refresh_policy_byte_identical": true,
+  "protected_files_unchanged": {
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/__init__.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/aggtrade_stream.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/aggtrades.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/backfill.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/backup.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/binance.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/checkpoint_locks.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/cli.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/domain.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/fileio.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/maintenance.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/normalize.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/oi_probe.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/oi_quality.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/operations.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/packing.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/pipeline.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/research.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/schema.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/store.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/stream_guard.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/transforms.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src/marketdata_freqtrade/__init__.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src/marketdata_freqtrade/cli.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src/marketdata_freqtrade/export.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src/marketdata_freqtrade/features.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src/marketdata_freqtrade/window.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/README.md": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-aggtrade.service": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-daily.service": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-daily.timer": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-depth.service": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-network-observer.service": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-network-observer.timer": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-restic-archive.service": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-restic-archive.timer": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/54d28ea721ed41fab80928c064514159-raw.jsonl.gz": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/54d28ea721ed41fab80928c064514159-report.json": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/c595e79851ef4ced8e4194f22cf58b84-raw.jsonl.gz": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/c595e79851ef4ced8e4194f22cf58b84-report.json": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/consumer-bootstrap-observation.json": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/consumer-results.json": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/consumer_probe.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/freeze_inputs.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/independent.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/inputs.json": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/results.json": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/summary.md": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/tests.xml": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/validate.py": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05/validation.json": true,
+    "/home/yoonhc/projects/algoTrade/historical_data/tests/test_depth_independent_cases.py": true,
+    "/home/yoonhc/.config/systemd/user/marketdata-depth.service": true
+  },
+  "module_origins": {
+    "marketdata.depth": "/tmp/marketdata-depth-status-20261005/packages/marketdata/src/marketdata/depth.py",
+    "marketdata.depth_stream": "/tmp/marketdata-depth-status-20261005/packages/marketdata/src/marketdata/depth_stream.py",
+    "marketdata.depth_refresh": "/tmp/marketdata-depth-status-20261005/packages/marketdata/src/marketdata/depth_refresh.py"
+  },
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "163",
+    "time": "12.332",
+    "timestamp": "2026-10-05T12:12:04.728017+09:00",
+    "hostname": "hclm"
+  },
+  "patch_check": {
+    "exit_code": 0,
+    "output": ""
+  },
+  "packaging_followup": "Initial new-file headers lacked explicit file mode; corrected metadata only.",
+  "note": "Check only; candidate.patch has not been applied to the operating workspace."
+}

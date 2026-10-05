@@ -1,0 +1,2121 @@
+{
+  "state": "running",
+  "healthy": true,
+  "last_receive_age_seconds": 4.574104,
+  "recent_incomplete_collection_ids": [
+    "91d0a5fd78d146d2843741354ab7a534",
+    "fadf5d6218ed4783b93f1179ec8b27cc",
+    "54d28ea721ed41fab80928c064514159",
+    "c595e79851ef4ced8e4194f22cf58b84",
+    "fd0595a1dbca496686583f024ab837ac",
+    "29549c4ed9a24cd19038a27e46dfe0c3",
+    "2a26a4f6aec34730b2603a388633387a",
+    "e0a5c089faeb407b8b4f198de9f668d9",
+    "761dbdba56584b6da6bb4fc05bfff2c7",
+    "3c45a2e8cc4544fba46bf6636f801e64",
+    "55f762ff74df499685b4620f5e8f71e3",
+    "ac31dd2ebf954619911b26fd004e3309",
+    "517f5709097f4383889425c292347475",
+    "079691756a6e496c909e9019ef4d34d8",
+    "d915979fa3f54359bc53492103b89932",
+    "884a5a24e6e8431ea04f71d3950a731d",
+    "5f2ff1f136714e4abf4b1973d75e6846",
+    "d59f0bdbd3db4c1ba6ba54f0b1bee4d8",
+    "e0c081881cac458798a7ae7f424e1af3",
+    "1e083c8e977c40fb920335b01621c2bd",
+    "bfcfe51235b749469f2ee80eb5c9011e",
+    "6773afe4a80d416290c9ed302d7ab0f9",
+    "cf579e6a510b4dd3ab1c2aa34b05cb1f",
+    "ed201401a9d0445f995aa12f3a8f3c49",
+    "d9e1fb6152e448d3a73f67555d09c727",
+    "98e1aeb976a04e02bc9fbdbd28b89c6a",
+    "8603679e4a404900b3462c1accc18291",
+    "a91aafc272244f6a9e56a160dc870d97",
+    "5039a296a6164759a0c5fe9ae9c21390",
+    "e39d4ed7840e49509b417af000a1f31b",
+    "0c0f01a9477f43eba975f304da14cf48",
+    "1f01b44a839c4cbebe4b3fdd385d382a",
+    "ee35f61e7f2d4cf082a74f0035962c31",
+    "5b56928e0416421e9f977961dff940cc",
+    "a6d516af31bb41b3ad1290584cdb98d2",
+    "7ef01bbf60fd4c668e573dcf6cd78245",
+    "ab8b95b33b3142c29b011065c064295c",
+    "d918502a198040a88b5f9f5796e76b86",
+    "f429f1b3edab4dc8822b94d814619b8a",
+    "d8181c49abc64014afaae34b3bd3c440",
+    "d7c08c26a2f242ee870bf92ca4e6116b",
+    "2d006ceac31a4b54a8e894a74f48e485",
+    "990843943ceb424f8e6612b89eb9bae5",
+    "85f61653003c4bf0bc423486b361e71e",
+    "4fcdf41075de4ffb9385178d0e5fd424",
+    "65f308eda742494dbb472243b3a9c2b3",
+    "69a77f3fb0654ba6ad5781029cb9efba",
+    "85e3bd1d997c4b1da73f0d16a4b81439",
+    "c535a05d60484550a65ed01d44171fe8",
+    "49e142ae55664543b516a92a4ffbc27a",
+    "996f82540671456590c8db12336638a5",
+    "da1f125ee6c74bfbb0921a136440033d",
+    "0979534d39394c32a363f96102562068",
+    "0d2d15aa297a43e28cf52546d87ca7b1",
+    "101bdcbc67b14bcbaa531446dd61ad6f",
+    "b6bb223b0d614167ba49b1a1dbe38c9f",
+    "0befbaf8b23d40a395057ddf55a0cbe7",
+    "e12dc2ad4fb44f52921adb9913833672",
+    "a1f649034a7e463aa9c9e9ad547fdabc",
+    "4e502fc5c8e54830a3a0c228b659bff3",
+    "af9292cfdc054ecab2db8942ece1af99",
+    "75de430f95e44976b0411d7cf5caa702"
+  ],
+  "report": {
+    "bootstrap_messages": 1,
+    "bootstrap_policy": "buffer_before_anchor_v1",
+    "bootstrap_timeout_seconds": 2,
+    "boundary_semantics": "new_snapshot_on_every_connection; no_historical_gap_repair",
+    "complete": false,
+    "connection_errors": 0,
+    "connections": 1,
+    "coverage_check_requests": 0,
+    "coverage_refresh": {
+      "extra_requests": 12,
+      "level_fraction": "0.75",
+      "min_interval_seconds": 1.0,
+      "policy": "bounded_headroom_v1",
+      "price_fraction": "0.25",
+      "scope": "extra checks within this capture; survives resync/reconnect; periodic checks and recovery anchors are separate",
+      "window_seconds": 60.0
+    },
+    "coverage_reset_policy": "same_socket_new_epoch_v1",
+    "coverage_resets": 0,
+    "coverage_top_shortfalls": 0,
+    "dataset": "book_depth",
+    "epochs": [
+      {
+        "epoch": 0,
+        "final": {
+          "anchor_history": {
+            "aligned": false,
+            "applied": 0,
+            "events": 0,
+            "first_sequence": null,
+            "last_sequence": null,
+            "levels": 0,
+            "reason": "No snapshot bridge retained in recent history",
+            "serialized_bytes": 0
+          },
+          "book": {
+            "ask_ceiling": "85668.200000000000000000",
+            "asks": [
+              [
+                "85500.100000000000000000",
+                "14.828000000000000000"
+              ],
+              [
+                "85500.200000000000000000",
+                "0.009000000000000000"
+              ],
+              [
+                "85500.300000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85500.800000000000000000",
+                "0.002000000000000000"
+              ],
+              [
+                "85501.400000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85501.900000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85502.200000000000000000",
+                "1.283000000000000000"
+              ],
+              [
+                "85502.300000000000000000",
+                "2.318000000000000000"
+              ],
+              [
+                "85502.700000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85502.800000000000000000",
+                "0.083000000000000000"
+              ],
+              [
+                "85502.900000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "85503.100000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85503.600000000000000000",
+                "0.028000000000000000"
+              ],
+              [
+                "85503.700000000000000000",
+                "0.297000000000000000"
+              ],
+              [
+                "85503.800000000000000000",
+                "0.348000000000000000"
+              ],
+              [
+                "85503.900000000000000000",
+                "0.559000000000000000"
+              ],
+              [
+                "85504.000000000000000000",
+                "0.025000000000000000"
+              ],
+              [
+                "85504.100000000000000000",
+                "0.003000000000000000"
+              ],
+              [
+                "85504.200000000000000000",
+                "0.188000000000000000"
+              ],
+              [
+                "85504.300000000000000000",
+                "0.001000000000000000"
+              ]
+            ],
+            "bid_floor": "85409.700000000000000000",
+            "bids": [
+              [
+                "85500.000000000000000000",
+                "3.360000000000000000"
+              ],
+              [
+                "85499.700000000000000000",
+                "0.004000000000000000"
+              ],
+              [
+                "85499.500000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85499.400000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85498.600000000000000000",
+                "0.002000000000000000"
+              ],
+              [
+                "85498.400000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85498.200000000000000000",
+                "0.004000000000000000"
+              ],
+              [
+                "85498.100000000000000000",
+                "0.002000000000000000"
+              ],
+              [
+                "85498.000000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85497.900000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85497.800000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85497.500000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85497.200000000000000000",
+                "0.001000000000000000"
+              ],
+              [
+                "85497.100000000000000000",
+                "0.003000000000000000"
+              ],
+              [
+                "85497.000000000000000000",
+                "0.003000000000000000"
+              ],
+              [
+                "85496.900000000000000000",
+                "0.400000000000000000"
+              ],
+              [
+                "85496.700000000000000000",
+                "0.100000000000000000"
+              ],
+              [
+                "85496.500000000000000000",
+                "0.003000000000000000"
+              ],
+              [
+                "85496.400000000000000000",
+                "0.003000000000000000"
+              ],
+              [
+                "85496.300000000000000000",
+                "0.012000000000000000"
+              ]
+            ],
+            "book_sha256": "7bbfdcceca33bd838e781d29d174299c7aed7b1ff3289c78963b8dc628247eb1",
+            "known_ask_levels": 1193,
+            "known_bid_levels": 719,
+            "last_update_id": 11737075199361,
+            "synced": true,
+            "timestamp": "2026-10-05T05:10:02.932000+00:00",
+            "top_complete": true,
+            "top_requested": 20
+          },
+          "checks": [
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737026050023,
+              "refreshed": true,
+              "snapshot_sequence": 101,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737027156832,
+              "refreshed": true,
+              "snapshot_sequence": 202,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737028168507,
+              "refreshed": true,
+              "snapshot_sequence": 303,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737029378614,
+              "refreshed": true,
+              "snapshot_sequence": 404,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737030542044,
+              "refreshed": true,
+              "snapshot_sequence": 505,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737031399320,
+              "refreshed": true,
+              "snapshot_sequence": 606,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737032265575,
+              "refreshed": true,
+              "snapshot_sequence": 707,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737033349571,
+              "refreshed": true,
+              "snapshot_sequence": 808,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737034736657,
+              "refreshed": true,
+              "snapshot_sequence": 909,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737035519394,
+              "refreshed": true,
+              "snapshot_sequence": 1010,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737036690637,
+              "refreshed": true,
+              "snapshot_sequence": 1111,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737037893102,
+              "refreshed": true,
+              "snapshot_sequence": 1212,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737039077199,
+              "refreshed": true,
+              "snapshot_sequence": 1313,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737040452067,
+              "refreshed": true,
+              "snapshot_sequence": 1414,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737041694794,
+              "refreshed": true,
+              "snapshot_sequence": 1515,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737042615922,
+              "refreshed": true,
+              "snapshot_sequence": 1616,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737043751510,
+              "refreshed": true,
+              "snapshot_sequence": 1717,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737044664128,
+              "refreshed": true,
+              "snapshot_sequence": 1818,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737045605103,
+              "refreshed": true,
+              "snapshot_sequence": 1919,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737046999361,
+              "refreshed": true,
+              "snapshot_sequence": 2020,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737048398778,
+              "refreshed": true,
+              "snapshot_sequence": 2121,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737049696104,
+              "refreshed": true,
+              "snapshot_sequence": 2222,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737050507671,
+              "refreshed": true,
+              "snapshot_sequence": 2323,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737051298245,
+              "refreshed": true,
+              "snapshot_sequence": 2424,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737052711526,
+              "refreshed": true,
+              "snapshot_sequence": 2525,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737053740422,
+              "refreshed": true,
+              "snapshot_sequence": 2626,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737054732096,
+              "refreshed": true,
+              "snapshot_sequence": 2727,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737055519181,
+              "refreshed": true,
+              "snapshot_sequence": 2829,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737056674283,
+              "refreshed": true,
+              "snapshot_sequence": 2930,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737057887921,
+              "refreshed": true,
+              "snapshot_sequence": 3032,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737058821816,
+              "refreshed": true,
+              "snapshot_sequence": 3133,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737059828302,
+              "refreshed": true,
+              "snapshot_sequence": 3234,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737060895754,
+              "refreshed": true,
+              "snapshot_sequence": 3335,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737061550668,
+              "refreshed": true,
+              "snapshot_sequence": 3436,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737062326406,
+              "refreshed": true,
+              "snapshot_sequence": 3537,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737063248979,
+              "refreshed": true,
+              "snapshot_sequence": 3638,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737064108565,
+              "refreshed": true,
+              "snapshot_sequence": 3739,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737065091552,
+              "refreshed": true,
+              "snapshot_sequence": 3840,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737066176090,
+              "refreshed": true,
+              "snapshot_sequence": 3941,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737067182216,
+              "refreshed": true,
+              "snapshot_sequence": 4042,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737068259099,
+              "refreshed": true,
+              "snapshot_sequence": 4143,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737068911980,
+              "refreshed": true,
+              "snapshot_sequence": 4244,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737069942824,
+              "refreshed": true,
+              "snapshot_sequence": 4345,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737071079610,
+              "refreshed": true,
+              "snapshot_sequence": 4446,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737071979175,
+              "refreshed": true,
+              "snapshot_sequence": 4547,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737072823053,
+              "refreshed": true,
+              "snapshot_sequence": 4648,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737073683503,
+              "refreshed": true,
+              "snapshot_sequence": 4749,
+              "top": 20
+            },
+            {
+              "comparable": true,
+              "equal": true,
+              "last_update_id": 11737074482081,
+              "refreshed": true,
+              "snapshot_sequence": 4850,
+              "top": 20
+            }
+          ],
+          "counts": {
+            "applied": 4849,
+            "duplicate": 0,
+            "stale": 1
+          },
+          "error": null,
+          "pending_check_sequence": null,
+          "refreshes": 48
+        },
+        "reason": "initial",
+        "started_at": "2026-10-05T05:01:48.255295+00:00"
+      }
+    ],
+    "errors": [],
+    "flush_seconds": 5,
+    "history_limits": {
+      "events": 128,
+      "levels": 50000,
+      "serialized_bytes": 8388608
+    },
+    "history_policy": "bounded_same_socket_v1",
+    "id": "2903de655fe94ecc9922e4aa3f529f01",
+    "kind": "websocket",
+    "lagged_retry_budget": {
+      "max_requests": 8,
+      "scope": "retry anchor calls within this capture; survives resync/reconnect",
+      "window_seconds": 60
+    },
+    "lagged_retry_delays_seconds": [
+      1,
+      2,
+      4,
+      8,
+      10
+    ],
+    "lagged_retry_policy": "same_socket_backoff_v1",
+    "lagged_retry_requests": 0,
+    "lagged_snapshot_policy": "retain_unsynchronized_updates_v1",
+    "lagged_snapshots": 0,
+    "last_received_at": "2026-10-05T05:10:02.933645+00:00",
+    "last_update_id": 11737075199361,
+    "messages": 4850,
+    "periodic_check_requests": 48,
+    "persisted_messages": 4850,
+    "recent_coverage_checks": [
+      {
+        "action": "request",
+        "age_seconds": 10.107021194067784,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1092,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "157.100000000000000000",
+              "snapshot_price_span": "137.200000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 863,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "105.000000000000000000",
+              "snapshot_price_span": "124.900000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:04:41.684707+00:00",
+        "sequence": 1717,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.12964481592644,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 998,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "138.400000000000000000",
+              "snapshot_price_span": "138.400000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1016,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "125.100000000000000000",
+              "snapshot_price_span": "125.100000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:04:51.884508+00:00",
+        "sequence": 1818,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.129251854959875,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 949,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "127.300000000000000000",
+              "snapshot_price_span": "138.900000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1060,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "134.500000000000000000",
+              "snapshot_price_span": "122.900000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:05:02.092153+00:00",
+        "sequence": 1919,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.169871399062686,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1044,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "147.700000000000000000",
+              "snapshot_price_span": "137.200000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 933,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "115.800000000000000000",
+              "snapshot_price_span": "126.300000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:05:12.334655+00:00",
+        "sequence": 2020,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.108858608989976,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 865,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "114.500000000000000000",
+              "snapshot_price_span": "138.700000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1150,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "150.200000000000000000",
+              "snapshot_price_span": "126.000000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:05:22.509546+00:00",
+        "sequence": 2121,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.124941069050692,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 846,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "109.700000000000000000",
+              "snapshot_price_span": "139.200000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1190,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "157.500000000000000000",
+              "snapshot_price_span": "128.000000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:05:32.711504+00:00",
+        "sequence": 2222,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.076085767010227,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1011,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "135.800000000000000000",
+              "snapshot_price_span": "135.800000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1005,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "130.600000000000000000",
+              "snapshot_price_span": "130.600000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:05:42.870916+00:00",
+        "sequence": 2323,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.122117092018016,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 992,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "133.800000000000000000",
+              "snapshot_price_span": "133.800000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1017,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "129.900000000000000000",
+              "snapshot_price_span": "129.900000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:05:53.075750+00:00",
+        "sequence": 2424,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.16193789395038,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 999,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "132.400000000000000000",
+              "snapshot_price_span": "135.600000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1013,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "130.700000000000000000",
+              "snapshot_price_span": "127.500000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:06:03.308237+00:00",
+        "sequence": 2525,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.128887605038472,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 969,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "125.000000000000000000",
+              "snapshot_price_span": "132.500000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1046,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "136.700000000000000000",
+              "snapshot_price_span": "129.200000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:06:13.500650+00:00",
+        "sequence": 2626,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.221921050921082,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1007,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "131.300000000000000000",
+              "snapshot_price_span": "130.100000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1001,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "129.200000000000000000",
+              "snapshot_price_span": "130.400000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:06:23.795624+00:00",
+        "sequence": 2727,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.106444853940047,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 971,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "128.400000000000000000",
+              "snapshot_price_span": "129.800000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1023,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "130.400000000000000000",
+              "snapshot_price_span": "129.000000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:06:33.993386+00:00",
+        "sequence": 2829,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.229066826985218,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 953,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "127.400000000000000000",
+              "snapshot_price_span": "133.200000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1030,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "133.000000000000000000",
+              "snapshot_price_span": "127.200000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:06:44.300452+00:00",
+        "sequence": 2930,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.132441329071298,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 933,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "121.900000000000000000",
+              "snapshot_price_span": "134.500000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1090,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "141.500000000000000000",
+              "snapshot_price_span": "128.900000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:06:54.503532+00:00",
+        "sequence": 3032,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.126205209060572,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 981,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "130.500000000000000000",
+              "snapshot_price_span": "131.100000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 996,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "128.800000000000000000",
+              "snapshot_price_span": "128.200000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:07:04.705297+00:00",
+        "sequence": 3133,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.130560568068177,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1028,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "135.900000000000000000",
+              "snapshot_price_span": "133.900000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 967,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "127.200000000000000000",
+              "snapshot_price_span": "129.200000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:07:14.912492+00:00",
+        "sequence": 3234,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.104695888003334,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1105,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "149.700000000000000000",
+              "snapshot_price_span": "131.300000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 899,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "113.000000000000000000",
+              "snapshot_price_span": "131.400000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:07:25.088543+00:00",
+        "sequence": 3335,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.122094040969387,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1006,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "132.400000000000000000",
+              "snapshot_price_span": "132.400000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 995,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "126.800000000000000000",
+              "snapshot_price_span": "126.800000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:07:35.287629+00:00",
+        "sequence": 3436,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.127229536999948,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 958,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "122.600000000000000000",
+              "snapshot_price_span": "131.500000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1050,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "136.300000000000000000",
+              "snapshot_price_span": "127.400000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:07:45.491793+00:00",
+        "sequence": 3537,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.120278481044807,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1000,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "132.000000000000000000",
+              "snapshot_price_span": "129.300000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 988,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "127.100000000000000000",
+              "snapshot_price_span": "129.800000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:07:55.686065+00:00",
+        "sequence": 3638,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.151492019998841,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1030,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "135.500000000000000000",
+              "snapshot_price_span": "132.200000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 981,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "125.200000000000000000",
+              "snapshot_price_span": "128.500000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:08:05.900672+00:00",
+        "sequence": 3739,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.139815372996964,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1085,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "149.000000000000000000",
+              "snapshot_price_span": "130.800000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 881,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "109.300000000000000000",
+              "snapshot_price_span": "127.500000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:08:16.105877+00:00",
+        "sequence": 3840,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.127498142886907,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1098,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "151.200000000000000000",
+              "snapshot_price_span": "134.300000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 866,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "108.300000000000000000",
+              "snapshot_price_span": "125.200000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:08:26.307162+00:00",
+        "sequence": 3941,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.142779667046852,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 895,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "113.900000000000000000",
+              "snapshot_price_span": "135.100000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1139,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "148.100000000000000000",
+              "snapshot_price_span": "126.900000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:08:36.532731+00:00",
+        "sequence": 4042,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.102975600049831,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1024,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "137.400000000000000000",
+              "snapshot_price_span": "131.300000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 978,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "122.600000000000000000",
+              "snapshot_price_span": "128.700000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:08:46.718071+00:00",
+        "sequence": 4143,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.090584296034649,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1013,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "133.900000000000000000",
+              "snapshot_price_span": "133.900000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1011,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "125.300000000000000000",
+              "snapshot_price_span": "125.300000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:08:56.883457+00:00",
+        "sequence": 4244,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.123731724917889,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 926,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "118.500000000000000000",
+              "snapshot_price_span": "131.900000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1093,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "137.600000000000000000",
+              "snapshot_price_span": "124.200000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:09:07.093601+00:00",
+        "sequence": 4345,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.18746502196882,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 914,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "119.600000000000000000",
+              "snapshot_price_span": "130.800000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1047,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "136.000000000000000000",
+              "snapshot_price_span": "124.800000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:09:17.359876+00:00",
+        "sequence": 4446,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.057414892944507,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1049,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "140.600000000000000000",
+              "snapshot_price_span": "133.900000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 982,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "123.200000000000000000",
+              "snapshot_price_span": "129.900000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:09:27.488977+00:00",
+        "sequence": 4547,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.1287304260768,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 970,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "128.900000000000000000",
+              "snapshot_price_span": "132.400000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1019,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "129.200000000000000000",
+              "snapshot_price_span": "125.700000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:09:37.706031+00:00",
+        "sequence": 4648,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.120933560072444,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1022,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "133.300000000000000000",
+              "snapshot_price_span": "133.500000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 990,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "127.100000000000000000",
+              "snapshot_price_span": "126.900000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:09:47.912446+00:00",
+        "sequence": 4749,
+        "trigger": "periodic"
+      },
+      {
+        "action": "request",
+        "age_seconds": 10.098283392027952,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "budget_after_claim": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 995,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "130.800000000000000000",
+              "snapshot_price_span": "130.200000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1002,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "127.000000000000000000",
+              "snapshot_price_span": "127.600000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "reason": "periodic",
+        "requested_at": "2026-10-05T05:09:58.086937+00:00",
+        "sequence": 4850,
+        "trigger": "periodic"
+      }
+    ],
+    "refresh_decisions": {
+      "blocker_counts": {},
+      "count_semantics": "one terminal assessment per check_coverage invocation; deferred evaluations are neither HTTP calls nor unique outage episodes",
+      "deferred_evaluations": 0,
+      "evaluations": 4849,
+      "first_by_reason": {},
+      "last": {
+        "action": "request",
+        "after_sequence": 4849,
+        "age_seconds": 10.098283392027952,
+        "blockers": [],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 0,
+          "oldest_extra_expires_in_seconds": null
+        },
+        "epoch": 0,
+        "evaluated_at": "2026-10-05T05:09:58.086928+00:00",
+        "headroom": {
+          "low": false,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 995,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "130.800000000000000000",
+              "snapshot_price_span": "130.200000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 1002,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "127.000000000000000000",
+              "snapshot_price_span": "127.600000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "phase": "after_flush",
+        "reason": "periodic",
+        "trigger": "periodic"
+      },
+      "last_by_reason": {},
+      "policy": "coverage_decisions_v1",
+      "primary_reason_counts": {},
+      "recent_deferrals": []
+    },
+    "refresh_from_checks": true,
+    "rotate_seconds": 900,
+    "scope": "BTCUSDT USD-M non-RPI depth; known snapshot price range only",
+    "seconds_requested": 3600,
+    "snapshots": 49,
+    "started_at": "2026-10-05T05:01:48.123680+00:00",
+    "state": "running",
+    "sync_losses": 0,
+    "synchronized": true,
+    "top": 20,
+    "unreconstructed_messages": 0,
+    "updated_at": "2026-10-05T05:10:03.025377+00:00",
+    "verify_seconds": 10
+  },
+  "note": "A completed pilot is not a running depth service. Epoch boundaries do not have historical repair."
+}

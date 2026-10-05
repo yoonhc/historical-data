@@ -1,0 +1,507 @@
+{
+  "report": {
+    "bootstrap_messages": 1,
+    "bootstrap_policy": "buffer_before_anchor_v1",
+    "bootstrap_timeout_seconds": 2,
+    "boundary_semantics": "new_snapshot_on_every_connection; no_historical_gap_repair",
+    "complete": false,
+    "connection_errors": 0,
+    "connections": 1,
+    "coverage_check_requests": 0,
+    "coverage_refresh": {
+      "extra_requests": 12,
+      "level_fraction": "0.75",
+      "min_interval_seconds": 1.0,
+      "policy": "bounded_headroom_v1",
+      "price_fraction": "0.25",
+      "scope": "extra checks within this capture; survives resync/reconnect; periodic checks and recovery anchors are separate",
+      "window_seconds": 60.0
+    },
+    "coverage_reset_policy": "same_socket_new_epoch_v1",
+    "coverage_resets": 0,
+    "coverage_top_shortfalls": 0,
+    "dataset": "book_depth",
+    "epochs": [
+      {
+        "end_reason": "error",
+        "ended_at": "2026-10-05T04:28:26.553572+00:00",
+        "epoch": 0,
+        "final": {
+          "anchor_history": {
+            "aligned": false,
+            "applied": 0,
+            "events": 0,
+            "first_sequence": null,
+            "last_sequence": null,
+            "levels": 0,
+            "reason": "No snapshot bridge retained in recent history",
+            "serialized_bytes": 0
+          },
+          "book": {
+            "ask_ceiling": "1100.000000000000000000",
+            "asks": [
+              [
+                "1001.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1002.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1003.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1004.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1005.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1006.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1007.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1008.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1009.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1010.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1011.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1012.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1013.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1014.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1015.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1016.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1017.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1018.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1019.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "1020.000000000000000000",
+                "1.000000000000000000"
+              ]
+            ],
+            "bid_floor": "900.000000000000000000",
+            "bids": [
+              [
+                "999.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "998.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "997.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "996.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "995.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "994.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "993.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "992.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "991.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "990.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "989.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "988.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "987.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "986.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "985.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "984.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "983.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "982.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "981.000000000000000000",
+                "1.000000000000000000"
+              ],
+              [
+                "980.000000000000000000",
+                "1.000000000000000000"
+              ]
+            ],
+            "book_sha256": "42984373744ec32e5b3bb5b19222b22b257ab8aea87bff4c314b191460bbc7ff",
+            "known_ask_levels": 100,
+            "known_bid_levels": 100,
+            "last_update_id": 102,
+            "synced": true,
+            "timestamp": "2024-01-01T00:00:00.102000+00:00",
+            "top_complete": true,
+            "top_requested": 20
+          },
+          "checks": [],
+          "counts": {
+            "applied": 3,
+            "duplicate": 0,
+            "stale": 0
+          },
+          "error": null,
+          "pending_check_sequence": null,
+          "refreshes": 0
+        },
+        "reason": "initial",
+        "started_at": "2026-10-05T04:28:26.536992+00:00"
+      }
+    ],
+    "error": "DataError: Depth event persistence failed: injected raw persistence error",
+    "errors": [],
+    "flush_error": "Depth event persistence failed: injected raw persistence error",
+    "flush_seconds": 1,
+    "history_limits": {
+      "events": 128,
+      "levels": 50000,
+      "serialized_bytes": 8388608
+    },
+    "history_policy": "bounded_same_socket_v1",
+    "id": "f11ebc790e9740df8d90545ebd363586",
+    "kind": "websocket",
+    "lagged_retry_budget": {
+      "max_requests": 8,
+      "scope": "retry anchor calls within this capture; survives resync/reconnect",
+      "window_seconds": 60
+    },
+    "lagged_retry_delays_seconds": [
+      1,
+      2,
+      4,
+      8,
+      10
+    ],
+    "lagged_retry_policy": "same_socket_backoff_v1",
+    "lagged_retry_requests": 0,
+    "lagged_snapshot_policy": "retain_unsynchronized_updates_v1",
+    "lagged_snapshots": 0,
+    "last_received_at": "2026-10-05T04:28:26.553224+00:00",
+    "last_update_id": 103,
+    "messages": 3,
+    "periodic_check_requests": 0,
+    "persisted_messages": 2,
+    "recent_coverage_checks": [],
+    "refresh_decisions": {
+      "blocker_counts": {},
+      "count_semantics": "one terminal assessment per check_coverage invocation; deferred evaluations are neither HTTP calls nor unique outage episodes",
+      "deferred_evaluations": 0,
+      "evaluations": 2,
+      "first_by_reason": {},
+      "last": null,
+      "last_by_reason": {},
+      "policy": "coverage_decisions_v1",
+      "primary_reason_counts": {},
+      "recent_deferrals": []
+    },
+    "refresh_from_checks": true,
+    "rotate_seconds": 3600,
+    "scope": "BTCUSDT USD-M non-RPI depth; known snapshot price range only",
+    "seconds_requested": 7,
+    "snapshots": 1,
+    "started_at": "2026-10-05T04:28:26.536429+00:00",
+    "state": "failed",
+    "sync_losses": 0,
+    "synchronized": false,
+    "top": 20,
+    "unreconstructed_messages": 0,
+    "updated_at": "2026-10-05T04:28:26.553873+00:00",
+    "verify_seconds": 3600
+  },
+  "replay": {
+    "collection_id": "f11ebc790e9740df8d90545ebd363586",
+    "state": "failed",
+    "rows": 3,
+    "segments": [
+      "c6f19a9a4db501b0af2be53b15571ac42035b17a58518b74eb62deb0f22244de",
+      "20429acede381fda147c1965f5521dc8af2a9dae929d4de1aec01af7e642d36d"
+    ],
+    "epochs": {
+      "0": {
+        "counts": {
+          "applied": 2,
+          "stale": 0,
+          "duplicate": 0
+        },
+        "book": {
+          "last_update_id": 102,
+          "timestamp": "2024-01-01 00:00:00.102000+00:00",
+          "synced": true,
+          "bid_floor": "900.000000000000000000",
+          "ask_ceiling": "1100.000000000000000000",
+          "known_bid_levels": 100,
+          "known_ask_levels": 100,
+          "top_requested": 20,
+          "top_complete": true,
+          "bids": [
+            [
+              "999.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "998.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "997.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "996.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "995.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "994.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "993.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "992.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "991.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "990.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "989.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "988.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "987.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "986.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "985.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "984.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "983.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "982.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "981.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "980.000000000000000000",
+              "1.000000000000000000"
+            ]
+          ],
+          "asks": [
+            [
+              "1001.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1002.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1003.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1004.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1005.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1006.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1007.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1008.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1009.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1010.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1011.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1012.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1013.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1014.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1015.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1016.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1017.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1018.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1019.000000000000000000",
+              "1.000000000000000000"
+            ],
+            [
+              "1020.000000000000000000",
+              "1.000000000000000000"
+            ]
+          ],
+          "book_sha256": "42984373744ec32e5b3bb5b19222b22b257ab8aea87bff4c314b191460bbc7ff"
+        },
+        "checks": [],
+        "pending_check_sequence": null,
+        "error": null,
+        "refreshes": 0,
+        "anchor_history": {
+          "events": 0,
+          "levels": 0,
+          "serialized_bytes": 0,
+          "applied": 0,
+          "first_sequence": null,
+          "last_sequence": null,
+          "aligned": false,
+          "reason": "No snapshot bridge retained in recent history"
+        }
+      }
+    },
+    "replay_matches_live": false,
+    "valid": false,
+    "continuous": false,
+    "verification_checks": 0,
+    "verification_equal": 0,
+    "verification_uncomparable": 0,
+    "verification_pending": 0,
+    "verification_complete": false,
+    "note": "Per-epoch known price range only; reconnect intervals and time-window edges are not reconstructed."
+  }
+}

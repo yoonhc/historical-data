@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="14" skipped="0" tests="17" time="1.799" timestamp="2026-10-05T12:00:34.251401+09:00" hostname="hclm"><testcase classname="tests.test_depth_failure_publication" name="test_external_cli_rejects_while_event_persistence_is_blocked[0]" time="0.321"><failure message="AssertionError: assert (2 == 2 and {'state': 'ru...ids': [], ...} == {'state': 'ru...ids': [], ...}&#10;  &#10;  Omitting 5 identical items, use -vv to show&#10;  Differing items:&#10;  {'last_receive_age_seconds': 0.12059} != {'last_receive_age_seconds': 0.01008}&#10;  Use -v to get more diff)">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_external_cli_rejects_whil0')
+remaining = 0
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    def test_external_cli_rejects_while_event_persistence_is_blocked(tmp_path, remaining):
+        child, root, result_path = spawn_paused(tmp_path, remaining)
+        try:
+            value = saved(root)
+            assert value["healthy"] is False and value["report"]["sync_losses"] == 1
+            report = value["report"]
+            assert report["messages"] == report["persisted_messages"] == 2
+            assert report["last_update_id"] == 102
+            assert report["epochs"][0]["final"]["book"]["last_update_id"] == 102
+            assert report["failure_notice"]["observed_update_id"] == 103
+            assert report["last_received_at"] &lt; report["failure_notice"]["observed_received_at"]
+            code, status = run_cli(root)
+&gt;           assert code == 2 and status == value
+E           AssertionError: assert (2 == 2 and {'state': 'ru...ids': [], ...} == {'state': 'ru...ids': [], ...}
+E             
+E             Omitting 5 identical items, use -vv to show
+E             Differing items:
+E             {'last_receive_age_seconds': 0.12059} != {'last_receive_age_seconds': 0.01008}
+E             Use -v to get more diff)
+
+tests/test_depth_failure_publication.py:90: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_external_cli_rejects_while_event_persistence_is_blocked[8]" time="0.317"><failure message="AssertionError: assert (2 == 2 and {'state': 'ru...ids': [], ...} == {'state': 'ru...ids': [], ...}&#10;  &#10;  Omitting 5 identical items, use -vv to show&#10;  Differing items:&#10;  {'last_receive_age_seconds': 0.120321} != {'last_receive_age_seconds': 0.010852}&#10;  Use -v to get more diff)">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_external_cli_rejects_whil1')
+remaining = 8
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    def test_external_cli_rejects_while_event_persistence_is_blocked(tmp_path, remaining):
+        child, root, result_path = spawn_paused(tmp_path, remaining)
+        try:
+            value = saved(root)
+            assert value["healthy"] is False and value["report"]["sync_losses"] == 1
+            report = value["report"]
+            assert report["messages"] == report["persisted_messages"] == 2
+            assert report["last_update_id"] == 102
+            assert report["epochs"][0]["final"]["book"]["last_update_id"] == 102
+            assert report["failure_notice"]["observed_update_id"] == 103
+            assert report["last_received_at"] &lt; report["failure_notice"]["observed_received_at"]
+            code, status = run_cli(root)
+&gt;           assert code == 2 and status == value
+E           AssertionError: assert (2 == 2 and {'state': 'ru...ids': [], ...} == {'state': 'ru...ids': [], ...}
+E             
+E             Omitting 5 identical items, use -vv to show
+E             Differing items:
+E             {'last_receive_age_seconds': 0.120321} != {'last_receive_age_seconds': 0.010852}
+E             Use -v to get more diff)
+
+tests/test_depth_failure_publication.py:90: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[json_once-0]" time="0.082"><failure message="assert None is not None">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_failure_publication_fault0')
+remaining = 0, mode = 'json_once'
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    @pytest.mark.parametrize(
+        "mode", ["json_once", "json_always", "raw_once", "raw_always", "db_once", "db_always"]
+    )
+    def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
+        result = Rig(tmp_path / "store", remaining, mode).run()
+&gt;       assert result["error"] is not None
+E       assert None is not None
+
+tests/test_depth_failure_publication.py:112: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[json_once-8]" time="0.068"><failure message="assert None is not None">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_failure_publication_fault1')
+remaining = 8, mode = 'json_once'
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    @pytest.mark.parametrize(
+        "mode", ["json_once", "json_always", "raw_once", "raw_always", "db_once", "db_always"]
+    )
+    def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
+        result = Rig(tmp_path / "store", remaining, mode).run()
+&gt;       assert result["error"] is not None
+E       assert None is not None
+
+tests/test_depth_failure_publication.py:112: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[json_always-0]" time="0.037"><failure message="assert 2 == 0">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_failure_publication_fault2')
+remaining = 0, mode = 'json_always'
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    @pytest.mark.parametrize(
+        "mode", ["json_once", "json_always", "raw_once", "raw_always", "db_once", "db_always"]
+    )
+    def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
+        result = Rig(tmp_path / "store", remaining, mode).run()
+        assert result["error"] is not None
+        baseline = next(e for e in result["events"] if e["phase"] == "healthy_before_failure")
+        assert baseline["healthy"]
+        final, latest = result["final"], result["latest_json"]
+        if mode == "db_always":
+            # Publication itself never committed. The old healthy report can remain
+            # visible until stale; do not claim it was invalidated out-of-process.
+            assert final["healthy"] and final["report"]["sync_losses"] == 0
+            assert stable_bounds(final["report"]) == stable_bounds(baseline["report"])
+            assert result["counts"]["raw"] == 0 and "failure_notice" not in latest
+        else:
+            assert not final["healthy"] and final["state"] == "failed"
+            assert final["report"]["sync_losses"] == final["report"]["coverage_resets"] == 1
+            assert final["report"]["coverage_top_shortfalls"] == int(remaining == 8)
+            assert not result["replay"]["valid"]
+&gt;           assert final["report"]["persisted_messages"] == result["update_rows"]
+E           assert 2 == 0
+
+tests/test_depth_failure_publication.py:127: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[json_always-8]" time="0.036"><failure message="assert 2 == 0">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_failure_publication_fault3')
+remaining = 8, mode = 'json_always'
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    @pytest.mark.parametrize(
+        "mode", ["json_once", "json_always", "raw_once", "raw_always", "db_once", "db_always"]
+    )
+    def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
+        result = Rig(tmp_path / "store", remaining, mode).run()
+        assert result["error"] is not None
+        baseline = next(e for e in result["events"] if e["phase"] == "healthy_before_failure")
+        assert baseline["healthy"]
+        final, latest = result["final"], result["latest_json"]
+        if mode == "db_always":
+            # Publication itself never committed. The old healthy report can remain
+            # visible until stale; do not claim it was invalidated out-of-process.
+            assert final["healthy"] and final["report"]["sync_losses"] == 0
+            assert stable_bounds(final["report"]) == stable_bounds(baseline["report"])
+            assert result["counts"]["raw"] == 0 and "failure_notice" not in latest
+        else:
+            assert not final["healthy"] and final["state"] == "failed"
+            assert final["report"]["sync_losses"] == final["report"]["coverage_resets"] == 1
+            assert final["report"]["coverage_top_shortfalls"] == int(remaining == 8)
+            assert not result["replay"]["valid"]
+&gt;           assert final["report"]["persisted_messages"] == result["update_rows"]
+E           assert 2 == 0
+
+tests/test_depth_failure_publication.py:127: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[raw_once-0]" time="0.067"><failure message="assert None is not None">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_failure_publication_fault4')
+remaining = 0, mode = 'raw_once'
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    @pytest.mark.parametrize(
+        "mode", ["json_once", "json_always", "raw_once", "raw_always", "db_once", "db_always"]
+    )
+    def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
+        result = Rig(tmp_path / "store", remaining, mode).run()
+&gt;       assert result["error"] is not None
+E       assert None is not None
+
+tests/test_depth_failure_publication.py:112: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[raw_once-8]" time="0.067"><failure message="assert None is not None">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_failure_publication_fault5')
+remaining = 8, mode = 'raw_once'
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    @pytest.mark.parametrize(
+        "mode", ["json_once", "json_always", "raw_once", "raw_always", "db_once", "db_always"]
+    )
+    def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
+        result = Rig(tmp_path / "store", remaining, mode).run()
+&gt;       assert result["error"] is not None
+E       assert None is not None
+
+tests/test_depth_failure_publication.py:112: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[raw_always-0]" time="0.038"><failure message="assert 2 == 0">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_failure_publication_fault6')
+remaining = 0, mode = 'raw_always'
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    @pytest.mark.parametrize(
+        "mode", ["json_once", "json_always", "raw_once", "raw_always", "db_once", "db_always"]
+    )
+    def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
+        result = Rig(tmp_path / "store", remaining, mode).run()
+        assert result["error"] is not None
+        baseline = next(e for e in result["events"] if e["phase"] == "healthy_before_failure")
+        assert baseline["healthy"]
+        final, latest = result["final"], result["latest_json"]
+        if mode == "db_always":
+            # Publication itself never committed. The old healthy report can remain
+            # visible until stale; do not claim it was invalidated out-of-process.
+            assert final["healthy"] and final["report"]["sync_losses"] == 0
+            assert stable_bounds(final["report"]) == stable_bounds(baseline["report"])
+            assert result["counts"]["raw"] == 0 and "failure_notice" not in latest
+        else:
+            assert not final["healthy"] and final["state"] == "failed"
+            assert final["report"]["sync_losses"] == final["report"]["coverage_resets"] == 1
+            assert final["report"]["coverage_top_shortfalls"] == int(remaining == 8)
+            assert not result["replay"]["valid"]
+&gt;           assert final["report"]["persisted_messages"] == result["update_rows"]
+E           assert 2 == 0
+
+tests/test_depth_failure_publication.py:127: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[raw_always-8]" time="0.037"><failure message="assert 2 == 0">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_failure_publication_fault7')
+remaining = 8, mode = 'raw_always'
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    @pytest.mark.parametrize(
+        "mode", ["json_once", "json_always", "raw_once", "raw_always", "db_once", "db_always"]
+    )
+    def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
+        result = Rig(tmp_path / "store", remaining, mode).run()
+        assert result["error"] is not None
+        baseline = next(e for e in result["events"] if e["phase"] == "healthy_before_failure")
+        assert baseline["healthy"]
+        final, latest = result["final"], result["latest_json"]
+        if mode == "db_always":
+            # Publication itself never committed. The old healthy report can remain
+            # visible until stale; do not claim it was invalidated out-of-process.
+            assert final["healthy"] and final["report"]["sync_losses"] == 0
+            assert stable_bounds(final["report"]) == stable_bounds(baseline["report"])
+            assert result["counts"]["raw"] == 0 and "failure_notice" not in latest
+        else:
+            assert not final["healthy"] and final["state"] == "failed"
+            assert final["report"]["sync_losses"] == final["report"]["coverage_resets"] == 1
+            assert final["report"]["coverage_top_shortfalls"] == int(remaining == 8)
+            assert not result["replay"]["valid"]
+&gt;           assert final["report"]["persisted_messages"] == result["update_rows"]
+E           assert 2 == 0
+
+tests/test_depth_failure_publication.py:127: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[db_once-0]" time="0.045"><failure message="assert 3 == 0">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_failure_publication_fault8')
+remaining = 0, mode = 'db_once'
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    @pytest.mark.parametrize(
+        "mode", ["json_once", "json_always", "raw_once", "raw_always", "db_once", "db_always"]
+    )
+    def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
+        result = Rig(tmp_path / "store", remaining, mode).run()
+        assert result["error"] is not None
+        baseline = next(e for e in result["events"] if e["phase"] == "healthy_before_failure")
+        assert baseline["healthy"]
+        final, latest = result["final"], result["latest_json"]
+        if mode == "db_always":
+            # Publication itself never committed. The old healthy report can remain
+            # visible until stale; do not claim it was invalidated out-of-process.
+            assert final["healthy"] and final["report"]["sync_losses"] == 0
+            assert stable_bounds(final["report"]) == stable_bounds(baseline["report"])
+            assert result["counts"]["raw"] == 0 and "failure_notice" not in latest
+        else:
+            assert not final["healthy"] and final["state"] == "failed"
+            assert final["report"]["sync_losses"] == final["report"]["coverage_resets"] == 1
+            assert final["report"]["coverage_top_shortfalls"] == int(remaining == 8)
+            assert not result["replay"]["valid"]
+&gt;           assert final["report"]["persisted_messages"] == result["update_rows"]
+E           assert 3 == 0
+
+tests/test_depth_failure_publication.py:127: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[db_once-8]" time="0.044"><failure message="assert 3 == 0">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_failure_publication_fault9')
+remaining = 8, mode = 'db_once'
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    @pytest.mark.parametrize(
+        "mode", ["json_once", "json_always", "raw_once", "raw_always", "db_once", "db_always"]
+    )
+    def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
+        result = Rig(tmp_path / "store", remaining, mode).run()
+        assert result["error"] is not None
+        baseline = next(e for e in result["events"] if e["phase"] == "healthy_before_failure")
+        assert baseline["healthy"]
+        final, latest = result["final"], result["latest_json"]
+        if mode == "db_always":
+            # Publication itself never committed. The old healthy report can remain
+            # visible until stale; do not claim it was invalidated out-of-process.
+            assert final["healthy"] and final["report"]["sync_losses"] == 0
+            assert stable_bounds(final["report"]) == stable_bounds(baseline["report"])
+            assert result["counts"]["raw"] == 0 and "failure_notice" not in latest
+        else:
+            assert not final["healthy"] and final["state"] == "failed"
+            assert final["report"]["sync_losses"] == final["report"]["coverage_resets"] == 1
+            assert final["report"]["coverage_top_shortfalls"] == int(remaining == 8)
+            assert not result["replay"]["valid"]
+&gt;           assert final["report"]["persisted_messages"] == result["update_rows"]
+E           assert 3 == 0
+
+tests/test_depth_failure_publication.py:127: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[db_always-0]" time="0.033" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[db_always-8]" time="0.035" /><testcase classname="tests.test_depth_failure_publication" name="test_force_kill_after_publication_preserves_notice_and_restart_boundary[0]" time="0.194"><failure message="AssertionError: assert (-9 != 0 and {'state': 'ru...ids': [], ...} == {'state': 'ru...ids': [], ...}&#10; +  where -9 = &lt;Popen: returncode: -9 args: ['/home/yoonhc/projects/algoTrade/historical_da...&gt;.returncode&#10;  &#10;  Omitting 5 identical items, use -vv to show&#10;  Differing items:&#10;  {'last_receive_age_seconds': 0.013232} != {'last_receive_age_seconds': 0.009629}&#10;  Use -v to get more diff)">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_force_kill_after_publicat0')
+remaining = 0
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    def test_force_kill_after_publication_preserves_notice_and_restart_boundary(tmp_path, remaining):
+        child, root, _ = spawn_paused(tmp_path, remaining)
+        before = saved(root)
+        child.kill()
+        child.communicate(timeout=10)
+&gt;       assert child.returncode != 0 and saved(root) == before
+E       AssertionError: assert (-9 != 0 and {'state': 'ru...ids': [], ...} == {'state': 'ru...ids': [], ...}
+E        +  where -9 = &lt;Popen: returncode: -9 args: ['/home/yoonhc/projects/algoTrade/historical_da...&gt;.returncode
+E         
+E         Omitting 5 identical items, use -vv to show
+E         Differing items:
+E         {'last_receive_age_seconds': 0.013232} != {'last_receive_age_seconds': 0.009629}
+E         Use -v to get more diff)
+
+tests/test_depth_failure_publication.py:156: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_force_kill_after_publication_preserves_notice_and_restart_boundary[8]" time="0.205"><failure message="AssertionError: assert (-9 != 0 and {'state': 'ru...ids': [], ...} == {'state': 'ru...ids': [], ...}&#10; +  where -9 = &lt;Popen: returncode: -9 args: ['/home/yoonhc/projects/algoTrade/historical_da...&gt;.returncode&#10;  &#10;  Omitting 5 identical items, use -vv to show&#10;  Differing items:&#10;  {'last_receive_age_seconds': 0.01439} != {'last_receive_age_seconds': 0.009201}&#10;  Use -v to get more diff)">tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-37/test_force_kill_after_publicat1')
+remaining = 8
+
+    @pytest.mark.parametrize("remaining", [0, 8])
+    def test_force_kill_after_publication_preserves_notice_and_restart_boundary(tmp_path, remaining):
+        child, root, _ = spawn_paused(tmp_path, remaining)
+        before = saved(root)
+        child.kill()
+        child.communicate(timeout=10)
+&gt;       assert child.returncode != 0 and saved(root) == before
+E       AssertionError: assert (-9 != 0 and {'state': 'ru...ids': [], ...} == {'state': 'ru...ids': [], ...}
+E        +  where -9 = &lt;Popen: returncode: -9 args: ['/home/yoonhc/projects/algoTrade/historical_da...&gt;.returncode
+E         
+E         Omitting 5 identical items, use -vv to show
+E         Differing items:
+E         {'last_receive_age_seconds': 0.01439} != {'last_receive_age_seconds': 0.009201}
+E         Use -v to get more diff)
+
+tests/test_depth_failure_publication.py:156: AssertionError</failure></testcase><testcase classname="tests.test_depth_failure_publication" name="test_publication_rejects_nested_transaction_and_conflicting_retry" time="0.041" /></testsuite></testsuites>

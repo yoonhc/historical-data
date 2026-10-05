@@ -460,6 +460,128 @@ def save_collection(store, report, state):
     atomic_write(store.root / "state/depth-latest.json", json_bytes(report))
 
 
+def publish_failure(store, observation, *, state="running", error=None, flush_error=None):
+    """Commit invalidity without advancing the last durable journal/report.
+
+    Retrying the same observation republishes absolute loss totals, not another
+    loss. A JSON mirror error propagates after the DB commit; a retry preserves
+    its first recording time. Never replace the caller's buffered report.
+    """
+    return _publish_failure(
+        store, observation["collection_id"], observation, state, error, flush_error
+    )
+
+
+def save_flush_failure(store, report, state):
+    """Finish from the durable report even when no coverage failure occurred."""
+    observed = {
+        "observed_at": now(),
+        "messages_received": report["messages"],
+        "persisted_messages": report["persisted_messages"],
+        "last_received_at": report.get("last_received_at"),
+        "book_update_id": report.get("last_update_id"),
+        **{
+            key: report[key]
+            for key in (
+                "sync_losses",
+                "coverage_resets",
+                "coverage_top_shortfalls",
+                "connection_errors",
+            )
+        },
+    }
+    return _publish_failure(
+        store,
+        report["id"],
+        report.get("failure_notice"),
+        state,
+        report["error"],
+        report["flush_error"],
+        observed,
+    )
+
+
+def _publish_failure(store, collection_id, observation, state, error, flush_error, unflushed=None):
+    try:
+        notice, saved = _commit_failure(
+            store, collection_id, observation, state, error, flush_error, unflushed
+        )
+    except Exception as exc:
+        raise DataError(f"Failure state database commit not confirmed: {exc}") from exc
+    try:
+        atomic_write(store.root / "state/depth-latest.json", json_bytes(saved))
+    except Exception as exc:
+        # Do not let a file OSError enter the collector's socket-reconnect path.
+        raise DataError(f"Failure state committed; JSON mirror update failed: {exc}") from exc
+    return notice
+
+
+def _commit_failure(store, collection_id, observation, state, error, flush_error, unflushed):
+    if store.db.in_transaction:
+        raise DataError("Failure publication requires its own committed transaction")
+    if state not in {"running", "failed", "interrupted"}:
+        raise DataError("Invalid failure publication state")
+    if observation is None and state not in {"failed", "interrupted"}:
+        raise DataError("A failure without a coverage observation must be terminal")
+    notice = json.loads(json_bytes(observation)) if observation is not None else None
+    if notice is not None:
+        notice.pop("recorded_at", None)
+    with store.writer(timeout=60), store.db:
+        record = store.db.execute(
+            "SELECT state,report FROM event_collections WHERE id=? AND dataset=?",
+            (collection_id, DATASET),
+        ).fetchone()
+        if record is None or record["state"] == "complete":
+            raise DataError("Failure publication requires an unfinished or failed depth collection")
+        saved = json.loads(record["report"])
+        # Record preparation under the writer lock, not a claim to have measured
+        # the exact COMMIT completion time. The function returns only after commit.
+        if notice is not None:
+            recorded_at = now()
+            previous = saved.get("failure_notice")
+            if previous:
+                previous_observation = {k: v for k, v in previous.items() if k != "recorded_at"}
+                if notice["sequence"] < previous["sequence"]:
+                    raise DataError("An older failure cannot replace a newer observation")
+                if notice["sequence"] == previous["sequence"]:
+                    if notice != previous_observation:
+                        raise DataError("Conflicting observation for the same failure sequence")
+                    recorded_at = previous["recorded_at"]
+            notice["recorded_at"] = recorded_at
+            for key in ("sync_losses", "coverage_resets", "coverage_top_shortfalls"):
+                saved[key] = max(saved[key], notice[key])
+            saved["failure_notice"] = notice
+        if unflushed is not None:
+            saved["flush_failure_observation"] = json.loads(json_bytes(unflushed))
+            for key in (
+                "sync_losses",
+                "coverage_resets",
+                "coverage_top_shortfalls",
+                "connection_errors",
+            ):
+                saved[key] = max(saved[key], unflushed[key])
+        saved.update(
+            synchronized=False,
+            complete=False,
+            updated_at=now(),
+            state=state if record["state"] == "running" else record["state"],
+        )
+        if error is not None:
+            saved["error"] = error
+        if flush_error is not None:
+            saved["flush_error"] = flush_error
+        store.db.execute(
+            "UPDATE event_collections SET state=?,updated_at=?,report=? WHERE id=?",
+            (
+                saved["state"],
+                saved["updated_at"].isoformat(),
+                json_bytes(saved).decode(),
+                saved["id"],
+            ),
+        )
+    return notice, saved
+
+
 def publish(store, collection_id, rows, source_id):
     if not rows:
         return

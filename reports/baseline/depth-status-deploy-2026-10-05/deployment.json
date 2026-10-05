@@ -1,0 +1,73 @@
+{
+  "release_id": "depth-status-20261005-7be8e3da868f9308",
+  "started_at": "2026-10-05T14:01:45.539625+09:00",
+  "state": "started",
+  "steps": [
+    {
+      "at": "2026-10-05T14:01:45.733710+09:00",
+      "phase": "stopping",
+      "old_pid": "1413508",
+      "old_collection_id": "91d0a5fd78d146d2843741354ab7a534"
+    },
+    {
+      "at": "2026-10-05T14:01:47.828522+09:00",
+      "phase": "stopped",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "persisted_messages": 17522
+    },
+    {
+      "at": "2026-10-05T14:01:47.962738+09:00",
+      "phase": "applied",
+      "files": [
+        {
+          "after_sha256": "c76d56fb7478e9deca4e577aeaf97fe09d03108aeeb84e70b8f1b3530a0d0703",
+          "before_sha256": "50289e41bf263da757e113717c9a3c87970bedccd0bd5caeac49c88df197648f",
+          "path": "packages/marketdata/src/marketdata/depth.py"
+        },
+        {
+          "after_sha256": "10b613d2ba1a33b5b73cbbf0d16fbf62b811a34b1c18d29ae808cd63cb4a8c42",
+          "before_sha256": "3b9a29fdc65135bb45442d9486e29cdfe32c714fa22c356b0a71c8eab399244f",
+          "path": "packages/marketdata/src/marketdata/depth_stream.py"
+        },
+        {
+          "after_sha256": "a69eded52c9d5c6f621b1f076d73e0918ad3a7628009e04f27e6182456b634aa",
+          "before_sha256": "827cd7ae3fcc69caae5698dfd85507876aa4b4df370c8c82ba5511dcb7a5f0e1",
+          "path": "tests/test_depth_independent_cases.py"
+        },
+        {
+          "after_sha256": "8a65ba6a59fa51692ea025f477354ec53d001ab66125a91e211af7c850862156",
+          "before_sha256": null,
+          "path": "tests/depth_failure_harness.py"
+        },
+        {
+          "after_sha256": "b9b6223aa11cf7ad5abe7747647efe010254914567011f26f5c79ca73aa5b5f0",
+          "before_sha256": null,
+          "path": "tests/test_depth_failure_publication.py"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-05T14:01:50.997122+09:00",
+      "phase": "started",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "new_pid": 1421578
+    }
+  ],
+  "service_mutations": [
+    {
+      "at": "2026-10-05T14:01:45.733910+09:00",
+      "action": "stop",
+      "unit": "marketdata-depth.service"
+    },
+    {
+      "at": "2026-10-05T14:01:47.963164+09:00",
+      "action": "start",
+      "unit": "marketdata-depth.service"
+    }
+  ],
+  "finished_at": "2026-10-05T14:01:50.997305+09:00"
+}

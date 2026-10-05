@@ -1,0 +1,46 @@
+{
+  "recorded_at": "2026-10-05T14:06:48.779674+09:00",
+  "source": "systemctl --user show output from the post-deployment tool call",
+  "marketdata-depth.service": {
+    "MainPID": "1421578",
+    "ActiveState": "active",
+    "SubState": "running",
+    "NRestarts": "0",
+    "Result": "success",
+    "ExecMainStartTimestamp": "Mon 2026-10-05 14:01:47 KST"
+  },
+  "marketdata-aggtrade.service": {
+    "MainPID": "1416652",
+    "ActiveState": "active",
+    "SubState": "running",
+    "NRestarts": "196",
+    "Result": "success",
+    "ExecMainStartTimestamp": "Mon 2026-10-05 13:37:26 KST"
+  },
+  "marketdata-backup.service": {
+    "MainPID": "0",
+    "ActiveState": "inactive",
+    "Result": "success",
+    "ExecMainStatus": "0"
+  },
+  "marketdata-pack.service": {
+    "MainPID": "0",
+    "ActiveState": "inactive",
+    "Result": "success",
+    "ExecMainStatus": "0"
+  },
+  "marketdata-restic-archive.service": {
+    "MainPID": "1422488",
+    "ActiveState": "activating",
+    "SubState": "start",
+    "ExecMainStartTimestamp": "Mon 2026-10-05 14:05:00 KST"
+  },
+  "marketdata-daily.service": {
+    "MainPID": "0",
+    "ActiveState": "failed",
+    "NRestarts": "5",
+    "Result": "exit-code",
+    "ExecMainStatus": "2",
+    "ExecMainStartTimestamp": "Mon 2026-10-05 12:25:44 KST"
+  }
+}

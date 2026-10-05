@@ -1,0 +1,791 @@
+diff --git a/packages/marketdata/src/marketdata/depth.py b/packages/marketdata/src/marketdata/depth.py
+--- a/packages/marketdata/src/marketdata/depth.py
++++ b/packages/marketdata/src/marketdata/depth.py
+@@ -458,6 +458,128 @@
+             ),
+         )
+     atomic_write(store.root / "state/depth-latest.json", json_bytes(report))
++
++
++def publish_failure(store, observation, *, state="running", error=None, flush_error=None):
++    """Commit invalidity without advancing the last durable journal/report.
++
++    Retrying the same observation republishes absolute loss totals, not another
++    loss. A JSON mirror error propagates after the DB commit; a retry preserves
++    its first recording time. Never replace the caller's buffered report.
++    """
++    return _publish_failure(
++        store, observation["collection_id"], observation, state, error, flush_error
++    )
++
++
++def save_flush_failure(store, report, state):
++    """Finish from the durable report even when no coverage failure occurred."""
++    observed = {
++        "observed_at": now(),
++        "messages_received": report["messages"],
++        "persisted_messages": report["persisted_messages"],
++        "last_received_at": report.get("last_received_at"),
++        "book_update_id": report.get("last_update_id"),
++        **{
++            key: report[key]
++            for key in (
++                "sync_losses",
++                "coverage_resets",
++                "coverage_top_shortfalls",
++                "connection_errors",
++            )
++        },
++    }
++    return _publish_failure(
++        store,
++        report["id"],
++        report.get("failure_notice"),
++        state,
++        report["error"],
++        report["flush_error"],
++        observed,
++    )
++
++
++def _publish_failure(store, collection_id, observation, state, error, flush_error, unflushed=None):
++    try:
++        notice, saved = _commit_failure(
++            store, collection_id, observation, state, error, flush_error, unflushed
++        )
++    except Exception as exc:
++        raise DataError(f"Failure state database commit not confirmed: {exc}") from exc
++    try:
++        atomic_write(store.root / "state/depth-latest.json", json_bytes(saved))
++    except Exception as exc:
++        # Do not let a file OSError enter the collector's socket-reconnect path.
++        raise DataError(f"Failure state committed; JSON mirror update failed: {exc}") from exc
++    return notice
++
++
++def _commit_failure(store, collection_id, observation, state, error, flush_error, unflushed):
++    if store.db.in_transaction:
++        raise DataError("Failure publication requires its own committed transaction")
++    if state not in {"running", "failed", "interrupted"}:
++        raise DataError("Invalid failure publication state")
++    if observation is None and state not in {"failed", "interrupted"}:
++        raise DataError("A failure without a coverage observation must be terminal")
++    notice = json.loads(json_bytes(observation)) if observation is not None else None
++    if notice is not None:
++        notice.pop("recorded_at", None)
++    with store.writer(timeout=60), store.db:
++        record = store.db.execute(
++            "SELECT state,report FROM event_collections WHERE id=? AND dataset=?",
++            (collection_id, DATASET),
++        ).fetchone()
++        if record is None or record["state"] == "complete":
++            raise DataError("Failure publication requires an unfinished or failed depth collection")
++        saved = json.loads(record["report"])
++        # Record preparation under the writer lock, not a claim to have measured
++        # the exact COMMIT completion time. The function returns only after commit.
++        if notice is not None:
++            recorded_at = now()
++            previous = saved.get("failure_notice")
++            if previous:
++                previous_observation = {k: v for k, v in previous.items() if k != "recorded_at"}
++                if notice["sequence"] < previous["sequence"]:
++                    raise DataError("An older failure cannot replace a newer observation")
++                if notice["sequence"] == previous["sequence"]:
++                    if notice != previous_observation:
++                        raise DataError("Conflicting observation for the same failure sequence")
++                    recorded_at = previous["recorded_at"]
++            notice["recorded_at"] = recorded_at
++            for key in ("sync_losses", "coverage_resets", "coverage_top_shortfalls"):
++                saved[key] = max(saved[key], notice[key])
++            saved["failure_notice"] = notice
++        if unflushed is not None:
++            saved["flush_failure_observation"] = json.loads(json_bytes(unflushed))
++            for key in (
++                "sync_losses",
++                "coverage_resets",
++                "coverage_top_shortfalls",
++                "connection_errors",
++            ):
++                saved[key] = max(saved[key], unflushed[key])
++        saved.update(
++            synchronized=False,
++            complete=False,
++            updated_at=now(),
++            state=state if record["state"] == "running" else record["state"],
++        )
++        if error is not None:
++            saved["error"] = error
++        if flush_error is not None:
++            saved["flush_error"] = flush_error
++        store.db.execute(
++            "UPDATE event_collections SET state=?,updated_at=?,report=? WHERE id=?",
++            (
++                saved["state"],
++                saved["updated_at"].isoformat(),
++                json_bytes(saved).decode(),
++                saved["id"],
++            ),
++        )
++    return notice, saved
+ 
+ 
+ def publish(store, collection_id, rows, source_id):
+diff --git a/packages/marketdata/src/marketdata/depth_stream.py b/packages/marketdata/src/marketdata/depth_stream.py
+--- a/packages/marketdata/src/marketdata/depth_stream.py
++++ b/packages/marketdata/src/marketdata/depth_stream.py
+@@ -326,6 +326,7 @@
+                 },
+             )
+             messages, sequence, session, epoch_report = [], 0, None, None
++            pending_failure = None
+             buffered_bytes = 0
+             start = last_flush = time.monotonic()
+             deadline, failures, reason = start + seconds, 0, "initial"
+@@ -333,15 +334,25 @@
+             refresh_checks = RefreshChecks()
+ 
+             def flush():
+-                nonlocal last_flush, buffered_bytes
++                nonlocal last_flush, buffered_bytes, pending_failure
++                if pending_failure is not None:
++                    report["failure_notice"] = depth.publish_failure(store, pending_failure)
++                    pending_failure = None
+                 if shutil.disk_usage(store.root).free < minimum:
+                     raise DataError("Depth capture stopped: free space below reserve")
+-                report["persisted_messages"] += persist_messages(store, report["id"], messages)
++                try:
++                    persisted = persist_messages(store, report["id"], messages)
++                except OSError as exc:
++                    raise DataError(f"Depth event persistence failed: {exc}") from exc
++                report["persisted_messages"] += persisted
+                 messages.clear()
+                 buffered_bytes = 0
+                 if epoch_report is not None:
+                     epoch_report["final"] = session.summary()
+-                depth.save_collection(store, report, "running")
++                try:
++                    depth.save_collection(store, report, "running")
++                except OSError as exc:
++                    raise DataError(f"Depth report persistence failed: {exc}") from exc
+                 last_flush = time.monotonic()
+                 if progress:
+                     progress(
+@@ -410,14 +421,27 @@
+                 get_snapshot("anchor", already_flushed=True)
+                 last_check = time.monotonic()
+ 
+-            def renew_coverage(stop_at, *, incomplete=False):
+-                nonlocal session, epoch_report, epoch_started, last_check
++            def renew_coverage(stop_at, failed_row, *, incomplete=False):
++                nonlocal session, epoch_report, epoch_started, last_check, pending_failure
+                 reason = "incomplete_top" if incomplete else "coverage_exhausted"
+                 report["sync_losses"] += 1
+                 report["coverage_resets"] += 1
+                 report["coverage_top_shortfalls"] += int(incomplete)
+                 report["synchronized"] = False
+                 epoch_report.update(ended_at=now(), end_reason=reason)
++                report["failure_notice"] = pending_failure = {
++                    "collection_id": report["id"],
++                    "epoch": epoch_report["epoch"],
++                    "sequence": failed_row["sequence"],
++                    "reason": reason,
++                    "observed_at": epoch_report["ended_at"],
++                    "observed_received_at": failed_row["received_at"],
++                    "observed_update_id": failed_row["final_update_id"],
++                    **{
++                        k: report[k]
++                        for k in ("sync_losses", "coverage_resets", "coverage_top_shortfalls")
++                    },
++                }
+                 epoch_report["prior_refresh_decisions"] = deepcopy(report["refresh_decisions"])
+                 if incomplete:
+                     # Keep the state machine's true result: IDs may be aligned
+@@ -612,7 +636,7 @@
+                                     # updates; preserve the failed epoch before re-anchoring.
+                                     session.error = str(exc)
+                                     if not renew_coverage(
+-                                        min(deadline, connected + rotate_seconds)
++                                        min(deadline, connected + rotate_seconds), row
+                                     ):
+                                         break
+                                     continue
+@@ -620,7 +644,9 @@
+                                     len(session.book.bids) < top or len(session.book.asks) < top
+                                 ):
+                                     if not renew_coverage(
+-                                        min(deadline, connected + rotate_seconds), incomplete=True
++                                        min(deadline, connected + rotate_seconds),
++                                        row,
++                                        incomplete=True,
+                                     ):
+                                         break
+                                     continue
+@@ -699,16 +725,20 @@
+                         ended_at=now(),
+                         end_reason="interrupted" if isinstance(exc, KeyboardInterrupt) else "error",
+                     )
++                flush_failed = False
+                 try:
+                     flush()
+                 except Exception as flush_exc:
++                    flush_failed = True
+                     report["flush_error"] = str(flush_exc)
+                 report.update(
+                     complete=False, synchronized=False, error=f"{type(exc).__name__}: {exc}"
+                 )
+-                depth.save_collection(
+-                    store, report, "interrupted" if isinstance(exc, KeyboardInterrupt) else "failed"
+-                )
++                state = "interrupted" if isinstance(exc, KeyboardInterrupt) else "failed"
++                if flush_failed:
++                    depth.save_flush_failure(store, report, state)
++                else:
++                    depth.save_collection(store, report, state)
+                 raise
+     finally:
+         if own:
+diff --git a/tests/test_depth_independent_cases.py b/tests/test_depth_independent_cases.py
+--- a/tests/test_depth_independent_cases.py
++++ b/tests/test_depth_independent_cases.py
+@@ -70,8 +70,8 @@
+ 
+ @pytest.mark.parametrize("remaining", [0, 8])
+ @pytest.mark.parametrize("delay", [0, 2])
+-def test_consumer_failure_lifecycle_and_existing_status_publication_gap(tmp_path, remaining, delay):
+-    """Characterize the gap explicitly; passing does not mean instantaneous invalidation."""
++def test_consumer_failure_lifecycle_with_early_failure_publication(tmp_path, remaining, delay):
++    """Invalidity must be visible before event persistence and the full report commit."""
+     result = load("consumer_probe").probe(tmp_path / "store", remaining, delay)
+     observations = result["observations"]
+     by_phase = {o["phase"]: o for o in observations}
+@@ -79,9 +79,10 @@
+     before = by_phase["failure_before_report_commit"]
+     assert before["in_memory_sync_losses"] == 1
+     assert before["in_memory_synchronized"] is False
+-    # Current status/CLI still read the previous durable report during the flush.
+-    assert before["healthy"] is True and before["cli_exit"] == 0
+-    assert before["sync_losses"] == 0 and before["last_update_id"] == 102
++    assert before["healthy"] is False and before["cli_exit"] == 2
++    assert before["sync_losses"] == 1 and before["last_update_id"] == 102
++    for phase in ("failure_before_event_persistence", "failure_after_synthetic_persistence_delay"):
++        assert by_phase[phase]["healthy"] is False and by_phase[phase]["cli_exit"] == 2
+     after = by_phase["failure_after_report_commit"]
+     assert after["healthy"] is False and after["cli_exit"] == 2
+     assert after["sync_losses"] == 1 and after["synchronized"] is False
+diff --git a/tests/depth_failure_harness.py b/tests/depth_failure_harness.py
+new file mode 100644
+--- /dev/null
++++ b/tests/depth_failure_harness.py
+@@ -0,0 +1,237 @@
++"""Isolated real collector with synthetic exchange I/O and observable write faults."""
++
++import argparse
++import json
++import sqlite3
++import sys
++from contextlib import contextmanager
++from pathlib import Path
++from types import SimpleNamespace
++
++import httpx
++import pytest
++from marketdata import depth
++from marketdata import depth_stream as live
++from marketdata.binance import Fetcher
++from marketdata.domain import json_bytes, micros, utc
++from marketdata.store import Store
++
++BASE = micros(utc("2024-01-01")) // 1000
++
++
++def saved(root):
++    with sqlite3.connect((root / "state/catalog.sqlite").as_uri() + "?mode=ro", uri=True) as db:
++        db.row_factory = sqlite3.Row
++        result = depth.status(SimpleNamespace(db=db))
++    return result
++
++
++class SQLFault:
++    """Preserve actual SQLite transactions; inject only selected UPDATE failures."""
++
++    def __init__(self, connection, rig):
++        self.connection, self.rig = connection, rig
++
++    def __getattr__(self, key):
++        return getattr(self.connection, key)
++
++    def __enter__(self):
++        self.writing_failure = False
++        self.connection.__enter__()
++        return self
++
++    def __exit__(self, *args):
++        if args[0] is None and self.writing_failure:
++            self.rig.counts["commit"] += 1
++            if self.rig.should_fail("commit"):
++                self.connection.rollback()
++                self.rig.note("db_commit_rejected")
++                raise sqlite3.OperationalError("injected failure status commit error")
++        return self.connection.__exit__(*args)
++
++    def execute(self, sql, parameters=()):
++        if sql.startswith("UPDATE event_collections SET state=?,updated_at=?,report=?"):
++            report = json.loads(parameters[2])
++            if "failure_notice" in report:
++                self.writing_failure = True
++                self.rig.counts["db"] += 1
++                if self.rig.should_fail("db"):
++                    self.rig.note("db_write_rejected")
++                    raise sqlite3.OperationalError("injected failure status DB error")
++        return self.connection.execute(sql, parameters)
++
++
++class Rig:
++    def __init__(self, root, remaining, mode="normal", persist_hook=None):
++        self.root, self.remaining, self.mode = root, remaining, mode
++        self.persist_hook = persist_hook
++        self.clock, self.identity, self.snapshots = 0, 100, 0
++        self.counts = {"db": 0, "json": 0, "raw": 0, "commit": 0}
++        self.events, self.baseline, self.error, self.report = [], None, None, None
++        self.bids = {p: "1" for p in range(600, 1000)}
++        self.asks = {p: "1" for p in range(1001, 1501)}
++        self.store = Store(root)
++        self.store.db = SQLFault(self.store.db, self)
++
++    def note(self, phase):
++        value = saved(self.root)
++        self.events.append({"phase": phase, **value})
++        return value
++
++    def should_fail(self, operation):
++        if self.mode == "json_after_flush_once" and operation == "json":
++            return self.counts[operation] == 2
++        mode = self.mode.removeprefix("healthy_")
++        return mode == operation + "_always" or (
++            mode == operation + "_once" and self.counts[operation] == 1
++        )
++
++    def fetch(self, request):
++        self.snapshots += 1
++        if self.snapshots > 1:
++            self.note("before_recovery_snapshot")
++        return httpx.Response(
++            200,
++            json={
++                "lastUpdateId": self.identity,
++                "T": BASE + self.identity,
++                "E": BASE + self.identity + 1,
++                "bids": [[str(p), self.bids[p]] for p in sorted(self.bids, reverse=True)[:100]],
++                "asks": [[str(p), self.asks[p]] for p in sorted(self.asks)[:100]],
++            },
++        )
++
++    @contextmanager
++    def connect(self, *args, **kwargs):
++        def recv(timeout):
++            self.clock += 1
++            previous = self.identity
++            self.identity += 1
++            raw = {
++                "e": "depthUpdate",
++                "s": "BTCUSDT",
++                "st": 1,
++                "U": 100 if self.identity == 101 else self.identity,
++                "u": self.identity,
++                "pu": previous,
++                "T": BASE + self.identity,
++                "E": BASE + self.identity + 1,
++                "b": [],
++                "a": [],
++            }
++            failure_ids = (103, 105) if self.mode == "repeat_shock" else (103,)
++            if self.identity in failure_ids and self.mode != "no_shock":
++                self.baseline = self.note("healthy_before_failure")
++                assert self.baseline["healthy"] is (self.identity == 103)
++                if not self.mode.startswith("healthy_"):
++                    book, field = (self.bids, "b") if self.remaining == 0 else (self.asks, "a")
++                    removed = sorted(book, reverse=field == "b")[: 100 - self.remaining]
++                    for price in removed:
++                        del book[price]
++                    raw[field] = [[str(p), "0"] for p in removed]
++            return json.dumps(raw)
++
++        yield SimpleNamespace(recv=recv)
++
++    def run(self):
++        original_persist, original_write = live.persist_messages, depth.atomic_write
++
++        def persist(store, cid, messages):
++            if (
++                any(json.loads(m["message"])["u"] == 103 for m in messages)
++                and self.mode != "no_shock"
++            ):
++                self.counts["raw"] += 1
++                self.note("before_failed_event_persistence")
++                if self.persist_hook is not None:
++                    self.persist_hook(self)
++                if self.should_fail("raw"):
++                    raise OSError("injected raw persistence error")
++            return original_persist(store, cid, messages)
++
++        def write(path, blob):
++            report = json.loads(blob) if path.name == "depth-latest.json" else {}
++            if "failure_notice" in report or (
++                self.mode.startswith("healthy_") and report.get("messages", 0) >= 3
++            ):
++                self.counts["json"] += 1
++                self.note("db_committed_before_json")
++                if self.should_fail("json"):
++                    raise OSError("injected failure status JSON error")
++            return original_write(path, blob)
++
++        client = httpx.Client(transport=httpx.MockTransport(self.fetch))
++        try:
++            with pytest.MonkeyPatch.context() as patch:
++                # Only the collector's duration clock is synthetic. Wall-clock
++                # receipts remain real so an unmodified external CLI can query.
++                patch.setattr(
++                    live,
++                    "time",
++                    SimpleNamespace(
++                        monotonic=lambda: self.clock,
++                        sleep=lambda seconds: setattr(self, "clock", self.clock + seconds),
++                    ),
++                )
++                patch.setattr(live, "persist_messages", persist)
++                patch.setattr(depth, "atomic_write", write)
++                try:
++                    self.report = live.capture(
++                        self.store,
++                        seconds=7,
++                        flush_seconds=1,
++                        top=20,
++                        verify_seconds=3600,
++                        min_free_gib=0,
++                        connector=self.connect,
++                        fetcher=Fetcher(client, retries=0, sleep=lambda _: None),
++                    )
++                except Exception as exc:
++                    self.error = f"{type(exc).__name__}: {exc}"
++            final = saved(self.root)
++            persisted = sum(
++                row["kind"] == "update"
++                for segment in self.store.db.execute(
++                    "SELECT * FROM event_segments WHERE collection_id=?", (final["report"]["id"],)
++                )
++                for row in self.store._revision_table(segment, columns=["kind"]).to_pylist()
++            )
++            replay = depth.replay(self.store)
++            latest = json.loads((self.root / "state/depth-latest.json").read_bytes())
++            return json.loads(
++                json_bytes(
++                    {
++                        "remaining": self.remaining,
++                        "mode": self.mode,
++                        "error": self.error,
++                        "events": self.events,
++                        "final": final,
++                        "latest_json": latest,
++                        "counts": self.counts,
++                        "update_rows": persisted,
++                        "replay": replay,
++                    }
++                )
++            )
++        finally:
++            client.close()
++            self.store.close()
++
++
++def main():
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, required=True)
++    parser.add_argument("--remaining", type=int, choices=(0, 8), required=True)
++    parser.add_argument("--result", type=Path, required=True)
++    args = parser.parse_args()
++
++    def pause(rig):
++        print(json.dumps({"blocked_before_persistence": True, "root": str(rig.root)}), flush=True)
++        assert sys.stdin.readline().strip() == "resume"
++
++    result = Rig(args.root, args.remaining, persist_hook=pause).run()
++    args.result.write_text(json.dumps(result, indent=2) + "\n")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/tests/test_depth_failure_publication.py b/tests/test_depth_failure_publication.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_depth_failure_publication.py
+@@ -0,0 +1,270 @@
++"""Commit visibility, mirror/DB faults, durable bounds, retries and forced exit."""
++
++import json
++import selectors
++import sqlite3
++import subprocess
++import sys
++from copy import deepcopy
++from pathlib import Path
++
++import pytest
++from depth_failure_harness import Rig, saved
++from marketdata import depth
++from marketdata.domain import DataError
++from marketdata.store import Store
++
++
++def stable_bounds(report):
++    return {
++        k: report.get(k)
++        for k in (
++            "messages",
++            "persisted_messages",
++            "snapshots",
++            "last_received_at",
++            "last_update_id",
++            "epochs",
++        )
++    }
++
++
++def run_cli(root, command="depth-status"):
++    result = subprocess.run(
++        [sys.executable, "-m", "marketdata.cli", "--root", str(root), command],
++        capture_output=True,
++        text=True,
++        timeout=15,
++        check=False,
++    )
++    # The installed console script's main is also used below if cli has no -m entry.
++    assert result.stdout, result.stderr
++    return result.returncode, json.loads(result.stdout)
++
++
++def spawn_paused(tmp_path, remaining):
++    root, result = tmp_path / "store", tmp_path / "worker-result.json"
++    child = subprocess.Popen(
++        [
++            sys.executable,
++            str(Path(__file__).with_name("depth_failure_harness.py")),
++            "--root",
++            str(root),
++            "--remaining",
++            str(remaining),
++            "--result",
++            str(result),
++        ],
++        stdin=subprocess.PIPE,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE,
++        text=True,
++    )
++    try:
++        with selectors.DefaultSelector() as ready:
++            ready.register(child.stdout, selectors.EVENT_READ)
++            assert ready.select(timeout=15), "collector did not reach the persistence barrier"
++        line = child.stdout.readline()
++        assert line, child.stderr.read()
++        assert json.loads(line)["blocked_before_persistence"]
++        return child, root, result
++    except BaseException:
++        child.kill()
++        child.communicate(timeout=10)
++        raise
++
++
++@pytest.mark.parametrize("remaining", [0, 8])
++def test_external_cli_rejects_while_event_persistence_is_blocked(tmp_path, remaining):
++    child, root, result_path = spawn_paused(tmp_path, remaining)
++    try:
++        value = saved(root)
++        assert value["healthy"] is False and value["report"]["sync_losses"] == 1
++        report = value["report"]
++        assert report["messages"] == report["persisted_messages"] == 2
++        assert report["last_update_id"] == 102
++        assert report["epochs"][0]["final"]["book"]["last_update_id"] == 102
++        assert report["failure_notice"]["observed_update_id"] == 103
++        assert report["last_received_at"] < report["failure_notice"]["observed_received_at"]
++        code, status = run_cli(root)
++        assert code == 2 and status["healthy"] is False and status["report"] == value["report"]
++        assert value["last_receive_age_seconds"] <= status["last_receive_age_seconds"] < 10
++        latest = json.loads((root / "state/depth-latest.json").read_bytes())
++        assert latest == report
++        child.communicate("resume\n", timeout=15)
++        assert child.returncode == 0
++        result = json.loads(result_path.read_bytes())
++        assert result["error"] is None and result["final"]["state"] == "partial"
++        assert result["final"]["report"]["sync_losses"] == 1
++        assert result["replay"]["replay_matches_live"] and not result["replay"]["valid"]
++        assert result["final"]["report"]["epochs"][-1]["final"]["book"]["top_complete"]
++    finally:
++        if child.poll() is None:
++            child.kill()
++            child.communicate(timeout=10)
++
++
++@pytest.mark.parametrize("remaining", [0, 8])
++@pytest.mark.parametrize(
++    "mode",
++    [
++        "json_once",
++        "json_always",
++        "json_after_flush_once",
++        "raw_once",
++        "raw_always",
++        "db_once",
++        "db_always",
++        "commit_once",
++        "commit_always",
++    ],
++)
++def test_failure_publication_faults_through_collector_exception_handler(tmp_path, remaining, mode):
++    result = Rig(tmp_path / "store", remaining, mode).run()
++    assert result["error"] is not None
++    baseline = next(e for e in result["events"] if e["phase"] == "healthy_before_failure")
++    assert baseline["healthy"]
++    final, latest = result["final"], result["latest_json"]
++    if mode in {"db_always", "commit_always"}:
++        # Publication itself never committed. The old healthy report can remain
++        # visible until stale; do not claim it was invalidated out-of-process.
++        assert final["healthy"] and final["report"]["sync_losses"] == 0
++        assert stable_bounds(final["report"]) == stable_bounds(baseline["report"])
++        assert result["counts"]["raw"] == 0 and "failure_notice" not in latest
++    else:
++        assert not final["healthy"] and final["state"] == "failed"
++        assert final["report"]["sync_losses"] == final["report"]["coverage_resets"] == 1
++        assert final["report"]["coverage_top_shortfalls"] == int(remaining == 8)
++        assert not result["replay"]["valid"]
++        assert final["report"]["persisted_messages"] == result["update_rows"]
++        for event in result["events"]:
++            if event["phase"] in {"db_committed_before_json", "before_failed_event_persistence"}:
++                assert not event["healthy"] and event["report"]["sync_losses"] == 1
++        if mode == "json_always":
++            assert stable_bounds(final["report"]) == stable_bounds(baseline["report"])
++            assert result["counts"]["raw"] == 0
++            assert latest == baseline["report"]  # DB failed-state and stale JSON are distinct.
++        elif mode == "raw_always":
++            assert stable_bounds(final["report"]) == stable_bounds(baseline["report"])
++            assert final["report"]["persisted_messages"] == 2
++            assert "flush_error" in final["report"]
++        else:
++            assert final["report"]["persisted_messages"] == 3
++            assert latest == final["report"]
++        notices = [
++            e["report"]["failure_notice"]
++            for e in result["events"]
++            if "failure_notice" in e["report"]
++        ]
++        assert len({n["recorded_at"] for n in notices}) == 1
++
++
++@pytest.mark.parametrize("remaining", [0, 8])
++def test_two_failures_stay_monotonic_and_older_retry_cannot_replace_latest(tmp_path, remaining):
++    result = Rig(tmp_path / "store", remaining, "repeat_shock").run()
++    assert result["error"] is None
++    report = result["final"]["report"]
++    assert report["sync_losses"] == report["coverage_resets"] == 2
++    assert report["coverage_top_shortfalls"] == 2 * int(remaining == 8)
++    assert report["state"] == "partial" and not result["replay"]["valid"]
++    assert result["replay"]["replay_matches_live"]
++    observed = [e["report"]["sync_losses"] for e in result["events"]]
++    assert observed == sorted(observed)
++    first = next(
++        e["report"]["failure_notice"] for e in result["events"] if "failure_notice" in e["report"]
++    )
++    last = report["failure_notice"]
++    assert last["sequence"] > first["sequence"] and last["observed_update_id"] == 105
++    store = Store(tmp_path / "store")
++    try:
++        with pytest.raises(DataError, match="older failure"):
++            depth.publish_failure(store, first)
++        depth.publish_failure(store, last)
++        final = saved(store.root)["report"]
++        assert final["state"] == "partial" and final["sync_losses"] == 2
++        assert final["failure_notice"] == last
++    finally:
++        store.close()
++
++
++@pytest.mark.parametrize("remaining", [0, 8])
++def test_force_kill_after_publication_preserves_notice_and_restart_boundary(tmp_path, remaining):
++    child, root, _ = spawn_paused(tmp_path, remaining)
++    before = saved(root)
++    child.kill()
++    child.communicate(timeout=10)
++    assert child.returncode != 0
++    assert saved(root)["report"] == before["report"] and saved(root)["healthy"] is False
++    notice = before["report"]["failure_notice"]
++    store = Store(root)
++    try:
++        original = deepcopy(notice)
++        for _ in range(2):
++            assert depth.publish_failure(store, notice) == original
++        assert notice == original
++        after = saved(root)
++        assert not after["healthy"] and after["report"]["sync_losses"] == 1
++        assert stable_bounds(after["report"]) == stable_bounds(before["report"])
++    finally:
++        store.close()
++    restarted = Rig(root, remaining, "no_shock").run()
++    assert restarted["error"] is None and restarted["final"]["state"] == "complete"
++    with sqlite3.connect(root / "state/catalog.sqlite") as db:
++        record = db.execute(
++            "SELECT state,report FROM event_collections WHERE id=?", (notice["collection_id"],)
++        ).fetchone()
++    assert record[0] == "interrupted"
++    previous = json.loads(record[1])
++    assert previous["sync_losses"] == 1 and previous["failure_notice"] == original
++    assert not previous["complete"]
++
++
++def test_publication_rejects_nested_transaction_and_conflicting_retry(tmp_path):
++    result = Rig(tmp_path / "store", 8, "raw_always").run()
++    store = Store(tmp_path / "store")
++    try:
++        notice = result["final"]["report"]["failure_notice"]
++        store.db.execute("BEGIN")
++        with pytest.raises(DataError, match="own committed transaction"):
++            depth.publish_failure(store, notice)
++        store.db.rollback()
++        changed = {**notice, "sync_losses": 2}
++        with pytest.raises(DataError, match="Conflicting"):
++            depth.publish_failure(store, changed)
++        assert saved(store.root)["report"]["sync_losses"] == 1
++        before = deepcopy(notice)
++        depth.publish_failure(store, notice)
++        assert notice == before and saved(store.root)["state"] == "failed"
++    finally:
++        store.close()
++
++
++@pytest.mark.parametrize("mode", ["raw_always", "raw_once", "json_once", "json_always"])
++def test_normal_book_flush_faults_preserve_confirmed_bounds_without_reconnecting(tmp_path, mode):
++    result = Rig(tmp_path / "store", 8, "healthy_" + mode).run()
++    baseline = next(e for e in result["events"] if e["phase"] == "healthy_before_failure")
++    assert baseline["healthy"] and result["error"] is not None
++    final, report = result["final"], result["final"]["report"]
++    assert not final["healthy"] and final["state"] == "failed"
++    assert "failure_notice" not in report and report["sync_losses"] == 0
++    assert report["coverage_resets"] == report["coverage_top_shortfalls"] == 0
++    assert report["connections"] == 1 and report["connection_errors"] == 0
++    assert not any(e["phase"] == "before_recovery_snapshot" for e in result["events"])
++    assert report["persisted_messages"] == result["update_rows"]
++    assert result["replay"]["replay_matches_live"] and not result["replay"]["valid"]
++    if mode == "raw_always":
++        assert result["counts"]["raw"] == 2
++        assert stable_bounds(report) == stable_bounds(baseline["report"])
++        observed = report["flush_failure_observation"]
++        assert observed["messages_received"] == 3
++        assert observed["book_update_id"] == 103
++        assert observed["last_received_at"] > report["last_received_at"]
++        assert observed["persisted_messages"] == 2
++    else:
++        assert report["messages"] == report["persisted_messages"] == 3
++        assert report["last_update_id"] == 103
++        assert report["epochs"][0]["final"]["book"]["last_update_id"] == 103
++    if mode == "json_always":
++        assert result["latest_json"] == baseline["report"]
++    else:
++        assert result["latest_json"] == report
