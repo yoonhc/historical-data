@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-04T23:55:41.207723+00:00",
+  "command": [
+    "journalctl",
+    "--user",
+    "--all",
+    "--no-pager",
+    "--output=json",
+    "-u",
+    "marketdata-restic-archive.service",
+    "-u",
+    "marketdata-pack.service",
+    "--since",
+    "2026-10-05 03:14:00",
+    "--until",
+    "2026-10-05 08:54:00"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "lines": 93
+}

@@ -1,0 +1,67 @@
+NextElapseUSecRealtime=Mon 2026-10-05 13:10:00 KST
+LastTriggerUSec=Sun 2026-10-04 13:10:00 KST
+Result=success
+Id=marketdata-backup.timer
+ActiveState=active
+SubState=waiting
+UnitFileState=enabled
+
+NextElapseUSecRealtime=Mon 2026-10-05 03:35:00 KST
+LastTriggerUSec=Mon 2026-10-05 03:05:00 KST
+Result=success
+Id=marketdata-restic-archive.timer
+ActiveState=active
+SubState=waiting
+UnitFileState=enabled
+
+NextElapseUSecRealtime=Mon 2026-10-05 03:15:00 KST
+LastTriggerUSec=Mon 2026-10-05 02:15:00 KST
+Result=success
+Id=marketdata-pack.timer
+ActiveState=active
+SubState=waiting
+UnitFileState=enabled
+
+Type=oneshot
+MainPID=0
+Result=success
+ExecMainStartTimestamp=Sun 2026-10-04 13:10:00 KST
+ExecMainExitTimestamp=Sun 2026-10-04 13:51:44 KST
+ExecMainStatus=0
+Id=marketdata-backup.service
+ActiveState=inactive
+SubState=dead
+UnitFileState=linked
+
+Type=oneshot
+MainPID=0
+Result=success
+ExecMainStartTimestamp=Mon 2026-10-05 03:05:00 KST
+ExecMainExitTimestamp=Mon 2026-10-05 03:05:12 KST
+ExecMainStatus=0
+Id=marketdata-restic-archive.service
+ActiveState=inactive
+SubState=dead
+UnitFileState=static
+
+Type=simple
+MainPID=1318543
+Result=success
+ExecMainStartTimestamp=Mon 2026-10-05 02:28:44 KST
+ExecMainExitTimestamp=
+ExecMainStatus=0
+Id=marketdata-depth.service
+ActiveState=active
+SubState=running
+UnitFileState=enabled
+
+Type=simple
+MainPID=1319106
+Result=success
+ExecMainStartTimestamp=Mon 2026-10-05 02:33:38 KST
+ExecMainExitTimestamp=
+ExecMainStatus=0
+Id=marketdata-aggtrade.service
+ActiveState=active
+SubState=running
+UnitFileState=enabled

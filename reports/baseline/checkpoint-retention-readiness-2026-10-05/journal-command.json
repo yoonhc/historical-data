@@ -1,0 +1,19 @@
+{
+  "command": [
+    "journalctl",
+    "--user",
+    "--all",
+    "--no-pager",
+    "--output=json",
+    "-u",
+    "marketdata-backup.service",
+    "-u",
+    "marketdata-restic-archive.service",
+    "--since",
+    "2026-10-04 13:00:00",
+    "--until",
+    "2026-10-04 14:30:00"
+  ],
+  "returncode": 0,
+  "at": "2026-10-04T17:30:52.990663+00:00"
+}
