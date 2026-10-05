@@ -1,5 +1,11 @@
 # 검증 기록
 
+`baseline/checkpoint-retirement-followup-2026-10-05/`는 첫 checkpoint 정리 이후 새 예약 백업 확인입니다.
+[요약](baseline/checkpoint-retirement-followup-2026-10-05/summary.md)에 13:58 새 daily 완료,
+동일 사본의 14:05 예약 restic 저장·전체 읽기 검사, 원래 8개 snapshot과 로컬 사본 6개 보존을
+남겼습니다. 오늘 snapshot 1개 추가 후 14:35 예약은 처리 0개로 정상 종료했고, 기존 초기 3/3
+관찰·복구 증거는 유지했습니다. 호가 새 버전 첫 정기 종료 확인은 15:05 이후 별도 항목입니다.
+
 `baseline/depth-status-deploy-2026-10-05/`는 승인한 호가 상태 공개 버전의 실제 운영 반영입니다.
 [요약](baseline/depth-status-deploy-2026-10-05/summary.md)에 14:01 호가 서비스만 종료·기동,
 이전 17,522개 저장 완료와 interrupted 보존, 새 1,350개 저장·REST 13회 일치·CLI 정상 결과를
@@ -33,7 +39,8 @@ waiting_source와 정기 백업·restic 진행 상태를 배포 결과와 구분
 `baseline/checkpoint-retirement-apply-2026-10-05/`는 승인한 작업용 사본 5개의 첫 수동 정리 결과입니다.
 [요약](baseline/checkpoint-retirement-apply-2026-10-05/summary.md)에 9/27~10/1 정리 완료,
 남은 로컬 사본 6개·restic 8개 보존, 여유 공간 증가 관측 5.56GB와 동일 계획 재실행의 추가 삭제 없음을
-남겼습니다. 정리 후 예약 11회는 모두 처리 0개 성공이며, 10/5 새 daily → 예약 restic 연결은 후속입니다.
+남겼습니다. 당시 정리 후 예약 11회는 모두 처리 0개 성공이었으며, 10/5 새 daily → 예약 restic
+연결은 위 후속 점검에서 완료를 확인했습니다.
 수집·기존 예약은 유지했고 자동 정리·forget/prune·시험 사본 정리는 적용하지 않았습니다.
 
 `baseline/checkpoint-retention-readiness-2026-10-05/`는 최종 코드로 실행된 10/4 정기 백업 확인입니다.

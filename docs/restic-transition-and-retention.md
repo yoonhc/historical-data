@@ -1,6 +1,6 @@
 # restic 전환 전 복구 확인과 보관 정책
 
-2026-10-03 정책 검토, **10/5 첫 수동 정리 결과 반영**. 사용자가 선택한
+2026-10-03 정책 검토, **10/5 첫 수동 정리·후속 새 예약 백업 확인 반영**. 사용자가 선택한
 **작업용 완료 사본 최근 3개 + 날짜별 장기 보관**을 아래 정책으로 구체화한다.
 10/5에는 승인된 특정 계획의 작업용 사본 5개를 수동 정리했다. 자동 checkpoint 정리,
 restic `forget`·`prune`, 기존 daily 대체는 적용하지 않았다. 기존 수집·daily·restic 예약은
@@ -13,7 +13,10 @@ restic `forget`·`prune`, 기존 daily 대체는 적용하지 않았다. 기존 
 완료한 뒤, [10/4 새 daily·예약 restic 확인 및 최종 계획](../reports/baseline/checkpoint-retention-readiness-2026-10-05/summary.md)을
 검토·승인해 [첫 수동 정리](../reports/baseline/checkpoint-retirement-apply-2026-10-05/summary.md)를 마쳤다.
 승인용 별도 정책 파일만 `apply_enabled=true`이며 이를 실행하는 서비스·타이머는 없다.
-정리 후 새 daily 사본의 생성부터 예약 restic 저장·검사까지는 10/5 오후 후속 확인이다.
+정리 후 첫 새 daily는 10/5 13:58 완료했고, 같은 사본의 예약 restic 저장·전체 읽기 검사는
+14:10 완료했다. [후속 확인](../reports/baseline/checkpoint-retirement-followup-2026-10-05/summary.md)에서
+backup/snapshot ID·journal·실제 저장소를 연결했고 기존 restic 8개와 로컬 사본 6개 보존,
+새 사본·snapshot 각각 1개 추가 및 14:35 재실행의 중복 없음까지 확인했다.
 [10/4 후속 보강](../reports/baseline/checkpoint-retention-guards-2026-10-04/summary.md)은 계획의
 코드 식별자·판정 시각·경과시간, 사본과 snapshot 연결, 적용 전후 공간 관측을 추가한다.
 
@@ -239,5 +242,5 @@ Python 인터프리터·OS까지 이식 가능한 설치 이미지로 만든 것
 시험 산출물 약 93GB를 영구 보관 정책으로 확정한 것은 아니다. 복구 키트·코드·문서·검증 근거는
 보존하고, 재생성 가능한 저장소 복제본·추출본·복원본·재백업본은 구성별 **별도 수동 정리 후보**로
 검토한다. 작업용 checkpoint 정리기에 포함하지 않으며, 93GB 전부가 회수 가능하다고 계산하지 않는다.
-이후에는 첫 정리 다음 새 daily·예약 restic 연결을 확인하고, 추가 정리·자동화는 별도로 검토한다.
+첫 정리 다음 새 daily·예약 restic 연결 확인은 완료했다. 추가 정리·자동화는 별도로 검토한다.
 외부 복구 키 보관 및 실제 VM 이전 검증, 필요 시 restic 만료·공간 회수 기능도 후속으로 남긴다.

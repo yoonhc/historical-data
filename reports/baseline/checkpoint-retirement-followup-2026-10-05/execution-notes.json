@@ -1,0 +1,26 @@
+{
+  "preliminary_attempts": [
+    {
+      "stage": "journal_command",
+      "error": "journalctl rejected Asia/Seoul suffix; changed since to explicit equivalent UTC",
+      "operational_mutation": false
+    },
+    {
+      "stage": "journal_evidence",
+      "error": "journalctl JSON defaults replaced long MESSAGE fields with null; added --all, retained initial journal capture",
+      "operational_mutation": false
+    },
+    {
+      "stage": "live_restic_metadata",
+      "error": "sandbox read-only filesystem prevented normal restic lock creation; audit-only process interrupted before rerun with escalation",
+      "operational_mutation": false,
+      "artifacts": "sandbox-lock-attempt"
+    },
+    {
+      "stage": "idle_guard",
+      "error": "first elevated retry overlapped scheduled 14:35 archive run; idle guard stopped audit before metadata commands; retried after actual scheduled completion",
+      "operational_mutation": false
+    }
+  ],
+  "final_run": "see results.json"
+}
