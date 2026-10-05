@@ -1,0 +1,28 @@
+{
+  "unit_verify": {
+    "command": [
+      "systemd-analyze",
+      "--user",
+      "verify",
+      "integrations/systemd/marketdata-checkpoint-retirement.service",
+      "integrations/systemd/marketdata-checkpoint-retirement.timer"
+    ],
+    "cwd": "/tmp/marketdata-checkpoint-automation-20261005",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "",
+    "initial_sandbox_attempt": "Private socket denied; rerun with escalation passed",
+    "unit_sha256": {
+      "marketdata-checkpoint-retirement.service": "b6805cc87f9db7fce045eaeac271708bf6dc1a32ebcd3b09615cbad265afd377",
+      "marketdata-checkpoint-retirement.timer": "3233f2f0115bf5668e52170bfa87f46310e8da062d152cc72dda8b41dc5fefd8"
+    }
+  },
+  "calendar": {
+    "on_calendar": "*-*-* 06:40:00 UTC",
+    "next_calculated_occurrences_kst": [
+      "2026-10-06T15:40:00+09:00",
+      "2026-10-07T15:40:00+09:00"
+    ],
+    "meaning": "Calendar calculation only. Timer not installed or activated."
+  }
+}

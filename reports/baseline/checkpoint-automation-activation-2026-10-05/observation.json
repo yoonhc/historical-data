@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "feature": "scheduled-working-checkpoint-retirement",
+  "last_checked_at": "2026-10-05T10:53:08.709661+00:00",
+  "scope_id": "8e1b3059c148f2ca235ec44faf317f8d680f5a846d4445327363534cfb297c5b",
+  "activation_report": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/checkpoint-automation-activation-2026-10-05/activation.json",
+  "initial_expected_execution_kst": "2026-10-06T15:40:00+09:00",
+  "first_scheduled_evaluation": {
+    "state": "pending",
+    "run_id": null,
+    "plan_id": null,
+    "result": null
+  },
+  "first_scheduled_cleanup": {
+    "state": "pending",
+    "run_id": null,
+    "plan_id": null,
+    "deleted_checkpoints": 0
+  },
+  "post_cleanup_next_daily_restic": {
+    "state": "awaiting_first_cleanup",
+    "daily_id": null,
+    "backup_id": null,
+    "snapshot_id": null,
+    "full_check_finished_at": null
+  },
+  "scheduled_evaluations_observed": 0,
+  "completed_scheduled_cleanups": 0,
+  "operational_deletions": 0,
+  "evidence_runs": [],
+  "counting_rule": "Use actual verified timer run receipts. Do not count preflight, previews or zero candidates as a completed cleanup. Existing restic 3/3 observation is separate.",
+  "run_receipt_root": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/checkpoint-scheduled"
+}

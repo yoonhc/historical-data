@@ -1,0 +1,12 @@
+{
+  "command": [
+    "systemctl",
+    "--user",
+    "show",
+    "marketdata-checkpoint-retirement.timer",
+    "--property=Id,LoadState,UnitFileState,ActiveState,SubState,NextElapseUSecRealtime,LastTriggerUSec,Persistent,AccuracyUSec,TimersCalendar,FragmentPath,DropInPaths"
+  ],
+  "returncode": 0,
+  "stdout": "TimersCalendar={ OnCalendar=*-*-* 06:40:00 UTC ; next_elapse=Tue 2026-10-06 15:40:00 KST }\nNextElapseUSecRealtime=Tue 2026-10-06 15:40:00 KST\nLastTriggerUSec=\nAccuracyUSec=1s\nPersistent=no\nId=marketdata-checkpoint-retirement.timer\nLoadState=loaded\nActiveState=active\nSubState=waiting\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer\nDropInPaths=\nUnitFileState=enabled\n",
+  "stderr": ""
+}

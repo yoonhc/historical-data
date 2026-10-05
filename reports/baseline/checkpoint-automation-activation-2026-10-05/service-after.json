@@ -1,0 +1,12 @@
+{
+  "command": [
+    "systemctl",
+    "--user",
+    "show",
+    "marketdata-checkpoint-retirement.service",
+    "--property=Id,LoadState,ActiveState,SubState,UnitFileState,ExecMainStartTimestamp,ExecMainExitTimestamp,ExecMainStatus,MainPID,InvocationID,Result,FragmentPath,DropInPaths"
+  ],
+  "returncode": 0,
+  "stdout": "MainPID=0\nResult=success\nExecMainStartTimestamp=\nExecMainExitTimestamp=\nExecMainStatus=0\nId=marketdata-checkpoint-retirement.service\nLoadState=loaded\nActiveState=inactive\nSubState=dead\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service\nDropInPaths=\nUnitFileState=static\nInvocationID=\n",
+  "stderr": ""
+}

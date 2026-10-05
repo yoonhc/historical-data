@@ -1,0 +1,42 @@
+{
+  "initial": {
+    "tests": 9,
+    "failures": 2,
+    "errors": 0,
+    "skipped": 0,
+    "time_seconds": 297.692,
+    "sha256": "07960b429470b2a0b44e9d8eb021dca420da5e77b9d39606687456ed36c1981d"
+  },
+  "regression": {
+    "tests": 68,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "time_seconds": 597.1,
+    "sha256": "7edb52c9560360a81ef494fad7ed3834fcb895814f4fca51553a64457ba3dc9f"
+  },
+  "clean-final": {
+    "tests": 69,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "time_seconds": 616.713,
+    "sha256": "4b9df549049f04d2703187e31821f6955c1da03426df0f826240016f32de8d7d"
+  },
+  "final_source": {
+    "commit": "e6b86224aec31db9ed42c223fbacb8791978d0b9",
+    "clean_tree": true,
+    "files_equal_to_release": 138
+  },
+  "development_notes": [
+    "Initial fixed-clock test exposed identical plan IDs; added optional run/scope identity to existing plan hash.",
+    "Initial next-daily integration test used a positional argument for a keyword-only API; corrected test invocation.",
+    "68-case regression passed; added one more guard/test for abrupt exit before retirement journal creation; final clean checkout passed 69 cases."
+  ],
+  "warning": {
+    "count": 1,
+    "kind": "DeprecationWarning",
+    "test": "test_fork_does_not_inherit_python_lock_ownership",
+    "meaning": "Existing explicit fork lock-ownership test in a multithreaded interpreter; test passed."
+  }
+}

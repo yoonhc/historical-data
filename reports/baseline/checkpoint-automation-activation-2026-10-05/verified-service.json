@@ -1,0 +1,12 @@
+{
+  "command": [
+    "systemctl",
+    "--user",
+    "show",
+    "marketdata-checkpoint-retirement.service",
+    "--property=ActiveState,SubState,MainPID,ExecMainStartTimestamp,ExecMainExitTimestamp,ExecMainStatus,DropInPaths"
+  ],
+  "returncode": 0,
+  "stdout": "MainPID=0\nExecMainStartTimestamp=\nExecMainExitTimestamp=\nExecMainStatus=0\nActiveState=inactive\nSubState=dead\nDropInPaths=\n",
+  "stderr": ""
+}

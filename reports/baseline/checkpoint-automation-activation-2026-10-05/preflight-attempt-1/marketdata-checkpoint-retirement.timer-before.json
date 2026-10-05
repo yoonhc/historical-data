@@ -1,0 +1,12 @@
+{
+  "command": [
+    "systemctl",
+    "--user",
+    "show",
+    "marketdata-checkpoint-retirement.timer",
+    "--property=Id,LoadState,ActiveState,UnitFileState,FragmentPath,DropInPaths"
+  ],
+  "returncode": 0,
+  "stdout": "Id=marketdata-checkpoint-retirement.timer\nLoadState=not-found\nActiveState=inactive\nFragmentPath=\nDropInPaths=\nUnitFileState=\n",
+  "stderr": ""
+}

@@ -1,5 +1,19 @@
 # 검증 기록
 
+`baseline/checkpoint-automation-activation-2026-10-05/`는 별도 사용자 승인에 따른 자동 정리 예약 활성화입니다.
+[요약](baseline/checkpoint-automation-activation-2026-10-05/summary.md)에 19:38 활성화,
+실제 사용자 서비스 환경의 삭제 없는 점검·Linger/마운트/저장소 ID 일치·고정 승인 범위를 남겼습니다.
+첫 예약은 10/6 15:40 KST이며, 19:53 확인까지 정리 실행·삭제는 0건입니다.
+첫 예약 결과와 정리 후 다음 새 daily/restic 연결은 미완료 관찰로 구분합니다.
+
+`baseline/checkpoint-automation-2026-10-05/`는 매일 15:40 KST 작업용 사본 자동 정리 후보입니다.
+[요약](baseline/checkpoint-automation-2026-10-05/summary.md)에 고정 배포본·관련 69개 격리 시험,
+당일 daily와 동일 backup ID의 restic 저장·전체 검사 대조, 운영 미리보기 후보 1개·보호 3개·
+편입 전 제외 3개와 삭제 0건을 남겼습니다. 기존 코드·검증·잠금을 유지하며 새 계획을 매번 만듭니다.
+[반복 승인 범위](baseline/checkpoint-automation-2026-10-05/approval-review.md)는 이 후보 보고 시점의 제안이며,
+당시 새 타이머는 미설치·승인 파일은 비활성이었습니다. 이후 별도 승인·활성화는 위 기록으로 이어집니다.
+기존 수동 승인으로 자동 삭제하지 않습니다.
+
 `baseline/checkpoint-retirement-followup-2026-10-05/`는 첫 checkpoint 정리 이후 새 예약 백업 확인입니다.
 [요약](baseline/checkpoint-retirement-followup-2026-10-05/summary.md)에 13:58 새 daily 완료,
 동일 사본의 14:05 예약 restic 저장·전체 읽기 검사, 원래 8개 snapshot과 로컬 사본 6개 보존을

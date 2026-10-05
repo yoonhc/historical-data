@@ -1,0 +1,12 @@
+{
+  "command": [
+    "systemctl",
+    "--user",
+    "enable",
+    "--now",
+    "marketdata-checkpoint-retirement.timer"
+  ],
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "Created symlink /home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-checkpoint-retirement.timer -> /home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer.\n"
+}

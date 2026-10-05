@@ -1,0 +1,15 @@
+{
+  "command": [
+    "loginctl",
+    "show-user",
+    "yoonhc",
+    "--property=UID",
+    "--property=Name",
+    "--property=Linger",
+    "--property=State",
+    "--property=RuntimePath"
+  ],
+  "returncode": 0,
+  "stdout": "UID=1000\nName=yoonhc\nRuntimePath=/run/user/1000\nState=active\nLinger=yes\n",
+  "stderr": ""
+}

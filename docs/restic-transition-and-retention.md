@@ -1,8 +1,9 @@
 # restic 전환 전 복구 확인과 보관 정책
 
-2026-10-03 정책 검토, **10/5 첫 수동 정리·후속 새 예약 백업 확인 반영**. 사용자가 선택한
+2026-10-03 정책 검토, **10/5 첫 수동 정리·후속 새 예약 백업·자동 정리 예약 활성화 반영**. 사용자가 선택한
 **작업용 완료 사본 최근 3개 + 날짜별 장기 보관**을 아래 정책으로 구체화한다.
-10/5에는 승인된 특정 계획의 작업용 사본 5개를 수동 정리했다. 자동 checkpoint 정리,
+10/5에는 승인된 특정 계획의 작업용 사본 5개를 수동 정리했고, 19:38에는 별도 승인한
+15:40 KST 자동 정리 타이머를 활성화했다. 첫 실제 예약은 10/6 15:40이며 예약 삭제는 아직 0건이다.
 restic `forget`·`prune`, 기존 daily 대체는 적용하지 않았다. 기존 수집·daily·restic 예약은
 계속 유지한다. [독립 복구 및 용량 근거](../reports/baseline/restic-transition-2026-10-03/summary.md)는
 10/3 시점의 기록이며, 미래 실행 때 그대로 재사용할 삭제 목록이 아니다.
@@ -12,7 +13,10 @@ restic `forget`·`prune`, 기존 daily 대체는 적용하지 않았다. 기존 
 [정리기 구현·격리 시험·운영 미리보기](../reports/baseline/checkpoint-retention-2026-10-03/summary.md)까지
 완료한 뒤, [10/4 새 daily·예약 restic 확인 및 최종 계획](../reports/baseline/checkpoint-retention-readiness-2026-10-05/summary.md)을
 검토·승인해 [첫 수동 정리](../reports/baseline/checkpoint-retirement-apply-2026-10-05/summary.md)를 마쳤다.
-승인용 별도 정책 파일만 `apply_enabled=true`이며 이를 실행하는 서비스·타이머는 없다.
+수동 승인용 별도 정책 파일과 자동화용 최종 정책은 `apply_enabled=true`이며,
+자동화의 별도 반복 승인 파일도 이번 사용자 승인에 따라 `enabled=true`로 기록했다.
+[활성화·실행 환경 점검·새 예약만 중지하는 절차](../reports/baseline/checkpoint-automation-activation-2026-10-05/summary.md)에
+고정 승인 범위와 첫 예약·정리 후 다음 백업 연결의 미완료 관찰을 남겼다.
 정리 후 첫 새 daily는 10/5 13:58 완료했고, 같은 사본의 예약 restic 저장·전체 읽기 검사는
 14:10 완료했다. [후속 확인](../reports/baseline/checkpoint-retirement-followup-2026-10-05/summary.md)에서
 backup/snapshot ID·journal·실제 저장소를 연결했고 기존 restic 8개와 로컬 사본 6개 보존,
@@ -91,7 +95,7 @@ backup/snapshot ID·journal·실제 저장소를 연결했고 기존 restic 8개
    완료/미완료를 구분해야 하며, 사본 폴더만 지운 뒤 정상 처리됐다고 추정해서는 안 된다.
 
 첫 실제 정리는 위 조건을 구현·격리 시험한 다음 **구체적인 목록을 승인받아 수동으로** 진행했다.
-추가 정리도 당시 상태의 새 계획을 검토하며, 이번 승인을 다른 날짜·대상으로 확대하지 않는다.
+추가 수동 정리도 당시 상태의 새 계획을 검토하며, 이번 승인을 다른 날짜·대상으로 확대하지 않는다.
 원본 `data/`, live catalog, restic 저장소 파일, 시험 폴더는 이 정리기의 대상이 아니다.
 여유 공간 부족도 보호 조건을 완화하거나 임의의 오래된 폴더를 지우는 사유로 사용하지 않는다.
 
@@ -102,7 +106,8 @@ backup/snapshot ID·journal·실제 저장소를 연결했고 기존 restic 8개
 이전할 때 호스트 경로·UUID·저장소 ID·암호 경로를 기존 방식대로 관리한다. 복구 결과 파일과
 검토한 SHA-256을 지정하며, 암호 자체의 값·해시를 이 정책 파일에 넣지 않는다.
 기본 `apply_enabled=false`에서는 실제 정리를 거부한다. 설정을 바꾸면 정책 해시가 바뀌므로
-예전 계획을 재사용할 수 없고 새 미리보기를 만들어 검토해야 한다. 자동 정리 타이머는 없다.
+예전 계획을 재사용할 수 없고 새 미리보기를 만들어 검토해야 한다. 별도 자동 정리 타이머는
+아래의 고정 배포본과 반복 승인 범위를 사용하며, 이 수동 명령의 과거 승인을 이어 쓰지 않는다.
 
 ```bash
 .venv/bin/python -m scripts.retire_checkpoints --policy /path/to/checkpoint-retention.toml plan
@@ -117,14 +122,16 @@ backup/snapshot ID·journal·실제 저장소를 연결했고 기존 restic 8개
 계획에 없는 파일·심볼릭 링크·특수 파일·다른 파일시스템이 있으면 중단한다.
 
 계획 schema 2의 `code`에는 Git commit, 관련 소스와 의존성 선언의 파일별 SHA-256,
-전체 소스 해시, 실행 경로·Python 버전과 이를 묶은 `code_id`를 기록한다. 계획 작성·적용은
-매번 새 Python 프로세스로 실행한다. 계획 후 commit·소스·실행 환경이 바뀌면 새 계획이 필요하며,
+전체 소스 해시, 실행 경로·Python 버전과 이를 묶은 `code_id`를 기록한다. 수동 CLI의 계획 작성·적용은
+각각 새 Python 프로세스로 실행한다. 계획 후 commit·소스·실행 환경이 바뀌면 새 계획이 필요하며,
 같은 프로세스에서 import 후 소스가 바뀌어도 적용을 거부한다. 코드 식별자가 없는 schema 1
 계획은 과거 증거 조회만 허용하고 적용하지 않는다. `assessed_at`은 공통 판정 시각(UTC),
 `age_seconds`는 그 시각에서 완료 시각을 뺀 값이다. 유지 사본도 보호 사유와 snapshot ID를
 명시하며, 유지·후보 모두 계획 당시의 backup/snapshot 연결이 달라지면 적용을 거부한다.
 기록 파일 추가는 소스 해시를 바꾸지 않지만, 그 기록을 새 commit으로 만들면 commit이 바뀐다.
-따라서 최종 계획 전에 코드를 커밋하고 적용까지 고정한다.
+따라서 Git이 있는 수동 실행 경로는 최종 계획 전에 코드를 커밋하고 적용까지 고정한다.
+별도 자동화 배포본은 실행마다 새 프로세스에서 plan·apply를 수행하고 그 사이에도 코드를 재검사한다.
+Git 없는 배포본의 commit은 `null`로 기록하고 파일별 해시와 배포본 식별자로 고정한다.
 
 적용은 대상별 원래 목록과 진행 기록을 먼저 fsync하고, 같은 SSD의
 `backup_dir.parent/.<backup_dir.name>.retiring/<scope>/<plan_id>/<backup_id>`로 원자적 이동한다.
@@ -135,6 +142,17 @@ backup/snapshot ID·journal·실제 저장소를 연결했고 기존 restic 8개
 원래 manifest/source_root·archiver 상태는 수정하지 않는다. 알려진 로컬 정리 이력과 restic
 snapshot 유실은 별개이며, 설명 없는 snapshot 소실은 기존 archiver에서도 계속 오류다.
 
+10/5에는 [15:40 KST 자동화 후보](../reports/baseline/checkpoint-automation-2026-10-05/summary.md)의
+구현·관련 69개 격리 시험·운영 미리보기를 마쳤다. 운영 소스와 분리한 고정 배포본이며,
+당일 daily와 같은 backup ID의 restic 저장·전체 검사 근거를 원래 정리 조건에 추가한다.
+기존 수동 승인은 자동 삭제 권한으로 사용하지 않는다. 별도로 받은 반복 승인은
+[고정 코드·정책·경로·scope](../reports/baseline/checkpoint-automation-2026-10-05/approval-review.md)에만
+연결하며, 매 실행의 새 계획과 정확한 후보·보호 목록을 남긴다. 미완료 정리·잠금 경합·선행 작업
+미완료는 보류하고 다음 날 재평가하며, 미완료 정리는 수동 점검이 필요하다.
+이번 운영 미리보기는 후보 10/2 1개·보호 10/3~10/5 3개·편입 전 제외 3개, 삭제 0건이었다.
+이후 사용자 승인에 따라 19:38에 타이머와 반복 권한을 활성화했다. 첫 예약의 실제 정리와
+그 뒤 다음 daily/restic 연결은 [후속 관찰](../reports/baseline/checkpoint-automation-activation-2026-10-05/observation.json)로 남아 있다.
+
 잠금 순서는 **maintenance → 저장소 archive → 사본 부모 디렉터리 → live layout → writer**다.
 정리기는 앞의 세 잠금만 사용하고, 여러 사본 부모는 경로순으로 획득한다. `backup --reuse-from`,
 `backup-verify`, `restore`, restic 보관과 시험 도구, `ArchiveReader`는 입력을 사용하는 동안
@@ -143,7 +161,8 @@ snapshot 유실은 별개이며, 설명 없는 snapshot 소실은 기존 archive
 날짜별 부모 디렉터리와 이동 영역의 부모는 제거하지 않아 잠금 inode가 바뀌지 않는다.
 같은 날짜의 여러 사본이 함께 잠기므로 날짜 하나의 복원 중에는 그 날짜의 정리도 보류된다.
 
-첫 운영 적용 전에는 다음 절차를 수행한다.
+특정 계획을 수동 승인하여 운영에 적용하는 절차는 다음과 같다. 자동화 후보의 반복 승인·실행
+계약은 위 별도 문서를 따르며, 이 수동 승인 절차를 과거 승인만으로 생략하는 방식이 아니다.
 
 1. 최종 반영 이후 **정기 daily가 새 사본을 생성·검증하고 정기 restic이 같은 ID를 저장·검사**한
    실제 실행 기록을 확인한다. 새 사본 없는 `processed=0`이나 이전 코드의 성공은 대신하지 않는다.

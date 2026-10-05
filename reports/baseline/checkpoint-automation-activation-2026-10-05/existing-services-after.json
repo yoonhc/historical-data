@@ -1,0 +1,17 @@
+{
+  "command": [
+    "systemctl",
+    "--user",
+    "show",
+    "marketdata-depth.service",
+    "marketdata-aggtrade.service",
+    "marketdata-backup.timer",
+    "marketdata-daily.timer",
+    "marketdata-restic-archive.timer",
+    "marketdata-pack.timer",
+    "--property=Id,LoadState,ActiveState,SubState,UnitFileState,MainPID,ExecMainStartTimestamp,NextElapseUSecRealtime"
+  ],
+  "returncode": 0,
+  "stdout": "MainPID=1487392\nExecMainStartTimestamp=Mon 2026-10-05 19:03:14 KST\nId=marketdata-depth.service\nLoadState=loaded\nActiveState=active\nSubState=running\nUnitFileState=enabled\n\nMainPID=1477376\nExecMainStartTimestamp=Mon 2026-10-05 18:39:12 KST\nId=marketdata-aggtrade.service\nLoadState=loaded\nActiveState=active\nSubState=running\nUnitFileState=enabled\n\nNextElapseUSecRealtime=Tue 2026-10-06 13:10:00 KST\nId=marketdata-backup.timer\nLoadState=loaded\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\n\nNextElapseUSecRealtime=Tue 2026-10-06 12:20:09 KST\nId=marketdata-daily.timer\nLoadState=loaded\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\n\nNextElapseUSecRealtime=Mon 2026-10-05 20:05:00 KST\nId=marketdata-restic-archive.timer\nLoadState=loaded\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\n\nNextElapseUSecRealtime=Mon 2026-10-05 20:15:00 KST\nId=marketdata-pack.timer\nLoadState=loaded\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\n",
+  "stderr": ""
+}

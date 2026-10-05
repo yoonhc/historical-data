@@ -1,0 +1,12 @@
+{
+  "command": [
+    "systemctl",
+    "--user",
+    "show",
+    "marketdata-checkpoint-retirement.timer",
+    "--property=ActiveState,SubState,UnitFileState,NextElapseUSecRealtime,LastTriggerUSec,Persistent,DropInPaths"
+  ],
+  "returncode": 0,
+  "stdout": "NextElapseUSecRealtime=Tue 2026-10-06 15:40:00 KST\nLastTriggerUSec=\nPersistent=no\nActiveState=active\nSubState=waiting\nDropInPaths=\nUnitFileState=enabled\n",
+  "stderr": ""
+}

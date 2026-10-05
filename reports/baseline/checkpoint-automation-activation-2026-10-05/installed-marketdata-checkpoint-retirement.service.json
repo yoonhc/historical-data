@@ -1,0 +1,12 @@
+{
+  "command": [
+    "systemctl",
+    "--user",
+    "show",
+    "marketdata-checkpoint-retirement.service",
+    "--property=Id,LoadState,ActiveState,SubState,FragmentPath,DropInPaths,User,Group,ExecStart,EnvironmentFiles,Environment,WorkingDirectory,Restart,SuccessExitStatus,UMask,Nice,IOSchedulingClass,IOSchedulingPriority,TimeoutStartUSec,TimeoutStopUSec,KillSignal,Persistent,TimersCalendar"
+  ],
+  "returncode": 0,
+  "stdout": "Restart=no\nTimeoutStartUSec=2h\nTimeoutStopUSec=2min\nSuccessExitStatus=75\nExecStart={ path=/usr/bin/env ; argv[]=/usr/bin/env ${MARKETDATA_RETIREMENT_PYTHON} ${MARKETDATA_RETIREMENT_ENTRYPOINT} --settings ${MARKETDATA_RETIREMENT_SETTINGS} run ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nEnvironment=PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin\nEnvironmentFiles=/home/yoonhc/.config/marketdata/checkpoint-retirement-service.env (ignore_errors=no)\nUMask=0077\nWorkingDirectory=/home/yoonhc\nNice=10\nIOSchedulingClass=2\nIOSchedulingPriority=7\nUser=\nGroup=\nKillSignal=2\nId=marketdata-checkpoint-retirement.service\nLoadState=loaded\nActiveState=inactive\nSubState=dead\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service\nDropInPaths=\n",
+  "stderr": ""
+}

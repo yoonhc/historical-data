@@ -1,0 +1,12 @@
+{
+  "command": [
+    "systemctl",
+    "--user",
+    "show",
+    "marketdata-checkpoint-retirement.service",
+    "--property=LoadState,ActiveState,DropInPaths"
+  ],
+  "returncode": 0,
+  "stdout": "LoadState=not-found\nActiveState=inactive\nDropInPaths=\n",
+  "stderr": ""
+}

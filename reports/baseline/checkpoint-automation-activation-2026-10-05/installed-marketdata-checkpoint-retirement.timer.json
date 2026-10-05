@@ -1,0 +1,12 @@
+{
+  "command": [
+    "systemctl",
+    "--user",
+    "show",
+    "marketdata-checkpoint-retirement.timer",
+    "--property=Id,LoadState,ActiveState,SubState,FragmentPath,DropInPaths,User,Group,ExecStart,EnvironmentFiles,Environment,WorkingDirectory,Restart,SuccessExitStatus,UMask,Nice,IOSchedulingClass,IOSchedulingPriority,TimeoutStartUSec,TimeoutStopUSec,KillSignal,Persistent,TimersCalendar"
+  ],
+  "returncode": 0,
+  "stdout": "TimersCalendar={ OnCalendar=*-*-* 06:40:00 UTC ; next_elapse=(null) }\nPersistent=no\nId=marketdata-checkpoint-retirement.timer\nLoadState=loaded\nActiveState=inactive\nSubState=dead\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer\nDropInPaths=\n",
+  "stderr": ""
+}

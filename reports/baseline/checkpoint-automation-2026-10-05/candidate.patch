@@ -1,0 +1,1185 @@
+diff --git a/configs/checkpoint-retirement-service.example.env b/configs/checkpoint-retirement-service.example.env
+new file mode 100644
+index 0000000..db38509
+--- /dev/null
++++ b/configs/checkpoint-retirement-service.example.env
+@@ -0,0 +1,3 @@
++MARKETDATA_RETIREMENT_PYTHON=/home/collector/project/.venv/bin/python
++MARKETDATA_RETIREMENT_ENTRYPOINT=/home/collector/releases/retirement/scripts/run_checkpoint_schedule.py
++MARKETDATA_RETIREMENT_SETTINGS=/home/collector/.config/marketdata/checkpoint-schedule.toml
+diff --git a/configs/checkpoint-schedule.example.toml b/configs/checkpoint-schedule.example.toml
+new file mode 100644
+index 0000000..55516c9
+--- /dev/null
++++ b/configs/checkpoint-schedule.example.toml
+@@ -0,0 +1,3 @@
++# Separate from the previously approved manual policy. No grant is implied.
++retention_policy = "/home/collector/.config/marketdata/checkpoint-retention-automatic.toml"
++authorization_file = "/home/collector/.config/marketdata/checkpoint-retention-authorization.json"
+diff --git a/docs/checkpoint-scheduled-retirement.md b/docs/checkpoint-scheduled-retirement.md
+new file mode 100644
+index 0000000..c3b517e
+--- /dev/null
++++ b/docs/checkpoint-scheduled-retirement.md
+@@ -0,0 +1,110 @@
++# 작업용 checkpoint 정리 자동화 후보
++
++이 문서는 15:40 KST 자동 정리의 구현 계약이다. 후보 구현·격리 시험·삭제 없는 운영 미리보기까지만
++진행하며, 타이머 활성화와 반복 삭제 승인은 별도다. 기존 개별 수동 계획의 승인을 재사용하지 않는다.
++
++## 범위와 선행 조건
++
++새 `scripts.checkpoint_schedule`은 기존 `Retirement.plan()`·`apply()`를 호출한다. 원래의 UUID·
++저장소 ID·manifest/source_root·복구 증거·전체 검사 범위·파일 목록 대조·유지 사본 전체 해시 검사와
++잠금 순서는 유지한다. 원래 정리기에 추가한 기능은 선택적 자동 실행 ID·승인 범위 ID를 계획의
++해시 대상에 포함하는 것뿐이다. 이 두 ID로 시계가 같아도 실행마다 다른 계획을 만든다.
++
++자동 실행은 다음을 추가 확인한다.
++
++- 당일의 기준은 **Asia/Seoul 달력 날짜**다. 해당 날짜에 시작해 완료한 daily의 latest 보고서와
++  같은 ID의 history 보고서가 같아야 한다. `complete`, `ok`, 논리 검사 결과와 backup 성공을 확인한다.
++- daily의 정확한 backup ID·경로·원래 source_root를 archiver 기록과 연결한다. 기준 시각도 당일이어야 한다.
++- 해당 사본의 입력 검증, 성공한 저장 명령의 시각·snapshot ID·stdout summary가 일치해야 한다.
++  원래 저장 시각이 미상인 기록을 새 성공으로 추정하지 않는다.
++- 저장 이후의 `check --read-data` 성공과 해당 snapshot 포함을 확인하고 명령 receipt·출력도 대조한다.
++  기존 정리기는 이어서 후보와 유지 사본 모두의 실제 restic snapshot 및 manifest를 검사한다.
++- 선행 작업 미완료나 잠금 경합이면 보류한다. 미해결 실패는 점검 필요로 표시한다.
++- 기존 정리 journal이 미완료이면 새 계획을 만들지 않는다. 자동 재개·기록 삭제는 하지 않는다.
++
++이 확인은 plan과 apply가 각각 maintenance·repository 잠금을 획득한 안쪽에서 반복한다.
++plan 이후 daily·설정·승인 범위가 바뀌면 예전 판단으로 apply하지 않는다. 코드와 승인 파일도
++기존 정리기의 코드 검사 지점에서 다시 확인한다. 당일 날짜를 넘어가면 다음 예약에서 재평가한다.
++
++기존 최근 검증 사본 **3개**와 **완료 후 72시간 미만**의 보호 규칙을 합집합으로 적용한다.
++편입 전 사본·원본·live catalog·restic 지점·시험 공간·복구 키트는 대상이 아니다.
++직접 외부 복사 등 공통 flock에 참여하지 않는 프로그램까지 강제 보호할 수는 없으므로,
++운영 checkpoint 읽기는 기존 잠금 참여 진입점을 사용해야 한다.
++
++## 반복 승인과 고정 배포본
++
++자동화 전용 정책과 설정을 사용한다. 정책의 `apply_enabled=true`는 기존 정리기 호출을 허용하는
++최종 정책의 일부이며, **자동 실행의 승인을 뜻하지 않는다**. `preview`는 이 최종 정책으로도
++`apply`를 호출하지 않는다. 미리보기 후 정책 플래그를 바꿔 계획을 재사용하는 방식은 쓰지 않는다.
++
++`propose`는 아래 범위를 묶은 JSON을 출력하며 `enabled=false`, `approved_at=null`,
++`approval_reference=null`로 만든다. 이 명령에는 승인을 활성화하는 옵션이 없다.
++
++- 전용 승인 파일·정책 파일 경로, 실행 사용자 UID
++- 전체 실행 소스·의존성 선언·새 service/timer의 해시와 코드 ID, Python 경로·버전
++- 정책·archive 프로필의 해시, source root·저장소 ID·archive scope, 프로필의 모든 경로
++- restic 실행 파일 해시, 최신 3개·72시간, 15:40 KST 예약과 재시도·자동 재개 금지
++
++승인 파일은 사용자 소유 0600 일반 파일이어야 한다. 검토 후 별도 반복 승인을 받으면 범위를
++바꾸지 않고 `enabled=true`, 실제 승인 시각·승인 근거를 기록한다. 조건 중 하나라도 달라지면
++새 승인이 필요하다. 수동 계획 JSON을 이 파일로 지정해도 승인으로 인정하지 않는다.
++`run`은 승인과 함께 지정된 timer의 현재 systemd start Job/PID/invocation 근거를 요구한다.
++수동 CLI·수동 service 시작은 자동 삭제 권한을 사용하지 못한다.
++
++배포본은 별도 고정 디렉터리에 둔다. `run_checkpoint_schedule.py`가 그 디렉터리의 코드와
++marketdata 패키지를 먼저 import하므로 기존 editable 수집 설치와 분리된다. 다른 트리에서
++가져온 관련 모듈이 섞이면 거부한다. 코드 변경은 새 배포본과 새 승인으로 처리한다.
++Git 없는 배포본은 기존 코드 식별자의 `git_commit=null`을 그대로 쓰고 파일별·전체 해시를
++승인한다. 없는 commit을 만들어 기록하지 않는다. 재현용 후보 Git 기준은 별도 release 메타데이터다.
++
++## 실행 결과와 기록
++
++| state | 의미 | 종료 코드 |
++|---|---|---:|
++| `preview_ready` | 전체 plan 검사 통과, 후보 존재, 삭제하지 않음 | 0 |
++| `no_candidates` | plan 검사 통과, 후보 0개 | 0 |
++| `deferred` | 잠금·선행 조건·승인 부족 또는 미완료 정리 때문에 보류 | 75 |
++| `failed` | 무결성 대조·읽기/쓰기 오류·중단 등 실제 실패 | 1 |
++| `complete` | 새 계획의 정리가 완료됨 | 0 |
++
++매 평가에 고유 run ID와 `reports_root/checkpoint-scheduled/<run_id>/run.json`을 남긴다.
++plan 검사 통과 시 새 plan ID와 정확한 후보·보호 사유·편입 전 제외 목록을 기록한다.
++plan 전 보류는 `plan_id=null`, `selection_assessed=false`다. 확인하지 않은 목록을 후보 0개로
++꾸미거나 미완료 정리가 있는데 새 계획을 만들지 않는다.
++
++실제 unlink 전 진행 상태를 먼저 저장한다. 강제 종료로 run receipt가 `running`에 남더라도
++기존 정리 journal이 작업 진행의 기준이며, 다음 자동 실행은 미완료 journal을 감지해 보류한다.
++계획을 기록한 뒤 정리 journal 생성 전에 강제 종료된 자동 실행도 모호한 중단으로 보류한다.
++완료 journal로 해소됐음을 확인할 수 없다면 별도 수동 점검이 필요하고, 보고서를 지워 넘기지 않는다.
++단순히 생성해 둔 미리보기 계획은 실제 자동 적용을 시작했다가 중단한 실행과 구분한다.
++수동 점검·명시적 재개는 원래 계획/코드로 수행하고 그 근거를 따로 남긴다.
++이미 완료한 개수와 미완료 여부를 구분하며, 부분 정리 후 오류는 성공으로 덮지 않는다.
++보고서 저장 자체가 실패하면 CLI 오류와 systemd 실패가 남을 수 있고 파일 receipt를 보장하지 않는다.
++
++`preview`는 기존 plan 검사다. 유지 사본 파일 전체 해시·카탈로그·pack 검사는 원래대로 실제
++apply 직전에 수행한다. 운영 미리보기에서 이 적용 전 전체 검사를 실행했다고 주장하지 않는다.
++54분 복구 시험이나 전체 source 논리 검사·restic read-data를 매 정리에서 다시 실행하지 않는다.
++
++## 예약과 중지
++
++후보 timer는 `OnCalendar=*-*-* 06:40:00 UTC`로 15:40 KST에 실행한다.
++`Persistent=false`, 부팅 직후 실행 없음, `Restart=no`다. 보류는 다음 날 다시 평가한다.
++서비스는 `SuccessExitStatus=75`로 예상된 보류를 재시도 대상으로 만들지 않는다.
++따라서 systemd의 success만으로 정리 완료라 판단하지 말고 receipt의 state와 attention을 확인한다.
++
++승인·설치 후 **새 정리 예약만 중지**하는 명령은 다음과 같다.
++
++```bash
++systemctl --user disable --now marketdata-checkpoint-retirement.timer
++```
++
++이 명령은 기존 daily·restic·수집 예약을 변경하지 않는다. 이미 실행 중인 정리는 계속될 수 있다.
++진행 중 작업까지 중단할 별도 필요가 있을 때만 다음을 사용한다.
++
++```bash
++systemctl --user stop marketdata-checkpoint-retirement.service
++```
++
++서비스 중단은 SIGINT와 기존 중단 기록을 사용한다. 삭제한 작업용 사본을 되돌리는 명령은 아니다.
++부분 정리 기록을 확인하고, 필요한 사본은 명시적 restic ID로 별도 경로에 복원한다.
++`forget`·`prune`, 시험 산출물 삭제, 자동 unlock·원래 manifest 수정은 이 기능에 없다.
+diff --git a/integrations/systemd/marketdata-checkpoint-retirement.service b/integrations/systemd/marketdata-checkpoint-retirement.service
+new file mode 100644
+index 0000000..385a2e3
+--- /dev/null
++++ b/integrations/systemd/marketdata-checkpoint-retirement.service
+@@ -0,0 +1,22 @@
++[Unit]
++Description=Retire verified working checkpoints under an explicit recurring grant
++
++[Service]
++Type=oneshot
++WorkingDirectory=%h
++EnvironmentFile=%h/.config/marketdata/checkpoint-retirement-service.env
++Environment=PYTHONNOUSERSITE=1
++Environment=PYTHONDONTWRITEBYTECODE=1
++Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
++ExecStart=/usr/bin/env ${MARKETDATA_RETIREMENT_PYTHON} ${MARKETDATA_RETIREMENT_ENTRYPOINT} --settings ${MARKETDATA_RETIREMENT_SETTINGS} run
++UMask=0077
++Nice=10
++IOSchedulingClass=best-effort
++IOSchedulingPriority=7
++TimeoutStartSec=2h
++KillSignal=SIGINT
++TimeoutStopSec=120s
++Restart=no
++SuccessExitStatus=75
++StandardOutput=journal
++StandardError=journal
+diff --git a/integrations/systemd/marketdata-checkpoint-retirement.timer b/integrations/systemd/marketdata-checkpoint-retirement.timer
+new file mode 100644
+index 0000000..b58fb68
+--- /dev/null
++++ b/integrations/systemd/marketdata-checkpoint-retirement.timer
+@@ -0,0 +1,11 @@
++[Unit]
++Description=Evaluate working checkpoint retention daily at 15:40 KST
++
++[Timer]
++OnCalendar=*-*-* 06:40:00 UTC
++Persistent=false
++AccuracySec=1s
++Unit=marketdata-checkpoint-retirement.service
++
++[Install]
++WantedBy=timers.target
+diff --git a/scripts/checkpoint_code.py b/scripts/checkpoint_code.py
+index a46747f..243122f 100644
+--- a/scripts/checkpoint_code.py
++++ b/scripts/checkpoint_code.py
+@@ -18,6 +18,11 @@ SCRIPT_FILES = (
+     "scripts/retire_checkpoints.py",
+     "scripts/archive_backups.py",
+     "scripts/restic_trial.py",
++    "scripts/checkpoint_schedule.py",
++    "scripts/run_checkpoint_schedule.py",
++    "scripts/restic_schedule.py",
++    "integrations/systemd/marketdata-checkpoint-retirement.service",
++    "integrations/systemd/marketdata-checkpoint-retirement.timer",
+ )
+ DECLARATIONS = ("pyproject.toml", "packages/marketdata/pyproject.toml", "uv.lock")
+ 
+diff --git a/scripts/checkpoint_schedule.py b/scripts/checkpoint_schedule.py
+new file mode 100644
+index 0000000..733babb
+--- /dev/null
++++ b/scripts/checkpoint_schedule.py
+@@ -0,0 +1,536 @@
++"""Policy-authorized, once-daily working-checkpoint retirement.
++
++Preview cannot delete. Run requires its own recurring grant and proven timer
++invocation. The existing Retirement.plan/apply audits and locks remain intact.
++Lock order: this runner -> maintenance -> repository -> checkpoint parents.
++"""
++
++import argparse
++import fcntl
++import json
++import os
++import re
++import stat
++import sys
++import tomllib
++import uuid
++from contextlib import contextmanager
++from dataclasses import dataclass
++from pathlib import Path
++from zoneinfo import ZoneInfo
++
++from marketdata.checkpoint_locks import CheckpointBusy, plain_path
++from marketdata.domain import WriterBusy, json_bytes, now, sha256
++
++from scripts import archive_backups as archive
++from scripts import checkpoint_code, restic_schedule
++from scripts import retire_checkpoints as retirement
++from scripts.restic_trial import require
++
++SERVICE = "marketdata-checkpoint-retirement.service"
++TIMER = "marketdata-checkpoint-retirement.timer"
++CALENDAR = "*-*-* 06:40:00 UTC"
++ZONE = ZoneInfo("Asia/Seoul")
++PURPOSE = "recurring-working-checkpoint-retirement-v1"
++EXIT_CODES = {"preview_ready": 0, "no_candidates": 0, "complete": 0, "deferred": 75, "failed": 1}
++
++
++class Deferred(Exception):
++    def __init__(self, reason, detail, *, attention=False):
++        self.reason, self.detail, self.attention = reason, detail, attention
++        super().__init__(detail)
++
++
++@dataclass(frozen=True)
++class Settings:
++    retention_policy: Path
++    authorization_file: Path
++
++    @classmethod
++    def load(cls, path):
++        values = tomllib.loads(plain_path(path).read_text())
++        require(set(values) == set(cls.__annotations__), "Unexpected/missing runner settings")
++        for key, value in values.items():
++            require(
++                isinstance(value, str) and Path(value).is_absolute(), f"Absolute {key} required"
++            )
++            values[key] = plain_path(value)
++        require(
++            values["retention_policy"] != values["authorization_file"], "Separate grant required"
++        )
++        return cls(**values)
++
++
++def scope(settings, policy, profile):
++    code = checkpoint_code.current_code()
++    # The release launcher must override an editable install of another tree.
++    roots = {
++        "marketdata": checkpoint_code.CODE_ROOT / "packages/marketdata/src/marketdata",
++        "scripts": checkpoint_code.CODE_ROOT / "scripts",
++    }
++    for name, module in list(sys.modules.items()):
++        package = name.split(".")[0]
++        file = getattr(module, "__file__", None)
++        if package in roots and file:
++            require(Path(file).resolve().is_relative_to(roots[package]), "Mixed release imports")
++    require(
++        policy.keep_latest == 3 and policy.min_age_hours == 72, "Initial policy must be 3 / 72h"
++    )
++    require(policy.apply_enabled, "Use a separate final policy; preview itself never calls apply")
++    return {
++        "purpose": PURPOSE,
++        "code": code,
++        "uid": os.getuid(),
++        "settings": {k: str(v) for k, v in vars(settings).items()},
++        "policy_sha256": policy.fingerprint,
++        "profile_sha256": profile.fingerprint,
++        "identity": profile.identity,
++        "paths": {k: str(getattr(profile, k)) for k in sorted(archive.PATH_FIELDS)},
++        "restic_binary_sha256": sha256(profile.restic_binary.read_bytes()),
++        "keep_latest": 3,
++        "min_age_hours": 72,
++        "schedule": {
++            "service": SERVICE,
++            "timer": TIMER,
++            "on_calendar": CALENDAR,
++            "timezone": "Asia/Seoul",
++            "local_time": "15:40:00",
++            "persistent": False,
++            "retry": "next_calendar_day",
++            "automatic_resume": False,
++        },
++        "allowed_action": "existing_retirement_plan_and_apply_only",
++    }
++
++
++def proposal(settings):
++    policy = retirement.Policy.load(settings.retention_policy)
++    profile = archive.Profile.load(policy.archive_profile)
++    boundary = scope(settings, policy, profile)
++    return {
++        "schema": 1,
++        "purpose": PURPOSE,
++        "enabled": False,
++        "approved_at": None,
++        "approval_reference": None,
++        "scope": boundary,
++        "scope_id": sha256(json_bytes(boundary)),
++    }
++
++
++def authorize(settings, policy, profile, action):
++    if (
++        retirement.Policy.load(settings.retention_policy) != policy
++        or archive.Profile.load(policy.archive_profile) != profile
++    ):
++        raise Deferred(
++            "configuration_changed", "Configuration changed during this run", attention=True
++        )
++    path = plain_path(settings.authorization_file)
++    if not path.is_file():
++        raise Deferred(
++            "authorization_missing", "A separate recurring grant is required", attention=True
++        )
++    info = path.stat()
++    require(
++        stat.S_ISREG(info.st_mode)
++        and info.st_uid == os.getuid()
++        and stat.S_IMODE(info.st_mode) == 0o600,
++        "Grant must be an owned 0600 regular file",
++    )
++    grant = json.loads(path.read_bytes())
++    expected = scope(settings, policy, profile)
++    if (
++        grant.get("schema") != 1
++        or grant.get("purpose") != PURPOSE
++        or grant.get("scope") != expected
++        or grant.get("scope_id") != sha256(json_bytes(expected))
++    ):
++        raise Deferred(
++            "authorization_scope_changed", "Code/policy/paths/scope need review", attention=True
++        )
++    require(type(grant.get("enabled")) is bool, "Explicit grant enabled flag required")
++    if grant["enabled"]:
++        require(
++            isinstance(grant.get("approval_reference"), str)
++            and grant["approval_reference"].strip(),
++            "Recurring approval reference required",
++        )
++        require(archive.timestamp(grant["approved_at"]) <= now(), "Approval time is in the future")
++    elif action == "run":
++        raise Deferred(
++            "authorization_pending", "Recurring deletion has not been approved", attention=True
++        )
++    return {
++        "scope_id": grant["scope_id"],
++        "enabled": grant["enabled"],
++        "approval_reference": grant["approval_reference"],
++        "approved_at": grant["approved_at"],
++    }
++
++
++def proof_file(profile, name):
++    path = plain_path(name)
++    require(
++        path.is_absolute() and path.is_relative_to(profile.reports_root), "Proof outside reports"
++    )
++    return path.read_bytes()
++
++
++def daily_evidence(profile, state, day):
++    path = profile.store_root / "state/maintenance-daily-latest.json"
++    if not path.exists():
++        raise Deferred("daily_missing", "No completed daily report for this local date")
++    raw = plain_path(path).read_bytes()
++    daily = json.loads(raw)
++    began = archive.timestamp(daily["started_at"])
++    if began.astimezone(ZONE).date().isoformat() != day:
++        raise Deferred("daily_not_today", "Latest daily belongs to a different KST date")
++    if daily.get("state") != "complete" or daily.get("ok") is not True:
++        raise Deferred(
++            "daily_not_complete",
++            f"Daily state: {daily.get('state')}",
++            attention=daily.get("state") in {"failed", "partial", "interrupted"},
++        )
++    require(daily.get("mode") == "daily" and daily.get("phase") == "finished", "Wrong daily report")
++    require(re.fullmatch(r"[0-9a-f]{32}", daily.get("id", "")), "Daily identity missing")
++    history = profile.store_root / f"reports/maintenance/{began:%Y-%m-%d}/{daily['id']}.json"
++    require(json.loads(plain_path(history).read_bytes()) == daily, "Daily history/latest differ")
++    require(
++        daily.get("validation", {}).get("ok") is True and daily["validation"].get("failures") == [],
++        "Daily validation failed",
++    )
++    backup = daily.get("backup", {})
++    require(backup.get("ok") is True, "Daily backup failed")
++    bid = backup.get("backup_id")
++    require(re.fullmatch(archive.HEX, bid or ""), "Daily backup ID missing")
++    record = state["checkpoints"].get(bid)
++    if not record or not record.get("stored") or not record.get("input_verified_at"):
++        raise Deferred("daily_not_archived", "Today's exact backup ID is not verified and stored")
++    entry, stored = record["entry"], record["stored"]
++    require(
++        entry["backup_id"] == bid and entry["path"] == backup["path"],
++        "Daily/archive binding differs",
++    )
++    require(entry["source_root"] == str(profile.store_root), "Daily source differs")
++    checkpoint, completed, finished = (
++        archive.timestamp(entry["checkpoint_at"]),
++        archive.timestamp(entry["completed_at"]),
++        archive.timestamp(daily["finished_at"]),
++    )
++    require(began <= checkpoint <= completed <= finished <= now(), "Daily times out of order")
++    require(checkpoint.astimezone(ZONE).date().isoformat() == day, "Checkpoint is not today's data")
++    if not stored.get("archive_started_at") or not stored.get("archive_finished_at"):
++        raise Deferred(
++            "archive_time_unknown", "No original archive timing evidence", attention=True
++        )
++    astart, aend = map(
++        archive.timestamp, (stored["archive_started_at"], stored["archive_finished_at"])
++    )
++    require(
++        completed <= archive.timestamp(record["input_verified_at"]) <= astart <= aend <= now(),
++        "Archive chronology differs",
++    )
++    sid = stored["snapshot_id"]
++    attempts = [
++        a
++        for a in record["attempts"]
++        if a.get("status") == "stored"
++        and a.get("snapshot_id") == sid
++        and a.get("returncode") == 0
++        and a.get("command", {}).get("started_at") == stored["archive_started_at"]
++        and a.get("command", {}).get("finished_at") == stored["archive_finished_at"]
++    ]
++    require(len(attempts) == 1, "Unambiguous successful archive command required")
++    command = attempts[0]["command"]
++    require(
++        command["returncode"] == 0
++        and command["arguments"][0] == "backup"
++        and command["cwd"] == entry["path"],
++        "Archive command differs",
++    )
++    summary = [json.loads(line) for line in proof_file(profile, command["stdout"]).splitlines()]
++    summaries = [r for r in summary if r.get("message_type") == "summary"]
++    require(
++        len(summaries) == 1 and summaries[0].get("snapshot_id") == sid, "Archive summary differs"
++    )
++    check = state.get("repository_check") or {}
++    if (
++        not check.get("ok")
++        or check.get("status") != "complete"
++        or not check.get("read_data")
++        or sid not in check.get("snapshot_ids", [])
++    ):
++        raise Deferred(
++            "full_check_pending",
++            "Full read-data check must include today's snapshot",
++            attention=check.get("status") == "failed",
++        )
++    cstart, cend = map(archive.timestamp, (check["started_at"], check["finished_at"]))
++    require(aend <= cstart <= cend <= now(), "Full check precedes archive or has future times")
++    receipt = check["receipt"]
++    require(
++        receipt["arguments"] == ["check", "--read-data"] and receipt["returncode"] == 0,
++        "Successful full-data command required",
++    )
++    require(
++        cstart
++        <= archive.timestamp(receipt["started_at"])
++        <= archive.timestamp(receipt["finished_at"])
++        == cend,
++        "Check receipt time differs",
++    )
++    checked = json.loads(proof_file(profile, receipt["stdout"]))
++    require(
++        checked.get("num_errors") == 0 and not checked.get("broken_packs"),
++        "Check output has errors",
++    )
++    return {
++        "date_kst": day,
++        "daily_id": daily["id"],
++        "daily_report_sha256": sha256(raw),
++        "backup_id": bid,
++        "snapshot_id": sid,
++        "checkpoint_at": entry["checkpoint_at"],
++        "daily_finished_at": daily["finished_at"],
++        "archive_finished_at": stored["archive_finished_at"],
++        "full_check_finished_at": check["finished_at"],
++        "archive_stdout_sha256": sha256(proof_file(profile, command["stdout"])),
++        "check_stdout_sha256": sha256(proof_file(profile, receipt["stdout"])),
++    }
++
++
++class ScheduledRetirement(retirement.Retirement):
++    def __init__(self, policy, reports, settings, action, day, report):
++        super().__init__(policy, reports)
++        self.settings, self.action, self.day, self.report = settings, action, day, report
++
++    def plan(self):
++        return super().plan(
++            automation={
++                "run_id": self.report["run_id"],
++                "scope_id": self.report["authorization"]["scope_id"],
++            }
++        )
++
++    def check_code(self, plan):
++        super().check_code(plan)
++        # Also honor a revoked/changed grant before each existing retirement step.
++        self.report["authorization"] = authorize(self.settings, self.policy, self.p, self.action)
++        require(
++            plan.get("automation")
++            == {
++                "run_id": self.report["run_id"],
++                "scope_id": self.report["authorization"]["scope_id"],
++            },
++            "Plan belongs to another automatic run or approval scope",
++        )
++
++    @contextmanager
++    def locks(self):
++        with super().locks():
++            # Repeat both at plan and apply; no use of a stale pre-lock decision.
++            self.report["authorization"] = authorize(
++                self.settings, self.policy, self.p, self.action
++            )
++            if now().astimezone(ZONE).date().isoformat() != self.day:
++                raise Deferred("date_changed", "Evaluate again on the next scheduled day")
++            journals = self.journals()
++            pending = [j["plan_id"] for j in journals if j["status"] != "complete"]
++            if pending:
++                self.report["unfinished_plan_ids"] = pending
++                raise Deferred(
++                    "unfinished_retirement",
++                    "Inspect/resume the prior plan manually",
++                    attention=True,
++                )
++            complete = {j["plan_id"] for j in journals if j["status"] == "complete"}
++            unresolved = []
++            for path in sorted((self.p.reports_root / "checkpoint-scheduled").glob("*/run.json")):
++                previous = json.loads(plain_path(path).read_bytes())
++                if (
++                    previous.get("run_id") != self.report["run_id"]
++                    and previous.get("action") == "run"
++                    and previous.get("state") == "running"
++                    and previous.get("plan_id")
++                    and previous["plan_id"] not in complete
++                ):
++                    unresolved.append(
++                        {"run_id": previous["run_id"], "plan_id": previous["plan_id"]}
++                    )
++            if unresolved:
++                self.report["unfinished_automatic_runs"] = unresolved
++                raise Deferred(
++                    "unfinished_automatic_run",
++                    "Prior planned run ended without a final result",
++                    attention=True,
++                )
++            state = self.a.state
++            if state.get("active_operation"):
++                raise Deferred(
++                    "archive_unfinished", "An archive operation is unresolved", attention=True
++                )
++            if not (state.get("last_operation") or {"ok": True}).get("ok"):
++                raise Deferred(
++                    "archive_failed", "Last archive operation needs attention", attention=True
++                )
++            entries, incomplete = archive.discover(self.p)
++            if incomplete:
++                raise Deferred(
++                    "checkpoint_incomplete",
++                    "Incomplete checkpoint folders need review",
++                    attention=True,
++                )
++            records = state["checkpoints"]
++            if any(r.get("error") for r in records.values()):
++                raise Deferred("checkpoint_error", "Unresolved checkpoint error", attention=True)
++            if any(
++                not records.get(e["backup_id"], {}).get("stored")
++                or not records[e["backup_id"]].get("input_verified_at")
++                for e in entries
++            ):
++                raise Deferred(
++                    "unarchived_checkpoint", "Not every local checkpoint is verified and archived"
++                )
++            self.report["daily_evidence"] = daily_evidence(self.p, self.a.state, self.day)
++            yield
++
++
++@contextmanager
++def runner_lock(root):
++    retirement.durable_directory(root)
++    with plain_path(root / "runner.lock").open("a") as handle:
++        try:
++            fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
++        except BlockingIOError as exc:
++            raise Deferred(
++                "runner_busy", "Another automatic retirement evaluation is running"
++            ) from exc
++        try:
++            yield
++        finally:
++            fcntl.flock(handle, fcntl.LOCK_UN)
++
++
++def execute(settings, action):
++    require(action in {"preview", "run"}, "Expected preview or run")
++    started = now()
++    day = started.astimezone(ZONE).date().isoformat()
++    policy = retirement.Policy.load(settings.retention_policy)
++    profile = archive.Profile.load(policy.archive_profile)
++    rid = uuid.uuid4().hex
++    out = profile.reports_root / "checkpoint-scheduled" / rid
++    retirement.durable_directory(out)
++    path = out / "run.json"
++    report = {
++        "schema": 1,
++        "run_id": rid,
++        "action": action,
++        "date_kst": day,
++        "started_at": started,
++        "state": "running",
++        "phase": "preflight",
++        "ok": False,
++        "needs_attention": False,
++        "plan_id": None,
++        "selection_assessed": False,
++        "deleted_checkpoints": 0,
++        "deletion_attempted": False,
++        "report": str(path),
++        "next_evaluation": "next scheduled calendar day; no automatic retry",
++    }
++    retirement.persist(path, report)
++    agent = None
++    try:
++        with runner_lock(profile.state_file.parent / "working-retention/automatic"):
++            report["authorization"] = authorize(settings, policy, profile, action)
++            if action == "run":
++                context = restic_schedule.service_context(SERVICE, TIMER)
++                report["context"] = context
++                if not context.get("scheduled") or not context.get("service_verified"):
++                    raise Deferred(
++                        "unconfirmed_timer",
++                        "Recurring grant only permits the named timer",
++                        attention=True,
++                    )
++                trigger = archive.timestamp(context["trigger_at"]).astimezone(ZONE)
++                if trigger.date().isoformat() != day or (trigger.hour, trigger.minute) != (15, 40):
++                    raise Deferred(
++                        "wrong_timer_date", "Expected today's 15:40 KST trigger", attention=True
++                    )
++                require(archive.timestamp(context["trigger_at"]) <= now(), "Future timer trigger")
++            agent = ScheduledRetirement(policy, out / "commands", settings, action, day, report)
++            plan = agent.plan()
++            report.update(
++                plan_id=plan["plan_id"], plan=plan, selection_assessed=True, phase="planned"
++            )
++            retirement.persist(path, report)
++            if not plan["candidates"]:
++                report.update(state="no_candidates", ok=True)
++            elif action == "preview":
++                report.update(state="preview_ready", ok=True)
++            else:
++                report.update(phase="applying", deletion_attempted=True)
++                retirement.persist(path, report)
++                result = agent.apply(plan["plan_id"])
++                report.update(
++                    state="complete",
++                    ok=True,
++                    result=result,
++                    deleted_checkpoints=len(result["journal"]["items"]),
++                )
++    except (Deferred, WriterBusy, archive.Busy, CheckpointBusy) as exc:
++        if isinstance(exc, Deferred):
++            reason, detail, attention = exc.reason, exc.detail, exc.attention
++        else:
++            reason = {
++                WriterBusy: "maintenance_busy",
++                archive.Busy: "archive_busy",
++                CheckpointBusy: "checkpoint_busy",
++            }[type(exc)]
++            detail, attention = str(exc), False
++        report.update(state="deferred", reason=reason, detail=detail, needs_attention=attention)
++    except BaseException as exc:
++        report.update(state="failed", needs_attention=True, error=f"{type(exc).__name__}: {exc}")
++    finally:
++        if agent and report["plan_id"]:
++            journal = agent.root / "journals" / f"{report['plan_id']}.json"
++            if journal.exists():
++                report["retirement_journal"] = str(journal)
++                value = json.loads(journal.read_bytes())
++                report["deleted_checkpoints"] = sum(
++                    i["phase"] == "complete" for i in value["items"].values()
++                )
++                report["unfinished_retirement"] = value["status"] != "complete"
++                if report["unfinished_retirement"]:
++                    report.update(state="failed", ok=False, needs_attention=True)
++        report.update(finished_at=now(), phase="finished", exit_code=EXIT_CODES[report["state"]])
++        retirement.persist(path, report)
++    return report
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--settings", type=Path, required=True)
++    parser.add_argument("action", choices=("propose", "preview", "run"))
++    args = parser.parse_args()
++    try:
++        settings = Settings.load(args.settings)
++        result = proposal(settings) if args.action == "propose" else execute(settings, args.action)
++        print(json_bytes(result).decode())
++        return result.get("exit_code", 0)
++    except Exception as exc:
++        print(
++            json_bytes(
++                {
++                    "state": "failed",
++                    "needs_attention": True,
++                    "error": f"{type(exc).__name__}: {exc}",
++                }
++            ).decode()
++        )
++        return 1
++
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/scripts/retire_checkpoints.py b/scripts/retire_checkpoints.py
+index 37c7d43..6e4cbc1 100644
+--- a/scripts/retire_checkpoints.py
++++ b/scripts/retire_checkpoints.py
+@@ -447,7 +447,14 @@ class Retirement:
+             "repository_check_finished_at": checked["finished_at"],
+         }
+ 
+-    def plan(self):
++    def plan(self, *, automation=None):
++        if automation is not None:
++            require(
++                set(automation) == {"run_id", "scope_id"}
++                and re.fullmatch(r"[0-9a-f]{32}", automation["run_id"])
++                and re.fullmatch(archive.HEX, automation["scope_id"]),
++                "Explicit automatic run/scope identity required",
++            )
+         code = current_code()
+         with self.locks():
+             audit = self.audit()
+@@ -503,6 +510,8 @@ class Retirement:
+                     "space": reclaim_estimate(inventories),
+                     "deleted_checkpoints": 0,
+                 }
++                if automation is not None:
++                    result["automation"] = dict(automation)
+                 result["plan_id"] = sha256(json_bytes(result))
+                 self.check_code(result)
+                 persist(self.root / "plans" / f"{result['plan_id']}.json", result)
+diff --git a/scripts/run_checkpoint_schedule.py b/scripts/run_checkpoint_schedule.py
+new file mode 100644
+index 0000000..06e361b
+--- /dev/null
++++ b/scripts/run_checkpoint_schedule.py
+@@ -0,0 +1,12 @@
++"""Run from this frozen release, independently of editable marketdata imports."""
++
++import sys
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path[:0] = [str(ROOT), str(ROOT / "packages/marketdata/src")]
++
++from scripts.checkpoint_schedule import main  # noqa: E402
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/tests/test_checkpoint_schedule.py b/tests/test_checkpoint_schedule.py
+new file mode 100644
+index 0000000..b001b3c
+--- /dev/null
++++ b/tests/test_checkpoint_schedule.py
+@@ -0,0 +1,395 @@
++import json
++import os
++import subprocess
++import sys
++import uuid
++from datetime import UTC, datetime, timedelta
++from pathlib import Path
++
++import pytest
++from marketdata import backup, maintenance
++from marketdata.domain import json_bytes, sha256
++from marketdata.store import atomic_write
++from test_checkpoint_retention import ready as ready  # noqa: F401
++from test_restic_archive import agent, write_profile  # noqa: F401
++from test_restic_archive import setup_archive as setup_archive
++
++from scripts import archive_backups as archive
++from scripts import checkpoint_schedule as schedule
++from scripts import retire_checkpoints as retention
++
++
++def write_json(path, value):
++    path.parent.mkdir(parents=True, exist_ok=True)
++    path.write_bytes(json_bytes(value))
++
++
++def publish_daily(profile, value):
++    start = archive.timestamp(value["started_at"])
++    write_json(profile.store_root / "state/maintenance-daily-latest.json", value)
++    write_json(
++        profile.store_root / f"reports/maintenance/{start:%Y-%m-%d}/{value['id']}.json", value
++    )
++
++
++def timer_context():
++    return {
++        "scheduled": True,
++        "service_verified": True,
++        "classification": "verified_timer",
++        "trigger_at": schedule.now()
++        .replace(hour=6, minute=40, second=0, microsecond=0)
++        .isoformat(),
++    }
++
++
++def grant(settings, enabled=True):
++    value = schedule.proposal(settings)
++    if enabled:
++        value.update(
++            enabled=True, approved_at=schedule.now(), approval_reference="isolated test grant"
++        )
++    write_json(settings.authorization_file, value)
++    settings.authorization_file.chmod(0o600)
++    return value
++
++
++@pytest.fixture
++def prepared(request, store, tmp_path, monkeypatch):
++    clock = [datetime(2024, 1, 7, 5, tzinfo=UTC)]
++    monkeypatch.setattr(archive, "now", lambda: clock[0])
++    p, policy, cleaner = request.getfixturevalue("ready")
++    monkeypatch.setattr(retention, "now", lambda: clock[0])
++    monkeypatch.setattr(schedule, "now", lambda: clock[0])
++    monkeypatch.setattr(
++        schedule.restic_schedule,
++        "service_context",
++        lambda service, timer: (
++            timer_context() if (service, timer) == (schedule.SERVICE, schedule.TIMER) else {}
++        ),
++    )
++    record = max(
++        archive.load_state(p)["checkpoints"].values(), key=lambda r: r["entry"]["checkpoint_at"]
++    )
++    result = backup.verify_backup(record["entry"]["path"])
++    # Synthetic daily receipt tied to a real verified checkpoint, not a claimed timer invocation.
++    daily = {
++        "id": uuid.uuid4().hex,
++        "mode": "daily",
++        "phase": "finished",
++        "state": "complete",
++        "ok": True,
++        "started_at": "2024-01-07T04:00:00Z",
++        "finished_at": "2024-01-07T04:30:00Z",
++        "validation": store.validate(),
++        "backup": result,
++    }
++    publish_daily(p, daily)
++    settings = schedule.Settings(
++        tmp_path / "automatic-policy.toml", tmp_path / "recurring-grant.json"
++    )
++    write_profile(settings.retention_policy, policy)
++    clock[0] = datetime(2024, 1, 7, 6, 40, tzinfo=UTC)
++    grant(settings)
++    return p, policy, cleaner, settings, clock, daily
++
++
++def manifests(profile):
++    return {str(p): sha256(p.read_bytes()) for p in profile.backup_dir.glob("*/*/backup.json")}
++
++
++def test_preview_with_pending_grant_has_fresh_plans_and_never_deletes(prepared):
++    p, _, _, settings, _, _ = prepared
++    grant(settings, enabled=False)
++    before, state = manifests(p), p.state_file.read_bytes()
++    first, second = schedule.execute(settings, "preview"), schedule.execute(settings, "preview")
++    assert first["state"] == second["state"] == "preview_ready"
++    assert first["plan_id"] != second["plan_id"]
++    assert len(first["plan"]["keep"]) == 3 and len(first["plan"]["candidates"]) == 2
++    assert first["authorization"]["enabled"] is False
++    assert not first["deletion_attempted"] and first["deleted_checkpoints"] == 0
++    assert manifests(p) == before and p.state_file.read_bytes() == state
++    assert all(e["protection"] and e["snapshot_id"] for e in first["plan"]["keep"])
++
++
++def test_disabled_old_manual_and_changed_scope_never_authorize_run(prepared):
++    p, _, cleaner, settings, _, _ = prepared
++    before = manifests(p)
++    grant(settings, enabled=False)
++    r = schedule.execute(settings, "run")
++    assert r["state"] == "deferred" and r["reason"] == "authorization_pending"
++    manual = cleaner.plan()
++    write_json(settings.authorization_file, manual)
++    assert schedule.execute(settings, "run")["reason"] == "authorization_scope_changed"
++    for field in (
++        "uid",
++        "policy_sha256",
++        "profile_sha256",
++        "identity",
++        "paths",
++        "code",
++        "schedule",
++    ):
++        value = grant(settings)
++        value["scope"][field] = "changed"
++        value["scope_id"] = sha256(json_bytes(value["scope"]))
++        write_json(settings.authorization_file, value)
++        report = schedule.execute(settings, "run")
++        assert report["reason"] == "authorization_scope_changed" and report["needs_attention"]
++        assert report["plan_id"] is None
++    assert manifests(p) == before
++
++
++def test_pending_predecessors_and_invalid_evidence_are_distinguished(prepared):
++    p, _, _, settings, _, original_daily = prepared
++    original_state = p.state_file.read_bytes()
++    cases = [
++        ("previous_day", "deferred"),
++        ("daily_running", "deferred"),
++        ("daily_failed", "deferred"),
++        ("unarchived", "deferred"),
++        ("check_pending", "deferred"),
++        ("check_missing_snapshot", "deferred"),
++        ("wrong_path", "failed"),
++        ("wrong_check_command", "failed"),
++        ("wrong_archive_id", "failed"),
++        ("archive_unfinished", "deferred"),
++        ("archive_failed", "deferred"),
++    ]
++    before = manifests(p)
++    for kind, expected in cases:
++        daily = json.loads(json_bytes(original_daily))
++        state = json.loads(original_state)
++        bid = daily["backup"]["backup_id"]
++        if kind == "previous_day":
++            daily["started_at"] = "2024-01-06T04:00:00Z"
++        elif kind == "daily_running":
++            daily.update(state="running", ok=False)
++        elif kind == "daily_failed":
++            daily.update(state="failed", ok=False)
++        elif kind == "unarchived":
++            state["checkpoints"][bid]["stored"] = None
++        elif kind == "check_pending":
++            state["repository_check"]["read_data"] = False
++        elif kind == "check_missing_snapshot":
++            state["repository_check"]["snapshot_ids"] = []
++        elif kind == "wrong_path":
++            daily["backup"]["path"] += "/wrong"
++        elif kind == "wrong_check_command":
++            state["repository_check"]["receipt"]["arguments"] = ["check"]
++        elif kind == "wrong_archive_id":
++            state["checkpoints"][bid]["stored"]["snapshot_id"] = "f" * 64
++        elif kind == "archive_unfinished":
++            state["active_operation"] = {"phase": "checking"}
++        elif kind == "archive_failed":
++            state["last_operation"] = {"ok": False}
++        publish_daily(p, daily)
++        atomic_write(p.state_file, json_bytes(state))
++        result = schedule.execute(settings, "preview")
++        assert result["state"] == expected, (kind, result)
++        assert result["plan_id"] is None and result["deleted_checkpoints"] == 0
++    assert manifests(p) == before
++
++
++def test_runner_maintenance_repository_and_reader_contention(prepared, store):
++    p, _, _, settings, _, _ = prepared
++    before = manifests(p)
++    with schedule.runner_lock(p.state_file.parent / "working-retention/automatic"):
++        assert schedule.execute(settings, "run")["reason"] == "runner_busy"
++    with maintenance.maintenance_lock(store):
++        assert schedule.execute(settings, "run")["reason"] == "maintenance_busy"
++    with archive.repository_lock(p):
++        assert schedule.execute(settings, "run")["reason"] == "archive_busy"
++    source = p.backup_dir / "2024-01-01/attempt"
++    code = """
++import sys
++from marketdata.checkpoint_locks import checkpoint_locks
++with checkpoint_locks([sys.argv[1]]):
++    print('held', flush=True)
++    sys.stdin.readline()
++"""
++    proc = subprocess.Popen(
++        [sys.executable, "-c", code, str(source)],
++        stdin=subprocess.PIPE,
++        stdout=subprocess.PIPE,
++        text=True,
++    )
++    try:
++        assert proc.stdout.readline().strip() == "held"
++        result = schedule.execute(settings, "run")
++        assert result["state"] == "deferred" and result["reason"] == "checkpoint_busy"
++        assert result["plan_id"] and result["deleted_checkpoints"] == 0
++    finally:
++        proc.communicate("done\n", timeout=10)
++    assert manifests(p) == before
++
++
++def test_authorized_run_then_noop_and_next_real_daily_archive(prepared, store, monkeypatch):
++    p, _, _, settings, clock, _ = prepared
++    original = {p: sha256(p.read_bytes()) for p in (store.root / "data").rglob("*") if p.is_file()}
++    state = p.state_file.read_bytes()
++    completed = schedule.execute(settings, "run")
++    assert completed["state"] == "complete" and completed["deleted_checkpoints"] == 2
++    assert all(backup.verify_backup(e["path"])["ok"] for e in completed["plan"]["keep"])
++    noop = schedule.execute(settings, "run")
++    assert noop["state"] == "no_candidates" and noop["plan_id"] != completed["plan_id"]
++    assert not noop["deletion_attempted"] and noop["deleted_checkpoints"] == 0
++    assert p.state_file.read_bytes() == state
++    assert all(sha256(p.read_bytes()) == digest for p, digest in original.items())
++    clock[0] = datetime(2024, 1, 8, 4, 10, tzinfo=UTC)
++    monkeypatch.setattr(backup, "now", lambda: clock[0])
++    monkeypatch.setattr(maintenance, "now", lambda: clock[0])
++    store.put_raw(b"after scheduled cleanup", "test", "test")
++    daily = maintenance.run(
++        store, mode="daily", min_free_gib=0, backup_dir=p.backup_dir, incremental=True
++    )
++    assert daily["ok"] and daily["backup"]["storage"]["reused_files"] > 0
++    clock[0] = datetime(2024, 1, 8, 5, tzinfo=UTC)
++    archiver = agent(p, "next-real-daily")
++    assert archiver.run()["processed"] == 1
++    assert archiver.run()["processed"] == 0
++    clock[0] = datetime(2024, 1, 8, 6, 40, tzinfo=UTC)
++    result = schedule.execute(settings, "run")
++    assert result["state"] == "complete" and result["deleted_checkpoints"] == 1
++    assert result["daily_evidence"]["backup_id"] == daily["backup"]["backup_id"]
++    assert len(archiver.restic.snapshots()) == 6
++
++
++def test_revoked_grant_between_plan_and_apply_preserves_candidates(prepared, monkeypatch):
++    p, _, _, settings, _, _ = prepared
++    original = schedule.ScheduledRetirement.plan
++
++    def revoke(self):
++        result = original(self)
++        value = json.loads(settings.authorization_file.read_bytes())
++        value["enabled"] = False
++        write_json(settings.authorization_file, value)
++        return result
++
++    monkeypatch.setattr(schedule.ScheduledRetirement, "plan", revoke)
++    before = manifests(p)
++    result = schedule.execute(settings, "run")
++    assert result["reason"] == "authorization_pending" and result["state"] == "deferred"
++    assert result["plan_id"] and result["deleted_checkpoints"] == 0
++    assert manifests(p) == before
++
++
++def test_sigkill_like_exit_blocks_new_plan_and_manual_resume_is_explicit(prepared, tmp_path):
++    p, _, cleaner, settings, _, _ = prepared
++    config = write_profile(tmp_path / "settings.toml", settings)
++    code = """
++import os,sys
++from datetime import UTC,datetime
++from scripts import archive_backups as archive, retire_checkpoints as retention
++from scripts import checkpoint_schedule as schedule
++archive.mount_identity=lambda _: 'test-uuid'
++instant=datetime(2024,1,7,6,40,tzinfo=UTC)
++archive.now=retention.now=schedule.now=lambda: instant
++schedule.restic_schedule.service_context=lambda *a: dict(scheduled=True,service_verified=True,trigger_at=instant.isoformat())
++original=retention.Retirement.retire_item
++def retire(self,journal,item,hook):
++    def die(phase,item):
++        if phase=='after_move': os._exit(77)
++    return original(self,journal,item,die)
++retention.Retirement.retire_item=retire
++schedule.execute(schedule.Settings.load(sys.argv[1]),'run')
++"""
++    proc = subprocess.run(
++        [sys.executable, "-c", code, str(config)], capture_output=True, timeout=60
++    )
++    assert proc.returncode == 77, proc.stderr
++    pending = cleaner.journals()
++    assert len(pending) == 1 and pending[0]["status"] == "applying"
++    plans_before = set((cleaner.root / "plans").glob("*.json"))
++    result = schedule.execute(settings, "run")
++    assert result["state"] == "deferred" and result["reason"] == "unfinished_retirement"
++    assert result["needs_attention"] and result["plan_id"] is None
++    assert set((cleaner.root / "plans").glob("*.json")) == plans_before
++    assert cleaner.apply(pending[0]["plan_id"])["ok"]
++    assert schedule.execute(settings, "run")["state"] == "no_candidates"
++
++
++def test_real_validation_failure_and_timer_date_rejection(prepared, monkeypatch):
++    p, _, _, settings, _, _ = prepared
++    before = manifests(p)
++    for kind in ("manual", "previous_day", "wrong_time"):
++        context = timer_context()
++        if kind == "manual":
++            context["scheduled"] = False
++        else:
++            trigger = archive.timestamp(context["trigger_at"])
++            trigger += timedelta(days=-1) if kind == "previous_day" else timedelta(minutes=-1)
++            context["trigger_at"] = trigger.isoformat()
++        with monkeypatch.context() as m:
++            m.setattr(schedule.restic_schedule, "service_context", lambda *a: context)
++            result = schedule.execute(settings, "run")
++            assert result["state"] == "deferred" and result["needs_attention"]
++    original = backup.verify_backup
++
++    def fail(path):
++        raise OSError("isolated retained-copy read failure")
++
++    monkeypatch.setattr(backup, "verify_backup", fail)
++    result = schedule.execute(settings, "run")
++    assert result["state"] == "failed" and result["exit_code"] == 1
++    assert result["deleted_checkpoints"] == 0 and result["needs_attention"]
++    monkeypatch.setattr(backup, "verify_backup", original)
++    assert manifests(p) == before
++
++
++def test_abrupt_exit_before_retirement_journal_also_blocks_new_plan(prepared, tmp_path):
++    p, _, cleaner, settings, _, _ = prepared
++    config = write_profile(tmp_path / "settings.toml", settings)
++    code = """
++import os,sys
++from datetime import UTC,datetime
++from scripts import archive_backups as archive, retire_checkpoints as retention
++from scripts import checkpoint_schedule as schedule
++archive.mount_identity=lambda _: 'test-uuid'
++instant=datetime(2024,1,7,6,40,tzinfo=UTC)
++archive.now=retention.now=schedule.now=lambda: instant
++schedule.restic_schedule.service_context=lambda *a: dict(scheduled=True,service_verified=True,trigger_at=instant.isoformat())
++retention.Retirement.apply=lambda *a,**k: os._exit(77)
++schedule.execute(schedule.Settings.load(sys.argv[1]),'run')
++"""
++    before = manifests(p)
++    proc = subprocess.run(
++        [sys.executable, "-c", code, str(config)], capture_output=True, timeout=60
++    )
++    assert proc.returncode == 77, proc.stderr
++    assert not cleaner.journals()
++    plans = set((cleaner.root / "plans").glob("*.json"))
++    result = schedule.execute(settings, "run")
++    assert result["state"] == "deferred" and result["reason"] == "unfinished_automatic_run"
++    assert result["needs_attention"] and result["plan_id"] is None
++    assert set((cleaner.root / "plans").glob("*.json")) == plans
++    assert manifests(p) == before
++
++
++def test_release_launcher_ignores_editable_package_and_units_have_no_retry(prepared, tmp_path):
++    _, _, _, settings, _, _ = prepared
++    config = write_profile(tmp_path / "settings.toml", settings)
++    root = Path(schedule.__file__).resolve().parents[1]
++    env = dict(os.environ, PYTHONPATH="/nonexistent", PYTHONDONTWRITEBYTECODE="1")
++    proc = subprocess.run(
++        [
++            sys.executable,
++            str(root / "scripts/run_checkpoint_schedule.py"),
++            "--settings",
++            str(config),
++            "propose",
++        ],
++        cwd=tmp_path,
++        env=env,
++        capture_output=True,
++        text=True,
++        timeout=20,
++    )
++    assert proc.returncode == 0, proc.stdout + proc.stderr
++    value = json.loads(proc.stdout)
++    assert value["scope"]["code"]["code_root"] == str(root) and value["enabled"] is False
++    service = (root / "integrations/systemd/marketdata-checkpoint-retirement.service").read_text()
++    timer = (root / "integrations/systemd/marketdata-checkpoint-retirement.timer").read_text()
++    assert "Restart=no" in service and "SuccessExitStatus=75" in service
++    assert "Persistent=false" in timer and "OnActiveSec" not in timer
++    assert "OnCalendar=" + schedule.CALENDAR in timer
