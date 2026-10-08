@@ -27,8 +27,9 @@ restic 비교·복원과 병행 예약 3/3, 호가 재시도·조기 갱신·조
 [2026-10-03 restic 병행 운영과 호가 수집·관측 보강](docs/milestones/2026-10-03-restic-and-depth-observability.md)에
 정리했습니다. 10/3 11:23까지 확보한 증거를 기준으로 완료 범위와 새 기록의 후속 관찰을 구분합니다.
 
-10/5 마지막 커밋 이후의 시각 역행 진단·고정 배포본·Windows/Linux UTC RTC·Chrony·시스템 서비스 전환은
-[2026-10-09 운영 전환 정리](docs/milestones/2026-10-09-system-runtime-and-cutover.md)에 묶었습니다.
+이전 10/3 마일스톤 이후의 독립 복구·보관 정책·checkpoint 정리, 호가 독립 검산·실패 공개 보완,
+시각 관리·고정 배포본·Windows/Linux UTC RTC·Chrony·시스템 서비스 전환은
+[2026-10-09 후속 작업 총정리](docs/milestones/2026-10-09-system-runtime-and-cutover.md)에 묶었습니다.
 실제 부팅·저장 성공과 aggTrade 공백·새 백업 관찰·자동 정리 보류를 구분합니다.
 
 ## 현재 확보한 데이터

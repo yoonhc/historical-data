@@ -1,7 +1,8 @@
 # 검증 기록
 
-[2026-10-09 운영 전환 마일스톤](../docs/milestones/2026-10-09-system-runtime-and-cutover.md)이
-10/5 마지막 커밋 이후 아래 기록을 묶습니다. 후보의 미설치·미검증 표시는 각 시험 당시 상태이며,
+[2026-10-09 후속 작업 마일스톤](../docs/milestones/2026-10-09-system-runtime-and-cutover.md)이
+이전 10/3 마일스톤 이후의 독립 복구·정리·호가 보완부터 시각 관리·운영 전환까지 묶습니다.
+후보의 미설치·미검증 표시는 각 시험 당시 상태이며,
 현재 적용 상태는 [시스템 서비스 운영 안내](../docs/system-runtime-operations.md), 남은 일은 [TODO](../TODO.md)를 따릅니다.
 
 `baseline/aggtrade-coverage-2026-10-09/`는 aggTrade 카탈로그 전체 범위와 공개 아카이브 제공 확인이다.
