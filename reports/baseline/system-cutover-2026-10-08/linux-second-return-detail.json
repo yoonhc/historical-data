@@ -1,0 +1,108 @@
+{
+  "at": "2026-10-08T23:15:50.749864+09:00",
+  "boot_id": "9e33f0bc-b734-45c9-8a85-8aa6c35efa71",
+  "commands": [
+    {
+      "args": [
+        "/usr/bin/journalctl",
+        "-b",
+        "-u",
+        "systemd-timesyncd.service",
+        "--no-pager",
+        "-o",
+        "short-monotonic"
+      ],
+      "returncode": 0,
+      "stdout": "[    5.392431] hclm systemd[1]: Starting systemd-timesyncd.service - Network Time Synchronization...\n[    5.418772] hclm systemd[1]: Started systemd-timesyncd.service - Network Time Synchronization.\n[   36.198802] hclm systemd-timesyncd[877]: Contacted time server 185.125.190.56:123 (ntp.ubuntu.com).\n[   36.199126] hclm systemd-timesyncd[877]: Initial clock synchronization to Thu 2026-10-08 23:12:56.749274 KST.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/timedatectl",
+        "show-timesync",
+        "--all"
+      ],
+      "returncode": 0,
+      "stdout": "LinkNTPServers=\nSystemNTPServers=\nRuntimeNTPServers=\nFallbackNTPServers=ntp.ubuntu.com\nServerName=ntp.ubuntu.com\nServerAddress=185.125.190.56\nRootDistanceMaxUSec=5s\nPollIntervalMinUSec=32s\nPollIntervalMaxUSec=34min 8s\nPollIntervalUSec=2min 8s\nNTPMessage={ Leap=0, Version=4, Mode=4, Stratum=2, Precision=-25, RootDelay=8.361ms, RootDispersion=1.403ms, Reference=91EE5050, OriginateTimestamp=Thu 2026-10-08 23:14:33 KST, ReceiveTimestamp=Thu 2026-10-08 23:14:33 KST, TransmitTimestamp=Thu 2026-10-08 23:14:33 KST, DestinationTimestamp=Thu 2026-10-08 23:14:33 KST, Ignored=no, PacketCount=3, Jitter=17.876ms }\nFrequency=-4455932\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/systemctl",
+        "list-units",
+        "--all",
+        "marketdata*",
+        "--no-pager",
+        "--no-legend"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/pgrep",
+        "-a",
+        "-u",
+        "1000",
+        "-f",
+        "marketdata|scripts.restic_schedule|runtime_supervisor|clock_gate"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/sudo",
+        "-n",
+        "/usr/bin/true"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "sudo: a password is required\n"
+    },
+    {
+      "args": [
+        "/usr/bin/python3",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "Python 3.12.3\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/dpkg-query",
+        "-W",
+        "-f=${Package} ${Version} ${db:Status-Abbrev}\n",
+        "chrony",
+        "systemd-timesyncd",
+        "libcap2-bin",
+        "libseccomp2"
+      ],
+      "returncode": 0,
+      "stdout": "chrony  un \nlibcap2-bin 1:2.66-5ubuntu2.4 ii \nlibseccomp2 2.5.5-1ubuntu3.1 ii \nsystemd-timesyncd 255.4-1ubuntu8.16 ii \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/apt-get",
+        "-s",
+        "install",
+        "/home/yoonhc/projects/algoTrade/historical_data/.cache/system-cutover-20261008/chrony_4.5-1ubuntu4.2_amd64.deb"
+      ],
+      "returncode": 0,
+      "stdout": "NOTE: This is only a simulation!\n      apt-get needs root privileges for real execution.\n      Keep also in mind that locking is deactivated,\n      so don't depend on the relevance to the real current situation!\nReading package lists...\nBuilding dependency tree...\nReading state information...\nThe following packages were automatically installed and are no longer required:\n  fbterm libgettextpo0 libx86-1\nUse 'apt autoremove' to remove them.\nThe following packages will be REMOVED:\n  systemd-timesyncd\nThe following NEW packages will be installed:\n  chrony\n0 upgraded, 1 newly installed, 1 to remove and 286 not upgraded.\nRemv systemd-timesyncd [255.4-1ubuntu8.16]\nInst chrony (4.5-1ubuntu4.2 Ubuntu:24.04/noble-updates, local-deb [amd64])\nConf chrony (4.5-1ubuntu4.2 Ubuntu:24.04/noble-updates, local-deb [amd64])\n",
+      "stderr": ""
+    }
+  ],
+  "rtc_sample": {
+    "rtc_utc": "2026-10-08T14:15:52+00:00",
+    "system_utc": "2026-10-08T14:15:52.316622+00:00",
+    "rtc_minus_system_seconds": -0.3166220188140869,
+    "sample_window_ns": 196094
+  },
+  "adjtime": "0.0 0 0.0\n0\nUTC\n",
+  "chrony_staged_sha256": "434f9fda4bf0de2d0c89c132a0b2c1ddda2fdd50c2b0338e1422d015c45d72d2"
+}

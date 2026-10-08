@@ -1,0 +1,325 @@
+{
+  "checked_at": "2026-10-08T21:28:15.296913+09:00",
+  "read_only": true,
+  "service_command": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "--user",
+      "show",
+      "marketdata-aggtrade.service",
+      "marketdata-backup.service",
+      "marketdata-backup.timer",
+      "marketdata-checkpoint-retirement.service",
+      "marketdata-checkpoint-retirement.timer",
+      "marketdata-daily.service",
+      "marketdata-daily.timer",
+      "marketdata-depth.service",
+      "marketdata-network-observer.service",
+      "marketdata-network-observer.timer",
+      "marketdata-oi-probe.service",
+      "marketdata-oi-probe.timer",
+      "marketdata-oi-quality.service",
+      "marketdata-oi-quality.timer",
+      "marketdata-oi.service",
+      "marketdata-oi.timer",
+      "marketdata-pack.service",
+      "marketdata-pack.timer",
+      "marketdata-restic-archive.service",
+      "marketdata-restic-archive.timer",
+      "--property=Id",
+      "--property=ActiveState",
+      "--property=SubState",
+      "--property=Result",
+      "--property=MainPID",
+      "--property=InvocationID",
+      "--property=NRestarts",
+      "--property=ExecMainStartTimestamp",
+      "--property=ExecMainExitTimestamp",
+      "--property=ExecMainStatus",
+      "--property=UnitFileState",
+      "--property=NextElapseUSecRealtime"
+    ],
+    "returncode": 0,
+    "stdout": "MainPID=377570\nResult=success\nNRestarts=73\nExecMainStartTimestamp=Thu 2026-10-08 21:25:26 KST\nExecMainExitTimestamp=\nExecMainStatus=0\nId=marketdata-aggtrade.service\nActiveState=active\nSubState=running\nUnitFileState=enabled\nInvocationID=0e80b38887cd447e9626c08fb4f177dc\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-08 13:10:00 KST\nExecMainExitTimestamp=Thu 2026-10-08 14:08:12 KST\nExecMainStatus=0\nId=marketdata-backup.service\nActiveState=inactive\nSubState=dead\nUnitFileState=linked\nInvocationID=87284ea8e75a42288016c899d18c1f31\n\nNextElapseUSecRealtime=Fri 2026-10-09 13:10:00 KST\nResult=success\nId=marketdata-backup.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=5d974cbb7b3948e3af60adb261e8fc41\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-08 15:40:00 KST\nExecMainExitTimestamp=Thu 2026-10-08 15:53:07 KST\nExecMainStatus=0\nId=marketdata-checkpoint-retirement.service\nActiveState=inactive\nSubState=dead\nUnitFileState=static\nInvocationID=83bd17bdbb4446e4ad0ffdf94676c0ad\n\nNextElapseUSecRealtime=Fri 2026-10-09 15:40:00 KST\nResult=success\nId=marketdata-checkpoint-retirement.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=74daa12835da4786a0d38dba96305b11\n\nMainPID=0\nResult=exit-code\nNRestarts=5\nExecMainStartTimestamp=Thu 2026-10-08 12:25:47 KST\nExecMainExitTimestamp=Thu 2026-10-08 12:25:53 KST\nExecMainStatus=2\nId=marketdata-daily.service\nActiveState=failed\nSubState=failed\nUnitFileState=linked\nInvocationID=1beae7a8043244078cb0af7a4015a775\n\nNextElapseUSecRealtime=Fri 2026-10-09 12:21:16 KST\nResult=success\nId=marketdata-daily.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=45fe82a0c61745cca6400e89b85ee6be\n\nMainPID=376998\nResult=success\nNRestarts=73\nExecMainStartTimestamp=Thu 2026-10-08 21:21:05 KST\nExecMainExitTimestamp=\nExecMainStatus=0\nId=marketdata-depth.service\nActiveState=active\nSubState=running\nUnitFileState=enabled\nInvocationID=ac9576c6acf343b5a3d27b25d29fa3a2\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-08 21:27:20 KST\nExecMainExitTimestamp=Thu 2026-10-08 21:27:21 KST\nExecMainStatus=0\nId=marketdata-network-observer.service\nActiveState=inactive\nSubState=dead\nUnitFileState=static\nInvocationID=57421bafbe9f4284837f7c3590de98f0\n\nNextElapseUSecRealtime=Thu 2026-10-08 21:28:20 KST\nResult=success\nId=marketdata-network-observer.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=02f2169bddec4646ac6a2f8713460913\n\nMainPID=378016\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-08 21:28:15 KST\nExecMainExitTimestamp=\nExecMainStatus=0\nId=marketdata-oi-probe.service\nActiveState=activating\nSubState=start\nUnitFileState=linked\nInvocationID=674c5d50f67c4b32b9da15c32cd3b950\n\nNextElapseUSecRealtime=\nResult=success\nId=marketdata-oi-probe.timer\nActiveState=active\nSubState=running\nUnitFileState=enabled\nInvocationID=f0cc83bbfa334029af6011289fa2f90a\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-08 12:40:00 KST\nExecMainExitTimestamp=Thu 2026-10-08 12:40:05 KST\nExecMainStatus=2\nId=marketdata-oi-quality.service\nActiveState=inactive\nSubState=dead\nUnitFileState=linked\nInvocationID=448ec82622ae4ac4958dfb95e9b71b74\n\nNextElapseUSecRealtime=Fri 2026-10-09 12:40:00 KST\nResult=success\nId=marketdata-oi-quality.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=a162a2057b1c44d39a8f87dc3bf364db\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-08 21:25:45 KST\nExecMainExitTimestamp=Thu 2026-10-08 21:25:46 KST\nExecMainStatus=0\nId=marketdata-oi.service\nActiveState=inactive\nSubState=dead\nUnitFileState=linked\nInvocationID=c16962e0cdd84bc4a2538ea580ae25c6\n\nNextElapseUSecRealtime=Thu 2026-10-08 21:30:45 KST\nResult=success\nId=marketdata-oi.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=d8d11a3240064810aaca2066a5f1f766\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-08 21:15:00 KST\nExecMainExitTimestamp=Thu 2026-10-08 21:16:13 KST\nExecMainStatus=0\nId=marketdata-pack.service\nActiveState=inactive\nSubState=dead\nUnitFileState=linked\nInvocationID=25f4f86fb85749db983e35edd298714d\n\nNextElapseUSecRealtime=Thu 2026-10-08 22:15:00 KST\nResult=success\nId=marketdata-pack.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=64d5061998994594af6f6a2177e761ad\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-08 21:05:00 KST\nExecMainExitTimestamp=Thu 2026-10-08 21:05:18 KST\nExecMainStatus=0\nId=marketdata-restic-archive.service\nActiveState=inactive\nSubState=dead\nUnitFileState=static\nInvocationID=e65b3f3d270a499e8e9988f7aa191a4c\n\nNextElapseUSecRealtime=Thu 2026-10-08 21:35:00 KST\nResult=success\nId=marketdata-restic-archive.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=8451e79496f04cc19a2494fe1f1d7d47\n",
+    "stderr": ""
+  },
+  "services": {
+    "marketdata-aggtrade.service": {
+      "MainPID": "377570",
+      "Result": "success",
+      "NRestarts": "73",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 21:25:26 KST",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-aggtrade.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "0e80b38887cd447e9626c08fb4f177dc"
+    },
+    "marketdata-backup.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 13:10:00 KST",
+      "ExecMainExitTimestamp": "Thu 2026-10-08 14:08:12 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-backup.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": "87284ea8e75a42288016c899d18c1f31"
+    },
+    "marketdata-backup.timer": {
+      "NextElapseUSecRealtime": "Fri 2026-10-09 13:10:00 KST",
+      "Result": "success",
+      "Id": "marketdata-backup.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "5d974cbb7b3948e3af60adb261e8fc41"
+    },
+    "marketdata-checkpoint-retirement.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 15:40:00 KST",
+      "ExecMainExitTimestamp": "Thu 2026-10-08 15:53:07 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-checkpoint-retirement.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "static",
+      "InvocationID": "83bd17bdbb4446e4ad0ffdf94676c0ad"
+    },
+    "marketdata-checkpoint-retirement.timer": {
+      "NextElapseUSecRealtime": "Fri 2026-10-09 15:40:00 KST",
+      "Result": "success",
+      "Id": "marketdata-checkpoint-retirement.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "74daa12835da4786a0d38dba96305b11"
+    },
+    "marketdata-daily.service": {
+      "MainPID": "0",
+      "Result": "exit-code",
+      "NRestarts": "5",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 12:25:47 KST",
+      "ExecMainExitTimestamp": "Thu 2026-10-08 12:25:53 KST",
+      "ExecMainStatus": "2",
+      "Id": "marketdata-daily.service",
+      "ActiveState": "failed",
+      "SubState": "failed",
+      "UnitFileState": "linked",
+      "InvocationID": "1beae7a8043244078cb0af7a4015a775"
+    },
+    "marketdata-daily.timer": {
+      "NextElapseUSecRealtime": "Fri 2026-10-09 12:21:16 KST",
+      "Result": "success",
+      "Id": "marketdata-daily.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "45fe82a0c61745cca6400e89b85ee6be"
+    },
+    "marketdata-depth.service": {
+      "MainPID": "376998",
+      "Result": "success",
+      "NRestarts": "73",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 21:21:05 KST",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-depth.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "ac9576c6acf343b5a3d27b25d29fa3a2"
+    },
+    "marketdata-network-observer.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 21:27:20 KST",
+      "ExecMainExitTimestamp": "Thu 2026-10-08 21:27:21 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-network-observer.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "static",
+      "InvocationID": "57421bafbe9f4284837f7c3590de98f0"
+    },
+    "marketdata-network-observer.timer": {
+      "NextElapseUSecRealtime": "Thu 2026-10-08 21:28:20 KST",
+      "Result": "success",
+      "Id": "marketdata-network-observer.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "02f2169bddec4646ac6a2f8713460913"
+    },
+    "marketdata-oi-probe.service": {
+      "MainPID": "378016",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 21:28:15 KST",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-oi-probe.service",
+      "ActiveState": "activating",
+      "SubState": "start",
+      "UnitFileState": "linked",
+      "InvocationID": "674c5d50f67c4b32b9da15c32cd3b950"
+    },
+    "marketdata-oi-probe.timer": {
+      "NextElapseUSecRealtime": "",
+      "Result": "success",
+      "Id": "marketdata-oi-probe.timer",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "f0cc83bbfa334029af6011289fa2f90a"
+    },
+    "marketdata-oi-quality.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 12:40:00 KST",
+      "ExecMainExitTimestamp": "Thu 2026-10-08 12:40:05 KST",
+      "ExecMainStatus": "2",
+      "Id": "marketdata-oi-quality.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": "448ec82622ae4ac4958dfb95e9b71b74"
+    },
+    "marketdata-oi-quality.timer": {
+      "NextElapseUSecRealtime": "Fri 2026-10-09 12:40:00 KST",
+      "Result": "success",
+      "Id": "marketdata-oi-quality.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "a162a2057b1c44d39a8f87dc3bf364db"
+    },
+    "marketdata-oi.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 21:25:45 KST",
+      "ExecMainExitTimestamp": "Thu 2026-10-08 21:25:46 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-oi.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": "c16962e0cdd84bc4a2538ea580ae25c6"
+    },
+    "marketdata-oi.timer": {
+      "NextElapseUSecRealtime": "Thu 2026-10-08 21:30:45 KST",
+      "Result": "success",
+      "Id": "marketdata-oi.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "d8d11a3240064810aaca2066a5f1f766"
+    },
+    "marketdata-pack.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 21:15:00 KST",
+      "ExecMainExitTimestamp": "Thu 2026-10-08 21:16:13 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-pack.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": "25f4f86fb85749db983e35edd298714d"
+    },
+    "marketdata-pack.timer": {
+      "NextElapseUSecRealtime": "Thu 2026-10-08 22:15:00 KST",
+      "Result": "success",
+      "Id": "marketdata-pack.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "64d5061998994594af6f6a2177e761ad"
+    },
+    "marketdata-restic-archive.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Thu 2026-10-08 21:05:00 KST",
+      "ExecMainExitTimestamp": "Thu 2026-10-08 21:05:18 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-restic-archive.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "static",
+      "InvocationID": "e65b3f3d270a499e8e9988f7aa191a4c"
+    },
+    "marketdata-restic-archive.timer": {
+      "NextElapseUSecRealtime": "Thu 2026-10-08 21:35:00 KST",
+      "Result": "success",
+      "Id": "marketdata-restic-archive.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "8451e79496f04cc19a2494fe1f1d7d47"
+    }
+  },
+  "clock": {
+    "argv": [
+      "/usr/bin/timedatectl",
+      "show",
+      "-p",
+      "NTPSynchronized",
+      "-p",
+      "LocalRTC",
+      "-p",
+      "Timezone"
+    ],
+    "returncode": 0,
+    "stdout": "Timezone=Asia/Seoul\nLocalRTC=yes\nNTPSynchronized=yes\n",
+    "stderr": ""
+  },
+  "time_services": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "show",
+      "systemd-timesyncd.service",
+      "chrony.service",
+      "-p",
+      "Id",
+      "-p",
+      "LoadState",
+      "-p",
+      "ActiveState",
+      "-p",
+      "InvocationID"
+    ],
+    "returncode": 0,
+    "stdout": "Id=systemd-timesyncd.service\nLoadState=loaded\nActiveState=active\nInvocationID=352fb60dcaed4b78b7c915bd3aca7d2c\n\nId=chrony.service\nLoadState=not-found\nActiveState=inactive\nInvocationID=\n",
+    "stderr": ""
+  },
+  "hash_groups": {
+    "pinned_files": {
+      "checked": 198,
+      "unchanged": true,
+      "changed": []
+    },
+    "operating_files": {
+      "checked": 139,
+      "unchanged": true,
+      "changed": []
+    },
+    "installed_user_units": {
+      "checked": 20,
+      "unchanged": true,
+      "changed": []
+    }
+  },
+  "operating_transition_applied": false,
+  "services_started_stopped_or_reset": false
+}

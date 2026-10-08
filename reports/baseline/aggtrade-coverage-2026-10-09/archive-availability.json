@@ -1,0 +1,40 @@
+{
+  "observed_on_kst": "2026-10-09",
+  "method": "HTTP HEAD on four public archive ZIP URLs; one HTTP Range GET of bytes 0-65535 and bounded ZIP prefix decompression. No complete archive download, checksum validation or data import.",
+  "official_readme": "https://github.com/binance/binance-public-data#futures",
+  "objects": [
+    {
+      "url": "https://data.binance.vision/data/futures/um/daily/aggTrades/BTCUSDT/BTCUSDT-aggTrades-2026-10-07.zip",
+      "http_status": 200,
+      "content_length": 14953649,
+      "last_modified": "Thu, 08 Oct 2026 07:26:01 GMT"
+    },
+    {
+      "url": "https://data.binance.vision/data/futures/um/daily/aggTrades/BTCUSDT/BTCUSDT-aggTrades-2026-10-08.zip",
+      "http_status": 404
+    },
+    {
+      "url": "https://data.binance.vision/data/futures/um/daily/aggTrades/BTCUSDT/BTCUSDT-aggTrades-2026-09-22.zip",
+      "http_status": 200,
+      "content_length": 19397933,
+      "last_modified": "Wed, 23 Sep 2026 07:00:25 GMT"
+    },
+    {
+      "url": "https://data.binance.vision/data/futures/um/monthly/aggTrades/BTCUSDT/BTCUSDT-aggTrades-2026-09.zip",
+      "http_status": 200,
+      "content_length": 437374990,
+      "last_modified": "Thu, 01 Oct 2026 09:28:38 GMT"
+    }
+  ],
+  "sample": {
+    "date_utc": "2026-10-07",
+    "http_status": 206,
+    "content_range": "bytes 0-65535/14953649",
+    "header": "agg_trade_id,price,quantity,first_trade_id,last_trade_id,transact_time,is_buyer_maker",
+    "first_rows": [
+      "3477011300,85507.6,0.009,8151111140,8151111140,1791331200005,false",
+      "3477011301,85507.5,0.002,8151111141,8151111141,1791331200054,true"
+    ]
+  },
+  "interpretation": "REST 48-hour window is not a retention limit for public daily/monthly archives. Future recovery is conditional on actual published file content and validation. Historical local WS received_at/event_time cannot be recovered from this sample; normal_quantity is also absent from this header."
+}

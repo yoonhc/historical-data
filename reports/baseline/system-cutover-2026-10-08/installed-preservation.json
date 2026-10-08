@@ -1,0 +1,149 @@
+{
+  "at": "2026-10-08T23:58:08.462750+09:00",
+  "namespace": "host outside tool sandbox",
+  "uid_map": "         0          0 4294967295\n",
+  "paths": {
+    "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "symlink": false
+    },
+    "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "symlink": false
+    },
+    "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/runtime-manifest.json": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "symlink": false
+    },
+    "/etc/marketdata/runtime.json": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "symlink": false
+    },
+    "/etc/marketdata/clock-bootstrap.json": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "symlink": false
+    },
+    "/etc/marketdata/rtc-utc-confirmation.json": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "symlink": false
+    },
+    "/etc/chrony": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "symlink": false
+    },
+    "/etc/chrony/marketdata.conf": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "symlink": false
+    },
+    "/var/lib/marketdata-clock": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "symlink": false
+    },
+    "/var/lib/marketdata-clock/boot-state.json": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "symlink": false
+    },
+    "/var/lib/marketdata-clock/coordinator.lock": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "symlink": false
+    }
+  },
+  "original_config_checks": {
+    "/home/yoonhc/.config/marketdata/checkpoint-retirement-service.env": true,
+    "/home/yoonhc/.config/marketdata/restic-archive.toml": true,
+    "/home/yoonhc/.config/marketdata/checkpoint-retention-automatic.toml": true,
+    "/home/yoonhc/.config/marketdata/checkpoint-retention-authorization.json": true,
+    "/home/yoonhc/.config/marketdata/restic-service.env": true,
+    "/home/yoonhc/.config/marketdata/network-observer.toml": true,
+    "/home/yoonhc/.config/marketdata/network-observer.env": true,
+    "/home/yoonhc/.config/marketdata/backup-host.toml": true,
+    "/home/yoonhc/.config/marketdata/checkpoint-schedule.toml": true
+  },
+  "installed_source_hashes_match": true,
+  "source_file_count": 172,
+  "root_owned_non_writable_by_user": true,
+  "prior_sandbox_observation": "The restricted tool user namespace exposed host UID/GID 0 as unmapped 65534; use this host observation for ownership. No chown or permission change was performed to address that display.",
+  "commands": [
+    {
+      "args": [
+        "systemctl",
+        "show",
+        "md-cutover-root-access-20261008.service",
+        "md-cutover-consumer-access-20261008.service",
+        "md-cutover-root-final-20261008.service",
+        "-p",
+        "Id",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState"
+      ],
+      "returncode": 0,
+      "stdout": "Id=md-cutover-root-access-20261008.service\nLoadState=not-found\nActiveState=inactive\n\nId=md-cutover-consumer-access-20261008.service\nLoadState=not-found\nActiveState=inactive\n\nId=md-cutover-root-final-20261008.service\nLoadState=not-found\nActiveState=inactive\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "systemctl",
+        "--user",
+        "show",
+        "marketdata-backup.service",
+        "marketdata-daily.service",
+        "marketdata-oi.service",
+        "marketdata-oi-probe.service",
+        "marketdata-oi-quality.service",
+        "marketdata-pack.service",
+        "marketdata-restic-archive.service",
+        "marketdata-network-observer.service",
+        "-p",
+        "Id",
+        "-p",
+        "ActiveState",
+        "-p",
+        "MainPID",
+        "-p",
+        "ControlPID",
+        "-p",
+        "ExecMainStartTimestamp"
+      ],
+      "returncode": 0,
+      "stdout": "MainPID=0\nControlPID=0\nExecMainStartTimestamp=\nId=marketdata-backup.service\nActiveState=inactive\n\nMainPID=0\nControlPID=0\nExecMainStartTimestamp=\nId=marketdata-daily.service\nActiveState=inactive\n\nMainPID=0\nControlPID=0\nExecMainStartTimestamp=\nId=marketdata-oi.service\nActiveState=inactive\n\nMainPID=0\nControlPID=0\nExecMainStartTimestamp=\nId=marketdata-oi-probe.service\nActiveState=inactive\n\nMainPID=0\nControlPID=0\nExecMainStartTimestamp=\nId=marketdata-oi-quality.service\nActiveState=inactive\n\nMainPID=0\nControlPID=0\nExecMainStartTimestamp=\nId=marketdata-pack.service\nActiveState=inactive\n\nMainPID=0\nControlPID=0\nExecMainStartTimestamp=\nId=marketdata-restic-archive.service\nActiveState=inactive\n\nMainPID=0\nControlPID=0\nExecMainStartTimestamp=\nId=marketdata-network-observer.service\nActiveState=inactive\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "systemctl",
+        "--user",
+        "list-jobs",
+        "--no-pager"
+      ],
+      "returncode": 0,
+      "stdout": "JOB UNIT                                TYPE  STATE\n676 marketdata-oi.service               start waiting\n744 marketdata-restic-archive.service   start waiting\n776 marketdata-oi-probe.service         start waiting\n808 marketdata-oi-quality.service       start waiting\n639 marketdata-clock-ready.service      start running\n710 marketdata-pack.service             start waiting\n840 marketdata-daily.service            start waiting\n638 marketdata-network-observer.service start waiting\n\n8 jobs listed.\n",
+      "stderr": ""
+    }
+  ],
+  "rtc_minus_system_seconds": -0.49507784843444824,
+  "passed": true
+}

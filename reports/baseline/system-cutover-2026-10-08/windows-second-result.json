@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-10-08T23:17:58.922148+09:00",
+  "evidence_source": "user report after second Windows visit and return to Linux",
+  "independently_observed_by_linux": false,
+  "registry": {
+    "name": "RealTimeIsUniversal",
+    "type": "REG_DWORD",
+    "value": 1,
+    "maintained_after_roundtrip": true
+  },
+  "timezone": "Korea Standard Time",
+  "w32tm_observations": [
+    {
+      "initial_error": "0x80070426",
+      "user_description": "서비스 미시작 오류"
+    },
+    {
+      "leap_indicator_reported": 0,
+      "stratum": 5,
+      "source": "time.windows.com,0x8",
+      "last_successful_sync": "2026-10-08T23:07:25+09:00"
+    }
+  ],
+  "initial_display_before_automatic_sync_proven": false,
+  "initial_display_before_automatic_sync": null,
+  "linux_return_boot_id": "9e33f0bc-b734-45c9-8a85-8aa6c35efa71",
+  "interpretation": "UTC flag and timezone persisted; later Windows synchronization succeeded. Initial Windows clock accuracy and cause/timing of service startup are not proven."
+}

@@ -1,0 +1,46 @@
+{
+  "created_at": "2026-10-08T21:41:41.562320+09:00",
+  "command": [
+    "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata",
+    "--root",
+    "/home/yoonhc/projects/algoTrade/historical_data",
+    "backup",
+    "--output",
+    "/mnt/backup/marketdata-historical/automatic/2026-10-08/56a530cf83164a83aefd30653138904a",
+    "--reuse-from",
+    "/mnt/backup/marketdata-historical/automatic/2026-10-08/ce63ff231fb440b68972ea702382c1e5",
+    "--min-free-gib",
+    "10"
+  ],
+  "destination": "/mnt/backup/marketdata-historical/automatic/2026-10-08/56a530cf83164a83aefd30653138904a",
+  "reuse_backup_id": "ccf70014d48549bd22e801b135680ef4b6e5040e236688ed78374aa987745935",
+  "service_state": "MainPID=0\nId=marketdata-aggtrade.service\nLoadState=masked\nActiveState=failed\n\nMainPID=0\nId=marketdata-backup.service\nLoadState=masked\nActiveState=inactive\n\nId=marketdata-backup.timer\nLoadState=masked\nActiveState=inactive\n\nMainPID=0\nId=marketdata-checkpoint-retirement.service\nLoadState=masked\nActiveState=inactive\n\nId=marketdata-checkpoint-retirement.timer\nLoadState=masked\nActiveState=inactive\n\nMainPID=0\nId=marketdata-daily.service\nLoadState=masked\nActiveState=inactive\n\nId=marketdata-daily.timer\nLoadState=masked\nActiveState=inactive\n\nMainPID=0\nId=marketdata-depth.service\nLoadState=masked\nActiveState=failed\n\nMainPID=0\nId=marketdata-network-observer.service\nLoadState=masked\nActiveState=inactive\n\nId=marketdata-network-observer.timer\nLoadState=masked\nActiveState=inactive\n\nMainPID=0\nId=marketdata-oi-probe.service\nLoadState=masked\nActiveState=inactive\n\nId=marketdata-oi-probe.timer\nLoadState=masked\nActiveState=inactive\n\nMainPID=0\nId=marketdata-oi-quality.service\nLoadState=masked\nActiveState=inactive\n\nId=marketdata-oi-quality.timer\nLoadState=masked\nActiveState=inactive\n\nMainPID=0\nId=marketdata-oi.service\nLoadState=masked\nActiveState=inactive\n\nId=marketdata-oi.timer\nLoadState=masked\nActiveState=inactive\n\nMainPID=0\nId=marketdata-pack.service\nLoadState=masked\nActiveState=inactive\n\nId=marketdata-pack.timer\nLoadState=masked\nActiveState=inactive\n\nMainPID=0\nId=marketdata-restic-archive.service\nLoadState=masked\nActiveState=inactive\n\nId=marketdata-restic-archive.timer\nLoadState=masked\nActiveState=inactive\n",
+  "clock": "LocalRTC=yes\nNTPSynchronized=yes\n",
+  "final_streams": {
+    "depth": {
+      "id": "2ea50dbce730490080131273c6f49a3e",
+      "state": "interrupted",
+      "messages": 11184,
+      "persisted_messages": 11184,
+      "last_received_at": "2026-10-08T12:40:09.235883+00:00",
+      "updated_at": "2026-10-08T12:40:11.313535+00:00",
+      "last_update_id": 11765159362213,
+      "last_id": null,
+      "unrepaired_gaps": null,
+      "unreconstructed_messages": 0
+    },
+    "aggtrade": {
+      "id": "24d467b9c2264c5da13f12ccd19c36a1",
+      "state": "interrupted",
+      "messages": 11281,
+      "persisted_messages": 11281,
+      "last_received_at": "2026-10-08T12:40:09.248188+00:00",
+      "updated_at": "2026-10-08T12:40:14.283944+00:00",
+      "last_update_id": null,
+      "last_id": 3478866749,
+      "unrepaired_gaps": 0,
+      "unreconstructed_messages": null
+    }
+  },
+  "method": "existing backup CLI with complete manifest/file/pack validation; no repeated source-wide maintenance"
+}

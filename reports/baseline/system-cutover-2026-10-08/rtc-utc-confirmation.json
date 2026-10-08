@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "windows_utc_confirmed": true,
+  "confirmed_at": "2026-10-08T23:17:58.922148+09:00",
+  "evidence_note": "User confirmed REG_DWORD RealTimeIsUniversal=1 and Korea Standard Time on both Windows visits, reboot persistence, and later time.windows.com synchronization (second visit 2026-10-08 23:07:25 KST). Initial Windows pre-NTP display is explicitly unproven; initial w32tm 0x80070426 is preserved. Linux returned in new boot 9e33f0bc-b734-45c9-8a85-8aa6c35efa71, retained UTC adjtime/LocalRTC=no, synchronized externally at 23:12:56 KST, and RTC 14:15:52 UTC was close to system 14:15:52.316622 UTC. Reports: system-cutover-2026-10-08/windows-first-result.json, windows-second-result.json, linux-rtc-utc-verification.json, linux-second-return-detail.json. This is human Windows evidence plus actual Linux observation, not an attestation of Windows pre-sync clock accuracy.",
+  "windows_initial_clock_before_auto_sync_proven": false,
+  "linux_boot_id": "9e33f0bc-b734-45c9-8a85-8aa6c35efa71"
+}

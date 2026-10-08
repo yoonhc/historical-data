@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-08T22:57:43.882599+09:00",
+  "stage": "ready_for_second_windows_roundtrip",
+  "verification_passed": true,
+  "hashes": {
+    "handoff.json": "383e11f060f2ed8e9843371e0a470b7ea95b43edaeeac6521b6aa09faf8c8207",
+    "handoff-current.json": "8b03932659db314d318de3be543a3caa02856453c90e5eb282ec2eb3c5e472ac",
+    "windows-first-result.json": "69791f2ec867228220f984d7401c2e349ca07e5fc78ae747e3a6ab13f7f59f51",
+    "linux-return-detail-20261008T225109.json": "9c0fc1bbfa5a60dd8d4692da3985c09fbe7a7a91c424e201fc6278d021088aa0",
+    "linux-return-preservation.json": "b63da69581947c77ea2e51f864f5160e89147ff2c1cb84c42f249517f93a424f",
+    "staged-package-return-check.json": "7179db85ac32b43f546f93d10d6b8d32f3956abbd4f6ec8f4f47cca470d57ff8",
+    "linux-rtc-utc-verification.json": "a2dcdd508a5a56f30ba7478621c01436e3f2c4675167dcf07131e8638b1603e1",
+    "windows-roundtrip-handoff.md": "7271271c441b238f7e9920d34d0e9ae3817b57feb837da33b588f9e3700a78a4",
+    "summary.md": "10a18d4f772b3ef06052d97757decc64527fb20524a4c89aa680fa9e322d0c8f",
+    "resume-observation-656ec5e3-7734-455f-9214-1326c988f837-20261008T224913413522.json": "bd53f8dca1014ba10348a04e4a352f4d04ff9848fef8aff1f5412575ca01feb5",
+    "resume-observation-656ec5e3-7734-455f-9214-1326c988f837-20261008T225555506037.json": "091edc8654da444012a6dc2409fdb219bf3213b304d60c46bf5a79237a31e939"
+  },
+  "changes": "User applied timedatectl set-local-rtc 0; /etc/adjtime is UTC. Only observational/handoff reports changed in the workspace. No candidate code, collector settings, backup configuration, or grant changed.",
+  "pending": [
+    "Second Windows/Linux roundtrip",
+    "Production UTC confirmation and Chrony/release installation",
+    "Final Linux boot and system collector validation",
+    "Permanent clock gate before checkpoint retirement resumption"
+  ]
+}

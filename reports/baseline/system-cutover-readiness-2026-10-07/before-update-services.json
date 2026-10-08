@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-07T23:31:47.042895+09:00",
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "marketdata-daily.service",
+        "marketdata-backup.service",
+        "marketdata-restic-archive.service",
+        "marketdata-depth.service",
+        "marketdata-aggtrade.service",
+        "-p",
+        "Id",
+        "-p",
+        "ActiveState",
+        "-p",
+        "SubState",
+        "-p",
+        "Result",
+        "-p",
+        "MainPID",
+        "-p",
+        "InvocationID",
+        "-p",
+        "NRestarts",
+        "-p",
+        "ExecMainStartTimestamp",
+        "-p",
+        "ExecMainExitTimestamp",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "stdout": "MainPID=0\nResult=exit-code\nNRestarts=5\nExecMainStartTimestamp=Wed 2026-10-07 12:27:45 KST\nExecMainExitTimestamp=Wed 2026-10-07 12:27:51 KST\nExecMainStatus=2\nId=marketdata-daily.service\nActiveState=failed\nSubState=failed\nInvocationID=c863e2153a854dac9926b16114407e1f\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 13:10:00 KST\nExecMainExitTimestamp=Wed 2026-10-07 14:03:08 KST\nExecMainStatus=0\nId=marketdata-backup.service\nActiveState=inactive\nSubState=dead\nInvocationID=aac0a22763af4586bff60b7c163a31a7\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 23:05:00 KST\nExecMainExitTimestamp=Wed 2026-10-07 23:05:16 KST\nExecMainStatus=0\nId=marketdata-restic-archive.service\nActiveState=inactive\nSubState=dead\nInvocationID=95d98020f7f842d8ad89818b24c7c648\n\nMainPID=289046\nResult=success\nNRestarts=51\nExecMainStartTimestamp=Wed 2026-10-07 23:14:46 KST\nExecMainExitTimestamp=\nExecMainStatus=0\nId=marketdata-depth.service\nActiveState=active\nSubState=running\nInvocationID=ad4137e0214340ce93a7312a876c7efe\n\nMainPID=289229\nResult=success\nNRestarts=51\nExecMainStartTimestamp=Wed 2026-10-07 23:17:54 KST\nExecMainExitTimestamp=\nExecMainStatus=0\nId=marketdata-aggtrade.service\nActiveState=active\nSubState=running\nInvocationID=38fec1a978c3431595d99685f75f6b39\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "reset_failed_performed": false
+}

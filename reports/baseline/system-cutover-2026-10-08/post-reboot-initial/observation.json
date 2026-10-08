@@ -1,0 +1,664 @@
+{
+  "captured_at": "2026-10-09T00:19:29.274934+09:00",
+  "uid": 1000,
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "uid_map": "         0          0 4294967295\n",
+  "rtc_date": "2026-10-08",
+  "rtc_time": "15:19:29",
+  "system_utc": "2026-10-08T15:19:29.275123+00:00",
+  "runtime_hash_checks": {
+    ".venv/lib/python3.12/site-packages/marketdata/__init__.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/aggtrade_stream.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/aggtrades.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/backfill.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/backup.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/binance.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/checkpoint_locks.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/cli.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/depth.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/depth_refresh.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/depth_stream.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/domain.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/fileio.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/maintenance.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/normalize.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/oi_probe.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/oi_quality.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/operations.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/packing.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/pipeline.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/research.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/schema.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/store.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/stream_guard.py": true,
+    ".venv/lib/python3.12/site-packages/marketdata/transforms.py": true,
+    "integrations/runtime/clock_gate.py": true,
+    "integrations/runtime/isolated_bootstrap_test.py": true,
+    "integrations/runtime/isolated_chrony_test.py": true,
+    "integrations/runtime/isolated_chronyc_requests.py": true,
+    "integrations/runtime/isolated_job_gate_test.py": true,
+    "integrations/runtime/isolated_service_test.py": true,
+    "integrations/runtime/marketdata_runtime.py": true,
+    "integrations/runtime/render_bootstrap.py": true,
+    "integrations/runtime/render_units.py": true,
+    "integrations/runtime/seal_runtime.py": true
+  },
+  "guard_hash_checks": {
+    "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": true,
+    "/etc/systemd/system/chrony.service.d/marketdata.conf": true,
+    "/etc/systemd/system/marketdata-clock-bootstrap.service": true,
+    "/etc/systemd/system/marketdata-collector@.service": true,
+    "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf": true,
+    "/etc/systemd/user/marketdata-clock-ready.service": true,
+    "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": true,
+    "/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf": true,
+    "/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf": true,
+    "/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf": true,
+    "/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf": true,
+    "/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf": true,
+    "/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf": true
+  },
+  "original_config_checks": {
+    "/etc/adjtime": false,
+    "/home/yoonhc/.config/marketdata/checkpoint-retirement-service.env": false,
+    "/home/yoonhc/.config/marketdata/restic-archive.toml": false,
+    "/home/yoonhc/.config/marketdata/checkpoint-retention-automatic.toml": false,
+    "/home/yoonhc/.config/marketdata/checkpoint-retention-authorization.json": false,
+    "/home/yoonhc/.config/marketdata/restic-service.env": false,
+    "/home/yoonhc/.config/marketdata/network-observer.toml": false,
+    "/home/yoonhc/.config/marketdata/network-observer.env": false,
+    "/home/yoonhc/.config/marketdata/backup-host.toml": false,
+    "/home/yoonhc/.config/marketdata/checkpoint-schedule.toml": false
+  },
+  "ownership": {
+    "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755"
+    },
+    "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755"
+    },
+    "/etc/marketdata/runtime.json": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644"
+    },
+    "/var/lib/marketdata-clock/boot-state.json": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644"
+    }
+  },
+  "processes": [
+    {
+      "pid": 1245,
+      "argv": [
+        "/usr/sbin/chronyd",
+        "-F",
+        "1",
+        "-f",
+        "/etc/chrony/marketdata.conf",
+        ""
+      ],
+      "uid": 122,
+      "cgroup": "0::/system.slice/chrony.service\n"
+    },
+    {
+      "pid": 1246,
+      "argv": [
+        "/usr/sbin/chronyd",
+        "-F",
+        "1",
+        "-f",
+        "/etc/chrony/marketdata.conf",
+        ""
+      ],
+      "uid": 122,
+      "cgroup": "0::/system.slice/chrony.service\n"
+    },
+    {
+      "pid": 2237,
+      "argv": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-I",
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/marketdata_runtime.py",
+        "run",
+        "--profile",
+        "/etc/marketdata/runtime.json",
+        "--stream",
+        "depth",
+        ""
+      ],
+      "uid": 1000,
+      "cgroup": "0::/system.slice/system-marketdata\\x2dcollector.slice/marketdata-collector@depth.service\n"
+    },
+    {
+      "pid": 2239,
+      "argv": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-I",
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/marketdata_runtime.py",
+        "run",
+        "--profile",
+        "/etc/marketdata/runtime.json",
+        "--stream",
+        "aggtrade",
+        ""
+      ],
+      "uid": 1000,
+      "cgroup": "0::/system.slice/system-marketdata\\x2dcollector.slice/marketdata-collector@aggtrade.service\n"
+    },
+    {
+      "pid": 2289,
+      "argv": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-I",
+        "-c",
+        "from marketdata.cli import main; raise SystemExit(main())",
+        "--root",
+        "/home/yoonhc/projects/algoTrade/historical_data",
+        "depth-stream",
+        "--seconds",
+        "3600",
+        "--flush-seconds",
+        "5",
+        "--rotate-seconds",
+        "900",
+        "--min-free-gib",
+        "10",
+        "--verify-seconds",
+        "10",
+        "--top",
+        "20",
+        ""
+      ],
+      "uid": 1000,
+      "cgroup": "0::/system.slice/system-marketdata\\x2dcollector.slice/marketdata-collector@depth.service\n"
+    },
+    {
+      "pid": 2290,
+      "argv": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-I",
+        "-c",
+        "from marketdata.cli import main; raise SystemExit(main())",
+        "--root",
+        "/home/yoonhc/projects/algoTrade/historical_data",
+        "aggtrade-stream",
+        "--seconds",
+        "3600",
+        "--flush-seconds",
+        "5",
+        "--rotate-seconds",
+        "3600",
+        "--min-free-gib",
+        "10",
+        ""
+      ],
+      "uid": 1000,
+      "cgroup": "0::/system.slice/system-marketdata\\x2dcollector.slice/marketdata-collector@aggtrade.service\n"
+    }
+  ],
+  "copied_files": {
+    "/var/lib/marketdata-clock/boot-state.json": {
+      "evidence_file": "file-00-boot-state.json",
+      "sha256": "c7bf1f831e3249d2c77d90b46395c5d9d7a80076123f50a7f9442cbf115070f3"
+    },
+    "/var/lib/marketdata-clock/events.jsonl": {
+      "evidence_file": "file-01-events.jsonl",
+      "sha256": "e87f8af3b449cda848822533b7aea8a774e4608e1e1026cb7037538489d5437c"
+    },
+    "/etc/adjtime": {
+      "evidence_file": "file-02-adjtime",
+      "sha256": "1a4f01af447bd4d7448979a43750d91c4d6df4250e2ce7eb2df88dfb6c4e2319"
+    },
+    "/etc/marketdata/runtime.json": {
+      "evidence_file": "file-03-runtime.json",
+      "sha256": "f10663335fd42b8df75da8c5e7b43ec353244b24898f7c7dcc26d6eee77248c7"
+    },
+    "/etc/marketdata/clock-bootstrap.json": {
+      "evidence_file": "file-04-clock-bootstrap.json",
+      "sha256": "4f7a3e2704ac9def68673220855c44f257c8a25cac8ea00f736fc5ca3ba2732b"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/depth-latest.json": {
+      "evidence_file": "file-05-depth-latest.json",
+      "sha256": "823d56dc28a852ec8b9bde5ed4576a9027429473dd94badc517b3f9d7098ec12"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/aggtrade-latest.json": {
+      "evidence_file": "file-06-aggtrade-latest.json",
+      "sha256": "2b4a3ba340817bd5731d791c8ffef3bff70ee69d062baa985b101ce8fea2faf6"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/daily-latest.json": {
+      "evidence_file": "file-07-daily-latest.json",
+      "sha256": "a83c2158af6867ab28af7cea9b8319666c21157ae7d5932f75242d6193e31780"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/oi-latest.json": {
+      "evidence_file": "file-08-oi-latest.json",
+      "sha256": "b72dc56101bf8de333a562094824e5b06aff705705a060770e7ee62092ce8d0a"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/oi-probe-latest.json": {
+      "evidence_file": "file-09-oi-probe-latest.json",
+      "sha256": "d6028399e219b221c7afef542865734bb0ae180d72d086a30c0d910d68ed1d05"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/maintenance-hourly-latest.json": {
+      "evidence_file": "file-10-maintenance-hourly-latest.json",
+      "sha256": "ee0a02b6231ffef6c384745ac407f1899779dd6b2ab9f83e087645162bda07c2"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/maintenance-daily-latest.json": {
+      "evidence_file": "file-11-maintenance-daily-latest.json",
+      "sha256": "b4b3c3aad5ae00393ce8af917a38321ae16d0a2f3ef326b665628553f93a5b27"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock/depth/latest.json": {
+      "evidence_file": "file-12-latest.json",
+      "sha256": "fa9d3bbf5b799ec3c68af0a962247fc2ce954d2543735f2dfb5368d278eb7157"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock/depth/6a79f9d2cb18449e97b165162542cb4f.jsonl": {
+      "evidence_file": "file-13-6a79f9d2cb18449e97b165162542cb4f.jsonl",
+      "sha256": "164834e8a80c33227cd3fcdb9757b5a79bdf5878c63878d0fd54447b343ee44a"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock/aggtrade/latest.json": {
+      "evidence_file": "file-14-latest.json",
+      "sha256": "231712f9a83b2654401a11a75a46afd9b6eda6d633d5c9e203dbefcd376d01c4"
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock/aggtrade/2a59bde2418f42c58ad0347306b8b979.jsonl": {
+      "evidence_file": "file-15-2a59bde2418f42c58ad0347306b8b979.jsonl",
+      "sha256": "a76ca955851c3f7022afdb96c928f33e462f31198499bad921b171da1b569230"
+    }
+  },
+  "commands": {
+    "system-units": {
+      "argv": [
+        "systemctl",
+        "show",
+        "chrony.service",
+        "chrony-wait.service",
+        "marketdata-clock-bootstrap.service",
+        "marketdata-collector@depth.service",
+        "marketdata-collector@aggtrade.service",
+        "systemd-timesyncd.service",
+        "-p",
+        "Id",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "SubState",
+        "-p",
+        "UnitFileState",
+        "-p",
+        "Result",
+        "-p",
+        "MainPID",
+        "-p",
+        "ControlPID",
+        "-p",
+        "User",
+        "-p",
+        "InvocationID",
+        "-p",
+        "NRestarts",
+        "-p",
+        "ExecMainStatus",
+        "-p",
+        "ExecMainStartTimestamp",
+        "-p",
+        "ExecMainStartTimestampMonotonic",
+        "-p",
+        "ExecMainExitTimestamp",
+        "-p",
+        "ActiveEnterTimestamp",
+        "-p",
+        "ActiveEnterTimestampMonotonic",
+        "-p",
+        "ControlGroup",
+        "-p",
+        "ExecStart",
+        "-p",
+        "DropInPaths",
+        "-p",
+        "FragmentPath"
+      ],
+      "started_at": "2026-10-09T00:19:27.821624+09:00",
+      "finished_at": "2026-10-09T00:19:27.833351+09:00",
+      "returncode": 0
+    },
+    "user-units": {
+      "argv": [
+        "systemctl",
+        "--user",
+        "show",
+        "marketdata-aggtrade.service",
+        "marketdata-backup.service",
+        "marketdata-backup.timer",
+        "marketdata-checkpoint-retirement.service",
+        "marketdata-checkpoint-retirement.timer",
+        "marketdata-clock-ready.service",
+        "marketdata-daily.service",
+        "marketdata-daily.timer",
+        "marketdata-depth.service",
+        "marketdata-network-observer.service",
+        "marketdata-network-observer.timer",
+        "marketdata-oi-probe.service",
+        "marketdata-oi-probe.timer",
+        "marketdata-oi-quality.service",
+        "marketdata-oi-quality.timer",
+        "marketdata-oi.service",
+        "marketdata-oi.timer",
+        "marketdata-pack.service",
+        "marketdata-pack.timer",
+        "marketdata-restic-archive.service",
+        "marketdata-restic-archive.timer",
+        "-p",
+        "Id",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "SubState",
+        "-p",
+        "UnitFileState",
+        "-p",
+        "Result",
+        "-p",
+        "MainPID",
+        "-p",
+        "ControlPID",
+        "-p",
+        "User",
+        "-p",
+        "InvocationID",
+        "-p",
+        "NRestarts",
+        "-p",
+        "ExecMainStatus",
+        "-p",
+        "ExecMainStartTimestamp",
+        "-p",
+        "ExecMainStartTimestampMonotonic",
+        "-p",
+        "ExecMainExitTimestamp",
+        "-p",
+        "ActiveEnterTimestamp",
+        "-p",
+        "ActiveEnterTimestampMonotonic",
+        "-p",
+        "ControlGroup",
+        "-p",
+        "ExecStart",
+        "-p",
+        "DropInPaths",
+        "-p",
+        "FragmentPath"
+      ],
+      "started_at": "2026-10-09T00:19:27.833365+09:00",
+      "finished_at": "2026-10-09T00:19:27.850062+09:00",
+      "returncode": 0
+    },
+    "timers": {
+      "argv": [
+        "systemctl",
+        "--user",
+        "list-timers",
+        "marketdata-*",
+        "--all",
+        "--no-pager"
+      ],
+      "started_at": "2026-10-09T00:19:27.850077+09:00",
+      "finished_at": "2026-10-09T00:19:27.855645+09:00",
+      "returncode": 0
+    },
+    "user-jobs": {
+      "argv": [
+        "systemctl",
+        "--user",
+        "list-jobs",
+        "--no-pager"
+      ],
+      "started_at": "2026-10-09T00:19:27.855668+09:00",
+      "finished_at": "2026-10-09T00:19:27.858811+09:00",
+      "returncode": 0
+    },
+    "linger": {
+      "argv": [
+        "loginctl",
+        "show-user",
+        "yoonhc",
+        "-p",
+        "Linger"
+      ],
+      "started_at": "2026-10-09T00:19:27.858830+09:00",
+      "finished_at": "2026-10-09T00:19:27.862546+09:00",
+      "returncode": 0
+    },
+    "timedate": {
+      "argv": [
+        "timedatectl",
+        "show",
+        "-p",
+        "Timezone",
+        "-p",
+        "LocalRTC",
+        "-p",
+        "NTP",
+        "-p",
+        "NTPSynchronized"
+      ],
+      "started_at": "2026-10-09T00:19:27.862567+09:00",
+      "finished_at": "2026-10-09T00:19:27.914544+09:00",
+      "returncode": 0
+    },
+    "tracking": {
+      "argv": [
+        "chronyc",
+        "-c",
+        "tracking"
+      ],
+      "started_at": "2026-10-09T00:19:27.914562+09:00",
+      "finished_at": "2026-10-09T00:19:27.917132+09:00",
+      "returncode": 0
+    },
+    "sources": {
+      "argv": [
+        "chronyc",
+        "-n",
+        "sources"
+      ],
+      "started_at": "2026-10-09T00:19:27.917153+09:00",
+      "finished_at": "2026-10-09T00:19:27.919692+09:00",
+      "returncode": 0
+    },
+    "system-journal": {
+      "argv": [
+        "journalctl",
+        "-b",
+        "--no-pager",
+        "-o",
+        "json",
+        "-u",
+        "chrony.service",
+        "-u",
+        "chrony-wait.service",
+        "-u",
+        "marketdata-clock-bootstrap.service",
+        "-u",
+        "marketdata-collector@depth.service",
+        "-u",
+        "marketdata-collector@aggtrade.service"
+      ],
+      "started_at": "2026-10-09T00:19:27.919704+09:00",
+      "finished_at": "2026-10-09T00:19:28.026381+09:00",
+      "returncode": 0
+    },
+    "user-journal": {
+      "argv": [
+        "journalctl",
+        "--user",
+        "-b",
+        "--no-pager",
+        "-o",
+        "json",
+        "-u",
+        "marketdata-aggtrade.service",
+        "-u",
+        "marketdata-backup.service",
+        "-u",
+        "marketdata-backup.timer",
+        "-u",
+        "marketdata-checkpoint-retirement.service",
+        "-u",
+        "marketdata-checkpoint-retirement.timer",
+        "-u",
+        "marketdata-clock-ready.service",
+        "-u",
+        "marketdata-daily.service",
+        "-u",
+        "marketdata-daily.timer",
+        "-u",
+        "marketdata-depth.service",
+        "-u",
+        "marketdata-network-observer.service",
+        "-u",
+        "marketdata-network-observer.timer",
+        "-u",
+        "marketdata-oi-probe.service",
+        "-u",
+        "marketdata-oi-probe.timer",
+        "-u",
+        "marketdata-oi-quality.service",
+        "-u",
+        "marketdata-oi-quality.timer",
+        "-u",
+        "marketdata-oi.service",
+        "-u",
+        "marketdata-oi.timer",
+        "-u",
+        "marketdata-pack.service",
+        "-u",
+        "marketdata-pack.timer",
+        "-u",
+        "marketdata-restic-archive.service",
+        "-u",
+        "marketdata-restic-archive.timer"
+      ],
+      "started_at": "2026-10-09T00:19:28.026437+09:00",
+      "finished_at": "2026-10-09T00:19:28.196688+09:00",
+      "returncode": 0
+    },
+    "gate-status": {
+      "argv": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-I",
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py",
+        "status",
+        "--profile",
+        "/etc/marketdata/clock-bootstrap.json"
+      ],
+      "started_at": "2026-10-09T00:19:28.196805+09:00",
+      "finished_at": "2026-10-09T00:19:28.231503+09:00",
+      "returncode": 0
+    },
+    "gate-check": {
+      "argv": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-I",
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py",
+        "check",
+        "--profile",
+        "/etc/marketdata/clock-bootstrap.json"
+      ],
+      "started_at": "2026-10-09T00:19:28.231561+09:00",
+      "finished_at": "2026-10-09T00:19:28.280496+09:00",
+      "returncode": 0
+    },
+    "depth-clock-status": {
+      "argv": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-I",
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/marketdata_runtime.py",
+        "status",
+        "--profile",
+        "/etc/marketdata/runtime.json",
+        "--stream",
+        "depth"
+      ],
+      "started_at": "2026-10-09T00:19:28.280544+09:00",
+      "finished_at": "2026-10-09T00:19:28.315892+09:00",
+      "returncode": 0
+    },
+    "depth-data-status": {
+      "argv": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-I",
+        "-c",
+        "from marketdata.cli import main; raise SystemExit(main())",
+        "--root",
+        "/home/yoonhc/projects/algoTrade/historical_data",
+        "depth-status"
+      ],
+      "started_at": "2026-10-09T00:19:28.315918+09:00",
+      "finished_at": "2026-10-09T00:19:28.552402+09:00",
+      "returncode": 0
+    },
+    "aggtrade-clock-status": {
+      "argv": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-I",
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/marketdata_runtime.py",
+        "status",
+        "--profile",
+        "/etc/marketdata/runtime.json",
+        "--stream",
+        "aggtrade"
+      ],
+      "started_at": "2026-10-09T00:19:28.552476+09:00",
+      "finished_at": "2026-10-09T00:19:28.585753+09:00",
+      "returncode": 0
+    },
+    "aggtrade-data-status": {
+      "argv": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-I",
+        "-c",
+        "from marketdata.cli import main; raise SystemExit(main())",
+        "--root",
+        "/home/yoonhc/projects/algoTrade/historical_data",
+        "aggtrade-status"
+      ],
+      "started_at": "2026-10-09T00:19:28.585777+09:00",
+      "finished_at": "2026-10-09T00:19:28.811398+09:00",
+      "returncode": 2
+    },
+    "data-mount": {
+      "argv": [
+        "findmnt",
+        "-T",
+        "/home/yoonhc/projects/algoTrade/historical_data",
+        "-o",
+        "TARGET,SOURCE,UUID,OPTIONS",
+        "--json"
+      ],
+      "started_at": "2026-10-09T00:19:28.833525+09:00",
+      "finished_at": "2026-10-09T00:19:28.835696+09:00",
+      "returncode": 0
+    },
+    "backup-mount": {
+      "argv": [
+        "findmnt",
+        "-T",
+        "/mnt/backup",
+        "-o",
+        "TARGET,SOURCE,UUID,OPTIONS",
+        "--json"
+      ],
+      "started_at": "2026-10-09T00:19:28.835712+09:00",
+      "finished_at": "2026-10-09T00:19:28.837785+09:00",
+      "returncode": 0
+    }
+  },
+  "scope": "Observation only; no service, time, ledger, policy or archive data mutation requested"
+}

@@ -1,0 +1,382 @@
+{
+  "at": "2026-10-09T00:47:05.737343+09:00",
+  "dataset": "BTCUSDT USD-M agg_trades",
+  "scope": "All catalog segment ID envelopes and all collection reports; actual Parquet hash/IDs at identified gap boundaries and internally non-contiguous segments. Not a complete reread of every canonical/raw file or all overlapping economic-value comparisons.",
+  "formal_continuous_service_start_kst": "2026-09-23T16:00:17+09:00",
+  "continuous_bootstrap_start_id": 3462028665,
+  "continuous_bootstrap_first_trade_time": "2026-09-23T06:57:12.369000+00:00",
+  "snapshot_first_id": 3460000027,
+  "snapshot_last_id": 3479367418,
+  "snapshot_first_trade_time": "2026-09-21T23:00:00.290000+00:00",
+  "snapshot_last_trade_time": "2026-10-08T15:47:01.365000+00:00",
+  "source_totals": {
+    "rest": {
+      "segments": 440,
+      "rows": 143346
+    },
+    "websocket": {
+      "segments": 249907,
+      "rows": 17070983
+    }
+  },
+  "envelope_groups": [
+    {
+      "first_id": 3460000027,
+      "last_id": 3460009164,
+      "first_time": "2026-09-21T23:00:00.290000+00:00",
+      "last_time": "2026-09-21T23:09:59.743000+00:00",
+      "first_segment": "8c31001a5ff66264c15dc128d82dd499555eefccf5af1d6dcb82525e643395b4",
+      "last_segment": "af5dcdb5b52cb782a7a39bc1a2430721284b139a0fcec0b1c381e74a94313c25"
+    },
+    {
+      "first_id": 3460990388,
+      "last_id": 3460997422,
+      "first_time": "2026-09-22T13:44:26.984000+00:00",
+      "last_time": "2026-09-22T13:47:26.637000+00:00",
+      "first_segment": "a52ac3b690245cb88b200fa7c6b2278fd50defc5ab84cb8909604d38c2924384",
+      "last_segment": "0e4bbe11afa7c51b432297499365f611491f31f57a83788632b88c02c05ab598"
+    },
+    {
+      "first_id": 3461125921,
+      "last_id": 3461146985,
+      "first_time": "2026-09-22T14:40:11.380000+00:00",
+      "last_time": "2026-09-22T14:50:26.016000+00:00",
+      "first_segment": "a1209e4c182cab277f5b7e02a7bc7c0cba15f52f42c98938afe8fdedbeb646fe",
+      "last_segment": "3a1113ce6d68ea2ac2511993c3fc74c4987bb64358c60f5a6369af99730e38e2"
+    },
+    {
+      "first_id": 3461187309,
+      "last_id": 3461277317,
+      "first_time": "2026-09-22T15:12:48.512000+00:00",
+      "last_time": "2026-09-22T16:12:48.168000+00:00",
+      "first_segment": "49b3370428230b12a4be93a1d0fb40f7b1eaf2ca62fbcc1311ebb95454bdcbfb",
+      "last_segment": "e617e90fbfa905a873c146e44bf9a0b894ec9d729bd2800c30372dff2833e29a"
+    },
+    {
+      "first_id": 3462028665,
+      "last_id": 3478886749,
+      "first_time": "2026-09-23T06:57:12.369000+00:00",
+      "last_time": "2026-10-08T12:50:27.783000+00:00",
+      "first_segment": "15cd5ee851b7fecb23b91b7e90b864abc1bde8daae4fa19646551eeaea014d18",
+      "last_segment": "49c08f21e71acaaed17f8ae39cb5c6fe8709b1a850172ea096d8654d0a20a64b"
+    },
+    {
+      "first_id": 3479150819,
+      "last_id": 3479367418,
+      "first_time": "2026-10-08T15:11:23.122000+00:00",
+      "last_time": "2026-10-08T15:47:01.365000+00:00",
+      "first_segment": "5452d995ac1c71407e9db520eb8e0963f6d0ecce81d25d979826fb6ce5ebbbde",
+      "last_segment": "e569a969b6b1b60b6f9c42e9acc3ce4e13eae4cd7bd0c6228a6da401feed4866"
+    }
+  ],
+  "envelope_gaps": [
+    {
+      "first_id": 3460009165,
+      "last_id": 3460990387,
+      "missing_id_count": 981223,
+      "before_trade_time": "2026-09-21T23:09:59.743000+00:00",
+      "after_trade_time": "2026-09-22T13:44:26.984000+00:00",
+      "before_segment": "af5dcdb5b52cb782a7a39bc1a2430721284b139a0fcec0b1c381e74a94313c25",
+      "after_segment": "a52ac3b690245cb88b200fa7c6b2278fd50defc5ab84cb8909604d38c2924384",
+      "classification": "before_continuous_start"
+    },
+    {
+      "first_id": 3460997423,
+      "last_id": 3461125920,
+      "missing_id_count": 128498,
+      "before_trade_time": "2026-09-22T13:47:26.637000+00:00",
+      "after_trade_time": "2026-09-22T14:40:11.380000+00:00",
+      "before_segment": "0e4bbe11afa7c51b432297499365f611491f31f57a83788632b88c02c05ab598",
+      "after_segment": "a1209e4c182cab277f5b7e02a7bc7c0cba15f52f42c98938afe8fdedbeb646fe",
+      "classification": "before_continuous_start"
+    },
+    {
+      "first_id": 3461146986,
+      "last_id": 3461187308,
+      "missing_id_count": 40323,
+      "before_trade_time": "2026-09-22T14:50:26.016000+00:00",
+      "after_trade_time": "2026-09-22T15:12:48.512000+00:00",
+      "before_segment": "3a1113ce6d68ea2ac2511993c3fc74c4987bb64358c60f5a6369af99730e38e2",
+      "after_segment": "49b3370428230b12a4be93a1d0fb40f7b1eaf2ca62fbcc1311ebb95454bdcbfb",
+      "classification": "before_continuous_start"
+    },
+    {
+      "first_id": 3461277318,
+      "last_id": 3462028664,
+      "missing_id_count": 751347,
+      "before_trade_time": "2026-09-22T16:12:48.168000+00:00",
+      "after_trade_time": "2026-09-23T06:57:12.369000+00:00",
+      "before_segment": "e617e90fbfa905a873c146e44bf9a0b894ec9d729bd2800c30372dff2833e29a",
+      "after_segment": "15cd5ee851b7fecb23b91b7e90b864abc1bde8daae4fa19646551eeaea014d18",
+      "classification": "before_continuous_start"
+    },
+    {
+      "first_id": 3478886750,
+      "last_id": 3479150818,
+      "missing_id_count": 264069,
+      "before_trade_time": "2026-10-08T12:50:27.783000+00:00",
+      "after_trade_time": "2026-10-08T15:11:23.122000+00:00",
+      "before_segment": "49c08f21e71acaaed17f8ae39cb5c6fe8709b1a850172ea096d8654d0a20a64b",
+      "after_segment": "5452d995ac1c71407e9db520eb8e0963f6d0ecce81d25d979826fb6ce5ebbbde",
+      "classification": "after_continuous_start"
+    }
+  ],
+  "collection_counts": {
+    "rest:complete": 381,
+    "websocket:complete": 367,
+    "websocket:interrupted": 5,
+    "websocket:failed": 2,
+    "websocket:running": 1,
+    "rest:partial": 1
+  },
+  "collection_report_counters": {
+    "detected_gaps": 377,
+    "repaired_gaps": 376,
+    "unrepaired_gaps": 1,
+    "duplicate_messages": 0,
+    "out_of_order_messages": 0
+  },
+  "explicit_fresh_start_boundaries": [
+    {
+      "collection_id": "bd12719ece5440e5896ce42dfc742d31",
+      "gap": {
+        "first_id": 3460997423,
+        "last_id": 3461125920,
+        "reason": "explicit_fresh_start_outside_capture_scope",
+        "repaired": false
+      }
+    },
+    {
+      "collection_id": "e6bc6c5f9a614d5cab5a09ec1dad5629",
+      "gap": {
+        "first_id": 3461146986,
+        "last_id": 3461187308,
+        "reason": "explicit_fresh_start_outside_capture_scope",
+        "repaired": false
+      }
+    },
+    {
+      "collection_id": "90d711e2a49c457f9ce266c8decd8807",
+      "gap": {
+        "first_id": 3461277318,
+        "last_id": 3462028664,
+        "reason": "explicit_fresh_start_outside_capture_scope",
+        "repaired": false
+      }
+    }
+  ],
+  "incomplete_rest_collections": [
+    {
+      "id": "563e1622c2a947c2aa1f9fef319ed89f",
+      "dataset": "agg_trades",
+      "kind": "rest",
+      "started_at": "2026-10-08T15:11:23.310431+00:00",
+      "updated_at": "2026-10-08T15:11:25.380660+00:00",
+      "state": "partial",
+      "report": {
+        "complete": false,
+        "end": null,
+        "first_id": 3478866750,
+        "first_requested_id": 3478866750,
+        "gaps": [],
+        "id": "563e1622c2a947c2aa1f9fef319ed89f",
+        "kind": "rest",
+        "last_id": 3478886749,
+        "last_requested_id": 3479150818,
+        "pages": 20,
+        "query_complete": false,
+        "rows": 20000,
+        "semantics": "source_query_completion_and_observed_ID_continuity_only",
+        "start": null,
+        "started_at": "2026-10-08T15:11:23.310431+00:00",
+        "state": "partial",
+        "stop_reason": "page_budget_exhausted",
+        "updated_at": "2026-10-08T15:11:25.380660+00:00"
+      }
+    }
+  ],
+  "internal_noncontiguous_segment_count": 1,
+  "internal_holes_overlap_verification": [
+    {
+      "segment_id": "b2b77b6a710d10430e0912eb8c20cd102a6a19ebce688a512d8bafbee934b0e4",
+      "internal_gaps": [
+        [
+          3465086434,
+          3465086436
+        ]
+      ],
+      "overlap_segments": [
+        "b2b77b6a710d10430e0912eb8c20cd102a6a19ebce688a512d8bafbee934b0e4",
+        "5af9c7ec8db8fca0a6b2b6c39b958604e5488550606c98f0830d8c0bdf64a3c5"
+      ],
+      "remaining_missing_ids": []
+    }
+  ],
+  "file_samples": {
+    "0e4bbe11afa7c51b432297499365f611491f31f57a83788632b88c02c05ab598": {
+      "path": "data/canonical/agg_trades/websocket/0e/0e4bbe11afa7c51b432297499365f611491f31f57a83788632b88c02c05ab598.parquet",
+      "collection_id": "2731267eabef48fe937283f2ab786941",
+      "kind": "websocket",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3460997279,
+      "last_id": 3460997422,
+      "first_trade_time": "2026-09-22T13:47:24.649000+00:00",
+      "last_trade_time": "2026-09-22T13:47:26.637000+00:00",
+      "internal_id_gaps": []
+    },
+    "15cd5ee851b7fecb23b91b7e90b864abc1bde8daae4fa19646551eeaea014d18": {
+      "path": "data/canonical/agg_trades/websocket/15/15cd5ee851b7fecb23b91b7e90b864abc1bde8daae4fa19646551eeaea014d18.parquet",
+      "collection_id": "90d711e2a49c457f9ce266c8decd8807",
+      "kind": "websocket",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3462028665,
+      "last_id": 3462028674,
+      "first_trade_time": "2026-09-23T06:57:12.369000+00:00",
+      "last_trade_time": "2026-09-23T06:57:17.346000+00:00",
+      "internal_id_gaps": []
+    },
+    "3a1113ce6d68ea2ac2511993c3fc74c4987bb64358c60f5a6369af99730e38e2": {
+      "path": "data/canonical/agg_trades/websocket/3a/3a1113ce6d68ea2ac2511993c3fc74c4987bb64358c60f5a6369af99730e38e2.parquet",
+      "collection_id": "bd12719ece5440e5896ce42dfc742d31",
+      "kind": "websocket",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3461146949,
+      "last_id": 3461146985,
+      "first_trade_time": "2026-09-22T14:50:22.191000+00:00",
+      "last_trade_time": "2026-09-22T14:50:26.016000+00:00",
+      "internal_id_gaps": []
+    },
+    "49b3370428230b12a4be93a1d0fb40f7b1eaf2ca62fbcc1311ebb95454bdcbfb": {
+      "path": "data/canonical/agg_trades/websocket/49/49b3370428230b12a4be93a1d0fb40f7b1eaf2ca62fbcc1311ebb95454bdcbfb.parquet",
+      "collection_id": "e6bc6c5f9a614d5cab5a09ec1dad5629",
+      "kind": "websocket",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3461187309,
+      "last_id": 3461187432,
+      "first_trade_time": "2026-09-22T15:12:48.512000+00:00",
+      "last_trade_time": "2026-09-22T15:12:53.358000+00:00",
+      "internal_id_gaps": []
+    },
+    "49c08f21e71acaaed17f8ae39cb5c6fe8709b1a850172ea096d8654d0a20a64b": {
+      "path": "data/canonical/agg_trades/rest/49/49c08f21e71acaaed17f8ae39cb5c6fe8709b1a850172ea096d8654d0a20a64b.parquet",
+      "collection_id": "563e1622c2a947c2aa1f9fef319ed89f",
+      "kind": "rest",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3478885750,
+      "last_id": 3478886749,
+      "first_trade_time": "2026-10-08T12:50:25.203000+00:00",
+      "last_trade_time": "2026-10-08T12:50:27.783000+00:00",
+      "internal_id_gaps": []
+    },
+    "5452d995ac1c71407e9db520eb8e0963f6d0ecce81d25d979826fb6ce5ebbbde": {
+      "path": "data/canonical/agg_trades/websocket/54/5452d995ac1c71407e9db520eb8e0963f6d0ecce81d25d979826fb6ce5ebbbde.parquet",
+      "collection_id": "c36431bac84d4092b5f1ca33b4740af4",
+      "kind": "websocket",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3479150819,
+      "last_id": 3479150819,
+      "first_trade_time": "2026-10-08T15:11:23.122000+00:00",
+      "last_trade_time": "2026-10-08T15:11:23.122000+00:00",
+      "internal_id_gaps": []
+    },
+    "5af9c7ec8db8fca0a6b2b6c39b958604e5488550606c98f0830d8c0bdf64a3c5": {
+      "path": "data/canonical/agg_trades/rest/5a/5af9c7ec8db8fca0a6b2b6c39b958604e5488550606c98f0830d8c0bdf64a3c5.parquet",
+      "collection_id": "1e85b177f45942f9a54e5e01d18c4f78",
+      "kind": "rest",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3465086434,
+      "last_id": 3465086436,
+      "first_trade_time": "2026-09-25T07:39:25.103000+00:00",
+      "last_trade_time": "2026-09-25T07:39:25.355000+00:00",
+      "internal_id_gaps": []
+    },
+    "a1209e4c182cab277f5b7e02a7bc7c0cba15f52f42c98938afe8fdedbeb646fe": {
+      "path": "data/canonical/agg_trades/websocket/a1/a1209e4c182cab277f5b7e02a7bc7c0cba15f52f42c98938afe8fdedbeb646fe.parquet",
+      "collection_id": "bd12719ece5440e5896ce42dfc742d31",
+      "kind": "websocket",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3461125921,
+      "last_id": 3461126157,
+      "first_trade_time": "2026-09-22T14:40:11.380000+00:00",
+      "last_trade_time": "2026-09-22T14:40:16.228000+00:00",
+      "internal_id_gaps": []
+    },
+    "a52ac3b690245cb88b200fa7c6b2278fd50defc5ab84cb8909604d38c2924384": {
+      "path": "data/canonical/agg_trades/websocket/a5/a52ac3b690245cb88b200fa7c6b2278fd50defc5ab84cb8909604d38c2924384.parquet",
+      "collection_id": "2731267eabef48fe937283f2ab786941",
+      "kind": "websocket",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3460990388,
+      "last_id": 3460990513,
+      "first_trade_time": "2026-09-22T13:44:26.984000+00:00",
+      "last_trade_time": "2026-09-22T13:44:31.813000+00:00",
+      "internal_id_gaps": []
+    },
+    "af5dcdb5b52cb782a7a39bc1a2430721284b139a0fcec0b1c381e74a94313c25": {
+      "path": "data/canonical/agg_trades/rest/af/af5dcdb5b52cb782a7a39bc1a2430721284b139a0fcec0b1c381e74a94313c25.parquet",
+      "collection_id": "ccb0b54d26cc4853b41430545e511090",
+      "kind": "rest",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3460009027,
+      "last_id": 3460009164,
+      "first_trade_time": "2026-09-21T23:09:40.539000+00:00",
+      "last_trade_time": "2026-09-21T23:09:59.743000+00:00",
+      "internal_id_gaps": []
+    },
+    "b2b77b6a710d10430e0912eb8c20cd102a6a19ebce688a512d8bafbee934b0e4": {
+      "path": "data/canonical/agg_trades/websocket/b2/b2b77b6a710d10430e0912eb8c20cd102a6a19ebce688a512d8bafbee934b0e4.parquet",
+      "collection_id": "32faacb590cc46b7a936e9d3ee3e8820",
+      "kind": "websocket",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3465086373,
+      "last_id": 3465086437,
+      "first_trade_time": "2026-09-25T07:39:22.840000+00:00",
+      "last_trade_time": "2026-09-25T07:39:26.157000+00:00",
+      "internal_id_gaps": [
+        [
+          3465086434,
+          3465086436
+        ]
+      ]
+    },
+    "e617e90fbfa905a873c146e44bf9a0b894ec9d729bd2800c30372dff2833e29a": {
+      "path": "data/canonical/agg_trades/websocket/e6/e617e90fbfa905a873c146e44bf9a0b894ec9d729bd2800c30372dff2833e29a.parquet",
+      "collection_id": "e6bc6c5f9a614d5cab5a09ec1dad5629",
+      "kind": "websocket",
+      "hash_matches": true,
+      "metadata_matches": true,
+      "duplicate_ids": 0,
+      "first_id": 3461277272,
+      "last_id": 3461277317,
+      "first_trade_time": "2026-09-22T16:12:45.325000+00:00",
+      "last_trade_time": "2026-09-22T16:12:48.168000+00:00",
+      "internal_id_gaps": []
+    }
+  },
+  "post_continuous_start_gap_count": 1,
+  "pre_continuous_gap_total_ids": 1901391,
+  "files_sampled": 12,
+  "sample_checks_passed": true
+}

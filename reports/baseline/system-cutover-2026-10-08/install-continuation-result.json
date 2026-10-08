@@ -1,0 +1,11 @@
+{
+  "release_id": "system-bootstrap-20261007-f85eb8321a19c1ee",
+  "boot_id": "9e33f0bc-b734-45c9-8a85-8aa6c35efa71",
+  "passed": false,
+  "first_result_preserved": "result.json",
+  "error": "RuntimeError: Command failed (1): ['systemd-analyze', 'verify', 'chrony.service', 'chrony-wait.service', 'marketdata-clock-bootstrap.service', 'marketdata-collector@depth.service', 'marketdata-collector@aggtrade.service']\nchrony-wait.service: Failed to create chrony-wait.service/start: Unit chronyd.service not found.\n",
+  "phase": "installation_hold",
+  "finished_at": "2026-10-08T23:48:13.634775+09:00",
+  "reboot_performed": false,
+  "automatic_checkpoint_retirement": "held"
+}

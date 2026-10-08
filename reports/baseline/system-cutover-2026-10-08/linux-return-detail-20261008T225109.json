@@ -1,0 +1,75 @@
+{
+  "recorded_at": "2026-10-08T22:51:09.121531+09:00",
+  "boot_id": "656ec5e3-7734-455f-9214-1326c988f837",
+  "commands": [
+    {
+      "args": [
+        "/usr/bin/timedatectl",
+        "show-timesync",
+        "--all"
+      ],
+      "returncode": 0,
+      "stdout": "LinkNTPServers=\nSystemNTPServers=\nRuntimeNTPServers=\nFallbackNTPServers=ntp.ubuntu.com\nServerName=ntp.ubuntu.com\nServerAddress=185.125.190.57\nRootDistanceMaxUSec=5s\nPollIntervalMinUSec=32s\nPollIntervalMaxUSec=34min 8s\nPollIntervalUSec=4min 16s\nNTPMessage={ Leap=0, Version=4, Mode=4, Stratum=2, Precision=-25, RootDelay=7.980ms, RootDispersion=1.251ms, Reference=1D586304, OriginateTimestamp=Thu 2026-10-08 22:47:30 KST, ReceiveTimestamp=Thu 2026-10-08 22:47:30 KST, TransmitTimestamp=Thu 2026-10-08 22:47:30 KST, DestinationTimestamp=Thu 2026-10-08 22:47:30 KST, Ignored=yes, PacketCount=4, Jitter=5.304ms }\nFrequency=2922241\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/journalctl",
+        "-b",
+        "-u",
+        "systemd-timesyncd.service",
+        "--no-pager",
+        "-o",
+        "short-monotonic"
+      ],
+      "returncode": 0,
+      "stdout": "[    6.166274] hclm systemd[1]: Starting systemd-timesyncd.service - Network Time Synchronization...\n[    6.192210] hclm systemd-timesyncd[893]: System clock time unset or jumped backwards, restored from recorded timestamp: Thu 2026-10-08 22:10:58 KST\n[    6.192480] hclm systemd-timesyncd[893]: The system is configured to read the RTC time in the local time zone. This mode cannot be fully supported. All system time to RTC updates are disabled.\n[    6.192692] hclm systemd[1]: Started systemd-timesyncd.service - Network Time Synchronization.\n[   46.971476] hclm systemd-timesyncd[893]: Timed out waiting for reply from 91.189.91.157:123 (ntp.ubuntu.com).\n[   47.272030] hclm systemd-timesyncd[893]: Contacted time server 185.125.190.57:123 (ntp.ubuntu.com).\n[   47.272189] hclm systemd-timesyncd[893]: Initial clock synchronization to Thu 2026-10-08 22:43:45.446219 KST.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/systemctl",
+        "list-units",
+        "--all",
+        "marketdata*",
+        "--no-legend",
+        "--no-pager"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/pgrep",
+        "-a",
+        "-u",
+        "1000",
+        "-f",
+        "marketdata|scripts.restic_schedule|runtime_supervisor|clock_gate"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/sudo",
+        "-n",
+        "/usr/bin/true"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "sudo: a password is required\n"
+    }
+  ],
+  "rtc_readonly": {
+    "/proc/driver/rtc": "rtc_time\t: 13:51:09\nrtc_date\t: 2026-10-08\nalrm_time\t: 20:58:47\nalrm_date\t: 2026-10-08\nalarm_IRQ\t: no\nalrm_pending\t: no\nupdate IRQ enabled\t: no\nperiodic IRQ enabled\t: no\nperiodic IRQ frequency\t: 1024\nmax user IRQ frequency\t: 64\n24hr\t\t: yes\nperiodic_IRQ\t: no\nupdate_IRQ\t: no\nHPET_emulated\t: no\nBCD\t\t: yes\nDST_enable\t: no\nperiodic_freq\t: 1024\nbatt_status\t: okay\n",
+    "/sys/class/rtc/rtc0/date": "2026-10-08\n",
+    "/sys/class/rtc/rtc0/time": "13:51:09\n",
+    "/sys/class/rtc/rtc0/since_epoch": "1791467469\n"
+  },
+  "system_utc": "2026-10-08T13:51:09.289667+00:00",
+  "system_realtime_ns": 1791467469289677617,
+  "monotonic_ns": 491114557048
+}

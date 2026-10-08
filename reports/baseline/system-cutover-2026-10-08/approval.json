@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-10-08T21:36:36.728280+09:00",
+  "user_reply": "지금 시작 — Windows 작업 가능",
+  "question": "Windows 설정과 재부팅을 직접 진행할 수 있는 전환 작업창을 언제로 잡을까요? 시작하면 수집을 정상 종료하고, Windows 왕복과 Linux 설치·최종 부팅이 끝날 때까지 수집 공백이 생깁니다.",
+  "release_id": "system-bootstrap-20261007-f85eb8321a19c1ee",
+  "transition_review": "../system-runtime-root-preflight-2026-10-07/transition-review.md",
+  "scope": "coordinated operating transition with explicit Windows/Linux handoffs; no assumed user steps",
+  "automatic_checkpoint_retirement": "hold during transition; no automatic resumption before separate clock-gate approval",
+  "exclusions": [
+    "forget/prune",
+    "source or revision deletion",
+    "trial-space deletion",
+    "recovery-kit deletion",
+    "manifest/source_root rewriting"
+  ],
+  "current_stage": "Linux preparation before first Windows handoff"
+}

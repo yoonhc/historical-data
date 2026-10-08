@@ -1,0 +1,136 @@
+{
+  "observed_at": "2026-10-09T00:32:14.416708+09:00",
+  "status_returncode": 2,
+  "healthy": false,
+  "state": "running",
+  "synchronized_now": true,
+  "sync_losses": 1,
+  "coverage_resets": 1,
+  "unreconstructed_messages": 0,
+  "failure_notice": {
+    "collection_id": "bc6bc9d2cb6149ba864f0d2003adf3af",
+    "coverage_resets": 1,
+    "coverage_top_shortfalls": 0,
+    "epoch": 0,
+    "observed_at": "2026-10-08T15:20:43.212214+00:00",
+    "observed_received_at": "2026-10-08T15:20:43.202938+00:00",
+    "observed_update_id": 11766665291966,
+    "reason": "coverage_exhausted",
+    "recorded_at": "2026-10-08T15:20:43.212790+00:00",
+    "sequence": 5580,
+    "sync_losses": 1
+  },
+  "epochs": [
+    {
+      "epoch": 0,
+      "reason": "initial",
+      "started_at": "2026-10-08T15:11:19.157004+00:00",
+      "ended_at": "2026-10-08T15:20:43.212214+00:00",
+      "end_reason": "coverage_exhausted",
+      "error": "Known snapshot price range exhausted",
+      "book": {
+        "synced": true,
+        "top_complete": true,
+        "known_bid_levels": 20,
+        "known_ask_levels": 1275,
+        "last_update_id": 11766665198818
+      },
+      "checks": 66,
+      "mismatches": 0,
+      "counts": {
+        "applied": 5511,
+        "duplicate": 0,
+        "stale": 1
+      },
+      "last_prior_defer": {
+        "action": "defer",
+        "after_sequence": 5579,
+        "age_seconds": 0.4591898859999901,
+        "blockers": [
+          "pending_verification",
+          "minimum_interval"
+        ],
+        "budget": {
+          "extra_limit": 12,
+          "extra_used": 11,
+          "oldest_extra_expires_in_seconds": 2.0395085400000426
+        },
+        "epoch": 0,
+        "evaluated_at": "2026-10-08T15:20:43.045414+00:00",
+        "headroom": {
+          "low": true,
+          "sides": {
+            "asks": {
+              "level_threshold": 750,
+              "levels": 1275,
+              "low_levels": false,
+              "low_price_room": false,
+              "price_room": "283.600000000000000000",
+              "snapshot_price_span": "162.200000000000000000"
+            },
+            "bids": {
+              "level_threshold": 750,
+              "levels": 20,
+              "low_levels": true,
+              "low_price_room": true,
+              "price_room": "8.500000000000000000",
+              "snapshot_price_span": "129.900000000000000000"
+            }
+          },
+          "top_complete": true
+        },
+        "phase": "before_flush",
+        "reason": "pending_verification",
+        "trigger": "headroom"
+      }
+    },
+    {
+      "epoch": 1,
+      "reason": "same_socket_after_coverage_exhausted",
+      "started_at": "2026-10-08T15:20:43.315419+00:00",
+      "ended_at": "2026-10-08T15:26:19.231197+00:00",
+      "end_reason": "rotation",
+      "error": null,
+      "book": {
+        "synced": true,
+        "top_complete": true,
+        "known_bid_levels": 1017,
+        "known_ask_levels": 999,
+        "last_update_id": 11766775145000
+      },
+      "checks": 46,
+      "mismatches": 0,
+      "counts": {
+        "applied": 2892,
+        "duplicate": 0,
+        "stale": 17
+      },
+      "last_prior_defer": null
+    },
+    {
+      "epoch": 2,
+      "reason": "planned_rotation",
+      "started_at": "2026-10-08T15:26:19.552827+00:00",
+      "ended_at": null,
+      "end_reason": null,
+      "error": null,
+      "book": {
+        "synced": true,
+        "top_complete": true,
+        "known_bid_levels": 1582,
+        "known_ask_levels": 737,
+        "last_update_id": 11766864038058
+      },
+      "checks": 50,
+      "mismatches": 0,
+      "counts": {
+        "applied": 3436,
+        "duplicate": 0,
+        "stale": 1
+      },
+      "last_prior_defer": null
+    }
+  ],
+  "clock_at_closing": "closing-observation.json: both runtime violations=0, clock_usable=true",
+  "interpretation": "Recorded local snapshot coverage exhaustion and automatic recovery in same socket; current book synchronized, session quality loss retained. Scope of initial 8-minute stored-data check predates this event. No new independent root-cause replay performed."
+}

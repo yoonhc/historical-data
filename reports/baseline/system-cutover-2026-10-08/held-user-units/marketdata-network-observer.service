@@ -1,0 +1,20 @@
+[Unit]
+Description=Local network evidence for marketdata collectors
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h
+EnvironmentFile=%h/.config/marketdata/network-observer.env
+Environment=PYTHONNOUSERSITE=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+ExecStart=/usr/bin/env ${MARKETDATA_NETWORK_PYTHON} ${MARKETDATA_NETWORK_SCRIPT} --profile ${MARKETDATA_NETWORK_PROFILE}
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=20s
+Restart=no
+StandardOutput=journal
+StandardError=journal
+

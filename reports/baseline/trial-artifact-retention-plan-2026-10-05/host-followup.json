@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-05T11:45:15.317485+00:00",
+  "mounts": {
+    "filesystems": [
+      {
+        "target": "/mnt/backup",
+        "source": "/dev/nvme1n1p1",
+        "fstype": "ext4",
+        "uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+        "options": "rw,relatime"
+      }
+    ]
+  },
+  "nested_candidate_mounts": [],
+  "restricted_process_identity": [
+    {
+      "pid": 1183,
+      "status_fields": [
+        "Name:\tsystemd",
+        "PPid:\t1",
+        "Uid:\t1000\t1000\t1000\t1000"
+      ]
+    },
+    {
+      "pid": 1195,
+      "status_fields": [
+        "Name:\t(sd-pam)",
+        "PPid:\t1183",
+        "Uid:\t1000\t1000\t1000\t1000"
+      ]
+    }
+  ],
+  "configuration_changed_since_probe": [],
+  "uid": 1000,
+  "scope": "Read-only host followup; restricted process file descriptors remain uninspected."
+}

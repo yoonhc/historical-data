@@ -1,0 +1,1184 @@
+{
+  "checked_at": "2026-10-07T23:40:19.198949+09:00",
+  "checks": {
+    "pinned_candidate_unchanged": true,
+    "operating_source_unchanged": true,
+    "installed_user_units_unchanged": true,
+    "host_configuration_unchanged": true,
+    "system_time_services_unchanged": true,
+    "packages_unchanged": true,
+    "unit_enablement_unchanged": true,
+    "collector_processes_unchanged": true,
+    "same_boot": true,
+    "daily_complete": true,
+    "daily_journal_matches_report": true
+  },
+  "passed": true,
+  "services": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "--user",
+      "show",
+      "marketdata-aggtrade.service",
+      "marketdata-backup.service",
+      "marketdata-backup.timer",
+      "marketdata-checkpoint-retirement.service",
+      "marketdata-checkpoint-retirement.timer",
+      "marketdata-daily.service",
+      "marketdata-daily.timer",
+      "marketdata-depth.service",
+      "marketdata-network-observer.service",
+      "marketdata-network-observer.timer",
+      "marketdata-oi-probe.service",
+      "marketdata-oi-probe.timer",
+      "marketdata-oi-quality.service",
+      "marketdata-oi-quality.timer",
+      "marketdata-oi.service",
+      "marketdata-oi.timer",
+      "marketdata-pack.service",
+      "marketdata-pack.timer",
+      "marketdata-restic-archive.service",
+      "marketdata-restic-archive.timer",
+      "--property=Id",
+      "--property=ActiveState",
+      "--property=SubState",
+      "--property=Result",
+      "--property=MainPID",
+      "--property=InvocationID",
+      "--property=NRestarts",
+      "--property=ExecMainStartTimestamp",
+      "--property=ExecMainExitTimestamp",
+      "--property=ExecMainStatus",
+      "--property=UnitFileState",
+      "--property=NextElapseUSecRealtime"
+    ],
+    "returncode": 0,
+    "stdout": "MainPID=289229\nResult=success\nNRestarts=51\nExecMainStartTimestamp=Wed 2026-10-07 23:17:54 KST\nExecMainExitTimestamp=\nExecMainStatus=0\nId=marketdata-aggtrade.service\nActiveState=active\nSubState=running\nUnitFileState=enabled\nInvocationID=38fec1a978c3431595d99685f75f6b39\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 13:10:00 KST\nExecMainExitTimestamp=Wed 2026-10-07 14:03:08 KST\nExecMainStatus=0\nId=marketdata-backup.service\nActiveState=inactive\nSubState=dead\nUnitFileState=linked\nInvocationID=aac0a22763af4586bff60b7c163a31a7\n\nNextElapseUSecRealtime=Thu 2026-10-08 13:10:00 KST\nResult=success\nId=marketdata-backup.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=5d974cbb7b3948e3af60adb261e8fc41\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 15:40:00 KST\nExecMainExitTimestamp=Wed 2026-10-07 15:51:45 KST\nExecMainStatus=0\nId=marketdata-checkpoint-retirement.service\nActiveState=inactive\nSubState=dead\nUnitFileState=static\nInvocationID=85ea374f3c2344098f004e25de774439\n\nNextElapseUSecRealtime=Thu 2026-10-08 15:40:00 KST\nResult=success\nId=marketdata-checkpoint-retirement.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=74daa12835da4786a0d38dba96305b11\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 23:31:47 KST\nExecMainExitTimestamp=Wed 2026-10-07 23:31:54 KST\nExecMainStatus=0\nId=marketdata-daily.service\nActiveState=inactive\nSubState=dead\nUnitFileState=linked\nInvocationID=d2f9726d44944831bb651708dbc3032b\n\nNextElapseUSecRealtime=Thu 2026-10-08 12:21:18 KST\nResult=success\nId=marketdata-daily.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=45fe82a0c61745cca6400e89b85ee6be\n\nMainPID=289046\nResult=success\nNRestarts=51\nExecMainStartTimestamp=Wed 2026-10-07 23:14:46 KST\nExecMainExitTimestamp=\nExecMainStatus=0\nId=marketdata-depth.service\nActiveState=active\nSubState=running\nUnitFileState=enabled\nInvocationID=ad4137e0214340ce93a7312a876c7efe\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 23:39:20 KST\nExecMainExitTimestamp=Wed 2026-10-07 23:39:21 KST\nExecMainStatus=0\nId=marketdata-network-observer.service\nActiveState=inactive\nSubState=dead\nUnitFileState=static\nInvocationID=ab347be3df78454095d2247167ccd2cc\n\nNextElapseUSecRealtime=Wed 2026-10-07 23:40:20 KST\nResult=success\nId=marketdata-network-observer.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=02f2169bddec4646ac6a2f8713460913\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 23:40:15 KST\nExecMainExitTimestamp=Wed 2026-10-07 23:40:16 KST\nExecMainStatus=0\nId=marketdata-oi-probe.service\nActiveState=inactive\nSubState=dead\nUnitFileState=linked\nInvocationID=b4df2605c1a14778bd2a5808f5d152b9\n\nNextElapseUSecRealtime=Wed 2026-10-07 23:40:30 KST\nResult=success\nId=marketdata-oi-probe.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=f0cc83bbfa334029af6011289fa2f90a\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 19:45:29 KST\nExecMainExitTimestamp=Wed 2026-10-07 19:45:33 KST\nExecMainStatus=2\nId=marketdata-oi-quality.service\nActiveState=inactive\nSubState=dead\nUnitFileState=linked\nInvocationID=75f97ca0896d493fa46fe2b6bc676284\n\nNextElapseUSecRealtime=Thu 2026-10-08 12:40:00 KST\nResult=success\nId=marketdata-oi-quality.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=a162a2057b1c44d39a8f87dc3bf364db\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 23:35:45 KST\nExecMainExitTimestamp=Wed 2026-10-07 23:35:46 KST\nExecMainStatus=0\nId=marketdata-oi.service\nActiveState=inactive\nSubState=dead\nUnitFileState=linked\nInvocationID=0d8e8fd657db4d1a9728d99c468987c7\n\nNextElapseUSecRealtime=Wed 2026-10-07 23:40:45 KST\nResult=success\nId=marketdata-oi.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=d8d11a3240064810aaca2066a5f1f766\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 23:15:00 KST\nExecMainExitTimestamp=Wed 2026-10-07 23:16:12 KST\nExecMainStatus=0\nId=marketdata-pack.service\nActiveState=inactive\nSubState=dead\nUnitFileState=linked\nInvocationID=10a8875ddad44440915f1ce18ed8005a\n\nNextElapseUSecRealtime=Thu 2026-10-08 00:15:00 KST\nResult=success\nId=marketdata-pack.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=64d5061998994594af6f6a2177e761ad\n\nMainPID=0\nResult=success\nNRestarts=0\nExecMainStartTimestamp=Wed 2026-10-07 23:35:00 KST\nExecMainExitTimestamp=Wed 2026-10-07 23:35:16 KST\nExecMainStatus=0\nId=marketdata-restic-archive.service\nActiveState=inactive\nSubState=dead\nUnitFileState=static\nInvocationID=fd296619c61c46059a626113a9c613a0\n\nNextElapseUSecRealtime=Thu 2026-10-08 00:05:00 KST\nResult=success\nId=marketdata-restic-archive.timer\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=8451e79496f04cc19a2494fe1f1d7d47\n",
+    "stderr": ""
+  },
+  "service_map": {
+    "marketdata-aggtrade.service": {
+      "MainPID": "289229",
+      "Result": "success",
+      "NRestarts": "51",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 23:17:54 KST",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-aggtrade.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "38fec1a978c3431595d99685f75f6b39"
+    },
+    "marketdata-backup.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 13:10:00 KST",
+      "ExecMainExitTimestamp": "Wed 2026-10-07 14:03:08 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-backup.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": "aac0a22763af4586bff60b7c163a31a7"
+    },
+    "marketdata-backup.timer": {
+      "NextElapseUSecRealtime": "Thu 2026-10-08 13:10:00 KST",
+      "Result": "success",
+      "Id": "marketdata-backup.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "5d974cbb7b3948e3af60adb261e8fc41"
+    },
+    "marketdata-checkpoint-retirement.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 15:40:00 KST",
+      "ExecMainExitTimestamp": "Wed 2026-10-07 15:51:45 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-checkpoint-retirement.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "static",
+      "InvocationID": "85ea374f3c2344098f004e25de774439"
+    },
+    "marketdata-checkpoint-retirement.timer": {
+      "NextElapseUSecRealtime": "Thu 2026-10-08 15:40:00 KST",
+      "Result": "success",
+      "Id": "marketdata-checkpoint-retirement.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "74daa12835da4786a0d38dba96305b11"
+    },
+    "marketdata-daily.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 23:31:47 KST",
+      "ExecMainExitTimestamp": "Wed 2026-10-07 23:31:54 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-daily.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": "d2f9726d44944831bb651708dbc3032b"
+    },
+    "marketdata-daily.timer": {
+      "NextElapseUSecRealtime": "Thu 2026-10-08 12:21:18 KST",
+      "Result": "success",
+      "Id": "marketdata-daily.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "45fe82a0c61745cca6400e89b85ee6be"
+    },
+    "marketdata-depth.service": {
+      "MainPID": "289046",
+      "Result": "success",
+      "NRestarts": "51",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 23:14:46 KST",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-depth.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "ad4137e0214340ce93a7312a876c7efe"
+    },
+    "marketdata-network-observer.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 23:39:20 KST",
+      "ExecMainExitTimestamp": "Wed 2026-10-07 23:39:21 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-network-observer.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "static",
+      "InvocationID": "ab347be3df78454095d2247167ccd2cc"
+    },
+    "marketdata-network-observer.timer": {
+      "NextElapseUSecRealtime": "Wed 2026-10-07 23:40:20 KST",
+      "Result": "success",
+      "Id": "marketdata-network-observer.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "02f2169bddec4646ac6a2f8713460913"
+    },
+    "marketdata-oi-probe.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 23:40:15 KST",
+      "ExecMainExitTimestamp": "Wed 2026-10-07 23:40:16 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-oi-probe.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": "b4df2605c1a14778bd2a5808f5d152b9"
+    },
+    "marketdata-oi-probe.timer": {
+      "NextElapseUSecRealtime": "Wed 2026-10-07 23:40:30 KST",
+      "Result": "success",
+      "Id": "marketdata-oi-probe.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "f0cc83bbfa334029af6011289fa2f90a"
+    },
+    "marketdata-oi-quality.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 19:45:29 KST",
+      "ExecMainExitTimestamp": "Wed 2026-10-07 19:45:33 KST",
+      "ExecMainStatus": "2",
+      "Id": "marketdata-oi-quality.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": "75f97ca0896d493fa46fe2b6bc676284"
+    },
+    "marketdata-oi-quality.timer": {
+      "NextElapseUSecRealtime": "Thu 2026-10-08 12:40:00 KST",
+      "Result": "success",
+      "Id": "marketdata-oi-quality.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "a162a2057b1c44d39a8f87dc3bf364db"
+    },
+    "marketdata-oi.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 23:35:45 KST",
+      "ExecMainExitTimestamp": "Wed 2026-10-07 23:35:46 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-oi.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": "0d8e8fd657db4d1a9728d99c468987c7"
+    },
+    "marketdata-oi.timer": {
+      "NextElapseUSecRealtime": "Wed 2026-10-07 23:40:45 KST",
+      "Result": "success",
+      "Id": "marketdata-oi.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "d8d11a3240064810aaca2066a5f1f766"
+    },
+    "marketdata-pack.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 23:15:00 KST",
+      "ExecMainExitTimestamp": "Wed 2026-10-07 23:16:12 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-pack.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": "10a8875ddad44440915f1ce18ed8005a"
+    },
+    "marketdata-pack.timer": {
+      "NextElapseUSecRealtime": "Thu 2026-10-08 00:15:00 KST",
+      "Result": "success",
+      "Id": "marketdata-pack.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "64d5061998994594af6f6a2177e761ad"
+    },
+    "marketdata-restic-archive.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Wed 2026-10-07 23:35:00 KST",
+      "ExecMainExitTimestamp": "Wed 2026-10-07 23:35:16 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-restic-archive.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "static",
+      "InvocationID": "fd296619c61c46059a626113a9c613a0"
+    },
+    "marketdata-restic-archive.timer": {
+      "NextElapseUSecRealtime": "Thu 2026-10-08 00:05:00 KST",
+      "Result": "success",
+      "Id": "marketdata-restic-archive.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "8451e79496f04cc19a2494fe1f1d7d47"
+    }
+  },
+  "system_services": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "show",
+      "systemd-timesyncd.service",
+      "chrony.service",
+      "--property=Id",
+      "--property=ActiveState",
+      "--property=SubState",
+      "--property=MainPID",
+      "--property=InvocationID",
+      "--property=UnitFileState",
+      "--property=FragmentPath",
+      "--property=DropInPaths"
+    ],
+    "returncode": 0,
+    "stdout": "MainPID=880\nId=systemd-timesyncd.service\nActiveState=active\nSubState=running\nFragmentPath=/usr/lib/systemd/system/systemd-timesyncd.service\nDropInPaths=\nUnitFileState=enabled\nInvocationID=352fb60dcaed4b78b7c915bd3aca7d2c\n\nMainPID=0\nId=chrony.service\nActiveState=inactive\nSubState=dead\nFragmentPath=\nDropInPaths=\nUnitFileState=\nInvocationID=\n",
+    "stderr": ""
+  },
+  "packages": {
+    "argv": [
+      "/usr/bin/dpkg-query",
+      "-W",
+      "-f=${Package} ${db:Status-Status} ${Version}\n",
+      "chrony",
+      "systemd-timesyncd"
+    ],
+    "returncode": 0,
+    "stdout": "chrony not-installed \nsystemd-timesyncd installed 255.4-1ubuntu8.16\n",
+    "stderr": ""
+  },
+  "user_unit_files": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "--user",
+      "list-unit-files",
+      "marketdata-*",
+      "--no-pager",
+      "--no-legend"
+    ],
+    "returncode": 0,
+    "stdout": "marketdata-aggtrade.service              enabled enabled\nmarketdata-backup.service                linked  enabled\nmarketdata-checkpoint-retirement.service static  -\nmarketdata-daily.service                 linked  enabled\nmarketdata-depth.service                 enabled enabled\nmarketdata-network-observer.service      static  -\nmarketdata-oi-probe.service              linked  enabled\nmarketdata-oi-quality.service            linked  enabled\nmarketdata-oi.service                    linked  enabled\nmarketdata-pack.service                  linked  enabled\nmarketdata-restic-archive.service        static  -\nmarketdata-backup.timer                  enabled enabled\nmarketdata-checkpoint-retirement.timer   enabled enabled\nmarketdata-daily.timer                   enabled enabled\nmarketdata-network-observer.timer        enabled enabled\nmarketdata-oi-probe.timer                enabled enabled\nmarketdata-oi-quality.timer              enabled enabled\nmarketdata-oi.timer                      enabled enabled\nmarketdata-pack.timer                    enabled enabled\nmarketdata-restic-archive.timer          enabled enabled\n",
+    "stderr": ""
+  },
+  "clock": {
+    "argv": [
+      "/usr/bin/timedatectl",
+      "show",
+      "-p",
+      "NTPSynchronized",
+      "-p",
+      "LocalRTC",
+      "-p",
+      "Timezone"
+    ],
+    "returncode": 0,
+    "stdout": "Timezone=Asia/Seoul\nLocalRTC=yes\nNTPSynchronized=yes\n",
+    "stderr": ""
+  },
+  "hash_groups": {
+    "pinned_files": {
+      "checked": 198,
+      "changed": [],
+      "unchanged": true
+    },
+    "operating_files": {
+      "checked": 139,
+      "changed": [],
+      "unchanged": true
+    },
+    "installed_user_units": {
+      "checked": 20,
+      "changed": [],
+      "unchanged": true
+    }
+  },
+  "host_files": {
+    "/etc/adjtime": {
+      "exists": true,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "sha256": "de2a54395e89e39cd461ab63ba89f8ec5e75313e560aa88f600cee8a673a1310"
+    },
+    "/etc/timezone": {
+      "exists": true,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "sha256": "0593db5e12e2f7f193751d981ce90d442908d034423af682fd37d8612f2c5d00"
+    },
+    "/etc/localtime": {
+      "exists": true,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o777",
+      "link": "/usr/share/zoneinfo/Asia/Seoul",
+      "sha256": "2c8f4bb15dd77090b497e2a841ff3323ecbbae4f9dbb9edead2f8dd8fb5d8bb4"
+    },
+    "/etc/systemd/timesyncd.conf": {
+      "exists": true,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "sha256": "e6734751f8aaf19fddfff891ad246387f5f59bd9ff1a5f0cac2c34bc81941c62"
+    },
+    "/etc/systemd/timesyncd.conf.d": {
+      "exists": false
+    },
+    "/etc/chrony": {
+      "exists": false
+    },
+    "/etc/marketdata": {
+      "exists": false
+    },
+    "/var/lib/marketdata-clock": {
+      "exists": false
+    },
+    "/etc/systemd/system/systemd-timesyncd.service": {
+      "exists": false
+    },
+    "/etc/systemd/system/systemd-timesyncd.service.d": {
+      "exists": false
+    },
+    "/etc/systemd/system/chrony.service": {
+      "exists": false
+    },
+    "/etc/systemd/system/chrony.service.d": {
+      "exists": false
+    },
+    "/etc/systemd/system/chrony-wait.service": {
+      "exists": false
+    },
+    "/etc/systemd/system/chrony-wait.service.d": {
+      "exists": false
+    },
+    "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+      "exists": false
+    },
+    "/etc/systemd/system/marketdata-collector@.service": {
+      "exists": false
+    },
+    "/etc/systemd/user": {
+      "exists": true,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "children": {
+        "dbus-org.bluez.obex.service": {
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o777",
+          "link": "/usr/lib/systemd/user/obex.service",
+          "sha256": "6f7b737a345f28c1e4b4e76a3738b3ac5fb4da8493315d29c32ebca45fc76335"
+        },
+        "default.target.wants": {
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755",
+          "children": {
+            "filter-chain.service": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/filter-chain.service",
+              "sha256": "72baca9f9f13887086c6260ee6c12fe5e2e8f6e393a3e47b02cbc9fc5ef9cb97"
+            },
+            "pipewire-pulse.service": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/pipewire-pulse.service",
+              "sha256": "ca83270e11979c35e025dee7b450c6c1f9b94ad552bea51666cd6ad6f453e1e8"
+            },
+            "pipewire.service": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/pipewire.service",
+              "sha256": "e312515933755466d46f47211ab9888cb76dd1af346c8e02a5be66c39dd5f3cf"
+            }
+          }
+        },
+        "gnome-session.target.wants": {
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755",
+          "children": {
+            "org.freedesktop.IBus.session.GNOME.service": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/org.freedesktop.IBus.session.GNOME.service",
+              "sha256": "5e8ee05c2774f39b53fd4b926c4703f045ab696d139b02629b21812a23f5fe8b"
+            }
+          }
+        },
+        "graphical-session-pre.target.wants": {
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755",
+          "children": {
+            "gcr-ssh-agent.service": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/gcr-ssh-agent.service",
+              "sha256": "62f5646d4d8e3c13b8767d43b58a5e3a886388cd9549954a7ee0c41e180a55d4"
+            },
+            "gnome-keyring-daemon.service": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/gnome-keyring-daemon.service",
+              "sha256": "00fd9dc412bef3f31e4c45d51e5b85ed2bc3861056f3d181ac18f266f00da35d"
+            },
+            "session-migration.service": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/session-migration.service",
+              "sha256": "16a8d03bb4ad2ac4357230e02c003c6e4862774fcdc0486ecc7c6b6d5a484a59"
+            },
+            "xdg-desktop-portal-rewrite-launchers.service": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/xdg-desktop-portal-rewrite-launchers.service",
+              "sha256": "fdee760ce905de25df98ae60aacdb6d7c3132b481644cc7627e06992bb3499de"
+            }
+          }
+        },
+        "pipewire.service.wants": {
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755",
+          "children": {
+            "wireplumber.service": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/wireplumber.service",
+              "sha256": "6dec189f307b6c6ea5c3aa851bf58baa0c4aa9044ce649e8e8c6c1a6daacc5a0"
+            }
+          }
+        },
+        "sockets.target.wants": {
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755",
+          "children": {
+            "dirmngr.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/dirmngr.socket",
+              "sha256": "ecf24112b56a505e2bf90bcefe07d5582a3804213218ff49a38fe0a3345c7e3b"
+            },
+            "gcr-ssh-agent.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/gcr-ssh-agent.socket",
+              "sha256": "175f9c10bb1c85c68b88a133b026d3eea5811f8ff94e7e16fa26deeb1367f7e9"
+            },
+            "gnome-keyring-daemon.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/gnome-keyring-daemon.socket",
+              "sha256": "dc525051ed1613edb13fd84c63dd9db601690ea9bc3e547f0d13fb2f93bd44fb"
+            },
+            "gpg-agent-browser.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/gpg-agent-browser.socket",
+              "sha256": "894cfb7aaa5e75092ad738cd6b3cb1b2ac05c6082ae89071ef38d25558ba289e"
+            },
+            "gpg-agent-extra.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/gpg-agent-extra.socket",
+              "sha256": "cea4b6b204d6b6701407c67ae1a1a8452e11593ea7f1e9805272f6c31c725213"
+            },
+            "gpg-agent-ssh.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/gpg-agent-ssh.socket",
+              "sha256": "211ad1fe19647e1174aa862f11bed3a519cebea32fe7ad0ab6fb8916fa8fb62d"
+            },
+            "gpg-agent.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/gpg-agent.socket",
+              "sha256": "5ed1ff1e351db978cfa581c6e11278e685099a8195cbe68a7754a4165a169985"
+            },
+            "keyboxd.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/keyboxd.socket",
+              "sha256": "cd1b35c7f3c2b6550d7f0766416772824402e8e5269379cd09fdb005801346de"
+            },
+            "pipewire-pulse.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/pipewire-pulse.socket",
+              "sha256": "c3abbf9ac1fdd17c252dafbf40293cde60fdf11b545b79cef48129e632bcf414"
+            },
+            "pipewire.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/pipewire.socket",
+              "sha256": "0314a8abf591bc159e8af842a627917bb99f78f8bd8fee6f5e0f9157ca9da208"
+            },
+            "pk-debconf-helper.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/pk-debconf-helper.socket",
+              "sha256": "707d5397576405a1142f722f24bcc5bddcc9ef5bbb7bbad8a3ea99f456356a76"
+            },
+            "speech-dispatcher.socket": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/speech-dispatcher.socket",
+              "sha256": "f5d46df9cd78a0bf7997c4bc6b0e7a1cef08b88a8b7e25ac8cb7843329447e6b"
+            }
+          }
+        },
+        "timers.target.wants": {
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755",
+          "children": {
+            "launchpadlib-cache-clean.timer": {
+              "exists": true,
+              "uid": 0,
+              "gid": 0,
+              "mode": "0o777",
+              "link": "/usr/lib/systemd/user/launchpadlib-cache-clean.timer",
+              "sha256": "2aad5faceba1104670893ac332fcd3702d148d6ee32420019bcdf76d184d34d1"
+            }
+          }
+        }
+      }
+    },
+    "/home/yoonhc/.config/systemd/user": {
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o755",
+      "children": {
+        "default.target.wants": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o755",
+          "children": {
+            "marketdata-aggtrade.service": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-aggtrade.service",
+              "sha256": "5a1b6b51c1a5669db24d08b8b5d66e8c84fe541e23c6863dc9e67cf0eb29099d"
+            },
+            "marketdata-depth.service": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-depth.service",
+              "sha256": "ae49746c2c248f9b57d427c434215bda356a321c30c65d4f98d1de8620d4e833"
+            }
+          }
+        },
+        "marketdata-aggtrade.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-aggtrade.service",
+          "sha256": "5a1b6b51c1a5669db24d08b8b5d66e8c84fe541e23c6863dc9e67cf0eb29099d"
+        },
+        "marketdata-backup.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service",
+          "sha256": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389"
+        },
+        "marketdata-backup.timer": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer",
+          "sha256": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141"
+        },
+        "marketdata-checkpoint-retirement.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "sha256": "b6805cc87f9db7fce045eaeac271708bf6dc1a32ebcd3b09615cbad265afd377"
+        },
+        "marketdata-checkpoint-retirement.timer": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "sha256": "3233f2f0115bf5668e52170bfa87f46310e8da062d152cc72dda8b41dc5fefd8"
+        },
+        "marketdata-daily.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-daily.service",
+          "sha256": "7ba5289fc742422fd1935bfe4515c274775262a5e6195214b2533311ab8d9d5c"
+        },
+        "marketdata-daily.timer": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-daily.timer",
+          "sha256": "c67b3d1268e6b38f9ccee07d12192579708b826851e7269be5c0b7a61eee03dd"
+        },
+        "marketdata-depth.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-depth.service",
+          "sha256": "ae49746c2c248f9b57d427c434215bda356a321c30c65d4f98d1de8620d4e833"
+        },
+        "marketdata-network-observer.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "sha256": "2ffe783c9341d78fc93526d3f401126932951e6e69788fdc3d69ce18c619bca8"
+        },
+        "marketdata-network-observer.timer": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599"
+        },
+        "marketdata-oi-probe.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service",
+          "sha256": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5"
+        },
+        "marketdata-oi-probe.timer": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer",
+          "sha256": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754"
+        },
+        "marketdata-oi-quality.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service",
+          "sha256": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6"
+        },
+        "marketdata-oi-quality.timer": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer",
+          "sha256": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75"
+        },
+        "marketdata-oi.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service",
+          "sha256": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f"
+        },
+        "marketdata-oi.timer": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer",
+          "sha256": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11"
+        },
+        "marketdata-pack.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service",
+          "sha256": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2"
+        },
+        "marketdata-pack.timer": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o777",
+          "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer",
+          "sha256": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676"
+        },
+        "marketdata-restic-archive.service": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "sha256": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73"
+        },
+        "marketdata-restic-archive.timer": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b"
+        },
+        "timers.target.wants": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o755",
+          "children": {
+            "marketdata-backup.timer": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer",
+              "sha256": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141"
+            },
+            "marketdata-checkpoint-retirement.timer": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer",
+              "sha256": "3233f2f0115bf5668e52170bfa87f46310e8da062d152cc72dda8b41dc5fefd8"
+            },
+            "marketdata-daily.timer": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-daily.timer",
+              "sha256": "c67b3d1268e6b38f9ccee07d12192579708b826851e7269be5c0b7a61eee03dd"
+            },
+            "marketdata-network-observer.timer": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer",
+              "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599"
+            },
+            "marketdata-oi-probe.timer": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer",
+              "sha256": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754"
+            },
+            "marketdata-oi-quality.timer": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer",
+              "sha256": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75"
+            },
+            "marketdata-oi.timer": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer",
+              "sha256": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11"
+            },
+            "marketdata-pack.timer": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer",
+              "sha256": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676"
+            },
+            "marketdata-restic-archive.timer": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o777",
+              "link": "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer",
+              "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b"
+            }
+          }
+        }
+      }
+    },
+    "/home/yoonhc/.config/marketdata": {
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o700",
+      "children": {
+        "backup-host.toml": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o600",
+          "sha256": "2a27c4f1656ae22d8bcb70f0971c22751c5720d8d1f94ac93e0c8604456540f6"
+        },
+        "checkpoint-retention-authorization.json": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o600",
+          "sha256": "6b630689fcf4bb11294711299d63f09238a6a3de2a5704a13599b913fe3f9be0"
+        },
+        "checkpoint-retention-automatic.toml": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o600",
+          "sha256": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d"
+        },
+        "checkpoint-retirement-service.env": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o600",
+          "sha256": "908a8bcd3b6445aa553866db8425fd2bd31439706aa8314d4797447a67ac716e"
+        },
+        "checkpoint-schedule.toml": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o600",
+          "sha256": "d9c8e7822bb36ebd86eb82514d54d03564f0133574e903308889d79a84067963"
+        },
+        "network-observer.env": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o600",
+          "sha256": "ebdf2cb3264d8152b0fadcc22932e2809a6d122d487215c942b70282b3e8eb13"
+        },
+        "network-observer.toml": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o600",
+          "sha256": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12"
+        },
+        "restic-archive.toml": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o600",
+          "sha256": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba"
+        },
+        "restic-service.env": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o600",
+          "sha256": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9"
+        },
+        "secrets": {
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o700",
+          "children": {
+            "restic-password": {
+              "exists": true,
+              "uid": 1000,
+              "gid": 1000,
+              "mode": "0o600",
+              "sha256": "d057314b3dc391b0bc57cf0dc08cf30734b301791e5648eed275308e486afc4c"
+            }
+          }
+        }
+      }
+    },
+    "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee": {
+      "exists": false
+    },
+    "/etc/passwd": {
+      "exists": true,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "sha256": "0206e370f444ca731fb4dd8ab0b246ba997d1f616da4f88308d60dd0cbc12696"
+    },
+    "/etc/group": {
+      "exists": true,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "sha256": "167392d74983e1923aa2c2d3a4b9e731bd8223f265ac61a4853d504781aadc7f"
+    }
+  },
+  "host_changes": [],
+  "collector_comparison": {
+    "marketdata-depth.service": {
+      "MainPID": true,
+      "InvocationID": true,
+      "ExecMainStartTimestamp": true
+    },
+    "marketdata-aggtrade.service": {
+      "MainPID": true,
+      "InvocationID": true,
+      "ExecMainStartTimestamp": true
+    }
+  },
+  "resolved": [
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+      "date": "2026-10-06",
+      "revision": "a6e905fc8ed20cf197bc74e0476febc33f0258af06388ee245923b84db7b1839",
+      "rows": 1440,
+      "state": "published",
+      "coverage": {
+        "blocked_days": [],
+        "complete": true,
+        "end": "2026-10-07T00:00:00+00:00",
+        "missing_days": 0,
+        "missing_ranges": [],
+        "missing_rows": 0,
+        "semantics": "bar_grid",
+        "start": "2026-09-14T00:00:00+00:00"
+      },
+      "coverage_before": {
+        "blocked_days": [],
+        "complete": false,
+        "end": "2026-10-07T00:00:00+00:00",
+        "missing_days": 1,
+        "missing_ranges": [
+          [
+            "2026-10-06T00:00:00+00:00",
+            "2026-10-07T00:00:00+00:00"
+          ]
+        ],
+        "missing_rows": 1440,
+        "semantics": "bar_grid",
+        "start": "2026-09-14T00:00:00+00:00"
+      }
+    },
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+      "date": "2026-10-06",
+      "revision": "b7d9a68160a9e50d9ade0720587ce3b58909de6a4f6aeb4eb40a6239126a6d31",
+      "rows": 1440,
+      "state": "published",
+      "coverage": {
+        "blocked_days": [],
+        "complete": true,
+        "end": "2026-10-07T00:00:00+00:00",
+        "missing_days": 0,
+        "missing_ranges": [],
+        "missing_rows": 0,
+        "semantics": "bar_grid",
+        "start": "2026-09-14T00:00:00+00:00"
+      },
+      "coverage_before": {
+        "blocked_days": [],
+        "complete": false,
+        "end": "2026-10-07T00:00:00+00:00",
+        "missing_days": 1,
+        "missing_ranges": [
+          [
+            "2026-10-06T00:00:00+00:00",
+            "2026-10-07T00:00:00+00:00"
+          ]
+        ],
+        "missing_rows": 1440,
+        "semantics": "bar_grid",
+        "start": "2026-09-14T00:00:00+00:00"
+      }
+    },
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+      "date": "2026-10-06",
+      "revision": "c80b824282f81b4d550a3d004b86159a0d62f1e2fb715b38a4ca0ba275d90ab3",
+      "rows": 1440,
+      "state": "published",
+      "coverage": {
+        "blocked_days": [],
+        "complete": true,
+        "end": "2026-10-07T00:00:00+00:00",
+        "missing_days": 0,
+        "missing_ranges": [],
+        "missing_rows": 0,
+        "semantics": "bar_grid",
+        "start": "2026-09-14T00:00:00+00:00"
+      },
+      "coverage_before": {
+        "blocked_days": [],
+        "complete": false,
+        "end": "2026-10-07T00:00:00+00:00",
+        "missing_days": 1,
+        "missing_ranges": [
+          [
+            "2026-10-06T00:00:00+00:00",
+            "2026-10-07T00:00:00+00:00"
+          ]
+        ],
+        "missing_rows": 1440,
+        "semantics": "bar_grid",
+        "start": "2026-09-14T00:00:00+00:00"
+      }
+    },
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+      "date": "2026-10-06",
+      "revision": "e6dba4c6d51a32f7b9f43137c1ea0bfdfc68fa5c476f0069fa799198da0a68be",
+      "rows": 288,
+      "state": "published",
+      "coverage": {
+        "blocked_days": [],
+        "complete": true,
+        "end": "2026-10-07T00:00:00+00:00",
+        "missing_days": 0,
+        "missing_ranges": [],
+        "missing_rows": 0,
+        "semantics": "source_label_grid_only",
+        "start": "2026-09-14T00:00:00+00:00"
+      },
+      "coverage_before": {
+        "blocked_days": [],
+        "complete": false,
+        "end": "2026-10-07T00:00:00+00:00",
+        "missing_days": 1,
+        "missing_ranges": [
+          [
+            "2026-10-06T00:00:00+00:00",
+            "2026-10-07T00:00:00+00:00"
+          ]
+        ],
+        "missing_rows": 288,
+        "semantics": "source_label_grid_only",
+        "start": "2026-09-14T00:00:00+00:00"
+      }
+    }
+  ],
+  "daily_report_sha256": "ab449a02046b1cca1e1ae0fa9317ab8d43c2f3ba2db526990a2f112006db0571",
+  "new_backup_created": false,
+  "reset_failed_performed": false,
+  "operating_transition_applied": false
+}

@@ -1,0 +1,289 @@
+{
+  "at": "2026-10-09T00:21:37.465049+09:00",
+  "streams": {
+    "depth": {
+      "collection_id": "bc6bc9d2cb6149ba864f0d2003adf3af",
+      "segments_checked": 155,
+      "rows_read": 4849,
+      "kind_counts": {
+        "anchor": 1,
+        "update": 4794,
+        "check": 54
+      },
+      "first_ws_received_at": "2026-10-08 15:11:19.299452+00:00",
+      "last_ws_received_at": "2026-10-08 15:19:28.190080+00:00",
+      "receive_reversals": 0,
+      "id_chain_breaks": [],
+      "failures": [],
+      "samples": [
+        {
+          "canonical_path": "data/canonical/book_depth/46/46de478647bead52e87c7d9acc18b824b6e738cad6c3aa655a7546db36555280.parquet",
+          "raw_path": "data/raw/48/4832b1cf17ac90d942e91e6137349bba0096f416bad826da8e8a7e8ba17f4128/payload",
+          "raw_kind": "depth_snapshot",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:11:19.377816+00:00",
+          "rows": 1,
+          "first_row": {
+            "sequence": 0,
+            "kind": "anchor",
+            "received_at": "2026-10-08 15:11:19.377816+00:00",
+            "final_update_id": 11766537843826,
+            "previous_update_id": null
+          },
+          "last_row": {
+            "sequence": 0,
+            "kind": "anchor",
+            "received_at": "2026-10-08 15:11:19.377816+00:00",
+            "final_update_id": 11766537843826,
+            "previous_update_id": null
+          }
+        },
+        {
+          "canonical_path": "data/canonical/book_depth/c5/c502998ffe67554d1163b93a76db9a6558261cea9a0f20c4959ef10d28a65bcf.parquet",
+          "raw_path": "data/raw/de/de427ea818f84929095270cc48e0db3ee2c3526b511855b04d1df1dd3413f533/payload",
+          "raw_kind": "depth_websocket",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:11:19.299452+00:00",
+          "rows": 51,
+          "first_row": {
+            "sequence": 1,
+            "kind": "update",
+            "received_at": "2026-10-08 15:11:19.299452+00:00",
+            "final_update_id": 11766537818073,
+            "previous_update_id": 11766537757046
+          },
+          "last_row": {
+            "sequence": 51,
+            "kind": "update",
+            "received_at": "2026-10-08 15:11:24.383719+00:00",
+            "final_update_id": 11766538967309,
+            "previous_update_id": 11766538953084
+          }
+        },
+        {
+          "canonical_path": "data/canonical/book_depth/76/76190505cdef099b2ba8994a063009dfc7d8cee06be3d6149ead696c884830c7.parquet",
+          "raw_path": "data/raw/1b/1b9993cf8b6575b31e0404ead612d035a880d7990fc95a281faf0051ebfcc9cf/payload",
+          "raw_kind": "depth_websocket",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:11:24.485774+00:00",
+          "rows": 50,
+          "first_row": {
+            "sequence": 52,
+            "kind": "update",
+            "received_at": "2026-10-08 15:11:24.485774+00:00",
+            "final_update_id": 11766538976842,
+            "previous_update_id": 11766538967309
+          },
+          "last_row": {
+            "sequence": 101,
+            "kind": "update",
+            "received_at": "2026-10-08 15:11:29.485005+00:00",
+            "final_update_id": 11766539833082,
+            "previous_update_id": 11766539809569
+          }
+        },
+        {
+          "canonical_path": "data/canonical/book_depth/7c/7cef209f5fb9f2868a27d648c92fd73cdd1b3bfaa5279a9cb7d2335c9b605c85.parquet",
+          "raw_path": "data/raw/e6/e6a346ac54d6e07eba6cf3598a764b29e38021a4a1d8007abba20eabdbd18ff4/payload",
+          "raw_kind": "depth_websocket",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:19:22.758786+00:00",
+          "rows": 51,
+          "first_row": {
+            "sequence": 4792,
+            "kind": "update",
+            "received_at": "2026-10-08 15:19:22.758786+00:00",
+            "final_update_id": 11766642282706,
+            "previous_update_id": 11766642258400
+          },
+          "last_row": {
+            "sequence": 4842,
+            "kind": "update",
+            "received_at": "2026-10-08 15:19:27.681368+00:00",
+            "final_update_id": 11766643972773,
+            "previous_update_id": 11766643943533
+          }
+        },
+        {
+          "canonical_path": "data/canonical/book_depth/7d/7d52c40e446a6398bd7338312c526bf654cbf68504bc2b0e6e5779738219b9d3.parquet",
+          "raw_path": "data/raw/d4/d4a7f9abf9cca8ab370985b8e71393dd46d25985c79c72b90bb6e1230e4a0506/payload",
+          "raw_kind": "depth_websocket",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:19:27.871030+00:00",
+          "rows": 5,
+          "first_row": {
+            "sequence": 4843,
+            "kind": "update",
+            "received_at": "2026-10-08 15:19:27.871030+00:00",
+            "final_update_id": 11766644035278,
+            "previous_update_id": 11766643972773
+          },
+          "last_row": {
+            "sequence": 4847,
+            "kind": "update",
+            "received_at": "2026-10-08 15:19:28.190080+00:00",
+            "final_update_id": 11766644156984,
+            "previous_update_id": 11766644128396
+          }
+        },
+        {
+          "canonical_path": "data/canonical/book_depth/26/2650eff019f2ce540b1b0c978729da906398d3f37be9cc430e70509c4e9159bf.parquet",
+          "raw_path": "data/raw/c1/c1a8c3ad7d3361b3cf5e19d1c50700228bbbfba7bcec70d48d115d8b6ca2c35f/payload",
+          "raw_kind": "depth_snapshot",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:19:28.300354+00:00",
+          "rows": 1,
+          "first_row": {
+            "sequence": 4848,
+            "kind": "check",
+            "received_at": "2026-10-08 15:19:28.300354+00:00",
+            "final_update_id": 11766644183303,
+            "previous_update_id": null
+          },
+          "last_row": {
+            "sequence": 4848,
+            "kind": "check",
+            "received_at": "2026-10-08 15:19:28.300354+00:00",
+            "final_update_id": 11766644183303,
+            "previous_update_id": null
+          }
+        }
+      ],
+      "report_messages": 4794,
+      "report_persisted_messages": 4794
+    },
+    "aggtrade": {
+      "collection_id": "c36431bac84d4092b5f1ca33b4740af4",
+      "segments_checked": 92,
+      "rows_read": 22240,
+      "kind_counts": {
+        "websocket": 22240
+      },
+      "first_ws_received_at": "2026-10-08 15:11:23.302467+00:00",
+      "last_ws_received_at": "2026-10-08 15:19:27.209219+00:00",
+      "receive_reversals": 0,
+      "id_chain_breaks": [],
+      "failures": [],
+      "samples": [
+        {
+          "canonical_path": "data/canonical/agg_trades/websocket/54/5452d995ac1c71407e9db520eb8e0963f6d0ecce81d25d979826fb6ce5ebbbde.parquet",
+          "raw_path": "data/raw/3e/3edf1ed14d25154bc391701d031d47398aa60ab14af45384386e252525d7c54b/payload",
+          "raw_kind": "aggtrade_websocket",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:11:23.302467+00:00",
+          "rows": 1,
+          "first_row": {
+            "agg_trade_id": 3479150819,
+            "received_at": "2026-10-08 15:11:23.302467+00:00"
+          },
+          "last_row": {
+            "agg_trade_id": 3479150819,
+            "received_at": "2026-10-08 15:11:23.302467+00:00"
+          }
+        },
+        {
+          "canonical_path": "data/canonical/agg_trades/websocket/09/090bdbf08f1d28ddde5d4b6dac9abf0c1f2a98182389fa3afce3275f5eebbe43.parquet",
+          "raw_path": "data/raw/34/344fce91d371652372d994c6938e01b960727fde597303b0c9b007590a1b5f37/payload",
+          "raw_kind": "aggtrade_websocket",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:11:25.381766+00:00",
+          "rows": 90,
+          "first_row": {
+            "agg_trade_id": 3479150820,
+            "received_at": "2026-10-08 15:11:25.381766+00:00"
+          },
+          "last_row": {
+            "agg_trade_id": 3479150909,
+            "received_at": "2026-10-08 15:11:28.485776+00:00"
+          }
+        },
+        {
+          "canonical_path": "data/canonical/agg_trades/websocket/e5/e583255b70e63f091e077f5c00cfe10b35515193d9c70daf73bf2136c56c9bca.parquet",
+          "raw_path": "data/raw/42/42a2265bc04719bb56ee3487920250eff401ae8573d99fd5a09e7a81d83ce5cd/payload",
+          "raw_kind": "aggtrade_websocket",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:11:28.675803+00:00",
+          "rows": 244,
+          "first_row": {
+            "agg_trade_id": 3479150910,
+            "received_at": "2026-10-08 15:11:28.675803+00:00"
+          },
+          "last_row": {
+            "agg_trade_id": 3479151153,
+            "received_at": "2026-10-08 15:11:33.618620+00:00"
+          }
+        },
+        {
+          "canonical_path": "data/canonical/agg_trades/websocket/9e/9e0df5d1f47982e0643b8ebdc00a4aa1a48c5d7da6045e51112bc5a09f16f87c.parquet",
+          "raw_path": "data/raw/6f/6fd989398c6c0ab3d8c4ea26ebf807db3187912c6a91333e0c7f750f1bf61b72/payload",
+          "raw_kind": "aggtrade_websocket",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:19:12.077826+00:00",
+          "rows": 399,
+          "first_row": {
+            "agg_trade_id": 3479171709,
+            "received_at": "2026-10-08 15:19:12.077826+00:00"
+          },
+          "last_row": {
+            "agg_trade_id": 3479172107,
+            "received_at": "2026-10-08 15:19:17.109480+00:00"
+          }
+        },
+        {
+          "canonical_path": "data/canonical/agg_trades/websocket/8f/8f9b111fdee06a37de9f77d8071a3a1d9fb43dad8702918df55a925a16be4d94.parquet",
+          "raw_path": "data/raw/d7/d7e906d14c7453465d1a22c7936fd6102e4958457d2fae0c55a98b733e0deeaa/payload",
+          "raw_kind": "aggtrade_websocket",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:19:17.135719+00:00",
+          "rows": 501,
+          "first_row": {
+            "agg_trade_id": 3479172108,
+            "received_at": "2026-10-08 15:19:17.135719+00:00"
+          },
+          "last_row": {
+            "agg_trade_id": 3479172608,
+            "received_at": "2026-10-08 15:19:22.159684+00:00"
+          }
+        },
+        {
+          "canonical_path": "data/canonical/agg_trades/websocket/1d/1d658e6d5ee0abf8a9220de39112ee7954b7076df45b9b72e5d2868aeda446dc.parquet",
+          "raw_path": "data/raw/5e/5ea5a2f9b4bd9c39ba3a997ed511948cc7c944ccbac037f1212e2009b165265f/payload",
+          "raw_kind": "aggtrade_websocket",
+          "raw_hash_matches": true,
+          "raw_observed_at": "2026-10-08T15:19:22.190867+00:00",
+          "rows": 450,
+          "first_row": {
+            "agg_trade_id": 3479172609,
+            "received_at": "2026-10-08 15:19:22.190867+00:00"
+          },
+          "last_row": {
+            "agg_trade_id": 3479173058,
+            "received_at": "2026-10-08 15:19:27.209219+00:00"
+          }
+        }
+      ],
+      "report_messages": 22240,
+      "report_persisted_messages": 22240
+    }
+  },
+  "scope": "Canonical hash/row count and ID continuity for initial persisted subset; raw hash and selected row metadata for first/last 3 segments. No order-book recalculation, API request, report rewrite or whole-store audit.",
+  "config_hash_correction": {
+    "reason": "Initial observation helper compared a digest to the whole {sha256, mode} object; initial artifact is preserved. Compare sha256 member here.",
+    "business_config_checks": {
+      "/home/yoonhc/.config/marketdata/checkpoint-retirement-service.env": true,
+      "/home/yoonhc/.config/marketdata/restic-archive.toml": true,
+      "/home/yoonhc/.config/marketdata/checkpoint-retention-automatic.toml": true,
+      "/home/yoonhc/.config/marketdata/checkpoint-retention-authorization.json": true,
+      "/home/yoonhc/.config/marketdata/restic-service.env": true,
+      "/home/yoonhc/.config/marketdata/network-observer.toml": true,
+      "/home/yoonhc/.config/marketdata/network-observer.env": true,
+      "/home/yoonhc/.config/marketdata/backup-host.toml": true,
+      "/home/yoonhc/.config/marketdata/checkpoint-schedule.toml": true
+    },
+    "rtc": {
+      "expected_changed_from_pre_transition_local": true,
+      "adjtime_utc": true
+    }
+  },
+  "passed": true
+}

@@ -1,0 +1,186 @@
+{
+  "at": "2026-10-08T23:54:20.701830+09:00",
+  "boot_id": "9e33f0bc-b734-45c9-8a85-8aa6c35efa71",
+  "commands": [
+    {
+      "args": [
+        "systemctl",
+        "show",
+        "chrony.service",
+        "chronyd.service",
+        "chrony-wait.service",
+        "systemd-timesyncd.service",
+        "marketdata-clock-bootstrap.service",
+        "marketdata-collector@depth.service",
+        "marketdata-collector@aggtrade.service",
+        "-p",
+        "Id",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "MainPID",
+        "-p",
+        "UnitFileState",
+        "-p",
+        "ExecStart",
+        "-p",
+        "User",
+        "-p",
+        "ProtectClock",
+        "-p",
+        "ProtectSystem",
+        "-p",
+        "ProtectHome",
+        "-p",
+        "CapabilityBoundingSet"
+      ],
+      "returncode": 0,
+      "stdout": "MainPID=10225\nExecStart={ path=/usr/sbin/chronyd ; argv[]=/usr/sbin/chronyd -F 1 -f /etc/chrony/marketdata.conf ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nCapabilityBoundingSet=cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_setgid cap_setuid cap_setpcap cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_nice cap_sys_resource cap_sys_time cap_setfcap cap_perfmon cap_bpf cap_checkpoint_restore\nUser=_chrony\nProtectClock=no\nProtectHome=yes\nProtectSystem=strict\nId=chrony.service\nLoadState=loaded\nActiveState=active\nUnitFileState=enabled\n\nMainPID=10225\nExecStart={ path=/usr/sbin/chronyd ; argv[]=/usr/sbin/chronyd -F 1 -f /etc/chrony/marketdata.conf ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nCapabilityBoundingSet=cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_setgid cap_setuid cap_setpcap cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_nice cap_sys_resource cap_sys_time cap_setfcap cap_perfmon cap_bpf cap_checkpoint_restore\nUser=_chrony\nProtectClock=no\nProtectHome=yes\nProtectSystem=strict\nId=chrony.service\nLoadState=loaded\nActiveState=active\nUnitFileState=enabled\n\nMainPID=0\nExecStart={ path=/usr/bin/chronyc ; argv[]=/usr/bin/chronyc -h 127.0.0.1,::1 waitsync 0 0.1 0.0 1 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nCapabilityBoundingSet=\nUser=chrony-wait\nProtectClock=yes\nProtectHome=yes\nProtectSystem=strict\nId=chrony-wait.service\nLoadState=loaded\nActiveState=inactive\nUnitFileState=enabled\n\nMainPID=0\nCapabilityBoundingSet=cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon cap_bpf cap_checkpoint_restore\nUser=\nProtectClock=no\nProtectHome=no\nProtectSystem=no\nId=systemd-timesyncd.service\nLoadState=not-found\nActiveState=inactive\nUnitFileState=\n\nMainPID=0\nExecStart={ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py bootstrap --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nCapabilityBoundingSet=cap_dac_override cap_setgid cap_setuid\nUser=\nProtectClock=yes\nProtectHome=read-only\nProtectSystem=strict\nId=marketdata-clock-bootstrap.service\nLoadState=loaded\nActiveState=inactive\nUnitFileState=enabled\n\nMainPID=0\nExecStart={ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/marketdata_runtime.py run --profile /etc/marketdata/runtime.json --stream depth ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nCapabilityBoundingSet=\nUser=yoonhc\nProtectClock=yes\nProtectHome=read-only\nProtectSystem=strict\nId=marketdata-collector@depth.service\nLoadState=loaded\nActiveState=inactive\nUnitFileState=enabled\n\nMainPID=0\nExecStart={ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/marketdata_runtime.py run --profile /etc/marketdata/runtime.json --stream aggtrade ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nCapabilityBoundingSet=\nUser=yoonhc\nProtectClock=yes\nProtectHome=read-only\nProtectSystem=strict\nId=marketdata-collector@aggtrade.service\nLoadState=loaded\nActiveState=inactive\nUnitFileState=enabled\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "systemctl",
+        "--user",
+        "list-jobs",
+        "--no-pager"
+      ],
+      "returncode": 0,
+      "stdout": "JOB UNIT                                TYPE  STATE\n676 marketdata-oi.service               start waiting\n744 marketdata-restic-archive.service   start waiting\n776 marketdata-oi-probe.service         start waiting\n808 marketdata-oi-quality.service       start waiting\n639 marketdata-clock-ready.service      start running\n710 marketdata-pack.service             start waiting\n638 marketdata-network-observer.service start waiting\n\n7 jobs listed.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "systemctl",
+        "--user",
+        "list-timers",
+        "--all",
+        "marketdata-*",
+        "--no-pager"
+      ],
+      "returncode": 0,
+      "stdout": "NEXT                           LEFT LAST                              PASSED UNIT                              ACTIVATES\nThu 2026-10-08 23:57:27 KST 3min 6s Thu 2026-10-08 12:21:20 KST            - marketdata-daily.timer            marketdata-daily.service\nFri 2026-10-09 13:10:00 KST     13h Thu 2026-10-08 13:10:00 KST            - marketdata-backup.timer           marketdata-backup.service\n-                                 - Thu 2026-10-08 23:52:42 KST 1min 38s ago marketdata-network-observer.timer marketdata-network-observer.service\n-                                 - Thu 2026-10-08 23:52:44 KST 1min 36s ago marketdata-oi-probe.timer         marketdata-oi-probe.service\n-                                 - Thu 2026-10-08 23:52:47 KST 1min 33s ago marketdata-oi-quality.timer       marketdata-oi-quality.service\n-                                 - Thu 2026-10-08 23:52:42 KST 1min 38s ago marketdata-oi.timer               marketdata-oi.service\n-                                 - Thu 2026-10-08 23:52:42 KST 1min 38s ago marketdata-pack.timer             marketdata-pack.service\n-                                 - Thu 2026-10-08 23:52:42 KST 1min 38s ago marketdata-restic-archive.timer   marketdata-restic-archive.service\n\n8 timers listed.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "systemctl",
+        "--user",
+        "show",
+        "marketdata-clock-ready.service",
+        "marketdata-depth.service",
+        "marketdata-aggtrade.service",
+        "marketdata-checkpoint-retirement.service",
+        "marketdata-checkpoint-retirement.timer",
+        "-p",
+        "Id",
+        "-p",
+        "ActiveState",
+        "-p",
+        "LoadState",
+        "-p",
+        "UnitFileState",
+        "-p",
+        "MainPID"
+      ],
+      "returncode": 0,
+      "stdout": "MainPID=10395\nId=marketdata-clock-ready.service\nLoadState=loaded\nActiveState=activating\nUnitFileState=static\n\nMainPID=0\nId=marketdata-depth.service\nLoadState=masked\nActiveState=inactive\nUnitFileState=masked\n\nMainPID=0\nId=marketdata-aggtrade.service\nLoadState=masked\nActiveState=inactive\nUnitFileState=masked\n\nMainPID=0\nId=marketdata-checkpoint-retirement.service\nLoadState=masked\nActiveState=inactive\nUnitFileState=masked\n\nId=marketdata-checkpoint-retirement.timer\nLoadState=masked\nActiveState=inactive\nUnitFileState=masked\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "timedatectl",
+        "show"
+      ],
+      "returncode": 0,
+      "stdout": "Timezone=Asia/Seoul\nLocalRTC=no\nCanNTP=yes\nNTP=yes\nNTPSynchronized=yes\nTimeUSec=Thu 2026-10-08 23:54:20 KST\nRTCTimeUSec=Thu 2026-10-08 23:54:20 KST\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/chronyc",
+        "-n",
+        "tracking"
+      ],
+      "returncode": 0,
+      "stdout": "Reference ID    : B97DBE3A (185.125.190.58)\nStratum         : 3\nRef time (UTC)  : Thu Oct 08 14:53:51 2026\nSystem time     : 0.000018476 seconds slow of NTP time\nLast offset     : +0.026035108 seconds\nRMS offset      : 0.026035108 seconds\nFrequency       : 25.950 ppm fast\nResidual freq   : +422.288 ppm\nSkew            : 1000000.000 ppm\nRoot delay      : 0.293500245 seconds\nRoot dispersion : 29.195262909 seconds\nUpdate interval : 63.9 seconds\nLeap status     : Normal\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/usr/bin/chronyc",
+        "-n",
+        "sources",
+        "-v"
+      ],
+      "returncode": 0,
+      "stdout": "\n  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.\n / .- Source state '*' = current best, '+' = combined, '-' = not combined,\n| /             'x' = may be in error, '~' = too variable, '?' = unusable.\n||                                                 .- xxxx [ yyyy ] +/- zzzz\n||      Reachability register (octal) -.           |  xxxx = adjusted offset,\n||      Log2(Polling interval) --.      |          |  yyyy = measured offset,\n||                                \\     |          |  zzzz = estimated error.\n||                                 |    |           \\\nMS Name/IP address         Stratum Poll Reach LastRx Last sample               \n===============================================================================\n^- 91.189.91.157                 2   6    17    92    -14ms[  +12ms] +/-  119ms\n^* 185.125.190.58                2   6    37    28   -589us[  +25ms] +/-  149ms\n^- 185.125.190.57                2   6    37    27    -22ms[  -22ms] +/-  129ms\n^- 185.125.190.56                2   6    37    27    -22ms[  -22ms] +/-  128ms\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "loginctl",
+        "show-user",
+        "yoonhc",
+        "-p",
+        "Linger"
+      ],
+      "returncode": 0,
+      "stdout": "Linger=yes\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "-B",
+        "-I",
+        "-c",
+        "import json,sys;sys.path.insert(0,'/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime');import marketdata_runtime as r;p=r.load_profile('/etc/marketdata/runtime.json');print(json.dumps({'environment_release':r.environment_check(p),'clock':r.probe(p)}))"
+      ],
+      "returncode": 0,
+      "stdout": "{\"environment_release\": \"system-bootstrap-20261007-f85eb8321a19c1ee\", \"clock\": {\"ready\": false, \"reasons\": [\"clock_error_bound\", \"frequency_uncertainty\"], \"reference_age_seconds\": 29.331149101257324, \"conditional_error_bound_seconds\": 29.4939041425, \"tracking\": {\"reference_id\": \"B97DBE3A\", \"reference_address\": \"185.125.190.58\", \"stratum\": 3, \"reference_time\": 1791471231.6107156, \"correction\": 1.8476e-05, \"skew_ppm\": 1000000.0, \"root_delay\": 0.293500245, \"root_dispersion\": 29.347135544, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE3A,185.125.190.58,3,1791471231.610715671,0.000018476,0.026035108,0.026035108,25.950,422.288,1000000.000,0.293500245,29.347135544,63.9,Normal\"}, \"provider\": {\"pid\": 10225, \"invocation_id\": \"a09ecf0179004d4484c4495728265a10\", \"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"]}, \"sample\": {\"wall_ns\": 1791471260941906859, \"monotonic_ns\": 2520390953425, \"boottime_ns\": 2520390954141, \"sampling_span_ns\": 2394}}}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "journalctl",
+        "-b",
+        "-u",
+        "chrony.service",
+        "-u",
+        "marketdata-clock-bootstrap.service",
+        "--no-pager",
+        "-o",
+        "short-iso-precise"
+      ],
+      "returncode": 0,
+      "stdout": "2026-10-08T23:52:40.996160+09:00 hclm systemd[1]: Starting chrony.service - chrony, an NTP client/server...\n2026-10-08T23:52:41.047502+09:00 hclm python[10218]: {\"rtc_utc\": true}\n2026-10-08T23:52:41.093568+09:00 hclm chronyd[10225]: chronyd version 4.5 starting (+CMDMON +NTP +REFCLOCK +RTC +PRIVDROP +SCFILTER +SIGND +ASYNCDNS +NTS +SECHASH +IPV6 -DEBUG)\n2026-10-08T23:52:41.093828+09:00 hclm chronyd[10225]: Initial frequency 25.950 ppm\n2026-10-08T23:52:41.105241+09:00 hclm chronyd[10225]: Using right/UTC timezone to obtain leap second data\n2026-10-08T23:52:41.105888+09:00 hclm chronyd[10225]: Loaded seccomp filter (level 1)\n2026-10-08T23:52:41.107602+09:00 hclm systemd[1]: Started chrony.service - chrony, an NTP client/server.\n2026-10-08T23:52:46.484793+09:00 hclm chronyd[10225]: Selected source 185.125.190.56 (ntp.ubuntu.com)\n2026-10-08T23:53:52.664092+09:00 hclm chronyd[10225]: Selected source 185.125.190.58 (ntp.ubuntu.com)\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "journalctl",
+        "-b",
+        "-k",
+        "--no-pager",
+        "-g",
+        "apparmor.*(chrony|DENIED)"
+      ],
+      "returncode": 0,
+      "stdout": "Oct 08 23:48:10 hclm kernel: audit: type=1400 audit(1791470890.026:130): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=\"/usr/sbin/chronyd\" pid=8338 comm=\"apparmor_parser\"\n",
+      "stderr": ""
+    }
+  ],
+  "chrony_apparmor": "/usr/sbin/chronyd (enforce)",
+  "ledger": {
+    "boot_id": "9e33f0bc-b734-45c9-8a85-8aa6c35efa71",
+    "first_boottime": 2152.165940941,
+    "phase": "installation_hold",
+    "profile_sha256": "c15cae7653cf99f4f59f6e3b124eea90cc2bd6f27eaa0477ed8c4a7546958b4c",
+    "schema": 1,
+    "step_attempts": 0
+  },
+  "runtime_origin": "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/lib/python3.12/site-packages/marketdata"
+}

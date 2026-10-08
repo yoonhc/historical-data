@@ -1,0 +1,62 @@
+{
+  "recorded_at": "2026-10-08T22:53:11.611201+09:00",
+  "boot_id": "656ec5e3-7734-455f-9214-1326c988f837",
+  "groups": {
+    "pinned_files": {
+      "matched": 196,
+      "missing": [
+        "/tmp/marketdata-system-runtime-20261006/chrony-extracted/usr/bin/chronyc",
+        "/tmp/marketdata-system-runtime-20261006/chrony-extracted/usr/sbin/chronyd"
+      ],
+      "changed": []
+    },
+    "operating_files": {
+      "matched": 139,
+      "missing": [],
+      "changed": []
+    }
+  },
+  "config_hashes": {
+    "/etc/adjtime": {
+      "hash_matches": true,
+      "mode_matches": true
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-retirement-service.env": {
+      "hash_matches": true,
+      "mode_matches": true
+    },
+    "/home/yoonhc/.config/marketdata/restic-archive.toml": {
+      "hash_matches": true,
+      "mode_matches": true
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-retention-automatic.toml": {
+      "hash_matches": true,
+      "mode_matches": true
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-retention-authorization.json": {
+      "hash_matches": true,
+      "mode_matches": true
+    },
+    "/home/yoonhc/.config/marketdata/restic-service.env": {
+      "hash_matches": true,
+      "mode_matches": true
+    },
+    "/home/yoonhc/.config/marketdata/network-observer.toml": {
+      "hash_matches": true,
+      "mode_matches": true
+    },
+    "/home/yoonhc/.config/marketdata/network-observer.env": {
+      "hash_matches": true,
+      "mode_matches": true
+    },
+    "/home/yoonhc/.config/marketdata/backup-host.toml": {
+      "hash_matches": true,
+      "mode_matches": true
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-schedule.toml": {
+      "hash_matches": true,
+      "mode_matches": true
+    }
+  },
+  "note": "The two missing /tmp Chrony test binaries are reboot-volatile staging; the persistent .deb will be checked separately. No frozen release/source hash is changed."
+}

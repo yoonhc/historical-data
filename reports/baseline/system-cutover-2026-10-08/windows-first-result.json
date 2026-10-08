@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-10-08T22:52:41.001034+09:00",
+  "evidence_source": "user report in conversation after first Windows restart and Linux return",
+  "independently_observed_by_linux": false,
+  "phase": "first_windows_complete",
+  "registry": {
+    "key": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\TimeZoneInformation",
+    "name": "RealTimeIsUniversal",
+    "type": "REG_DWORD",
+    "value": 1,
+    "persisted_after_windows_restart": true,
+    "original_value": null
+  },
+  "timezone": "Korea Standard Time",
+  "w32tm": {
+    "resync_succeeded": true,
+    "leap_indicator_reported": 0,
+    "stratum": 5,
+    "source": "time.windows.com,0x8",
+    "last_successful_sync": "2026-10-08T22:40:10+09:00"
+  },
+  "linux_return_boot_id": "656ec5e3-7734-455f-9214-1326c988f837",
+  "second_roundtrip_after_linux_rtc_utc_change_complete": false,
+  "user_report_verbatim": "첫 Windows 작업을 완료했어. RealTimeIsUniversal = REG_DWORD 0x1; 시간대 = Korea Standard Time; Windows 재부팅 후에도 레지스트리 설정 유지 확인. w32tm /resync 성공. 윤초 조정 0, Stratum 5, 원본 time.windows.com,0x8, 마지막 동기화 2026-10-08 22:40:10 KST. 이제 Linux로 복귀했으니 기존 handoff 절차를 이어서 진행해줘."
+}
