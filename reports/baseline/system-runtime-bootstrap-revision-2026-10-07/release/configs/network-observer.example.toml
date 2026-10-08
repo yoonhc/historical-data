@@ -1,0 +1,7 @@
+# Host-specific settings; change these when migrating to the Proxmox Linux VM.
+version = 1
+output_root = "/home/yoonhc/projects/algoTrade/historical_data/reports/network-observer"
+# Empty means accept the OS-selected route. This assertion never changes routing.
+expected_interface = "enp2s0"
+# A numeric TCP/443 target independently tests reachability without DNS.
+external_ip = "8.8.8.8"

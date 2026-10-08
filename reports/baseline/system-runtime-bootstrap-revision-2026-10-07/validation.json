@@ -1,0 +1,56 @@
+{
+  "checks": {
+    "chrony_not_installed": true,
+    "installed_user_units_unchanged": true,
+    "job-gate-systemd-first-attempt_runtime_links_removed": true,
+    "job-gate-systemd-second-attempt_runtime_links_removed": true,
+    "job-gate-systemd_runtime_links_removed": true,
+    "operating_files_unchanged": true,
+    "parent_report_unchanged": true,
+    "retirement_grant_unchanged": true,
+    "rtc_adjtime_unchanged": true
+  },
+  "clean_regression": {
+    "errors": "0",
+    "failures": "0",
+    "hostname": "hclm",
+    "name": "pytest",
+    "skipped": "0",
+    "tests": "297",
+    "time": "14.106",
+    "timestamp": "2026-10-07T19:54:32.556042+09:00"
+  },
+  "collector_regressions": 199,
+  "host_clock_control": false,
+  "job_gate_systemd": true,
+  "new_regressions": 12,
+  "operational_applied": false,
+  "patch_reproduction": true,
+  "pending": [
+    "root hardened unit socket/create/write/flock/runuser access",
+    "Windows/Linux UTC RTC confirmation",
+    "actual Chrony time control and external source quality",
+    "controlled service transition and real boot",
+    "clock evidence lifecycle/collection linkage/backup and restore",
+    "permanent deletion clock guard",
+    "Proxmox suspend/resume"
+  ],
+  "prior_bootstrap_regressions": 37,
+  "regression": {
+    "errors": "0",
+    "failures": "0",
+    "hostname": "hclm",
+    "name": "pytest",
+    "skipped": "0",
+    "tests": "297",
+    "time": "14.133",
+    "timestamp": "2026-10-07T19:47:52.512304+09:00"
+  },
+  "release_id": "system-bootstrap-20261007-f85eb8321a19c1ee",
+  "root_probe_unavailable": "sudo -n true outside sandbox required administrator password",
+  "root_system_sandbox_exercised": false,
+  "runtime_regressions": 49,
+  "systemd_transaction_verify": true,
+  "windows_utc_confirmed": false,
+  "wire_test": true
+}

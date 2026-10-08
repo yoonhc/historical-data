@@ -1,0 +1,37 @@
+[Unit]
+Description=Market data %i collector with sampled clock quality
+Wants=network-online.target chrony.service chrony-wait.service marketdata-clock-bootstrap.service
+After=network-online.target chrony.service marketdata-clock-bootstrap.service chrony-wait.service time-sync.target
+RequiresMountsFor=/home/yoonhc/projects/algoTrade/historical_data /opt/marketdata/releases/system-bootstrap-20261006-81d25b1c4552f21d /home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock
+StartLimitIntervalSec=0
+
+[Service]
+Type=exec
+User=yoonhc
+WorkingDirectory=/opt/marketdata/releases/system-bootstrap-20261006-81d25b1c4552f21d
+Environment=PYTHONNOUSERSITE=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStartPre=/opt/marketdata/releases/system-bootstrap-20261006-81d25b1c4552f21d/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261006-81d25b1c4552f21d/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json
+ExecStartPre=/opt/marketdata/releases/system-bootstrap-20261006-81d25b1c4552f21d/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261006-81d25b1c4552f21d/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream %i
+ExecStart=/opt/marketdata/releases/system-bootstrap-20261006-81d25b1c4552f21d/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261006-81d25b1c4552f21d/integrations/runtime/marketdata_runtime.py run --profile /etc/marketdata/runtime.json --stream %i
+Restart=always
+RestartSec=15s
+TimeoutStartSec=150s
+TimeoutStopSec=150s
+KillSignal=SIGINT
+KillMode=mixed
+SendSIGKILL=yes
+UMask=0077
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+ProtectClock=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/yoonhc/projects/algoTrade/historical_data /home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock
+PrivateTmp=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

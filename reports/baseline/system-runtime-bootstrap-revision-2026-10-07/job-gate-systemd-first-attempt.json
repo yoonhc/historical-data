@@ -1,0 +1,461 @@
+{
+  "after_recovery": {
+    "backup": {
+      "ActiveState": "inactive",
+      "After": "md-clock-jobs-7f511638-work-clock.service app.slice basic.target",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "md-clock-jobs-7f511638-work-clock.service app.slice basic.target",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "daily": {
+      "ActiveState": "inactive",
+      "After": "basic.target md-clock-jobs-7f511638-work-clock.service app.slice",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target md-clock-jobs-7f511638-work-clock.service app.slice",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "network-observer": {
+      "ActiveState": "inactive",
+      "After": "basic.target md-clock-jobs-7f511638-work-clock.service app.slice",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target md-clock-jobs-7f511638-work-clock.service app.slice",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "oi": {
+      "ActiveState": "inactive",
+      "After": "app.slice md-clock-jobs-7f511638-work-clock.service basic.target",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "app.slice md-clock-jobs-7f511638-work-clock.service basic.target",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "oi-probe": {
+      "ActiveState": "inactive",
+      "After": "md-clock-jobs-7f511638-work-clock.service basic.target app.slice",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "md-clock-jobs-7f511638-work-clock.service basic.target app.slice",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "oi-quality": {
+      "ActiveState": "inactive",
+      "After": "app.slice md-clock-jobs-7f511638-work-clock.service basic.target",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "app.slice md-clock-jobs-7f511638-work-clock.service basic.target",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "pack": {
+      "ActiveState": "inactive",
+      "After": "app.slice md-clock-jobs-7f511638-work-clock.service basic.target",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "app.slice md-clock-jobs-7f511638-work-clock.service basic.target",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "restic-archive": {
+      "ActiveState": "inactive",
+      "After": "md-clock-jobs-7f511638-work-clock.service basic.target app.slice",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "md-clock-jobs-7f511638-work-clock.service basic.target app.slice",
+      "Result": "success",
+      "SubState": "dead"
+    }
+  },
+  "before_recovery": {
+    "backup": {
+      "ActiveState": "inactive",
+      "After": "md-clock-jobs-7f511638-work-clock.service app.slice basic.target",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "md-clock-jobs-7f511638-work-clock.service app.slice basic.target",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "daily": {
+      "ActiveState": "inactive",
+      "After": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "network-observer": {
+      "ActiveState": "inactive",
+      "After": "md-clock-jobs-7f511638-work-clock.service basic.target app.slice",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "md-clock-jobs-7f511638-work-clock.service basic.target app.slice",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "oi": {
+      "ActiveState": "inactive",
+      "After": "md-clock-jobs-7f511638-work-clock.service app.slice basic.target",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "md-clock-jobs-7f511638-work-clock.service app.slice basic.target",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "oi-probe": {
+      "ActiveState": "inactive",
+      "After": "md-clock-jobs-7f511638-work-clock.service app.slice basic.target",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "app.slice basic.target md-clock-jobs-7f511638-work-clock.service",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "oi-quality": {
+      "ActiveState": "inactive",
+      "After": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "pack": {
+      "ActiveState": "inactive",
+      "After": "md-clock-jobs-7f511638-work-clock.service app.slice basic.target",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "md-clock-jobs-7f511638-work-clock.service app.slice basic.target",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "restic-archive": {
+      "ActiveState": "inactive",
+      "After": "basic.target md-clock-jobs-7f511638-work-clock.service app.slice",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target md-clock-jobs-7f511638-work-clock.service app.slice",
+      "Result": "success",
+      "SubState": "dead"
+    }
+  },
+  "guarded_jobs": [
+    "daily",
+    "backup",
+    "pack",
+    "oi",
+    "oi-probe",
+    "oi-quality",
+    "restic-archive",
+    "network-observer"
+  ],
+  "host_clock_control": false,
+  "journal": "Oct 07 19:33:25 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-clock.service...\nOct 07 19:33:25 hclm systemd[1183]: Starting md-clock-jobs-7f511638-bootstrap.service...\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": false, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"This boot has not closed initial clock preparation\", \"wait_seconds\": 5.741498898714781e-05}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": false, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.05027907100156881}\nOct 07 19:33:25 hclm python[269858]: {\"long_wait\": false, \"needs_review\": false, \"phase\": \"preparing\", \"ready\": false, \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": false, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.10058682499220595}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": false, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.15086139799677767}\nOct 07 19:33:25 hclm python[269858]: {\"long_wait\": false, \"needs_review\": false, \"phase\": \"preparing\", \"ready\": false, \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.11716347598121502}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.20117630599997938}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.2514846709964331}\nOct 07 19:33:25 hclm python[269858]: {\"long_wait\": true, \"needs_review\": false, \"phase\": \"preparing\", \"ready\": false, \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.22380959198926575}\nOct 07 19:33:25 hclm python[269858]: marketdata_clock_long_wait {\"ready\": false, \"phase\": \"preparing\", \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.22380959198926575, \"needs_review\": false, \"long_wait\": true}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.301714170986088}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.35194291998050176}\nOct 07 19:33:25 hclm python[269858]: {\"long_wait\": true, \"needs_review\": false, \"phase\": \"preparing\", \"ready\": false, \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.3000559250067454}\nOct 07 19:33:25 hclm python[269858]: marketdata_clock_long_wait {\"ready\": false, \"phase\": \"preparing\", \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.3000559250067454, \"needs_review\": false, \"long_wait\": true}\nOct 07 19:33:25 hclm systemd[1183]: md-clock-jobs-7f511638-bootstrap.service: Main process exited, code=exited, status=75/TEMPFAIL\nOct 07 19:33:25 hclm systemd[1183]: md-clock-jobs-7f511638-bootstrap.service: Failed with result 'exit-code'.\nOct 07 19:33:25 hclm systemd[1183]: Failed to start md-clock-jobs-7f511638-bootstrap.service.\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"This boot has not closed initial clock preparation\", \"wait_seconds\": 0.40253046998986974}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"This boot has not closed initial clock preparation\", \"wait_seconds\": 0.45293909998144954}\nOct 07 19:33:25 hclm systemd[1183]: md-clock-jobs-7f511638-bootstrap.service: Scheduled restart job, restart counter is at 1.\nOct 07 19:33:25 hclm systemd[1183]: Starting md-clock-jobs-7f511638-bootstrap.service...\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"This boot has not closed initial clock preparation\", \"wait_seconds\": 0.5033077370026149}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.5535492689814419}\nOct 07 19:33:25 hclm python[269901]: {\"long_wait\": true, \"needs_review\": false, \"phase\": \"preparing\", \"ready\": false, \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.503747859998839}\nOct 07 19:33:25 hclm python[269901]: marketdata_clock_long_wait {\"ready\": false, \"phase\": \"preparing\", \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.503747859998839, \"needs_review\": false, \"long_wait\": true}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.6038234919833485}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.654065795999486}\nOct 07 19:33:25 hclm python[269901]: {\"long_wait\": true, \"needs_review\": false, \"phase\": \"preparing\", \"ready\": false, \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.616800827003317}\nOct 07 19:33:25 hclm python[269901]: marketdata_clock_long_wait {\"ready\": false, \"phase\": \"preparing\", \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.616800827003317, \"needs_review\": false, \"long_wait\": true}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.7043652249849401}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.7546914129925426}\nOct 07 19:33:25 hclm python[269901]: {\"long_wait\": true, \"needs_review\": false, \"phase\": \"preparing\", \"ready\": false, \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.7239075829857029}\nOct 07 19:33:25 hclm python[269901]: marketdata_clock_long_wait {\"ready\": false, \"phase\": \"preparing\", \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.7239075829857029, \"needs_review\": false, \"long_wait\": true}\nOct 07 19:33:25 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.8049510989803821}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 0.8552281869924627}\nOct 07 19:33:26 hclm python[269901]: {\"long_wait\": true, \"needs_review\": false, \"phase\": \"preparing\", \"ready\": false, \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.8037794700067025}\nOct 07 19:33:26 hclm python[269901]: marketdata_clock_long_wait {\"ready\": false, \"phase\": \"preparing\", \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 0.8037794700067025, \"needs_review\": false, \"long_wait\": true}\nOct 07 19:33:26 hclm systemd[1183]: md-clock-jobs-7f511638-bootstrap.service: Main process exited, code=exited, status=75/TEMPFAIL\nOct 07 19:33:26 hclm systemd[1183]: md-clock-jobs-7f511638-bootstrap.service: Failed with result 'exit-code'.\nOct 07 19:33:26 hclm systemd[1183]: Failed to start md-clock-jobs-7f511638-bootstrap.service.\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"This boot has not closed initial clock preparation\", \"wait_seconds\": 0.9057029990071896}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"This boot has not closed initial clock preparation\", \"wait_seconds\": 0.9561361850064714}\nOct 07 19:33:26 hclm systemd[1183]: md-clock-jobs-7f511638-bootstrap.service: Scheduled restart job, restart counter is at 2.\nOct 07 19:33:26 hclm systemd[1183]: Starting md-clock-jobs-7f511638-bootstrap.service...\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"This boot has not closed initial clock preparation\", \"wait_seconds\": 1.0064688450074755}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 1.0567325879819691}\nOct 07 19:33:26 hclm python[269943]: {\"long_wait\": true, \"needs_review\": false, \"phase\": \"preparing\", \"ready\": false, \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 1.0044277230044827}\nOct 07 19:33:26 hclm python[269943]: marketdata_clock_long_wait {\"ready\": false, \"phase\": \"preparing\", \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 1.0044277230044827, \"needs_review\": false, \"long_wait\": true}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 1.1070681650016923}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 1.1572864429908805}\nOct 07 19:33:26 hclm python[269943]: {\"long_wait\": true, \"needs_review\": false, \"phase\": \"preparing\", \"ready\": false, \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 1.1198105459916405}\nOct 07 19:33:26 hclm python[269943]: marketdata_clock_long_wait {\"ready\": false, \"phase\": \"preparing\", \"reasons\": [\"not_synchronized_or_leap_pending\"], \"step_attempts\": 0, \"wait_seconds\": 1.1198105459916405, \"needs_review\": false, \"long_wait\": true}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 1.207537993992446}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 1.257768445997499}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 1.3079560489859432}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 1.3581661939970218}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 1.4084068239899352}\nOct 07 19:33:26 hclm python[269856]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Another bootstrap owns the lock\", \"wait_seconds\": 1.4586041249858681}\nOct 07 19:33:26 hclm python[269943]: {\"phase\": \"closed\", \"ready\": true, \"step_attempts\": 1}\nOct 07 19:33:26 hclm systemd[1183]: Finished md-clock-jobs-7f511638-bootstrap.service.\nOct 07 19:33:26 hclm python[269856]: {\"phase\": \"released\", \"ready\": true, \"wait_seconds\": 1.5094879120006226}\nOct 07 19:33:26 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-clock.service.\nOct 07 19:33:26 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-backup.service...\nOct 07 19:33:26 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-daily.service...\nOct 07 19:33:26 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-network-observer.service...\nOct 07 19:33:26 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-oi-probe.service...\nOct 07 19:33:26 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-oi-quality.service...\nOct 07 19:33:26 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-oi.service...\nOct 07 19:33:26 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-pack.service...\nOct 07 19:33:26 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-restic-archive.service...\nOct 07 19:33:26 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-backup.service.\nOct 07 19:33:26 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-network-observer.service.\nOct 07 19:33:26 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-daily.service.\nOct 07 19:33:26 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-oi-probe.service.\nOct 07 19:33:26 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-oi-quality.service.\nOct 07 19:33:26 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-restic-archive.service.\nOct 07 19:33:26 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-oi.service.\nOct 07 19:33:26 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-pack.service.\nOct 07 19:33:26 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-clock.service...\nOct 07 19:33:26 hclm python[270064]: {\"long_wait\": false, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.00016925198724493384}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": false, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.050761941995006055}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": false, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.1016987559851259}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": false, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.15233474597334862}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.2029700139828492}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.25357937498483807}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.3043018249736633}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.35492222500033677}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.4055711179971695}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.4563309359946288}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.5067546840000432}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.5575249819958117}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.6082633399928454}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.6593603889923543}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.7101771419984289}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.7608620319806505}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.8116819209826645}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.8624527989886701}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.9132373530010227}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 0.9638042039878201}\nOct 07 19:33:27 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 1.014386905997526}\nOct 07 19:33:28 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 1.0649408749886788}\nOct 07 19:33:28 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 1.1155796399980318}\nOct 07 19:33:28 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 1.1662097789812833}\nOct 07 19:33:28 hclm systemd[1183]: Stopped md-clock-jobs-7f511638-bootstrap.service.\nOct 07 19:33:28 hclm systemd[1183]: Stopping md-clock-jobs-7f511638-bootstrap.service...\nOct 07 19:33:28 hclm systemd[1183]: Starting md-clock-jobs-7f511638-bootstrap.service...\nOct 07 19:33:28 hclm python[270064]: {\"long_wait\": true, \"phase\": \"waiting\", \"ready\": false, \"reason\": \"Current clock is not ready: not_synchronized_or_leap_pending, reference_age, remaining_correction, clock_error_bound\", \"wait_seconds\": 1.216728872997919}\nOct 07 19:33:28 hclm python[270069]: {\"phase\": \"closed\", \"ready\": true, \"step_reopened\": false}\nOct 07 19:33:28 hclm systemd[1183]: Finished md-clock-jobs-7f511638-bootstrap.service.\nOct 07 19:33:28 hclm python[270064]: {\"phase\": \"released\", \"ready\": true, \"wait_seconds\": 1.2675742889987305}\nOct 07 19:33:28 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-clock.service.\nOct 07 19:33:28 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-backup.service...\nOct 07 19:33:28 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-daily.service...\nOct 07 19:33:28 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-network-observer.service...\nOct 07 19:33:28 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-oi-probe.service...\nOct 07 19:33:28 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-oi-quality.service...\nOct 07 19:33:28 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-oi.service...\nOct 07 19:33:28 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-pack.service...\nOct 07 19:33:28 hclm systemd[1183]: Starting md-clock-jobs-7f511638-work-restic-archive.service...\nOct 07 19:33:28 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-backup.service.\nOct 07 19:33:28 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-daily.service.\nOct 07 19:33:28 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-network-observer.service.\nOct 07 19:33:28 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-oi-probe.service.\nOct 07 19:33:28 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-oi-quality.service.\nOct 07 19:33:28 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-oi.service.\nOct 07 19:33:28 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-pack.service.\nOct 07 19:33:28 hclm systemd[1183]: Finished md-clock-jobs-7f511638-work-restic-archive.service.\n",
+  "original_job_units": {
+    "backup": {
+      "Service": {
+        "execstart": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup --wait-for-lock",
+        "killsignal": "SIGINT",
+        "restart": "on-failure",
+        "restartsec": "120s",
+        "timeoutstartsec": "6h",
+        "timeoutstopsec": "120s",
+        "type": "oneshot",
+        "workingdirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "Unit": {
+        "description": "Market data daily verified maintenance",
+        "startlimitburst": "4",
+        "startlimitintervalsec": "3600"
+      }
+    },
+    "daily": {
+      "Service": {
+        "execstart": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . update --config configs/daily.toml --report state/daily-latest.json",
+        "restart": "on-failure",
+        "restartsec": "60s",
+        "timeoutstartsec": "30min",
+        "type": "oneshot",
+        "workingdirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "Unit": {
+        "after": "network-online.target",
+        "description": "Daily public market data update",
+        "startlimitburst": "5",
+        "startlimitintervalsec": "600",
+        "wants": "network-online.target"
+      }
+    },
+    "network-observer": {
+      "Service": {
+        "environment": "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin",
+        "environmentfile": "%h/.config/marketdata/network-observer.env",
+        "execstart": "/usr/bin/env ${MARKETDATA_NETWORK_PYTHON} ${MARKETDATA_NETWORK_SCRIPT} --profile ${MARKETDATA_NETWORK_PROFILE}",
+        "ioschedulingclass": "best-effort",
+        "ioschedulingpriority": "7",
+        "nice": "10",
+        "restart": "no",
+        "standarderror": "journal",
+        "standardoutput": "journal",
+        "timeoutstartsec": "20s",
+        "type": "oneshot",
+        "umask": "0077",
+        "workingdirectory": "%h"
+      },
+      "Unit": {
+        "description": "Local network evidence for marketdata collectors"
+      }
+    },
+    "oi": {
+      "Service": {
+        "execstart": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . update --config configs/oi-live.toml --report state/oi-latest.json",
+        "restart": "on-failure",
+        "restartsec": "30s",
+        "timeoutstartsec": "4min",
+        "type": "oneshot",
+        "workingdirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "Unit": {
+        "after": "network-online.target",
+        "description": "Capture recent public five-minute open interest",
+        "startlimitburst": "4",
+        "startlimitintervalsec": "300",
+        "wants": "network-online.target"
+      }
+    },
+    "oi-probe": {
+      "Service": {
+        "execstart": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . oi-probe",
+        "successexitstatus": "2",
+        "timeoutstartsec": "80s",
+        "type": "oneshot",
+        "workingdirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "Unit": {
+        "after": "network-online.target",
+        "description": "Observe OI endpoint availability without publishing values",
+        "wants": "network-online.target"
+      }
+    },
+    "oi-quality": {
+      "Service": {
+        "execstart": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . oi-quality --days 7",
+        "successexitstatus": "2",
+        "timeoutstartsec": "5min",
+        "type": "oneshot",
+        "workingdirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "Unit": {
+        "description": "Generate daily OI parity and availability evidence"
+      }
+    },
+    "pack": {
+      "Service": {
+        "execstart": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode hourly --min-free-gib 10 --wait-for-lock",
+        "killsignal": "SIGINT",
+        "restart": "on-failure",
+        "restartsec": "120s",
+        "timeoutstartsec": "6h",
+        "timeoutstopsec": "120s",
+        "type": "oneshot",
+        "workingdirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "Unit": {
+        "description": "Market data hourly verified maintenance",
+        "startlimitburst": "4",
+        "startlimitintervalsec": "3600"
+      }
+    },
+    "restic-archive": {
+      "Service": {
+        "environment": "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin",
+        "environmentfile": "%h/.config/marketdata/restic-service.env",
+        "execstart": "/usr/bin/env ${MARKETDATA_PYTHON} -m scripts.restic_schedule --profile ${MARKETDATA_RESTIC_PROFILE} run",
+        "ioschedulingclass": "best-effort",
+        "ioschedulingpriority": "7",
+        "killsignal": "SIGINT",
+        "nice": "10",
+        "restart": "no",
+        "standarderror": "journal",
+        "standardoutput": "journal",
+        "timeoutstartsec": "6h",
+        "timeoutstopsec": "120s",
+        "type": "oneshot",
+        "umask": "0077",
+        "workingdirectory": "%h"
+      },
+      "Unit": {
+        "description": "Parallel restic archive of completed marketdata checkpoints"
+      }
+    }
+  },
+  "root": "/tmp/md-clock-jobs-tij2irhn",
+  "root_sandbox_test": false,
+  "second_invocation": {
+    "backup": {
+      "ActiveState": "inactive",
+      "After": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "daily": {
+      "ActiveState": "inactive",
+      "After": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "network-observer": {
+      "ActiveState": "inactive",
+      "After": "basic.target md-clock-jobs-7f511638-work-clock.service app.slice",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target md-clock-jobs-7f511638-work-clock.service app.slice",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "oi": {
+      "ActiveState": "inactive",
+      "After": "basic.target md-clock-jobs-7f511638-work-clock.service app.slice",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target md-clock-jobs-7f511638-work-clock.service app.slice",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "oi-probe": {
+      "ActiveState": "inactive",
+      "After": "app.slice basic.target md-clock-jobs-7f511638-work-clock.service",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "app.slice basic.target md-clock-jobs-7f511638-work-clock.service",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "oi-quality": {
+      "ActiveState": "inactive",
+      "After": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "pack": {
+      "ActiveState": "inactive",
+      "After": "app.slice basic.target md-clock-jobs-7f511638-work-clock.service",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "app.slice basic.target md-clock-jobs-7f511638-work-clock.service",
+      "Result": "success",
+      "SubState": "dead"
+    },
+    "restic-archive": {
+      "ActiveState": "inactive",
+      "After": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "NRestarts": "0",
+      "Requires": "basic.target app.slice md-clock-jobs-7f511638-work-clock.service",
+      "Result": "success",
+      "SubState": "dead"
+    }
+  },
+  "shortened_job_timeout_seconds": 0.5,
+  "units": [
+    "md-clock-jobs-7f511638-work-clock.service",
+    "md-clock-jobs-7f511638-bootstrap.service",
+    "md-clock-jobs-7f511638-work-daily.service",
+    "md-clock-jobs-7f511638-work-backup.service",
+    "md-clock-jobs-7f511638-work-pack.service",
+    "md-clock-jobs-7f511638-work-oi.service",
+    "md-clock-jobs-7f511638-work-oi-probe.service",
+    "md-clock-jobs-7f511638-work-oi-quality.service",
+    "md-clock-jobs-7f511638-work-restic-archive.service",
+    "md-clock-jobs-7f511638-work-network-observer.service"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "checked_at": "2026-10-07T22:43:51.153656+09:00",
+  "root_test_executed": false,
+  "read_only": true,
+  "commands": [
+    {
+      "argv": [
+        "systemctl",
+        "show",
+        "systemd-timesyncd.service",
+        "chrony.service",
+        "-p",
+        "Id",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "MainPID",
+        "-p",
+        "InvocationID"
+      ],
+      "exit_code": 0,
+      "stdout": "MainPID=880\nId=systemd-timesyncd.service\nLoadState=loaded\nActiveState=active\nInvocationID=352fb60dcaed4b78b7c915bd3aca7d2c\n\nMainPID=0\nId=chrony.service\nLoadState=not-found\nActiveState=inactive\nInvocationID=\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "--user",
+        "show",
+        "marketdata-depth.service",
+        "marketdata-aggtrade.service",
+        "marketdata-daily.timer",
+        "marketdata-restic-archive.timer",
+        "marketdata-checkpoint-retirement.timer",
+        "-p",
+        "Id",
+        "-p",
+        "LoadState",
+        "-p",
+        "ActiveState",
+        "-p",
+        "SubState",
+        "-p",
+        "MainPID",
+        "-p",
+        "InvocationID",
+        "-p",
+        "UnitFileState"
+      ],
+      "exit_code": 0,
+      "stdout": "MainPID=283756\nId=marketdata-depth.service\nLoadState=loaded\nActiveState=active\nSubState=running\nUnitFileState=enabled\nInvocationID=1eb251aa347f4357a409cfee6c7a342c\n\nMainPID=284121\nId=marketdata-aggtrade.service\nLoadState=loaded\nActiveState=active\nSubState=running\nUnitFileState=enabled\nInvocationID=95f81fca56f24472a75326159970ffac\n\nId=marketdata-daily.timer\nLoadState=loaded\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=45fe82a0c61745cca6400e89b85ee6be\n\nId=marketdata-restic-archive.timer\nLoadState=loaded\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=8451e79496f04cc19a2494fe1f1d7d47\n\nId=marketdata-checkpoint-retirement.timer\nLoadState=loaded\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nInvocationID=74daa12835da4786a0d38dba96305b11\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dpkg-query",
+        "-W",
+        "-f=${Package} ${db:Status-Status} ${Version}\n",
+        "chrony",
+        "systemd-timesyncd"
+      ],
+      "exit_code": 0,
+      "stdout": "chrony not-installed \nsystemd-timesyncd installed 255.4-1ubuntu8.16\n",
+      "stderr": ""
+    }
+  ]
+}

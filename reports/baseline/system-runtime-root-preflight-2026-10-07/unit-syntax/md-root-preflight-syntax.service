@@ -1,0 +1,20 @@
+[Unit]
+Description=Static permission-probe syntax only (not installed)
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -B -I /opt/md-root-preflight-syntax/probe.py root-probe /var/lib/md-root-preflight-syntax /run/md-root-preflight-syntax/chrony
+Restart=no
+RemainAfterExit=yes
+TimeoutStartSec=150s
+TimeoutStopSec=10s
+StateDirectory=md-root-preflight-syntax
+ReadWritePaths=/run/md-root-preflight-syntax/chrony
+CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_SETUID CAP_SETGID
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectClock=yes
+ProtectHome=read-only
+ProtectSystem=strict
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+StateDirectoryMode=0755
+UMask=0022

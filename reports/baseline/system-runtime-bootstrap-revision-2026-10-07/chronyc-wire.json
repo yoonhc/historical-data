@@ -1,0 +1,49 @@
+{
+  "binary": "/tmp/marketdata-system-runtime-20261006/chrony-extracted/usr/bin/chronyc",
+  "binary_sha256": "271ea54c67206559437bd299d0e08c9e3d42ee6be322b1722e76311cd5d9df8d",
+  "cases": [
+    {
+      "name": "previous_candidate",
+      "outcome": "TimeoutExpired",
+      "packets": [
+        {
+          "attempt": 0,
+          "client_exists": true,
+          "client_socket": "/tmp/md-chronyc-wire-to6zhdd4/previous_candidate/chronyc.269364.sock",
+          "command": 43,
+          "packet_hex": "06010000002b0000213010bd00000000000000000000000000000000",
+          "seconds": 0.0018672129954211414
+        },
+        {
+          "attempt": 1,
+          "client_exists": true,
+          "client_socket": "/tmp/md-chronyc-wire-to6zhdd4/previous_candidate/chronyc.269364.sock",
+          "command": 43,
+          "packet_hex": "06010000002b00014af4fec800000000000000000000000000000000",
+          "seconds": 1.0020434680045582
+        }
+      ],
+      "requests": 2
+    },
+    {
+      "name": "current_candidate",
+      "outcome": "NotReady",
+      "packets": [
+        {
+          "attempt": 0,
+          "client_exists": true,
+          "client_socket": "/tmp/md-chronyc-wire-to6zhdd4/current_candidate/chronyc.269369.sock",
+          "command": 43,
+          "packet_hex": "06010000002b0000ed6e64f500000000000000000000000000000000",
+          "seconds": 0.002358097000978887
+        }
+      ],
+      "requests": 1
+    }
+  ],
+  "host_clock_control": false,
+  "passed": true,
+  "real_daemon_used": false,
+  "root": "/tmp/md-chronyc-wire-to6zhdd4",
+  "version": "chronyc (chrony) version 4.5 (+READLINE +SECHASH +IPV6 -DEBUG)"
+}

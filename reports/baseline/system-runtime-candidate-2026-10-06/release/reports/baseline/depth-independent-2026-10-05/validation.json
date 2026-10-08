@@ -1,0 +1,450 @@
+{
+  "checked_at": "2026-10-05T02:13:17.847160+00:00",
+  "protected_inputs_unchanged": {
+    "packages/marketdata/src/marketdata/__init__.py": true,
+    "packages/marketdata/src/marketdata/aggtrade_stream.py": true,
+    "packages/marketdata/src/marketdata/aggtrades.py": true,
+    "packages/marketdata/src/marketdata/backfill.py": true,
+    "packages/marketdata/src/marketdata/backup.py": true,
+    "packages/marketdata/src/marketdata/binance.py": true,
+    "packages/marketdata/src/marketdata/checkpoint_locks.py": true,
+    "packages/marketdata/src/marketdata/cli.py": true,
+    "packages/marketdata/src/marketdata/depth.py": true,
+    "packages/marketdata/src/marketdata/depth_refresh.py": true,
+    "packages/marketdata/src/marketdata/depth_stream.py": true,
+    "packages/marketdata/src/marketdata/domain.py": true,
+    "packages/marketdata/src/marketdata/fileio.py": true,
+    "packages/marketdata/src/marketdata/maintenance.py": true,
+    "packages/marketdata/src/marketdata/normalize.py": true,
+    "packages/marketdata/src/marketdata/oi_probe.py": true,
+    "packages/marketdata/src/marketdata/oi_quality.py": true,
+    "packages/marketdata/src/marketdata/operations.py": true,
+    "packages/marketdata/src/marketdata/packing.py": true,
+    "packages/marketdata/src/marketdata/pipeline.py": true,
+    "packages/marketdata/src/marketdata/research.py": true,
+    "packages/marketdata/src/marketdata/schema.py": true,
+    "packages/marketdata/src/marketdata/store.py": true,
+    "packages/marketdata/src/marketdata/stream_guard.py": true,
+    "packages/marketdata/src/marketdata/transforms.py": true,
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/__init__.py": true,
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/cli.py": true,
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/export.py": true,
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/features.py": true,
+    "packages/marketdata_freqtrade/src/marketdata_freqtrade/window.py": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/0cdc9830023c45188358ef98ba96caa6-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/0e355e4169924268817f98162d76f234-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/32d7a91b872642fead23ae55fb9618d2-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/54d28ea721ed41fab80928c064514159-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/54d28ea721ed41fab80928c064514159-epoch-3-trace.csv": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/54d28ea721ed41fab80928c064514159-inputs.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/54d28ea721ed41fab80928c064514159.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/66f2f120a06f4415a7b208c366bddbaa-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/69d4661ce1d74ac094ba8c31a14eae71-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/6d39cd17a2604b97a53e2932ac829e19-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/701614f313b044328ffb14dedc579a68-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/7872cc5641eb4d1fa1410fdc663e331f-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/838a335424a048169e19595eab0054f9-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/8a47a1f49a2c4dce93fc7fd19ab48d37-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/9308f3a020d645bb9e5c2293b3f437a8-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/94e0f5c39acd43b1baa026d2dac364ff-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/97f245dff5d2469f900fa61299e23352-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/analysis.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/audit.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/audit.py": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/book_depth-index.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/book_depth-reports.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/c595e79851ef4ced8e4194f22cf58b84-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/c595e79851ef4ced8e4194f22cf58b84-epoch-2-trace.csv": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/c595e79851ef4ced8e4194f22cf58b84-inputs.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/c595e79851ef4ced8e4194f22cf58b84.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/check_decisions.py": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/check_failures.py": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/check_receipts.py": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/current-streams.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/decisions-verification.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/df524cd3cc394545ae4a16e59f8ee5c3-decisions.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/failures-verification.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/finalize.py": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/maintenance-first-attempt.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/maintenance-journal.jsonl": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/maintenance-retry.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/network-context.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/network-samples.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/pending-boundary.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/pending-session-replay.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/pending_boundary.py": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/receipt-continuity.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/report-checks.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/running-excluded.json": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/summary.md": true,
+    "reports/baseline/depth-decisions-observation-2026-10-05/validation.json": true
+  },
+  "original_catalog_reports_unchanged": {
+    "c595e79851ef4ced8e4194f22cf58b84": true,
+    "54d28ea721ed41fab80928c064514159": true
+  },
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "6",
+    "time": "3.217",
+    "timestamp": "2026-10-05T11:11:56.809278+09:00",
+    "hostname": "hclm"
+  },
+  "checks": [
+    {
+      "command": [
+        ".venv/bin/ruff",
+        "check",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05",
+        "tests/test_depth_independent_cases.py"
+      ],
+      "exit_code": 0,
+      "output": "All checks passed!\n"
+    },
+    {
+      "command": [
+        ".venv/bin/ruff",
+        "format",
+        "--check",
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/depth-independent-2026-10-05",
+        "tests/test_depth_independent_cases.py"
+      ],
+      "exit_code": 0,
+      "output": "6 files already formatted\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "local_links": [
+    {
+      "source": "reports/baseline/depth-independent-2026-10-05/summary.md",
+      "target": "../depth-decisions-observation-2026-10-05/summary.md"
+    },
+    {
+      "source": "reports/baseline/depth-independent-2026-10-05/summary.md",
+      "target": "inputs.json"
+    },
+    {
+      "source": "reports/baseline/depth-independent-2026-10-05/summary.md",
+      "target": "freeze_inputs.py"
+    },
+    {
+      "source": "reports/baseline/depth-independent-2026-10-05/summary.md",
+      "target": "independent.py"
+    },
+    {
+      "source": "reports/baseline/depth-independent-2026-10-05/summary.md",
+      "target": "results.json"
+    },
+    {
+      "source": "reports/baseline/depth-independent-2026-10-05/summary.md",
+      "target": "consumer_probe.py"
+    },
+    {
+      "source": "reports/baseline/depth-independent-2026-10-05/summary.md",
+      "target": "consumer-results.json"
+    },
+    {
+      "source": "reports/baseline/depth-independent-2026-10-05/summary.md",
+      "target": "consumer-bootstrap-observation.json"
+    },
+    {
+      "source": "reports/baseline/depth-independent-2026-10-05/summary.md",
+      "target": "tests.xml"
+    },
+    {
+      "source": "reports/baseline/depth-independent-2026-10-05/summary.md",
+      "target": "validation.json"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "stream-services.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "stream-soak.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "../reports/baseline/depth-2026-09-22/summary.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "../reports/baseline/depth-bootstrap-2026-09-25/summary.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "../reports/baseline/depth-history-2026-09-26/summary.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "../reports/baseline/depth-followup-2026-09-29/summary.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "../reports/baseline/depth-retry-2026-09-29/summary.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "../reports/baseline/depth-refresh-2026-10-01/summary.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "../reports/baseline/depth-observation-2026-10-03/summary.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "../reports/baseline/depth-decisions-2026-10-03/summary.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "../reports/baseline/depth-decisions-observation-2026-10-05/summary.md"
+    },
+    {
+      "source": "docs/orderbook-depth.md",
+      "target": "../reports/baseline/depth-independent-2026-10-05/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-independent-2026-10-05/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-decisions-observation-2026-10-05/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/checkpoint-retirement-apply-2026-10-05/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/checkpoint-retention-readiness-2026-10-05/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/checkpoint-retention-readiness-2026-10-05/plan-review.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/checkpoint-retention-guards-2026-10-04/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/checkpoint-retention-2026-10-03/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "../docs/milestones/2026-09-27-collection-and-backup-stabilization.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "../docs/milestones/2026-10-03-restic-and-depth-observability.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/restic-transition-2026-10-03/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/restic-observation-2026-10-03/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-decisions-followup-2026-10-03/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-decisions-2026-10-03/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-observation-2026-10-03/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-budget-candidate-2026-10-02/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-refresh-2026-10-01/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/restic-observation-2026-10-01/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/stream-followup-2026-10-01/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-observation-2026-09-30/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/restic-observation-2026-09-30/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-retry-2026-09-29/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-followup-2026-09-29/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/restic-observation-2026-09-29/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/restic-observation-2026-09-28/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/restic-timer-2026-09-27/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/restic-archive-2026-09-27/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/restic-trial-2026-09-27/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/scheduled-maintenance-2026-09-27/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/maintenance-wait-2026-09-26/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/daily-backup-2026-09-26/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-review-2026-09-26/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-history-2026-09-26/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/observation-2026-09-26/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-coverage-2026-09-25/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-bootstrap-2026-09-25/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/incremental-backup-2026-09-25/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/observation-2026-09-25/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/history-extension-2026-09-23/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/research-2023_2026/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/freqtrade-userdata-2026-09-22/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/oi-quality-2026-09-22/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/backup-2026-09-22/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/aggtrade-2026-09-22/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/depth-2026-09-22/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/stream-soak-2026-09-23/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/packing-2026-09-23/summary.md"
+    },
+    {
+      "source": "reports/README.md",
+      "target": "baseline/automation-2026-09-23/summary.md"
+    }
+  ],
+  "files_sha256": {
+    "reports/baseline/depth-independent-2026-10-05/54d28ea721ed41fab80928c064514159-raw.jsonl.gz": "54ec3d081dc030526c8c83319280a838aa93c8077de8457efc82c05124826bc2",
+    "reports/baseline/depth-independent-2026-10-05/54d28ea721ed41fab80928c064514159-report.json": "681f9d13a4235c2d4b1bb9a281192855e4e5d0122d78c49420638e3fa71a29cc",
+    "reports/baseline/depth-independent-2026-10-05/c595e79851ef4ced8e4194f22cf58b84-raw.jsonl.gz": "ace02a6ba5c930eae5f0539f05524087646412b6305e56fd1833eb5c6426fabe",
+    "reports/baseline/depth-independent-2026-10-05/c595e79851ef4ced8e4194f22cf58b84-report.json": "80c9a73e6f8308edf080426f4f1ff19ed3b421f7817e673b79eac44895864c02",
+    "reports/baseline/depth-independent-2026-10-05/consumer-bootstrap-observation.json": "85543156399a7203df989fec0ff0eadeb24a8c254afc6c7d07310b66ebd62f82",
+    "reports/baseline/depth-independent-2026-10-05/consumer-results.json": "7ebd986d9272634df0a48dae833876676d9ef3d57259623e21e484f10f215c2c",
+    "reports/baseline/depth-independent-2026-10-05/consumer_probe.py": "8651cf0a1b0ae8250756271a412b4fce7067c07b420a3ca765f7a3009ffd2f50",
+    "reports/baseline/depth-independent-2026-10-05/freeze_inputs.py": "1cfac733fe2d35c031a4c17d957d755afc663559c5f029df72c95853a191b0ac",
+    "reports/baseline/depth-independent-2026-10-05/independent.py": "5ca04c329852891f36c60a80f381681078d2a89c8c08d87fca61aea23ac0f9bb",
+    "reports/baseline/depth-independent-2026-10-05/inputs.json": "4f076d1d402fb841022732b789bbe4da4212619b1079ea788e0f5bc6f1265aa2",
+    "reports/baseline/depth-independent-2026-10-05/results.json": "fe5f1c0b210ff43dd69bb327622b13e7dfbecece1f26517e3e8e5dd63d5642f5",
+    "reports/baseline/depth-independent-2026-10-05/summary.md": "68344752248514381a6b740ab7ffa078d3d017945f117abc2213979f400ec709",
+    "reports/baseline/depth-independent-2026-10-05/tests.xml": "93f66cde61238bd415eb3deb1e0596d7a628019c6ccfdddbcacd4a8ec1e1933b",
+    "reports/baseline/depth-independent-2026-10-05/validate.py": "60d64f21c96352ff4419629cd5e3feabd4f5cbc1018818dc09c961c0200dc030",
+    "tests/test_depth_independent_cases.py": "827cd7ae3fcc69caae5698dfd85507876aa4b4df370c8c82ba5511dcb7a5f0e1",
+    "docs/orderbook-depth.md": "04f541a38a1efadd6cc523820ee6cc7ee56badaf24ba2aa8a535f781388321a1",
+    "reports/README.md": "f3fac937f20e16ea4beceb35dd168ab36b0e6fff14e649254aee3b95bf9aab4d"
+  },
+  "runtime_head": "c2d02e784b0456560ec734b9ef88f4d960dc6b78",
+  "current_stream_samples": {
+    "depth-latest.json": {
+      "id": "3a59a8fd84754a3a9ce26e999839ab4c",
+      "state": "running",
+      "last_received_at": "2026-10-05T02:13:14.810685+00:00",
+      "receive_age_seconds": 3.036475,
+      "messages": 24767,
+      "sync_losses": 0
+    },
+    "aggtrade-latest.json": {
+      "id": "78db46088ba643a6aca0b4b0be1e9f56",
+      "state": "running",
+      "last_received_at": "2026-10-05T02:13:14.962585+00:00",
+      "receive_age_seconds": 2.884575,
+      "messages": 23870,
+      "sync_losses": null
+    }
+  },
+  "limits": [
+    "Six new tests characterize the existing status-publication gap; they do not fix it.",
+    "Stream samples are observations at one instant, not uninterrupted uptime evidence.",
+    "No operating code, request budget, service, raw data, existing report or quality verdict changed.",
+    "Post-retirement daily/restic follow-up is a separate outstanding task."
+  ]
+}

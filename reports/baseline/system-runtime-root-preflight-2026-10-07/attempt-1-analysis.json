@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-07T22:49:25.521457+09:00",
+  "attempt_result": "result-a6ff5d22404f47b3.json",
+  "failure_stage": "test daemon executable launch, before either test unit was started",
+  "cause": "Test executable staged on host /run, which is mounted noexec",
+  "host_run_options": "rw,nosuid,nodev,noexec,relatime,size=2850920k,mode=755,inode64",
+  "host_opt_options": "rw,relatime,errors=remount-ro",
+  "runtime_protection_failure": false,
+  "production_candidate_changed": false,
+  "fix_scope": "Harness only: executable staging in a unique /opt/md-root-preflight-*; socket remains under /run; test state remains under /var/lib; same unit protection",
+  "first_attempt_preserved_in": "harness-v1",
+  "first_attempt_cleanup_complete": true
+}

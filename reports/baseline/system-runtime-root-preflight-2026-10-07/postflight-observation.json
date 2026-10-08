@@ -1,0 +1,146 @@
+{
+  "checked_at": "2026-10-07T23:05:43.017529+09:00",
+  "read_only": true,
+  "daily_log_excerpt": [
+    {
+      "realtime_microseconds": "1791343665633120",
+      "message": "marketdata-daily.service: Scheduled restart job, restart counter is at 4."
+    },
+    {
+      "realtime_microseconds": "1791343671869882",
+      "update_results": [
+        {
+          "key": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+          "state": "complete",
+          "complete": true,
+          "waiting_source": [],
+          "errors": []
+        },
+        {
+          "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+          "state": "partial",
+          "complete": false,
+          "waiting_source": [
+            {
+              "start": "2026-10-06T00:00:00+00:00",
+              "end": "2026-10-07T00:00:00+00:00",
+              "state": "waiting_source",
+              "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-06.zip"
+            }
+          ],
+          "errors": []
+        },
+        {
+          "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+          "state": "partial",
+          "complete": false,
+          "waiting_source": [
+            {
+              "start": "2026-10-06T00:00:00+00:00",
+              "end": "2026-10-07T00:00:00+00:00",
+              "state": "waiting_source",
+              "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-06.zip"
+            }
+          ],
+          "errors": []
+        },
+        {
+          "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+          "state": "partial",
+          "complete": false,
+          "waiting_source": [
+            {
+              "start": "2026-10-06T00:00:00+00:00",
+              "end": "2026-10-07T00:00:00+00:00",
+              "state": "waiting_source",
+              "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-06.zip"
+            }
+          ],
+          "errors": []
+        },
+        {
+          "key": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+          "state": "complete",
+          "complete": true,
+          "waiting_source": [],
+          "errors": []
+        },
+        {
+          "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+          "state": "partial",
+          "complete": false,
+          "waiting_source": [
+            {
+              "start": "2026-10-06T00:00:00+00:00",
+              "end": "2026-10-07T00:00:00+00:00",
+              "state": "waiting_source",
+              "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-06.zip"
+            }
+          ],
+          "errors": []
+        },
+        {
+          "key": "binance:spot:BTCUSDT:instrument_metadata:event:primary",
+          "state": "complete",
+          "complete": true,
+          "waiting_source": [],
+          "errors": []
+        },
+        {
+          "key": "binance:linear_perpetual:BTCUSDT:instrument_metadata:event:primary",
+          "state": "complete",
+          "complete": true,
+          "waiting_source": [],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "realtime_microseconds": "1791343671891879",
+      "message": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+    },
+    {
+      "realtime_microseconds": "1791343671892119",
+      "message": "marketdata-daily.service: Failed with result 'exit-code'."
+    },
+    {
+      "realtime_microseconds": "1791343671892180",
+      "message": "Failed to start marketdata-daily.service - Daily public market data update."
+    },
+    {
+      "realtime_microseconds": "1791343732133023",
+      "message": "marketdata-daily.service: Scheduled restart job, restart counter is at 5."
+    },
+    {
+      "realtime_microseconds": "1791343732133633",
+      "message": "marketdata-daily.service: Start request repeated too quickly."
+    },
+    {
+      "realtime_microseconds": "1791343732133755",
+      "message": "marketdata-daily.service: Failed with result 'exit-code'."
+    },
+    {
+      "realtime_microseconds": "1791343732133829",
+      "message": "Failed to start marketdata-daily.service - Daily public market data update."
+    }
+  ],
+  "current_test_units": [
+    {
+      "unit": "md-root-preflight-1f383e4dff67457d-daemon.service",
+      "exit_code": 0,
+      "stdout": "MainPID=0\nLoadState=not-found\nActiveState=inactive\n",
+      "stderr": ""
+    },
+    {
+      "unit": "md-root-preflight-1f383e4dff67457d-probe.service",
+      "exit_code": 0,
+      "stdout": "MainPID=0\nLoadState=not-found\nActiveState=inactive\n",
+      "stderr": ""
+    }
+  ],
+  "daemon_pid_287433_exists": false,
+  "probe_pid_287437_exists": false,
+  "source_availability_queried": false,
+  "operating_services_restarted": false,
+  "log_extraction_note": "Initial JSON extraction omitted --all and met a null large MESSAGE; rerun with --all and explicit nontext handling. No operating changes."
+}

@@ -1,0 +1,7 @@
+[Service]
+Type=oneshot
+ExecStart=/tmp/marketdata-system-bootstrap-20261007/source/.venv/bin/python -I /tmp/marketdata-system-bootstrap-20261007/source/integrations/runtime/isolated_job_gate_test.py wait --root /tmp/md-clock-jobs-ycdml9eq
+TimeoutStartSec=infinity
+TimeoutStopSec=5s
+RemainAfterExit=no
+NoNewPrivileges=yes

@@ -1,0 +1,31 @@
+[Unit]
+Description=Prepare this boot's clock before releasing marketdata jobs
+Wants=network-online.target chrony.service user@1000.service
+After=network-online.target chrony.service user@1000.service
+Before=chrony-wait.service time-sync.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+ExecStart=/opt/marketdata/releases/system-bootstrap-20261006-81d25b1c4552f21d/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261006-81d25b1c4552f21d/integrations/runtime/clock_gate.py bootstrap --profile /etc/marketdata/clock-bootstrap.json
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=15s
+TimeoutStartSec=150s
+TimeoutStopSec=10s
+StateDirectory=marketdata-clock
+StateDirectoryMode=0755
+UMask=0022
+NoNewPrivileges=yes
+CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_SETUID CAP_SETGID
+ProtectClock=yes
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+StandardOutput=journal
+StandardError=journal
+SyslogLevelPrefix=yes
+
+[Install]
+WantedBy=multi-user.target

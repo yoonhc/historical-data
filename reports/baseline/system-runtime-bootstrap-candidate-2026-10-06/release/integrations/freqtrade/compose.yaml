@@ -1,0 +1,17 @@
+services:
+  freqtrade:
+    # Official image already verified locally as Freqtrade 2026.8.
+    image: freqtradeorg/freqtrade@sha256:7031bca43ed7668ebf421725dd5016acade6ef88b0771db3e08c96e6d19a42db
+    command: ["--version"]
+    volumes:
+      - ./user_data:/freqtrade/user_data
+      - ${MARKETDATA_EXPORT:-../../data/exports/freqtrade/smoke-v2}:/marketdata:ro
+      - ./check_export.py:/checks/check_export.py:ro
+      - ./strategies:/strategies:ro
+      - ./config.spot.json:/configs/spot.json:ro
+      - ./config.futures.json:/configs/futures.json:ro
+      - ../../packages/marketdata/src:/opt/marketdata:ro
+      - ../../packages/marketdata_freqtrade/src:/opt/adapter:ro
+    environment:
+      PYTHONPATH: /opt/marketdata:/opt/adapter
+    working_dir: /freqtrade

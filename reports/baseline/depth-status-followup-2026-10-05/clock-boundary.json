@@ -1,0 +1,98 @@
+{
+  "command": [
+    "journalctl",
+    "--since=2026-10-05 11:00:00 UTC",
+    "--until=2026-10-05 11:04:00 UTC",
+    "-u",
+    "systemd-timesyncd.service",
+    "--no-pager",
+    "-o",
+    "json",
+    "--output-fields=__REALTIME_TIMESTAMP,__MONOTONIC_TIMESTAMP,_BOOT_ID,MESSAGE"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "rows": [
+    {
+      "__SEQNUM": "1528439",
+      "__MONOTONIC_TIMESTAMP": "7614701",
+      "MESSAGE": "Starting systemd-timesyncd.service - Network Time Synchronization...",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64",
+      "__REALTIME_TIMESTAMP": "1791198044649780",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=175277;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=7430ed;t=65d15cb2c7934;x=9c6fe862960ecf56"
+    },
+    {
+      "__MONOTONIC_TIMESTAMP": "7640331",
+      "__SEQNUM": "1528446",
+      "__REALTIME_TIMESTAMP": "1791198044675410",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=17527e;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=74950b;t=65d15cb2cdd52;x=2632d571ddb9361f",
+      "MESSAGE": "The system is configured to read the RTC time in the local time zone. This mode cannot be fully supported. All system time to RTC updates are disabled.",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64"
+    },
+    {
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "MESSAGE": "Started systemd-timesyncd.service - Network Time Synchronization.",
+      "__MONOTONIC_TIMESTAMP": "7640609",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=17527f;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=749621;t=65d15cb2cde68;x=518fadd7ef033379",
+      "__SEQNUM": "1528447",
+      "__REALTIME_TIMESTAMP": "1791198044675688",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64"
+    },
+    {
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=175a73;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=2de88fb;t=65d15cd96d142;x=9c8b6a2c7a9966a1",
+      "MESSAGE": "Timed out waiting for reply from 185.125.190.56:123 (ntp.ubuntu.com).",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64",
+      "__SEQNUM": "1530483",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "__MONOTONIC_TIMESTAMP": "48138491",
+      "__REALTIME_TIMESTAMP": "1791198085173570"
+    },
+    {
+      "__SEQNUM": "1530495",
+      "__REALTIME_TIMESTAMP": "1791198095423513",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "__MONOTONIC_TIMESTAMP": "58388434",
+      "MESSAGE": "Timed out waiting for reply from 185.125.190.58:123 (ntp.ubuntu.com).",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=175a7f;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=37aefd2;t=65d15ce333819;x=c76cb2f55c79b202"
+    },
+    {
+      "__MONOTONIC_TIMESTAMP": "68638308",
+      "MESSAGE": "Timed out waiting for reply from 185.125.190.57:123 (ntp.ubuntu.com).",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "__SEQNUM": "1530665",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=175b29;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=4175664;t=65d15cecf9eab;x=7a56a06796ebf701",
+      "__REALTIME_TIMESTAMP": "1791198105673387"
+    },
+    {
+      "MESSAGE": "Timed out waiting for reply from 91.189.91.157:123 (ntp.ubuntu.com).",
+      "__MONOTONIC_TIMESTAMP": "78888244",
+      "__REALTIME_TIMESTAMP": "1791198115923323",
+      "__SEQNUM": "1530754",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=175b82;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=4b3bd34;t=65d15cf6c057b;x=878645b439781d93",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64"
+    },
+    {
+      "__SEQNUM": "1530788",
+      "__REALTIME_TIMESTAMP": "1791198107363817",
+      "MESSAGE": "Contacted time server 91.189.91.157:123 (ntp.ubuntu.com).",
+      "__MONOTONIC_TIMESTAMP": "111370101",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=175ba4;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=6a35f75;t=65d15cee969e9;x=76e3e04eef1f825f",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e"
+    },
+    {
+      "__REALTIME_TIMESTAMP": "1791198107363958",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64",
+      "MESSAGE": "Initial clock synchronization to Mon 2026-10-05 20:01:47.334509 KST.",
+      "__MONOTONIC_TIMESTAMP": "111370242",
+      "__SEQNUM": "1530789",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=175ba5;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=6a36002;t=65d15cee96a76;x=82fb99691d5b9172"
+    }
+  ]
+}

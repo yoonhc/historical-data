@@ -1,0 +1,209 @@
+{
+  "release_id": "system-runtime-20261006-c09bafd0645578a3",
+  "marketdata_origin": "/tmp/marketdata-system-runtime-20261006/clean-reproduction/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+  "python": "/tmp/marketdata-system-runtime-20261006/clean-reproduction/.venv/bin/python",
+  "scope": "read-only filesystem/path/UUID access checks; no Store open; wait-ready only",
+  "test_clock_provider": "system bus unavailable in sandbox; no Chrony installed",
+  "command": [
+    "/tmp/marketdata-system-runtime-20261006/clean-reproduction/.venv/bin/python",
+    "-I",
+    "/tmp/marketdata-system-runtime-20261006/clean-reproduction/integrations/runtime/marketdata_runtime.py",
+    "wait-ready",
+    "--profile",
+    "/tmp/marketdata-system-runtime-20261006/cli-readiness-test/profile-readonly-live-paths.json",
+    "--stream",
+    "depth"
+  ],
+  "returncode": 75,
+  "stdout": "",
+  "stderr": "{\"state\": \"failed\", \"error\": \"Readiness timeout; collector was not started\"}\n",
+  "collector_not_started": true,
+  "evidence": [
+    {
+      "boot_id": "a2da5ccc-0fc4-4b01-ac6f-aac092a66d6e",
+      "child_pid": null,
+      "clock": {
+        "provider": null,
+        "ready": false,
+        "reasons": [
+          "systemctl --property=ActiveState,MainPID,InvocationID: exit 1"
+        ],
+        "sample": {
+          "boottime_ns": 90518557580874,
+          "monotonic_ns": 90518557579857,
+          "sampling_span_ns": 2775,
+          "wall_ns": 1791288514551295644
+        }
+      },
+      "clock_usable": false,
+      "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+      "policy": {
+        "heartbeat_seconds": 10.0,
+        "max_correction_seconds": 0.1,
+        "max_error_seconds": 0.5,
+        "max_reference_age_seconds": 600.0,
+        "max_sample_gap_seconds": 5.0,
+        "max_skew_ppm": 100.0,
+        "provider_seconds": 10.0,
+        "ready_poll_seconds": 0.02,
+        "ready_timeout_seconds": 0.1,
+        "sample_seconds": 1.0,
+        "status_max_age_seconds": 25.0,
+        "step_threshold_seconds": 0.25,
+        "stop_timeout_seconds": 120.0
+      },
+      "profile_sha256": "70d153bf3066740f6375864bd80600c87623d98d43791a7baa68a91b5a57101b",
+      "release_id": "system-runtime-20261006-c09bafd0645578a3",
+      "run_id": "ddc27f1ba3404afaa0f63faa35905a7b",
+      "sample": {
+        "boottime_ns": 90518557590562,
+        "monotonic_ns": 90518557590286,
+        "sampling_span_ns": 1133,
+        "wall_ns": 1791288514551306444
+      },
+      "schema": 1,
+      "scope": "sampled_process_clock_not_per_event",
+      "state": "waiting",
+      "stream": "depth",
+      "supervisor_pid": 5,
+      "supervisor_start_ticks": "9051850",
+      "systemd_invocation_id": null
+    },
+    {
+      "boot_id": "a2da5ccc-0fc4-4b01-ac6f-aac092a66d6e",
+      "child_pid": null,
+      "clock": {
+        "provider": null,
+        "ready": false,
+        "reasons": [
+          "systemctl --property=ActiveState,MainPID,InvocationID: exit 1"
+        ],
+        "sample": {
+          "boottime_ns": 90518604050731,
+          "monotonic_ns": 90518604049944,
+          "sampling_span_ns": 1833,
+          "wall_ns": 1791288514597766753
+        }
+      },
+      "clock_usable": false,
+      "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+      "policy": {
+        "heartbeat_seconds": 10.0,
+        "max_correction_seconds": 0.1,
+        "max_error_seconds": 0.5,
+        "max_reference_age_seconds": 600.0,
+        "max_sample_gap_seconds": 5.0,
+        "max_skew_ppm": 100.0,
+        "provider_seconds": 10.0,
+        "ready_poll_seconds": 0.02,
+        "ready_timeout_seconds": 0.1,
+        "sample_seconds": 1.0,
+        "status_max_age_seconds": 25.0,
+        "step_threshold_seconds": 0.25,
+        "stop_timeout_seconds": 120.0
+      },
+      "profile_sha256": "70d153bf3066740f6375864bd80600c87623d98d43791a7baa68a91b5a57101b",
+      "release_id": "system-runtime-20261006-c09bafd0645578a3",
+      "run_id": "ddc27f1ba3404afaa0f63faa35905a7b",
+      "sample": {
+        "boottime_ns": 90518604056983,
+        "monotonic_ns": 90518604056912,
+        "sampling_span_ns": 321,
+        "wall_ns": 1791288514597773255
+      },
+      "schema": 1,
+      "scope": "sampled_process_clock_not_per_event",
+      "state": "waiting",
+      "stream": "depth",
+      "supervisor_pid": 5,
+      "supervisor_start_ticks": "9051850",
+      "systemd_invocation_id": null
+    },
+    {
+      "boot_id": "a2da5ccc-0fc4-4b01-ac6f-aac092a66d6e",
+      "child_pid": null,
+      "clock": {
+        "provider": null,
+        "ready": false,
+        "reasons": [
+          "systemctl --property=ActiveState,MainPID,InvocationID: exit 1"
+        ],
+        "sample": {
+          "boottime_ns": 90518651011537,
+          "monotonic_ns": 90518651010850,
+          "sampling_span_ns": 2074,
+          "wall_ns": 1791288514644727038
+        }
+      },
+      "clock_usable": false,
+      "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+      "policy": {
+        "heartbeat_seconds": 10.0,
+        "max_correction_seconds": 0.1,
+        "max_error_seconds": 0.5,
+        "max_reference_age_seconds": 600.0,
+        "max_sample_gap_seconds": 5.0,
+        "max_skew_ppm": 100.0,
+        "provider_seconds": 10.0,
+        "ready_poll_seconds": 0.02,
+        "ready_timeout_seconds": 0.1,
+        "sample_seconds": 1.0,
+        "status_max_age_seconds": 25.0,
+        "step_threshold_seconds": 0.25,
+        "stop_timeout_seconds": 120.0
+      },
+      "profile_sha256": "70d153bf3066740f6375864bd80600c87623d98d43791a7baa68a91b5a57101b",
+      "release_id": "system-runtime-20261006-c09bafd0645578a3",
+      "run_id": "ddc27f1ba3404afaa0f63faa35905a7b",
+      "sample": {
+        "boottime_ns": 90518651021585,
+        "monotonic_ns": 90518651021430,
+        "sampling_span_ns": 812,
+        "wall_ns": 1791288514644737618
+      },
+      "schema": 1,
+      "scope": "sampled_process_clock_not_per_event",
+      "state": "waiting",
+      "stream": "depth",
+      "supervisor_pid": 5,
+      "supervisor_start_ticks": "9051850",
+      "systemd_invocation_id": null
+    },
+    {
+      "boot_id": "a2da5ccc-0fc4-4b01-ac6f-aac092a66d6e",
+      "clock_usable": false,
+      "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+      "error": "Readiness timeout; collector was not started",
+      "policy": {
+        "heartbeat_seconds": 10.0,
+        "max_correction_seconds": 0.1,
+        "max_error_seconds": 0.5,
+        "max_reference_age_seconds": 600.0,
+        "max_sample_gap_seconds": 5.0,
+        "max_skew_ppm": 100.0,
+        "provider_seconds": 10.0,
+        "ready_poll_seconds": 0.02,
+        "ready_timeout_seconds": 0.1,
+        "sample_seconds": 1.0,
+        "status_max_age_seconds": 25.0,
+        "step_threshold_seconds": 0.25,
+        "stop_timeout_seconds": 120.0
+      },
+      "profile_sha256": "70d153bf3066740f6375864bd80600c87623d98d43791a7baa68a91b5a57101b",
+      "run_id": "ddc27f1ba3404afaa0f63faa35905a7b",
+      "sample": {
+        "boottime_ns": 90518652755966,
+        "monotonic_ns": 90518652755815,
+        "sampling_span_ns": 501,
+        "wall_ns": 1791288514646472149
+      },
+      "schema": 1,
+      "scope": "sampled_process_clock_not_per_event",
+      "state": "failed",
+      "stream": "depth",
+      "supervisor_pid": 5,
+      "supervisor_start_ticks": "9051850",
+      "systemd_invocation_id": null
+    }
+  ]
+}

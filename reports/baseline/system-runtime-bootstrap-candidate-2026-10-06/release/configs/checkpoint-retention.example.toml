@@ -1,0 +1,8 @@
+# Host settings; copy outside Git and review exact paths/receipt before use.
+archive_profile = "/home/collector/.config/marketdata/restic-archive.toml"
+recovery_receipt = "/home/collector/project/reports/recovery-result.json"
+recovery_receipt_sha256 = "REPLACE_WITH_REVIEWED_RECEIPT_SHA256"
+keep_latest = 3
+min_age_hours = 72
+# No timer is installed. Plan/status work; apply is refused until explicitly enabled.
+apply_enabled = false

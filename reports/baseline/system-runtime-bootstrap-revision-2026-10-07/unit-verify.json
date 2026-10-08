@@ -1,0 +1,62 @@
+{
+  "base_unit_sha256": {
+    "/tmp/marketdata-system-bootstrap-20261007/source/integrations/systemd/marketdata-backup.service": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389",
+    "/tmp/marketdata-system-bootstrap-20261007/source/integrations/systemd/marketdata-daily.service": "7ba5289fc742422fd1935bfe4515c274775262a5e6195214b2533311ab8d9d5c",
+    "/tmp/marketdata-system-bootstrap-20261007/source/integrations/systemd/marketdata-network-observer.service": "447c9f1c1688b2d6a23e4c087e7d59d80d3ec3004f28f70678b59cb33e64b8ff",
+    "/tmp/marketdata-system-bootstrap-20261007/source/integrations/systemd/marketdata-oi-probe.service": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+    "/tmp/marketdata-system-bootstrap-20261007/source/integrations/systemd/marketdata-oi-quality.service": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+    "/tmp/marketdata-system-bootstrap-20261007/source/integrations/systemd/marketdata-oi.service": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+    "/tmp/marketdata-system-bootstrap-20261007/source/integrations/systemd/marketdata-pack.service": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2",
+    "/tmp/marketdata-system-bootstrap-20261007/source/integrations/systemd/marketdata-restic-archive.service": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+    "/tmp/marketdata-system-runtime-20261006/chrony-extracted/usr/lib/systemd/system/chrony-wait.service": "0b2e66c4d562bf520286c0a7dbe720460e13087f0c1fb9bf8da98c360bdd7c4f",
+    "/tmp/marketdata-system-runtime-20261006/chrony-extracted/usr/lib/systemd/system/chrony.service": "33b465070fdd8ff6e13fa803358f8ea2b918f6723587f663f766da339dd3ae64"
+  },
+  "checks": [
+    {
+      "argv": [
+        "systemd-analyze",
+        "--system",
+        "verify",
+        "--man=no",
+        "/tmp/md-clock-unit-verify-o5glkxd1/system/marketdata-clock-bootstrap.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/system/marketdata-collector@depth.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/system/marketdata-collector@aggtrade.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/system/chrony.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/system/chrony-wait.service"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "systemd-analyze",
+        "--user",
+        "verify",
+        "--man=no",
+        "/tmp/md-clock-unit-verify-o5glkxd1/user/marketdata-backup.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/user/marketdata-clock-ready.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/user/marketdata-daily.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/user/marketdata-network-observer.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/user/marketdata-oi-probe.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/user/marketdata-oi-quality.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/user/marketdata-oi.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/user/marketdata-pack.service",
+        "/tmp/md-clock-unit-verify-o5glkxd1/user/marketdata-restic-archive.service"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "chrony_parse": {
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "pool ntp.ubuntu.com iburst maxsources 4 minpoll 6 maxpoll 8\nrtcsync\ndriftfile /var/lib/chrony/chrony.drift\nlogdir /var/log/chrony\nmaxupdateskew 100.0\nleapsectz right/UTC\nleapsecmode slew\nport 0\nbindcmdaddress 127.0.0.1\ncmdport 323\n"
+  },
+  "fixture": "/tmp/md-clock-unit-verify-o5glkxd1",
+  "operational_activation": false,
+  "passed": true,
+  "root_protection_exercised": false,
+  "substitutions": "release Python and absent chrony executable paths only"
+}

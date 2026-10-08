@@ -1,0 +1,76 @@
+{
+  "state": "verified",
+  "checked_at": "2026-10-05T12:36:36.926963+00:00",
+  "scope": "first regular deployed session completion and subsequent scheduled start; not a 24-hour verdict",
+  "release_id": "depth-status-20261005-7be8e3da868f9308",
+  "initial_pending_record": {
+    "path": "reports/baseline/depth-status-deploy-2026-10-05/followup.json",
+    "sha256": "70ef7e10ae25b0ff9e03da2de50f50bf46af17def82df4acef7459ca14b465a9",
+    "unchanged": true
+  },
+  "first_collection_id": "2903de655fe94ecc9922e4aa3f529f01",
+  "first_final_state": "complete",
+  "first_final_at": "2026-10-05T06:01:50.171154+00:00",
+  "received_and_persisted": 35229,
+  "replay": {
+    "continuous": false,
+    "replay_matches_live": true,
+    "rows": 35586,
+    "state": "complete",
+    "valid": true,
+    "verification_checks": 353,
+    "verification_complete": true,
+    "verification_equal": 353
+  },
+  "raw_parity": {
+    "all_snapshot_checks_verified": true,
+    "checked_at": "2026-10-05T12:30:55.084155+00:00",
+    "collection_id": "2903de655fe94ecc9922e4aa3f529f01",
+    "delayed_snapshot_checks": [],
+    "price_quantity_pairs_checked": 4956763,
+    "raw_to_canonical_equal": true,
+    "replay_matches_live": true,
+    "replay_valid": true,
+    "rows_checked": 35586,
+    "source_artifacts": 1070,
+    "verification_checks": 353,
+    "verification_complete": true,
+    "verification_equal": 353
+  },
+  "next_collection_id": "09d465a035e547a5bce26a3ec4e34da1",
+  "next_started_at": "2026-10-05T06:02:05.547375+00:00",
+  "next_scheduled_systemd_start": {
+    "_PID": "1189",
+    "__MONOTONIC_TIMESTAMP": "710706557333",
+    "__SEQNUM": "1512545",
+    "__SEQNUM_ID": "7aa60f91fcde456cb7cae6ca30764faf",
+    "_BOOT_ID": "d478fbe182dc4ab6a50e20942815a4da",
+    "__CURSOR": "s=7aa60f91fcde456cb7cae6ca30764faf;i=171461;b=d478fbe182dc4ab6a50e20942815a4da;m=a579697195;t=65d119f1ab696;x=4484c28a4ec988fb",
+    "__REALTIME_TIMESTAMP": "1791180125419158",
+    "_SYSTEMD_USER_UNIT": "init.scope",
+    "MESSAGE": "Started marketdata-depth.service - BTCUSDT futures depth hourly collection sessions."
+  },
+  "closed_report_hashes_unchanged": {
+    "2903de655fe94ecc9922e4aa3f529f01": true,
+    "09d465a035e547a5bce26a3ec4e34da1": true,
+    "8bcd63260bcd45f8ac83e0748e017fd4": true,
+    "f8f93c4737c448f1bea5a3f6966eb0fe": true,
+    "097a4c198c214e51a10bf8ae7609301a": true,
+    "665908dfa94b4ee5bfb144e96d953b7b": true,
+    "6a88104dce5345c99dee182bb3bca1c8": true
+  },
+  "release_files_unchanged": {
+    "packages/marketdata/src/marketdata/depth.py": true,
+    "packages/marketdata/src/marketdata/depth_stream.py": true,
+    "tests/test_depth_independent_cases.py": true,
+    "tests/depth_failure_harness.py": true,
+    "tests/test_depth_failure_publication.py": true
+  },
+  "new_exchange_requests": 0,
+  "service_changes": [],
+  "live_sync_or_storage_failure_observed": false,
+  "remaining": [
+    "Post-deployment 24-hour observation is not complete",
+    "System clock step after boot needs a separate host-time/startup review; no timestamp rewriting"
+  ]
+}

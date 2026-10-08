@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "uid": 1000,
+  "release_root": "/opt/marketdata/releases/system-runtime-20261006-c09bafd0645578a3",
+  "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+  "evidence_root": "/home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock",
+  "mount_uuid": "d8020c0b-a5df-4e47-99d9-2378b12ab2ea",
+  "chronyc": "/usr/bin/chronyc",
+  "chrony_config": "/etc/chrony/marketdata.conf",
+  "chrony_config_sha256": "6b93bd9b15a84b7653a2567d16a0ea801ad27524a86c9bf72ccd9b7efeb622df",
+  "dns_hosts": [
+    "fstream.binance.com",
+    "fapi.binance.com"
+  ],
+  "policy": {
+    "max_correction_seconds": 0.1,
+    "max_error_seconds": 0.5,
+    "max_reference_age_seconds": 600.0,
+    "max_skew_ppm": 100.0,
+    "step_threshold_seconds": 0.25,
+    "max_sample_gap_seconds": 5.0,
+    "sample_seconds": 1.0,
+    "provider_seconds": 10.0,
+    "heartbeat_seconds": 10.0,
+    "status_max_age_seconds": 25.0,
+    "ready_timeout_seconds": 120.0,
+    "ready_poll_seconds": 5.0,
+    "stop_timeout_seconds": 120.0
+  }
+}

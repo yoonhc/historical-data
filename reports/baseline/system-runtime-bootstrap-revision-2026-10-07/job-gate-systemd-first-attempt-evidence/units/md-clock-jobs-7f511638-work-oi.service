@@ -1,0 +1,12 @@
+[Unit]
+Requires=md-clock-jobs-7f511638-work-clock.service
+After=md-clock-jobs-7f511638-work-clock.service
+StartLimitIntervalSec=20s
+StartLimitBurst=2
+[Service]
+Type=oneshot
+ExecStartPre=/tmp/marketdata-system-bootstrap-20261007/source/.venv/bin/python -I /tmp/marketdata-system-bootstrap-20261007/source/integrations/runtime/isolated_job_gate_test.py gate --root /tmp/md-clock-jobs-tij2irhn
+ExecStart=/tmp/marketdata-system-bootstrap-20261007/source/.venv/bin/python -I /tmp/marketdata-system-bootstrap-20261007/source/integrations/runtime/isolated_job_gate_test.py body --root /tmp/md-clock-jobs-tij2irhn --job oi
+Restart=on-failure
+RestartSec=0.1s
+TimeoutStartSec=0.5s

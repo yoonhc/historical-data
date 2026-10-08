@@ -1,0 +1,50 @@
+{
+  "tests": [
+    {
+      "argv": [
+        "systemd-analyze",
+        "verify",
+        "--man=no",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/system/marketdata-clock-bootstrap.service",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/system/marketdata-collector@depth.service",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/system/chrony.service",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/system/chrony-wait.service"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemd-analyze",
+        "--user",
+        "verify",
+        "--man=no",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/user/marketdata-backup.service",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/user/marketdata-daily.service",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/user/marketdata-network-observer.service",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/user/marketdata-oi-probe.service",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/user/marketdata-oi-quality.service",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/user/marketdata-oi.service",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/user/marketdata-pack.service",
+        "/tmp/marketdata-system-bootstrap-20261006/unit-check/user/marketdata-restic-archive.service"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Failed to bind private socket: Operation not permitted\nFailed to connect to system bus: Operation not permitted\n"
+    }
+  ],
+  "chrony_parse": {
+    "exit_code": 0,
+    "expanded_config": "pool ntp.ubuntu.com iburst maxsources 4 minpoll 6 maxpoll 8\nrtcsync\ndriftfile /var/lib/chrony/chrony.drift\nlogdir /var/log/chrony\nmaxupdateskew 100.0\nleapsectz right/UTC\nleapsecmode slew\nport 0\nbindcmdaddress 127.0.0.1\ncmdport 323\n",
+    "stderr": ""
+  },
+  "substitutions": "isolated interpreter path; extracted daemon and chronyc paths for uninstalled host binaries; no service activation",
+  "root_system_sandbox_exercised": false,
+  "user_verify_unsandboxed": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "operational_units_activated": false
+  }
+}

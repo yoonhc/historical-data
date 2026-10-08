@@ -1,0 +1,261 @@
+{
+  "started_at": "2026-10-05T13:02:31.237160+00:00",
+  "finished_at": "2026-10-05T13:02:32.643643+00:00",
+  "commands": {
+    "version": {
+      "command": [
+        "systemctl",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "systemd 255 (255.4-1ubuntu8.16)\n+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified\n",
+      "stderr": ""
+    },
+    "user_units": {
+      "command": [
+        "systemctl",
+        "--user",
+        "show",
+        "marketdata-depth.service",
+        "marketdata-aggtrade.service",
+        "network-online.target",
+        "time-sync.target",
+        "--property=Id,LoadState,ActiveState,SubState,UnitFileState,Result,After,Before,Wants,Requires,FragmentPath,DropInPaths,MainPID,ExecMainStatus,ExecMainStartTimestamp,ExecMainStartTimestampMonotonic,ExecMainExitTimestamp,ExecMainExitTimestampMonotonic,ActiveEnterTimestampMonotonic,ConditionResult,ExecStart"
+      ],
+      "returncode": 0,
+      "stdout": "MainPID=26274\nResult=success\nExecMainStartTimestamp=Mon 2026-10-05 22:00:39 KST\nExecMainStartTimestampMonotonic=7243403174\nExecMainExitTimestamp=\nExecMainExitTimestampMonotonic=0\nExecMainStatus=0\nExecStart={ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . depth-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 900 --verify-seconds 10 --top 20 --min-free-gib 10 ; ignore_errors=no ; start_time=[Mon 2026-10-05 22:00:39 KST] ; stop_time=[n/a] ; pid=26274 ; code=(null) ; status=0/0 }\nId=marketdata-depth.service\nRequires=basic.target app.slice\nWants=network-online.target\nBefore=default.target shutdown.target\nAfter=network-online.target basic.target home.mount -.mount app.slice\nLoadState=loaded\nActiveState=active\nSubState=running\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-depth.service\nDropInPaths=\nUnitFileState=enabled\nActiveEnterTimestampMonotonic=7243403326\nConditionResult=yes\n\nMainPID=26386\nResult=success\nExecMainStartTimestamp=Mon 2026-10-05 22:00:49 KST\nExecMainStartTimestampMonotonic=7253148225\nExecMainExitTimestamp=\nExecMainExitTimestampMonotonic=0\nExecMainStatus=0\nExecStart={ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . aggtrade-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 3600 --min-free-gib 10 ; ignore_errors=no ; start_time=[Mon 2026-10-05 22:00:49 KST] ; stop_time=[n/a] ; pid=26386 ; code=(null) ; status=0/0 }\nId=marketdata-aggtrade.service\nRequires=basic.target app.slice\nWants=network-online.target\nBefore=default.target shutdown.target\nAfter=-.mount network-online.target home.mount app.slice basic.target\nLoadState=loaded\nActiveState=active\nSubState=running\nFragmentPath=/home/yoonhc/.config/systemd/user/marketdata-aggtrade.service\nDropInPaths=\nUnitFileState=enabled\nActiveEnterTimestampMonotonic=7253148360\nConditionResult=yes\n\nId=network-online.target\nRequires=\nWants=\nBefore=marketdata-daily.service marketdata-aggtrade.service marketdata-oi.service marketdata-depth.service marketdata-oi-probe.service\nAfter=\nLoadState=not-found\nActiveState=inactive\nSubState=dead\nFragmentPath=\nDropInPaths=\nUnitFileState=\nActiveEnterTimestampMonotonic=0\nConditionResult=no\n\nId=time-sync.target\nRequires=\nWants=\nBefore=\nAfter=\nLoadState=not-found\nActiveState=inactive\nSubState=dead\nFragmentPath=\nDropInPaths=\nUnitFileState=\nActiveEnterTimestampMonotonic=0\nConditionResult=no\n",
+      "stderr": ""
+    },
+    "system_units": {
+      "command": [
+        "systemctl",
+        "show",
+        "network-online.target",
+        "time-sync.target",
+        "time-set.target",
+        "NetworkManager-wait-online.service",
+        "systemd-time-wait-sync.service",
+        "systemd-timesyncd.service",
+        "NetworkManager.service",
+        "user@1000.service",
+        "--property=Id,LoadState,ActiveState,SubState,UnitFileState,Result,After,Before,Wants,Requires,FragmentPath,DropInPaths,MainPID,ExecMainStatus,ExecMainStartTimestamp,ExecMainStartTimestampMonotonic,ExecMainExitTimestamp,ExecMainExitTimestampMonotonic,ActiveEnterTimestampMonotonic,ConditionResult,ExecStart"
+      ],
+      "returncode": 0,
+      "stdout": "Id=network-online.target\nRequires=\nWants=NetworkManager-wait-online.service\nBefore=nordvpnd.service motd-news.service docker.service kerneloops.service apt-daily-upgrade.service apt-daily.service shutdown.target fwupd-refresh.service rc-local.service cups-browsed.service\nAfter=NetworkManager-wait-online.service network.target\nLoadState=loaded\nActiveState=active\nSubState=active\nFragmentPath=/usr/lib/systemd/system/network-online.target\nDropInPaths=\nUnitFileState=static\nActiveEnterTimestampMonotonic=12488044\nConditionResult=yes\n\nId=time-sync.target\nRequires=\nWants=time-set.target\nBefore=plocate-updatedb.timer shutdown.target dpkg-db-backup.timer logrotate.timer man-db.timer motd-news.timer kerneloops.service fwupd-refresh.timer anacron.timer apt-daily.timer anacron.service fstrim.timer apt-daily-upgrade.timer e2scrub_all.timer\nAfter=time-set.target\nLoadState=loaded\nActiveState=inactive\nSubState=dead\nFragmentPath=/usr/lib/systemd/system/time-sync.target\nDropInPaths=\nUnitFileState=static\nActiveEnterTimestampMonotonic=0\nConditionResult=no\n\nId=time-set.target\nRequires=\nWants=\nBefore=man-db.timer plocate-updatedb.timer anacron.timer motd-news.timer shutdown.target apt-daily-upgrade.timer e2scrub_all.timer logrotate.timer fstrim.timer fwupd-refresh.timer apt-daily.timer docker.service time-sync.target dpkg-db-backup.timer systemd-tmpfiles-clean.service\nAfter=systemd-timesyncd.service\nLoadState=loaded\nActiveState=active\nSubState=active\nFragmentPath=/usr/lib/systemd/system/time-set.target\nDropInPaths=\nUnitFileState=static\nActiveEnterTimestampMonotonic=7640803\nConditionResult=yes\n\nMainPID=0\nResult=success\nExecMainStartTimestamp=Mon 2026-10-05 20:00:45 KST\nExecMainStartTimestampMonotonic=8358111\nExecMainExitTimestamp=Mon 2026-10-05 20:00:49 KST\nExecMainExitTimestampMonotonic=12487609\nExecMainStatus=0\nExecStart={ path=/usr/bin/nm-online ; argv[]=/usr/bin/nm-online -s -q ; ignore_errors=no ; start_time=[Mon 2026-10-05 20:00:45 KST] ; stop_time=[Mon 2026-10-05 20:00:49 KST] ; pid=1168 ; code=exited ; status=0 }\nId=NetworkManager-wait-online.service\nRequires=system.slice sysinit.target NetworkManager.service\nWants=\nBefore=shutdown.target network-online.target\nAfter=sysinit.target NetworkManager.service system.slice systemd-journald.socket basic.target\nLoadState=loaded\nActiveState=active\nSubState=exited\nFragmentPath=/usr/lib/systemd/system/NetworkManager-wait-online.service\nDropInPaths=\nUnitFileState=enabled\nActiveEnterTimestampMonotonic=12487739\nConditionResult=yes\n\nMainPID=0\nResult=success\nExecMainStartTimestamp=\nExecMainStartTimestampMonotonic=0\nExecMainExitTimestamp=\nExecMainExitTimestampMonotonic=0\nExecMainStatus=0\nExecStart={ path=/usr/lib/systemd/systemd-time-wait-sync ; argv[]=/usr/lib/systemd/systemd-time-wait-sync ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nId=systemd-time-wait-sync.service\nRequires=system.slice\nWants=time-sync.target\nBefore=time-sync.target shutdown.target\nAfter=system.slice systemd-journald.socket\nLoadState=loaded\nActiveState=inactive\nSubState=dead\nFragmentPath=/usr/lib/systemd/system/systemd-time-wait-sync.service\nDropInPaths=\nUnitFileState=disabled\nActiveEnterTimestampMonotonic=0\nConditionResult=no\n\nMainPID=880\nResult=success\nExecMainStartTimestamp=Mon 2026-10-05 20:00:44 KST\nExecMainStartTimestampMonotonic=7614634\nExecMainExitTimestamp=\nExecMainExitTimestampMonotonic=0\nExecMainStatus=0\nExecStart={ path=/usr/lib/systemd/systemd-timesyncd ; argv[]=/usr/lib/systemd/systemd-timesyncd ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nId=systemd-timesyncd.service\nRequires=-.mount system.slice\nWants=time-set.target tmp.mount\nBefore=time-set.target sysinit.target shutdown.target\nAfter=-.mount tmp.mount systemd-sysusers.service system.slice systemd-tmpfiles-setup.service systemd-journald.socket systemd-remount-fs.service\nLoadState=loaded\nActiveState=active\nSubState=running\nFragmentPath=/usr/lib/systemd/system/systemd-timesyncd.service\nDropInPaths=\nUnitFileState=enabled\nActiveEnterTimestampMonotonic=7640566\nConditionResult=yes\n\nMainPID=1088\nResult=success\nExecMainStartTimestamp=Mon 2026-10-05 20:00:44 KST\nExecMainStartTimestampMonotonic=7766857\nExecMainExitTimestamp=\nExecMainExitTimestampMonotonic=0\nExecMainStatus=0\nExecStart={ path=/usr/sbin/NetworkManager ; argv[]=/usr/sbin/NetworkManager --no-daemon ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nId=NetworkManager.service\nRequires=sysinit.target system.slice dbus.socket\nWants=network.target\nBefore=shutdown.target network.target multi-user.target apt-daily-upgrade.service NetworkManager-wait-online.service apt-daily.service\nAfter=network-pre.target basic.target dbus.service dbus.socket systemd-journald.socket system.slice sysinit.target\nLoadState=loaded\nActiveState=active\nSubState=running\nFragmentPath=/usr/lib/systemd/system/NetworkManager.service\nDropInPaths=\nUnitFileState=enabled\nActiveEnterTimestampMonotonic=8342576\nConditionResult=yes\n\nMainPID=1183\nResult=success\nExecMainStartTimestamp=Mon 2026-10-05 20:00:45 KST\nExecMainStartTimestampMonotonic=8370155\nExecMainExitTimestamp=\nExecMainExitTimestampMonotonic=0\nExecMainStatus=0\nExecStart={ path=/usr/lib/systemd/systemd ; argv[]=/usr/lib/systemd/systemd --user ; ignore_errors=no ; start_time=[Mon 2026-10-05 20:00:45 KST] ; stop_time=[n/a] ; pid=1183 ; code=(null) ; status=0/0 }\nId=user@1000.service\nRequires=user-1000.slice user-runtime-dir@1000.service sysinit.target\nWants=\nBefore=shutdown.target session-c2.scope\nAfter=basic.target systemd-user-sessions.service sysinit.target systemd-oomd.service systemd-journald.socket user-runtime-dir@1000.service dbus.service user-1000.slice\nLoadState=loaded\nActiveState=active\nSubState=running\nFragmentPath=/usr/lib/systemd/system/user@.service\nDropInPaths=/usr/lib/systemd/system/user@.service.d/10-login-barrier.conf /usr/lib/systemd/system/user@.service.d/timeout.conf\nUnitFileState=static\nActiveEnterTimestampMonotonic=8541740\nConditionResult=yes\n",
+      "stderr": ""
+    },
+    "time_status": {
+      "command": [
+        "timedatectl",
+        "show",
+        "--all"
+      ],
+      "returncode": 0,
+      "stdout": "Timezone=Asia/Seoul\nLocalRTC=yes\nCanNTP=yes\nNTP=yes\nNTPSynchronized=yes\nTimeUSec=Mon 2026-10-05 22:02:31 KST\nRTCTimeUSec=Tue 2026-10-06 07:03:12 KST\n",
+      "stderr": ""
+    },
+    "timesync_status": {
+      "command": [
+        "timedatectl",
+        "show-timesync",
+        "--all"
+      ],
+      "returncode": 0,
+      "stdout": "LinkNTPServers=\nSystemNTPServers=\nRuntimeNTPServers=\nFallbackNTPServers=ntp.ubuntu.com\nServerName=ntp.ubuntu.com\nServerAddress=185.125.190.57\nRootDistanceMaxUSec=5s\nPollIntervalMinUSec=32s\nPollIntervalMaxUSec=34min 8s\nPollIntervalUSec=34min 8s\nNTPMessage={ Leap=0, Version=4, Mode=4, Stratum=2, Precision=-25, RootDelay=6.484ms, RootDispersion=335us, Reference=1D586304, OriginateTimestamp=Mon 2026-10-05 21:46:08 KST, ReceiveTimestamp=Mon 2026-10-05 21:46:08 KST, TransmitTimestamp=Mon 2026-10-05 21:46:08 KST, DestinationTimestamp=Mon 2026-10-05 21:46:08 KST, Ignored=no, PacketCount=9, Jitter=14.143ms }\nFrequency=-1979079\n",
+      "stderr": ""
+    },
+    "login_state": {
+      "command": [
+        "loginctl",
+        "show-user",
+        "1000",
+        "--property=Linger,State,RuntimePath"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "wired_state": {
+      "command": [
+        "nmcli",
+        "-g",
+        "GENERAL.DEVICE,GENERAL.STATE,IP4.GATEWAY,IP4.DNS",
+        "device",
+        "show",
+        "enp2s0"
+      ],
+      "returncode": 0,
+      "stdout": "enp2s0\n100 (connected)\n192.168.10.254\n192.168.10.254\n",
+      "stderr": ""
+    },
+    "network_chain": {
+      "command": [
+        "systemd-analyze",
+        "critical-chain",
+        "network-online.target"
+      ],
+      "returncode": 0,
+      "stdout": "The time when unit became active or started is printed after the \"@\" character.\nThe time the unit took to start is printed after the \"+\" character.\n\nnetwork-online.target @11.165s\n└─NetworkManager-wait-online.service @7.035s +4.129s\n  └─NetworkManager.service @6.444s +575ms\n    └─network-pre.target @6.442s\n      └─nordvpnd-killswitch.service @6.363s +78ms\n        └─basic.target @6.349s\n          └─sockets.target @6.349s\n            └─nordvpnd.socket @6.348s +1ms\n              └─sysinit.target @6.331s\n                └─systemd-resolved.service @6.290s +41ms\n                  └─systemd-tmpfiles-setup.service @4.001s +2.273s\n                    └─local-fs.target @3.995s\n                      └─run-docker-netns-00051f3967ba.mount @11.889s\n                        └─local-fs-pre.target @260ms\n                          └─lvm2-monitor.service @217ms +43ms\n                            └─systemd-journald.socket @209ms\n                              └─system.slice @182ms\n                                └─-.slice @182ms\n",
+      "stderr": ""
+    },
+    "time_chain": {
+      "command": [
+        "systemd-analyze",
+        "critical-chain",
+        "time-sync.target"
+      ],
+      "returncode": 0,
+      "stdout": "The time when unit became active or started is printed after the \"@\" character.\nThe time the unit took to start is printed after the \"+\" character.\n\n└─time-set.target @6.317s\n  └─systemd-timesyncd.service @6.291s +25ms\n    └─systemd-tmpfiles-setup.service @4.001s +2.273s\n      └─local-fs.target @3.995s\n        └─run-docker-netns-00051f3967ba.mount @11.889s\n          └─local-fs-pre.target @260ms\n            └─lvm2-monitor.service @217ms +43ms\n              └─systemd-journald.socket @209ms\n                └─system.slice @182ms\n                  └─-.slice @182ms\n",
+      "stderr": ""
+    },
+    "user_chain": {
+      "command": [
+        "systemd-analyze",
+        "critical-chain",
+        "user@1000.service"
+      ],
+      "returncode": 0,
+      "stdout": "The time when unit became active or started is printed after the \"@\" character.\nThe time the unit took to start is printed after the \"+\" character.\n\nuser@1000.service +171ms\n└─systemd-user-sessions.service @7.038s +5ms\n  └─network.target @7.020s\n    └─NetworkManager.service @6.444s +575ms\n      └─network-pre.target @6.442s\n        └─nordvpnd-killswitch.service @6.363s +78ms\n          └─basic.target @6.349s\n            └─sockets.target @6.349s\n              └─nordvpnd.socket @6.348s +1ms\n                └─sysinit.target @6.331s\n                  └─systemd-resolved.service @6.290s +41ms\n                    └─systemd-tmpfiles-setup.service @4.001s +2.273s\n                      └─local-fs.target @3.995s\n                        └─run-docker-netns-00051f3967ba.mount @11.889s\n                          └─local-fs-pre.target @260ms\n                            └─lvm2-monitor.service @217ms +43ms\n                              └─systemd-journald.socket @209ms\n                                └─system.slice @182ms\n                                  └─-.slice @182ms\n",
+      "stderr": ""
+    }
+  },
+  "files": {
+    "/etc/adjtime": {
+      "sha256": "de2a54395e89e39cd461ab63ba89f8ec5e75313e560aa88f600cee8a673a1310",
+      "text": "0.0 0 0.0\n0\nLOCAL\n",
+      "mtime_ns": 1737306090677876725
+    },
+    "/etc/systemd/timesyncd.conf": {
+      "sha256": "e6734751f8aaf19fddfff891ad246387f5f59bd9ff1a5f0cac2c34bc81941c62",
+      "text": "#  This file is part of systemd.\n#\n#  systemd is free software; you can redistribute it and/or modify it under the\n#  terms of the GNU Lesser General Public License as published by the Free\n#  Software Foundation; either version 2.1 of the License, or (at your option)\n#  any later version.\n#\n# Entries in this file show the compile time defaults. Local configuration\n# should be created by either modifying this file (or a copy of it placed in\n# /etc/ if the original file is shipped in /usr/), or by creating \"drop-ins\" in\n# the /etc/systemd/timesyncd.conf.d/ directory. The latter is generally\n# recommended. Defaults can be restored by simply deleting the main\n# configuration file and all drop-ins located in /etc/.\n#\n# Use 'systemd-analyze cat-config systemd/timesyncd.conf' to display the full config.\n#\n# See timesyncd.conf(5) for details.\n\n[Time]\n#NTP=\n#FallbackNTP=ntp.ubuntu.com\n#RootDistanceMaxSec=5\n#PollIntervalMinSec=32\n#PollIntervalMaxSec=2048\n#ConnectionRetrySec=30\n#SaveIntervalSec=60\n",
+      "mtime_ns": 1713536676000000000
+    },
+    "/etc/os-release": {
+      "sha256": "7c292d35e57feb979301d85d50ef11ee36fdc44a66badac0b73b80f41bfd8974",
+      "text": "NAME=\"Linux Mint\"\nVERSION=\"22 (Wilma)\"\nID=linuxmint\nID_LIKE=\"ubuntu debian\"\nPRETTY_NAME=\"Linux Mint 22\"\nVERSION_ID=\"22\"\nHOME_URL=\"https://www.linuxmint.com/\"\nSUPPORT_URL=\"https://forums.linuxmint.com/\"\nBUG_REPORT_URL=\"http://linuxmint-troubleshooting-guide.readthedocs.io/en/latest/\"\nPRIVACY_POLICY_URL=\"https://www.linuxmint.com/\"\nVERSION_CODENAME=wilma\nUBUNTU_CODENAME=noble\n",
+      "mtime_ns": 1715345218000000000
+    },
+    "/proc/sys/kernel/random/boot_id": {
+      "sha256": "9b2ada8b5b721619207aa00a1638dcdec100c843e602c735768084b03f62fa26",
+      "text": "a2da5ccc-0fc4-4b01-ac6f-aac092a66d6e\n",
+      "mtime_ns": 1791230437671999996
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-depth.service": {
+      "sha256": "ae49746c2c248f9b57d427c434215bda356a321c30c65d4f98d1de8620d4e833",
+      "text": "[Unit]\nDescription=BTCUSDT futures depth hourly collection sessions\nWants=network-online.target\nAfter=network-online.target\nStartLimitIntervalSec=0\n\n[Service]\nType=simple\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nEnvironment=SESSION_SECONDS=3600\nExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . depth-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 900 --verify-seconds 10 --top 20 --min-free-gib 10\nRestart=always\nRestartSec=15s\nKillSignal=SIGINT\nTimeoutStopSec=120s\nStandardOutput=journal\nStandardError=journal\n\n[Install]\nWantedBy=default.target\n",
+      "mtime_ns": 1790171197337415172
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-depth.service": {
+      "sha256": "ae49746c2c248f9b57d427c434215bda356a321c30c65d4f98d1de8620d4e833",
+      "text": "[Unit]\nDescription=BTCUSDT futures depth hourly collection sessions\nWants=network-online.target\nAfter=network-online.target\nStartLimitIntervalSec=0\n\n[Service]\nType=simple\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nEnvironment=SESSION_SECONDS=3600\nExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . depth-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 900 --verify-seconds 10 --top 20 --min-free-gib 10\nRestart=always\nRestartSec=15s\nKillSignal=SIGINT\nTimeoutStopSec=120s\nStandardOutput=journal\nStandardError=journal\n\n[Install]\nWantedBy=default.target\n",
+      "mtime_ns": 1790171197337415172
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-aggtrade.service": {
+      "sha256": "5a1b6b51c1a5669db24d08b8b5d66e8c84fe541e23c6863dc9e67cf0eb29099d",
+      "text": "[Unit]\nDescription=BTCUSDT futures aggtrade hourly collection sessions\nWants=network-online.target\nAfter=network-online.target\nStartLimitIntervalSec=0\n\n[Service]\nType=simple\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nEnvironment=SESSION_SECONDS=3600\nExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . aggtrade-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 3600 --min-free-gib 10\nRestart=always\nRestartSec=15s\nKillSignal=SIGINT\nTimeoutStopSec=120s\nStandardOutput=journal\nStandardError=journal\n\n[Install]\nWantedBy=default.target\n",
+      "mtime_ns": 1790143761403030174
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-aggtrade.service": {
+      "sha256": "5a1b6b51c1a5669db24d08b8b5d66e8c84fe541e23c6863dc9e67cf0eb29099d",
+      "text": "[Unit]\nDescription=BTCUSDT futures aggtrade hourly collection sessions\nWants=network-online.target\nAfter=network-online.target\nStartLimitIntervalSec=0\n\n[Service]\nType=simple\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nEnvironment=SESSION_SECONDS=3600\nExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . aggtrade-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 3600 --min-free-gib 10\nRestart=always\nRestartSec=15s\nKillSignal=SIGINT\nTimeoutStopSec=120s\nStandardOutput=journal\nStandardError=journal\n\n[Install]\nWantedBy=default.target\n",
+      "mtime_ns": 1790143761403030174
+    },
+    "/usr/lib/systemd/system/systemd-timesyncd.service": {
+      "sha256": "f7e5b08e61f52c3fd8fc9d3f96668cc12109499a3e4eb74f0e91cf068e7e063a",
+      "text": "#  SPDX-License-Identifier: LGPL-2.1-or-later\n#\n#  This file is part of systemd.\n#\n#  systemd is free software; you can redistribute it and/or modify it\n#  under the terms of the GNU Lesser General Public License as published by\n#  the Free Software Foundation; either version 2.1 of the License, or\n#  (at your option) any later version.\n\n[Unit]\nDescription=Network Time Synchronization\nDocumentation=man:systemd-timesyncd.service(8)\nConditionCapability=CAP_SYS_TIME\nConditionVirtualization=!container\nDefaultDependencies=no\nAfter=systemd-sysusers.service\nBefore=time-set.target sysinit.target shutdown.target\nConflicts=shutdown.target\nWants=time-set.target\n\n[Service]\nAmbientCapabilities=CAP_SYS_TIME\nBusName=org.freedesktop.timesync1\nCapabilityBoundingSet=CAP_SYS_TIME\n# Turn off DNSSEC validation for hostname look-ups, since those need the\n# correct time to work, but we likely won't acquire that without NTP. Let's\n# break this chicken-and-egg cycle here.\nEnvironment=SYSTEMD_NSS_RESOLVE_VALIDATE=0\nExecStart=!!/usr/lib/systemd/systemd-timesyncd\nLockPersonality=yes\nMemoryDenyWriteExecute=yes\nNoNewPrivileges=yes\nPrivateDevices=yes\nPrivateTmp=yes\nProtectProc=invisible\nProtectControlGroups=yes\nProtectHome=yes\nProtectHostname=yes\nProtectKernelLogs=yes\nProtectKernelModules=yes\nProtectKernelTunables=yes\nProtectSystem=strict\nRestart=always\nRestartSec=0\nRestrictAddressFamilies=AF_UNIX AF_INET AF_INET6\nRestrictNamespaces=yes\nRestrictRealtime=yes\nRestrictSUIDSGID=yes\nRuntimeDirectory=systemd/timesync\nStateDirectory=systemd/timesync\nSystemCallArchitectures=native\nSystemCallErrorNumber=EPERM\nSystemCallFilter=@system-service @clock\nType=notify\nUser=systemd-timesync\nWatchdogSec=3min\n\n[Install]\nWantedBy=sysinit.target\nAlias=dbus-org.freedesktop.timesync1.service\n",
+      "mtime_ns": 1780673789000000000
+    },
+    "/usr/lib/systemd/system/systemd-time-wait-sync.service": {
+      "sha256": "91cbc016cd9dc754df62230f525c90d0f339208ae8d02bd77652bcef34c66d5a",
+      "text": "#  SPDX-License-Identifier: LGPL-2.1-or-later\n#\n#  This file is part of systemd.\n#\n#  systemd is free software; you can redistribute it and/or modify it\n#  under the terms of the GNU Lesser General Public License as published by\n#  the Free Software Foundation; either version 2.1 of the License, or\n#  (at your option) any later version.\n\n[Unit]\nDescription=Wait Until Kernel Time Synchronized\nDocumentation=man:systemd-time-wait-sync.service(8)\n\n# Note that this tool doesn't need CAP_SYS_TIME itself, but its primary\n# use case is to run in conjunction with a local NTP service such as\n# systemd-timesyncd.service, which is conditioned this way. There might be\n# niche use cases where running this service independently is desired, but let's\n# make this all \"just work\" for the general case, and leave it to local\n# modifications to make it work in the remaining cases.\n\nConditionCapability=CAP_SYS_TIME\nConditionVirtualization=!container\n\nDefaultDependencies=no\nBefore=time-sync.target shutdown.target\nWants=time-sync.target\nConflicts=shutdown.target\n\n[Service]\nType=oneshot\nExecStart=/usr/lib/systemd/systemd-time-wait-sync\nTimeoutStartSec=infinity\nRemainAfterExit=yes\n\n[Install]\nWantedBy=sysinit.target\n",
+      "mtime_ns": 1780673789000000000
+    },
+    "/usr/lib/systemd/system/NetworkManager-wait-online.service": {
+      "sha256": "8a816455b4711821c740bfa676e14b5275dde2d8897bfc96b0c93557df1cb7f6",
+      "text": "[Unit]\nDescription=Network Manager Wait Online\nDocumentation=man:NetworkManager-wait-online.service(8)\nRequires=NetworkManager.service\nAfter=NetworkManager.service\nBefore=network-online.target\n\n[Service]\n# `nm-online -s` waits until the point when NetworkManager logs\n# \"startup complete\". That is when startup actions are settled and\n# devices and profiles reached a conclusive activated or deactivated\n# state. It depends on which profiles are configured to autoconnect and\n# also depends on profile settings like ipv4.may-fail/ipv6.may-fail,\n# which affect when a profile is considered fully activated.\n# Check NetworkManager logs to find out why wait-online takes a certain\n# time.\n\nType=oneshot\nExecStart=/usr/bin/nm-online -s -q\nRemainAfterExit=yes\n\n# Set $NM_ONLINE_TIMEOUT variable for timeout in seconds.\n# Edit with `systemctl edit NetworkManager-wait-online`.\n#\n# Note, this timeout should commonly not be reached. If your boot\n# gets delayed too long, then the solution is usually not to decrease\n# the timeout, but to fix your setup so that the connected state\n# gets reached earlier.\nEnvironment=NM_ONLINE_TIMEOUT=60\n\n[Install]\nWantedBy=network-online.target\n",
+      "mtime_ns": 1781775202000000000
+    },
+    "/usr/lib/systemd/system/network-online.target": {
+      "sha256": "5227af8374af7c9d4d73c0b91c19bcc94c069a3e9fb29650846b9d366729afee",
+      "text": "#  SPDX-License-Identifier: LGPL-2.1-or-later\n#\n#  This file is part of systemd.\n#\n#  systemd is free software; you can redistribute it and/or modify it\n#  under the terms of the GNU Lesser General Public License as published by\n#  the Free Software Foundation; either version 2.1 of the License, or\n#  (at your option) any later version.\n\n[Unit]\nDescription=Network is Online\nDocumentation=man:systemd.special(7)\nDocumentation=https://systemd.io/NETWORK_ONLINE\nAfter=network.target\n",
+      "mtime_ns": 1709054764000000000
+    },
+    "/usr/lib/systemd/system/time-sync.target": {
+      "sha256": "ae49376a899db46acbc604d0caea7c55466d4afbc6ced06a01777e3f576b0f27",
+      "text": "#  SPDX-License-Identifier: LGPL-2.1-or-later\n#\n#  This file is part of systemd.\n#\n#  systemd is free software; you can redistribute it and/or modify it\n#  under the terms of the GNU Lesser General Public License as published by\n#  the Free Software Foundation; either version 2.1 of the License, or\n#  (at your option) any later version.\n\n[Unit]\nDescription=System Time Synchronized\nDocumentation=man:systemd.special(7)\nRefuseManualStart=yes\nAfter=time-set.target\nWants=time-set.target\n",
+      "mtime_ns": 1709054764000000000
+    },
+    "/usr/lib/systemd/system/user@.service": {
+      "sha256": "1855974fab4af1fcba640201e87b1142118c043916df6b8d9e7868773a900cc9",
+      "text": "#  SPDX-License-Identifier: LGPL-2.1-or-later\n#\n#  This file is part of systemd.\n#\n#  systemd is free software; you can redistribute it and/or modify it\n#  under the terms of the GNU Lesser General Public License as published by\n#  the Free Software Foundation; either version 2.1 of the License, or\n#  (at your option) any later version.\n\n[Unit]\nDescription=User Manager for UID %i\nDocumentation=man:user@.service(5)\nAfter=user-runtime-dir@%i.service dbus.service systemd-oomd.service\nRequires=user-runtime-dir@%i.service\nIgnoreOnIsolate=yes\n\n[Service]\nUser=%i\nPAMName=systemd-user\nType=notify-reload\nExecStart=/usr/lib/systemd/systemd --user\nSlice=user-%i.slice\nKillMode=mixed\nDelegate=pids memory cpu\nDelegateSubgroup=init.scope\nTasksMax=infinity\nTimeoutStopSec=120s\nKeyringMode=inherit\nOOMScoreAdjust=100\nMemoryPressureWatch=skip\n",
+      "mtime_ns": 1780673789000000000
+    }
+  },
+  "timesync_dropins": {
+    "/etc/systemd/timesyncd.conf.d": {},
+    "/run/systemd/timesyncd.conf.d": {},
+    "/usr/lib/systemd/timesyncd.conf.d": {}
+  },
+  "markers": {
+    "/run/systemd/timesync/synchronized": {
+      "exists": true,
+      "mtime_ns": 1791204368638534683,
+      "size": 0,
+      "uid": 996
+    },
+    "/var/lib/systemd/timesync/clock": {
+      "exists": true,
+      "mtime_ns": 1791205347881745870,
+      "size": 0,
+      "uid": 996
+    }
+  },
+  "journals": {
+    "startup-system": {
+      "command": [
+        "journalctl",
+        "--boot=0",
+        "--since=2026-10-05 10:58:00 UTC",
+        "--until=2026-10-05 11:05:00 UTC",
+        "--no-pager",
+        "-o",
+        "json",
+        "--output-fields=__REALTIME_TIMESTAMP,__MONOTONIC_TIMESTAMP,_BOOT_ID,_PID,_SYSTEMD_UNIT,_SYSTEMD_USER_UNIT,MESSAGE",
+        "-u",
+        "user@1000.service",
+        "-u",
+        "NetworkManager-wait-online.service",
+        "-u",
+        "systemd-time-wait-sync.service",
+        "-u",
+        "systemd-timesyncd.service"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "sha256": "0b8910080a6c931786183d53157d8f3b0e71341f9ba83c70049df159d05f9d08",
+      "rows": 448,
+      "path": "startup-system.jsonl.gz"
+    },
+    "startup-user": {
+      "command": [
+        "journalctl",
+        "--boot=0",
+        "--since=2026-10-05 10:58:00 UTC",
+        "--until=2026-10-05 11:05:00 UTC",
+        "--no-pager",
+        "-o",
+        "json",
+        "--output-fields=__REALTIME_TIMESTAMP,__MONOTONIC_TIMESTAMP,_BOOT_ID,_PID,_SYSTEMD_UNIT,_SYSTEMD_USER_UNIT,MESSAGE",
+        "--user"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "sha256": "0e5e9ee7cb1c940ac8fea2ed7660de13e6c293e999dedd2540536a743dcaecc7",
+      "rows": 438,
+      "path": "startup-user.jsonl.gz"
+    }
+  },
+  "settings_changed": false,
+  "services_restarted": [],
+  "new_network_probes": 0
+}

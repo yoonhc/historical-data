@@ -1,0 +1,12 @@
+[Unit]
+Description=Wait for current clock readiness before scheduled marketdata work
+
+[Service]
+Type=oneshot
+ExecStart=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py wait --profile /etc/marketdata/clock-bootstrap.json
+TimeoutStartSec=infinity
+TimeoutStopSec=10s
+RemainAfterExit=no
+NoNewPrivileges=yes
+StandardOutput=journal
+StandardError=journal

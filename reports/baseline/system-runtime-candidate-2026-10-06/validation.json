@@ -1,0 +1,71 @@
+{
+  "changed_candidate_baseline_files": [
+    "pyproject.toml"
+  ],
+  "chrony_package": "not-installed",
+  "clean_install_distributions": {
+    "anyio": "4.15.1",
+    "certifi": "2026.7.22",
+    "duckdb": "1.5.5",
+    "h11": "0.16.0",
+    "httpcore": "1.0.9",
+    "httpx": "0.28.1",
+    "idna": "3.20",
+    "marketdata": "0.1.0",
+    "marketdata-freqtrade": "0.1.0",
+    "pyarrow": "23.0.1",
+    "typing_extensions": "4.16.0",
+    "websockets": "17.1"
+  },
+  "clean_regression": {
+    "errors": "0",
+    "failures": "0",
+    "hostname": "hclm",
+    "name": "pytest",
+    "skipped": "0",
+    "tests": "248",
+    "time": "13.983",
+    "timestamp": "2026-10-06T21:05:54.478538+09:00"
+  },
+  "collector_regressions": 199,
+  "initial_attempts": [
+    {
+      "reason": "frozen incident fixtures absent from initial copy",
+      "resolution": "included unchanged original fixture bundle; 6 passed and final 248 passed",
+      "result": "233 passed, 6 failed",
+      "test": "regressions"
+    },
+    {
+      "reason": "harness treated expected first start failure as whole test failure",
+      "resolution": "--no-block then observe NRestarts; 2 retries and recovery verified",
+      "result": "first pre-start failure returned nonzero",
+      "test": "transient systemd harness"
+    },
+    {
+      "reason": "-x alone does not disable root check",
+      "resolution": "documented -U with -x and explicit same user; CapEff=0",
+      "result": "Not superuser",
+      "test": "isolated chrony"
+    },
+    {
+      "reason": "lazy Store creates state only; /tmp filesystem has no matching UUID",
+      "resolution": "kept validation strict; checked actual operational paths read-only with wait-ready only; no collector launch",
+      "result": "required data directory absent, then mount UUID mismatch",
+      "test": "CLI isolated empty store"
+    }
+  ],
+  "operating_source_files_unchanged": 139,
+  "operational_applied": false,
+  "original_stream_units_equal": {
+    "marketdata-aggtrade.service": true,
+    "marketdata-depth.service": true
+  },
+  "real_host_clock_accuracy_verified": false,
+  "reboot_test": false,
+  "release_id": "system-runtime-20261006-c09bafd0645578a3",
+  "retirement_authorization_sha256": "6b630689fcf4bb11294711299d63f09238a6a3de2a5704a13599b913fe3f9be0",
+  "retirement_authorization_unchanged": true,
+  "rtc_adjtime_last_line": "LOCAL",
+  "runtime_tests": 49,
+  "source_archive_verified": true
+}

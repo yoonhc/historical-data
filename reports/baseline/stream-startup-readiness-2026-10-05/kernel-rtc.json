@@ -1,0 +1,52 @@
+{
+  "command": [
+    "journalctl",
+    "--boot=0",
+    "-k",
+    "--no-pager",
+    "-o",
+    "json",
+    "--grep=rtc_cmos|rtc0|setting system clock",
+    "--output-fields=__REALTIME_TIMESTAMP,__MONOTONIC_TIMESTAMP,_BOOT_ID,MESSAGE"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "rows": [
+    {
+      "__REALTIME_TIMESTAMP": "1791198038616234",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=174ffe;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=182062;t=65d15cad068aa;x=9cb532b937d37f87",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "MESSAGE": "rtc_cmos 00:01: RTC can wake from S4",
+      "__SEQNUM": "1527806",
+      "__MONOTONIC_TIMESTAMP": "1581154"
+    },
+    {
+      "__MONOTONIC_TIMESTAMP": "1581229",
+      "MESSAGE": "rtc_cmos 00:01: registered as rtc0",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=174fff;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=1820ad;t=65d15cad068f4;x=76f78731cdca2d47",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64",
+      "__REALTIME_TIMESTAMP": "1791198038616308",
+      "__SEQNUM": "1527807"
+    },
+    {
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "MESSAGE": "rtc_cmos 00:01: setting system clock to 2026-10-05T20:00:37 UTC (1791230437)",
+      "__REALTIME_TIMESTAMP": "1791198038616383",
+      "__SEQNUM": "1527808",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=175000;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=1820f8;t=65d15cad0693f;x=a3f79dead6e3be33",
+      "__MONOTONIC_TIMESTAMP": "1581304",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64"
+    },
+    {
+      "__MONOTONIC_TIMESTAMP": "1581376",
+      "__SEQNUM": "1527809",
+      "__SEQNUM_ID": "bfe5c3abefbc4286ac508de0de8d2a64",
+      "__REALTIME_TIMESTAMP": "1791198038616455",
+      "_BOOT_ID": "a2da5ccc0fc44b01ac6faac092a66d6e",
+      "MESSAGE": "rtc_cmos 00:01: alarms up to one month, y3k, 114 bytes nvram",
+      "__CURSOR": "s=bfe5c3abefbc4286ac508de0de8d2a64;i=175001;b=a2da5ccc0fc44b01ac6faac092a66d6e;m=182140;t=65d15cad06987;x=b960ca116e5a305d"
+    }
+  ]
+}

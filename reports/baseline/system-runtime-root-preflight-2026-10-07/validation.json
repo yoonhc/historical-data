@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-10-07T22:56:39.390169+09:00",
+  "checks": {
+    "cleanup_recorded_complete": true,
+    "client_socket_create_and_remove": true,
+    "collector_invocations_preserved": true,
+    "daemon_caps_zero": true,
+    "daemon_no_rtc0": true,
+    "daemon_x_present": true,
+    "exact_protections": true,
+    "operating_files_unchanged": true,
+    "operating_state_preserved": true,
+    "pinned_files_still_match": true,
+    "read_only_tracking": true,
+    "real_file_and_directory_fsync": true,
+    "recorded_pass": true,
+    "root_bounding_caps_exact": true,
+    "root_has_no_sys_time": true,
+    "root_uid": true,
+    "shared_lock_excluded_by_writer": true,
+    "shared_lock_read_allowed": true,
+    "test_paths_currently_absent": true,
+    "user_manager_read": true,
+    "user_privileges_not_expanded": true
+  },
+  "deployment_file_count": 20,
+  "known_remaining_work": [
+    "final installed paths and _chrony ownership/AppArmor",
+    "real Chrony time control and external source quality",
+    "Windows/Linux RTC UTC migration",
+    "real reboot, no duplicate collectors, normal store/exit",
+    "pre-existing daily waiting_source/exit 2 follow-up before transition"
+  ],
+  "monitored_top_level_paths": 379,
+  "operating_transition_applied": false,
+  "passed": true,
+  "release_id": "system-bootstrap-20261007-f85eb8321a19c1ee",
+  "result_file": "result-1f383e4dff67457d.json",
+  "result_sha256": "27d1ac6e57439cc32e292e4492402e18635abf210cf03e4025c6c344af5d84e6",
+  "root_access_test_passed": true,
+  "source_file_count": 172
+}

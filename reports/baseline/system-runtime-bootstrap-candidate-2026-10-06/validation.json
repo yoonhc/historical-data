@@ -1,0 +1,76 @@
+{
+  "changed_or_added_source_files": [
+    "integrations/runtime/README.md",
+    "integrations/runtime/chrony.conf",
+    "integrations/runtime/clock_gate.py",
+    "integrations/runtime/isolated_bootstrap_test.py",
+    "integrations/runtime/profile.example.json",
+    "integrations/runtime/render_bootstrap.py",
+    "integrations/runtime/render_units.py",
+    "integrations/runtime/rtc-utc-confirmation.example.json",
+    "integrations/runtime/user-unit-inventory.json",
+    "tests/test_clock_bootstrap.py",
+    "tests/test_runtime_candidate.py"
+  ],
+  "checks": {
+    "archive_verified": true,
+    "frozen_source_verified": true,
+    "installed_user_units_unchanged": true,
+    "operating_files_unchanged": true,
+    "parent_candidate_unchanged": true,
+    "retirement_grant_unchanged": true,
+    "rtc_adjtime_unchanged": true
+  },
+  "chrony_package": "not-installed",
+  "clean_regression": {
+    "errors": "0",
+    "failures": "0",
+    "hostname": "hclm",
+    "name": "pytest",
+    "skipped": "0",
+    "tests": "285",
+    "time": "14.490",
+    "timestamp": "2026-10-06T23:49:54.919035+09:00"
+  },
+  "collector_regressions": 199,
+  "final_checked_at": "2026-10-07T00:02:03.610896+09:00",
+  "host_clock_control": false,
+  "initial_verification_notes": [
+    "Initial lint expanded single-line test statements; final lint passes.",
+    "Initial subprocess kill test used fork and warned about threads; switched to spawn and final tests have no warning.",
+    "Sandbox denied user systemd bus; explicitly allowed isolated unit test then passed.",
+    "Initial syntax fixture lacked host chronyc; host has no installed Chrony. Only fixture command paths changed to extracted binaries; final root/user syntax checks pass."
+  ],
+  "new_bootstrap_tests": 37,
+  "operating_files_checked": 139,
+  "operational_applied": false,
+  "parent_report_files_checked": 187,
+  "patch_reproduction_passed": true,
+  "pending": [
+    "actual Windows/Linux RTC transition",
+    "actual root unit privileges and chronyd clock control",
+    "live external time source quality",
+    "collector first session end and next session",
+    "clock evidence archival/collection linkage/backup/restore",
+    "permanent checkpoint deletion clock guard",
+    "real reboot and VM resume"
+  ],
+  "regression": {
+    "errors": "0",
+    "failures": "0",
+    "hostname": "hclm",
+    "name": "pytest",
+    "skipped": "0",
+    "tests": "285",
+    "time": "15.088",
+    "timestamp": "2026-10-06T23:46:50.578257+09:00"
+  },
+  "release_id": "system-bootstrap-20261006-81d25b1c4552f21d",
+  "root_system_sandbox_exercised": false,
+  "rtc_mode": "LOCAL",
+  "runtime_regressions": 49,
+  "synthetic_step_commands": 1,
+  "systemd_isolated_passed": true,
+  "systemd_preparation_retries": "2",
+  "windows_utc_confirmed": false
+}

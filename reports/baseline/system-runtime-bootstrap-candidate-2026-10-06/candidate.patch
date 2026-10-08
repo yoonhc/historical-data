@@ -1,0 +1,1723 @@
+--- a/integrations/runtime/README.md
++++ b/integrations/runtime/README.md
+@@ -1,121 +1,126 @@
+-# 수집 시스템 서비스 후보 계약
++# 시스템 수집·부팅 초기 시각 보정 후보
+ 
+-이 디렉터리는 depth·aggTrade의 **배포 후보**다. 실행 코드는 별도 release의 비 editable
+-가상환경에서 가져오며, 데이터 루트는 현재 위치를 유지한다. 수집·호가 계산·요청 예산·최소 간격·
+-원문 형식·partial/replay 판정은 바꾸지 않는다. 운영 적용과 재부팅 시험은 별도 승인 대상이다.
++운영에 설치하지 않은 두 번째 후보다. 이전 `system-runtime-20261006-c09bafd0645578a3`는
++수정 없이 보존한다. 원본 collector·Book·요청 정책·partial/replay와 기존 백업 코드는 그대로다.
++이 후보는 Windows/Linux RTC의 UTC 통일을 **적용 전제**로 요구한다. 아직 실제로 확인한 사실이 아니다.
+ 
+-## 역할과 실행
++## 실행과 권한
+ 
+-- 시스템 systemd: `marketdata-collector@depth.service`, `marketdata-collector@aggtrade.service`.
+-  `User=yoonhc`, 루트 권한·시각 변경 capability 없음. 시스템 network-online/Chrony와 순서를 연결한다.
+-- 배포판 `chrony.service`·`chrony-wait.service` 활용. wait unit의 최초 통과만 믿지 않고,
+-  각 수집 시작 시 현재 daemon invocation, 실제 tracking, 설정 해시를 다시 확인한다.
+-- `marketdata_runtime.py`: 준비 확인, 한 개의 collector subprocess 관리, 별도 시각 품질 기록.
+-  `date`, `hwclock`, `chronyc makestep`을 호출하지 않는다. Chrony 조회는 localhost UDP의 읽기 전용
+-  `tracking`만 사용한다. collector에 Chrony 관리 그룹·Unix socket 권한을 주지 않는다.
+-- collector는 고정 가상환경의 `python -I`로 실행한다. 기존 개발 경로·PYTHONPATH·사용자 site의
+-  package를 가져오지 않는다. UID·설치 receipt·Python 버전·실행 소스 해시·data UUID·접근성을 검사한다.
+-- 데이터 루트의 기존 stream flock도 그대로 사용한다. 사용자 서비스의 자동 시작을 해제한 뒤
+-  새 시스템 서비스로 전환하며, 실수로 두 CLI를 실행해도 기존 flock이 중복 writer를 거부한다.
++- 시스템 `marketdata-collector@depth/aggtrade.service`는 일반 계정으로 고정 release의
++  비 editable venv와 `python -I`를 사용한다. 기존 runtime 준비 검사·시각 감시·SIGINT 종료를 유지한다.
++- `marketdata-clock-bootstrap.service`만 root로 초기 절차를 관리한다. 직접 시각 변경 syscall은
++  `ProtectClock=yes`, capability 제한으로 차단하고 Chrony의 Unix socket에 인자 없는 `makestep`을
++  요청한다. collector에는 그 socket의 쓰기 권한이나 시각 변경 capability를 주지 않는다.
++- 정상 Chrony 설정은 `rtcsync`, `minpoll 6 maxpoll 8`을 사용하며 `makestep`, `initstepslew`,
++  숨은 include/local reference는 없다. 재시작만으로 자동 step window가 생기지 않는다.
++  윤초도 `leapsecmode slew`를 명시하여 기본 kernel step을 피한다. 그 구간의 Leap/오차 품질은
++  기존 검사대로 별도 거부·기록하며 UTC와 일시적 오차가 없다는 뜻은 아니다.
++- Chrony 자체의 ExecStartPre가 Windows UTC 확인 자료, `/etc/adjtime=UTC`, `LocalRTC=no`를 읽는다.
++  준비되지 않았으면 **RTC 쓰기가 있는 daemon부터 시작하지 않는다**. Linux/Windows 설정은 이 코드가
++  바꾸지 않는다. Windows 확인은 운영자가 제공한 증거이며 Linux에서 Windows 레지스트리를 검증했다고 주장하지 않는다.
+ 
+-서비스는 `ExecStartPre` 준비 실패 시 실패로 종료하고 `Restart=always`, 15초 뒤 재시도한다.
+-`StartLimitIntervalSec=0`으로 반복 실패 후 영구 정지하지 않는다. 준비 대기는 monotonic 120초,
+-각 외부 명령은 최대 3초이며, pre-start 제한은 150초다. 네트워크는 startup target과 필수 호스트
+-DNS를 확인한다. 거래소 API를 추가 호출하지 않으며 이후 인터넷 지속성을 보장하지 않는다.
+-기존 소켓 재연결은 collector가 맡는다. 새 시각 프로필 수치는 승인된 단위 시간 제한과 함께 변경한다.
++## 부팅별 보정 허용 상태
+ 
+-supervisor는 SIGINT/SIGTERM을 받으면 child process group에 SIGINT를 보내 120초까지 저장 종료를
+-기다린다. systemd `KillMode=mixed`, `TimeoutStopSec=150s`로 비정상 잔류 프로세스도 함께 관리한다.
+-정상·partial·error collector 종료 코드는 유지한다. 한 시간 세션 뒤 systemd가 새 준비 검사를 한다.
++`/var/lib/marketdata-clock/boot-state.json`은 root 소유의 영속 상태다. `/run` 표시만 사용하지 않는다.
++부팅 ID·전체 bootstrap profile 해시·최초 boottime·명령 시도·결과 알려짐 여부를 포함한다.
++root 소유 0755 디렉터리/0644 상태 파일을 일반 계정은 읽기만 한다. 비밀값은 없다.
+ 
+-## Chrony와 듀얼부팅
++```text
++첫 설치: installation_hold (현재 부팅에서는 보정/작업 시작 금지)
++다음 부팅: preparing
++  → 유효 시간원 확인
++  → 필요하면 step_intent 저장·fsync
++  → 인자 없는 chronyc makestep 최대 1회 요청
++  → step_returned
++  → 현재의 전체 품질 검사
++  → closed 저장·fsync
++  → 각 작업이 현재 품질을 다시 검사한 후 시작
++```
+ 
+-현재 PC는 사용자가 확인한 **Windows 등 다른 OS와의 듀얼부팅**이다. 후보 `chrony.conf`에는
+-`rtcsync`, `rtcfile`, `makestep`, `initstepslew`, local reference, 외부 설정 include가 없다.
+-`/etc/adjtime`·LocalRTC·Windows 설정은 이번에 바꾸지 않는다. RTC가 왜 빨라졌는지는 미확인이다.
+-파일 접근 정책을 완화하지 않도록 NTP 설정은 배포판 AppArmor가 허용하는
+-`/etc/chrony/marketdata.conf`에 둔다. 런타임 프로필은 `/etc/marketdata/runtime.json`에 둔다.
++- 준비가 끝난 순간 그 부팅의 step 허용을 닫는다. child가 아직 안 떴거나 hourly 사이 PID가 없어도
++  다시 열지 않는다. 완료한 oneshot/Chrony 재시작은 추가 step을 허용하지 않는다.
++- 명령 전 intent를 저장한다. 강제 종료·명령 timeout·응답 유실 뒤에는 명령을 재전송하지 않는다.
++  `step_result=unknown`을 유지하면서 현재 품질만 검사한다. 나중에 품질이 충분하면 작업은 시작할 수
++  있지만 과거 명령 성공을 소급하여 만들지 않는다. 큰 오차가 남으면 점검이 필요하다.
++- 없는/손상된 ledger나 다른 profile을 자동 초기화하지 않는다. `enroll`은 기존 상태를 덮어쓰지 않고,
++  설치한 현재 부팅을 hold 상태로 등록하는 명령이다. 상태 삭제를 재시도 방법으로 쓰지 않는다.
++- 파일 잠금은 두 coordinator의 동시 실행을 막는다. 상태 공개 전 저장 실패는 작업 시작을 허용하지 않는다.
++  일반 계정의 시작 검사도 같은 파일의 공유 잠금에 참여하므로, coordinator가 기록 중인 상태를
++  커밋 완료로 읽어 통과하지 않는다.
++- 새 부팅은 다시 초기 준비 대상이다. VM 복원으로 같은 boot ID가 돌아온 경우에는 기존 closed가 유지되고
++  현재 품질 검사가 적용된다. 실제 VM pause/resume 동작은 별도 미검증이다.
+ 
+-배포판 기본값 `makestep 1 3`을 그대로 쓰지 않는다. 단순 waitsync 통과는 남아 있는 자동 step
+-횟수를 닫는 동작이 아니며, daemon 재시작은 그 횟수를 다시 열 수 있기 때문이다.
+-후보는 **부팅 때도 재시작 때도 자동 큰 보정을 하지 않는 steady daemon**을 사용한다.
+-초기 오차가 크면 slew 동안 수집 시작이 늦어진다. 120초 초과 시 자동 통과하지 않고 재시도한다.
+-이 비용을 없애기 위해 임의로 step 권한을 주지 않는다.
++## 보정 전 검사와 보정 후 검사의 차이
+ 
+-큰 보정이 필요하면 수집과 시간 기반 정리를 통제한 별도 관리자 절차로만 수행한다.
+-`chronyc makestep`은 이 후보의 자동 명령이 아니다. 실제 운영 적용 때 초기 오차를 측정해
+-slew로 기다릴지, 별도 승인한 수동 step을 할지 선택한다. 부팅마다 step하는 자동 bootstrap은
+-기존 사용자 예약 작업까지 같은 gate에 편입하기 전에는 추가하지 않는다.
++보정 전에는 외부 reference·Leap Normal·source 불확실성·skew·새 측정의 신선도를 검사한다.
++아직 큰 시스템 오차가 있는 시점에 남은 correction 100ms 조건을 요구하지 않는다.
++Chrony 4.5 CSV correction은 system clock에 더할 보정량이다. reference age는 이 단계에서만
++`system wall + correction - reference_time`으로 비교한다. 입력 원문/실제 수신 시각을 고치는 기능이 아니다.
++근거는 [Chrony REF_GetTrackingReport](https://github.com/mlichvar/chrony/blob/4.5/reference.c)다.
+ 
+-RTC 기준은 Windows에서 현재 UTC 사용 여부를 확인한 뒤 두 OS를 함께 정한다. Linux만
+-`set-local-rtc 0`으로 바꾸거나 빠른 RTC로 시스템 시각을 되돌리지 않는다. 미래 Linux 전용 VM의
+-UTC RTC/rtcsync는 별도 머신 프로필로 승인·검증한다. 시간대 Asia/Seoul과 RTC 기준은 별개다.
++| 항목 | 초기 후보 정책 |
++|---|---:|
++| 보정 전 reference age | 30초 이내, 미래 허용 100ms |
++| 보정 요청 임계값 | 남은 correction 절댓값 > 100ms |
++| 자동 초기 보정 상한 | 300초; 9시간 같은 RTC 기준 오류는 점검 대상으로 보류 |
++| 보정 후/작업 시작 남은 correction | 100ms 이하 |
++| 보정 후 조건부 오차 상한 | 500ms 이하 |
++| 보정 후 reference age | 600초 이하 |
++| skew | 100ppm 이하 |
++| 준비 시도 제한/재시도 | monotonic 120초/서비스 15초 후 재시도 |
++| 장기 대기 표시 | 현재 부팅 최초 시도 이후 600초, boottime으로 누적 |
+ 
+-## 시작 시각 정책: 우선 검증할 초기 수치
++초기 정책값이며 실제 시간원 품질을 측정하여 최적화한 값은 아니다. maxpoll 8은 명목상 최대 256초다.
++600초와 기본 maxpoll 10의 1,024초가 충돌하는 설정은 아니다. 유효 측정 거부·통신 실패는 여전히
++reference를 오래되게 할 수 있다. 10초 tracking 조회가 10초 NTP 측정이라는 뜻도 아니다.
+ 
+-| 조건 | 후보 값 |
+-|---|---:|
+-| 남은 시스템 보정량 | 100ms 이하 |
+-| 조건부 오차 상한: abs(correction)+dispersion+max(delay,0)/2 | 500ms 이하 |
+-| 마지막 reference age | 600초 이하, 허용 미래값 100ms 이하 |
+-| 주파수 불확실성 | 100ppm 이하 |
+-| Leap status | Normal만 허용; 윤초 예고 시 보수적으로 신규 시작 보류 |
+-| 외부 reference | 비 loopback·비 unspecified 주소, stratum 1~15 |
++부트 coordinator가 배포판 chrony-wait(남은 correction 0.1초 조건)보다 앞에 온다.
++최종 `rt.assess_clock` 검사는 waitsync보다 reference/불확실성 조건까지 검사한다. 배포판 wait와
++각 collector runtime 검사도 유지한다. marker가 준비된 뒤에도 각 작업은 최신 tracking을 다시 읽는다.
+ 
+-이 값은 새 PC의 Chrony를 실측해 최적화한 값이 아니며, ms 단위 지연 정확성을 인증하지 않는다.
+-UTC 오차 상한도 시간원이 올바르다는 전제를 갖는다. `-x` daemon은 시작 조건에서 거부한다.
+-Leap 예고를 허용하려면 예상 윤초 정책과 신규 gate 시험을 별도로 검토한다.
++## 기존 예약 작업 연결
+ 
+-## 실행 중 시각 품질
++`user-unit-inventory.json`은 현재 20개 사용자 unit을 분류한다.
+ 
+-1초 간격으로 UTC·monotonic·CLOCK_BOOTTIME을 관측한다. 시계 호출 사이의 스케줄링 지연도 기록한다.
+-wall-boottime 차이 250ms 초과, boottime-monotonic 차이 250ms 초과, 관측 간격 5초 초과,
+-Chrony 불가·기준 미충족·invocation 변경을 품질 이상으로 기록한다. Chrony는 10초마다 조회한다.
+-큰 보정을 수집기가 직접 되돌리거나 timestamp를 억지로 증가시키지 않는다.
++- 8개 service: OI·OI probe·OI quality·daily·pack·backup·restic archive·network observer에
++  `/etc/systemd/user/<unit>.d/90-marketdata-clock.conf`를 준비한다. 기존 명령은 유지하고,
++  root 상태+현재 시각의 읽기 전용 `ExecStartPre` 검사를 추가한다.
++- 대응 timer 8개는 기존 예약을 유지할 후보다. 초기 준비 중 실행이 거부되면 기존 service 재시도나
++  다음 timer에서 다시 평가한다. 수집 두 stream은 Restart=always로 준비 회복 후 자동 재시작한다.
++- 옛 depth/aggTrade service와 checkpoint retirement service/timer는 **persistent mask**로 유지할
++  전환안이다. 정리 grant는 바꾸지 않는다. 자동 삭제는 영구 시각 gate 별도 검증/승인 전 재개하지 않는다.
+ 
+-이상이 생기면 **그 supervisor 실행의 `clock_usable=false`를 유지**한다. 원문 child는 계속
+-실행하며 다음 정상 시간 세션과 경계를 구분한다. `violations`는 이상 관측 수이며 장애 사건 수가 아니다.
+-시각이 회복돼도 그 실행의 과거 이상을 지우지 않는다. 다음 hourly 실행은 새로운 현재 준비 확인을 한다.
++step 전에는 실제 user manager의 unit 목록·effective ExecStartPre·timer 대상·persistent mask와
++실행 중 PID를 확인한다. 시스템 collector도 비실행이어야 한다. 조회가 불가능하거나 새 unit이 발견되면
++보류한다. 시스템 `After=`가 사용자 manager까지 연결된다고 가정하지 않는다.
+ 
+-`state/runtime-clock/<stream>/<run-id>.jsonl`에 append/fsync 후 `latest.json`을 원자 교체한다.
+-boot ID·supervisor/child PID·프로세스 시작 tick·systemd invocation·프로필 해시·UTC/단조 시각·
+-원인·관측 전후 불확실 구간을 남긴다. JSONL은 누적 근거이고 latest는 현재 조회용 사본이다.
+-상태 조회는 최대 25초 신선도, 동일 boot/profile, supervisor/child 생존, 시각 연속성을 검사한다.
+-latest 쓰기 실패 시 수집 child를 종료하고 서비스 오류를 남긴다. 저장 장치 자체가 쓰기를 거부하면
+-파일 근거를 보장하지 않으며 stderr/systemd 기록과 신선도 제한을 함께 사용한다.
++이 보호는 명시한 서비스 진입점에 대한 것이다. 관리자가 별도 수동 CLI나 미등록 작업을 실행하거나,
++root 상태/유닛을 바꾸면서 step 절차와 경쟁하는 경우까지 강제 격리하지 않는다. 전환 시 수동 작업도
++종료·금지하고 부팅 자동 시작 전체 목록을 조사한다. OS 전체의 모든 프로세스가 gate에 참여한다는 뜻이 아니다.
+ 
+-**이 근거는 메시지별 시각 인증이 아니다.** 1초 사이의 작은 이동, 상쇄된 이동, 샘플 사이 daemon
+-장애를 전부 검출한다고 보장하지 않는다. VM의 모든 resume 형태를 실측한 것도 아니다.
+-Chrony 상태는 최대 조회 간격+명령 지연 뒤 감지한다. OS/VM 관리자 시간 변경을 강제로 차단하지 않는다.
++## 관측과 남은 작업
+ 
+-`depth-status`/`aggtrade-status`의 기존 데이터 품질과 이 시각 상태를 **둘 다** 확인한다.
+-이 후보는 기존 healthy/partial/replay 값을 수정하지 않는다. JSONL을 기존 report의 대체물이나
+-새 revision으로 취급하지 않는다. collection ID와의 정확한 연결은 child PID·invocation의 collector
+-journal을 함께 사용한다. 데이터 파일에 run ID를 추가하거나 연구 adapter에서 자동 제외하는 기능은
+-이번 단계에 없다. 연구에서 영향을 받은 메시지를 자동 식별하려면 그 접점을 별도로 구현해야 한다.
++기존 runtime은 1초 UTC/monotonic/boottime, 10초 provider/heartbeat를 관측한다. 시각 이상 후에는
++그 실행의 clock_usable=false를 유지하며 원문 child는 계속 수집한다. 감시 기록 저장 실패 시에는
++child를 SIGINT로 종료한다. raw 수신 시각을 증가값으로 조작하거나 과거 partial을 수정하지 않는다.
+ 
+-## 설치 자료와 검증 경계
++장기 대기는 bootstrap stdout의 구조화 결과와 journal warning으로 확인한다. 외부 메신저/이메일 알림을
++설치하거나 보냈다는 의미가 아니다. ledger에 처음 기다린 boottime이 남아 재시도로 경과시간이 초기화되지 않는다.
++실패 원인이 파일/RTC/서비스 접근인 경우 stderr에도 남고 자동 통과하지 않는다.
+ 
+-`profile.example.json`은 이 PC의 기존 경로·UUID·UID를 담은 **설치 예시**다. `RELEASE_ID` 치환,
+-소유권·마운트 확인, evidence 디렉터리 사전 생성, 고정 prefix의 새 가상환경 생성이 필요하다.
+-venv를 다른 경로로 복사하지 않는다. `uv.lock`과 setuptools build constraint를 사용하여 새 경로에서
+-`uv sync --frozen --no-editable --no-dev --link-mode copy` 후 `seal_runtime.py`로 설치 receipt를 만든다.
+-운영에서는 release/venv와 프로필을 root 소유·수집 계정 쓰기 불가로 두고 state/data만 쓰게 한다.
+-그 소유권 전환과 `/opt`, `/etc`, 유닛 설치는 아직 하지 않았다.
++runtime JSONL은 실행마다 파일이 나뉘지만 총용량/보관 관리가 아직 없다. bootstrap events/ledger 역시
++현재 daily/restic 백업 목록에 편입되지 않는다. **닫힌 로그 불변 확정·압축/용량 경보·collection 연결·
++기존 검증/백업/복원 편입**이 다음 필수 작업이다. 로그가 없으면 시각 품질은 미확인이다.
++기존 depth-status healthy와 clock_usable은 다른 의미이며 어느 하나로 나머지를 대체하지 않는다.
+ 
+-`isolated_service_test.py`는 고유 이름의 **사용자** transient unit에서 가짜 provider/collector로
+-재시도·회복·종료를 확인한다. root system unit의 모든 sandbox 옵션이나 실제 거래소 접속 검증으로
+-확대하지 않는다. `isolated_chrony_test.py`는 일반 사용자, CapEff=0, `-x -U`의 실제 바이너리와
+-루프백 가짜 NTP만 사용한다. 호스트 시각을 보정하거나 실제 외부 시간원의 정확도를 입증하지 않는다.
++## 재현 범위
+ 
+-## 자동 정리와 복구 경계
++`test_clock_bootstrap.py`는 ±41초 합성 입력, SIGKILL 전후 지속 상태, 잠금·저장·명령 timeout,
++RTC 확인·unit inventory·재시작을 격리 검사한다. `isolated_bootstrap_test.py`는 무작위 이름의 사용자
++systemd 시험 unit만 만들고 JSON 가짜 시각을 사용한다. 호스트 clock/RTC/운영 service에는 손대지 않는다.
++실제 root system unit 보호 옵션·runuser·Unix socket 권한·외부 NTP 품질과 Windows 왕복 부팅은 운영
++전환 과정에서 확인할 항목이다. 격리 결과로 실제 boot/clock 제어 성공을 주장하지 않는다.
+ 
+-Chrony 설치·시간 보정 전 `marketdata-checkpoint-retirement.timer`의 새 실행을 해제하고,
+-이미 실행 중인 정리를 완료할 때까지 기다려 비활성 상태를 확인한다. 중간 삭제를 강제 종료하지 않는다.
+-기존 grant·정리 코드·정책·타이머 내용은 수정하지 않는다. 패키지 설치가 자동으로 timesyncd를
+-대체하고 daemon을 시작할 수 있으므로, 설치 자체가 운영 전환에 포함된다.
+-
+-시간 준비와 새 수집의 정상 저장 확인 후에만 기존 예약 복원을 검토한다. 부팅/실행 중 시각이
+-불확실할 때 삭제를 자동 보류하는 **영구 gate는 아직 구현·활성화하지 않았다**. 이 작업은 기존
+-반복 승인 범위를 바꾸므로 별도 후보·격리 시험·승인을 필요로 한다. 이번 runtime의 clock 상태를
+-확인하지 않는 기존 정리기가 자동 보호된다고 주장하지 않는다. forget/prune·시험 공간 삭제도 없다.
++참고: [Chrony commands](https://chrony-project.org/doc/4.5/chronyc.html),
++[Chrony configuration](https://chrony-project.org/doc/4.5/chrony.conf.html),
++[systemd service](https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html).
+--- a/integrations/runtime/chrony.conf
++++ b/integrations/runtime/chrony.conf
+@@ -1,11 +1,13 @@
+ # Candidate only. Install under /etc/chrony/marketdata.conf after a separately approved cutover.
+-# No automatic clock step, RTC write, local reference, or hidden config includes.
++# RTC UTC confirmation is required by the chrony unit's ExecStartPre.
++# Steady daemon has no automatic step; the separate boot coordinator owns it.
+ pool ntp.ubuntu.com iburst maxsources 4 minpoll 6 maxpoll 8
++rtcsync
+ driftfile /var/lib/chrony/chrony.drift
+ logdir /var/log/chrony
+ maxupdateskew 100.0
+ leapsectz right/UTC
++leapsecmode slew
+ port 0
+ bindcmdaddress 127.0.0.1
+ cmdport 323
+-
+--- /dev/null
++++ b/integrations/runtime/clock_gate.py
+@@ -0,0 +1,473 @@
++"""Boot clock coordinator and read-only job gate. No deployment side effects.
++
++Only `bootstrap` can request a step, through chronyd's Unix socket, as root.
++The persistent ledger is enrolled closed on the installation boot. A new boot
++opens preparation; publishing ready permanently closes stepping for that boot.
++An intent is fsynced BEFORE the sole step attempt. An interrupted/ambiguous step
++is never replayed. Missing/corrupt state is an error, never an invitation to step.
++"""
++
++import argparse
++import contextlib
++import fcntl
++import hashlib
++import importlib.util
++import json
++import math
++import os
++import re
++import signal
++import stat
++import subprocess
++import sys
++import threading
++import time
++from pathlib import Path
++
++SPEC = importlib.util.spec_from_file_location(
++    "clock_runtime", Path(__file__).with_name("marketdata_runtime.py")
++)
++rt = importlib.util.module_from_spec(SPEC)
++SPEC.loader.exec_module(rt)
++
++
++class Hold(RuntimeError):
++    pass
++
++
++def canonical_hash(value):
++    return hashlib.sha256(json.dumps(value, sort_keys=True).encode()).hexdigest()
++
++
++def trusted(path, *, owner=0, directory=False):
++    path = Path(path)
++    # Check the entire path: a root-owned file below a writable directory is not trusted.
++    for part in [path, *path.parents]:
++        s = part.lstat()
++        if stat.S_ISLNK(s.st_mode) or s.st_uid != owner or s.st_mode & 0o022:
++            raise Hold(f"Untrusted ownership/mode/path: {part}")
++    s = path.stat()
++    if not (stat.S_ISDIR(s.st_mode) if directory else stat.S_ISREG(s.st_mode)):
++        raise Hold(f"Wrong path type: {path}")
++    return path
++
++
++def read_profile(path):
++    trusted(path)
++    p = json.loads(Path(path).read_text())
++    required = {
++        "schema",
++        "runtime_profile",
++        "runtime_profile_sha256",
++        "state_dir",
++        "chrony_socket",
++        "rtc_confirmation",
++        "user",
++        "uid",
++        "policy",
++        "user_units",
++        "system_collectors",
++        "guard_command",
++        "guard_files",
++    }
++    if set(p) != required or p["schema"] != 1:
++        raise Hold("Unknown/missing bootstrap profile fields")
++    if (
++        not re.fullmatch(r"[a-z_][a-z0-9_-]*", p["user"])
++        or type(p["uid"]) is not int
++        or p["uid"] <= 0
++    ):
++        raise Hold("Invalid non-root service account")
++    for key in ("runtime_profile", "state_dir", "chrony_socket", "rtc_confirmation"):
++        if not re.fullmatch(r"/[A-Za-z0-9_./-]+", p[key]) or ".." in Path(p[key]).parts:
++            raise Hold(f"Unsafe profile path: {key}")
++    expected_policy = {
++        "step_above_seconds",
++        "max_initial_correction_seconds",
++        "source_age_seconds",
++        "attempt_seconds",
++        "poll_seconds",
++        "long_wait_seconds",
++    }
++    if set(p["policy"]) != expected_policy:
++        raise Hold("Explicit bootstrap policy required")
++    for v in p["policy"].values():
++        if type(v) not in (int, float) or not math.isfinite(v) or v <= 0:
++            raise Hold("Invalid bootstrap policy value")
++    trusted(p["runtime_profile"])
++    if rt.digest(p["runtime_profile"]) != p["runtime_profile_sha256"]:
++        raise Hold("Runtime profile changed")
++    runtime = rt.load_profile(p["runtime_profile"])
++    trusted(runtime["chronyc"])
++    if runtime["uid"] != p["uid"]:
++        raise Hold("Runtime/bootstrap UID mismatch")
++    if p["policy"]["step_above_seconds"] > runtime["policy"]["max_correction_seconds"]:
++        raise Hold("Step threshold must not leave an unhandled readiness interval")
++    if not p["policy"]["step_above_seconds"] < p["policy"]["max_initial_correction_seconds"]:
++        raise Hold("Invalid automatic step range")
++    for name, mode in p["user_units"].items():
++        if not re.fullmatch(r"marketdata-[a-z0-9-]+\.(service|timer)", name):
++            raise Hold("Invalid inventory unit")
++        if mode not in {"masked", "guarded", "timer"}:
++            raise Hold("Invalid inventory mode")
++    if not p["user_units"] or not p["guard_files"] or not p["system_collectors"]:
++        raise Hold("Empty activation inventory")
++    return p, runtime
++
++
++class Ledger:
++    def __init__(self, root):
++        self.root = Path(root)
++        self.path = self.root / "boot-state.json"
++
++    @contextlib.contextmanager
++    def lock(self, *, shared=False):
++        flags = os.O_RDONLY if shared else os.O_CREAT | os.O_RDWR
++        fd = os.open(self.root / "coordinator.lock", flags | os.O_NOFOLLOW, 0o644)
++        try:
++            if not shared:
++                os.fchmod(fd, 0o644)
++            fcntl.flock(fd, (fcntl.LOCK_SH if shared else fcntl.LOCK_EX) | fcntl.LOCK_NB)
++            yield
++        except BlockingIOError as exc:
++            raise Hold("Another bootstrap owns the lock") from exc
++        finally:
++            os.close(fd)
++
++    def read(self):
++        try:
++            value = json.loads(self.path.read_text())
++            if value["schema"] != 1 or value["phase"] not in {
++                "installation_hold",
++                "preparing",
++                "step_intent",
++                "step_returned",
++                "closed",
++            }:
++                raise ValueError("invalid ledger")
++            for k in ("boot_id", "profile_sha256", "first_boottime", "step_attempts"):
++                if k not in value:
++                    raise ValueError(f"missing {k}")
++            if type(value["step_attempts"]) is not int or value["step_attempts"] not in (0, 1):
++                raise ValueError("invalid attempt count")
++            if value["phase"] == "closed" and not value.get("closed_observation", {}).get("ready"):
++                raise ValueError("closed state missing readiness evidence")
++            if value["phase"] in {"step_intent", "step_returned"} and value["step_attempts"] != 1:
++                raise ValueError("invalid intent state")
++            return value
++        except (OSError, ValueError, KeyError) as exc:
++            raise Hold("Missing/corrupt ledger; explicit enrollment/review required") from exc
++
++    def save(self, value):
++        # Public read-only receipt; directory and writers remain root-owned.
++        rt.atomic_json(self.path, value)
++        self.path.chmod(0o644)
++
++    def event(self, kind, **fields):
++        record = {"kind": kind, "sample": rt.stamp(), **fields}
++        with (self.root / "events.jsonl").open("a") as out:
++            out.write(json.dumps(record, sort_keys=True) + "\n")
++            out.flush()
++            os.fsync(out.fileno())
++        return record
++
++
++def source_assessment(tracking, wall_seconds, runtime_policy, boot_policy):
++    # Chrony 4.5 CSV System time is correction to ADD to the raw system clock.
++    # See REF_GetTrackingReport(): now_cooked = now_raw + current_correction.
++    # Pre-step source freshness/bound must not require the system clock to be corrected already.
++    t = {**tracking, "correction": 0.0}
++    policy = {**runtime_policy, "max_reference_age_seconds": boot_policy["source_age_seconds"]}
++    result = rt.assess_clock(t, policy, wall_seconds + tracking["correction"])
++    if abs(tracking["correction"]) > boot_policy["max_initial_correction_seconds"]:
++        result["reasons"].append("initial_correction_exceeds_automatic_limit")
++    result["ready"] = not result["reasons"]
++    result["original_correction_seconds"] = tracking["correction"]
++    return result
++
++
++class Host:
++    def __init__(self, p, runtime, runner=rt.command):
++        self.p, self.runtime, self.runner = p, runtime, runner
++
++    def rtc_check(self):
++        trusted(self.p["rtc_confirmation"])
++        receipt = json.loads(Path(self.p["rtc_confirmation"]).read_text())
++        if receipt.get("schema") != 1 or receipt.get("windows_utc_confirmed") is not True:
++            raise Hold("Windows UTC RTC confirmation absent")
++        if not receipt.get("confirmed_at") or not receipt.get("evidence_note"):
++            raise Hold("RTC confirmation needs human verification evidence")
++        adjtime = Path("/etc/adjtime").read_text().strip().splitlines()
++        if not adjtime or adjtime[-1] != "UTC":
++            raise Hold("RTC is not UTC in adjtime")
++        if (
++            self.runner(["/usr/bin/timedatectl", "show", "--property=LocalRTC", "--value"]).strip()
++            != "no"
++        ):
++            raise Hold("RTC is not UTC in timedated")
++
++    def user_command(self, *args):
++        return self.runner(
++            [
++                "/usr/sbin/runuser",
++                "-u",
++                self.p["user"],
++                "--",
++                "/usr/bin/env",
++                f"XDG_RUNTIME_DIR=/run/user/{self.p['uid']}",
++                f"DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/{self.p['uid']}/bus",
++                "/usr/bin/systemctl",
++                "--user",
++                *args,
++            ]
++        )
++
++    def audit_quiescent(self):
++        for path, expected in self.p["guard_files"].items():
++            trusted(path)
++            if rt.digest(path) != expected:
++                raise Hold(f"Guard file changed: {path}")
++        listed = self.user_command("list-unit-files", "marketdata-*", "--no-legend", "--no-pager")
++        names = {line.split()[0] for line in listed.splitlines() if line.strip()}
++        if names != set(self.p["user_units"]):
++            raise Hold(f"User unit inventory changed: {sorted(names ^ set(self.p['user_units']))}")
++        for name, mode in self.p["user_units"].items():
++            out = self.user_command(
++                "show",
++                name,
++                "--no-pager",
++                "--property=LoadState,ActiveState,MainPID,ControlPID,UnitFileState,ExecStartPre,Unit",
++            )
++            f = dict(line.split("=", 1) for line in out.splitlines() if "=" in line)
++            if mode == "timer":
++                target = name.removesuffix(".timer") + ".service"
++                if (
++                    f.get("LoadState") != "loaded"
++                    or f.get("Unit") != target
++                    or self.p["user_units"].get(target) != "guarded"
++                ):
++                    raise Hold(f"Missing timer: {name}")
++                continue  # Only starts a guarded service; does not run marketdata itself.
++            if f.get("ActiveState") not in {"inactive", "failed"} or (
++                name.endswith(".service")
++                and any(f.get(k) != "0" for k in ("MainPID", "ControlPID"))
++            ):
++                raise Hold(f"Job is not quiescent: {name}")
++            if mode == "masked":
++                if f.get("LoadState") != "masked" or f.get("UnitFileState") != "masked":
++                    raise Hold(f"Persistent mask required: {name}")
++            elif f.get("LoadState") != "loaded" or (
++                f"argv[]={self.p['guard_command']} ;" not in f.get("ExecStartPre", "")
++            ):
++                raise Hold(f"Effective startup guard absent: {name}")
++        for name in self.p["system_collectors"]:
++            out = self.runner(
++                [
++                    "/usr/bin/systemctl",
++                    "show",
++                    name,
++                    "--property=ActiveState,MainPID,ControlPID",
++                    "--no-pager",
++                ]
++            )
++            f = dict(line.split("=", 1) for line in out.splitlines() if "=" in line)
++            if f.get("ActiveState") not in {"inactive", "failed"} or any(
++                f.get(k) != "0" for k in ("MainPID", "ControlPID")
++            ):
++                raise Hold(f"System collector is not quiescent: {name}")
++
++    def observe(self):
++        return rt.probe(self.runtime, runner=self.runner)
++
++    def step(self, expected_provider):
++        if rt.provider_identity(self.runner) != expected_provider:
++            raise Hold("Chrony invocation changed immediately before step")
++        # No threshold/count form: do not leave a future automatic step armed.
++        return self.runner(
++            [self.runtime["chronyc"], "-n", "-h", self.p["chrony_socket"], "makestep"]
++        )
++
++
++def attempt(p, runtime, ledger, host, *, current_boot=None, boottime=None):
++    """One locked attempt. No command retry after a persisted step intent."""
++    current_boot = current_boot or rt.boot_id()
++    now = time.clock_gettime(time.CLOCK_BOOTTIME) if boottime is None else boottime
++    identity = canonical_hash(p)
++    state = ledger.read()
++    if state["profile_sha256"] != identity:
++        raise Hold("Bootstrap profile changed; enrollment cannot be silently reused")
++    if state["boot_id"] == current_boot and state["phase"] == "installation_hold":
++        raise Hold("Installation boot remains held; arm only on a subsequent boot")
++    if state["boot_id"] != current_boot:
++        state = {
++            "schema": 1,
++            "boot_id": current_boot,
++            "profile_sha256": identity,
++            "phase": "preparing",
++            "first_boottime": now,
++            "step_attempts": 0,
++        }
++        ledger.save(state)
++    if state["phase"] == "closed":
++        return {"ready": True, "phase": "closed", "step_reopened": False}
++    host.rtc_check()
++    host.audit_quiescent()
++    observation = host.observe()
++    reason = observation.get("reasons", [])
++    source = None
++    if observation.get("tracking") and observation.get("provider"):
++        source = source_assessment(
++            observation["tracking"],
++            observation["sample"]["wall_ns"] / 1e9,
++            runtime["policy"],
++            p["policy"],
++        )
++        reason = source["reasons"]
++    if source and source["ready"]:
++        correction = abs(observation["tracking"]["correction"])
++        if state["phase"] == "preparing" and correction > p["policy"]["step_above_seconds"]:
++            # Re-audit after the potentially slow observation, then persist intent.
++            host.audit_quiescent()
++            state.update(
++                phase="step_intent",
++                step_attempts=1,
++                step_result="unknown",
++                step_observation=observation,
++            )
++            ledger.save(state)
++            ledger.event("step_intent", boot_id=current_boot, observation=observation)
++            host.step(observation["provider"])
++            state["phase"] = "step_returned"
++            state["step_result"] = "acknowledged"
++            ledger.save(state)
++            ledger.event("step_returned", boot_id=current_boot)
++            observation = host.observe()
++        if observation["ready"]:
++            # If an intent was interrupted, only an independent current quality check
++            # can release jobs; the prior command's result remains unknown.
++            host.audit_quiescent()
++            ledger.event("closing_step_window", boot_id=current_boot, observation=observation)
++            state.update(phase="closed", closed_observation=observation, closed_boottime=now)
++            ledger.save(state)
++            return {"ready": True, "phase": "closed", "step_attempts": state["step_attempts"]}
++        reason = observation.get("reasons", [])
++    elapsed = max(0, now - state["first_boottime"])
++    result = {
++        "ready": False,
++        "phase": state["phase"],
++        "reasons": reason,
++        "step_attempts": state["step_attempts"],
++        "wait_seconds": elapsed,
++        "needs_review": state["phase"] == "step_intent",
++        "long_wait": elapsed >= p["policy"]["long_wait_seconds"],
++    }
++    state["last_wait"] = result
++    ledger.save(state)
++    return result
++
++
++def check_gate(p, runtime, *, ledger=None, checker=rt.probe, current_boot=None):
++    ledger = ledger or Ledger(p["state_dir"])
++    # A separate consumer cannot observe readiness while the coordinator is
++    # still committing it. The public lock is read-only to the service user.
++    with ledger.lock(shared=True):
++        state = ledger.read()
++        if state["boot_id"] != (current_boot or rt.boot_id()) or state["phase"] != "closed":
++            raise Hold("This boot has not closed initial clock preparation")
++        if state["profile_sha256"] != canonical_hash(p):
++            raise Hold("Closed preparation belongs to a different profile")
++        clock = checker(runtime)
++        if not clock["ready"]:
++            raise Hold("Current clock is not ready: " + ", ".join(clock["reasons"]))
++        return {"ready": True, "step_window_closed": True, "clock": clock}
++
++
++def enroll(p, ledger, current_boot=None):
++    if ledger.path.exists():
++        raise Hold("Existing ledger must never be overwritten by enrollment")
++    state = {
++        "schema": 1,
++        "boot_id": current_boot or rt.boot_id(),
++        "profile_sha256": canonical_hash(p),
++        "phase": "installation_hold",
++        "first_boottime": time.clock_gettime(time.CLOCK_BOOTTIME),
++        "step_attempts": 0,
++    }
++    ledger.save(state)
++    ledger.event("enrolled_for_next_boot", boot_id=state["boot_id"])
++    return state
++
++
++def run_bootstrap(p, runtime, ledger, host, stop):
++    deadline = time.monotonic() + p["policy"]["attempt_seconds"]
++    with ledger.lock():
++        while not stop.is_set():
++            try:
++                result = attempt(p, runtime, ledger, host)
++            except (Hold, rt.NotReady, OSError, ValueError, subprocess.SubprocessError) as exc:
++                # Inventory/RTC/provider errors also remain a visible wait across retries.
++                # Never create or reset a damaged/missing ledger to record the error.
++                state = ledger.read()
++                elapsed = max(0, time.clock_gettime(time.CLOCK_BOOTTIME) - state["first_boottime"])
++                result = {
++                    "ready": False,
++                    "phase": state["phase"],
++                    "reasons": [str(exc)],
++                    "wait_seconds": elapsed,
++                    "needs_review": True,
++                    "long_wait": elapsed >= p["policy"]["long_wait_seconds"],
++                }
++            print(json.dumps(result, sort_keys=True), flush=True)
++            if result["ready"]:
++                return 0
++            if result["long_wait"]:
++                print(
++                    "<4>marketdata_clock_long_wait " + json.dumps(result),
++                    file=sys.stderr,
++                    flush=True,
++                )
++            left = deadline - time.monotonic()
++            if left <= 0:
++                return 75
++            stop.wait(min(left, p["policy"]["poll_seconds"]))
++    return 75
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("action", choices=["enroll", "bootstrap", "rtc-check", "check", "status"])
++    parser.add_argument("--profile", type=Path, required=True)
++    args = parser.parse_args()
++    stop = threading.Event()
++    for sig in (signal.SIGINT, signal.SIGTERM):
++        signal.signal(sig, lambda *_: stop.set())
++    try:
++        p, runtime = read_profile(args.profile)
++        if args.action in {"enroll", "bootstrap", "rtc-check"} and os.geteuid() != 0:
++            raise Hold("Only the root system preparation service may perform this action")
++        trusted(runtime["release_root"], directory=True)
++        trusted(p["state_dir"], directory=True)
++        ledger = Ledger(p["state_dir"])
++        if args.action != "enroll":
++            trusted(ledger.path)
++        if args.action == "enroll":
++            with ledger.lock():
++                result = enroll(p, ledger)
++        elif args.action == "rtc-check":
++            Host(p, runtime).rtc_check()
++            result = {"rtc_utc": True}
++        elif args.action == "bootstrap":
++            return run_bootstrap(p, runtime, ledger, Host(p, runtime), stop)
++        elif args.action == "status":
++            result = {"ledger": ledger.read(), "current_boot_id": rt.boot_id()}
++        else:
++            result = check_gate(p, runtime)
++        print(json.dumps(result, sort_keys=True))
++        return 0
++    except (Hold, rt.NotReady, OSError, ValueError, KeyError, subprocess.SubprocessError) as exc:
++        print(json.dumps({"ready": False, "hold": str(exc)}), file=sys.stderr, flush=True)
++        return 75
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null
++++ b/integrations/runtime/isolated_bootstrap_test.py
+@@ -0,0 +1,255 @@
++"""Real user-systemd retries with fake clock inputs. Never invokes Host or chronyc.
++
++All writes are below a new /tmp directory; the only units manipulated are two
++random md-clock-isolation-* names created by this script. Not a root-unit test.
++"""
++
++import argparse
++import importlib.util
++import json
++import os
++import signal
++import subprocess
++import sys
++import tempfile
++import threading
++import time
++import uuid
++from pathlib import Path
++
++HERE = Path(__file__).resolve().parent
++SPEC = importlib.util.spec_from_file_location("isolated_boot", HERE / "clock_gate.py")
++boot = importlib.util.module_from_spec(SPEC)
++SPEC.loader.exec_module(boot)
++
++
++def profiles(root):
++    runtime = boot.rt.load_profile(HERE / "profile.example.json")
++    p = {
++        "state_dir": str(root),
++        "policy": {
++            "step_above_seconds": 0.1,
++            "max_initial_correction_seconds": 300.0,
++            "source_age_seconds": 30.0,
++            "attempt_seconds": 0.3,
++            "poll_seconds": 0.05,
++            "long_wait_seconds": 0.2,
++        },
++    }
++    return p, runtime
++
++
++class FakeClock:
++    def __init__(self, root, runtime):
++        self.root, self.runtime = root, runtime
++
++    def rtc_check(self):
++        pass  # Explicit fixture. Production RTC checks are separately tested.
++
++    def audit_quiescent(self):
++        if (self.root / "child-started").exists():
++            raise boot.Hold("Fixture child already started")
++
++    def observe(self):
++        f = json.loads((self.root / "fake-clock.json").read_text())
++        ntp = 1800000000.0
++        t = boot.rt.tracking(
++            f"CB00710F,203.0.113.15,3,{ntp - 1},{f['correction']},0,0,0,0,0.1,0.01,0.02,64,"
++            + ("Normal" if f["synchronized"] else "Not synchronised")
++        )
++        wall = ntp - f["correction"]
++        return {
++            **boot.rt.assess_clock(t, self.runtime["policy"], wall),
++            "provider": {"pid": 123, "invocation_id": f["invocation"]},
++            "sample": {"wall_ns": int(wall * 1e9)},
++        }
++
++    def step(self, expected):
++        # Fake correction changes a JSON fixture, NEVER the host system clock.
++        self.audit_quiescent()
++        with (self.root / "fake-step-calls.jsonl").open("a") as out:
++            out.write(json.dumps(expected) + "\n")
++        boot.rt.atomic_json(
++            self.root / "fake-clock.json",
++            {"correction": 0, "synchronized": True, "invocation": expected["invocation_id"]},
++        )
++
++
++def worker(action, root):
++    p, runtime = profiles(root)
++    ledger = boot.Ledger(root)
++    boot.rt.boot_id = lambda: "isolated-boot"
++    host = FakeClock(root, runtime)
++    stop = threading.Event()
++    for sig in (signal.SIGINT, signal.SIGTERM):
++        signal.signal(sig, lambda *_: stop.set())
++    if action == "bootstrap":
++        return boot.run_bootstrap(p, runtime, ledger, host, stop)
++    if action == "gate":
++        try:
++            result = boot.check_gate(p, runtime, ledger=ledger, checker=lambda _: host.observe())
++            print(json.dumps(result), flush=True)
++            return 0
++        except boot.Hold as exc:
++            print(str(exc), file=sys.stderr)
++            return 75
++    (root / "child-started").write_text(str(os.getpid()))
++    while not stop.wait(0.05):
++        pass
++    (root / "child-finished").write_text("graceful\n")
++    return 0
++
++
++def command(args, check=True):
++    result = subprocess.run(args, text=True, capture_output=True, timeout=15)
++    if check and result.returncode:
++        raise RuntimeError(f"{args[0]}: {result.stderr}")
++    return result
++
++
++def wait_for(predicate, limit=15):
++    deadline = time.monotonic() + limit
++    while time.monotonic() < deadline:
++        value = predicate()
++        if value:
++            return value
++        time.sleep(0.05)
++    raise RuntimeError("isolated test timeout")
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("action", choices=["test", "bootstrap", "gate", "child"])
++    parser.add_argument("--root", type=Path)
++    parser.add_argument("--output", type=Path)
++    args = parser.parse_args()
++    if args.action != "test":
++        return worker(args.action, args.root)
++    root = Path(tempfile.mkdtemp(prefix="md-clock-bootstrap-isolated-"))
++    p, _ = profiles(root)
++    ledger = boot.Ledger(root)
++    with ledger.lock():
++        boot.enroll(p, ledger, "installation-boot")
++    boot.rt.atomic_json(
++        root / "fake-clock.json", {"correction": 41, "synchronized": False, "invocation": "first"}
++    )
++    token = uuid.uuid4().hex[:10]
++    prep, child = [f"md-clock-isolation-{token}-{kind}.service" for kind in ("prepare", "child")]
++    py, script = sys.executable, str(Path(__file__).resolve())
++    evidence = {
++        "root": str(root),
++        "units": [prep, child],
++        "host_clock_control": False,
++        "system_unit_test": False,
++    }
++
++    def state(unit):
++        out = command(
++            [
++                "systemctl",
++                "--user",
++                "show",
++                unit,
++                "--property=ActiveState,NRestarts,MainPID,Result,ExecStartPre",
++            ]
++        ).stdout
++        return dict(line.split("=", 1) for line in out.splitlines() if "=" in line)
++
++    try:
++        command(
++            [
++                "systemd-run",
++                "--user",
++                "--unit",
++                prep,
++                "--no-block",
++                "-p",
++                "Type=oneshot",
++                "-p",
++                "RemainAfterExit=yes",
++                "-p",
++                "Restart=on-failure",
++                "-p",
++                "RestartSec=0.15",
++                "-p",
++                "StartLimitIntervalSec=0",
++                py,
++                "-I",
++                script,
++                "bootstrap",
++                "--root",
++                str(root),
++            ]
++        )
++        gate = f"{py} -I {script} gate --root {root}"
++        command(
++            [
++                "systemd-run",
++                "--user",
++                "--unit",
++                child,
++                "--no-block",
++                "-p",
++                f"ExecStartPre={gate}",
++                "-p",
++                "Restart=on-failure",
++                "-p",
++                "RestartSec=0.15",
++                "-p",
++                "StartLimitIntervalSec=0",
++                "-p",
++                "KillSignal=SIGINT",
++                "-p",
++                "TimeoutStopSec=5",
++                py,
++                "-I",
++                script,
++                "child",
++                "--root",
++                str(root),
++            ]
++        )
++        wait_for(lambda: int(state(prep).get("NRestarts", 0)) >= 2)
++        evidence["before_recovery"] = {"prepare": state(prep), "child": state(child)}
++        assert f"argv[]={gate} ;" in evidence["before_recovery"]["child"]["ExecStartPre"]
++        assert not (root / "child-started").exists()
++        assert not (root / "fake-step-calls.jsonl").exists()
++        boot.rt.atomic_json(
++            root / "fake-clock.json",
++            {"correction": 41, "synchronized": True, "invocation": "first"},
++        )
++        wait_for(lambda: (root / "child-started").exists())
++        evidence["after_recovery"] = {"prepare": state(prep), "child": state(child)}
++        assert len((root / "fake-step-calls.jsonl").read_text().splitlines()) == 1
++        # Restart both the fake provider and completed oneshot while a child runs.
++        boot.rt.atomic_json(
++            root / "fake-clock.json",
++            {"correction": -41, "synchronized": True, "invocation": "second"},
++        )
++        command(["systemctl", "--user", "restart", prep])
++        assert len((root / "fake-step-calls.jsonl").read_text().splitlines()) == 1
++        gate_result = command([py, "-I", script, "gate", "--root", str(root)], check=False)
++        assert gate_result.returncode == 75
++        evidence["post_restart_gate_exit"] = gate_result.returncode
++        evidence["step_calls"] = 1
++        command(["systemctl", "--user", "stop", child])
++        assert (root / "child-finished").read_text() == "graceful\n"
++        evidence["after_stop"] = state(child)
++        assert evidence["after_stop"]["MainPID"] == "0"
++        evidence["passed"] = True
++    finally:
++        evidence["journal"] = command(
++            ["journalctl", "--user", "-u", prep, "-u", child, "--no-pager", "-n", "120"],
++            check=False,
++        ).stdout
++        for unit in (child, prep):
++            command(["systemctl", "--user", "stop", unit], check=False)
++            command(["systemctl", "--user", "reset-failed", unit], check=False)
++        if args.output:
++            args.output.write_text(json.dumps(evidence, indent=2, sort_keys=True) + "\n")
++    print(json.dumps({k: v for k, v in evidence.items() if k != "journal"}, sort_keys=True))
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- a/integrations/runtime/profile.example.json
++++ b/integrations/runtime/profile.example.json
+@@ -7,7 +7,7 @@
+   "mount_uuid": "d8020c0b-a5df-4e47-99d9-2378b12ab2ea",
+   "chronyc": "/usr/bin/chronyc",
+   "chrony_config": "/etc/chrony/marketdata.conf",
+-  "chrony_config_sha256": "6b93bd9b15a84b7653a2567d16a0ea801ad27524a86c9bf72ccd9b7efeb622df",
++  "chrony_config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+   "dns_hosts": [
+     "fstream.binance.com",
+     "fapi.binance.com"
+--- /dev/null
++++ b/integrations/runtime/render_bootstrap.py
+@@ -0,0 +1,121 @@
++"""Render a complete inert installation tree; never install or run services."""
++
++import argparse
++import hashlib
++import importlib.util
++import json
++import pwd
++from pathlib import Path
++
++SPEC = importlib.util.spec_from_file_location(
++    "collector_units", Path(__file__).with_name("render_units.py")
++)
++units = importlib.util.module_from_spec(SPEC)
++SPEC.loader.exec_module(units)
++
++
++def render(runtime, runtime_bytes, inventory, boot_path="/etc/marketdata/clock-bootstrap.json"):
++    root = runtime["release_root"]
++    base = f"{root}/.venv/bin/python -I {root}/integrations/runtime/clock_gate.py"
++    guard = f"{base} check --profile {boot_path}"
++    dropin = f"[Service]\nExecStartPre={guard}\n"
++    user = pwd.getpwuid(runtime["uid"]).pw_name
++    files = {
++        "system/marketdata-collector@.service": units.render(
++            runtime, "/etc/marketdata/runtime.json", boot_path
++        ),
++        "system/chrony.service.d/marketdata.conf": (
++            f"[Service]\nExecStartPre=!{base} rtc-check --profile {boot_path}\n"
++            "ExecStart=\nExecStart=!/usr/sbin/chronyd -F 1 -f /etc/chrony/marketdata.conf\n"
++        ),
++        "system/chrony-wait.service.d/marketdata.conf": (
++            "[Unit]\nWants=marketdata-clock-bootstrap.service\n"
++            "After=marketdata-clock-bootstrap.service\n"
++        ),
++        "system/marketdata-clock-bootstrap.service": f"""[Unit]
++Description=Prepare this boot's clock before releasing marketdata jobs
++Wants=network-online.target chrony.service user@{runtime["uid"]}.service
++After=network-online.target chrony.service user@{runtime["uid"]}.service
++Before=chrony-wait.service time-sync.target
++StartLimitIntervalSec=0
++
++[Service]
++Type=oneshot
++ExecStart={base} bootstrap --profile {boot_path}
++RemainAfterExit=yes
++Restart=on-failure
++RestartSec=15s
++TimeoutStartSec=150s
++TimeoutStopSec=10s
++StateDirectory=marketdata-clock
++StateDirectoryMode=0755
++UMask=0022
++NoNewPrivileges=yes
++CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_SETUID CAP_SETGID
++ProtectClock=yes
++ProtectSystem=strict
++ProtectHome=read-only
++PrivateTmp=yes
++RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
++StandardOutput=journal
++StandardError=journal
++SyslogLevelPrefix=yes
++
++[Install]
++WantedBy=multi-user.target
++""",
++    }
++    for name, mode in inventory.items():
++        if mode == "guarded":
++            files[f"user/{name}.d/90-marketdata-clock.conf"] = dropin
++    profile = {
++        "schema": 1,
++        "runtime_profile": "/etc/marketdata/runtime.json",
++        "runtime_profile_sha256": hashlib.sha256(runtime_bytes).hexdigest(),
++        "state_dir": "/var/lib/marketdata-clock",
++        "chrony_socket": "/run/chrony/chronyd.sock",
++        "rtc_confirmation": "/etc/marketdata/rtc-utc-confirmation.json",
++        "user": user,
++        "uid": runtime["uid"],
++        "policy": {
++            "step_above_seconds": 0.1,
++            "max_initial_correction_seconds": 300.0,
++            "source_age_seconds": 30.0,
++            "attempt_seconds": 120.0,
++            "poll_seconds": 5.0,
++            "long_wait_seconds": 600.0,
++        },
++        "user_units": inventory,
++        "system_collectors": [
++            "marketdata-collector@depth.service",
++            "marketdata-collector@aggtrade.service",
++        ],
++        "guard_command": guard,
++        "guard_files": {
++            f"/etc/systemd/{name}": hashlib.sha256(content.encode()).hexdigest()
++            for name, content in files.items()
++        },
++    }
++    return files, profile
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--runtime-profile", required=True, type=Path)
++    parser.add_argument("--inventory", required=True, type=Path)
++    parser.add_argument("--output", required=True, type=Path)
++    args = parser.parse_args()
++    data = args.runtime_profile.read_bytes()
++    files, profile = render(json.loads(data), data, json.loads(args.inventory.read_text()))
++    args.output.mkdir(parents=True, exist_ok=False)
++    for name, value in files.items():
++        p = args.output / name
++        p.parent.mkdir(parents=True, exist_ok=True)
++        p.write_text(value)
++    (args.output / "clock-bootstrap.json").write_text(
++        json.dumps(profile, indent=2, sort_keys=True) + "\n"
++    )
++
++
++if __name__ == "__main__":
++    main()
+--- a/integrations/runtime/render_units.py
++++ b/integrations/runtime/render_units.py
+@@ -1,13 +1,10 @@
+ """Render inert system units from an explicit machine profile. Never installs units."""
+ 
+-import argparse
+-import json
+ import pwd
+ import re
+-from pathlib import Path
+ 
+ 
+-def render(profile, profile_path):
++def render(profile, profile_path, boot_profile="/etc/marketdata/clock-bootstrap.json"):
+     user = pwd.getpwuid(profile["uid"]).pw_name
+     if profile["uid"] <= 0 or not re.fullmatch(r"[a-z_][a-z0-9_-]*", user):
+         raise ValueError("Non-root local account required")
+@@ -16,16 +13,18 @@
+         profile["data_root"],
+         profile["evidence_root"],
+         str(profile_path),
++        str(boot_profile),
+     ]
+     if any(not re.fullmatch(r"/[A-Za-z0-9_./-]+", p) for p in paths):
+         raise ValueError("Unit path needs explicit systemd escaping; simple paths only")
+-    root, data, evidence, config = paths
++    root, data, evidence, config, boot_config = paths
+     run = f"{root}/.venv/bin/python -I {root}/integrations/runtime/marketdata_runtime.py"
++    gate = f"{root}/.venv/bin/python -I {root}/integrations/runtime/clock_gate.py check --profile {boot_config}"
+     args = f"--profile {config} --stream %i"
+     return f"""[Unit]
+ Description=Market data %i collector with sampled clock quality
+-Wants=network-online.target chrony.service chrony-wait.service
+-After=network-online.target chrony.service chrony-wait.service time-sync.target
++Wants=network-online.target chrony.service chrony-wait.service marketdata-clock-bootstrap.service
++After=network-online.target chrony.service marketdata-clock-bootstrap.service chrony-wait.service time-sync.target
+ RequiresMountsFor={data} {root} {evidence}
+ StartLimitIntervalSec=0
+ 
+@@ -35,6 +34,7 @@
+ WorkingDirectory={root}
+ Environment=PYTHONNOUSERSITE=1
+ Environment=PYTHONDONTWRITEBYTECODE=1
++ExecStartPre={gate}
+ ExecStartPre={run} wait-ready {args}
+ ExecStart={run} run {args}
+ Restart=always
+@@ -62,19 +62,8 @@
+ 
+ 
+ def main():
+-    parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("--profile", required=True, type=Path)
+-    parser.add_argument("--installed-profile", required=True, type=Path)
+-    parser.add_argument("--output", required=True, type=Path)
+-    args = parser.parse_args()
+-    profile = json.loads(args.profile.read_text())
+-    args.output.mkdir(parents=True, exist_ok=True)
+-    (args.output / "marketdata-collector@.service").write_text(
+-        render(profile, args.installed_profile)
+-    )
+-    # Keep distro daemon sandbox + identity; pin the daemon config without starter overrides.
+-    (args.output / "chrony-override.conf").write_text(
+-        "[Service]\nExecStart=\nExecStart=!/usr/sbin/chronyd -F 1 -f /etc/chrony/marketdata.conf\n"
++    raise SystemExit(
++        "Use render_bootstrap.py; RTC guard and bootstrap units must be rendered together"
+     )
+ 
+ 
+--- /dev/null
++++ b/integrations/runtime/rtc-utc-confirmation.example.json
+@@ -0,0 +1,6 @@
++{
++  "schema": 1,
++  "windows_utc_confirmed": false,
++  "confirmed_at": null,
++  "evidence_note": "실제 Windows 설정·왕복 부팅 확인 후 운영자가 작성. 이 예시는 시작 승인이 아님."
++}
+--- /dev/null
++++ b/integrations/runtime/user-unit-inventory.json
+@@ -0,0 +1,22 @@
++{
++  "marketdata-aggtrade.service": "masked",
++  "marketdata-backup.service": "guarded",
++  "marketdata-backup.timer": "timer",
++  "marketdata-checkpoint-retirement.service": "masked",
++  "marketdata-checkpoint-retirement.timer": "masked",
++  "marketdata-daily.service": "guarded",
++  "marketdata-daily.timer": "timer",
++  "marketdata-depth.service": "masked",
++  "marketdata-network-observer.service": "guarded",
++  "marketdata-network-observer.timer": "timer",
++  "marketdata-oi-probe.service": "guarded",
++  "marketdata-oi-probe.timer": "timer",
++  "marketdata-oi-quality.service": "guarded",
++  "marketdata-oi-quality.timer": "timer",
++  "marketdata-oi.service": "guarded",
++  "marketdata-oi.timer": "timer",
++  "marketdata-pack.service": "guarded",
++  "marketdata-pack.timer": "timer",
++  "marketdata-restic-archive.service": "guarded",
++  "marketdata-restic-archive.timer": "timer"
++}
+--- /dev/null
++++ b/tests/test_clock_bootstrap.py
+@@ -0,0 +1,479 @@
++"""No host clock/service mutations. Persistent files, processes and locks are real."""
++
++import copy
++import importlib.util
++import json
++import multiprocessing
++import os
++import signal
++import subprocess
++import sys
++from pathlib import Path
++
++import pytest
++
++ROOT = Path(__file__).resolve().parents[1]
++SPEC = importlib.util.spec_from_file_location("boot", ROOT / "integrations/runtime/clock_gate.py")
++boot = importlib.util.module_from_spec(SPEC)
++SPEC.loader.exec_module(boot)
++
++
++class FakeHost:
++    def __init__(self, runtime, correction=41.0):
++        self.runtime = runtime
++        self.correction = correction
++        self.ntp = 1800000000.0
++        self.ref_age = 1
++        self.provider = {"pid": 123, "invocation_id": "first"}
++        self.synced = True
++        self.calls = []
++        self.busy = False
++        self.rtc_ok = True
++
++    def rtc_check(self):
++        if not self.rtc_ok:
++            raise boot.Hold("RTC not confirmed")
++
++    def audit_quiescent(self):
++        if self.busy:
++            raise boot.Hold("Job is not quiescent")
++
++    def observe(self):
++        t = boot.rt.tracking(
++            f"CB00710F,203.0.113.15,3,{self.ntp - self.ref_age},{self.correction},0,0,0,0,0.1,0.01,0.02,64,"
++            + ("Normal" if self.synced else "Not synchronised")
++        )
++        wall = self.ntp - self.correction
++        result = boot.rt.assess_clock(t, self.runtime["policy"], wall)
++        return {
++            **result,
++            "provider": copy.deepcopy(self.provider),
++            "sample": {"wall_ns": int(wall * 1e9)},
++        }
++
++    def step(self, expected):
++        assert expected == self.provider
++        self.calls.append("makestep")
++        self.correction = 0
++
++
++@pytest.fixture
++def setup(tmp_path):
++    runtime = boot.rt.load_profile(ROOT / "integrations/runtime/profile.example.json")
++    p = {
++        "state_dir": str(tmp_path),
++        "policy": {
++            "step_above_seconds": 0.1,
++            "max_initial_correction_seconds": 300.0,
++            "source_age_seconds": 30.0,
++            "long_wait_seconds": 600,
++            "attempt_seconds": 120,
++            "poll_seconds": 5,
++        },
++    }
++    ledger = boot.Ledger(tmp_path)
++    boot.enroll(p, ledger, "installation-boot")
++    host = FakeHost(runtime)
++    return p, runtime, ledger, host
++
++
++def go(setup, now=100):
++    p, runtime, ledger, host = setup
++    with ledger.lock():
++        return boot.attempt(p, runtime, ledger, host, current_boot="next-boot", boottime=now)
++
++
++@pytest.mark.parametrize("offset", [41, -41, 0.101, -0.101, 0.1, -0.1, 0])
++def test_large_initial_offset_uses_source_then_step_then_readiness(setup, offset):
++    p, runtime, ledger, host = setup
++    host.correction = offset
++    if abs(offset) > 0.1:
++        assert not host.observe()["ready"]  # Using the old full gate first would stall.
++    assert go(setup)["ready"]
++    assert host.calls == (["makestep"] if abs(offset) > 0.1 else [])
++    state = ledger.read()
++    assert state["phase"] == "closed"
++    assert boot.check_gate(
++        p, runtime, ledger=ledger, checker=lambda _: host.observe(), current_boot="next-boot"
++    )["ready"]
++
++
++@pytest.mark.parametrize("fault", ["unsynced", "stale", "too_large", "rtc", "busy"])
++def test_never_steps_without_source_rtc_or_quiescence(setup, fault):
++    p, runtime, ledger, host = setup
++    if fault == "unsynced":
++        host.synced = False
++    if fault == "stale":
++        host.ref_age = 31
++    if fault == "too_large":
++        host.correction = 32400
++    if fault == "rtc":
++        host.rtc_ok = False
++    if fault == "busy":
++        host.busy = True
++    if fault in {"rtc", "busy"}:
++        with pytest.raises(boot.Hold):
++            go(setup)
++    else:
++        assert not go(setup)["ready"]
++    assert host.calls == []
++    with pytest.raises(boot.Hold):
++        boot.check_gate(
++            p, runtime, ledger=ledger, checker=lambda _: host.observe(), current_boot="next-boot"
++        )
++
++
++def test_wait_recovers_and_long_wait_survives_service_retries(setup):
++    _, _, ledger, host = setup
++    host.synced = False
++    assert not go(setup, now=10)["long_wait"]
++    assert go(setup, now=611)["long_wait"]
++    assert ledger.read()["last_wait"]["wait_seconds"] == 601
++    host.synced = True
++    assert go(setup, now=612)["ready"]
++    assert host.calls == ["makestep"]
++
++
++def test_installation_boot_cannot_step_or_be_reenrolled(setup):
++    p, runtime, ledger, host = setup
++    with pytest.raises(boot.Hold, match="Installation boot"):
++        boot.attempt(p, runtime, ledger, host, current_boot="installation-boot", boottime=100)
++    with pytest.raises(boot.Hold, match="overwritten"):
++        boot.enroll(p, ledger, "another")
++    assert host.calls == []
++
++
++@pytest.mark.parametrize("fault", ["missing", "corrupt", "profile"])
++def test_broken_or_foreign_state_does_not_rearm(setup, fault):
++    p, _, ledger, host = setup
++    if fault == "missing":
++        ledger.path.unlink()
++    if fault == "corrupt":
++        ledger.path.write_text('{"phase":"closed"}')
++    if fault == "profile":
++        p["policy"]["step_above_seconds"] = 0.05
++    with pytest.raises(boot.Hold):
++        go(setup)
++    assert not host.calls
++
++
++def test_closed_window_stays_closed_even_with_no_jobs_and_new_daemon(setup):
++    p, runtime, ledger, host = setup
++    assert go(setup)["ready"]
++    original = ledger.path.read_bytes()
++    host.provider = {"pid": 456, "invocation_id": "restarted"}
++    host.correction = -41
++    assert go(setup)["step_reopened"] is False
++    assert host.calls == ["makestep"] and ledger.path.read_bytes() == original
++    with pytest.raises(boot.Hold, match="Current clock"):
++        boot.check_gate(
++            p, runtime, ledger=ledger, checker=lambda _: host.observe(), current_boot="next-boot"
++        )
++    host.correction = 0
++    assert boot.check_gate(
++        p, runtime, ledger=ledger, checker=lambda _: host.observe(), current_boot="next-boot"
++    )["ready"]
++    with pytest.raises(boot.Hold, match="This boot"):
++        boot.check_gate(
++            p,
++            runtime,
++            ledger=ledger,
++            checker=lambda _: host.observe(),
++            current_boot="different-boot",
++        )
++
++
++def crash_during_command(p, runtime, root, after):
++    ledger = boot.Ledger(root)
++    host = FakeHost(runtime)
++
++    def crash(_):
++        if after:
++            (Path(root) / "simulated-command.json").write_text('{"correction":0}')
++        os.kill(os.getpid(), signal.SIGKILL)
++
++    host.step = crash
++    with ledger.lock():
++        boot.attempt(p, runtime, ledger, host, current_boot="next-boot", boottime=100)
++
++
++@pytest.mark.parametrize("after", [False, True])
++def test_sigkill_at_step_boundary_is_not_replayed(setup, after):
++    p, runtime, ledger, host = setup
++    child = multiprocessing.get_context("spawn").Process(
++        target=crash_during_command, args=(p, runtime, str(ledger.root), after)
++    )
++    child.start()
++    child.join(10)
++    assert child.exitcode == -signal.SIGKILL
++    assert ledger.read()["phase"] == "step_intent"
++    assert ledger.read()["step_result"] == "unknown"
++    host.correction = 0 if after else 41
++    result = go(setup)
++    assert result["ready"] is after
++    assert host.calls == []
++    if not after:
++        assert result["needs_review"]
++    assert ledger.read()["step_result"] == "unknown"
++
++
++@pytest.mark.parametrize("stage", ["intent", "event", "close"])
++def test_storage_failure_cannot_publish_unearned_readiness(setup, monkeypatch, stage):
++    p, runtime, ledger, host = setup
++    original_save, original_event = ledger.save, ledger.event
++
++    def save(s):
++        if (stage == "intent" and s["phase"] == "step_intent") or (
++            stage == "close" and s["phase"] == "closed"
++        ):
++            raise OSError("disk full")
++        original_save(s)
++
++    def event(k, **kw):
++        if stage == "event" and k == "step_intent":
++            raise OSError("disk full")
++        return original_event(k, **kw)
++
++    monkeypatch.setattr(ledger, "save", save)
++    monkeypatch.setattr(ledger, "event", event)
++    with pytest.raises(OSError):
++        go(setup)
++    assert host.calls == (["makestep"] if stage == "close" else [])
++    with pytest.raises(boot.Hold):
++        boot.check_gate(
++            p, runtime, ledger=ledger, checker=lambda _: host.observe(), current_boot="next-boot"
++        )
++
++
++def test_real_flock_excludes_another_bootstrap(setup):
++    p, runtime, ledger, host = setup
++    assert go(setup)["ready"]
++    with ledger.lock():
++        with pytest.raises(boot.Hold, match="owns"):
++            with boot.Ledger(ledger.root).lock():
++                pytest.fail("lock bypass")
++        with pytest.raises(boot.Hold, match="owns"):
++            boot.check_gate(
++                p,
++                runtime,
++                ledger=ledger,
++                checker=lambda _: host.observe(),
++                current_boot="next-boot",
++            )
++
++
++def test_command_has_no_future_step_window_and_detects_provider_change(setup, monkeypatch):
++    p, runtime, _, _ = setup
++    p["chrony_socket"] = "/run/chrony/chronyd.sock"
++    identity = {"pid": 1, "invocation_id": "a"}
++    monkeypatch.setattr(boot.rt, "provider_identity", lambda _: identity)
++    calls = []
++    host = boot.Host(p, runtime, runner=lambda argv: calls.append(argv) or "200 OK")
++    host.step(identity)
++    assert calls == [[runtime["chronyc"], "-n", "-h", p["chrony_socket"], "makestep"]]
++    with pytest.raises(boot.Hold, match="invocation"):
++        host.step({**identity, "invocation_id": "old"})
++    assert len(calls) == 1
++
++
++def test_untrusted_input_is_refused_by_real_cli(tmp_path):
++    p = tmp_path / "profile.json"
++    p.write_text("{}")
++    result = subprocess.run(
++        [
++            sys.executable,
++            "-I",
++            str(ROOT / "integrations/runtime/clock_gate.py"),
++            "bootstrap",
++            "--profile",
++            str(p),
++        ],
++        capture_output=True,
++        text=True,
++        timeout=10,
++    )
++    assert result.returncode == 75
++    assert "Untrusted" in result.stderr
++
++
++def test_inventory_guards_and_persistent_masks(setup, monkeypatch):
++    p, runtime, _, _ = setup
++    p.update(
++        user_units={
++            "marketdata-oi.service": "guarded",
++            "marketdata-oi.timer": "timer",
++            "marketdata-depth.service": "masked",
++            "marketdata-checkpoint-retirement.timer": "masked",
++        },
++        guard_files={},
++        guard_command="/usr/bin/python3 -I /opt/gate.py check",
++        system_collectors=["marketdata-collector@depth.service"],
++    )
++    state = {"bad": None}
++
++    def runner(args):
++        assert "systemctl" in args[0]
++        return "ActiveState=inactive\nMainPID=0\nControlPID=0\n"
++
++    host = boot.Host(p, runtime, runner=runner)
++
++    def user_command(*args):
++        if args[0] == "list-unit-files":
++            return "\n".join(f"{n} disabled" for n in p["user_units"]) + (
++                "\nmarketdata-unknown.service enabled" if state["bad"] == "unknown" else ""
++            )
++        name = args[1]
++        mode = p["user_units"][name]
++        f = {
++            "LoadState": "masked" if mode == "masked" else "loaded",
++            "ActiveState": "inactive",
++            "MainPID": "0",
++            "ControlPID": "0",
++            "UnitFileState": "masked" if mode == "masked" else "static",
++            "ExecStartPre": f"{{ argv[]={p['guard_command']} ; }}",
++            "Unit": "marketdata-oi.service",
++        }
++        if state["bad"] == "missing_guard" and mode == "guarded":
++            f["ExecStartPre"] = ""
++        if state["bad"] == "runtime_mask" and mode == "masked":
++            f["UnitFileState"] = "masked-runtime"
++        if state["bad"] == "active" and mode == "guarded":
++            f["ActiveState"] = "active"
++        if state["bad"] == "wrong_timer" and mode == "timer":
++            f["Unit"] = "other.service"
++        return "\n".join(f"{k}={v}" for k, v in f.items())
++
++    monkeypatch.setattr(host, "user_command", user_command)
++    host.audit_quiescent()
++    for fault in ["missing_guard", "runtime_mask", "active", "unknown", "wrong_timer"]:
++        state["bad"] = fault
++        with pytest.raises(boot.Hold):
++            host.audit_quiescent()
++
++
++def test_rendered_units_gate_all_known_jobs_before_clock_wait(setup):
++    _, runtime, _, _ = setup
++    spec = importlib.util.spec_from_file_location(
++        "render_boot", ROOT / "integrations/runtime/render_bootstrap.py"
++    )
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    inventory = json.loads((ROOT / "integrations/runtime/user-unit-inventory.json").read_text())
++    files, profile = module.render(runtime, json.dumps(runtime).encode(), inventory)
++    assert len([m for m in inventory.values() if m == "guarded"]) == 8
++    for name, mode in inventory.items():
++        if mode == "guarded":
++            assert (
++                "ExecStartPre=" + profile["guard_command"]
++                in files[f"user/{name}.d/90-marketdata-clock.conf"]
++            )
++    rootunit = files["system/marketdata-clock-bootstrap.service"]
++    assert "Before=chrony-wait.service time-sync.target" in rootunit
++    assert "After=network-online.target chrony.service user@" in rootunit
++    assert "After=time-sync.target" not in rootunit
++    assert "rtc-check" in files["system/chrony.service.d/marketdata.conf"]
++    assert inventory["marketdata-checkpoint-retirement.timer"] == "masked"
++    assert "CAP_SYS_TIME" not in rootunit
++
++
++@pytest.mark.parametrize(
++    "fault", [None, "windows_unconfirmed", "empty_adjtime", "local_adjtime", "local_timedated"]
++)
++def test_rtc_write_daemon_cannot_start_before_both_os_confirmation(
++    setup, tmp_path, monkeypatch, fault
++):
++    p, runtime, _, _ = setup
++    confirmation = tmp_path / "rtc-confirmation.json"
++    confirmation.write_text(
++        json.dumps(
++            {
++                "schema": 1,
++                "windows_utc_confirmed": fault != "windows_unconfirmed",
++                "confirmed_at": "fixture",
++                "evidence_note": "isolated test, not actual Windows evidence",
++            }
++        )
++    )
++    p["rtc_confirmation"] = str(confirmation)
++    original = Path.read_text
++
++    def read(path, *a, **kw):
++        if str(path) == "/etc/adjtime":
++            return (
++                ""
++                if fault == "empty_adjtime"
++                else ("0\n0\nLOCAL\n" if fault == "local_adjtime" else "0\n0\nUTC\n")
++            )
++        return original(path, *a, **kw)
++
++    monkeypatch.setattr(Path, "read_text", read)
++    monkeypatch.setattr(boot, "trusted", lambda _: None)
++    calls = []
++
++    def runner(argv):
++        calls.append(argv)
++        return "yes" if fault == "local_timedated" else "no"
++
++    host = boot.Host(p, runtime, runner=runner)
++    if fault:
++        with pytest.raises(boot.Hold):
++            host.rtc_check()
++    else:
++        host.rtc_check()
++    assert all(argv[0] == "/usr/bin/timedatectl" and argv[1] == "show" for argv in calls)
++
++
++def test_step_command_failure_is_unknown_and_never_retried(setup):
++    _, _, ledger, host = setup
++
++    def timeout(_):
++        host.calls.append("ambiguous")
++        raise subprocess.TimeoutExpired("fake chronyc", 3)
++
++    host.step = timeout
++    with pytest.raises(subprocess.TimeoutExpired):
++        go(setup)
++    assert ledger.read()["step_result"] == "unknown"
++    assert not go(setup)["ready"]
++    assert host.calls == ["ambiguous"]
++
++
++def test_final_publication_failure_can_recover_without_second_step(setup, monkeypatch):
++    _, _, ledger, host = setup
++    original = ledger.save
++
++    def fail_once(s):
++        if s["phase"] == "closed":
++            raise OSError("failed publication")
++        original(s)
++
++    monkeypatch.setattr(ledger, "save", fail_once)
++    with pytest.raises(OSError):
++        go(setup)
++    monkeypatch.setattr(ledger, "save", original)
++    assert go(setup)["ready"]
++    assert host.calls == ["makestep"]
++
++
++def test_source_ready_but_post_step_quality_bad_never_releases_jobs(setup):
++    _, _, ledger, host = setup
++
++    def bad_step(_):
++        host.calls.append("makestep")
++        host.correction = 1
++
++    host.step = bad_step
++    assert not go(setup)["ready"]
++    assert ledger.read()["phase"] == "step_returned"
++    assert not go(setup)["ready"]
++    assert host.calls == ["makestep"]
++
++
++def test_forged_closed_record_without_observation_is_not_a_marker(setup):
++    _, _, ledger, host = setup
++    s = ledger.read()
++    s["phase"] = "closed"
++    ledger.save(s)
++    with pytest.raises(boot.Hold, match="corrupt"):
++        go(setup)
++    assert not host.calls
+--- a/tests/test_runtime_candidate.py
++++ b/tests/test_runtime_candidate.py
+@@ -399,19 +399,20 @@
+     assert "ExecCondition=" not in unit and "User=root" not in unit
+ 
+ 
+-def test_chrony_candidate_never_automatically_steps_or_writes_rtc():
++def test_steady_chrony_has_rtc_sync_but_never_automatically_steps():
+     lines = (ROOT / "integrations/runtime/chrony.conf").read_text().splitlines()
+     commands = {line.split()[0] for line in lines if line.strip() and not line.startswith("#")}
+     assert not commands & {
+         "makestep",
+         "initstepslew",
+-        "rtcsync",
+         "rtcfile",
+         "local",
+         "include",
+         "confdir",
+         "sourcedir",
+     }
++    assert "rtcsync" in commands
++    assert "leapsecmode slew" in lines
+ 
+ 
+ @pytest.fixture
