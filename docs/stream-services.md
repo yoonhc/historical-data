@@ -1,9 +1,15 @@
 # 상시 스트림과 자동 유지보수
 
-BTCUSDT USD-M 선물의 aggTrade와 비 RPI depth를 독립된 사용자 systemd 서비스로 수집한다.
-기존 캔들·OI 수집 및 Freqtrade와 별도로 실행한다. 원문·표준 데이터는 기간 제한 없이 보존한다.
+BTCUSDT USD-M 선물의 aggTrade와 비 RPI depth를 기존 캔들·OI 수집 및 Freqtrade와 별도로 실행한다.
+원문·표준 데이터는 기간 제한 없이 보존한다.
 
-## 실행 구성
+**2026-10-09 현재 수집기는 고정 배포본의 시스템 서비스로 전환했다.** 현재 상태 조회·종료·되돌리기는
+[시스템 수집 서비스 운영](system-runtime-operations.md)을 따른다. 기존 사용자 수집 두 개는 masked이며,
+유지보수·OI·daily·restic 등 기존 사용자 예약 업무는 시각 준비 검사와 함께 유지한다.
+아래는 9/23 사용자 배포의 설정과 연속성·유지보수 설명이다. 옛 사용자 수집의 설치/기동 명령을
+현재 시스템 수집과 함께 실행하지 않는다.
+
+## 기존 사용자 배포의 실행 구성
 
 | 유닛 | 실행과 범위 |
 |---|---|
@@ -103,7 +109,7 @@ DNS 설정을 바꾸지 않는다. 수집기 정상 여부와 네트워크 표�
 공간/inode 부족 시 데이터 자동 삭제 대신 오류로 보고한다.
 감시·경보는 로컬 상태와 journal 범위이며 외부 메시지를 보내지 않는다.
 
-## 확인과 중지
+## 기존 사용자 배포의 확인과 중지
 
 ```bash
 systemctl --user status marketdata-aggtrade.service marketdata-depth.service
@@ -135,6 +141,6 @@ systemctl --user stop marketdata-pack.service marketdata-backup.service
 외부 마운트 가용성도 점검한다. 미실행·실행 중·오류·기한 초과는
 종료 코드 2다. 스트림 상태와 일반 데이터의 누락 상태는 위의 별도 명령으로 함께 확인한다.
 
-이식할 때는 [유닛 파일](../integrations/systemd/README.md)의 작업 경로를 변경하고
-`.venv/bin/marketdata`를 설치한 후 사용자 systemd에 연결한다. 실제 검증 결과는
+위 사용자 배포를 재현할 때는 [유닛 파일](../integrations/systemd/README.md)의 당시 구성을 참고한다.
+새 VM 이전에는 현재의 고정 시스템 배포본·머신 설정과 실제 권한/시각 검증을 사용한다. 기존 검증 결과는
 [2026-09-23 운영 전환 기록](../reports/baseline/automation-2026-09-23/summary.md)을 참고한다.

@@ -302,4 +302,12 @@ DB·JSON·원문 저장 오류와 강제 종료·재시도를 포함해 호가 �
 [운영 반영](../reports/baseline/depth-status-deploy-2026-10-05/summary.md)을 완료했다.
 호가 서비스만 SIGINT 종료·새 기동했고 적용을 위한 `interrupted` 경계는 보존했다.
 초기 수신·저장 1,350개와 REST 대조 13회 일치, CLI 정상 및 PID 유지를 확인했다.
-첫 정기 종료와 다음 수집 기동은 15:05 이후의 후속 확인으로 남긴다.
+당시 남겼던 첫 정기 종료와 다음 수집 기동은
+[10/5 저녁 후속 점검](../reports/baseline/depth-status-followup-2026-10-05/summary.md)에서 확인했다.
+첫 세션 재생·원문 대응이 일치했고, 종료 7개는 complete 5·interrupted 1·partial 1이었다.
+재부팅과 네트워크 준비 전 기동에 따른 예외 상태는 유지한다. 별도로 NTP 보정 시 수신 시각의
+약 41초 역행을 확인했으므로 해당 구간의 수신 시각을 지연·순서 기준으로 사용하지 않는다.
+당시 24시간 관찰을 완료한 것으로 확대하지 않는다. 이후 호스트 시각·기동 조건은
+[시스템 수집·Chrony·UTC RTC 전환](system-runtime-operations.md)과 실제 부팅 검증으로 보완했다.
+[10/9 관측](../reports/baseline/system-cutover-2026-10-08/post-reboot-summary.md)에서는 새 호가 범위 소진 1건의
+선행 실패 공개·복구 후 손실 유지를 확인했다. 새 배포의 첫 세션 종료와 장기 관찰은 [TODO](../TODO.md)에 남긴다.

@@ -54,3 +54,11 @@ systemctl --user disable --now marketdata-network-observer.timer
 관측 로그는 진단 자료이며 시장 데이터의 정규 저장소·백업 범위에 자동 추가하지 않는다.
 설치 점검과 첫 실제 서비스 결과는
 [호가 보강·네트워크 관측 기록](../reports/baseline/depth-refresh-2026-10-01/summary.md)에 남긴다.
+
+10/5 재부팅 뒤의 [기동 순서·시각 점검](../reports/baseline/stream-startup-readiness-2026-10-05/summary.md)에서는
+사용자 수집 서비스가 시스템의 network-online 완료를 기다리지 못하고, 최초 NTP 동기화보다
+약 103초 먼저 시작했음을 확인했다. RTC도 시스템 시각보다 약 41초 빨랐다. 당시 사용자 유닛의
+네트워크 대기 표기를 실제 준비 완료 보장으로 해석하지 않는다. 그 점검 자체는 읽기 전용이었다.
+이후 [10/9 실제 부팅 확인](../reports/baseline/system-cutover-2026-10-08/post-reboot-summary.md)까지
+시스템 수집·Chrony·UTC RTC 전환을 완료했다. 현재 운영은 [시스템 서비스 안내](system-runtime-operations.md)를 따른다.
+초기 준비 통과와 실행 중 네트워크의 지속적인 정상 여부는 별개다.

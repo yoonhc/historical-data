@@ -3,6 +3,12 @@
 BTCUSDT 현물·USDT 무기한 선물의 공개 시장 데이터를 수집·검증·보관하는 독립 데이터 프로젝트입니다.
 Freqtrade와 연구 노트북은 이 프로젝트가 제공하는 데이터를 읽는 소비자로 둡니다.
 
+현재 할 일·관찰 예정·보류 항목은 [TODO.md](TODO.md)에서 관리합니다. 작업 시작과 종료 때 갱신하며,
+완료 항목은 결과 문서에 근거를 남긴 뒤 목록에서 정리합니다.
+2026-10-09 현재 두 스트림은 고정 배포본의 **시스템 서비스**로 전환했습니다.
+[현재 상태 조회·배포·되돌리기 안내](docs/system-runtime-operations.md)와
+[최신 전환 결과와 남은 관찰](reports/baseline/system-cutover-2026-10-08/post-reboot-summary.md)을 참고하세요.
+
 첫 구현과 실제 데이터 검증을 마쳤습니다. 수집 코어에는 Freqtrade 의존성이 없고,
 별도 어댑터가 고정 스냅샷을 Feather/Parquet으로 내보냅니다. Freqtrade는 공식 Docker 이미지에서 실행합니다.
 
@@ -20,6 +26,10 @@ Freqtrade와 연구 노트북은 이 프로젝트가 제공하는 데이터를 �
 restic 비교·복원과 병행 예약 3/3, 호가 재시도·조기 갱신·조회 보류 기록, 네트워크 관측은
 [2026-10-03 restic 병행 운영과 호가 수집·관측 보강](docs/milestones/2026-10-03-restic-and-depth-observability.md)에
 정리했습니다. 10/3 11:23까지 확보한 증거를 기준으로 완료 범위와 새 기록의 후속 관찰을 구분합니다.
+
+10/5 마지막 커밋 이후의 시각 역행 진단·고정 배포본·Windows/Linux UTC RTC·Chrony·시스템 서비스 전환은
+[2026-10-09 운영 전환 정리](docs/milestones/2026-10-09-system-runtime-and-cutover.md)에 묶었습니다.
+실제 부팅·저장 성공과 aggTrade 공백·새 백업 관찰·자동 정리 보류를 구분합니다.
 
 ## 현재 확보한 데이터
 

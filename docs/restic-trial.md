@@ -8,6 +8,11 @@
 정리했다. 후속 [병행 보관 도구](restic-archive.md)는 별도 구현이며,
 9/27 [예약 운영](restic-scheduled-operations.md)을 적용했다. 날짜별 관찰은 최초 시험 결과와 구분한다.
 
+10/5에는 사용이 끝난 pilot 저장소·작업 공간·시험 프로필의
+[정리 계획](../reports/baseline/trial-artifact-retention-expanded-2026-10-05/summary.md)을 준비했다.
+아직 삭제·프로필 해제 전이며, 아래 9/27 명령은 당시의 실행 기록이다. 새 시험은 보존된 입력과
+새 프로필·출력 경로를 사용한다. 이미 정리된 원래 9/27 checkpoint 경로를 그대로 재사용하지 않는다.
+
 ## 설정과 실행 환경
 
 - [호스트 설정 예시](../configs/backup-host.example.toml)는 Git에 보관한다.

@@ -1,5 +1,93 @@
 # 검증 기록
 
+[2026-10-09 운영 전환 마일스톤](../docs/milestones/2026-10-09-system-runtime-and-cutover.md)이
+10/5 마지막 커밋 이후 아래 기록을 묶습니다. 후보의 미설치·미검증 표시는 각 시험 당시 상태이며,
+현재 적용 상태는 [시스템 서비스 운영 안내](../docs/system-runtime-operations.md), 남은 일은 [TODO](../TODO.md)를 따릅니다.
+
+`baseline/aggtrade-coverage-2026-10-09/`는 aggTrade 카탈로그 전체 범위와 공개 아카이브 제공 확인이다.
+[요약](baseline/aggtrade-coverage-2026-10-09/summary.md)에 상시 수집 이후 잔여 공백 1구간 264,069건,
+초기 시험 사이 4구간·376회 복구 기록, 내부 공백의 REST 대조와 파일 12개 검증을 구분했다.
+실제 일별/월별 ZIP 제공과 CSV header를 확인했으며, REST 48시간 제한이 아카이브 보존 제한은 아님을 명시했다.
+전체 행을 다시 읽은 검사는 아니며 아카이브 수집·등록이나 보강은 아직 수행하지 않았다.
+
+`baseline/system-cutover-2026-10-08/`는 사용자가 지금 전환 작업창을 승인한 뒤 시작한 실제 운영 전환이다.
+[진행 기록](baseline/system-cutover-2026-10-08/summary.md)에 현재 날짜 누락 보강,
+21:40 두 collector 저장 후 종료·20개 unit persistent mask, 21:48 최종 checkpoint·21:56 restic 전체 검사 완료를 남겼다.
+21:57 첫 Windows 인계 준비를 확정했으며, 새 snapshot과 갱신 revision·종료 collection의 포함을 대조했다.
+[첫 Windows 결과와 Linux 복귀 점검](baseline/system-cutover-2026-10-08/summary.md)을 추가했다.
+Windows UTC flag·동기화는 사용자 확인, Linux 20개 mask·외부 동기화는 실제 조회로 구분했다.
+두 번째 왕복 뒤 RTC UTC 유지·실제 RTC/시스템 근접성·외부 동기화·기존 보류를 다시 확인했다.
+Windows 동기화 전 표시 시각은 미확인으로 남겼다. 설치기 옵션/별칭 순서의 두 중단과 해결을 보존했고,
+23:52 고정 배포본·Chrony 설치/권한 검사, 23:57 시각 기준 통과·23:58 최종 재부팅 인계를 완료했다.
+10/9 최종 재부팅에서 시각 준비 완료·step 0회·두 system collector 시작과 실제 저장을 확인했다.
+[부팅 후 점검](baseline/system-cutover-2026-10-08/post-reboot-summary.md)에 첫 저장 subset의 ID/시각/해시 검증,
+기존 업무 재개와 전환 공백의 aggTrade 264,069건 미복구를 구분했다. 초기 subset 이후 00:20:43 호가 범위 소진 1건도
+자동 복구·품질 손실 유지로 기록했다. 첫 1시간 세션 종료·새 정기 백업은 후속이다.
+자동 정리는 보류됐으며, 전환이 끝나도 상시 시각 검사 검증·승인 전에는 자동 재개하지 않는다.
+
+`baseline/system-cutover-backup-followup-2026-10-08/`는 어젯밤 보강 자료를 포함한 다음 정기 복구 지점의 확인이다.
+[요약](baseline/system-cutover-backup-followup-2026-10-08/summary.md)에 14:08 checkpoint 완료,
+14:35 예약 restic의 1개 저장·14:41 전체 읽기 검사와 4종 4,608행의 실제 snapshot 내용 대조를 기록했다.
+15:40 기존 자동 정리 완료와 restic 12개 지점 유지도 확인했다. 새 날짜 10/7 UTC 갱신 대기는 별도 항목이다.
+운영 전환·시각 변경·서비스 제어 없이 기다리던 백업 후속 확인을 마쳤다.
+
+`baseline/system-cutover-readiness-2026-10-07/`는 운영 전환 전 기존 daily 미완료와 최신 복구 지점의 후속 확인이다.
+[요약](baseline/system-cutover-readiness-2026-10-07/summary.md)에 공개 파일 4종의 현재 제공 확인,
+기존 daily 재실행으로 10/6 UTC 누락 4,608행 해소·정상 종료와 checkpoint/restic ID·기존 전체 검사 대조를 남겼다.
+13:58 기준 사본에는 23:31 갱신분이 포함되지 않으므로 전환 전 새 사본의 저장·검사가 필요함을 구분했다.
+고정 후보·설정·수집 프로세스·시각·정리 승인은 유지했으며 실제 전환·재부팅은 수행하지 않았다.
+
+`baseline/system-runtime-root-preflight-2026-10-07/`는 고정 bootstrap 후보의 실제 관리자 접근 시험이다.
+[요약](baseline/system-runtime-root-preflight-2026-10-07/summary.md)에 같은 보호 옵션에서 Chrony Unix socket·client 응답 소켓,
+실제 yoonhc manager 조회, 파일/디렉터리 fsync·일반 계정 공유 잠금의 통과를 기록했다.
+최초 `/run` noexec 배치 오류와 시험 경로 수정·재실행을 구분했고, 시험 unit/폴더 정리와 운영 보존을 확인했다.
+[운영 전환 범위](baseline/system-runtime-root-preflight-2026-10-07/transition-review.md)는 별도 승인 대상으로 남겼다.
+시험 전부터 존재한 daily update의 waiting_source/exit 2도 전환 전 확인 항목으로 분리했다.
+
+`baseline/system-runtime-bootstrap-revision-2026-10-07/`는 위 bootstrap 후보의 재전송·소켓 권한·업무 재개 보완입니다.
+[요약](baseline/system-runtime-bootstrap-revision-2026-10-07/summary.md)에 실제 chronyc 응답 유실 시 요청 2회→1회,
+공통 읽기 전용 대기 뒤 8개 업무 재개, 업무 재시도 제한 유지, 297건 및 새 경로 297건 재현을 남겼습니다.
+배포판 유닛과 후보 drop-in의 의존 관계 검사는 통과했으며, 당시 미완료였던 실제 root 접근은 위 후속 기록에서 확인했습니다.
+당시 운영 소스·서비스·시각/RTC·정리 승인과 기존 후보는 유지했습니다. 이 고정 후보의 실제 적용은 위 10/8 전환 기록에서 확인합니다.
+이전 후보의 중복 방지 검증은 프로그램 재호출 범위였고 chronyc 내부 재전송까지 확인한 것은 아니었습니다.
+
+`baseline/system-runtime-bootstrap-candidate-2026-10-06/`는 UTC RTC 통일을 전제로 한 부팅 초기 보정의 새 후보입니다.
+[요약](baseline/system-runtime-bootstrap-candidate-2026-10-06/summary.md)에 신규 37건+기존 248건,
+깨끗한 경로의 285건 재현, 보정 intent 전후 SIGKILL·재시작 금지·실제 사용자 systemd 재시도를 기록했습니다.
+RTC 확인 전 Chrony 시작 거부와 기존 user 작업 8개의 시작 검사를 준비했으며, 설치한 부팅은 hold합니다.
+이전 후보와 운영은 보존했고, 실제 RTC/시각 변경·서비스 전환·재부팅은 하지 않았습니다.
+
+`baseline/system-runtime-candidate-2026-10-06/`는 시스템 수집 서비스·Chrony·고정 배포본의 후보입니다.
+[요약](baseline/system-runtime-candidate-2026-10-06/summary.md)에 신규 49건+기존 199건 통과와
+깨끗한 경로의 248건 재현, 임시 systemd 재시도·종료와 시각 제어 없는 Chrony 시험을 남겼습니다.
+듀얼부팅을 반영해 RTC 쓰기·자동 큰 보정을 제외했습니다. 운영 설치·시각 변경·수집 중지는 하지 않았으며,
+시각 근거의 백업/연구 연계·자동 삭제의 영구 시각 gate는 별도 후속으로 구분했습니다.
+[전환·되돌리기 검토](baseline/system-runtime-candidate-2026-10-06/deployment-review.md)는 당시 초기안이며,
+이후 bootstrap 보완 후보와 실제 전환 기록으로 적용 범위를 확정했습니다.
+
+`baseline/stream-startup-readiness-2026-10-05/`는 재부팅 뒤 네트워크·시각 준비 상태의 읽기 전용 점검입니다.
+[요약](baseline/stream-startup-readiness-2026-10-05/summary.md)에 사용자 network-online target 부재,
+수집 시작 3.93초 뒤 시스템 네트워크 준비·102.82초 뒤 최초 NTP 동기화, RTC 약 41초 오차를 남겼습니다.
+두 스트림의 실행 전 준비 확인과 RTC 보완 범위를 제안했으며, 구현·운영 설정 변경·재시작은 하지 않았습니다.
+
+`baseline/depth-status-followup-2026-10-05/`는 호가 상태 공개 패치의 첫 정기 종료와 저녁 운영 점검입니다.
+[요약](baseline/depth-status-followup-2026-10-05/summary.md)에 종료 7개·증분 244,357개 저장 일치,
+REST 2,464회 일치와 선택한 3개 재생·2개 원문 대조를 남겼습니다. 재부팅 interrupted·기동 전
+네트워크 미준비 partial을 보존했고 첫 정기 종료 항목은 완료했습니다. 별도로 NTP 보정에 따른
+수신 시각 약 41초 역행을 확인했으며, 운영 설정 변경 없이 시각·기동 조건 점검과 24시간 관찰을 남겼습니다.
+
+`baseline/trial-artifact-retention-expanded-2026-10-05/`는 시험 저장소·캐시·상위 폴더까지 확대한 현재 정리안입니다.
+[요약](baseline/trial-artifact-retention-expanded-2026-10-05/summary.md)에 정확한 네 경로·예상 회수 197.34 GB,
+pilot 자료의 보존 원본 대조·복제 snapshot 7개 중복 확인·9/26 원래 사본 33,586개 파일 검증을 남겼습니다.
+시험 전용 프로필의 기록 보관·해제와 키트 안내 추가도 적용 범위로 제안합니다. 첫 결과 파일 저장 오류와
+정상 재검사를 구분했고, 실제 삭제·설정 해제·키트 변경은 0건입니다. 아래 172 GB 초기안을 대체합니다.
+
+`baseline/trial-artifact-retention-plan-2026-10-05/`는 대용량 시험 산출물의 삭제 없는 수동 정리 계획입니다.
+[요약](baseline/trial-artifact-retention-plan-2026-10-05/summary.md)에 추출·복원·재백업 12개 경로,
+예상 회수 172.00 GB, 보존할 네 snapshot과 manifest 대조, 후보 밖 증거 복사를 남겼습니다.
+실제 삭제는 0건이며 시험 저장소·키트·원본·기존 백업은 보존합니다. checkpoint 반복 승인을
+이 후보에 적용하지 않으며, 10/6 첫 자동 정리 관찰 후 별도 수동 승인·재점검이 후속입니다.
+
 `baseline/checkpoint-automation-activation-2026-10-05/`는 별도 사용자 승인에 따른 자동 정리 예약 활성화입니다.
 [요약](baseline/checkpoint-automation-activation-2026-10-05/summary.md)에 19:38 활성화,
 실제 사용자 서비스 환경의 삭제 없는 점검·Linger/마운트/저장소 ID 일치·고정 승인 범위를 남겼습니다.
