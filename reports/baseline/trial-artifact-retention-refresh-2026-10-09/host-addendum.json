@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-09T12:21:14.058976+00:00",
+  "configuration_hashes": {
+    "/etc/marketdata/clock-bootstrap.json": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+    "/etc/marketdata/rtc-utc-confirmation.json": "3b962031eace9ee1770513a8afcc09b1cb6b1de93936ed73cbc0e2452ac7100b",
+    "/etc/marketdata/runtime.json": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+    "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12",
+    "/etc/systemd/system/chrony.service.d/marketdata.conf": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4",
+    "/etc/systemd/system/marketdata-clock-bootstrap.service": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+    "/etc/systemd/system/marketdata-collector@.service": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4"
+  },
+  "candidate_references": [],
+  "systemd_command": [
+    "systemctl",
+    "show",
+    "marketdata-collector@depth.service",
+    "marketdata-collector@aggtrade.service",
+    "chrony.service",
+    "-p",
+    "Id",
+    "-p",
+    "MainPID",
+    "-p",
+    "ActiveState",
+    "-p",
+    "InvocationID"
+  ],
+  "systemd": "MainPID=224785\nId=marketdata-collector@depth.service\nActiveState=active\nInvocationID=41b1747221894331a5e0b4fdf3f9751e\n\nMainPID=224784\nId=marketdata-collector@aggtrade.service\nActiveState=active\nInvocationID=1aa42e55ff804c1f9e5ec68b31116c6b\n\nMainPID=1245\nId=chrony.service\nActiveState=active\nInvocationID=19420480ab3249529a075ca7cb2bd3c1\n",
+  "automatic_retirement_links": {
+    "marketdata-checkpoint-retirement.service": "/dev/null",
+    "marketdata-checkpoint-retirement.timer": "/dev/null"
+  }
+}

@@ -10,13 +10,15 @@
 
 10/5에는 사용이 끝난 pilot 저장소·작업 공간·시험 프로필의
 [정리 계획](../reports/baseline/trial-artifact-retention-expanded-2026-10-05/summary.md)을 준비했다.
-아직 삭제·프로필 해제 전이며, 아래 9/27 명령은 당시의 실행 기록이다. 새 시험은 보존된 입력과
+10/9 현재 상태 재확인·별도 승인 후 [네 시험 경로 삭제와 프로필 해제를 완료](../reports/baseline/trial-artifact-retirement-2026-10-09/summary.md)했다.
+아래 9/27 명령은 당시의 실행 기록이다. 새 시험은 보존된 입력과
 새 프로필·출력 경로를 사용한다. 이미 정리된 원래 9/27 checkpoint 경로를 그대로 재사용하지 않는다.
 
 ## 설정과 실행 환경
 
 - [호스트 설정 예시](../configs/backup-host.example.toml)는 Git에 보관한다.
-- 실제 설정은 `~/.config/marketdata/backup-host.toml`, 암호는 별도의 `0600` 파일이다.
+- 당시 실제 설정은 `~/.config/marketdata/backup-host.toml`이었다. 현재는 원래 설정 경로에서 해제하고
+  로컬 보고서에 0600 사본을 보존했다. 공유 암호는 별도의 `0600` 파일로 계속 보존한다.
   설정에는 암호 값이 아닌 암호 파일 경로만 넣는다. 설정과 암호를 Git에 넣지 않는다.
 - 원본, 기존 사본, restic 저장소, 복원 작업 공간을 분리한다. 원본 경로는 `data/`와
   `state/`를 포함한 저장소 루트다. 보고서에는 경로가 기록되지만 암호는 기록되지 않는다.

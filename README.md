@@ -244,8 +244,10 @@ loginctl enable-linger "$USER"
 중단 후 재개 도구를 제공합니다. 10/5 첫 수동 정리 후 별도 승인한 **15:40 KST 자동 정리 예약**을
 활성화했습니다. 최신 검증 3개와 완료 후 72시간 미만 사본을 보호하며,
 [승인 범위·활성화 결과·새 예약만 중지하는 절차](reports/baseline/checkpoint-automation-activation-2026-10-05/summary.md)를
-확인하세요. 첫 예약은 10/6 15:40이고 실제 정리 및 다음 백업 연결은 후속 확인입니다.
-restic `forget`·`prune`과 시험 공간 정리는 적용하지 않았습니다.
+확인하세요. 첫 예약 정리와 후속 백업 연결은 실제 기록으로 확인했습니다. 현재 자동 정리는 시각 안전
+조건의 별도 검증·승인 전까지 masked 상태이며, [TODO](TODO.md)의 T05를 따릅니다.
+10/9 별도 승인한 [네 시험 경로의 수동 정리](reports/baseline/trial-artifact-retirement-2026-10-09/summary.md)를
+완료해 관측 여유 공간이 197.34 GB 늘었습니다. 운영 restic·복구 키트는 보존하며 `forget`·`prune`은 미적용입니다.
 활성 revision을 무시하고 모든 Parquet을 glob으로 읽으면 수정 전후 데이터가 중복됩니다.
 
 ## Python 조회

@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-09T12:28:01.441544+00:00",
+  "passed": true,
+  "plan_id": "63a2be1e2f10e567ac6457cc4878f753f52691fe2219349c6f1e4e0c0b30c995",
+  "old_manifest_and_restore_receipt_copies_verified": 12,
+  "current_source_metadata_matches_preserved_copies": true,
+  "inventory_changes_only_empty_restic_lock_directory_timestamps": true,
+  "configurations_unchanged_since_probe": true,
+  "automatic_retirement_still_masked": true,
+  "production_snapshot_count": 14,
+  "existing_full_read_check_covers_current_snapshot_set": true,
+  "fresh_full_repository_read": false,
+  "fresh_restore_test": false,
+  "retained_checkpoint_full_verification": true,
+  "independent_du_command": [
+    "du",
+    "-s",
+    "-c",
+    "-x",
+    "-B1",
+    "--",
+    "/mnt/backup/marketdata-restic-pilot",
+    "/mnt/backup/marketdata-restic-pilot-work",
+    "/mnt/backup/marketdata-independent-recovery-20261003",
+    "/mnt/backup/marketdata-restic-restore/0cc942c867b34ba1b561fc4f7e6d1dca"
+  ],
+  "independent_du_totals_match": true,
+  "previous_scheduled_retirement_observed": {
+    "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/checkpoint-scheduled/2db85579ca0d47818af88623ea1b360a/run.json",
+    "sha256": "1c0a08959df59df6f45b585b287e6fe29ffbaf5e52a2112906bf82b871e6ec33",
+    "finished_at": "2026-10-06T06:51:59.032446+00:00",
+    "state": "complete",
+    "deleted_checkpoints": 2,
+    "plan_id": "b37c29b47a38bd5a98917d884b698aa5e2de5765c8858499607a18d7c8b16b1c",
+    "preferred_prior_observation_satisfied": true
+  },
+  "actual_files_deleted": 0
+}

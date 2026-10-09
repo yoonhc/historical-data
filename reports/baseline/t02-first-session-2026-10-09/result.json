@@ -1,0 +1,130 @@
+{
+  "observed_at": "2026-10-09T12:10:51.029120+00:00",
+  "scope": "T02 first session and next startup; not the 24-hour observation or T11 new-supervisor boundary",
+  "read_only_catalog": true,
+  "release_module": "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/lib/python3.12/site-packages/marketdata/depth.py",
+  "before": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "config_sha256": {
+      "/etc/marketdata/runtime.json": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+      "/etc/marketdata/clock-bootstrap.json": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+      "/etc/chrony/marketdata.conf": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "/etc/adjtime": "1a4f01af447bd4d7448979a43750d91c4d6df4250e2ce7eb2df88dfb6c4e2319"
+    },
+    "automatic_retirement_links": {
+      "marketdata-checkpoint-retirement.service": "/dev/null",
+      "marketdata-checkpoint-retirement.timer": "/dev/null"
+    }
+  },
+  "after": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "config_sha256": {
+      "/etc/marketdata/runtime.json": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+      "/etc/marketdata/clock-bootstrap.json": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+      "/etc/chrony/marketdata.conf": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "/etc/adjtime": "1a4f01af447bd4d7448979a43750d91c4d6df4250e2ce7eb2df88dfb6c4e2319"
+    },
+    "automatic_retirement_links": {
+      "marketdata-checkpoint-retirement.service": "/dev/null",
+      "marketdata-checkpoint-retirement.timer": "/dev/null"
+    }
+  },
+  "collections": {
+    "depth": {
+      "first": {
+        "id": "bc6bc9d2cb6149ba864f0d2003adf3af",
+        "dataset": "book_depth",
+        "kind": "websocket",
+        "started_at": "2026-10-08T15:11:19.018613+00:00",
+        "updated_at": "2026-10-08T16:11:19.048173+00:00",
+        "state": "partial",
+        "messages": 33175,
+        "persisted_messages": 33175,
+        "snapshots": 457,
+        "complete": false,
+        "sync_losses": 1,
+        "synchronized": false,
+        "connection_errors": 0,
+        "unreconstructed_messages": 0,
+        "last_received_at": "2026-10-08T16:11:18.998871+00:00",
+        "segments": 1257,
+        "stored_rows": 33632
+      },
+      "next": {
+        "id": "f8cddef376fe42a9af10c052b254a375",
+        "dataset": "book_depth",
+        "kind": "websocket",
+        "started_at": "2026-10-08T16:11:35.773337+00:00",
+        "updated_at": "2026-10-08T17:11:37.823463+00:00",
+        "state": "partial",
+        "messages": 35225,
+        "persisted_messages": 35225,
+        "snapshots": 399,
+        "complete": false,
+        "sync_losses": 1,
+        "synchronized": false,
+        "connection_errors": 0,
+        "unreconstructed_messages": 0,
+        "last_received_at": "2026-10-08T17:11:35.754948+00:00",
+        "segments": 1155,
+        "stored_rows": 35624
+      }
+    },
+    "aggtrade": {
+      "first": {
+        "id": "c36431bac84d4092b5f1ca33b4740af4",
+        "dataset": "agg_trades",
+        "kind": "websocket",
+        "started_at": "2026-10-08T15:11:19.029251+00:00",
+        "updated_at": "2026-10-08T16:11:28.077075+00:00",
+        "state": "partial",
+        "messages": 339991,
+        "persisted_messages": 339991,
+        "complete": false,
+        "connection_errors": 0,
+        "last_id": 3479490809,
+        "last_received_at": "2026-10-08T16:11:23.045122+00:00",
+        "previous_persisted_id": 3478866749,
+        "resume_after_id": 3478866749,
+        "detected_gaps": 1,
+        "repaired_gaps": 0,
+        "unrepaired_gaps": 1,
+        "segments": 703,
+        "stored_rows": 339991
+      },
+      "next": {
+        "id": "bd9cf50dffeb4322a6f63d0f6e9a45a2",
+        "dataset": "agg_trades",
+        "kind": "websocket",
+        "started_at": "2026-10-08T16:11:44.703536+00:00",
+        "updated_at": "2026-10-08T17:11:49.946961+00:00",
+        "state": "complete",
+        "messages": 173814,
+        "persisted_messages": 173814,
+        "complete": true,
+        "connection_errors": 0,
+        "last_id": 3479665399,
+        "last_received_at": "2026-10-08T17:11:44.735674+00:00",
+        "previous_persisted_id": 3479490809,
+        "resume_after_id": 3479490809,
+        "detected_gaps": 1,
+        "repaired_gaps": 1,
+        "unrepaired_gaps": 0,
+        "segments": 708,
+        "stored_rows": 173814
+      }
+    }
+  },
+  "checks": {
+    "first_final_partial_preserved": true,
+    "first_received_counts_equal_persisted": true,
+    "first_stored_counts_equal_report": true,
+    "stored_subset_hashes_counts_and_sequences_match": true,
+    "depth_replay_matches_with_quality_rejection": true,
+    "first_runtime_logs_clean_and_terminal": true,
+    "configuration_boot_and_mask_unchanged": true
+  },
+  "passed": true,
+  "elapsed_seconds": 98.40076964499895,
+  "pending_24h_review_not_before_kst": "2026-10-10T00:20:00+09:00"
+}

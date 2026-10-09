@@ -1,0 +1,645 @@
+{
+  "schema": 2,
+  "kind": "refreshed_one_off_trial_retirement_review",
+  "created_at": "2026-10-09T12:28:01.437968+00:00",
+  "supersedes_review_plan_id": "2d3c163f86bbc147dd4057e000b40304f2d8c7e80dd8df44b2bf5bdff8b7be11",
+  "base_commit": "31ff6a52a8bcbd1a1efb0911850786453e644402",
+  "input_sha256": {
+    "refresh.py": "f6ae260dadad991b00ffc809b48377d820bd131676fcbb078172a19948f64ad2",
+    "build_plan.py": "7f6294372fcc7bf642dc9e7945cf0c1f4baf303f99a71137010b4801f3da9071",
+    "probe.json": "dbff90759a4452f704643c9c0b29805c9d94d4f710346e37209fd94c04e91e2f",
+    "host-addendum.json": "06415c8585714f2a5ab9b31c372573a3e53d2c30c5215aefe26eeb1851366175",
+    "inventory.json": "deeb3a17df8fd95accd71bf5b11d7f1a1fc6f6cb10d5e5eb70d9c65bc63a12e3",
+    "comparison.json": "bd42e6f2a4606a60e7dffb9accd35ebfb9cc30888aeb13fce017396da72e1755",
+    "retained-checkpoint-verification.json": "755ffcdf0510f33c392fedfb21b4bb51314c58e53f52a8a8f6e56aa4235aa868",
+    "probe-execution.json": "504cc48babfd1dd3d728800996d412d61c4bfe025176c96f23346f920377eae0",
+    "inventory-execution.json": "ce83c5eb85b458211c933161f35c1a4272868d18490c550fa8c00431b2301a30",
+    "retained-execution.json": "b8937d9fc07ccd63273a092795a959277dc468784b77efc5dbe351913f9621bb",
+    "manual-procedure.md": "f42b5bbef5a6f5bfc8941898444f26b17594cc8aa5928b9736d79854f1de2285"
+  },
+  "authorization": {
+    "deletion_authorized": false,
+    "apply_enabled": false,
+    "recurring_checkpoint_grant_applies": false,
+    "status": "Refreshed exact manual scope; destructive application requires explicit approval."
+  },
+  "filesystem_uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+  "candidate_roots": [
+    {
+      "label": "pilot-repository",
+      "path": "/mnt/backup/marketdata-restic-pilot",
+      "root": {
+        "dev": 66314,
+        "ino": 39190529,
+        "mode": 16832,
+        "uid": 1000,
+        "gid": 1000,
+        "size": 4096,
+        "mtime_ns": 1790489525347346439,
+        "ctime_ns": 1790489525347346439,
+        "nlink": 7,
+        "blocks": 8
+      },
+      "files": 419,
+      "directories": 262,
+      "apparent_file_bytes": 7149686738,
+      "single_link_file_blocks_bytes": 7150542848,
+      "directory_blocks_bytes": 1073152,
+      "regular_allocated_path_bytes": 7150542848,
+      "top_level_allowlist": [
+        "config",
+        "data",
+        "index",
+        "keys",
+        "locks",
+        "snapshots"
+      ],
+      "inventory": "reports/trial-artifact-retention-refresh-2026-10-09/pilot-repository.inventory.jsonl.gz",
+      "inventory_sha256": "edcd73da3ff3f521549802373a2a91d6a008ceb9133a87cc3f6d8c4e4fcb0884",
+      "gzip_sha256": "6f12990867336e97646af5cbf6cdd1e6ccc84bd2531856efafd5b0498104e489",
+      "gzip_bytes": 33893
+    },
+    {
+      "label": "pilot-work",
+      "path": "/mnt/backup/marketdata-restic-pilot-work",
+      "root": {
+        "dev": 66314,
+        "ino": 57278465,
+        "mode": 16893,
+        "uid": 1000,
+        "gid": 1000,
+        "size": 4096,
+        "mtime_ns": 1790494868672702008,
+        "ctime_ns": 1790494868672702008,
+        "nlink": 9,
+        "blocks": 8
+      },
+      "files": 204291,
+      "directories": 180663,
+      "apparent_file_bytes": 57818950069,
+      "single_link_file_blocks_bytes": 58304802816,
+      "directory_blocks_bytes": 748462080,
+      "regular_allocated_path_bytes": 58304802816,
+      "top_level_allowlist": [
+        "2026-09-26-extracted",
+        "2026-09-26-new-backup",
+        "2026-09-26-store",
+        "2026-09-27-extracted",
+        "2026-09-27-new-backup",
+        "2026-09-27-store",
+        "cache"
+      ],
+      "inventory": "reports/trial-artifact-retention-refresh-2026-10-09/pilot-work.inventory.jsonl.gz",
+      "inventory_sha256": "785bde76edbd99d7bad5affad094fe21498e9438b3ab0b3d76aeaf54ca10fcca",
+      "gzip_sha256": "86600ad90dbf05e6c528877a9057d34ed18d0b915787895f18267e7c9e4ac587",
+      "gzip_bytes": 14318222
+    },
+    {
+      "label": "independent-trial",
+      "path": "/mnt/backup/marketdata-independent-recovery-20261003",
+      "root": {
+        "dev": 66314,
+        "ino": 28180481,
+        "mode": 16832,
+        "uid": 1000,
+        "gid": 1000,
+        "size": 4096,
+        "mtime_ns": 1791013802300508889,
+        "ctime_ns": 1791013802300508889,
+        "nlink": 4,
+        "blocks": 8
+      },
+      "files": 138112,
+      "directories": 114357,
+      "apparent_file_bytes": 91871052061,
+      "single_link_file_blocks_bytes": 92203266048,
+      "directory_blocks_bytes": 477130752,
+      "regular_allocated_path_bytes": 92203266048,
+      "top_level_allowlist": [
+        "repository",
+        "restore-work"
+      ],
+      "inventory": "reports/trial-artifact-retention-refresh-2026-10-09/independent-trial.inventory.jsonl.gz",
+      "inventory_sha256": "24c40b3f4d83eeedd3ce886b0235aa0cd139e95b70b5ed976778d7082fd83967",
+      "gzip_sha256": "ecb9f58bb1e62005c8044faabd859b50a9176b18a82359c3a2de31afe584b37e",
+      "gzip_bytes": 9648305
+    },
+    {
+      "label": "production-restore-run",
+      "path": "/mnt/backup/marketdata-restic-restore/0cc942c867b34ba1b561fc4f7e6d1dca",
+      "root": {
+        "dev": 66314,
+        "ino": 23724034,
+        "mode": 16832,
+        "uid": 1000,
+        "gid": 1000,
+        "size": 4096,
+        "mtime_ns": 1790578818264240175,
+        "ctime_ns": 1790578818264240175,
+        "nlink": 5,
+        "blocks": 8
+      },
+      "files": 107390,
+      "directories": 94474,
+      "apparent_file_bytes": 37812884363,
+      "single_link_file_blocks_bytes": 38063198208,
+      "directory_blocks_bytes": 392998912,
+      "regular_allocated_path_bytes": 38063198208,
+      "top_level_allowlist": [
+        "extracted",
+        "new-backup",
+        "store"
+      ],
+      "inventory": "reports/trial-artifact-retention-refresh-2026-10-09/production-restore-run.inventory.jsonl.gz",
+      "inventory_sha256": "a1ed339f54c057f1664fd9f135768207c2c15d26e7133e50e093cee0d78576cb",
+      "gzip_sha256": "a96b0e50647b5077ba429c834b8582d116f7a5752202b950624d7d9cb9ad5475",
+      "gzip_bytes": 7543308
+    }
+  ],
+  "protected": [
+    {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data",
+      "role": "production data/revisions/catalog/code and all evidence reports"
+    },
+    {
+      "path": "/mnt/backup/marketdata-historical",
+      "role": "all retained working and pre-enrollment checkpoints"
+    },
+    {
+      "path": "/mnt/backup/marketdata-restic",
+      "role": "production repository; every snapshot retained"
+    },
+    {
+      "path": "/mnt/backup/marketdata-recovery-kit-20261003",
+      "role": "whole recovery kit; add only reviewed guidance after cleanup"
+    },
+    {
+      "path": "/mnt/backup/marketdata-restic-restore",
+      "role": "keep the configured operational restore parent; only the named old run is a candidate"
+    },
+    {
+      "path": "/home/yoonhc/.config/marketdata/secrets/restic-password",
+      "role": "shared production restic credential, never a disposable pilot-only file"
+    },
+    {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/.cache/restic/0.19.1/restic",
+      "role": "shared production restic binary"
+    },
+    {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/archive-state",
+      "role": "original production archive, restore and retirement receipts/state"
+    }
+  ],
+  "profile_retirement": {
+    "source": "/home/yoonhc/.config/marketdata/backup-host.toml",
+    "source_sha256": "2a27c4f1656ae22d8bcb70f0971c22751c5720d8d1f94ac93e0c8604456540f6",
+    "preserved_copy": "reports/trial-artifact-retention-refresh-2026-10-09/preserved-backup-host.toml",
+    "copy_mode": "0o600",
+    "copied_exactly": true,
+    "original_still_present": true,
+    "future_action": "retire this inactive profile only after separate cleanup approval",
+    "source_identity": {
+      "dev": 66312,
+      "ino": 10792673,
+      "mode": 33152,
+      "uid": 1000,
+      "gid": 1000,
+      "size": 573,
+      "mtime_ns": 1790489364442165415,
+      "ctime_ns": 1790489364442165415,
+      "nlink": 1,
+      "blocks": 8
+    },
+    "planned_action": "After approval and exact-copy/hash check, remove only this inactive host profile from its former config path; keep the report copy.",
+    "performed": false
+  },
+  "kit_guidance": {
+    "prepared_source": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/trial-artifact-retention-expanded-2026-10-05/recovery-kit-note.md",
+    "sha256": "36aeb7c35f9f0f290f56d393017e1a2fa7444feabe3254986d099dc9b3da0db5",
+    "planned_destination": "/mnt/backup/marketdata-recovery-kit-20261003/TRIAL-CLEANUP.md",
+    "planned_action": "After approval, add this note and actual completion receipt; preserve original kit files.",
+    "installed": false
+  },
+  "preserved_proofs": {
+    "old_inventory": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/trial-artifact-retention-plan-2026-10-05/inventory.json",
+    "old_inventory_sha256": "463bd77cc9c924658ce50f20f0810ff436910df859fca6f962d5281e66a754cb",
+    "historical_proofs": [
+      {
+        "case": "pilot-2026-09-26",
+        "evidence": "reports/baseline/restic-trial-2026-09-27/results.json",
+        "evidence_sha256": "ff0d7f02710b15dd440d0f13552e1b1675a3447da120a12765e4ba7485e58e11",
+        "historical_ok": true,
+        "independent_file_checks": 33586,
+        "services_started": false
+      },
+      {
+        "case": "pilot-2026-09-27",
+        "evidence": "reports/baseline/restic-trial-2026-09-27/results.json",
+        "evidence_sha256": "ff0d7f02710b15dd440d0f13552e1b1675a3447da120a12765e4ba7485e58e11",
+        "historical_ok": true,
+        "independent_file_checks": 34505,
+        "services_started": false
+      },
+      {
+        "case": "production-2026-09-28",
+        "evidence": "reports/baseline/restic-observation-2026-09-28/restore-run.json",
+        "evidence_sha256": "c198de79c11f818f850f5f8539c68cb5d14454f18a308fdf4f2eedafd805058c",
+        "historical_ok": true,
+        "independent_file_checks": 35795,
+        "services_started": false
+      },
+      {
+        "case": "independent-2026-10-03",
+        "evidence": "reports/baseline/restic-transition-2026-10-03/recovery-evidence/recovery-result.json",
+        "evidence_sha256": "8a3adfe4de68c1a0fcca1fcbe6d184b62638b2da25df217d549daf438e4b5909",
+        "historical_ok": true,
+        "independent_file_checks": 45683,
+        "services_started": false
+      }
+    ],
+    "copied_manifests_and_restore_receipts": [
+      {
+        "source": "/mnt/backup/marketdata-restic-pilot-work/2026-09-26-extracted/backup.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/pilot-2026-09-26-extracted-backup.json.gz",
+        "bytes": 7590891,
+        "sha256": "ec8537202d08af3d20841c3f7c7efb209b51e830cd5d73459aafe61a3446e2a2",
+        "compressed_bytes": 2215852,
+        "compressed_sha256": "f9696ea4f8f54b944c45473cf4d17fb829f184e38f06fd60eed9100fc2ac2865"
+      },
+      {
+        "source": "/mnt/backup/marketdata-restic-pilot-work/2026-09-26-store/restore.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/pilot-2026-09-26-store-restore.json.gz",
+        "bytes": 622,
+        "sha256": "a582450baf04647764af35421723cc62440201f603f0beddeab06d5d02c88b11",
+        "compressed_bytes": 389,
+        "compressed_sha256": "84b9d04336b392d36e8fb5fb04881a683d129481db8895c6cce70078392dd954"
+      },
+      {
+        "source": "/mnt/backup/marketdata-restic-pilot-work/2026-09-26-new-backup/backup.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/pilot-2026-09-26-new-backup-backup.json.gz",
+        "bytes": 7590768,
+        "sha256": "c6891713b48041f8378e3a7cda57c1452dce58e2878ff4ab77071bc944b9312e",
+        "compressed_bytes": 2215772,
+        "compressed_sha256": "5e91ce86d718b51bc3393824d1c3109f1787e083643b933cfc0d4e486b6d94b5"
+      },
+      {
+        "source": "/mnt/backup/marketdata-restic-pilot-work/2026-09-27-extracted/backup.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/pilot-2026-09-27-extracted-backup.json.gz",
+        "bytes": 7780992,
+        "sha256": "f2bb27dd39d5dd92ab3520278e957b03c9402059f68da5c92124be995458c6eb",
+        "compressed_bytes": 2269417,
+        "compressed_sha256": "02706361fc463797f0e2c3b5c8543f8f47ca8c86b5b5105acfdd34b9ffab96c0"
+      },
+      {
+        "source": "/mnt/backup/marketdata-restic-pilot-work/2026-09-27-store/restore.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/pilot-2026-09-27-store-restore.json.gz",
+        "bytes": 623,
+        "sha256": "db2f2cce37f510ab9e3088b23b8c239641593678482d80b703cceb427095032d",
+        "compressed_bytes": 389,
+        "compressed_sha256": "f9e3a98ae43db2b9f6ee75480547a410091c6c8150a9d702721255856668b397"
+      },
+      {
+        "source": "/mnt/backup/marketdata-restic-pilot-work/2026-09-27-new-backup/backup.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/pilot-2026-09-27-new-backup-backup.json.gz",
+        "bytes": 7780844,
+        "sha256": "5fecb4df5c720dfbb4b6b613c48b3ce65092ae04f81de12f8a06345d5490f51a",
+        "compressed_bytes": 2269316,
+        "compressed_sha256": "9bbf70c040e00bcb39db46781dc0a0d42851a1d4eba668cf2c68bf1a4875a122"
+      },
+      {
+        "source": "/mnt/backup/marketdata-restic-restore/0cc942c867b34ba1b561fc4f7e6d1dca/extracted/backup.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/production-2026-09-28-extracted-backup.json.gz",
+        "bytes": 8051192,
+        "sha256": "5c8d6b95d2ebf1865be2d9697d74d41ded291e2928e55df53282d8d59440d949",
+        "compressed_bytes": 2341894,
+        "compressed_sha256": "95efc536477b5b1d652f8106ef542d9f600d80b4e8e5f95c2f852cd86be08c9d"
+      },
+      {
+        "source": "/mnt/backup/marketdata-restic-restore/0cc942c867b34ba1b561fc4f7e6d1dca/store/restore.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/production-2026-09-28-store-restore.json.gz",
+        "bytes": 661,
+        "sha256": "60c189416e680513ab45a67f8daea69ec1bf5be9eea8d81a04619a4f89943998",
+        "compressed_bytes": 405,
+        "compressed_sha256": "3d9d5573eb61c4c0c1deae8dcd383476bd49d71eea4a5a1e35febe0144a72f1f"
+      },
+      {
+        "source": "/mnt/backup/marketdata-restic-restore/0cc942c867b34ba1b561fc4f7e6d1dca/new-backup/backup.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/production-2026-09-28-new-backup-backup.json.gz",
+        "bytes": 8051063,
+        "sha256": "8e1da2e60cae773fefc752ba737942ecb8351de69c24c96f8d9f21dcb817e859",
+        "compressed_bytes": 2341803,
+        "compressed_sha256": "c44d657fa1437450871b24fd21b7287d19c6227abaf164ceb329e574df59e07f"
+      },
+      {
+        "source": "/mnt/backup/marketdata-independent-recovery-20261003/restore-work/7c0d0db1838f4a3f8ea81d8ae6365a07/extracted/backup.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/independent-2026-10-03-extracted-backup.json.gz",
+        "bytes": 10123134,
+        "sha256": "de882a7174edd3acaee1523cda3ce854fe14cf7435295d395b6971462871f9f4",
+        "compressed_bytes": 2854704,
+        "compressed_sha256": "57c8164fdc30663f538f11b33d9e2f2d124e977fa7db71837e132a2756ada57a"
+      },
+      {
+        "source": "/mnt/backup/marketdata-independent-recovery-20261003/restore-work/7c0d0db1838f4a3f8ea81d8ae6365a07/store/restore.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/independent-2026-10-03-store-restore.json.gz",
+        "bytes": 636,
+        "sha256": "a5a42691efd8b00f26bb157eb7fe1acf1e1e043a9bd97aefa13eb6dafd210f81",
+        "compressed_bytes": 399,
+        "compressed_sha256": "7581c73caa82fa178bcb595229d183d55d848d02a4bc7f79c6f0e62c482fb116"
+      },
+      {
+        "source": "/mnt/backup/marketdata-independent-recovery-20261003/restore-work/7c0d0db1838f4a3f8ea81d8ae6365a07/new-backup/backup.json",
+        "copy": "reports/trial-artifact-retention-2026-10-05/independent-2026-10-03-new-backup-backup.json.gz",
+        "bytes": 10122992,
+        "sha256": "7a2320483991af71825d2becd2ee1cda637ce433beb4ba61d8dc6d2ae28964fc",
+        "compressed_bytes": 2854609,
+        "compressed_sha256": "e5059fc522eb465230703c6de255f36404e34fb3cabc87a87e874a6e40a02c18"
+      }
+    ],
+    "protected_recovery_receipt": {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/restic-transition-2026-10-03/recovery-evidence/recovery-result.json",
+      "sha256": "8a3adfe4de68c1a0fcca1fcbe6d184b62638b2da25df217d549daf438e4b5909"
+    }
+  },
+  "replacement_sources": [
+    {
+      "case": "pilot-2026-09-26",
+      "backup_id": "e6e2e02c95a0498aa88c6199866cddde05f3a0bba67b81d0566f57289dddfac7",
+      "pilot_snapshot_id": "0ba869592143e008150fce764cb9eb742711337cebc8c48aa6bfd282d61862d3",
+      "retained_source": {
+        "kind": "pre_enrollment_checkpoint",
+        "path": "/mnt/backup/marketdata-historical/automatic/2026-09-26/d4e81e6b027349cdb2e372da4f47288d"
+      },
+      "manifest_sha256": "ec8537202d08af3d20841c3f7c7efb209b51e830cd5d73459aafe61a3446e2a2",
+      "byte_identical_manifest": true,
+      "files": 33586
+    },
+    {
+      "case": "pilot-2026-09-27",
+      "backup_id": "07af2f97fe8471c91f409bb7ac81c16b34add0ec8c549f2415b92f22122aefe3",
+      "pilot_snapshot_id": "f0dbb406cc407fc93ddd815b4e5ab8db046278c8301744b9c5c2af7d891795d8",
+      "retained_source": {
+        "kind": "production_snapshot",
+        "repository": "/mnt/backup/marketdata-restic",
+        "snapshot_id": "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1"
+      },
+      "manifest_sha256": "f2bb27dd39d5dd92ab3520278e957b03c9402059f68da5c92124be995458c6eb",
+      "byte_identical_manifest": true,
+      "files": 34505
+    }
+  ],
+  "cloned_snapshots_also_in_production": [
+    {
+      "snapshot_id": "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1",
+      "tree": "e9bb582d141e1d5be2675d40453c19086ca07757ff6adabd6bcb8e5901886f8f",
+      "all_snapshot_metadata_equal": true
+    },
+    {
+      "snapshot_id": "7ddea5243f9262eb058b15e97df1976eb5c369de386010c736b449a10a250713",
+      "tree": "457ef74e95da514ca12335cdcaf23f1f72eacb3ee3ffa7c17d7818d28998ea37",
+      "all_snapshot_metadata_equal": true
+    },
+    {
+      "snapshot_id": "bbb553b48c9ea943e64dbf1e2f2d021b46d7c2c78313c505029d7c842c9d8df2",
+      "tree": "6ec5c710c9c5ffc1ebdae0352d1cd49339355e35ecbd85a6ce9381fce888799e",
+      "all_snapshot_metadata_equal": true
+    },
+    {
+      "snapshot_id": "648d7c93eadab36b79295808bfa54b0e6f45b22e4e38e5ed363b540572361f9e",
+      "tree": "a01e7c97475da3bc0b72ba49d4f140ae9c7a35bff98ee14c87ae0b57c920c000",
+      "all_snapshot_metadata_equal": true
+    },
+    {
+      "snapshot_id": "711137213f16926f19d58e4a07e1a8a28c10e6b1dd5446c0d26561d142692e94",
+      "tree": "ef26766a1b174e94b2faa1391dc619e3dca6508e5036541f003ad119fa2b8ffc",
+      "all_snapshot_metadata_equal": true
+    },
+    {
+      "snapshot_id": "0c9f8bc23d1125cbfd7e0d3c442af4376298e22c8116f5526170797f0d9b9135",
+      "tree": "2534afe4aa170e8f2ab5b68775c83f1d9d1b5d69f33bb5abac6e146849dafcc1",
+      "all_snapshot_metadata_equal": true
+    },
+    {
+      "snapshot_id": "d27a0a557e1795a4651132016491f1b2c6735e8181b71303f3adccd414f0f8ad",
+      "tree": "6b9ab91a4970f5b94aaddf94b9462c5577bdba13b04e996856acd13987e99670",
+      "all_snapshot_metadata_equal": true
+    }
+  ],
+  "retained_original_checkpoint_validation": {
+    "finished_at": "2026-10-09T12:26:23.324805+00:00",
+    "path": "/mnt/backup/marketdata-historical/automatic/2026-09-26/d4e81e6b027349cdb2e372da4f47288d",
+    "result": {
+      "backup_id": "e6e2e02c95a0498aa88c6199866cddde05f3a0bba67b81d0566f57289dddfac7",
+      "bytes": 8710460459,
+      "catalog_counts": {
+        "active": 15144,
+        "artifacts": 131614,
+        "event_collections": 247,
+        "event_segments": 121399,
+        "fetches": 152828,
+        "file_packs": 339,
+        "issues": 24,
+        "jobs": 6529,
+        "packed_files": 236084,
+        "queries": 16378,
+        "revisions": 16297,
+        "snapshots": 20,
+        "sync_coverage": 1178,
+        "sync_runs": 1299,
+        "sync_targets": 9
+      },
+      "checked_at": "2026-10-09T12:26:23.320261+00:00",
+      "files": 33586,
+      "ok": true,
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-09-26/d4e81e6b027349cdb2e372da4f47288d",
+      "storage": {
+        "mode": "linked_snapshot",
+        "new_bytes": 3044771863,
+        "new_files": 8465,
+        "reuse_backup_id": "a3f90efe758c2bc584d7e57e5ec1b5e98b8384637e65e5e547591699d5b9636c",
+        "reuse_from": "/mnt/backup/marketdata-historical/automatic/2026-09-25/linked",
+        "reused_bytes": 5665688596,
+        "reused_files": 25121,
+        "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata"
+      }
+    },
+    "scope": "Fresh physical file hashes/catalog/pack verification of the retained 09-26 checkpoint only.",
+    "seconds": 59.75003716700303,
+    "started_at": "2026-10-09T12:25:23.574777+00:00"
+  },
+  "existing_production_full_check": {
+    "finished_at": "2026-10-09T05:50:55.219197+00:00",
+    "ok": true,
+    "read_data": true,
+    "receipt": {
+      "arguments": [
+        "check",
+        "--read-data"
+      ],
+      "cwd": null,
+      "finished_at": "2026-10-09T05:50:55.219197+00:00",
+      "operation": "check",
+      "returncode": 0,
+      "started_at": "2026-10-09T05:49:49.163098+00:00",
+      "stderr": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/fb23abb147984902be7a5574d620024c/30762a5958514ef4b74cb63043d9be9f.stderr",
+      "stdout": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/fb23abb147984902be7a5574d620024c/30762a5958514ef4b74cb63043d9be9f.stdout",
+      "wall_seconds": 66.05604907900124
+    },
+    "snapshot_ids": [
+      "057cd08adc8e07dda2a93eb97f4ecfacce76a60971beb5c0d795566d1202f57b",
+      "0c9f8bc23d1125cbfd7e0d3c442af4376298e22c8116f5526170797f0d9b9135",
+      "12ee905237a76788c93a9963c2c0425739042c57e49effe73135b90d2eee377f",
+      "19bde5fb81b7dde7d45e2bba3504a9bd7969c7b2d1414803a528a0b4f1f6d462",
+      "1dd34456b08a6a7da4d3f55685852bed44233ee7cad304ef9910ea03dad1c024",
+      "648d7c93eadab36b79295808bfa54b0e6f45b22e4e38e5ed363b540572361f9e",
+      "711137213f16926f19d58e4a07e1a8a28c10e6b1dd5446c0d26561d142692e94",
+      "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1",
+      "7ddea5243f9262eb058b15e97df1976eb5c369de386010c736b449a10a250713",
+      "bbb553b48c9ea943e64dbf1e2f2d021b46d7c2c78313c505029d7c842c9d8df2",
+      "be8d132a6f36336b131849eb15b9952e418bf5ef0fecc1794c2adc5b14fbb09a",
+      "c17a01a46e723b87f0c3c48403bf76e742c014b4682d02644416e50924324fd5",
+      "d27a0a557e1795a4651132016491f1b2c6735e8181b71303f3adccd414f0f8ad",
+      "da1af66eeece550548f2b6daf549ffa22b662a9d32155bf4485c20c6cae51ae2"
+    ],
+    "started_at": "2026-10-09T05:49:49.157702+00:00",
+    "status": "complete"
+  },
+  "estimated_reclaimable_allocated_bytes": 197341474816,
+  "apparent_file_bytes": 194652573231,
+  "candidate_file_count": 450212,
+  "candidate_directory_count": 389756,
+  "du_cross_check": {
+    "/mnt/backup/marketdata-restic-pilot": 7151616000,
+    "/mnt/backup/marketdata-restic-pilot-work": 59053264896,
+    "/mnt/backup/marketdata-independent-recovery-20261003": 92680396800,
+    "/mnt/backup/marketdata-restic-restore/0cc942c867b34ba1b561fc4f7e6d1dca": 38456197120,
+    "total": 197341474816
+  },
+  "external_hardlinks_observed": 0,
+  "usage": {
+    "checked_at": "2026-10-09T12:21:14.010032+00:00",
+    "uid": 1000,
+    "same_uid_processes": 148,
+    "matches": [],
+    "permission_denied_pids": [
+      1201,
+      1216,
+      207240
+    ],
+    "vanished_pids": [
+      253633
+    ],
+    "scope": "Point-in-time visible same-UID cwd/fd/maps; not a lock or all-user proof"
+  },
+  "pre_apply_requirements": [
+    "Obtain approval for this exact four-root scope, inactive trial profile retirement and additive kit note/receipt. No checkpoint grant or former plan approval is reused.",
+    "Use the linked manual procedure and exact inventory, with a persistent progress record; no wildcard root deletion or automatic checkpoint cleaner.",
+    "Immediately recheck filesystem/UUID, root identities, inventory, retained sources and full-check evidence; reject unexpected changes.",
+    "Verify current absence of trial jobs and repository locks; fence the trial profile and acquire applicable nonblocking exclusive cooperative locks before deleting. Process samples do not prove exclusive use.",
+    "Keep all protected data, artifacts, historical receipts and source_root unchanged. No forget/prune, service restart, Chrony/RTC or automatic-retirement grant change.",
+    "Record partial deletion if interrupted; resume only the same approved list and reject unexplained absences/changes.",
+    "After completion verify protected identities/settings and record filesystem free-space change separately from the allocated-block estimate."
+  ],
+  "reproduction_limits": "Pilot repository-specific snapshot IDs and the frozen clone cease to exist after their deletion. Equivalent original checkpoint contents remain at the explicit retained sources; new trials use new profiles/paths and new identities.",
+  "actual_files_deleted": 0,
+  "actual_reclaimed_bytes": 0,
+  "previous_plan": {
+    "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/trial-artifact-retention-expanded-2026-10-05/plan.json",
+    "sha256": "cb593e1765faf7c9a3f6d9bec74f9fd70a1f4b5ca2d661c072b37b6d76ea0c4f"
+  },
+  "reused_read_only_code": {
+    "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/trial-artifact-retention-expanded-2026-10-05/review.py",
+    "sha256": "bf67632a23f71266b116dc99f9d878c4aca59b63244f8db5f27c78e48399dd38"
+  },
+  "full_check_receipt_files": [
+    {
+      "kind": "stdout",
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/fb23abb147984902be7a5574d620024c/30762a5958514ef4b74cb63043d9be9f.stdout",
+      "bytes": 113,
+      "sha256": "390183f57f5965367604ccbb914ce144ee4e7a11a769bf987db639f71c003be6",
+      "text": "{\"message_type\":\"summary\",\"num_errors\":0,\"broken_packs\":null,\"suggest_repair_index\":false,\"suggest_prune\":false}\n"
+    },
+    {
+      "kind": "stderr",
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/fb23abb147984902be7a5574d620024c/30762a5958514ef4b74cb63043d9be9f.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": ""
+    }
+  ],
+  "completed_prior_checkpoint_observation": {
+    "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/checkpoint-scheduled/2db85579ca0d47818af88623ea1b360a/run.json",
+    "sha256": "1c0a08959df59df6f45b585b287e6fe29ffbaf5e52a2112906bf82b871e6ec33",
+    "finished_at": "2026-10-06T06:51:59.032446+00:00",
+    "state": "complete",
+    "deleted_checkpoints": 2,
+    "plan_id": "b37c29b47a38bd5a98917d884b698aa5e2de5765c8858499607a18d7c8b16b1c",
+    "preferred_prior_observation_satisfied": true
+  },
+  "inventory_changes_since_previous_plan": [
+    {
+      "label": "pilot-repository",
+      "entries_compared": 681,
+      "changes": [
+        {
+          "path": "locks",
+          "changed_fields": {
+            "ctime_ns": {
+              "before": 1791202085161392131,
+              "after": 1791548472604470231
+            },
+            "mtime_ns": {
+              "before": 1791202085161392131,
+              "after": 1791548472604470231
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "pilot-work",
+      "entries_compared": 384954,
+      "changes": []
+    },
+    {
+      "label": "independent-trial",
+      "entries_compared": 252469,
+      "changes": [
+        {
+          "path": "repository/locks",
+          "changed_fields": {
+            "ctime_ns": {
+              "before": 1791202083383458368,
+              "after": 1791548470834516882
+            },
+            "mtime_ns": {
+              "before": 1791202083383458368,
+              "after": 1791548470834516882
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "production-restore-run",
+      "entries_compared": 201864,
+      "changes": []
+    }
+  ],
+  "estimated_change_since_previous_plan_bytes": 0,
+  "automatic_retirement": {
+    "state": "masked",
+    "new_authorization": false,
+    "links": {
+      "marketdata-checkpoint-retirement.service": "/dev/null",
+      "marketdata-checkpoint-retirement.timer": "/dev/null"
+    }
+  },
+  "space_observation": {
+    "at": "2026-10-09T12:28:01.440379+00:00",
+    "available_bytes": 678397140992,
+    "total_bytes": 1006979411968,
+    "exact_reclaimed_bytes": 0,
+    "actual_files_deleted": 0
+  },
+  "plan_id": "63a2be1e2f10e567ac6457cc4878f753f52691fe2219349c6f1e4e0c0b30c995"
+}

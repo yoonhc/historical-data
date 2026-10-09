@@ -10,6 +10,21 @@
 이번 Git 보존 범위와 고정 배포본 해시·기존 검사 결과·문서 링크 대조는
 [작업 정리 검증](baseline/work-summary-2026-10-09/summary.md)에 기록했습니다.
 
+`baseline/t02-first-session-2026-10-09/`는 최초 시스템 전환 뒤 첫 세션의 후속 확인입니다.
+[결과](baseline/t02-first-session-2026-10-09/summary.md)에 실제 종료·partial·다음 수집 시작,
+첫 collection 1,960개 파일 검증·호가 재생 일치와 세션 경계 aggTrade 776개 자동 보강을 기록했습니다.
+T02의 첫 세션 확인은 완료했으며 24시간 관찰과 T11의 새 supervisor 경계는 별도로 남아 있습니다.
+
+`baseline/trial-artifact-retirement-2026-10-09/`는 T06의 승인된 수동 정리 완료 기록입니다.
+[결과](baseline/trial-artifact-retirement-2026-10-09/summary.md)에 네 경로의 파일 450,212개·디렉터리 389,756개 삭제,
+여유 공간 197.34 GB 증가, 운영 restic 14개 지점·복구 키트·수집 프로세스·자동 정리 mask 유지를 남겼습니다.
+시험 프로필 해제와 키트 안내·완료 기록 추가까지 끝냈으며 T06은 활성 TODO에서 제거했습니다.
+
+`baseline/trial-artifact-retention-refresh-2026-10-09/`는 T06 시험 산출물 네 경로의 삭제 직전 재확인입니다.
+[결과](baseline/trial-artifact-retention-refresh-2026-10-09/summary.md)에 197.34 GB 예상 회수량,
+현재 운영 지점·기존 전체 검사 대조, 보존 checkpoint 33,586개 파일 검증과 새 수동 계획을 기록했습니다.
+그 보고서 작성 시점의 실제 삭제는 0건이며, 이후 승인·실제 삭제는 위 완료 기록으로 구분합니다.
+
 `baseline/clock-runtime-deploy-2026-10-09/`는 T04·T11의 실제 운영 적용 기록입니다.
 [요약](baseline/clock-runtime-deploy-2026-10-09/summary.md)에 반복 ExecStartPre 출력 파서 결함으로 인한 중단,
 보완 코드·원래 계획의 해시 연결, 19:33 적용·초기 저장과 20:17까지의 시각 근거 관측을 남겼습니다.
@@ -109,17 +124,17 @@ REST 2,464회 일치와 선택한 3개 재생·2개 원문 대조를 남겼습�
 네트워크 미준비 partial을 보존했고 첫 정기 종료 항목은 완료했습니다. 별도로 NTP 보정에 따른
 수신 시각 약 41초 역행을 확인했으며, 운영 설정 변경 없이 시각·기동 조건 점검과 24시간 관찰을 남겼습니다.
 
-`baseline/trial-artifact-retention-expanded-2026-10-05/`는 시험 저장소·캐시·상위 폴더까지 확대한 현재 정리안입니다.
+`baseline/trial-artifact-retention-expanded-2026-10-05/`는 당시 시험 저장소·캐시·상위 폴더까지 확대한 정리안입니다.
 [요약](baseline/trial-artifact-retention-expanded-2026-10-05/summary.md)에 정확한 네 경로·예상 회수 197.34 GB,
 pilot 자료의 보존 원본 대조·복제 snapshot 7개 중복 확인·9/26 원래 사본 33,586개 파일 검증을 남겼습니다.
-시험 전용 프로필의 기록 보관·해제와 키트 안내 추가도 적용 범위로 제안합니다. 첫 결과 파일 저장 오류와
-정상 재검사를 구분했고, 실제 삭제·설정 해제·키트 변경은 0건입니다. 아래 172 GB 초기안을 대체합니다.
+시험 전용 프로필의 기록 보관·해제와 키트 안내 추가도 적용 범위로 제안했습니다. 첫 결과 파일 저장 오류와
+정상 재검사를 구분했고, 당시 실제 삭제·설정 해제·키트 변경은 0건이었습니다. 아래 172 GB 초기안을 대체했습니다.
 
 `baseline/trial-artifact-retention-plan-2026-10-05/`는 대용량 시험 산출물의 삭제 없는 수동 정리 계획입니다.
 [요약](baseline/trial-artifact-retention-plan-2026-10-05/summary.md)에 추출·복원·재백업 12개 경로,
 예상 회수 172.00 GB, 보존할 네 snapshot과 manifest 대조, 후보 밖 증거 복사를 남겼습니다.
-실제 삭제는 0건이며 시험 저장소·키트·원본·기존 백업은 보존합니다. checkpoint 반복 승인을
-이 후보에 적용하지 않으며, 10/6 첫 자동 정리 관찰 후 별도 수동 승인·재점검이 후속입니다.
+당시 실제 삭제는 0건이었으며 시험 저장소·키트·원본·기존 백업을 보존했습니다. checkpoint 반복 승인을
+이 후보에 적용하지 않았고, 후속 재점검·별도 수동 승인을 거친 10/9 실제 정리는 위 완료 기록을 따릅니다.
 
 `baseline/checkpoint-automation-activation-2026-10-05/`는 별도 사용자 승인에 따른 자동 정리 예약 활성화입니다.
 [요약](baseline/checkpoint-automation-activation-2026-10-05/summary.md)에 19:38 활성화,

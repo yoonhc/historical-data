@@ -1,0 +1,1242 @@
+[
+  {
+    "path": "state/runtime-clock/aggtrade/2a59bde2418f42c58ad0347306b8b979.jsonl",
+    "sha256": "049b82138f33b8bb972d8aabb8b8a80ad6d6702cc8b650b0fbc31de2e26a6fd1",
+    "bytes": 844704,
+    "records": 364,
+    "stream": "aggtrade",
+    "run_id": "2a59bde2418f42c58ad0347306b8b979",
+    "invocation_id": "7dc9388a8ea24f82a226795c0596df32",
+    "supervisor_pid": 2239,
+    "child_pid": 2290,
+    "start": {
+      "boottime_ns": 16528335894,
+      "monotonic_ns": 16528335740,
+      "sampling_span_ns": 661,
+      "wall_ns": 1791472278570517821
+    },
+    "end": {
+      "boottime_ns": 3626954673319,
+      "monotonic_ns": 3626954672442,
+      "sampling_span_ns": 2455,
+      "wall_ns": 1791475888996854691
+    },
+    "last_state": "finished",
+    "exit_code": 2,
+    "session_clock_clean": true,
+    "violations": 0,
+    "running_records": 361,
+    "running_unusable_records": 0,
+    "provider_reasons": {},
+    "max_reference_age_seconds": 258.02395820617676,
+    "max_abs_correction_seconds": 0.019682404,
+    "max_error_bound_seconds": 0.16484897799999998,
+    "selected_original_records": [
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": null,
+        "clock": {
+          "conditional_error_bound_seconds": 0.1500786195,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 1.0063915252685547,
+          "sample": {
+            "boottime_ns": 16528329211,
+            "monotonic_ns": 16528328544,
+            "sampling_span_ns": 1747,
+            "wall_ns": 1791472278570510496
+          },
+          "tracking": {
+            "correction": -0.020005649,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791472277.564085623,-0.020005649,0.004063773,0.004063773,24.944,-179.676,24.314,0.255294621,0.002425660,2.0,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791472277.5640857,
+            "root_delay": 0.255294621,
+            "root_dispersion": 0.00242566,
+            "skew_ppm": 24.314,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "release_id": "system-bootstrap-20261007-f85eb8321a19c1ee",
+        "run_id": "2a59bde2418f42c58ad0347306b8b979",
+        "sample": {
+          "boottime_ns": 16528335894,
+          "monotonic_ns": 16528335740,
+          "sampling_span_ns": 661,
+          "wall_ns": 1791472278570517821
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "ready",
+        "stream": "aggtrade",
+        "supervisor_pid": 2239,
+        "supervisor_start_ticks": "1644",
+        "systemd_invocation_id": "7dc9388a8ea24f82a226795c0596df32"
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": null,
+        "clock": {
+          "conditional_error_bound_seconds": 0.1499261205,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 1.0167274475097656,
+          "sample": {
+            "boottime_ns": 16538652094,
+            "monotonic_ns": 16538651867,
+            "sampling_span_ns": 691,
+            "wall_ns": 1791472278580833893
+          },
+          "tracking": {
+            "correction": -0.019850992,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791472277.564085623,-0.019850992,0.004063773,0.004063773,24.944,-179.676,24.314,0.255294621,0.002427818,2.0,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791472277.5640857,
+            "root_delay": 0.255294621,
+            "root_dispersion": 0.002427818,
+            "skew_ppm": 24.314,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "run_id": "2a59bde2418f42c58ad0347306b8b979",
+        "sample": {
+          "boottime_ns": 16538663950,
+          "monotonic_ns": 16538663895,
+          "sampling_span_ns": 227,
+          "wall_ns": 1791472278580846094
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "starting",
+        "stream": "aggtrade",
+        "supervisor_pid": 2239,
+        "supervisor_start_ticks": "1644",
+        "systemd_invocation_id": "7dc9388a8ea24f82a226795c0596df32"
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "boottime_minus_monotonic_seconds": 1.0400000000077014e-07,
+        "child_pid": 2290,
+        "child_start_ticks": "1654",
+        "clock": {
+          "conditional_error_bound_seconds": 0.1497598855,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 1.0282821655273438,
+          "sample": {
+            "boottime_ns": 16550220957,
+            "monotonic_ns": 16550220547,
+            "sampling_span_ns": 1312,
+            "wall_ns": 1791472278592402479
+          },
+          "tracking": {
+            "correction": -0.019682404,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791472277.564085623,-0.019682404,0.004063773,0.004063773,24.944,-179.676,24.314,0.255294621,0.002430171,2.0,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791472277.5640857,
+            "root_delay": 0.255294621,
+            "root_dispersion": 0.002430171,
+            "skew_ppm": 24.314,
+            "stratum": 3
+          }
+        },
+        "clock_usable": true,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "reasons": [],
+        "run_id": "2a59bde2418f42c58ad0347306b8b979",
+        "sample": {
+          "boottime_ns": 16550243918,
+          "monotonic_ns": 16550243818,
+          "sampling_span_ns": 533,
+          "wall_ns": 1791472278592425924
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "aggtrade",
+        "supervisor_pid": 2239,
+        "supervisor_start_ticks": "1644",
+        "systemd_invocation_id": "7dc9388a8ea24f82a226795c0596df32",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 16550227867,
+            "monotonic_ns": 16550227689,
+            "sampling_span_ns": 632,
+            "wall_ns": 1791472278592409754
+          },
+          "before": {
+            "boottime_ns": 16538656931,
+            "monotonic_ns": 16538656857,
+            "sampling_span_ns": 306,
+            "wall_ns": 1791472278580839006
+          }
+        },
+        "violations": 0,
+        "wall_minus_boottime_seconds": -1.8799999999992434e-07
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 2290,
+        "clock_usable": false,
+        "collector_exit_code": 2,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "run_id": "2a59bde2418f42c58ad0347306b8b979",
+        "sample": {
+          "boottime_ns": 3626954673319,
+          "monotonic_ns": 3626954672442,
+          "sampling_span_ns": 2455,
+          "wall_ns": 1791475888996854691
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "session_clock_clean": true,
+        "state": "finished",
+        "stream": "aggtrade",
+        "supervisor_pid": 2239,
+        "supervisor_start_ticks": "1644",
+        "systemd_invocation_id": "7dc9388a8ea24f82a226795c0596df32",
+        "violations": 0
+      }
+    ]
+  },
+  {
+    "path": "state/runtime-clock/aggtrade/aff0541e31f741fd931645cc16bb41cf.jsonl",
+    "sha256": "67334fc67527332e6b3a38de6c49e354d584b465a3136551a384bff3dd8bfbf3",
+    "bytes": 845840,
+    "records": 363,
+    "stream": "aggtrade",
+    "run_id": "aff0541e31f741fd931645cc16bb41cf",
+    "invocation_id": "fe3716eb49c648699de0621d31cfb51d",
+    "supervisor_pid": 19253,
+    "child_pid": 19262,
+    "start": {
+      "boottime_ns": 3642435592764,
+      "monotonic_ns": 3642435592508,
+      "sampling_span_ns": 972,
+      "wall_ns": 1791475904477774546
+    },
+    "end": {
+      "boottime_ns": 7248382483816,
+      "monotonic_ns": 7248382482598,
+      "sampling_span_ns": 3617,
+      "wall_ns": 1791479510424664596
+    },
+    "last_state": "finished",
+    "exit_code": 0,
+    "session_clock_clean": true,
+    "violations": 0,
+    "running_records": 360,
+    "running_unusable_records": 0,
+    "provider_reasons": {},
+    "max_reference_age_seconds": 257.96972155570984,
+    "max_abs_correction_seconds": 0.001820655,
+    "max_error_bound_seconds": 0.138170555,
+    "selected_original_records": [
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": null,
+        "clock": {
+          "conditional_error_bound_seconds": 0.137028127,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 136.56829953193665,
+          "sample": {
+            "boottime_ns": 3642435584298,
+            "monotonic_ns": 3642435583512,
+            "sampling_span_ns": 2414,
+            "wall_ns": 1791475904477765349
+          },
+          "tracking": {
+            "correction": -0.001500691,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791475767.909430783,-0.001500691,0.000838791,0.001764970,26.802,0.064,3.142,0.255812824,0.007621024,258.4,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791475767.9094307,
+            "root_delay": 0.255812824,
+            "root_dispersion": 0.007621024,
+            "skew_ppm": 3.142,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "release_id": "system-bootstrap-20261007-f85eb8321a19c1ee",
+        "run_id": "aff0541e31f741fd931645cc16bb41cf",
+        "sample": {
+          "boottime_ns": 3642435592764,
+          "monotonic_ns": 3642435592508,
+          "sampling_span_ns": 972,
+          "wall_ns": 1791475904477774546
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "ready",
+        "stream": "aggtrade",
+        "supervisor_pid": 19253,
+        "supervisor_start_ticks": "364233",
+        "systemd_invocation_id": "fe3716eb49c648699de0621d31cfb51d"
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": null,
+        "clock": {
+          "conditional_error_bound_seconds": 0.137028196,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 136.5911364555359,
+          "sample": {
+            "boottime_ns": 3642458412781,
+            "monotonic_ns": 3642458412435,
+            "sampling_span_ns": 1332,
+            "wall_ns": 1791475904500594322
+          },
+          "tracking": {
+            "correction": -0.001500663,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791475767.909430783,-0.001500663,0.000838791,0.001764970,26.802,0.064,3.142,0.255812824,0.007621121,258.4,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791475767.9094307,
+            "root_delay": 0.255812824,
+            "root_dispersion": 0.007621121,
+            "skew_ppm": 3.142,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "run_id": "aff0541e31f741fd931645cc16bb41cf",
+        "sample": {
+          "boottime_ns": 3642458426656,
+          "monotonic_ns": 3642458426495,
+          "sampling_span_ns": 621,
+          "wall_ns": 1791475904500608569
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "starting",
+        "stream": "aggtrade",
+        "supervisor_pid": 19253,
+        "supervisor_start_ticks": "364233",
+        "systemd_invocation_id": "fe3716eb49c648699de0621d31cfb51d"
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "boottime_minus_monotonic_seconds": -2.3999999999510524e-08,
+        "child_pid": 19262,
+        "child_start_ticks": "364246",
+        "clock": {
+          "conditional_error_bound_seconds": 0.137028236,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 136.60494589805603,
+          "sample": {
+            "boottime_ns": 3642472220659,
+            "monotonic_ns": 3642472220308,
+            "sampling_span_ns": 1222,
+            "wall_ns": 1791475904514402200
+          },
+          "tracking": {
+            "correction": -0.001500648,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791475767.909430783,-0.001500648,0.000838791,0.001764970,26.802,0.064,3.142,0.255812824,0.007621176,258.4,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791475767.9094307,
+            "root_delay": 0.255812824,
+            "root_dispersion": 0.007621176,
+            "skew_ppm": 3.142,
+            "stratum": 3
+          }
+        },
+        "clock_usable": true,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "reasons": [],
+        "run_id": "aff0541e31f741fd931645cc16bb41cf",
+        "sample": {
+          "boottime_ns": 3642472241277,
+          "monotonic_ns": 3642472241196,
+          "sampling_span_ns": 441,
+          "wall_ns": 1791475904514423339
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "aggtrade",
+        "supervisor_pid": 19253,
+        "supervisor_start_ticks": "364233",
+        "systemd_invocation_id": "fe3716eb49c648699de0621d31cfb51d",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 3642472226690,
+            "monotonic_ns": 3642472226559,
+            "sampling_span_ns": 561,
+            "wall_ns": 1791475904514408662
+          },
+          "before": {
+            "boottime_ns": 3642458420204,
+            "monotonic_ns": 3642458420049,
+            "sampling_span_ns": 490,
+            "wall_ns": 1791475904500602187
+          }
+        },
+        "violations": 0,
+        "wall_minus_boottime_seconds": -1.0999999999414256e-08
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 19262,
+        "clock_usable": false,
+        "collector_exit_code": 0,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "run_id": "aff0541e31f741fd931645cc16bb41cf",
+        "sample": {
+          "boottime_ns": 7248382483816,
+          "monotonic_ns": 7248382482598,
+          "sampling_span_ns": 3617,
+          "wall_ns": 1791479510424664596
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "session_clock_clean": true,
+        "state": "finished",
+        "stream": "aggtrade",
+        "supervisor_pid": 19253,
+        "supervisor_start_ticks": "364233",
+        "systemd_invocation_id": "fe3716eb49c648699de0621d31cfb51d",
+        "violations": 0
+      }
+    ]
+  },
+  {
+    "path": "state/runtime-clock/depth/6a79f9d2cb18449e97b165162542cb4f.jsonl",
+    "sha256": "010603acc0b5716d650b849c2fe51aab58533d65c9ad55ad3849426dff440fe5",
+    "bytes": 841262,
+    "records": 363,
+    "stream": "depth",
+    "run_id": "6a79f9d2cb18449e97b165162542cb4f",
+    "invocation_id": "2682fe8042354807ac41caff4991e471",
+    "supervisor_pid": 2237,
+    "child_pid": 2289,
+    "start": {
+      "boottime_ns": 16527961975,
+      "monotonic_ns": 16527961856,
+      "sampling_span_ns": 474,
+      "wall_ns": 1791472278570143981
+    },
+    "end": {
+      "boottime_ns": 3617925031453,
+      "monotonic_ns": 3617925030977,
+      "sampling_span_ns": 1232,
+      "wall_ns": 1791475879967213255
+    },
+    "last_state": "finished",
+    "exit_code": 2,
+    "session_clock_clean": true,
+    "violations": 0,
+    "running_records": 360,
+    "running_unusable_records": 0,
+    "provider_reasons": {},
+    "max_reference_age_seconds": 258.02356696128845,
+    "max_abs_correction_seconds": 0.019696282,
+    "max_error_bound_seconds": 0.164848992,
+    "selected_original_records": [
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": null,
+        "clock": {
+          "conditional_error_bound_seconds": 0.1500852805,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 1.0060193538665771,
+          "sample": {
+            "boottime_ns": 16527955311,
+            "monotonic_ns": 16527954576,
+            "sampling_span_ns": 1806,
+            "wall_ns": 1791472278570136429
+          },
+          "tracking": {
+            "correction": -0.020012405,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791472277.564085623,-0.020012405,0.004063773,0.004063773,24.944,-179.676,24.314,0.255294621,0.002425565,2.0,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791472277.5640857,
+            "root_delay": 0.255294621,
+            "root_dispersion": 0.002425565,
+            "skew_ppm": 24.314,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "release_id": "system-bootstrap-20261007-f85eb8321a19c1ee",
+        "run_id": "6a79f9d2cb18449e97b165162542cb4f",
+        "sample": {
+          "boottime_ns": 16527961975,
+          "monotonic_ns": 16527961856,
+          "sampling_span_ns": 474,
+          "wall_ns": 1791472278570143981
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "ready",
+        "stream": "depth",
+        "supervisor_pid": 2237,
+        "supervisor_start_ticks": "1644",
+        "systemd_invocation_id": "2682fe8042354807ac41caff4991e471"
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": null,
+        "clock": {
+          "conditional_error_bound_seconds": 0.1499283055,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 1.0163300037384033,
+          "sample": {
+            "boottime_ns": 16538257702,
+            "monotonic_ns": 16538257401,
+            "sampling_span_ns": 878,
+            "wall_ns": 1791472278580439343
+          },
+          "tracking": {
+            "correction": -0.019853208,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791472277.564085623,-0.019853208,0.004063773,0.004063773,24.944,-179.676,24.314,0.255294621,0.002427787,2.0,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791472277.5640857,
+            "root_delay": 0.255294621,
+            "root_dispersion": 0.002427787,
+            "skew_ppm": 24.314,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "run_id": "6a79f9d2cb18449e97b165162542cb4f",
+        "sample": {
+          "boottime_ns": 16538272243,
+          "monotonic_ns": 16538272163,
+          "sampling_span_ns": 335,
+          "wall_ns": 1791472278580454318
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "starting",
+        "stream": "depth",
+        "supervisor_pid": 2237,
+        "supervisor_start_ticks": "1644",
+        "systemd_invocation_id": "2682fe8042354807ac41caff4991e471"
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "boottime_minus_monotonic_seconds": 6.000000000311312e-09,
+        "child_pid": 2289,
+        "child_start_ticks": "1654",
+        "clock": {
+          "conditional_error_bound_seconds": 0.1497735705,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 1.0274014472961426,
+          "sample": {
+            "boottime_ns": 16549330487,
+            "monotonic_ns": 16549330077,
+            "sampling_span_ns": 1076,
+            "wall_ns": 1791472278591512246
+          },
+          "tracking": {
+            "correction": -0.019696282,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791472277.564085623,-0.019696282,0.004063773,0.004063773,24.944,-179.676,24.314,0.255294621,0.002429978,2.0,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791472277.5640857,
+            "root_delay": 0.255294621,
+            "root_dispersion": 0.002429978,
+            "skew_ppm": 24.314,
+            "stratum": 3
+          }
+        },
+        "clock_usable": true,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "reasons": [],
+        "run_id": "6a79f9d2cb18449e97b165162542cb4f",
+        "sample": {
+          "boottime_ns": 16549347871,
+          "monotonic_ns": 16549347816,
+          "sampling_span_ns": 267,
+          "wall_ns": 1791472278591529985
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "depth",
+        "supervisor_pid": 2237,
+        "supervisor_start_ticks": "1644",
+        "systemd_invocation_id": "2682fe8042354807ac41caff4991e471",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 16549337496,
+            "monotonic_ns": 16549337436,
+            "sampling_span_ns": 297,
+            "wall_ns": 1791472278591519610
+          },
+          "before": {
+            "boottime_ns": 16538264829,
+            "monotonic_ns": 16538264775,
+            "sampling_span_ns": 286,
+            "wall_ns": 1791472278580446934
+          }
+        },
+        "violations": 0,
+        "wall_minus_boottime_seconds": 9.000000000466968e-09
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 2289,
+        "clock_usable": false,
+        "collector_exit_code": 2,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "run_id": "6a79f9d2cb18449e97b165162542cb4f",
+        "sample": {
+          "boottime_ns": 3617925031453,
+          "monotonic_ns": 3617925030977,
+          "sampling_span_ns": 1232,
+          "wall_ns": 1791475879967213255
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "session_clock_clean": true,
+        "state": "finished",
+        "stream": "depth",
+        "supervisor_pid": 2237,
+        "supervisor_start_ticks": "1644",
+        "systemd_invocation_id": "2682fe8042354807ac41caff4991e471",
+        "violations": 0
+      }
+    ]
+  },
+  {
+    "path": "state/runtime-clock/depth/079b550758ce48d2bbed290c752fdac3.jsonl",
+    "sha256": "cb1bdfb7a851c60b2765cb3a51031093ef6f7a8e8699b633d96fea27b9b1467d",
+    "bytes": 844791,
+    "records": 363,
+    "stream": "depth",
+    "run_id": "079b550758ce48d2bbed290c752fdac3",
+    "invocation_id": "b5b6b8a7a36f42cba0b546ca49089d96",
+    "supervisor_pid": 19220,
+    "child_pid": 19230,
+    "start": {
+      "boottime_ns": 3633460031640,
+      "monotonic_ns": 3633460031514,
+      "sampling_span_ns": 491,
+      "wall_ns": 1791475895502213642
+    },
+    "end": {
+      "boottime_ns": 7236548389942,
+      "monotonic_ns": 7236548388449,
+      "sampling_span_ns": 3988,
+      "wall_ns": 1791479498590570492
+    },
+    "last_state": "finished",
+    "exit_code": 2,
+    "session_clock_clean": true,
+    "violations": 0,
+    "running_records": 360,
+    "running_unusable_records": 0,
+    "provider_reasons": {},
+    "max_reference_age_seconds": 258.35580801963806,
+    "max_abs_correction_seconds": 0.00184132,
+    "max_error_bound_seconds": 0.138172339,
+    "selected_original_records": [
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": null,
+        "clock": {
+          "conditional_error_bound_seconds": 0.13700113,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 127.59274578094482,
+          "sample": {
+            "boottime_ns": 3633460025979,
+            "monotonic_ns": 3633460025528,
+            "sampling_span_ns": 1283,
+            "wall_ns": 1791475895502207491
+          },
+          "tracking": {
+            "correction": -0.001511446,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791475767.909430783,-0.001511446,0.000838791,0.001764970,26.802,0.064,3.142,0.255812824,0.007583272,258.4,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791475767.9094307,
+            "root_delay": 0.255812824,
+            "root_dispersion": 0.007583272,
+            "skew_ppm": 3.142,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "release_id": "system-bootstrap-20261007-f85eb8321a19c1ee",
+        "run_id": "079b550758ce48d2bbed290c752fdac3",
+        "sample": {
+          "boottime_ns": 3633460031640,
+          "monotonic_ns": 3633460031514,
+          "sampling_span_ns": 491,
+          "wall_ns": 1791475895502213642
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "ready",
+        "stream": "depth",
+        "supervisor_pid": 19220,
+        "supervisor_start_ticks": "363335",
+        "systemd_invocation_id": "b5b6b8a7a36f42cba0b546ca49089d96"
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": null,
+        "clock": {
+          "conditional_error_bound_seconds": 0.137001198,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 127.61497974395752,
+          "sample": {
+            "boottime_ns": 3633482248022,
+            "monotonic_ns": 3633482247806,
+            "sampling_span_ns": 812,
+            "wall_ns": 1791475895524429874
+          },
+          "tracking": {
+            "correction": -0.001511419,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791475767.909430783,-0.001511419,0.000838791,0.001764970,26.802,0.064,3.142,0.255812824,0.007583367,258.4,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791475767.9094307,
+            "root_delay": 0.255812824,
+            "root_dispersion": 0.007583367,
+            "skew_ppm": 3.142,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "run_id": "079b550758ce48d2bbed290c752fdac3",
+        "sample": {
+          "boottime_ns": 3633482258291,
+          "monotonic_ns": 3633482258220,
+          "sampling_span_ns": 281,
+          "wall_ns": 1791475895524440393
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "starting",
+        "stream": "depth",
+        "supervisor_pid": 19220,
+        "supervisor_start_ticks": "363335",
+        "systemd_invocation_id": "b5b6b8a7a36f42cba0b546ca49089d96"
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "boottime_minus_monotonic_seconds": -9.999999999940612e-09,
+        "child_pid": 19230,
+        "child_start_ticks": "363348",
+        "clock": {
+          "conditional_error_bound_seconds": 0.137001234,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 127.6270854473114,
+          "sample": {
+            "boottime_ns": 3633494350940,
+            "monotonic_ns": 3633494350614,
+            "sampling_span_ns": 871,
+            "wall_ns": 1791475895536532782
+          },
+          "tracking": {
+            "correction": -0.001511405,
+            "leap": "Normal",
+            "raw_csv": "B97DBE39,185.125.190.57,3,1791475767.909430783,-0.001511405,0.000838791,0.001764970,26.802,0.064,3.142,0.255812824,0.007583417,258.4,Normal",
+            "reference_address": "185.125.190.57",
+            "reference_id": "B97DBE39",
+            "reference_time": 1791475767.9094307,
+            "root_delay": 0.255812824,
+            "root_dispersion": 0.007583417,
+            "skew_ppm": 3.142,
+            "stratum": 3
+          }
+        },
+        "clock_usable": true,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "reasons": [],
+        "run_id": "079b550758ce48d2bbed290c752fdac3",
+        "sample": {
+          "boottime_ns": 3633494363794,
+          "monotonic_ns": 3633494363729,
+          "sampling_span_ns": 230,
+          "wall_ns": 1791475895536545907
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "depth",
+        "supervisor_pid": 19220,
+        "supervisor_start_ticks": "363335",
+        "systemd_invocation_id": "b5b6b8a7a36f42cba0b546ca49089d96",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 3633494353986,
+            "monotonic_ns": 3633494353930,
+            "sampling_span_ns": 271,
+            "wall_ns": 1791475895536536089
+          },
+          "before": {
+            "boottime_ns": 3633482252941,
+            "monotonic_ns": 3633482252875,
+            "sampling_span_ns": 271,
+            "wall_ns": 1791475895524435033
+          }
+        },
+        "violations": 0,
+        "wall_minus_boottime_seconds": 1.100000000114898e-08
+      },
+      {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 19230,
+        "clock_usable": false,
+        "collector_exit_code": 2,
+        "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "profile_sha256": "6f59334ca87b61934e46a0601b088505c186e0398e0f1f3f97281c566ca30879",
+        "run_id": "079b550758ce48d2bbed290c752fdac3",
+        "sample": {
+          "boottime_ns": 7236548389942,
+          "monotonic_ns": 7236548388449,
+          "sampling_span_ns": 3988,
+          "wall_ns": 1791479498590570492
+        },
+        "schema": 1,
+        "scope": "sampled_process_clock_not_per_event",
+        "session_clock_clean": true,
+        "state": "finished",
+        "stream": "depth",
+        "supervisor_pid": 19220,
+        "supervisor_start_ticks": "363335",
+        "systemd_invocation_id": "b5b6b8a7a36f42cba0b546ca49089d96",
+        "violations": 0
+      }
+    ]
+  }
+]
