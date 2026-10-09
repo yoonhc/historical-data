@@ -1,0 +1,251 @@
+{
+  "collection_id": "c5b36646466344d5b1672275ffb2faf8",
+  "evidence_state": "available",
+  "scope": "sampled_runtime_clock_not_per_event_accuracy",
+  "link": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "child_id": "8d5878b92ad54c4cab61ecd854c85f92",
+    "collection_end": {
+      "boottime_ns": 73371350560950,
+      "monotonic_ns": 73371350560063,
+      "sampling_span_ns": 2715,
+      "wall_ns": 1791545633392742021
+    },
+    "collection_start": {
+      "boottime_ns": 69766021692867,
+      "monotonic_ns": 69766021692155,
+      "sampling_span_ns": 1904,
+      "wall_ns": 1791542028063874178
+    },
+    "policy_version": "reference-freshness-v2",
+    "run_id": "87dddac11b184080b5b5d75a4f167db4",
+    "schema": 2,
+    "stream": "aggtrade",
+    "terminal_state": "complete"
+  },
+  "chunks": [
+    "89e95b9f1725b8dbed94e1cd423c6f38f798f45105e9932f4d81c015425d2f67",
+    "0dec6db89168c5528b70b92208312513d871f22fb39626bfc2de25038e41d2a7",
+    "0d356e87f644bb0074bd8ef30377e7617702123aee40b52a7be25bdd06be82ee",
+    "8a76984c94d055e37a6e2de5ddde31a1aa7a3d3eebb949a9423603f8bc05d0f6",
+    "fb820d4c36e3e5452e8b5b0071937cba996d9803127d2a45dcd2f1637c07f428",
+    "abe37c1b6c409f19d9d3809bb24e937686f485287afc32957694a01f2b4d7237",
+    "a0425d1f40340ccfec610a79c9866e97b44392f5e68da4be5e731413399bd176",
+    "e8861b0262977f6dcc992bdaa2fc7b94607e5b571e59c8d72759521067c53a7e",
+    "0b61b93450169c88a3dc061ae0c1a541ed4f955d2e71315ed6b053a0c9e7df8c",
+    "801300057da97739e0793b3ddc12083b5b403e080425f7ac56379c998db11231",
+    "f9ee415d6710cef9660dc069e37161c38914583da6ea321394a2f05ed2f22ee3",
+    "6ff132f2220f4160ee2adf8eee2781b21c188a45627e21e94ed170b207d554ab",
+    "28ece0cf8952fcb5d9f073c543cdb9d0ec724fbeaab4be51f5a9177f695f3291",
+    "a5a512df7ead1ab9db6239e02511765dc9fe8c0f2499f34f411982d35b52d680"
+  ],
+  "unknown_reasons": [],
+  "note": "Available means evidence exists, not that its clock or market data is good",
+  "cli": {
+    "argv": [
+      "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+      "-B",
+      "-I",
+      "-c",
+      "from marketdata.cli import main; raise SystemExit(main())",
+      "--root",
+      "/home/yoonhc/projects/algoTrade/historical_data",
+      "clock-evidence",
+      "--collection-id",
+      "c5b36646466344d5b1672275ffb2faf8"
+    ],
+    "code": 0,
+    "stderr": "",
+    "retained_stdout_gzip": {
+      "path": "reports/t11-first-child-boundary-2026-10-09/aggtrade-clock-query.json.gz",
+      "bytes": 258499,
+      "sha256": "fd6aa62996badc96673d751d5a368d3a3904bf00e9a47f9daa5cf78ce09a968a"
+    },
+    "stdout_sha256": "245ffb81b067afbf454e31803862afe1c3c09c251e3d9ae78b462d48fb0c4ca1"
+  },
+  "intervals": 3558,
+  "stale_intervals": 1955,
+  "unusable_intervals": 0,
+  "raw_start_refused_intervals": 0,
+  "max_reference_age_seconds": 1608.211755990982,
+  "first_interval": {
+    "start_boottime_ns": 69766021692867,
+    "end_boottime_ns": 69766810383207,
+    "sample_before": {
+      "boottime_ns": 69765786714809,
+      "monotonic_ns": 69765786714758,
+      "sampling_span_ns": 281,
+      "wall_ns": 1791542027828896922
+    },
+    "sample_after": {
+      "boottime_ns": 69766810383207,
+      "monotonic_ns": 69766810381713,
+      "sampling_span_ns": 4007,
+      "wall_ns": 1791542028852563756
+    },
+    "current_estimate_usable": true,
+    "reference_stale": false,
+    "raw_start_allowed": true,
+    "reasons": [],
+    "sample_before_decision": {
+      "conditional_error_bound_seconds": 0.12579421400000002,
+      "current_estimate_usable": true,
+      "raw_start_allowed": true,
+      "reasons": [],
+      "reference_age_seconds": 83.86427855491638,
+      "reference_stale": false
+    },
+    "sample_after_decision": {
+      "conditional_error_bound_seconds": 0.125794223,
+      "current_estimate_usable": true,
+      "raw_start_allowed": true,
+      "reasons": [],
+      "reference_age_seconds": 84.88796949386597,
+      "reference_stale": false
+    },
+    "history": {
+      "hard_fault_seen": false,
+      "legacy_violations": 0,
+      "reference_stale_seen": false
+    },
+    "provider": {
+      "argv": [
+        "/usr/sbin/chronyd",
+        "-F",
+        "1",
+        "-f",
+        "/etc/chrony/marketdata.conf",
+        ""
+      ],
+      "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+      "pid": 1245
+    },
+    "clock_observation": {
+      "conditional_error_bound_seconds": 0.125794223,
+      "provider": {
+        "argv": [
+          "/usr/sbin/chronyd",
+          "-F",
+          "1",
+          "-f",
+          "/etc/chrony/marketdata.conf",
+          ""
+        ],
+        "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+        "pid": 1245
+      },
+      "ready": true,
+      "reasons": [],
+      "reference_age_seconds": 83.887371301651,
+      "sample": {
+        "boottime_ns": 69765809802327,
+        "monotonic_ns": 69765809802152,
+        "sampling_span_ns": 612,
+        "wall_ns": 1791542027851984220
+      },
+      "tracking": {
+        "correction": 0.002272939,
+        "leap": "Normal",
+        "raw_csv": "5BBD5B9D,91.189.91.157,3,1791541943.964594056,0.002272939,-0.000435690,0.001090743,25.632,-0.005,0.337,0.237829864,0.004606352,517.9,Normal",
+        "reference_address": "91.189.91.157",
+        "reference_id": "5BBD5B9D",
+        "reference_time": 1791541943.9645941,
+        "root_delay": 0.237829864,
+        "root_dispersion": 0.004606352,
+        "skew_ppm": 0.337,
+        "stratum": 3
+      }
+    }
+  },
+  "last_interval": {
+    "start_boottime_ns": 73370420035238,
+    "end_boottime_ns": 73371350560950,
+    "sample_before": {
+      "boottime_ns": 73370420035238,
+      "monotonic_ns": 73370420034556,
+      "sampling_span_ns": 2104,
+      "wall_ns": 1791545632462216569
+    },
+    "sample_after": {
+      "boottime_ns": 73371433234773,
+      "monotonic_ns": 73371433234096,
+      "sampling_span_ns": 2234,
+      "wall_ns": 1791545633475416064
+    },
+    "current_estimate_usable": true,
+    "reference_stale": true,
+    "raw_start_allowed": true,
+    "reasons": [],
+    "sample_before_decision": {
+      "conditional_error_bound_seconds": 0.127065633,
+      "current_estimate_usable": true,
+      "raw_start_allowed": true,
+      "reasons": [],
+      "reference_age_seconds": 1615.2909388542175,
+      "reference_stale": true
+    },
+    "sample_after_decision": {
+      "conditional_error_bound_seconds": 0.127065633,
+      "current_estimate_usable": true,
+      "raw_start_allowed": true,
+      "reasons": [],
+      "reference_age_seconds": 1616.3041384220123,
+      "reference_stale": true
+    },
+    "history": {
+      "hard_fault_seen": false,
+      "legacy_violations": 1949,
+      "reference_stale_seen": true
+    },
+    "provider": {
+      "argv": [
+        "/usr/sbin/chronyd",
+        "-F",
+        "1",
+        "-f",
+        "/etc/chrony/marketdata.conf",
+        ""
+      ],
+      "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+      "pid": 1245
+    },
+    "clock_observation": {
+      "conditional_error_bound_seconds": 0.127065633,
+      "provider": {
+        "argv": [
+          "/usr/sbin/chronyd",
+          "-F",
+          "1",
+          "-f",
+          "/etc/chrony/marketdata.conf",
+          ""
+        ],
+        "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+        "pid": 1245
+      },
+      "ready": false,
+      "reasons": [
+        "reference_age"
+      ],
+      "reference_age_seconds": 1608.211755990982,
+      "sample": {
+        "boottime_ns": 73363340868684,
+        "monotonic_ns": 73363340868413,
+        "sampling_span_ns": 782,
+        "wall_ns": 1791545625383050576
+      },
+      "tracking": {
+        "correction": -0.00079233,
+        "leap": "Normal",
+        "raw_csv": "5BBD5B9D,91.189.91.157,3,1791544017.171277638,-0.000792330,0.001668936,0.001125922,25.702,0.020,0.346,0.239259034,0.006643786,1556.3,Normal",
+        "reference_address": "91.189.91.157",
+        "reference_id": "5BBD5B9D",
+        "reference_time": 1791544017.1712775,
+        "root_delay": 0.239259034,
+        "root_dispersion": 0.006643786,
+        "skew_ppm": 0.346,
+        "stratum": 3
+      }
+    }
+  }
+}

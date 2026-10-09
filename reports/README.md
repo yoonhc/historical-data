@@ -13,7 +13,13 @@
 `baseline/t02-first-session-2026-10-09/`는 최초 시스템 전환 뒤 첫 세션의 후속 확인입니다.
 [결과](baseline/t02-first-session-2026-10-09/summary.md)에 실제 종료·partial·다음 수집 시작,
 첫 collection 1,960개 파일 검증·호가 재생 일치와 세션 경계 aggTrade 776개 자동 보강을 기록했습니다.
-T02의 첫 세션 확인은 완료했으며 24시간 관찰과 T11의 새 supervisor 경계는 별도로 남아 있습니다.
+T02의 첫 세션 확인은 완료했으며 24시간 관찰은 별도로 남아 있습니다.
+
+`baseline/t11-first-child-boundary-2026-10-09/`는 새 runtime의 첫 실제 child 경계 확인입니다.
+[결과](baseline/t11-first-child-boundary-2026-10-09/summary.md)에 같은 supervisor 유지,
+자연스러운 reference 지연 중 다음 child 시작, Depth partial·시각 경고 보존, 경계 aggTrade 1,266개 자동 보강,
+종료 collection 두 개의 전체 시각 근거 조회를 기록했습니다. T11의 두 스트림 다음 child 시작 정책과 첫 경계 관찰은 완료했고,
+업무별 정책 확대는 조건부 후속으로 유지합니다. 새 근거의 운영 백업·복원(T04)도 남아 있습니다.
 
 `baseline/trial-artifact-retirement-2026-10-09/`는 T06의 승인된 수동 정리 완료 기록입니다.
 [결과](baseline/trial-artifact-retirement-2026-10-09/summary.md)에 네 경로의 파일 450,212개·디렉터리 389,756개 삭제,
@@ -28,7 +34,8 @@ T02의 첫 세션 확인은 완료했으며 24시간 관찰과 T11의 새 superv
 `baseline/clock-runtime-deploy-2026-10-09/`는 T04·T11의 실제 운영 적용 기록입니다.
 [요약](baseline/clock-runtime-deploy-2026-10-09/summary.md)에 반복 ExecStartPre 출력 파서 결함으로 인한 중단,
 보완 코드·원래 계획의 해시 연결, 19:33 적용·초기 저장과 20:17까지의 시각 근거 관측을 남겼습니다.
-전환 공백의 aggTrade 4,031개 자동 보강과 호가 원문 공백을 구분하며, 첫 child 전환·새 근거 백업은 아직 미완료입니다.
+전환 공백의 aggTrade 4,031개 자동 보강과 호가 원문 공백을 구분합니다.
+당시 미완료였던 첫 child 전환은 위 T11 후속에서 확인했고, 새 근거 백업·복원은 아직 남아 있습니다.
 
 `baseline/clock-runtime-transition-2026-10-09/`는 최종 수집본 `65296619a374c325`와 전환 도구의 검증입니다.
 [요약](baseline/clock-runtime-transition-2026-10-09/summary.md)에 종료 표본 순서 수정·305건,

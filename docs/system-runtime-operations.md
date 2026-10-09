@@ -2,8 +2,9 @@
 
 2026-10-09 19:33 KST의 T04·T11 적용 이후 구성을 설명한다.
 [실제 적용·실패/재개·초기 저장 확인](../reports/baseline/clock-runtime-deploy-2026-10-09/summary.md)과
-[남은 작업](../TODO.md)을 함께 확인한다. 확보한 운영 관측은 20:17 KST까지이며,
-첫 child 전환과 새 시각 근거의 운영 백업·복원은 관찰 대기다. 과거 후보의 미적용 표시는 당시 상태다.
+[남은 작업](../TODO.md)을 함께 확인한다. **21:59 KST의 후속 확인**에서
+[첫 child 전환과 자연스러운 reference 지연 중 다음 시작](../reports/baseline/t11-first-child-boundary-2026-10-09/summary.md)을 확인했다.
+새 시각 근거의 운영 백업·복원은 관찰 대기다. 과거 후보의 미적용 표시는 당시 상태다.
 
 ## 실행 코드와 관리 주체
 
@@ -14,6 +15,7 @@
 | 설치 방식 | root 소유 코드·비 editable venv, `python -I`, 수집 프로세스는 `yoonhc` |
 | 시스템 수집 유닛 | `marketdata-collector@depth.service`, `marketdata-collector@aggtrade.service` |
 | 수집 수명 | 지속 supervisor 아래 3,600초 child, child 사이 15초도 시각 감시 유지 |
+| child 내부 소켓 교체 | Depth `--rotate-seconds 900`, aggTrade `3600`. 소켓 교체와 파일 저장 경계는 같지 않음 |
 | 시각 준비 | `chrony.service` → `marketdata-clock-bootstrap.service` → `chrony-wait.service`·수집 시작 검사 |
 | 호스트 설정 | `/etc/marketdata/runtime.json`, `/etc/marketdata/clock-bootstrap.json`, `/etc/chrony/marketdata.conf` |
 | 기존 사용자 업무 | OI·daily·pack·backup·restic·관측 등 8개 업무는 사용자 manager 유지, 공통 시각 대기와 시작 검사 연결 |
@@ -27,6 +29,12 @@
 이전 부팅 준비본의 [소스·해시](../reports/baseline/system-runtime-bootstrap-revision-2026-10-07/release.json)도 유지한다.
 기존 workspace의 pack·backup·restic과 새 수집본의 호환은 격리 저장소에서 검증했다.
 workspace의 패키지와 설치된 collector가 항상 같은 버전이라고 가정하지 않는다.
+
+T11은 supervisor 감시를 이어 다음 child의 reference 지연 대기를 줄였다.
+WebSocket의 연속 수신은 아직 별도 과제다. Depth는 한 시간 child 경계 외에도 15분마다 기존 소켓을 닫고
+새 소켓·snapshot epoch를 시작한다. 첫 child의 실제 보고서에도 소켓 4개와 예정 rotation 3개가 있다.
+수신을 유지한 기록 구간 분리와 연결 교체 시 인계는 아직 구현하지 않았으며,
+15초 대기를 0으로 바꾸거나 child의 수명만 늘리는 것을 연속 수집의 완료로 보지 않는다.
 
 ## 일상 조회
 

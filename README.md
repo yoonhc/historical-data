@@ -35,7 +35,9 @@ restic 비교·복원과 병행 예약 3/3, 호가 재시도·조기 갱신·조
 
 그 문서의 10/9 00:47 기준 이후 aggTrade 보강·백업 편입, 시각 정책 개선·근거 보존,
 실제 적용과 실패/재개는 [2026-10-09 시각 근거와 수집 정책 후속](docs/milestones/2026-10-09-clock-evidence-and-capture-policy.md)에
-정리했습니다. 첫 child 전환과 신규 시각 근거의 운영 백업·복원은 아직 관찰 대기입니다.
+정리했습니다. 이후 [첫 child 전환](reports/baseline/t11-first-child-boundary-2026-10-09/summary.md)에서
+자연스러운 reference 지연 중 다음 수집 시작과 품질 이력 보존을 확인했습니다.
+신규 시각 근거의 운영 백업·복원은 아직 관찰 대기입니다.
 
 ## 현재 확보한 데이터
 
