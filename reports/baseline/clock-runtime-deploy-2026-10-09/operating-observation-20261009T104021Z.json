@@ -1,0 +1,2714 @@
+{
+  "observed_at": "2026-10-09T10:40:21.920669+00:00",
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+  "files": {
+    "bootstrap": {
+      "path": "/etc/marketdata/clock-bootstrap.json",
+      "sha256": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+      "uid": 0,
+      "mode": "0o644",
+      "before": false,
+      "after": true
+    },
+    "collector_unit": {
+      "path": "/etc/systemd/system/marketdata-collector@.service",
+      "sha256": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+      "uid": 0,
+      "mode": "0o644",
+      "before": false,
+      "after": true
+    },
+    "runtime": {
+      "path": "/etc/marketdata/runtime.json",
+      "sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+      "uid": 0,
+      "mode": "0o644",
+      "before": false,
+      "after": true
+    }
+  },
+  "ledger": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "closed_boottime": 15.635695814,
+    "closed_observation": {
+      "conditional_error_bound_seconds": 0.1957006285,
+      "provider": {
+        "argv": [
+          "/usr/sbin/chronyd",
+          "-F",
+          "1",
+          "-f",
+          "/etc/chrony/marketdata.conf",
+          ""
+        ],
+        "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+        "pid": 1245
+      },
+      "ready": true,
+      "reasons": [],
+      "reference_age_seconds": 2.038670778274536,
+      "sample": {
+        "boottime_ns": 15873612363,
+        "monotonic_ns": 15873611848,
+        "sampling_span_ns": 1579,
+        "wall_ns": 1791472277915793853
+      },
+      "tracking": {
+        "correction": -0.066962399,
+        "leap": "Normal",
+        "raw_csv": "B97DBE39,185.125.190.57,3,1791472275.877091736,-0.066962399,0.198808655,0.198808655,24.944,7.388,24.314,0.253650129,0.001913165,0.0,Normal",
+        "reference_address": "185.125.190.57",
+        "reference_id": "B97DBE39",
+        "reference_time": 1791472275.8770916,
+        "root_delay": 0.253650129,
+        "root_dispersion": 0.001913165,
+        "skew_ppm": 24.314,
+        "stratum": 3
+      }
+    },
+    "configuration_history": [
+      {
+        "approval_sha256": "cfa1c9a10da9d4eff6601cb69d484505ae8cb6849ddcffe11a32cad3c75b98f0",
+        "direction": "apply",
+        "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+        "receipt": "/var/lib/marketdata-clock/runtime-transitions/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/apply-receipt.json"
+      }
+    ],
+    "first_boottime": 10.33559517,
+    "last_wait": {
+      "long_wait": false,
+      "needs_review": false,
+      "phase": "preparing",
+      "ready": false,
+      "reasons": [
+        "no_external_reference",
+        "not_synchronized_or_leap_pending",
+        "reference_age",
+        "clock_error_bound"
+      ],
+      "step_attempts": 0,
+      "wait_seconds": 0
+    },
+    "phase": "closed",
+    "profile_sha256": "7e10950ef3cced4ac226aadbc5a92e26a7e81cfce26ea3145ca1545f32aea888",
+    "schema": 1,
+    "step_attempts": 0
+  },
+  "original_boot_and_step_evidence_preserved": true,
+  "chrony": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "show",
+      "chrony.service",
+      "--all",
+      "--property=Id,ActiveState,SubState,MainPID,ControlPID,InvocationID,Result,ExecMainCode,ExecMainStatus,ExecMainStartTimestamp,FragmentPath,DropInPaths,ExecStart,ExecStartPre,User,Group,RuntimeMaxUSec,Restart,RestartUSec,KillMode,KillSignal,TimeoutStopUSec"
+    ],
+    "code": 0,
+    "stdout": "Restart=no\nRestartUSec=100ms\nTimeoutStopUSec=10s\nRuntimeMaxUSec=infinity\nMainPID=1245\nControlPID=0\nResult=success\nExecMainStartTimestamp=Fri 2026-10-09 00:11:08 KST\nExecMainCode=0\nExecMainStatus=0\nExecStartPre={ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py rtc-check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nExecStart={ path=/usr/sbin/chronyd ; argv[]=/usr/sbin/chronyd -F 1 -f /etc/chrony/marketdata.conf ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nUser=_chrony\nGroup=\nKillMode=control-group\nKillSignal=15\nId=chrony.service\nActiveState=active\nSubState=running\nFragmentPath=/usr/lib/systemd/system/chrony.service\nDropInPaths=/etc/systemd/system/chrony.service.d/marketdata.conf\nInvocationID=19420480ab3249529a075ca7cb2bd3c1\n",
+    "stderr": ""
+  },
+  "collectors": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "show",
+      "marketdata-collector@depth.service",
+      "marketdata-collector@aggtrade.service",
+      "--all",
+      "--property=Id,ActiveState,SubState,MainPID,ControlPID,InvocationID,Result,ExecMainCode,ExecMainStatus,ExecMainStartTimestamp,FragmentPath,DropInPaths,ExecStart,ExecStartPre,User,Group,RuntimeMaxUSec,Restart,RestartUSec,KillMode,KillSignal,TimeoutStopUSec"
+    ],
+    "code": 0,
+    "stdout": "Restart=always\nRestartUSec=15s\nTimeoutStopUSec=5min 30s\nRuntimeMaxUSec=infinity\nMainPID=224785\nControlPID=0\nResult=success\nExecMainStartTimestamp=Fri 2026-10-09 19:33:46 KST\nExecMainCode=0\nExecMainStatus=0\nExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[Fri 2026-10-09 19:33:46 KST] ; pid=224754 ; code=exited ; status=0 }\nExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream depth ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[Fri 2026-10-09 19:33:46 KST] ; pid=224767 ; code=exited ; status=0 }\nExecStart={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py --profile /etc/marketdata/runtime.json --stream depth --bootstrap-profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[n/a] ; pid=224785 ; code=(null) ; status=0/0 }\nUser=yoonhc\nGroup=\nKillMode=mixed\nKillSignal=2\nId=marketdata-collector@depth.service\nActiveState=active\nSubState=running\nFragmentPath=/etc/systemd/system/marketdata-collector@.service\nDropInPaths=\nInvocationID=41b1747221894331a5e0b4fdf3f9751e\n\nRestart=always\nRestartUSec=15s\nTimeoutStopUSec=5min 30s\nRuntimeMaxUSec=infinity\nMainPID=224784\nControlPID=0\nResult=success\nExecMainStartTimestamp=Fri 2026-10-09 19:33:46 KST\nExecMainCode=0\nExecMainStatus=0\nExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[Fri 2026-10-09 19:33:46 KST] ; pid=224755 ; code=exited ; status=0 }\nExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream aggtrade ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[Fri 2026-10-09 19:33:46 KST] ; pid=224771 ; code=exited ; status=0 }\nExecStart={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py --profile /etc/marketdata/runtime.json --stream aggtrade --bootstrap-profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[n/a] ; pid=224784 ; code=(null) ; status=0/0 }\nUser=yoonhc\nGroup=\nKillMode=mixed\nKillSignal=2\nId=marketdata-collector@aggtrade.service\nActiveState=active\nSubState=running\nFragmentPath=/etc/systemd/system/marketdata-collector@.service\nDropInPaths=\nInvocationID=1aa42e55ff804c1f9e5ec68b31116c6b\n",
+    "stderr": ""
+  },
+  "timers": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "--user",
+      "list-timers",
+      "--all",
+      "--no-pager"
+    ],
+    "code": 0,
+    "stdout": "NEXT                            LEFT LAST                              PASSED UNIT                              ACTIVATES\nFri 2026-10-09 19:40:30 KST       8s Fri 2026-10-09 19:40:15 KST       6s ago marketdata-oi-probe.timer         marketdata-oi-probe.service\nFri 2026-10-09 19:40:45 KST      23s Fri 2026-10-09 19:35:45 KST 4min 36s ago marketdata-oi.timer               marketdata-oi.service\nFri 2026-10-09 19:41:20 KST      58s Fri 2026-10-09 19:40:20 KST       1s ago marketdata-network-observer.timer marketdata-network-observer.service\nFri 2026-10-09 20:05:00 KST    24min Fri 2026-10-09 19:35:00 KST     5min ago marketdata-restic-archive.timer   marketdata-restic-archive.service\nFri 2026-10-09 20:15:00 KST    34min Fri 2026-10-09 19:15:00 KST    25min ago marketdata-pack.timer             marketdata-pack.service\nSat 2026-10-10 00:16:08 KST 4h 35min Fri 2026-10-09 00:16:08 KST      19h ago launchpadlib-cache-clean.timer    launchpadlib-cache-clean.service\nSat 2026-10-10 12:22:01 KST      16h Fri 2026-10-09 12:23:15 KST       7h ago marketdata-daily.timer            marketdata-daily.service\nSat 2026-10-10 12:40:00 KST      16h Fri 2026-10-09 12:40:00 KST       7h ago marketdata-oi-quality.timer       marketdata-oi-quality.service\nSat 2026-10-10 13:10:00 KST      17h Fri 2026-10-09 13:10:00 KST       6h ago marketdata-backup.timer           marketdata-backup.service\n\n9 timers listed.\n",
+    "stderr": ""
+  },
+  "masks": {
+    "marketdata-depth.service": "/dev/null",
+    "marketdata-aggtrade.service": "/dev/null",
+    "marketdata-checkpoint-retirement.service": "/dev/null",
+    "marketdata-checkpoint-retirement.timer": "/dev/null"
+  },
+  "deployment_result": {
+    "release_id": "clock-evidence-policy-20261009-65296619a374c325",
+    "tool_id": "collector-transition-20261009-1c7c4120369fd893",
+    "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+    "passed": false,
+    "started_at": {
+      "utc": "2026-10-09T10:21:06.876996+00:00",
+      "boottime_ns": 69004834818349
+    },
+    "automatic_checkpoint_retirement": "masked",
+    "scope": "two collectors and approved configuration transaction only",
+    "error": "RuntimeError: Command failed (75): ['/usr/bin/python3', '-B', '-I', '/opt/marketdata/tools/collector-transition-20261009-1c7c4120369fd893/work/collector_transition.py', 'commit', '--plan', '/var/lib/marketdata-clock/runtime-approvals/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/plan.json', '--approval', '/var/lib/marketdata-clock/runtime-approvals/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/approval.json']\n{\"work_allowed\": false, \"hold\": \"Effective strict start checks differ\"}\n",
+    "phase": "activate_configuration",
+    "finished_at": {
+      "utc": "2026-10-09T10:23:55.903249+00:00",
+      "boottime_ns": 69173861070620
+    },
+    "reboot_performed": false,
+    "clock_control_performed": false
+  },
+  "recovery_results": [
+    {
+      "commit": {
+        "configuration": "apply_committed",
+        "current_boot_preparation_preserved": true,
+        "current_clock_ready": true,
+        "receipt": "/var/lib/marketdata-clock/runtime-transitions/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/apply-receipt.json",
+        "step_reopened": false
+      },
+      "finished_at": "2026-10-09T10:33:46.629088+00:00",
+      "passed": true,
+      "phase": "applied_start_requested_observation_pending",
+      "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+      "reader_sha256": "fb7d502cc4516b916a366ce05c28e7a0014fbc195fbcb4837acb9d5261c82d23",
+      "start": {
+        "code": 0,
+        "stderr": "",
+        "stdout": ""
+      },
+      "started_at": "2026-10-09T10:33:46.117813+00:00"
+    }
+  ],
+  "streams": {
+    "depth": {
+      "latest": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 224866,
+        "child_start_ticks": "6976591",
+        "clock": {
+          "conditional_error_bound_seconds": 0.125928772,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 468.63747453689575,
+          "sample": {
+            "boottime_ns": 70150559913958,
+            "monotonic_ns": 70150559913562,
+            "sampling_span_ns": 1533,
+            "wall_ns": 1791542412602095470
+          },
+          "tracking": {
+            "correction": 0.001891241,
+            "leap": "Normal",
+            "raw_csv": "5BBD5B9D,91.189.91.157,3,1791541943.964594056,0.001891241,-0.000435690,0.001090743,25.632,-0.005,0.337,0.237829864,0.005122599,517.9,Normal",
+            "reference_address": "91.189.91.157",
+            "reference_id": "5BBD5B9D",
+            "reference_time": 1791541943.9645941,
+            "root_delay": 0.237829864,
+            "root_dispersion": 0.005122599,
+            "skew_ppm": 0.337,
+            "stratum": 3
+          }
+        },
+        "clock_usable": true,
+        "decision": {
+          "conditional_error_bound_seconds": 0.125928772,
+          "current_estimate_usable": true,
+          "raw_start_allowed": true,
+          "reasons": [],
+          "reference_age_seconds": 477.75956320762634,
+          "reference_stale": false
+        },
+        "history": {
+          "hard_fault_seen": false,
+          "legacy_violations": 0,
+          "reference_stale_seen": false
+        },
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "policy_version": "reference-freshness-v2",
+        "profile_sha256": "25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9",
+        "record": 392,
+        "run_id": "9415ca491ca34ddfb75b1ec7cfeb4e8e",
+        "sample": {
+          "boottime_ns": 70159681976530,
+          "monotonic_ns": 70159681975488,
+          "sampling_span_ns": 2845,
+          "wall_ns": 1791542421724157541
+        },
+        "schema": 2,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "depth",
+        "supervisor_pid": 224785,
+        "supervisor_start_ticks": "6976476",
+        "systemd_invocation_id": "41b1747221894331a5e0b4fdf3f9751e",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 70159681976530,
+            "monotonic_ns": 70159681975488,
+            "sampling_span_ns": 2845,
+            "wall_ns": 1791542421724157541
+          },
+          "before": {
+            "boottime_ns": 70158668093201,
+            "monotonic_ns": 70158668091773,
+            "sampling_span_ns": 3476,
+            "wall_ns": 1791542420710273851
+          }
+        }
+      },
+      "supervisor": {
+        "pid": 224785,
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-I",
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py",
+          "--profile",
+          "/etc/marketdata/runtime.json",
+          "--stream",
+          "depth",
+          "--bootstrap-profile",
+          "/etc/marketdata/clock-bootstrap.json",
+          ""
+        ],
+        "status": [
+          "Name:\tpython",
+          "State:\tS (sleeping)",
+          "PPid:\t1",
+          "Uid:\t1000\t1000\t1000\t1000",
+          "Gid:\t1000\t1000\t1000\t1000"
+        ]
+      },
+      "child": {
+        "pid": 224866,
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-I",
+          "-c",
+          "from marketdata.cli import main; raise SystemExit(main())",
+          "--root",
+          "/home/yoonhc/projects/algoTrade/historical_data",
+          "depth-stream",
+          "--seconds",
+          "3600",
+          "--flush-seconds",
+          "5",
+          "--rotate-seconds",
+          "900",
+          "--min-free-gib",
+          "10",
+          "--verify-seconds",
+          "10",
+          "--top",
+          "20",
+          ""
+        ],
+        "status": [
+          "Name:\tpython",
+          "State:\tS (sleeping)",
+          "PPid:\t224785",
+          "Uid:\t1000\t1000\t1000\t1000",
+          "Gid:\t1000\t1000\t1000\t1000"
+        ]
+      },
+      "status": {
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-B",
+          "-I",
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py",
+          "--profile",
+          "/etc/marketdata/runtime.json",
+          "--bootstrap-profile",
+          "/etc/marketdata/clock-bootstrap.json",
+          "--stream",
+          "depth",
+          "--status"
+        ],
+        "code": 0,
+        "stdout": "{\"policy_version\": \"reference-freshness-v2\", \"raw_running\": true, \"current_estimate_usable\": true, \"reference_stale\": false, \"history\": {\"hard_fault_seen\": false, \"legacy_violations\": 0, \"reference_stale_seen\": false}, \"clock_usable\": true, \"evidence_age_seconds\": 0.314362626, \"record\": {\"boot_id\": \"eb163bf2-6642-4336-b4d6-6cd58771b13d\", \"child_pid\": 224866, \"child_start_ticks\": \"6976591\", \"clock\": {\"conditional_error_bound_seconds\": 0.125928772, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 468.63747453689575, \"sample\": {\"boottime_ns\": 70150559913958, \"monotonic_ns\": 70150559913562, \"sampling_span_ns\": 1533, \"wall_ns\": 1791542412602095470}, \"tracking\": {\"correction\": 0.001891241, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791541943.964594056,0.001891241,-0.000435690,0.001090743,25.632,-0.005,0.337,0.237829864,0.005122599,517.9,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791541943.9645941, \"root_delay\": 0.237829864, \"root_dispersion\": 0.005122599, \"skew_ppm\": 0.337, \"stratum\": 3}}, \"clock_usable\": true, \"decision\": {\"conditional_error_bound_seconds\": 0.125928772, \"current_estimate_usable\": true, \"raw_start_allowed\": true, \"reasons\": [], \"reference_age_seconds\": 477.75956320762634, \"reference_stale\": false}, \"history\": {\"hard_fault_seen\": false, \"legacy_violations\": 0, \"reference_stale_seen\": false}, \"policy\": {\"heartbeat_seconds\": 10.0, \"max_correction_seconds\": 0.1, \"max_error_seconds\": 0.5, \"max_reference_age_seconds\": 600.0, \"max_sample_gap_seconds\": 5.0, \"max_skew_ppm\": 100.0, \"provider_seconds\": 10.0, \"ready_poll_seconds\": 5.0, \"ready_timeout_seconds\": 120.0, \"sample_seconds\": 1.0, \"status_max_age_seconds\": 25.0, \"step_threshold_seconds\": 0.25, \"stop_timeout_seconds\": 120.0}, \"policy_version\": \"reference-freshness-v2\", \"profile_sha256\": \"25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9\", \"record\": 392, \"run_id\": \"9415ca491ca34ddfb75b1ec7cfeb4e8e\", \"sample\": {\"boottime_ns\": 70159681976530, \"monotonic_ns\": 70159681975488, \"sampling_span_ns\": 2845, \"wall_ns\": 1791542421724157541}, \"schema\": 2, \"scope\": \"sampled_process_clock_not_per_event\", \"state\": \"running\", \"stream\": \"depth\", \"supervisor_pid\": 224785, \"supervisor_start_ticks\": \"6976476\", \"systemd_invocation_id\": \"41b1747221894331a5e0b4fdf3f9751e\", \"uncertain_interval\": {\"after\": {\"boottime_ns\": 70159681976530, \"monotonic_ns\": 70159681975488, \"sampling_span_ns\": 2845, \"wall_ns\": 1791542421724157541}, \"before\": {\"boottime_ns\": 70158668093201, \"monotonic_ns\": 70158668091773, \"sampling_span_ns\": 3476, \"wall_ns\": 1791542420710273851}}}, \"note\": \"Sampled clock status; combine with market data quality. Unknown on stale process evidence.\"}\n",
+        "stderr": ""
+      }
+    },
+    "aggtrade": {
+      "latest": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 224855,
+        "child_start_ticks": "6976580",
+        "clock": {
+          "conditional_error_bound_seconds": 0.125928772,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 468.6365473270416,
+          "sample": {
+            "boottime_ns": 70150558988626,
+            "monotonic_ns": 70150558988159,
+            "sampling_span_ns": 1493,
+            "wall_ns": 1791542412601170057
+          },
+          "tracking": {
+            "correction": 0.001891241,
+            "leap": "Normal",
+            "raw_csv": "5BBD5B9D,91.189.91.157,3,1791541943.964594056,0.001891241,-0.000435690,0.001090743,25.632,-0.005,0.337,0.237829864,0.005122599,517.9,Normal",
+            "reference_address": "91.189.91.157",
+            "reference_id": "5BBD5B9D",
+            "reference_time": 1791541943.9645941,
+            "root_delay": 0.237829864,
+            "root_dispersion": 0.005122599,
+            "skew_ppm": 0.337,
+            "stratum": 3
+          }
+        },
+        "clock_usable": true,
+        "decision": {
+          "conditional_error_bound_seconds": 0.125928772,
+          "current_estimate_usable": true,
+          "raw_start_allowed": true,
+          "reasons": [],
+          "reference_age_seconds": 477.75986981391907,
+          "reference_stale": false
+        },
+        "history": {
+          "hard_fault_seen": false,
+          "legacy_violations": 0,
+          "reference_stale_seen": false
+        },
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "policy_version": "reference-freshness-v2",
+        "profile_sha256": "25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9",
+        "record": 392,
+        "run_id": "87dddac11b184080b5b5d75a4f167db4",
+        "sample": {
+          "boottime_ns": 70159682282516,
+          "monotonic_ns": 70159682281900,
+          "sampling_span_ns": 2054,
+          "wall_ns": 1791542421724463878
+        },
+        "schema": 2,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "aggtrade",
+        "supervisor_pid": 224784,
+        "supervisor_start_ticks": "6976475",
+        "systemd_invocation_id": "1aa42e55ff804c1f9e5ec68b31116c6b",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 70159682282516,
+            "monotonic_ns": 70159682281900,
+            "sampling_span_ns": 2054,
+            "wall_ns": 1791542421724463878
+          },
+          "before": {
+            "boottime_ns": 70158668093431,
+            "monotonic_ns": 70158668092099,
+            "sampling_span_ns": 3326,
+            "wall_ns": 1791542420710274031
+          }
+        }
+      },
+      "supervisor": {
+        "pid": 224784,
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-I",
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py",
+          "--profile",
+          "/etc/marketdata/runtime.json",
+          "--stream",
+          "aggtrade",
+          "--bootstrap-profile",
+          "/etc/marketdata/clock-bootstrap.json",
+          ""
+        ],
+        "status": [
+          "Name:\tpython",
+          "State:\tS (sleeping)",
+          "PPid:\t1",
+          "Uid:\t1000\t1000\t1000\t1000",
+          "Gid:\t1000\t1000\t1000\t1000"
+        ]
+      },
+      "child": {
+        "pid": 224855,
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-I",
+          "-c",
+          "from marketdata.cli import main; raise SystemExit(main())",
+          "--root",
+          "/home/yoonhc/projects/algoTrade/historical_data",
+          "aggtrade-stream",
+          "--seconds",
+          "3600",
+          "--flush-seconds",
+          "5",
+          "--rotate-seconds",
+          "3600",
+          "--min-free-gib",
+          "10",
+          ""
+        ],
+        "status": [
+          "Name:\tpython",
+          "State:\tS (sleeping)",
+          "PPid:\t224784",
+          "Uid:\t1000\t1000\t1000\t1000",
+          "Gid:\t1000\t1000\t1000\t1000"
+        ]
+      },
+      "status": {
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-B",
+          "-I",
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py",
+          "--profile",
+          "/etc/marketdata/runtime.json",
+          "--bootstrap-profile",
+          "/etc/marketdata/clock-bootstrap.json",
+          "--stream",
+          "aggtrade",
+          "--status"
+        ],
+        "code": 0,
+        "stdout": "{\"policy_version\": \"reference-freshness-v2\", \"raw_running\": true, \"current_estimate_usable\": true, \"reference_stale\": false, \"history\": {\"hard_fault_seen\": false, \"legacy_violations\": 0, \"reference_stale_seen\": false}, \"clock_usable\": true, \"evidence_age_seconds\": 0.424057249, \"record\": {\"boot_id\": \"eb163bf2-6642-4336-b4d6-6cd58771b13d\", \"child_pid\": 224855, \"child_start_ticks\": \"6976580\", \"clock\": {\"conditional_error_bound_seconds\": 0.125928772, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 468.6365473270416, \"sample\": {\"boottime_ns\": 70150558988626, \"monotonic_ns\": 70150558988159, \"sampling_span_ns\": 1493, \"wall_ns\": 1791542412601170057}, \"tracking\": {\"correction\": 0.001891241, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791541943.964594056,0.001891241,-0.000435690,0.001090743,25.632,-0.005,0.337,0.237829864,0.005122599,517.9,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791541943.9645941, \"root_delay\": 0.237829864, \"root_dispersion\": 0.005122599, \"skew_ppm\": 0.337, \"stratum\": 3}}, \"clock_usable\": true, \"decision\": {\"conditional_error_bound_seconds\": 0.125928772, \"current_estimate_usable\": true, \"raw_start_allowed\": true, \"reasons\": [], \"reference_age_seconds\": 477.75986981391907, \"reference_stale\": false}, \"history\": {\"hard_fault_seen\": false, \"legacy_violations\": 0, \"reference_stale_seen\": false}, \"policy\": {\"heartbeat_seconds\": 10.0, \"max_correction_seconds\": 0.1, \"max_error_seconds\": 0.5, \"max_reference_age_seconds\": 600.0, \"max_sample_gap_seconds\": 5.0, \"max_skew_ppm\": 100.0, \"provider_seconds\": 10.0, \"ready_poll_seconds\": 5.0, \"ready_timeout_seconds\": 120.0, \"sample_seconds\": 1.0, \"status_max_age_seconds\": 25.0, \"step_threshold_seconds\": 0.25, \"stop_timeout_seconds\": 120.0}, \"policy_version\": \"reference-freshness-v2\", \"profile_sha256\": \"25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9\", \"record\": 392, \"run_id\": \"87dddac11b184080b5b5d75a4f167db4\", \"sample\": {\"boottime_ns\": 70159682282516, \"monotonic_ns\": 70159682281900, \"sampling_span_ns\": 2054, \"wall_ns\": 1791542421724463878}, \"schema\": 2, \"scope\": \"sampled_process_clock_not_per_event\", \"state\": \"running\", \"stream\": \"aggtrade\", \"supervisor_pid\": 224784, \"supervisor_start_ticks\": \"6976475\", \"systemd_invocation_id\": \"1aa42e55ff804c1f9e5ec68b31116c6b\", \"uncertain_interval\": {\"after\": {\"boottime_ns\": 70159682282516, \"monotonic_ns\": 70159682281900, \"sampling_span_ns\": 2054, \"wall_ns\": 1791542421724463878}, \"before\": {\"boottime_ns\": 70158668093431, \"monotonic_ns\": 70158668092099, \"sampling_span_ns\": 3326, \"wall_ns\": 1791542420710274031}}}, \"note\": \"Sampled clock status; combine with market data quality. Unknown on stale process evidence.\"}\n",
+        "stderr": ""
+      }
+    }
+  },
+  "collections": [
+    {
+      "id": "d2d18424592f4f549f5bda828e270759",
+      "dataset": "book_depth",
+      "kind": "websocket",
+      "started_at": "2026-10-09T10:33:48.230144+00:00",
+      "updated_at": "2026-10-09T10:40:21.281784+00:00",
+      "state": "running",
+      "report": {
+        "bootstrap_messages": 1,
+        "bootstrap_policy": "buffer_before_anchor_v1",
+        "bootstrap_timeout_seconds": 2,
+        "boundary_semantics": "new_snapshot_on_every_connection; no_historical_gap_repair",
+        "complete": false,
+        "connection_errors": 0,
+        "connections": 1,
+        "coverage_check_requests": 0,
+        "coverage_refresh": {
+          "extra_requests": 12,
+          "level_fraction": "0.75",
+          "min_interval_seconds": 1.0,
+          "policy": "bounded_headroom_v1",
+          "price_fraction": "0.25",
+          "scope": "extra checks within this capture; survives resync/reconnect; periodic checks and recovery anchors are separate",
+          "window_seconds": 60.0
+        },
+        "coverage_reset_policy": "same_socket_new_epoch_v1",
+        "coverage_resets": 0,
+        "coverage_top_shortfalls": 0,
+        "dataset": "book_depth",
+        "epochs": [
+          {
+            "epoch": 0,
+            "final": {
+              "anchor_history": {
+                "aligned": false,
+                "applied": 0,
+                "events": 0,
+                "first_sequence": null,
+                "last_sequence": null,
+                "levels": 0,
+                "reason": "No snapshot bridge retained in recent history",
+                "serialized_bytes": 0
+              },
+              "book": {
+                "ask_ceiling": "82564.700000000000000000",
+                "asks": [
+                  [
+                    "82442.900000000000000000",
+                    "2.431000000000000000"
+                  ],
+                  [
+                    "82443.000000000000000000",
+                    "0.081000000000000000"
+                  ],
+                  [
+                    "82443.100000000000000000",
+                    "0.003000000000000000"
+                  ],
+                  [
+                    "82443.300000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82443.400000000000000000",
+                    "0.004000000000000000"
+                  ],
+                  [
+                    "82443.600000000000000000",
+                    "0.007000000000000000"
+                  ],
+                  [
+                    "82443.700000000000000000",
+                    "0.753000000000000000"
+                  ],
+                  [
+                    "82443.800000000000000000",
+                    "0.025000000000000000"
+                  ],
+                  [
+                    "82443.900000000000000000",
+                    "0.002000000000000000"
+                  ],
+                  [
+                    "82444.000000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82444.100000000000000000",
+                    "0.011000000000000000"
+                  ],
+                  [
+                    "82444.200000000000000000",
+                    "0.004000000000000000"
+                  ],
+                  [
+                    "82444.300000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82444.400000000000000000",
+                    "0.010000000000000000"
+                  ],
+                  [
+                    "82444.500000000000000000",
+                    "0.013000000000000000"
+                  ],
+                  [
+                    "82445.000000000000000000",
+                    "0.004000000000000000"
+                  ],
+                  [
+                    "82445.100000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82445.200000000000000000",
+                    "0.002000000000000000"
+                  ],
+                  [
+                    "82445.300000000000000000",
+                    "0.004000000000000000"
+                  ],
+                  [
+                    "82445.400000000000000000",
+                    "0.001000000000000000"
+                  ]
+                ],
+                "bid_floor": "82311.000000000000000000",
+                "bids": [
+                  [
+                    "82442.800000000000000000",
+                    "6.119000000000000000"
+                  ],
+                  [
+                    "82442.700000000000000000",
+                    "0.004000000000000000"
+                  ],
+                  [
+                    "82442.600000000000000000",
+                    "0.064000000000000000"
+                  ],
+                  [
+                    "82442.300000000000000000",
+                    "0.062000000000000000"
+                  ],
+                  [
+                    "82442.200000000000000000",
+                    "0.249000000000000000"
+                  ],
+                  [
+                    "82442.100000000000000000",
+                    "0.002000000000000000"
+                  ],
+                  [
+                    "82441.900000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82441.800000000000000000",
+                    "0.003000000000000000"
+                  ],
+                  [
+                    "82441.700000000000000000",
+                    "0.004000000000000000"
+                  ],
+                  [
+                    "82441.600000000000000000",
+                    "0.061000000000000000"
+                  ],
+                  [
+                    "82441.400000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82441.300000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82440.900000000000000000",
+                    "0.004000000000000000"
+                  ],
+                  [
+                    "82440.800000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82440.700000000000000000",
+                    "0.063000000000000000"
+                  ],
+                  [
+                    "82440.600000000000000000",
+                    "0.003000000000000000"
+                  ],
+                  [
+                    "82440.500000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82440.400000000000000000",
+                    "0.033000000000000000"
+                  ],
+                  [
+                    "82440.300000000000000000",
+                    "1.064000000000000000"
+                  ],
+                  [
+                    "82440.200000000000000000",
+                    "0.008000000000000000"
+                  ]
+                ],
+                "book_sha256": "3f1c8668f7851ec541ce711b04faa737616c114f93c5b8469d12da4156959c1b",
+                "known_ask_levels": 943,
+                "known_bid_levels": 1056,
+                "last_update_id": 11774198919734,
+                "synced": true,
+                "timestamp": "2026-10-09T10:40:21.195000+00:00",
+                "top_complete": true,
+                "top_requested": 20
+              },
+              "checks": [
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774157430225,
+                  "refreshed": true,
+                  "snapshot_sequence": 102,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774158640054,
+                  "refreshed": true,
+                  "snapshot_sequence": 203,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774159638567,
+                  "refreshed": true,
+                  "snapshot_sequence": 304,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774160537556,
+                  "refreshed": true,
+                  "snapshot_sequence": 405,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774161798637,
+                  "refreshed": true,
+                  "snapshot_sequence": 506,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774163100948,
+                  "refreshed": true,
+                  "snapshot_sequence": 607,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774164126987,
+                  "refreshed": true,
+                  "snapshot_sequence": 708,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774165581411,
+                  "refreshed": true,
+                  "snapshot_sequence": 809,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774166871270,
+                  "refreshed": true,
+                  "snapshot_sequence": 910,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774168156445,
+                  "refreshed": true,
+                  "snapshot_sequence": 1011,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774169236700,
+                  "refreshed": true,
+                  "snapshot_sequence": 1112,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774170148393,
+                  "refreshed": true,
+                  "snapshot_sequence": 1213,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774171490541,
+                  "refreshed": true,
+                  "snapshot_sequence": 1314,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774172913592,
+                  "refreshed": true,
+                  "snapshot_sequence": 1415,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774174326225,
+                  "refreshed": true,
+                  "snapshot_sequence": 1516,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774175796382,
+                  "refreshed": true,
+                  "snapshot_sequence": 1617,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774177011465,
+                  "refreshed": true,
+                  "snapshot_sequence": 1718,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774178163752,
+                  "refreshed": true,
+                  "snapshot_sequence": 1819,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774179456494,
+                  "refreshed": true,
+                  "snapshot_sequence": 1920,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774180598280,
+                  "refreshed": true,
+                  "snapshot_sequence": 2021,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774181519408,
+                  "refreshed": true,
+                  "snapshot_sequence": 2122,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774182474435,
+                  "refreshed": true,
+                  "snapshot_sequence": 2223,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774183795281,
+                  "refreshed": true,
+                  "snapshot_sequence": 2324,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774184724324,
+                  "refreshed": true,
+                  "snapshot_sequence": 2425,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774185611144,
+                  "refreshed": true,
+                  "snapshot_sequence": 2526,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774186617505,
+                  "refreshed": true,
+                  "snapshot_sequence": 2627,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774187728141,
+                  "refreshed": true,
+                  "snapshot_sequence": 2728,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774188703868,
+                  "refreshed": true,
+                  "snapshot_sequence": 2829,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774189850441,
+                  "refreshed": true,
+                  "snapshot_sequence": 2930,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774190652993,
+                  "refreshed": true,
+                  "snapshot_sequence": 3031,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774191468109,
+                  "refreshed": true,
+                  "snapshot_sequence": 3132,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774192342516,
+                  "refreshed": true,
+                  "snapshot_sequence": 3233,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774193572586,
+                  "refreshed": true,
+                  "snapshot_sequence": 3334,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774194545812,
+                  "refreshed": true,
+                  "snapshot_sequence": 3435,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774195332197,
+                  "refreshed": true,
+                  "snapshot_sequence": 3536,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774196096100,
+                  "refreshed": true,
+                  "snapshot_sequence": 3637,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774197196858,
+                  "refreshed": true,
+                  "snapshot_sequence": 3738,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774198440339,
+                  "refreshed": true,
+                  "snapshot_sequence": 3839,
+                  "top": 20
+                }
+              ],
+              "counts": {
+                "applied": 3850,
+                "duplicate": 0,
+                "stale": 1
+              },
+              "error": null,
+              "pending_check_sequence": null,
+              "refreshes": 38
+            },
+            "reason": "initial",
+            "started_at": "2026-10-09T10:33:48.366501+00:00"
+          }
+        ],
+        "errors": [],
+        "flush_seconds": 5,
+        "history_limits": {
+          "events": 128,
+          "levels": 50000,
+          "serialized_bytes": 8388608
+        },
+        "history_policy": "bounded_same_socket_v1",
+        "id": "d2d18424592f4f549f5bda828e270759",
+        "kind": "websocket",
+        "lagged_retry_budget": {
+          "max_requests": 8,
+          "scope": "retry anchor calls within this capture; survives resync/reconnect",
+          "window_seconds": 60
+        },
+        "lagged_retry_delays_seconds": [
+          1,
+          2,
+          4,
+          8,
+          10
+        ],
+        "lagged_retry_policy": "same_socket_backoff_v1",
+        "lagged_retry_requests": 0,
+        "lagged_snapshot_policy": "retain_unsynchronized_updates_v1",
+        "lagged_snapshots": 0,
+        "last_received_at": "2026-10-09T10:40:21.231662+00:00",
+        "last_update_id": 11774198919734,
+        "messages": 3851,
+        "periodic_check_requests": 38,
+        "persisted_messages": 3851,
+        "recent_coverage_checks": [
+          {
+            "action": "request",
+            "age_seconds": 10.11372070100333,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1111,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "152.300000000000000000",
+                  "snapshot_price_span": "131.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 861,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "104.600000000000000000",
+                  "snapshot_price_span": "125.600000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:35:00.035418+00:00",
+            "sequence": 708,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.079374751003343,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 958,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "122.600000000000000000",
+                  "snapshot_price_span": "132.500000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1067,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "136.100000000000000000",
+                  "snapshot_price_span": "126.200000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:35:10.189534+00:00",
+            "sequence": 809,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.13189631899877,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1041,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "134.000000000000000000",
+                  "snapshot_price_span": "129.500000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 971,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "120.900000000000000000",
+                  "snapshot_price_span": "125.400000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:35:20.399162+00:00",
+            "sequence": 910,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.109279501004494,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1077,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "141.200000000000000000",
+                  "snapshot_price_span": "126.400000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 897,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "109.400000000000000000",
+                  "snapshot_price_span": "124.200000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:35:30.582466+00:00",
+            "sequence": 1011,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.112996423005825,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1008,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "132.600000000000000000",
+                  "snapshot_price_span": "130.200000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 997,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "122.100000000000000000",
+                  "snapshot_price_span": "124.500000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:35:40.770848+00:00",
+            "sequence": 1112,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.116434417999699,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1004,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "130.800000000000000000",
+                  "snapshot_price_span": "130.800000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1006,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "122.800000000000000000",
+                  "snapshot_price_span": "122.800000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:35:50.973910+00:00",
+            "sequence": 1213,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.16202152299229,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 869,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "113.300000000000000000",
+                  "snapshot_price_span": "130.100000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1071,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "138.400000000000000000",
+                  "snapshot_price_span": "121.600000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:36:01.221837+00:00",
+            "sequence": 1314,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.094798181991791,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1073,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "142.100000000000000000",
+                  "snapshot_price_span": "132.500000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 952,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "118.000000000000000000",
+                  "snapshot_price_span": "127.600000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:36:11.389829+00:00",
+            "sequence": 1415,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.10519500800001,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1051,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "139.200000000000000000",
+                  "snapshot_price_span": "132.000000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 941,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "117.900000000000000000",
+                  "snapshot_price_span": "125.100000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:36:21.582174+00:00",
+            "sequence": 1516,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.127694955008337,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1038,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "140.200000000000000000",
+                  "snapshot_price_span": "131.700000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 960,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "116.800000000000000000",
+                  "snapshot_price_span": "125.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:36:31.785126+00:00",
+            "sequence": 1617,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.110345465000137,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 945,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "122.300000000000000000",
+                  "snapshot_price_span": "135.400000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1087,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "137.900000000000000000",
+                  "snapshot_price_span": "124.800000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:36:41.967149+00:00",
+            "sequence": 1718,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.171079467007075,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 857,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "111.200000000000000000",
+                  "snapshot_price_span": "130.900000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1124,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "144.800000000000000000",
+                  "snapshot_price_span": "125.100000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:36:52.218266+00:00",
+            "sequence": 1819,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.084002263989532,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1048,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "138.600000000000000000",
+                  "snapshot_price_span": "134.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 989,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "121.500000000000000000",
+                  "snapshot_price_span": "125.800000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:37:02.394000+00:00",
+            "sequence": 1920,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.118014727995615,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 990,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "128.500000000000000000",
+                  "snapshot_price_span": "133.000000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1039,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "130.100000000000000000",
+                  "snapshot_price_span": "125.600000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:37:12.595132+00:00",
+            "sequence": 2021,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.10205006400065,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1009,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "130.300000000000000000",
+                  "snapshot_price_span": "130.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1021,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "124.600000000000000000",
+                  "snapshot_price_span": "124.600000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:37:22.776613+00:00",
+            "sequence": 2122,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.14138278500468,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1034,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "135.500000000000000000",
+                  "snapshot_price_span": "128.500000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 952,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "114.700000000000000000",
+                  "snapshot_price_span": "121.700000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:37:32.991956+00:00",
+            "sequence": 2223,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.111086577002425,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 904,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "117.100000000000000000",
+                  "snapshot_price_span": "130.600000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1065,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "135.600000000000000000",
+                  "snapshot_price_span": "122.100000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:37:43.184544+00:00",
+            "sequence": 2324,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.128604118013754,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1105,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "145.700000000000000000",
+                  "snapshot_price_span": "132.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 924,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "112.100000000000000000",
+                  "snapshot_price_span": "125.500000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:37:53.389073+00:00",
+            "sequence": 2425,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.038053757001762,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 988,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "128.500000000000000000",
+                  "snapshot_price_span": "128.500000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1000,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "122.900000000000000000",
+                  "snapshot_price_span": "122.900000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:03.589283+00:00",
+            "sequence": 2526,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.109146323986351,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 935,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "116.300000000000000000",
+                  "snapshot_price_span": "129.600000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1074,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "135.600000000000000000",
+                  "snapshot_price_span": "122.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:13.778302+00:00",
+            "sequence": 2627,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.149343515993678,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1064,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "139.700000000000000000",
+                  "snapshot_price_span": "126.600000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 917,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "112.000000000000000000",
+                  "snapshot_price_span": "125.100000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:24.001220+00:00",
+            "sequence": 2728,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.095716486990568,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1068,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "138.500000000000000000",
+                  "snapshot_price_span": "129.000000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 935,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "114.400000000000000000",
+                  "snapshot_price_span": "123.900000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:34.185741+00:00",
+            "sequence": 2829,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.154589511002996,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1116,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "148.400000000000000000",
+                  "snapshot_price_span": "127.500000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 851,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "103.400000000000000000",
+                  "snapshot_price_span": "124.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:44.421357+00:00",
+            "sequence": 2930,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.069771736001712,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1006,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "129.100000000000000000",
+                  "snapshot_price_span": "129.700000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 982,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "124.500000000000000000",
+                  "snapshot_price_span": "123.900000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:54.570692+00:00",
+            "sequence": 3031,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.019424999001785,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 994,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "127.800000000000000000",
+                  "snapshot_price_span": "127.800000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1027,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "127.100000000000000000",
+                  "snapshot_price_span": "127.100000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:04.772059+00:00",
+            "sequence": 3132,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.158160715000122,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1060,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "142.200000000000000000",
+                  "snapshot_price_span": "129.400000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 916,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "110.400000000000000000",
+                  "snapshot_price_span": "123.200000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:15.001191+00:00",
+            "sequence": 3233,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.100782971989247,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 976,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "125.300000000000000000",
+                  "snapshot_price_span": "131.600000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1032,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "128.800000000000000000",
+                  "snapshot_price_span": "122.500000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:25.184437+00:00",
+            "sequence": 3334,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.153171748999739,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 982,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "129.600000000000000000",
+                  "snapshot_price_span": "129.600000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 977,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "124.100000000000000000",
+                  "snapshot_price_span": "124.100000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:35.413790+00:00",
+            "sequence": 3435,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.085495899998932,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1002,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "131.700000000000000000",
+                  "snapshot_price_span": "131.700000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1003,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "126.700000000000000000",
+                  "snapshot_price_span": "126.700000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:45.574697+00:00",
+            "sequence": 3536,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.134729650002555,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1009,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "131.400000000000000000",
+                  "snapshot_price_span": "131.400000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1001,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "126.300000000000000000",
+                  "snapshot_price_span": "126.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:55.782227+00:00",
+            "sequence": 3637,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.119934087008005,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 943,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "121.800000000000000000",
+                  "snapshot_price_span": "130.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1082,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "134.200000000000000000",
+                  "snapshot_price_span": "125.700000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:40:05.987173+00:00",
+            "sequence": 3738,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.135699071004638,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1053,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "139.700000000000000000",
+                  "snapshot_price_span": "131.200000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 935,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "114.300000000000000000",
+                  "snapshot_price_span": "122.800000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:40:16.194606+00:00",
+            "sequence": 3839,
+            "trigger": "periodic"
+          }
+        ],
+        "refresh_decisions": {
+          "blocker_counts": {},
+          "count_semantics": "one terminal assessment per check_coverage invocation; deferred evaluations are neither HTTP calls nor unique outage episodes",
+          "deferred_evaluations": 0,
+          "evaluations": 3850,
+          "first_by_reason": {},
+          "last": {
+            "action": "request",
+            "after_sequence": 3838,
+            "age_seconds": 10.135699071004638,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "evaluated_at": "2026-10-09T10:40:16.194602+00:00",
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1053,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "139.700000000000000000",
+                  "snapshot_price_span": "131.200000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 935,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "114.300000000000000000",
+                  "snapshot_price_span": "122.800000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "phase": "after_flush",
+            "reason": "periodic",
+            "trigger": "periodic"
+          },
+          "last_by_reason": {},
+          "policy": "coverage_decisions_v1",
+          "primary_reason_counts": {},
+          "recent_deferrals": []
+        },
+        "refresh_from_checks": true,
+        "rotate_seconds": 900,
+        "runtime_clock": {
+          "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+          "child_id": "2dd4c5d6173140509876368768c76755",
+          "collection_start": {
+            "boottime_ns": 69766188095691,
+            "monotonic_ns": 69766188094884,
+            "sampling_span_ns": 1954,
+            "wall_ns": 1791542028230276822
+          },
+          "policy_version": "reference-freshness-v2",
+          "run_id": "9415ca491ca34ddfb75b1ec7cfeb4e8e",
+          "schema": 2,
+          "stream": "depth"
+        },
+        "scope": "BTCUSDT USD-M non-RPI depth; known snapshot price range only",
+        "seconds_requested": 3600,
+        "snapshots": 39,
+        "started_at": "2026-10-09T10:33:48.230144+00:00",
+        "state": "running",
+        "sync_losses": 0,
+        "synchronized": true,
+        "top": 20,
+        "unreconstructed_messages": 0,
+        "updated_at": "2026-10-09T10:40:21.281784+00:00",
+        "verify_seconds": 10
+      },
+      "segments": 116,
+      "stored_rows": 3890,
+      "last_segment": {
+        "id": "c0a893ec8f6cf9075af0994f7016dbc73250b6cc55fc15b779b37471a90efe4f",
+        "collection_id": "d2d18424592f4f549f5bda828e270759",
+        "dataset": "book_depth",
+        "instrument_id": "binance:linear_perpetual:BTCUSDT",
+        "kind": "journal",
+        "path": "data/canonical/book_depth/c0/c0a893ec8f6cf9075af0994f7016dbc73250b6cc55fc15b779b37471a90efe4f.parquet",
+        "file_sha": "c0a893ec8f6cf9075af0994f7016dbc73250b6cc55fc15b779b37471a90efe4f",
+        "source_id": "d6eb0aca9f6ceefb2a6fcffb74876131436968a1a64c23342a25c92c7ec45c0f",
+        "first_time": "2026-10-09T10:40:16.197000+00:00",
+        "last_time": "2026-10-09T10:40:21.195000+00:00",
+        "first_id": 3840,
+        "last_id": 3889,
+        "row_count": 50
+      },
+      "last_raw_artifact": {
+        "id": "d6eb0aca9f6ceefb2a6fcffb74876131436968a1a64c23342a25c92c7ec45c0f",
+        "path": "data/raw/d6/d6eb0aca9f6ceefb2a6fcffb74876131436968a1a64c23342a25c92c7ec45c0f/payload",
+        "kind": "depth_websocket",
+        "observed_at": "2026-10-09T10:40:16.273910+00:00",
+        "bytes": 27357
+      },
+      "standard_file_proof": {
+        "path": "data/canonical/book_depth/c0/c0a893ec8f6cf9075af0994f7016dbc73250b6cc55fc15b779b37471a90efe4f.parquet",
+        "size": 52896,
+        "sha256": "c0a893ec8f6cf9075af0994f7016dbc73250b6cc55fc15b779b37471a90efe4f",
+        "stable_during_read": true
+      },
+      "raw_file_proof": {
+        "path": "data/raw/d6/d6eb0aca9f6ceefb2a6fcffb74876131436968a1a64c23342a25c92c7ec45c0f/payload",
+        "size": 27357,
+        "sha256": "d6eb0aca9f6ceefb2a6fcffb74876131436968a1a64c23342a25c92c7ec45c0f",
+        "stable_during_read": true
+      }
+    },
+    {
+      "id": "c5b36646466344d5b1672275ffb2faf8",
+      "dataset": "agg_trades",
+      "kind": "websocket",
+      "started_at": "2026-10-09T10:33:48.063780+00:00",
+      "updated_at": "2026-10-09T10:40:21.541996+00:00",
+      "state": "running",
+      "report": {
+        "boundary_semantics": "first_session_start_and_final_stop_are_not_complete_time_windows",
+        "complete": false,
+        "connection_errors": 0,
+        "connections": 1,
+        "detected_gaps": 1,
+        "duplicate_messages": 0,
+        "fresh_start": false,
+        "id": "c5b36646466344d5b1672275ffb2faf8",
+        "kind": "websocket",
+        "last_id": 3480331781,
+        "last_received_at": "2026-10-09T10:40:21.524596+00:00",
+        "last_trade_time": "2026-10-09T10:40:21.377000+00:00",
+        "messages": 5817,
+        "out_of_order_messages": 0,
+        "persisted_messages": 5817,
+        "previous_persisted_id": 3480321933,
+        "recent_errors": [],
+        "recent_recoveries": [
+          {
+            "collection_id": "6724807f766d48bca45265b3d17bac85",
+            "complete": true,
+            "first_id": 3480321934,
+            "last_id": 3480325964
+          }
+        ],
+        "repaired_gaps": 1,
+        "resume_after_id": 3480321933,
+        "rotations": 0,
+        "runtime_clock": {
+          "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+          "child_id": "8d5878b92ad54c4cab61ecd854c85f92",
+          "collection_start": {
+            "boottime_ns": 69766021692867,
+            "monotonic_ns": 69766021692155,
+            "sampling_span_ns": 1904,
+            "wall_ns": 1791542028063874178
+          },
+          "policy_version": "reference-freshness-v2",
+          "run_id": "87dddac11b184080b5b5d75a4f167db4",
+          "schema": 2,
+          "stream": "aggtrade"
+        },
+        "seconds_requested": 3600,
+        "started_at": "2026-10-09T10:33:48.063780+00:00",
+        "state": "running",
+        "timestamp_semantics": "application_recv_return_not_wire_arrival",
+        "uncollected_before_start": null,
+        "unrepaired_gaps": 0,
+        "updated_at": "2026-10-09T10:40:21.541996+00:00"
+      },
+      "segments": 77,
+      "stored_rows": 5817,
+      "last_segment": {
+        "id": "c93a9874fb56299e218eaf894c2bb03cbca6e09019c9854fd720157a848cfc77",
+        "collection_id": "c5b36646466344d5b1672275ffb2faf8",
+        "dataset": "agg_trades",
+        "instrument_id": "binance:linear_perpetual:BTCUSDT",
+        "kind": "websocket",
+        "path": "data/canonical/agg_trades/websocket/c9/c93a9874fb56299e218eaf894c2bb03cbca6e09019c9854fd720157a848cfc77.parquet",
+        "file_sha": "c93a9874fb56299e218eaf894c2bb03cbca6e09019c9854fd720157a848cfc77",
+        "source_id": "6fd13b1a220a412c2e8a9774e9b4f99a30ff55a95222f156d7240e81f2dfa2b5",
+        "first_time": "2026-10-09T10:40:16.069000+00:00",
+        "last_time": "2026-10-09T10:40:21.377000+00:00",
+        "first_id": 3480331714,
+        "last_id": 3480331781,
+        "row_count": 68
+      },
+      "last_raw_artifact": {
+        "id": "6fd13b1a220a412c2e8a9774e9b4f99a30ff55a95222f156d7240e81f2dfa2b5",
+        "path": "data/raw/6f/6fd13b1a220a412c2e8a9774e9b4f99a30ff55a95222f156d7240e81f2dfa2b5/payload",
+        "kind": "aggtrade_websocket",
+        "observed_at": "2026-10-09T10:40:16.253021+00:00",
+        "bytes": 1802
+      },
+      "standard_file_proof": {
+        "path": "data/canonical/agg_trades/websocket/c9/c93a9874fb56299e218eaf894c2bb03cbca6e09019c9854fd720157a848cfc77.parquet",
+        "size": 7585,
+        "sha256": "c93a9874fb56299e218eaf894c2bb03cbca6e09019c9854fd720157a848cfc77",
+        "stable_during_read": true
+      },
+      "raw_file_proof": {
+        "path": "data/raw/6f/6fd13b1a220a412c2e8a9774e9b4f99a30ff55a95222f156d7240e81f2dfa2b5/payload",
+        "size": 1802,
+        "sha256": "6fd13b1a220a412c2e8a9774e9b4f99a30ff55a95222f156d7240e81f2dfa2b5",
+        "stable_during_read": true
+      }
+    }
+  ],
+  "clock_artifacts": [
+    {
+      "id": "0dec6db89168c5528b70b92208312513d871f22fb39626bfc2de25038e41d2a7",
+      "path": "data/raw/0d/0dec6db89168c5528b70b92208312513d871f22fb39626bfc2de25038e41d2a7/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:38:49.484687+00:00",
+      "bytes": 22087,
+      "url": "runtime-clock://87dddac11b184080b5b5d75a4f167db4/2",
+      "metadata": "{\"chunk\":2,\"first_sample\":{\"boottime_ns\":69766810383207,\"monotonic_ns\":69766810381713,\"sampling_span_ns\":4007,\"wall_ns\":1791542028852563756},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":70066411806801,\"monotonic_ns\":70066411805052,\"sampling_span_ns\":4599,\"wall_ns\":1791542328453986789},\"partial_tail_bytes\":0,\"previous\":\"89e95b9f1725b8dbed94e1cd423c6f38f798f45105e9932f4d81c015425d2f67\",\"records\":297,\"run_id\":\"87dddac11b184080b5b5d75a4f167db4\",\"schema\":2,\"uncompressed_bytes\":695010,\"uncompressed_sha256\":\"c239b01d3af7f0daa40752c46ecfc8905ceb23d1750edad2c3ece0fb2e4e5dd9\"}"
+    },
+    {
+      "id": "55948d7fbba5d3a8aa91257707c57b3f2f68573d61cf69f9fa54ddcbc27fd094",
+      "path": "data/raw/55/55948d7fbba5d3a8aa91257707c57b3f2f68573d61cf69f9fa54ddcbc27fd094/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:38:49.481587+00:00",
+      "bytes": 22078,
+      "url": "runtime-clock://9415ca491ca34ddfb75b1ec7cfeb4e8e/2",
+      "metadata": "{\"chunk\":2,\"first_sample\":{\"boottime_ns\":69766915621652,\"monotonic_ns\":69766915620650,\"sampling_span_ns\":2605,\"wall_ns\":1791542028957802713},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":70066411806861,\"monotonic_ns\":70066411805147,\"sampling_span_ns\":4669,\"wall_ns\":1791542328453986850},\"partial_tail_bytes\":0,\"previous\":\"a70bf336da87d4e4928a1e7b246cd9933628f1048c75de48488234f513da2663\",\"records\":297,\"run_id\":\"9415ca491ca34ddfb75b1ec7cfeb4e8e\",\"schema\":2,\"uncompressed_bytes\":694167,\"uncompressed_sha256\":\"e18a38f67ad96d2660c776bba6f4dc186a68ce5ae29cbe9cd25ec3b1d7b59e27\"}"
+    },
+    {
+      "id": "a70bf336da87d4e4928a1e7b246cd9933628f1048c75de48488234f513da2663",
+      "path": "data/raw/a7/a70bf336da87d4e4928a1e7b246cd9933628f1048c75de48488234f513da2663/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:33:47.935234+00:00",
+      "bytes": 1275,
+      "url": "runtime-clock://9415ca491ca34ddfb75b1ec7cfeb4e8e/1",
+      "metadata": "{\"chunk\":1,\"first_sample\":{\"boottime_ns\":69765877509244,\"monotonic_ns\":69765877509043,\"sampling_span_ns\":621,\"wall_ns\":1791542027919691136},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":69765890543807,\"monotonic_ns\":69765890543736,\"sampling_span_ns\":301,\"wall_ns\":1791542027932725910},\"partial_tail_bytes\":0,\"previous\":\"5bca5e158c932bd5e47476ae644c9441df595ff5b273501c9632d05e932c8625\",\"records\":2,\"run_id\":\"9415ca491ca34ddfb75b1ec7cfeb4e8e\",\"schema\":2,\"uncompressed_bytes\":4794,\"uncompressed_sha256\":\"de20f5fead41b5bb0cfb3b6db831b8b544314b174f8344f8b86477b647a95ceb\"}"
+    },
+    {
+      "id": "5bca5e158c932bd5e47476ae644c9441df595ff5b273501c9632d05e932c8625",
+      "path": "data/raw/5b/5bca5e158c932bd5e47476ae644c9441df595ff5b273501c9632d05e932c8625/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:33:47.896873+00:00",
+      "bytes": 1414,
+      "url": "runtime-clock://9415ca491ca34ddfb75b1ec7cfeb4e8e/0",
+      "metadata": "{\"chunk\":0,\"first_sample\":{\"boottime_ns\":69765740649074,\"monotonic_ns\":69765740648959,\"sampling_span_ns\":350,\"wall_ns\":1791542027782831097},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":69765751170066,\"monotonic_ns\":69765751169955,\"sampling_span_ns\":401,\"wall_ns\":1791542027793352098},\"partial_tail_bytes\":0,\"previous\":null,\"records\":2,\"run_id\":\"9415ca491ca34ddfb75b1ec7cfeb4e8e\",\"schema\":2,\"uncompressed_bytes\":5462,\"uncompressed_sha256\":\"94e004a84c867fb831850e951266213ef4ce79aaed64d40d65b0a61bb1fa27c6\"}"
+    },
+    {
+      "id": "89e95b9f1725b8dbed94e1cd423c6f38f798f45105e9932f4d81c015425d2f67",
+      "path": "data/raw/89/89e95b9f1725b8dbed94e1cd423c6f38f798f45105e9932f4d81c015425d2f67/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:33:47.831016+00:00",
+      "bytes": 1278,
+      "url": "runtime-clock://87dddac11b184080b5b5d75a4f167db4/1",
+      "metadata": "{\"chunk\":1,\"first_sample\":{\"boottime_ns\":69765774415166,\"monotonic_ns\":69765774414950,\"sampling_span_ns\":711,\"wall_ns\":1791542027816596998},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":69765786714809,\"monotonic_ns\":69765786714758,\"sampling_span_ns\":281,\"wall_ns\":1791542027828896922},\"partial_tail_bytes\":0,\"previous\":\"84260d23f9ff1c9662d57f25ee3980faa63d28d871100d14edea27fdc3455e49\",\"records\":2,\"run_id\":\"87dddac11b184080b5b5d75a4f167db4\",\"schema\":2,\"uncompressed_bytes\":4812,\"uncompressed_sha256\":\"40e71c51a1cac64c638b0c33b87f78612108c172085f361fb76ed6fc2b32085c\"}"
+    },
+    {
+      "id": "84260d23f9ff1c9662d57f25ee3980faa63d28d871100d14edea27fdc3455e49",
+      "path": "data/raw/84/84260d23f9ff1c9662d57f25ee3980faa63d28d871100d14edea27fdc3455e49/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:33:47.795623+00:00",
+      "bytes": 1427,
+      "url": "runtime-clock://87dddac11b184080b5b5d75a4f167db4/0",
+      "metadata": "{\"chunk\":0,\"first_sample\":{\"boottime_ns\":69765738907401,\"monotonic_ns\":69765738907155,\"sampling_span_ns\":891,\"wall_ns\":1791542027781089133},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":69765750541753,\"monotonic_ns\":69765750541527,\"sampling_span_ns\":771,\"wall_ns\":1791542027792723625},\"partial_tail_bytes\":0,\"previous\":null,\"records\":2,\"run_id\":\"87dddac11b184080b5b5d75a4f167db4\",\"schema\":2,\"uncompressed_bytes\":5471,\"uncompressed_sha256\":\"8cda99e604225018604891785af81fdb7660c2204b1d3312e75379e6c5233c5d\"}"
+    }
+  ]
+}

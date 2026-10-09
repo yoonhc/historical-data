@@ -1,0 +1,112 @@
+{
+  "observed_at": "2026-10-09T11:16:44.959049+00:00",
+  "scope": "Read current first-collection reports and runtime evidence; no service or clock actions",
+  "streams": {
+    "depth": {
+      "collection_id": "d2d18424592f4f549f5bda828e270759",
+      "collection_state": "running",
+      "updated_at": "2026-10-09T11:16:42.154244+00:00",
+      "market_report": {
+        "complete": false,
+        "messages": 25190,
+        "persisted_messages": 25190,
+        "sync_losses": 0,
+        "synchronized": true,
+        "runtime_clock": {
+          "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+          "child_id": "2dd4c5d6173140509876368768c76755",
+          "collection_start": {
+            "boottime_ns": 69766188095691,
+            "monotonic_ns": 69766188094884,
+            "sampling_span_ns": 1954,
+            "wall_ns": 1791542028230276822
+          },
+          "policy_version": "reference-freshness-v2",
+          "run_id": "9415ca491ca34ddfb75b1ec7cfeb4e8e",
+          "schema": 2,
+          "stream": "depth"
+        }
+      },
+      "runtime_evidence": {
+        "state": "running",
+        "run_id": "9415ca491ca34ddfb75b1ec7cfeb4e8e",
+        "supervisor_pid": 224785,
+        "child_pid": 224866,
+        "systemd_invocation_id": "41b1747221894331a5e0b4fdf3f9751e",
+        "sample": {
+          "boottime_ns": 72342025839177,
+          "monotonic_ns": 72342025835941,
+          "sampling_span_ns": 7674,
+          "wall_ns": 1791544604068017823
+        },
+        "history": {
+          "hard_fault_seen": false,
+          "legacy_violations": 950,
+          "reference_stale_seen": true
+        },
+        "decision": {
+          "conditional_error_bound_seconds": 0.125734297,
+          "current_estimate_usable": true,
+          "raw_start_allowed": true,
+          "reasons": [],
+          "reference_age_seconds": 586.896740436554,
+          "reference_stale": false
+        }
+      }
+    },
+    "aggtrade": {
+      "collection_id": "c5b36646466344d5b1672275ffb2faf8",
+      "collection_state": "running",
+      "updated_at": "2026-10-09T11:16:42.320991+00:00",
+      "market_report": {
+        "complete": false,
+        "messages": 29877,
+        "persisted_messages": 29877,
+        "detected_gaps": 1,
+        "repaired_gaps": 1,
+        "unrepaired_gaps": 0,
+        "runtime_clock": {
+          "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+          "child_id": "8d5878b92ad54c4cab61ecd854c85f92",
+          "collection_start": {
+            "boottime_ns": 69766021692867,
+            "monotonic_ns": 69766021692155,
+            "sampling_span_ns": 1904,
+            "wall_ns": 1791542028063874178
+          },
+          "policy_version": "reference-freshness-v2",
+          "run_id": "87dddac11b184080b5b5d75a4f167db4",
+          "schema": 2,
+          "stream": "aggtrade"
+        }
+      },
+      "runtime_evidence": {
+        "state": "running",
+        "run_id": "87dddac11b184080b5b5d75a4f167db4",
+        "supervisor_pid": 224784,
+        "child_pid": 224855,
+        "systemd_invocation_id": "1aa42e55ff804c1f9e5ec68b31116c6b",
+        "sample": {
+          "boottime_ns": 72342026194725,
+          "monotonic_ns": 72342026193868,
+          "sampling_span_ns": 2294,
+          "wall_ns": 1791544604068375916
+        },
+        "history": {
+          "hard_fault_seen": false,
+          "legacy_violations": 950,
+          "reference_stale_seen": true
+        },
+        "decision": {
+          "conditional_error_bound_seconds": 0.125734296,
+          "current_estimate_usable": true,
+          "raw_start_allowed": true,
+          "reasons": [],
+          "reference_age_seconds": 586.8970983028412,
+          "reference_stale": false
+        }
+      }
+    }
+  },
+  "first_transition_observed": false
+}

@@ -1,0 +1,64 @@
+{
+  "observation": "operating-observation-20261009T104329Z.json",
+  "queries": [
+    {
+      "file": "clock-query-d2d18424592f4f549f5bda828e270759.json",
+      "collection_id": "d2d18424592f4f549f5bda828e270759",
+      "evidence_state": "unknown",
+      "chunk_count": 2,
+      "interval_count": 297,
+      "unknown_reasons": [
+        "collection_end_unknown"
+      ],
+      "first": {
+        "boottime_ns": 69765890543807,
+        "monotonic_ns": 69765890543736,
+        "sampling_span_ns": 301,
+        "wall_ns": 1791542027932725910
+      },
+      "last": {
+        "boottime_ns": 70066411806861,
+        "monotonic_ns": 70066411805147,
+        "sampling_span_ns": 4669,
+        "wall_ns": 1791542328453986850
+      }
+    },
+    {
+      "file": "clock-query-c5b36646466344d5b1672275ffb2faf8.json",
+      "collection_id": "c5b36646466344d5b1672275ffb2faf8",
+      "evidence_state": "unknown",
+      "chunk_count": 2,
+      "interval_count": 297,
+      "unknown_reasons": [
+        "collection_end_unknown"
+      ],
+      "first": {
+        "boottime_ns": 69765786714809,
+        "monotonic_ns": 69765786714758,
+        "sampling_span_ns": 281,
+        "wall_ns": 1791542027828896922
+      },
+      "last": {
+        "boottime_ns": 70066411806801,
+        "monotonic_ns": 70066411805052,
+        "sampling_span_ns": 4599,
+        "wall_ns": 1791542328453986789
+      }
+    }
+  ],
+  "no_duplicate_supervisors_or_children": true,
+  "all_expected_file_hashes": true,
+  "non_target_configuration_unchanged": true,
+  "original_ledger_fields_preserved": true,
+  "rollback_validate": {
+    "baseline_matches": true,
+    "operating_writes": false,
+    "rollback_not_executed": true,
+    "source_sha256": "4f00a9feee541f01da057c610b2541d1bc2ec0776979e4b2680d3c0500b1c0e5"
+  },
+  "open_collection_unknown_is_expected": true,
+  "pending": [
+    "First hourly child boundary",
+    "New clock evidence scheduled checkpoint/restic/full check/explicit restore"
+  ]
+}

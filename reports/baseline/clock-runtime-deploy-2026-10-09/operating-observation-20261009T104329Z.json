@@ -1,0 +1,3198 @@
+{
+  "observed_at": "2026-10-09T10:43:29.378017+00:00",
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+  "files": {
+    "bootstrap": {
+      "path": "/etc/marketdata/clock-bootstrap.json",
+      "sha256": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+      "uid": 0,
+      "mode": "0o644",
+      "before": false,
+      "after": true
+    },
+    "collector_unit": {
+      "path": "/etc/systemd/system/marketdata-collector@.service",
+      "sha256": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+      "uid": 0,
+      "mode": "0o644",
+      "before": false,
+      "after": true
+    },
+    "runtime": {
+      "path": "/etc/marketdata/runtime.json",
+      "sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+      "uid": 0,
+      "mode": "0o644",
+      "before": false,
+      "after": true
+    }
+  },
+  "ledger": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "closed_boottime": 15.635695814,
+    "closed_observation": {
+      "conditional_error_bound_seconds": 0.1957006285,
+      "provider": {
+        "argv": [
+          "/usr/sbin/chronyd",
+          "-F",
+          "1",
+          "-f",
+          "/etc/chrony/marketdata.conf",
+          ""
+        ],
+        "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+        "pid": 1245
+      },
+      "ready": true,
+      "reasons": [],
+      "reference_age_seconds": 2.038670778274536,
+      "sample": {
+        "boottime_ns": 15873612363,
+        "monotonic_ns": 15873611848,
+        "sampling_span_ns": 1579,
+        "wall_ns": 1791472277915793853
+      },
+      "tracking": {
+        "correction": -0.066962399,
+        "leap": "Normal",
+        "raw_csv": "B97DBE39,185.125.190.57,3,1791472275.877091736,-0.066962399,0.198808655,0.198808655,24.944,7.388,24.314,0.253650129,0.001913165,0.0,Normal",
+        "reference_address": "185.125.190.57",
+        "reference_id": "B97DBE39",
+        "reference_time": 1791472275.8770916,
+        "root_delay": 0.253650129,
+        "root_dispersion": 0.001913165,
+        "skew_ppm": 24.314,
+        "stratum": 3
+      }
+    },
+    "configuration_history": [
+      {
+        "approval_sha256": "cfa1c9a10da9d4eff6601cb69d484505ae8cb6849ddcffe11a32cad3c75b98f0",
+        "direction": "apply",
+        "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+        "receipt": "/var/lib/marketdata-clock/runtime-transitions/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/apply-receipt.json"
+      }
+    ],
+    "first_boottime": 10.33559517,
+    "last_wait": {
+      "long_wait": false,
+      "needs_review": false,
+      "phase": "preparing",
+      "ready": false,
+      "reasons": [
+        "no_external_reference",
+        "not_synchronized_or_leap_pending",
+        "reference_age",
+        "clock_error_bound"
+      ],
+      "step_attempts": 0,
+      "wait_seconds": 0
+    },
+    "phase": "closed",
+    "profile_sha256": "7e10950ef3cced4ac226aadbc5a92e26a7e81cfce26ea3145ca1545f32aea888",
+    "schema": 1,
+    "step_attempts": 0
+  },
+  "original_boot_and_step_evidence_preserved": true,
+  "non_target_configuration_hashes": {
+    "/etc/adjtime": "1a4f01af447bd4d7448979a43750d91c4d6df4250e2ce7eb2df88dfb6c4e2319",
+    "/etc/chrony/marketdata.conf": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+    "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12",
+    "/etc/systemd/system/chrony.service.d/marketdata.conf": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4",
+    "/etc/systemd/system/marketdata-clock-bootstrap.service": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+    "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-clock-ready.service": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab",
+    "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598"
+  },
+  "non_target_configuration_unchanged": true,
+  "collector_process_inventory": [
+    {
+      "role": "supervisor",
+      "pid": 224784,
+      "argv": [
+        "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+        "-I",
+        "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py",
+        "--profile",
+        "/etc/marketdata/runtime.json",
+        "--stream",
+        "aggtrade",
+        "--bootstrap-profile",
+        "/etc/marketdata/clock-bootstrap.json",
+        ""
+      ],
+      "status": [
+        "Name:\tpython",
+        "State:\tS (sleeping)",
+        "PPid:\t1",
+        "Uid:\t1000\t1000\t1000\t1000",
+        "Gid:\t1000\t1000\t1000\t1000"
+      ]
+    },
+    {
+      "role": "supervisor",
+      "pid": 224785,
+      "argv": [
+        "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+        "-I",
+        "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py",
+        "--profile",
+        "/etc/marketdata/runtime.json",
+        "--stream",
+        "depth",
+        "--bootstrap-profile",
+        "/etc/marketdata/clock-bootstrap.json",
+        ""
+      ],
+      "status": [
+        "Name:\tpython",
+        "State:\tS (sleeping)",
+        "PPid:\t1",
+        "Uid:\t1000\t1000\t1000\t1000",
+        "Gid:\t1000\t1000\t1000\t1000"
+      ]
+    },
+    {
+      "role": "child",
+      "pid": 224855,
+      "argv": [
+        "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+        "-I",
+        "-c",
+        "from marketdata.cli import main; raise SystemExit(main())",
+        "--root",
+        "/home/yoonhc/projects/algoTrade/historical_data",
+        "aggtrade-stream",
+        "--seconds",
+        "3600",
+        "--flush-seconds",
+        "5",
+        "--rotate-seconds",
+        "3600",
+        "--min-free-gib",
+        "10",
+        ""
+      ],
+      "status": [
+        "Name:\tpython",
+        "State:\tS (sleeping)",
+        "PPid:\t224784",
+        "Uid:\t1000\t1000\t1000\t1000",
+        "Gid:\t1000\t1000\t1000\t1000"
+      ]
+    },
+    {
+      "role": "child",
+      "pid": 224866,
+      "argv": [
+        "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+        "-I",
+        "-c",
+        "from marketdata.cli import main; raise SystemExit(main())",
+        "--root",
+        "/home/yoonhc/projects/algoTrade/historical_data",
+        "depth-stream",
+        "--seconds",
+        "3600",
+        "--flush-seconds",
+        "5",
+        "--rotate-seconds",
+        "900",
+        "--min-free-gib",
+        "10",
+        "--verify-seconds",
+        "10",
+        "--top",
+        "20",
+        ""
+      ],
+      "status": [
+        "Name:\tpython",
+        "State:\tS (sleeping)",
+        "PPid:\t224785",
+        "Uid:\t1000\t1000\t1000\t1000",
+        "Gid:\t1000\t1000\t1000\t1000"
+      ]
+    }
+  ],
+  "chrony": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "show",
+      "chrony.service",
+      "--all",
+      "--property=Id,ActiveState,SubState,MainPID,ControlPID,InvocationID,Result,ExecMainCode,ExecMainStatus,ExecMainStartTimestamp,FragmentPath,DropInPaths,ExecStart,ExecStartPre,User,Group,RuntimeMaxUSec,Restart,RestartUSec,KillMode,KillSignal,TimeoutStopUSec"
+    ],
+    "code": 0,
+    "stdout": "Restart=no\nRestartUSec=100ms\nTimeoutStopUSec=10s\nRuntimeMaxUSec=infinity\nMainPID=1245\nControlPID=0\nResult=success\nExecMainStartTimestamp=Fri 2026-10-09 00:11:08 KST\nExecMainCode=0\nExecMainStatus=0\nExecStartPre={ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py rtc-check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nExecStart={ path=/usr/sbin/chronyd ; argv[]=/usr/sbin/chronyd -F 1 -f /etc/chrony/marketdata.conf ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\nUser=_chrony\nGroup=\nKillMode=control-group\nKillSignal=15\nId=chrony.service\nActiveState=active\nSubState=running\nFragmentPath=/usr/lib/systemd/system/chrony.service\nDropInPaths=/etc/systemd/system/chrony.service.d/marketdata.conf\nInvocationID=19420480ab3249529a075ca7cb2bd3c1\n",
+    "stderr": ""
+  },
+  "collectors": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "show",
+      "marketdata-collector@depth.service",
+      "marketdata-collector@aggtrade.service",
+      "--all",
+      "--property=Id,ActiveState,SubState,MainPID,ControlPID,InvocationID,Result,ExecMainCode,ExecMainStatus,ExecMainStartTimestamp,FragmentPath,DropInPaths,ExecStart,ExecStartPre,User,Group,RuntimeMaxUSec,Restart,RestartUSec,KillMode,KillSignal,TimeoutStopUSec"
+    ],
+    "code": 0,
+    "stdout": "Restart=always\nRestartUSec=15s\nTimeoutStopUSec=5min 30s\nRuntimeMaxUSec=infinity\nMainPID=224785\nControlPID=0\nResult=success\nExecMainStartTimestamp=Fri 2026-10-09 19:33:46 KST\nExecMainCode=0\nExecMainStatus=0\nExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[Fri 2026-10-09 19:33:46 KST] ; pid=224754 ; code=exited ; status=0 }\nExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream depth ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[Fri 2026-10-09 19:33:46 KST] ; pid=224767 ; code=exited ; status=0 }\nExecStart={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py --profile /etc/marketdata/runtime.json --stream depth --bootstrap-profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[n/a] ; pid=224785 ; code=(null) ; status=0/0 }\nUser=yoonhc\nGroup=\nKillMode=mixed\nKillSignal=2\nId=marketdata-collector@depth.service\nActiveState=active\nSubState=running\nFragmentPath=/etc/systemd/system/marketdata-collector@.service\nDropInPaths=\nInvocationID=41b1747221894331a5e0b4fdf3f9751e\n\nRestart=always\nRestartUSec=15s\nTimeoutStopUSec=5min 30s\nRuntimeMaxUSec=infinity\nMainPID=224784\nControlPID=0\nResult=success\nExecMainStartTimestamp=Fri 2026-10-09 19:33:46 KST\nExecMainCode=0\nExecMainStatus=0\nExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[Fri 2026-10-09 19:33:46 KST] ; pid=224755 ; code=exited ; status=0 }\nExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream aggtrade ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[Fri 2026-10-09 19:33:46 KST] ; pid=224771 ; code=exited ; status=0 }\nExecStart={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py --profile /etc/marketdata/runtime.json --stream aggtrade --bootstrap-profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 19:33:46 KST] ; stop_time=[n/a] ; pid=224784 ; code=(null) ; status=0/0 }\nUser=yoonhc\nGroup=\nKillMode=mixed\nKillSignal=2\nId=marketdata-collector@aggtrade.service\nActiveState=active\nSubState=running\nFragmentPath=/etc/systemd/system/marketdata-collector@.service\nDropInPaths=\nInvocationID=1aa42e55ff804c1f9e5ec68b31116c6b\n",
+    "stderr": ""
+  },
+  "timers": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "--user",
+      "list-timers",
+      "--all",
+      "--no-pager"
+    ],
+    "code": 0,
+    "stdout": "NEXT                            LEFT LAST                              PASSED UNIT                              ACTIVATES\nFri 2026-10-09 19:43:30 KST    595ms Fri 2026-10-09 19:43:15 KST      13s ago marketdata-oi-probe.timer         marketdata-oi-probe.service\nFri 2026-10-09 19:44:20 KST      50s Fri 2026-10-09 19:43:20 KST       8s ago marketdata-network-observer.timer marketdata-network-observer.service\nFri 2026-10-09 19:45:45 KST 2min 15s Fri 2026-10-09 19:40:45 KST 2min 43s ago marketdata-oi.timer               marketdata-oi.service\nFri 2026-10-09 20:05:00 KST    21min Fri 2026-10-09 19:35:00 KST     8min ago marketdata-restic-archive.timer   marketdata-restic-archive.service\nFri 2026-10-09 20:15:00 KST    31min Fri 2026-10-09 19:15:00 KST    28min ago marketdata-pack.timer             marketdata-pack.service\nSat 2026-10-10 00:16:08 KST 4h 32min Fri 2026-10-09 00:16:08 KST      19h ago launchpadlib-cache-clean.timer    launchpadlib-cache-clean.service\nSat 2026-10-10 12:22:01 KST      16h Fri 2026-10-09 12:23:15 KST       7h ago marketdata-daily.timer            marketdata-daily.service\nSat 2026-10-10 12:40:00 KST      16h Fri 2026-10-09 12:40:00 KST       7h ago marketdata-oi-quality.timer       marketdata-oi-quality.service\nSat 2026-10-10 13:10:00 KST      17h Fri 2026-10-09 13:10:00 KST       6h ago marketdata-backup.timer           marketdata-backup.service\n\n9 timers listed.\n",
+    "stderr": ""
+  },
+  "masks": {
+    "marketdata-depth.service": "/dev/null",
+    "marketdata-aggtrade.service": "/dev/null",
+    "marketdata-checkpoint-retirement.service": "/dev/null",
+    "marketdata-checkpoint-retirement.timer": "/dev/null"
+  },
+  "deployment_result": {
+    "release_id": "clock-evidence-policy-20261009-65296619a374c325",
+    "tool_id": "collector-transition-20261009-1c7c4120369fd893",
+    "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+    "passed": false,
+    "started_at": {
+      "utc": "2026-10-09T10:21:06.876996+00:00",
+      "boottime_ns": 69004834818349
+    },
+    "automatic_checkpoint_retirement": "masked",
+    "scope": "two collectors and approved configuration transaction only",
+    "error": "RuntimeError: Command failed (75): ['/usr/bin/python3', '-B', '-I', '/opt/marketdata/tools/collector-transition-20261009-1c7c4120369fd893/work/collector_transition.py', 'commit', '--plan', '/var/lib/marketdata-clock/runtime-approvals/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/plan.json', '--approval', '/var/lib/marketdata-clock/runtime-approvals/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/approval.json']\n{\"work_allowed\": false, \"hold\": \"Effective strict start checks differ\"}\n",
+    "phase": "activate_configuration",
+    "finished_at": {
+      "utc": "2026-10-09T10:23:55.903249+00:00",
+      "boottime_ns": 69173861070620
+    },
+    "reboot_performed": false,
+    "clock_control_performed": false
+  },
+  "recovery_results": [
+    {
+      "commit": {
+        "configuration": "apply_committed",
+        "current_boot_preparation_preserved": true,
+        "current_clock_ready": true,
+        "receipt": "/var/lib/marketdata-clock/runtime-transitions/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/apply-receipt.json",
+        "step_reopened": false
+      },
+      "finished_at": "2026-10-09T10:33:46.629088+00:00",
+      "passed": true,
+      "phase": "applied_start_requested_observation_pending",
+      "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+      "reader_sha256": "fb7d502cc4516b916a366ce05c28e7a0014fbc195fbcb4837acb9d5261c82d23",
+      "start": {
+        "code": 0,
+        "stderr": "",
+        "stdout": ""
+      },
+      "started_at": "2026-10-09T10:33:46.117813+00:00"
+    }
+  ],
+  "streams": {
+    "depth": {
+      "latest": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 224866,
+        "child_start_ticks": "6976591",
+        "clock": {
+          "conditional_error_bound_seconds": 0.124607088,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 144.5482840538025,
+          "sample": {
+            "boottime_ns": 70343032878918,
+            "monotonic_ns": 70343032878412,
+            "sampling_span_ns": 1272,
+            "wall_ns": 1791542605075060419
+          },
+          "tracking": {
+            "correction": 0.001260984,
+            "leap": "Normal",
+            "raw_csv": "5BBD5B9D,91.189.91.157,3,1791542460.526748952,0.001260984,0.000532219,0.001048367,25.641,0.002,0.314,0.239259034,0.003716587,516.4,Normal",
+            "reference_address": "91.189.91.157",
+            "reference_id": "5BBD5B9D",
+            "reference_time": 1791542460.526749,
+            "root_delay": 0.239259034,
+            "root_dispersion": 0.003716587,
+            "skew_ppm": 0.314,
+            "stratum": 3
+          }
+        },
+        "clock_usable": true,
+        "decision": {
+          "conditional_error_bound_seconds": 0.124607088,
+          "current_estimate_usable": true,
+          "raw_start_allowed": true,
+          "reasons": [],
+          "reference_age_seconds": 148.59313821792603,
+          "reference_stale": false
+        },
+        "history": {
+          "hard_fault_seen": false,
+          "legacy_violations": 0,
+          "reference_stale_seen": false
+        },
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "policy_version": "reference-freshness-v2",
+        "profile_sha256": "25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9",
+        "record": 577,
+        "run_id": "9415ca491ca34ddfb75b1ec7cfeb4e8e",
+        "sample": {
+          "boottime_ns": 70347077706538,
+          "monotonic_ns": 70347077705216,
+          "sampling_span_ns": 3326,
+          "wall_ns": 1791542609119887108
+        },
+        "schema": 2,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "depth",
+        "supervisor_pid": 224785,
+        "supervisor_start_ticks": "6976476",
+        "systemd_invocation_id": "41b1747221894331a5e0b4fdf3f9751e",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 70347077706538,
+            "monotonic_ns": 70347077705216,
+            "sampling_span_ns": 3326,
+            "wall_ns": 1791542609119887108
+          },
+          "before": {
+            "boottime_ns": 70346062517064,
+            "monotonic_ns": 70346062516157,
+            "sampling_span_ns": 2795,
+            "wall_ns": 1791542608104698195
+          }
+        }
+      },
+      "supervisor": {
+        "pid": 224785,
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-I",
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py",
+          "--profile",
+          "/etc/marketdata/runtime.json",
+          "--stream",
+          "depth",
+          "--bootstrap-profile",
+          "/etc/marketdata/clock-bootstrap.json",
+          ""
+        ],
+        "status": [
+          "Name:\tpython",
+          "State:\tS (sleeping)",
+          "PPid:\t1",
+          "Uid:\t1000\t1000\t1000\t1000",
+          "Gid:\t1000\t1000\t1000\t1000"
+        ]
+      },
+      "child": {
+        "pid": 224866,
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-I",
+          "-c",
+          "from marketdata.cli import main; raise SystemExit(main())",
+          "--root",
+          "/home/yoonhc/projects/algoTrade/historical_data",
+          "depth-stream",
+          "--seconds",
+          "3600",
+          "--flush-seconds",
+          "5",
+          "--rotate-seconds",
+          "900",
+          "--min-free-gib",
+          "10",
+          "--verify-seconds",
+          "10",
+          "--top",
+          "20",
+          ""
+        ],
+        "status": [
+          "Name:\tpython",
+          "State:\tS (sleeping)",
+          "PPid:\t224785",
+          "Uid:\t1000\t1000\t1000\t1000",
+          "Gid:\t1000\t1000\t1000\t1000"
+        ]
+      },
+      "status": {
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-B",
+          "-I",
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py",
+          "--profile",
+          "/etc/marketdata/runtime.json",
+          "--bootstrap-profile",
+          "/etc/marketdata/clock-bootstrap.json",
+          "--stream",
+          "depth",
+          "--status"
+        ],
+        "code": 0,
+        "stdout": "{\"policy_version\": \"reference-freshness-v2\", \"raw_running\": true, \"current_estimate_usable\": true, \"reference_stale\": false, \"history\": {\"hard_fault_seen\": false, \"legacy_violations\": 0, \"reference_stale_seen\": false}, \"clock_usable\": true, \"evidence_age_seconds\": 0.388916391, \"record\": {\"boot_id\": \"eb163bf2-6642-4336-b4d6-6cd58771b13d\", \"child_pid\": 224866, \"child_start_ticks\": \"6976591\", \"clock\": {\"conditional_error_bound_seconds\": 0.124607088, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 144.5482840538025, \"sample\": {\"boottime_ns\": 70343032878918, \"monotonic_ns\": 70343032878412, \"sampling_span_ns\": 1272, \"wall_ns\": 1791542605075060419}, \"tracking\": {\"correction\": 0.001260984, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791542460.526748952,0.001260984,0.000532219,0.001048367,25.641,0.002,0.314,0.239259034,0.003716587,516.4,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791542460.526749, \"root_delay\": 0.239259034, \"root_dispersion\": 0.003716587, \"skew_ppm\": 0.314, \"stratum\": 3}}, \"clock_usable\": true, \"decision\": {\"conditional_error_bound_seconds\": 0.124607088, \"current_estimate_usable\": true, \"raw_start_allowed\": true, \"reasons\": [], \"reference_age_seconds\": 148.59313821792603, \"reference_stale\": false}, \"history\": {\"hard_fault_seen\": false, \"legacy_violations\": 0, \"reference_stale_seen\": false}, \"policy\": {\"heartbeat_seconds\": 10.0, \"max_correction_seconds\": 0.1, \"max_error_seconds\": 0.5, \"max_reference_age_seconds\": 600.0, \"max_sample_gap_seconds\": 5.0, \"max_skew_ppm\": 100.0, \"provider_seconds\": 10.0, \"ready_poll_seconds\": 5.0, \"ready_timeout_seconds\": 120.0, \"sample_seconds\": 1.0, \"status_max_age_seconds\": 25.0, \"step_threshold_seconds\": 0.25, \"stop_timeout_seconds\": 120.0}, \"policy_version\": \"reference-freshness-v2\", \"profile_sha256\": \"25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9\", \"record\": 577, \"run_id\": \"9415ca491ca34ddfb75b1ec7cfeb4e8e\", \"sample\": {\"boottime_ns\": 70347077706538, \"monotonic_ns\": 70347077705216, \"sampling_span_ns\": 3326, \"wall_ns\": 1791542609119887108}, \"schema\": 2, \"scope\": \"sampled_process_clock_not_per_event\", \"state\": \"running\", \"stream\": \"depth\", \"supervisor_pid\": 224785, \"supervisor_start_ticks\": \"6976476\", \"systemd_invocation_id\": \"41b1747221894331a5e0b4fdf3f9751e\", \"uncertain_interval\": {\"after\": {\"boottime_ns\": 70347077706538, \"monotonic_ns\": 70347077705216, \"sampling_span_ns\": 3326, \"wall_ns\": 1791542609119887108}, \"before\": {\"boottime_ns\": 70346062517064, \"monotonic_ns\": 70346062516157, \"sampling_span_ns\": 2795, \"wall_ns\": 1791542608104698195}}}, \"note\": \"Sampled clock status; combine with market data quality. Unknown on stale process evidence.\"}\n",
+        "stderr": ""
+      }
+    },
+    "aggtrade": {
+      "latest": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 224855,
+        "child_start_ticks": "6976580",
+        "clock": {
+          "conditional_error_bound_seconds": 0.124607089,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": true,
+          "reasons": [],
+          "reference_age_seconds": 144.5496542453766,
+          "sample": {
+            "boottime_ns": 70343034242330,
+            "monotonic_ns": 70343034242114,
+            "sampling_span_ns": 671,
+            "wall_ns": 1791542605076424253
+          },
+          "tracking": {
+            "correction": 0.001260984,
+            "leap": "Normal",
+            "raw_csv": "5BBD5B9D,91.189.91.157,3,1791542460.526748952,0.001260984,0.000532219,0.001048367,25.641,0.002,0.314,0.239259034,0.003716588,516.4,Normal",
+            "reference_address": "91.189.91.157",
+            "reference_id": "5BBD5B9D",
+            "reference_time": 1791542460.526749,
+            "root_delay": 0.239259034,
+            "root_dispersion": 0.003716588,
+            "skew_ppm": 0.314,
+            "stratum": 3
+          }
+        },
+        "clock_usable": true,
+        "decision": {
+          "conditional_error_bound_seconds": 0.124607089,
+          "current_estimate_usable": true,
+          "raw_start_allowed": true,
+          "reasons": [],
+          "reference_age_seconds": 148.59313821792603,
+          "reference_stale": false
+        },
+        "history": {
+          "hard_fault_seen": false,
+          "legacy_violations": 0,
+          "reference_stale_seen": false
+        },
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "policy_version": "reference-freshness-v2",
+        "profile_sha256": "25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9",
+        "record": 577,
+        "run_id": "87dddac11b184080b5b5d75a4f167db4",
+        "sample": {
+          "boottime_ns": 70347077706478,
+          "monotonic_ns": 70347077704870,
+          "sampling_span_ns": 3757,
+          "wall_ns": 1791542609119887068
+        },
+        "schema": 2,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "aggtrade",
+        "supervisor_pid": 224784,
+        "supervisor_start_ticks": "6976475",
+        "systemd_invocation_id": "1aa42e55ff804c1f9e5ec68b31116c6b",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 70347077706478,
+            "monotonic_ns": 70347077704870,
+            "sampling_span_ns": 3757,
+            "wall_ns": 1791542609119887068
+          },
+          "before": {
+            "boottime_ns": 70346062189158,
+            "monotonic_ns": 70346062187880,
+            "sampling_span_ns": 3215,
+            "wall_ns": 1791542608104370149
+          }
+        }
+      },
+      "supervisor": {
+        "pid": 224784,
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-I",
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py",
+          "--profile",
+          "/etc/marketdata/runtime.json",
+          "--stream",
+          "aggtrade",
+          "--bootstrap-profile",
+          "/etc/marketdata/clock-bootstrap.json",
+          ""
+        ],
+        "status": [
+          "Name:\tpython",
+          "State:\tS (sleeping)",
+          "PPid:\t1",
+          "Uid:\t1000\t1000\t1000\t1000",
+          "Gid:\t1000\t1000\t1000\t1000"
+        ]
+      },
+      "child": {
+        "pid": 224855,
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-I",
+          "-c",
+          "from marketdata.cli import main; raise SystemExit(main())",
+          "--root",
+          "/home/yoonhc/projects/algoTrade/historical_data",
+          "aggtrade-stream",
+          "--seconds",
+          "3600",
+          "--flush-seconds",
+          "5",
+          "--rotate-seconds",
+          "3600",
+          "--min-free-gib",
+          "10",
+          ""
+        ],
+        "status": [
+          "Name:\tpython",
+          "State:\tS (sleeping)",
+          "PPid:\t224784",
+          "Uid:\t1000\t1000\t1000\t1000",
+          "Gid:\t1000\t1000\t1000\t1000"
+        ]
+      },
+      "status": {
+        "argv": [
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+          "-B",
+          "-I",
+          "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py",
+          "--profile",
+          "/etc/marketdata/runtime.json",
+          "--bootstrap-profile",
+          "/etc/marketdata/clock-bootstrap.json",
+          "--stream",
+          "aggtrade",
+          "--status"
+        ],
+        "code": 0,
+        "stdout": "{\"policy_version\": \"reference-freshness-v2\", \"raw_running\": true, \"current_estimate_usable\": true, \"reference_stale\": false, \"history\": {\"hard_fault_seen\": false, \"legacy_violations\": 0, \"reference_stale_seen\": false}, \"clock_usable\": true, \"evidence_age_seconds\": 0.501816342, \"record\": {\"boot_id\": \"eb163bf2-6642-4336-b4d6-6cd58771b13d\", \"child_pid\": 224855, \"child_start_ticks\": \"6976580\", \"clock\": {\"conditional_error_bound_seconds\": 0.124607089, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 144.5496542453766, \"sample\": {\"boottime_ns\": 70343034242330, \"monotonic_ns\": 70343034242114, \"sampling_span_ns\": 671, \"wall_ns\": 1791542605076424253}, \"tracking\": {\"correction\": 0.001260984, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791542460.526748952,0.001260984,0.000532219,0.001048367,25.641,0.002,0.314,0.239259034,0.003716588,516.4,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791542460.526749, \"root_delay\": 0.239259034, \"root_dispersion\": 0.003716588, \"skew_ppm\": 0.314, \"stratum\": 3}}, \"clock_usable\": true, \"decision\": {\"conditional_error_bound_seconds\": 0.124607089, \"current_estimate_usable\": true, \"raw_start_allowed\": true, \"reasons\": [], \"reference_age_seconds\": 148.59313821792603, \"reference_stale\": false}, \"history\": {\"hard_fault_seen\": false, \"legacy_violations\": 0, \"reference_stale_seen\": false}, \"policy\": {\"heartbeat_seconds\": 10.0, \"max_correction_seconds\": 0.1, \"max_error_seconds\": 0.5, \"max_reference_age_seconds\": 600.0, \"max_sample_gap_seconds\": 5.0, \"max_skew_ppm\": 100.0, \"provider_seconds\": 10.0, \"ready_poll_seconds\": 5.0, \"ready_timeout_seconds\": 120.0, \"sample_seconds\": 1.0, \"status_max_age_seconds\": 25.0, \"step_threshold_seconds\": 0.25, \"stop_timeout_seconds\": 120.0}, \"policy_version\": \"reference-freshness-v2\", \"profile_sha256\": \"25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9\", \"record\": 577, \"run_id\": \"87dddac11b184080b5b5d75a4f167db4\", \"sample\": {\"boottime_ns\": 70347077706478, \"monotonic_ns\": 70347077704870, \"sampling_span_ns\": 3757, \"wall_ns\": 1791542609119887068}, \"schema\": 2, \"scope\": \"sampled_process_clock_not_per_event\", \"state\": \"running\", \"stream\": \"aggtrade\", \"supervisor_pid\": 224784, \"supervisor_start_ticks\": \"6976475\", \"systemd_invocation_id\": \"1aa42e55ff804c1f9e5ec68b31116c6b\", \"uncertain_interval\": {\"after\": {\"boottime_ns\": 70347077706478, \"monotonic_ns\": 70347077704870, \"sampling_span_ns\": 3757, \"wall_ns\": 1791542609119887068}, \"before\": {\"boottime_ns\": 70346062189158, \"monotonic_ns\": 70346062187880, \"sampling_span_ns\": 3215, \"wall_ns\": 1791542608104370149}}}, \"note\": \"Sampled clock status; combine with market data quality. Unknown on stale process evidence.\"}\n",
+        "stderr": ""
+      }
+    }
+  },
+  "collections": [
+    {
+      "id": "d2d18424592f4f549f5bda828e270759",
+      "dataset": "book_depth",
+      "kind": "websocket",
+      "started_at": "2026-10-09T10:33:48.230144+00:00",
+      "updated_at": "2026-10-09T10:43:24.931800+00:00",
+      "state": "running",
+      "report": {
+        "bootstrap_messages": 1,
+        "bootstrap_policy": "buffer_before_anchor_v1",
+        "bootstrap_timeout_seconds": 2,
+        "boundary_semantics": "new_snapshot_on_every_connection; no_historical_gap_repair",
+        "complete": false,
+        "connection_errors": 0,
+        "connections": 1,
+        "coverage_check_requests": 1,
+        "coverage_refresh": {
+          "extra_requests": 12,
+          "level_fraction": "0.75",
+          "min_interval_seconds": 1.0,
+          "policy": "bounded_headroom_v1",
+          "price_fraction": "0.25",
+          "scope": "extra checks within this capture; survives resync/reconnect; periodic checks and recovery anchors are separate",
+          "window_seconds": 60.0
+        },
+        "coverage_reset_policy": "same_socket_new_epoch_v1",
+        "coverage_resets": 0,
+        "coverage_top_shortfalls": 0,
+        "dataset": "book_depth",
+        "epochs": [
+          {
+            "epoch": 0,
+            "final": {
+              "anchor_history": {
+                "aligned": false,
+                "applied": 0,
+                "events": 0,
+                "first_sequence": null,
+                "last_sequence": null,
+                "levels": 0,
+                "reason": "No snapshot bridge retained in recent history",
+                "serialized_bytes": 0
+              },
+              "book": {
+                "ask_ceiling": "82524.000000000000000000",
+                "asks": [
+                  [
+                    "82374.000000000000000000",
+                    "22.509000000000000000"
+                  ],
+                  [
+                    "82374.100000000000000000",
+                    "1.243000000000000000"
+                  ],
+                  [
+                    "82374.200000000000000000",
+                    "0.003000000000000000"
+                  ],
+                  [
+                    "82374.400000000000000000",
+                    "0.003000000000000000"
+                  ],
+                  [
+                    "82374.700000000000000000",
+                    "0.188000000000000000"
+                  ],
+                  [
+                    "82374.800000000000000000",
+                    "0.046000000000000000"
+                  ],
+                  [
+                    "82374.900000000000000000",
+                    "0.002000000000000000"
+                  ],
+                  [
+                    "82375.000000000000000000",
+                    "0.086000000000000000"
+                  ],
+                  [
+                    "82375.100000000000000000",
+                    "0.066000000000000000"
+                  ],
+                  [
+                    "82375.200000000000000000",
+                    "0.549000000000000000"
+                  ],
+                  [
+                    "82375.300000000000000000",
+                    "0.002000000000000000"
+                  ],
+                  [
+                    "82375.400000000000000000",
+                    "1.944000000000000000"
+                  ],
+                  [
+                    "82375.500000000000000000",
+                    "0.385000000000000000"
+                  ],
+                  [
+                    "82375.700000000000000000",
+                    "0.153000000000000000"
+                  ],
+                  [
+                    "82375.900000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82376.000000000000000000",
+                    "0.026000000000000000"
+                  ],
+                  [
+                    "82376.100000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82376.300000000000000000",
+                    "0.061000000000000000"
+                  ],
+                  [
+                    "82376.400000000000000000",
+                    "0.006000000000000000"
+                  ],
+                  [
+                    "82376.500000000000000000",
+                    "0.542000000000000000"
+                  ]
+                ],
+                "bid_floor": "82270.600000000000000000",
+                "bids": [
+                  [
+                    "82373.900000000000000000",
+                    "1.086000000000000000"
+                  ],
+                  [
+                    "82373.800000000000000000",
+                    "0.003000000000000000"
+                  ],
+                  [
+                    "82373.700000000000000000",
+                    "0.003000000000000000"
+                  ],
+                  [
+                    "82373.600000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82373.200000000000000000",
+                    "0.017000000000000000"
+                  ],
+                  [
+                    "82373.100000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82373.000000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82372.800000000000000000",
+                    "0.039000000000000000"
+                  ],
+                  [
+                    "82372.500000000000000000",
+                    "0.002000000000000000"
+                  ],
+                  [
+                    "82372.000000000000000000",
+                    "0.500000000000000000"
+                  ],
+                  [
+                    "82371.900000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82371.800000000000000000",
+                    "0.005000000000000000"
+                  ],
+                  [
+                    "82371.700000000000000000",
+                    "0.003000000000000000"
+                  ],
+                  [
+                    "82371.500000000000000000",
+                    "0.001000000000000000"
+                  ],
+                  [
+                    "82371.200000000000000000",
+                    "0.009000000000000000"
+                  ],
+                  [
+                    "82370.900000000000000000",
+                    "0.015000000000000000"
+                  ],
+                  [
+                    "82370.800000000000000000",
+                    "0.002000000000000000"
+                  ],
+                  [
+                    "82370.700000000000000000",
+                    "0.006000000000000000"
+                  ],
+                  [
+                    "82370.400000000000000000",
+                    "0.006000000000000000"
+                  ],
+                  [
+                    "82370.300000000000000000",
+                    "0.004000000000000000"
+                  ]
+                ],
+                "book_sha256": "be5cf89fa805f92cd1a63b03693e9b85eb62e4dedbdfe2272a6b3b5408621341",
+                "known_ask_levels": 1099,
+                "known_bid_levels": 853,
+                "last_update_id": 11774216934058,
+                "synced": true,
+                "timestamp": "2026-10-09T10:43:24.801000+00:00",
+                "top_complete": true,
+                "top_requested": 20
+              },
+              "checks": [
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774157430225,
+                  "refreshed": true,
+                  "snapshot_sequence": 102,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774158640054,
+                  "refreshed": true,
+                  "snapshot_sequence": 203,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774159638567,
+                  "refreshed": true,
+                  "snapshot_sequence": 304,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774160537556,
+                  "refreshed": true,
+                  "snapshot_sequence": 405,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774161798637,
+                  "refreshed": true,
+                  "snapshot_sequence": 506,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774163100948,
+                  "refreshed": true,
+                  "snapshot_sequence": 607,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774164126987,
+                  "refreshed": true,
+                  "snapshot_sequence": 708,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774165581411,
+                  "refreshed": true,
+                  "snapshot_sequence": 809,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774166871270,
+                  "refreshed": true,
+                  "snapshot_sequence": 910,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774168156445,
+                  "refreshed": true,
+                  "snapshot_sequence": 1011,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774169236700,
+                  "refreshed": true,
+                  "snapshot_sequence": 1112,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774170148393,
+                  "refreshed": true,
+                  "snapshot_sequence": 1213,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774171490541,
+                  "refreshed": true,
+                  "snapshot_sequence": 1314,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774172913592,
+                  "refreshed": true,
+                  "snapshot_sequence": 1415,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774174326225,
+                  "refreshed": true,
+                  "snapshot_sequence": 1516,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774175796382,
+                  "refreshed": true,
+                  "snapshot_sequence": 1617,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774177011465,
+                  "refreshed": true,
+                  "snapshot_sequence": 1718,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774178163752,
+                  "refreshed": true,
+                  "snapshot_sequence": 1819,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774179456494,
+                  "refreshed": true,
+                  "snapshot_sequence": 1920,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774180598280,
+                  "refreshed": true,
+                  "snapshot_sequence": 2021,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774181519408,
+                  "refreshed": true,
+                  "snapshot_sequence": 2122,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774182474435,
+                  "refreshed": true,
+                  "snapshot_sequence": 2223,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774183795281,
+                  "refreshed": true,
+                  "snapshot_sequence": 2324,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774184724324,
+                  "refreshed": true,
+                  "snapshot_sequence": 2425,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774185611144,
+                  "refreshed": true,
+                  "snapshot_sequence": 2526,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774186617505,
+                  "refreshed": true,
+                  "snapshot_sequence": 2627,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774187728141,
+                  "refreshed": true,
+                  "snapshot_sequence": 2728,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774188703868,
+                  "refreshed": true,
+                  "snapshot_sequence": 2829,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774189850441,
+                  "refreshed": true,
+                  "snapshot_sequence": 2930,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774190652993,
+                  "refreshed": true,
+                  "snapshot_sequence": 3031,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774191468109,
+                  "refreshed": true,
+                  "snapshot_sequence": 3132,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774192342516,
+                  "refreshed": true,
+                  "snapshot_sequence": 3233,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774193572586,
+                  "refreshed": true,
+                  "snapshot_sequence": 3334,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774194545812,
+                  "refreshed": true,
+                  "snapshot_sequence": 3435,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774195332197,
+                  "refreshed": true,
+                  "snapshot_sequence": 3536,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774196096100,
+                  "refreshed": true,
+                  "snapshot_sequence": 3637,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774197196858,
+                  "refreshed": true,
+                  "snapshot_sequence": 3738,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774198440339,
+                  "refreshed": true,
+                  "snapshot_sequence": 3839,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774199297176,
+                  "refreshed": true,
+                  "snapshot_sequence": 3940,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774200240114,
+                  "refreshed": true,
+                  "snapshot_sequence": 4041,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774200918628,
+                  "refreshed": true,
+                  "snapshot_sequence": 4142,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774201786834,
+                  "refreshed": true,
+                  "snapshot_sequence": 4243,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774202842492,
+                  "refreshed": true,
+                  "snapshot_sequence": 4344,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774203797798,
+                  "refreshed": true,
+                  "snapshot_sequence": 4445,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774204618138,
+                  "refreshed": true,
+                  "snapshot_sequence": 4546,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774205844607,
+                  "refreshed": true,
+                  "snapshot_sequence": 4647,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774206437771,
+                  "refreshed": true,
+                  "snapshot_sequence": 4698,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774207309546,
+                  "refreshed": true,
+                  "snapshot_sequence": 4799,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774208612328,
+                  "refreshed": true,
+                  "snapshot_sequence": 4900,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774209632790,
+                  "refreshed": true,
+                  "snapshot_sequence": 5001,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774210797140,
+                  "refreshed": true,
+                  "snapshot_sequence": 5102,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774211743835,
+                  "refreshed": true,
+                  "snapshot_sequence": 5203,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774212893019,
+                  "refreshed": true,
+                  "snapshot_sequence": 5304,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774213606940,
+                  "refreshed": true,
+                  "snapshot_sequence": 5405,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774214684689,
+                  "refreshed": true,
+                  "snapshot_sequence": 5506,
+                  "top": 20
+                },
+                {
+                  "comparable": true,
+                  "equal": true,
+                  "last_update_id": 11774215808074,
+                  "refreshed": true,
+                  "snapshot_sequence": 5608,
+                  "top": 20
+                }
+              ],
+              "counts": {
+                "applied": 5650,
+                "duplicate": 0,
+                "stale": 1
+              },
+              "error": null,
+              "pending_check_sequence": null,
+              "refreshes": 56
+            },
+            "reason": "initial",
+            "started_at": "2026-10-09T10:33:48.366501+00:00"
+          }
+        ],
+        "errors": [],
+        "flush_seconds": 5,
+        "history_limits": {
+          "events": 128,
+          "levels": 50000,
+          "serialized_bytes": 8388608
+        },
+        "history_policy": "bounded_same_socket_v1",
+        "id": "d2d18424592f4f549f5bda828e270759",
+        "kind": "websocket",
+        "lagged_retry_budget": {
+          "max_requests": 8,
+          "scope": "retry anchor calls within this capture; survives resync/reconnect",
+          "window_seconds": 60
+        },
+        "lagged_retry_delays_seconds": [
+          1,
+          2,
+          4,
+          8,
+          10
+        ],
+        "lagged_retry_policy": "same_socket_backoff_v1",
+        "lagged_retry_requests": 0,
+        "lagged_snapshot_policy": "retain_unsynchronized_updates_v1",
+        "lagged_snapshots": 0,
+        "last_received_at": "2026-10-09T10:43:24.837560+00:00",
+        "last_update_id": 11774216934058,
+        "messages": 5651,
+        "periodic_check_requests": 55,
+        "persisted_messages": 5651,
+        "recent_coverage_checks": [
+          {
+            "action": "request",
+            "age_seconds": 10.038053757001762,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 988,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "128.500000000000000000",
+                  "snapshot_price_span": "128.500000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1000,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "122.900000000000000000",
+                  "snapshot_price_span": "122.900000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:03.589283+00:00",
+            "sequence": 2526,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.109146323986351,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 935,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "116.300000000000000000",
+                  "snapshot_price_span": "129.600000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1074,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "135.600000000000000000",
+                  "snapshot_price_span": "122.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:13.778302+00:00",
+            "sequence": 2627,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.149343515993678,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1064,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "139.700000000000000000",
+                  "snapshot_price_span": "126.600000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 917,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "112.000000000000000000",
+                  "snapshot_price_span": "125.100000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:24.001220+00:00",
+            "sequence": 2728,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.095716486990568,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1068,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "138.500000000000000000",
+                  "snapshot_price_span": "129.000000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 935,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "114.400000000000000000",
+                  "snapshot_price_span": "123.900000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:34.185741+00:00",
+            "sequence": 2829,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.154589511002996,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1116,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "148.400000000000000000",
+                  "snapshot_price_span": "127.500000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 851,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "103.400000000000000000",
+                  "snapshot_price_span": "124.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:44.421357+00:00",
+            "sequence": 2930,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.069771736001712,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1006,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "129.100000000000000000",
+                  "snapshot_price_span": "129.700000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 982,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "124.500000000000000000",
+                  "snapshot_price_span": "123.900000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:38:54.570692+00:00",
+            "sequence": 3031,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.019424999001785,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 994,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "127.800000000000000000",
+                  "snapshot_price_span": "127.800000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1027,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "127.100000000000000000",
+                  "snapshot_price_span": "127.100000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:04.772059+00:00",
+            "sequence": 3132,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.158160715000122,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1060,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "142.200000000000000000",
+                  "snapshot_price_span": "129.400000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 916,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "110.400000000000000000",
+                  "snapshot_price_span": "123.200000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:15.001191+00:00",
+            "sequence": 3233,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.100782971989247,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 976,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "125.300000000000000000",
+                  "snapshot_price_span": "131.600000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1032,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "128.800000000000000000",
+                  "snapshot_price_span": "122.500000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:25.184437+00:00",
+            "sequence": 3334,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.153171748999739,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 982,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "129.600000000000000000",
+                  "snapshot_price_span": "129.600000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 977,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "124.100000000000000000",
+                  "snapshot_price_span": "124.100000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:35.413790+00:00",
+            "sequence": 3435,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.085495899998932,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1002,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "131.700000000000000000",
+                  "snapshot_price_span": "131.700000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1003,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "126.700000000000000000",
+                  "snapshot_price_span": "126.700000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:45.574697+00:00",
+            "sequence": 3536,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.134729650002555,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1009,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "131.400000000000000000",
+                  "snapshot_price_span": "131.400000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1001,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "126.300000000000000000",
+                  "snapshot_price_span": "126.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:39:55.782227+00:00",
+            "sequence": 3637,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.119934087008005,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 943,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "121.800000000000000000",
+                  "snapshot_price_span": "130.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1082,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "134.200000000000000000",
+                  "snapshot_price_span": "125.700000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:40:05.987173+00:00",
+            "sequence": 3738,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.135699071004638,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1053,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "139.700000000000000000",
+                  "snapshot_price_span": "131.200000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 935,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "114.300000000000000000",
+                  "snapshot_price_span": "122.800000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:40:16.194606+00:00",
+            "sequence": 3839,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.10652189499524,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 945,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "121.800000000000000000",
+                  "snapshot_price_span": "130.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1056,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "131.800000000000000000",
+                  "snapshot_price_span": "123.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:40:26.380453+00:00",
+            "sequence": 3940,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.12733378300618,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 934,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "119.900000000000000000",
+                  "snapshot_price_span": "131.100000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1076,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "134.700000000000000000",
+                  "snapshot_price_span": "123.500000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:40:36.585913+00:00",
+            "sequence": 4041,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.107765572000062,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1051,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "139.500000000000000000",
+                  "snapshot_price_span": "130.800000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 942,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "115.500000000000000000",
+                  "snapshot_price_span": "124.200000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:40:46.780557+00:00",
+            "sequence": 4142,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.125028117006877,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1049,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "139.100000000000000000",
+                  "snapshot_price_span": "130.900000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 946,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "115.500000000000000000",
+                  "snapshot_price_span": "123.700000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:40:56.979978+00:00",
+            "sequence": 4243,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.131770692998543,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 910,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "113.900000000000000000",
+                  "snapshot_price_span": "130.600000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1114,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "139.600000000000000000",
+                  "snapshot_price_span": "122.900000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:41:07.188166+00:00",
+            "sequence": 4344,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.112552809994668,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 931,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "118.300000000000000000",
+                  "snapshot_price_span": "129.900000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1050,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "134.900000000000000000",
+                  "snapshot_price_span": "123.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:41:17.384934+00:00",
+            "sequence": 4445,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.114395782002248,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1051,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "138.600000000000000000",
+                  "snapshot_price_span": "130.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 967,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "119.500000000000000000",
+                  "snapshot_price_span": "127.800000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:41:27.580898+00:00",
+            "sequence": 4546,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.127758716000244,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1087,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "144.100000000000000000",
+                  "snapshot_price_span": "129.400000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 890,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "109.800000000000000000",
+                  "snapshot_price_span": "124.500000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:41:37.791097+00:00",
+            "sequence": 4647,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 5.084711741001229,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 60.0
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": true,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1201,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "167.800000000000000000",
+                  "snapshot_price_span": "129.200000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 708,
+                  "low_levels": true,
+                  "low_price_room": false,
+                  "price_room": "87.000000000000000000",
+                  "snapshot_price_span": "125.600000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "headroom",
+            "requested_at": "2026-10-09T10:41:42.954897+00:00",
+            "sequence": 4698,
+            "trigger": "headroom"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.053196612003376,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 49.86917840699607
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 49.86911533099192
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1037,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "137.300000000000000000",
+                  "snapshot_price_span": "137.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1049,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "129.200000000000000000",
+                  "snapshot_price_span": "129.200000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:41:53.085779+00:00",
+            "sequence": 4799,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.141535700007807,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 39.65053246798925
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 39.6501239319914
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1040,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "137.900000000000000000",
+                  "snapshot_price_span": "131.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 927,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "115.700000000000000000",
+                  "snapshot_price_span": "122.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:42:03.304771+00:00",
+            "sequence": 4900,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.12158901100338,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 29.448846201994456
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 29.44879206198675
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 892,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "111.200000000000000000",
+                  "snapshot_price_span": "130.700000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1142,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "145.600000000000000000",
+                  "snapshot_price_span": "126.100000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:42:13.506103+00:00",
+            "sequence": 5001,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.11626939898997,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 19.258195422997233
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 19.258139719997416
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1040,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "136.300000000000000000",
+                  "snapshot_price_span": "129.500000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 961,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "118.500000000000000000",
+                  "snapshot_price_span": "125.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:42:23.696755+00:00",
+            "sequence": 5102,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.119174286010093,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 9.06214327798807
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 1,
+              "oldest_extra_expires_in_seconds": 9.06202509898867
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1010,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "129.600000000000000000",
+                  "snapshot_price_span": "129.700000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1008,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "124.500000000000000000",
+                  "snapshot_price_span": "124.400000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:42:33.892869+00:00",
+            "sequence": 5203,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.063944020002964,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1073,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "139.200000000000000000",
+                  "snapshot_price_span": "127.700000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 900,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "111.900000000000000000",
+                  "snapshot_price_span": "123.400000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:42:44.116480+00:00",
+            "sequence": 5304,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.08935728999495,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1005,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "126.300000000000000000",
+                  "snapshot_price_span": "127.000000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1015,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "127.400000000000000000",
+                  "snapshot_price_span": "126.700000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:42:54.289285+00:00",
+            "sequence": 5405,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.14483635299257,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 863,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "104.400000000000000000",
+                  "snapshot_price_span": "125.300000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 1140,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "146.200000000000000000",
+                  "snapshot_price_span": "125.300000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:43:04.522934+00:00",
+            "sequence": 5506,
+            "trigger": "periodic"
+          },
+          {
+            "action": "request",
+            "age_seconds": 10.04655468899,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "budget_after_claim": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1126,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "149.200000000000000000",
+                  "snapshot_price_span": "128.100000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 860,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "105.300000000000000000",
+                  "snapshot_price_span": "126.400000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "reason": "periodic",
+            "requested_at": "2026-10-09T10:43:14.751035+00:00",
+            "sequence": 5608,
+            "trigger": "periodic"
+          }
+        ],
+        "refresh_decisions": {
+          "blocker_counts": {
+            "minimum_interval": 1,
+            "pending_verification": 1
+          },
+          "count_semantics": "one terminal assessment per check_coverage invocation; deferred evaluations are neither HTTP calls nor unique outage episodes",
+          "deferred_evaluations": 1,
+          "evaluations": 5650,
+          "first_by_reason": {
+            "minimum_interval": {
+              "action": "defer",
+              "after_sequence": 4699,
+              "age_seconds": 0.007239263009978458,
+              "blockers": [
+                "pending_verification",
+                "minimum_interval"
+              ],
+              "budget": {
+                "extra_limit": 12,
+                "extra_used": 1,
+                "oldest_extra_expires_in_seconds": 59.91513575598947
+              },
+              "epoch": 0,
+              "evaluated_at": "2026-10-09T10:41:43.039822+00:00",
+              "headroom": {
+                "low": true,
+                "sides": {
+                  "asks": {
+                    "level_threshold": 750,
+                    "levels": 1193,
+                    "low_levels": false,
+                    "low_price_room": false,
+                    "price_room": "167.800000000000000000",
+                    "snapshot_price_span": "129.200000000000000000"
+                  },
+                  "bids": {
+                    "level_threshold": 750,
+                    "levels": 713,
+                    "low_levels": true,
+                    "low_price_room": false,
+                    "price_room": "87.000000000000000000",
+                    "snapshot_price_span": "125.600000000000000000"
+                  }
+                },
+                "top_complete": true
+              },
+              "phase": "before_flush",
+              "reason": "pending_verification",
+              "trigger": "headroom"
+            },
+            "pending_verification": {
+              "action": "defer",
+              "after_sequence": 4699,
+              "age_seconds": 0.007239263009978458,
+              "blockers": [
+                "pending_verification",
+                "minimum_interval"
+              ],
+              "budget": {
+                "extra_limit": 12,
+                "extra_used": 1,
+                "oldest_extra_expires_in_seconds": 59.91513575598947
+              },
+              "epoch": 0,
+              "evaluated_at": "2026-10-09T10:41:43.039822+00:00",
+              "headroom": {
+                "low": true,
+                "sides": {
+                  "asks": {
+                    "level_threshold": 750,
+                    "levels": 1193,
+                    "low_levels": false,
+                    "low_price_room": false,
+                    "price_room": "167.800000000000000000",
+                    "snapshot_price_span": "129.200000000000000000"
+                  },
+                  "bids": {
+                    "level_threshold": 750,
+                    "levels": 713,
+                    "low_levels": true,
+                    "low_price_room": false,
+                    "price_room": "87.000000000000000000",
+                    "snapshot_price_span": "125.600000000000000000"
+                  }
+                },
+                "top_complete": true
+              },
+              "phase": "before_flush",
+              "reason": "pending_verification",
+              "trigger": "headroom"
+            }
+          },
+          "last": {
+            "action": "request",
+            "after_sequence": 5607,
+            "age_seconds": 10.04655468899,
+            "blockers": [],
+            "budget": {
+              "extra_limit": 12,
+              "extra_used": 0,
+              "oldest_extra_expires_in_seconds": null
+            },
+            "epoch": 0,
+            "evaluated_at": "2026-10-09T10:43:14.751031+00:00",
+            "headroom": {
+              "low": false,
+              "sides": {
+                "asks": {
+                  "level_threshold": 750,
+                  "levels": 1126,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "149.200000000000000000",
+                  "snapshot_price_span": "128.100000000000000000"
+                },
+                "bids": {
+                  "level_threshold": 750,
+                  "levels": 860,
+                  "low_levels": false,
+                  "low_price_room": false,
+                  "price_room": "105.300000000000000000",
+                  "snapshot_price_span": "126.400000000000000000"
+                }
+              },
+              "top_complete": true
+            },
+            "phase": "after_flush",
+            "reason": "periodic",
+            "trigger": "periodic"
+          },
+          "last_by_reason": {
+            "minimum_interval": {
+              "action": "defer",
+              "after_sequence": 4699,
+              "age_seconds": 0.007239263009978458,
+              "blockers": [
+                "pending_verification",
+                "minimum_interval"
+              ],
+              "budget": {
+                "extra_limit": 12,
+                "extra_used": 1,
+                "oldest_extra_expires_in_seconds": 59.91513575598947
+              },
+              "epoch": 0,
+              "evaluated_at": "2026-10-09T10:41:43.039822+00:00",
+              "headroom": {
+                "low": true,
+                "sides": {
+                  "asks": {
+                    "level_threshold": 750,
+                    "levels": 1193,
+                    "low_levels": false,
+                    "low_price_room": false,
+                    "price_room": "167.800000000000000000",
+                    "snapshot_price_span": "129.200000000000000000"
+                  },
+                  "bids": {
+                    "level_threshold": 750,
+                    "levels": 713,
+                    "low_levels": true,
+                    "low_price_room": false,
+                    "price_room": "87.000000000000000000",
+                    "snapshot_price_span": "125.600000000000000000"
+                  }
+                },
+                "top_complete": true
+              },
+              "phase": "before_flush",
+              "reason": "pending_verification",
+              "trigger": "headroom"
+            },
+            "pending_verification": {
+              "action": "defer",
+              "after_sequence": 4699,
+              "age_seconds": 0.007239263009978458,
+              "blockers": [
+                "pending_verification",
+                "minimum_interval"
+              ],
+              "budget": {
+                "extra_limit": 12,
+                "extra_used": 1,
+                "oldest_extra_expires_in_seconds": 59.91513575598947
+              },
+              "epoch": 0,
+              "evaluated_at": "2026-10-09T10:41:43.039822+00:00",
+              "headroom": {
+                "low": true,
+                "sides": {
+                  "asks": {
+                    "level_threshold": 750,
+                    "levels": 1193,
+                    "low_levels": false,
+                    "low_price_room": false,
+                    "price_room": "167.800000000000000000",
+                    "snapshot_price_span": "129.200000000000000000"
+                  },
+                  "bids": {
+                    "level_threshold": 750,
+                    "levels": 713,
+                    "low_levels": true,
+                    "low_price_room": false,
+                    "price_room": "87.000000000000000000",
+                    "snapshot_price_span": "125.600000000000000000"
+                  }
+                },
+                "top_complete": true
+              },
+              "phase": "before_flush",
+              "reason": "pending_verification",
+              "trigger": "headroom"
+            }
+          },
+          "policy": "coverage_decisions_v1",
+          "primary_reason_counts": {
+            "pending_verification": 1
+          },
+          "recent_deferrals": [
+            {
+              "action": "defer",
+              "after_sequence": 4699,
+              "age_seconds": 0.007239263009978458,
+              "blockers": [
+                "pending_verification",
+                "minimum_interval"
+              ],
+              "budget": {
+                "extra_limit": 12,
+                "extra_used": 1,
+                "oldest_extra_expires_in_seconds": 59.91513575598947
+              },
+              "epoch": 0,
+              "evaluated_at": "2026-10-09T10:41:43.039822+00:00",
+              "headroom": {
+                "low": true,
+                "sides": {
+                  "asks": {
+                    "level_threshold": 750,
+                    "levels": 1193,
+                    "low_levels": false,
+                    "low_price_room": false,
+                    "price_room": "167.800000000000000000",
+                    "snapshot_price_span": "129.200000000000000000"
+                  },
+                  "bids": {
+                    "level_threshold": 750,
+                    "levels": 713,
+                    "low_levels": true,
+                    "low_price_room": false,
+                    "price_room": "87.000000000000000000",
+                    "snapshot_price_span": "125.600000000000000000"
+                  }
+                },
+                "top_complete": true
+              },
+              "phase": "before_flush",
+              "reason": "pending_verification",
+              "trigger": "headroom"
+            }
+          ]
+        },
+        "refresh_from_checks": true,
+        "rotate_seconds": 900,
+        "runtime_clock": {
+          "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+          "child_id": "2dd4c5d6173140509876368768c76755",
+          "collection_start": {
+            "boottime_ns": 69766188095691,
+            "monotonic_ns": 69766188094884,
+            "sampling_span_ns": 1954,
+            "wall_ns": 1791542028230276822
+          },
+          "policy_version": "reference-freshness-v2",
+          "run_id": "9415ca491ca34ddfb75b1ec7cfeb4e8e",
+          "schema": 2,
+          "stream": "depth"
+        },
+        "scope": "BTCUSDT USD-M non-RPI depth; known snapshot price range only",
+        "seconds_requested": 3600,
+        "snapshots": 57,
+        "started_at": "2026-10-09T10:33:48.230144+00:00",
+        "state": "running",
+        "sync_losses": 0,
+        "synchronized": true,
+        "top": 20,
+        "unreconstructed_messages": 0,
+        "updated_at": "2026-10-09T10:43:24.931800+00:00",
+        "verify_seconds": 10
+      },
+      "segments": 172,
+      "stored_rows": 5709,
+      "last_segment": {
+        "id": "ccd6327c64272280772a836560543836755be8d86b635a9bb350eefd3985906b",
+        "collection_id": "d2d18424592f4f549f5bda828e270759",
+        "dataset": "book_depth",
+        "instrument_id": "binance:linear_perpetual:BTCUSDT",
+        "kind": "journal",
+        "path": "data/canonical/book_depth/cc/ccd6327c64272280772a836560543836755be8d86b635a9bb350eefd3985906b.parquet",
+        "file_sha": "ccd6327c64272280772a836560543836755be8d86b635a9bb350eefd3985906b",
+        "source_id": "e239341c31e9da499e94d138836df1e9eba1888f55a3a00866ce9f5baa4fefa7",
+        "first_time": "2026-10-09T10:43:24.941000+00:00",
+        "last_time": "2026-10-09T10:43:24.941000+00:00",
+        "first_id": 5708,
+        "last_id": 5708,
+        "row_count": 1
+      },
+      "last_raw_artifact": {
+        "id": "e239341c31e9da499e94d138836df1e9eba1888f55a3a00866ce9f5baa4fefa7",
+        "path": "data/raw/e2/e239341c31e9da499e94d138836df1e9eba1888f55a3a00866ce9f5baa4fefa7/payload",
+        "kind": "depth_snapshot",
+        "observed_at": "2026-10-09T10:43:24.996084+00:00",
+        "bytes": 42089
+      },
+      "standard_file_proof": {
+        "path": "data/canonical/book_depth/cc/ccd6327c64272280772a836560543836755be8d86b635a9bb350eefd3985906b.parquet",
+        "size": 32186,
+        "sha256": "ccd6327c64272280772a836560543836755be8d86b635a9bb350eefd3985906b",
+        "stable_during_read": true
+      },
+      "raw_file_proof": {
+        "path": "data/raw/e2/e239341c31e9da499e94d138836df1e9eba1888f55a3a00866ce9f5baa4fefa7/payload",
+        "size": 42089,
+        "sha256": "e239341c31e9da499e94d138836df1e9eba1888f55a3a00866ce9f5baa4fefa7",
+        "stable_during_read": true
+      }
+    },
+    {
+      "id": "c5b36646466344d5b1672275ffb2faf8",
+      "dataset": "agg_trades",
+      "kind": "websocket",
+      "started_at": "2026-10-09T10:33:48.063780+00:00",
+      "updated_at": "2026-10-09T10:43:27.632315+00:00",
+      "state": "running",
+      "report": {
+        "boundary_semantics": "first_session_start_and_final_stop_are_not_complete_time_windows",
+        "complete": false,
+        "connection_errors": 0,
+        "connections": 1,
+        "detected_gaps": 1,
+        "duplicate_messages": 0,
+        "fresh_start": false,
+        "id": "c5b36646466344d5b1672275ffb2faf8",
+        "kind": "websocket",
+        "last_id": 3480334601,
+        "last_received_at": "2026-10-09T10:43:27.613489+00:00",
+        "last_trade_time": "2026-10-09T10:43:27.429000+00:00",
+        "messages": 8637,
+        "out_of_order_messages": 0,
+        "persisted_messages": 8637,
+        "previous_persisted_id": 3480321933,
+        "recent_errors": [],
+        "recent_recoveries": [
+          {
+            "collection_id": "6724807f766d48bca45265b3d17bac85",
+            "complete": true,
+            "first_id": 3480321934,
+            "last_id": 3480325964
+          }
+        ],
+        "repaired_gaps": 1,
+        "resume_after_id": 3480321933,
+        "rotations": 0,
+        "runtime_clock": {
+          "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+          "child_id": "8d5878b92ad54c4cab61ecd854c85f92",
+          "collection_start": {
+            "boottime_ns": 69766021692867,
+            "monotonic_ns": 69766021692155,
+            "sampling_span_ns": 1904,
+            "wall_ns": 1791542028063874178
+          },
+          "policy_version": "reference-freshness-v2",
+          "run_id": "87dddac11b184080b5b5d75a4f167db4",
+          "schema": 2,
+          "stream": "aggtrade"
+        },
+        "seconds_requested": 3600,
+        "started_at": "2026-10-09T10:33:48.063780+00:00",
+        "state": "running",
+        "timestamp_semantics": "application_recv_return_not_wire_arrival",
+        "uncollected_before_start": null,
+        "unrepaired_gaps": 0,
+        "updated_at": "2026-10-09T10:43:27.632315+00:00"
+      },
+      "segments": 113,
+      "stored_rows": 8637,
+      "last_segment": {
+        "id": "618abd42462407b346f231f80582befb3537351fb52131aed09b3436473e7e1c",
+        "collection_id": "c5b36646466344d5b1672275ffb2faf8",
+        "dataset": "agg_trades",
+        "instrument_id": "binance:linear_perpetual:BTCUSDT",
+        "kind": "websocket",
+        "path": "data/canonical/agg_trades/websocket/61/618abd42462407b346f231f80582befb3537351fb52131aed09b3436473e7e1c.parquet",
+        "file_sha": "618abd42462407b346f231f80582befb3537351fb52131aed09b3436473e7e1c",
+        "source_id": "7715408ba6a4d8acbcd04115359831c70a2e7418f2ae149483acfbcf38ea0765",
+        "first_time": "2026-10-09T10:43:22.500000+00:00",
+        "last_time": "2026-10-09T10:43:27.429000+00:00",
+        "first_id": 3480334465,
+        "last_id": 3480334601,
+        "row_count": 137
+      },
+      "last_raw_artifact": {
+        "id": "7715408ba6a4d8acbcd04115359831c70a2e7418f2ae149483acfbcf38ea0765",
+        "path": "data/raw/77/7715408ba6a4d8acbcd04115359831c70a2e7418f2ae149483acfbcf38ea0765/payload",
+        "kind": "aggtrade_websocket",
+        "observed_at": "2026-10-09T10:43:22.573291+00:00",
+        "bytes": 3239
+      },
+      "standard_file_proof": {
+        "path": "data/canonical/agg_trades/websocket/61/618abd42462407b346f231f80582befb3537351fb52131aed09b3436473e7e1c.parquet",
+        "size": 9449,
+        "sha256": "618abd42462407b346f231f80582befb3537351fb52131aed09b3436473e7e1c",
+        "stable_during_read": true
+      },
+      "raw_file_proof": {
+        "path": "data/raw/77/7715408ba6a4d8acbcd04115359831c70a2e7418f2ae149483acfbcf38ea0765/payload",
+        "size": 3239,
+        "sha256": "7715408ba6a4d8acbcd04115359831c70a2e7418f2ae149483acfbcf38ea0765",
+        "stable_during_read": true
+      }
+    }
+  ],
+  "clock_artifacts": [
+    {
+      "id": "0dec6db89168c5528b70b92208312513d871f22fb39626bfc2de25038e41d2a7",
+      "path": "data/raw/0d/0dec6db89168c5528b70b92208312513d871f22fb39626bfc2de25038e41d2a7/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:38:49.484687+00:00",
+      "bytes": 22087,
+      "url": "runtime-clock://87dddac11b184080b5b5d75a4f167db4/2",
+      "metadata": "{\"chunk\":2,\"first_sample\":{\"boottime_ns\":69766810383207,\"monotonic_ns\":69766810381713,\"sampling_span_ns\":4007,\"wall_ns\":1791542028852563756},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":70066411806801,\"monotonic_ns\":70066411805052,\"sampling_span_ns\":4599,\"wall_ns\":1791542328453986789},\"partial_tail_bytes\":0,\"previous\":\"89e95b9f1725b8dbed94e1cd423c6f38f798f45105e9932f4d81c015425d2f67\",\"records\":297,\"run_id\":\"87dddac11b184080b5b5d75a4f167db4\",\"schema\":2,\"uncompressed_bytes\":695010,\"uncompressed_sha256\":\"c239b01d3af7f0daa40752c46ecfc8905ceb23d1750edad2c3ece0fb2e4e5dd9\"}"
+    },
+    {
+      "id": "55948d7fbba5d3a8aa91257707c57b3f2f68573d61cf69f9fa54ddcbc27fd094",
+      "path": "data/raw/55/55948d7fbba5d3a8aa91257707c57b3f2f68573d61cf69f9fa54ddcbc27fd094/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:38:49.481587+00:00",
+      "bytes": 22078,
+      "url": "runtime-clock://9415ca491ca34ddfb75b1ec7cfeb4e8e/2",
+      "metadata": "{\"chunk\":2,\"first_sample\":{\"boottime_ns\":69766915621652,\"monotonic_ns\":69766915620650,\"sampling_span_ns\":2605,\"wall_ns\":1791542028957802713},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":70066411806861,\"monotonic_ns\":70066411805147,\"sampling_span_ns\":4669,\"wall_ns\":1791542328453986850},\"partial_tail_bytes\":0,\"previous\":\"a70bf336da87d4e4928a1e7b246cd9933628f1048c75de48488234f513da2663\",\"records\":297,\"run_id\":\"9415ca491ca34ddfb75b1ec7cfeb4e8e\",\"schema\":2,\"uncompressed_bytes\":694167,\"uncompressed_sha256\":\"e18a38f67ad96d2660c776bba6f4dc186a68ce5ae29cbe9cd25ec3b1d7b59e27\"}"
+    },
+    {
+      "id": "a70bf336da87d4e4928a1e7b246cd9933628f1048c75de48488234f513da2663",
+      "path": "data/raw/a7/a70bf336da87d4e4928a1e7b246cd9933628f1048c75de48488234f513da2663/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:33:47.935234+00:00",
+      "bytes": 1275,
+      "url": "runtime-clock://9415ca491ca34ddfb75b1ec7cfeb4e8e/1",
+      "metadata": "{\"chunk\":1,\"first_sample\":{\"boottime_ns\":69765877509244,\"monotonic_ns\":69765877509043,\"sampling_span_ns\":621,\"wall_ns\":1791542027919691136},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":69765890543807,\"monotonic_ns\":69765890543736,\"sampling_span_ns\":301,\"wall_ns\":1791542027932725910},\"partial_tail_bytes\":0,\"previous\":\"5bca5e158c932bd5e47476ae644c9441df595ff5b273501c9632d05e932c8625\",\"records\":2,\"run_id\":\"9415ca491ca34ddfb75b1ec7cfeb4e8e\",\"schema\":2,\"uncompressed_bytes\":4794,\"uncompressed_sha256\":\"de20f5fead41b5bb0cfb3b6db831b8b544314b174f8344f8b86477b647a95ceb\"}"
+    },
+    {
+      "id": "5bca5e158c932bd5e47476ae644c9441df595ff5b273501c9632d05e932c8625",
+      "path": "data/raw/5b/5bca5e158c932bd5e47476ae644c9441df595ff5b273501c9632d05e932c8625/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:33:47.896873+00:00",
+      "bytes": 1414,
+      "url": "runtime-clock://9415ca491ca34ddfb75b1ec7cfeb4e8e/0",
+      "metadata": "{\"chunk\":0,\"first_sample\":{\"boottime_ns\":69765740649074,\"monotonic_ns\":69765740648959,\"sampling_span_ns\":350,\"wall_ns\":1791542027782831097},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":69765751170066,\"monotonic_ns\":69765751169955,\"sampling_span_ns\":401,\"wall_ns\":1791542027793352098},\"partial_tail_bytes\":0,\"previous\":null,\"records\":2,\"run_id\":\"9415ca491ca34ddfb75b1ec7cfeb4e8e\",\"schema\":2,\"uncompressed_bytes\":5462,\"uncompressed_sha256\":\"94e004a84c867fb831850e951266213ef4ce79aaed64d40d65b0a61bb1fa27c6\"}"
+    },
+    {
+      "id": "89e95b9f1725b8dbed94e1cd423c6f38f798f45105e9932f4d81c015425d2f67",
+      "path": "data/raw/89/89e95b9f1725b8dbed94e1cd423c6f38f798f45105e9932f4d81c015425d2f67/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:33:47.831016+00:00",
+      "bytes": 1278,
+      "url": "runtime-clock://87dddac11b184080b5b5d75a4f167db4/1",
+      "metadata": "{\"chunk\":1,\"first_sample\":{\"boottime_ns\":69765774415166,\"monotonic_ns\":69765774414950,\"sampling_span_ns\":711,\"wall_ns\":1791542027816596998},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":69765786714809,\"monotonic_ns\":69765786714758,\"sampling_span_ns\":281,\"wall_ns\":1791542027828896922},\"partial_tail_bytes\":0,\"previous\":\"84260d23f9ff1c9662d57f25ee3980faa63d28d871100d14edea27fdc3455e49\",\"records\":2,\"run_id\":\"87dddac11b184080b5b5d75a4f167db4\",\"schema\":2,\"uncompressed_bytes\":4812,\"uncompressed_sha256\":\"40e71c51a1cac64c638b0c33b87f78612108c172085f361fb76ed6fc2b32085c\"}"
+    },
+    {
+      "id": "84260d23f9ff1c9662d57f25ee3980faa63d28d871100d14edea27fdc3455e49",
+      "path": "data/raw/84/84260d23f9ff1c9662d57f25ee3980faa63d28d871100d14edea27fdc3455e49/payload",
+      "kind": "runtime_clock_v2",
+      "observed_at": "2026-10-09T10:33:47.795623+00:00",
+      "bytes": 1427,
+      "url": "runtime-clock://87dddac11b184080b5b5d75a4f167db4/0",
+      "metadata": "{\"chunk\":0,\"first_sample\":{\"boottime_ns\":69765738907401,\"monotonic_ns\":69765738907155,\"sampling_span_ns\":891,\"wall_ns\":1791542027781089133},\"kind\":\"runtime_clock_v2\",\"last_sample\":{\"boottime_ns\":69765750541753,\"monotonic_ns\":69765750541527,\"sampling_span_ns\":771,\"wall_ns\":1791542027792723625},\"partial_tail_bytes\":0,\"previous\":null,\"records\":2,\"run_id\":\"87dddac11b184080b5b5d75a4f167db4\",\"schema\":2,\"uncompressed_bytes\":5471,\"uncompressed_sha256\":\"8cda99e604225018604891785af81fdb7660c2204b1d3312e75379e6c5233c5d\"}"
+    }
+  ]
+}

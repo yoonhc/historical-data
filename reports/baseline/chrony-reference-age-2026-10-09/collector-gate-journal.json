@@ -1,0 +1,913 @@
+{
+  "command": [
+    "journalctl",
+    "-b",
+    "--no-pager",
+    "-o",
+    "json",
+    "-u",
+    "marketdata-collector@aggtrade.service",
+    "-u",
+    "marketdata-collector@depth.service",
+    "--grep=ready|timed|Stopped|Started|Main process|Failed|Deactivated"
+  ],
+  "stderr": "",
+  "records": [
+    {
+      "at_kst": "2026-10-09T00:11:18.239935+09:00",
+      "monotonic_us": 16197753,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "2187",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.1661100785, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 2.3626441955566406, \"sample\": {\"boottime_ns\": 16197590646, \"monotonic_ns\": 16197590068, \"sampling_span_ns\": 1782, \"wall_ns\": 1791472278239771852}, \"tracking\": {\"correction\": -0.037360232, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE39,185.125.190.57,3,1791472275.877091736,-0.037360232,0.198808655,0.198808655,24.944,7.388,24.314,0.253650129,0.001924782,0.0,Normal\", \"reference_address\": \"185.125.190.57\", \"reference_id\": \"B97DBE39\", \"reference_time\": 1791472275.8770916, \"root_delay\": 0.253650129, \"root_dispersion\": 0.001924782, \"skew_ppm\": 24.314, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T00:11:18.240727+09:00",
+      "monotonic_us": 16198545,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "2186",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.1660873415, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 2.3634471893310547, \"sample\": {\"boottime_ns\": 16198387210, \"monotonic_ns\": 16198386617, \"sampling_span_ns\": 1828, \"wall_ns\": 1791472278240568378}, \"tracking\": {\"correction\": -0.037337486, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE39,185.125.190.57,3,1791472275.877091736,-0.037337486,0.198808655,0.198808655,24.944,7.388,24.314,0.253650129,0.001924791,0.0,Normal\", \"reference_address\": \"185.125.190.57\", \"reference_id\": \"B97DBE39\", \"reference_time\": 1791472275.8770916, \"root_delay\": 0.253650129, \"root_dispersion\": 0.001924791, \"skew_ppm\": 24.314, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T00:11:18.494515+09:00",
+      "monotonic_us": 16452333,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T00:11:18.494697+09:00",
+      "monotonic_us": 16452515,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T01:11:19.986726+09:00",
+      "monotonic_us": 3617944544,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+    },
+    {
+      "at_kst": "2026-10-09T01:11:19.987813+09:00",
+      "monotonic_us": 3617945631,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T01:11:29.014875+09:00",
+      "monotonic_us": 3626972693,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+    },
+    {
+      "at_kst": "2026-10-09T01:11:29.015344+09:00",
+      "monotonic_us": 3626973161,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T01:11:35.263640+09:00",
+      "monotonic_us": 3633221458,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "19209",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.137000404, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 127.35397791862488, \"sample\": {\"boottime_ns\": 3633221264681, \"monotonic_ns\": 3633221263924, \"sampling_span_ns\": 2235, \"wall_ns\": 1791475895263445732}, \"tracking\": {\"correction\": -0.001511735, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE39,185.125.190.57,3,1791475767.909430783,-0.001511735,0.000838791,0.001764970,26.802,0.064,3.142,0.255812824,0.007582257,258.4,Normal\", \"reference_address\": \"185.125.190.57\", \"reference_id\": \"B97DBE39\", \"reference_time\": 1791475767.9094307, \"root_delay\": 0.255812824, \"root_dispersion\": 0.007582257, \"skew_ppm\": 3.142, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T01:11:35.412662+09:00",
+      "monotonic_us": 3633370480,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T01:11:44.256627+09:00",
+      "monotonic_us": 3642214445,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "19241",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.137027456, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 136.34695649147034, \"sample\": {\"boottime_ns\": 3642214238823, \"monotonic_ns\": 3642214238111, \"sampling_span_ns\": 2043, \"wall_ns\": 1791475904256419843}, \"tracking\": {\"correction\": -0.001500958, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE39,185.125.190.57,3,1791475767.909430783,-0.001500958,0.000838791,0.001764970,26.802,0.064,3.142,0.255812824,0.007620086,258.4,Normal\", \"reference_address\": \"185.125.190.57\", \"reference_id\": \"B97DBE39\", \"reference_time\": 1791475767.9094307, \"root_delay\": 0.255812824, \"root_dispersion\": 0.007620086, \"skew_ppm\": 3.142, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T01:11:44.403171+09:00",
+      "monotonic_us": 3642360989,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T02:11:38.609035+09:00",
+      "monotonic_us": 7236566853,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+    },
+    {
+      "at_kst": "2026-10-09T02:11:38.609901+09:00",
+      "monotonic_us": 7236567718,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T02:11:50.443450+09:00",
+      "monotonic_us": 7248401268,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T02:11:53.764983+09:00",
+      "monotonic_us": 7251722800,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "28017",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.136815371, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 125.80405163764954, \"sample\": {\"boottime_ns\": 7251722670684, \"monotonic_ns\": 7251722670203, \"sampling_span_ns\": 1242, \"wall_ns\": 1791479513764852145}, \"tracking\": {\"correction\": -0.001034029, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE39,185.125.190.57,3,1791479387.960781543,-0.001034029,0.000021597,0.001116078,26.274,0.007,1.141,0.254245788,0.008658448,257.9,Normal\", \"reference_address\": \"185.125.190.57\", \"reference_id\": \"B97DBE39\", \"reference_time\": 1791479387.9607816, \"root_delay\": 0.254245788, \"root_dispersion\": 0.008658448, \"skew_ppm\": 1.141, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T02:11:53.925254+09:00",
+      "monotonic_us": 7251883072,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T02:12:05.514020+09:00",
+      "monotonic_us": 7263471838,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "28063",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.136827293, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 137.55302262306213, \"sample\": {\"boottime_ns\": 7263471656350, \"monotonic_ns\": 7263471655703, \"sampling_span_ns\": 2053, \"wall_ns\": 1791479525513837330}, \"tracking\": {\"correction\": -0.001020717, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE39,185.125.190.57,3,1791479387.960781543,-0.001020717,0.000021597,0.001116078,26.274,0.007,1.141,0.254245788,0.008683682,257.9,Normal\", \"reference_address\": \"185.125.190.57\", \"reference_id\": \"B97DBE39\", \"reference_time\": 1791479387.9607816, \"root_delay\": 0.254245788, \"root_dispersion\": 0.008683682, \"skew_ppm\": 1.141, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T02:12:05.658158+09:00",
+      "monotonic_us": 7263615975,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T03:11:57.310858+09:00",
+      "monotonic_us": 10855268676,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T03:12:11.955875+09:00",
+      "monotonic_us": 10869913693,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T03:12:12.513274+09:00",
+      "monotonic_us": 10870471092,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "37633",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.13113374449999998, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 120.09658718109131, \"sample\": {\"boottime_ns\": 10870470856617, \"monotonic_ns\": 10870470855981, \"sampling_span_ns\": 2034, \"wall_ns\": 1791483132513037748}, \"tracking\": {\"correction\": -0.001110498, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE39,185.125.190.57,3,1791483012.416406663,-0.001110498,0.000039768,0.001147335,26.063,-0.007,0.667,0.252091199,0.003977647,258.3,Normal\", \"reference_address\": \"185.125.190.57\", \"reference_id\": \"B97DBE39\", \"reference_time\": 1791483012.4164066, \"root_delay\": 0.252091199, \"root_dispersion\": 0.003977647, \"skew_ppm\": 0.667, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T03:12:12.695089+09:00",
+      "monotonic_us": 10870652907,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T03:12:27.254624+09:00",
+      "monotonic_us": 10885212442,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "37707",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.13114365849999998, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 134.83799719810486, \"sample\": {\"boottime_ns\": 10885212258137, \"monotonic_ns\": 10885212257380, \"sampling_span_ns\": 2255, \"wall_ns\": 1791483147254439148}, \"tracking\": {\"correction\": -0.001095735, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE39,185.125.190.57,3,1791483012.416406663,-0.001095735,0.000039768,0.001147335,26.063,-0.007,0.667,0.252091199,0.004002324,258.3,Normal\", \"reference_address\": \"185.125.190.57\", \"reference_id\": \"B97DBE39\", \"reference_time\": 1791483012.4164066, \"root_delay\": 0.252091199, \"root_dispersion\": 0.004002324, \"skew_ppm\": 0.667, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T03:12:27.400074+09:00",
+      "monotonic_us": 10885357892,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T04:12:15.721479+09:00",
+      "monotonic_us": 14473679297,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T04:12:30.972040+09:00",
+      "monotonic_us": 14488929858,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "46299",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.132770402, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 110.56376671791077, \"sample\": {\"boottime_ns\": 14488929674618, \"monotonic_ns\": 14488929673867, \"sampling_span_ns\": 2184, \"wall_ns\": 1791486750971855629}, \"tracking\": {\"correction\": -0.000321655, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE39,185.125.190.57,3,1791486640.408050921,-0.000321655,0.000339211,0.000682266,26.487,0.007,0.491,0.254041106,0.005428194,260.6,Normal\", \"reference_address\": \"185.125.190.57\", \"reference_id\": \"B97DBE39\", \"reference_time\": 1791486640.408051, \"root_delay\": 0.254041106, \"root_dispersion\": 0.005428194, \"skew_ppm\": 0.491, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T04:12:31.110832+09:00",
+      "monotonic_us": 14489068650,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T04:12:33.620624+09:00",
+      "monotonic_us": 14491578442,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T04:12:48.758503+09:00",
+      "monotonic_us": 14506716321,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "46363",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.132795814, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 128.35024428367615, \"sample\": {\"boottime_ns\": 14506716146420, \"monotonic_ns\": 14506716145734, \"sampling_span_ns\": 2074, \"wall_ns\": 1791486768758327511}, \"tracking\": {\"correction\": -0.000320412, \"leap\": \"Normal\", \"raw_csv\": \"B97DBE39,185.125.190.57,3,1791486640.408050921,-0.000320412,0.000339211,0.000682266,26.487,0.007,0.491,0.254041106,0.005454849,260.6,Normal\", \"reference_address\": \"185.125.190.57\", \"reference_id\": \"B97DBE39\", \"reference_time\": 1791486640.408051, \"root_delay\": 0.254041106, \"root_dispersion\": 0.005454849, \"skew_ppm\": 0.491, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T04:12:48.911107+09:00",
+      "monotonic_us": 14506868925,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T05:12:34.398156+09:00",
+      "monotonic_us": 18092355974,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T05:12:49.506629+09:00",
+      "monotonic_us": 18107464447,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "56151",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.122217801, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 125.73652005195618, \"sample\": {\"boottime_ns\": 18107464308193, \"monotonic_ns\": 18107464307697, \"sampling_span_ns\": 1372, \"wall_ns\": 1791490369506489755}, \"tracking\": {\"correction\": 1.594e-06, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791490243.769947611,0.000001594,-0.000202280,0.000475626,26.578,-0.001,0.405,0.235704154,0.004364130,515.8,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791490243.7699475, \"root_delay\": 0.235704154, \"root_dispersion\": 0.00436413, \"skew_ppm\": 0.405, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T05:12:49.646224+09:00",
+      "monotonic_us": 18107604042,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T05:12:54.765800+09:00",
+      "monotonic_us": 18112723618,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T05:13:09.876698+09:00",
+      "monotonic_us": 18127834516,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "56207",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.122246438, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 146.10662293434143, \"sample\": {\"boottime_ns\": 18127834411229, \"monotonic_ns\": 18127834410733, \"sampling_span_ns\": 1372, \"wall_ns\": 1791490389876592760}, \"tracking\": {\"correction\": 1.594e-06, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791490243.769947611,0.000001594,-0.000202280,0.000475626,26.578,-0.001,0.405,0.235704154,0.004392767,515.8,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791490243.7699475, \"root_delay\": 0.235704154, \"root_dispersion\": 0.004392767, \"skew_ppm\": 0.405, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T05:13:10.088382+09:00",
+      "monotonic_us": 18128046200,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T06:12:52.644946+09:00",
+      "monotonic_us": 21710602764,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T06:13:07.754989+09:00",
+      "monotonic_us": 21725712807,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "64355",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.1232561295, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 126.76538419723511, \"sample\": {\"boottime_ns\": 21725712707683, \"monotonic_ns\": 21725712707327, \"sampling_span_ns\": 1172, \"wall_ns\": 1791493987754889245}, \"tracking\": {\"correction\": -0.000722503, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791493860.989485651,-0.000722503,0.000033296,0.000421245,26.739,-0.007,0.381,0.236043349,0.004511952,773.3,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791493860.9894857, \"root_delay\": 0.236043349, \"root_dispersion\": 0.004511952, \"skew_ppm\": 0.381, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T06:13:07.926720+09:00",
+      "monotonic_us": 21725884537,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T06:13:15.684547+09:00",
+      "monotonic_us": 21733642365,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T06:13:30.765893+09:00",
+      "monotonic_us": 21748723711,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "64442",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.12328617950000001, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 149.77614879608154, \"sample\": {\"boottime_ns\": 21748723493864, \"monotonic_ns\": 21748723493308, \"sampling_span_ns\": 1893, \"wall_ns\": 1791494010765675136}, \"tracking\": {\"correction\": -0.000720615, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791493860.989485651,-0.000720615,0.000033296,0.000421245,26.739,-0.007,0.381,0.236043349,0.004543890,773.3,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791493860.9894857, \"root_delay\": 0.236043349, \"root_dispersion\": 0.00454389, \"skew_ppm\": 0.381, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T06:13:30.904991+09:00",
+      "monotonic_us": 21748862808,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:13:11.167955+09:00",
+      "monotonic_us": 25329125773,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T07:13:26.254561+09:00",
+      "monotonic_us": 25344212379,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "73430",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:13:26.262095+09:00",
+      "monotonic_us": 25344219913,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:13:26.262175+09:00",
+      "monotonic_us": 25344219993,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:13:36.509607+09:00",
+      "monotonic_us": 25354467424,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T07:13:41.522503+09:00",
+      "monotonic_us": 25359480321,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "73456",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:13:41.528205+09:00",
+      "monotonic_us": 25359486023,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:13:41.528321+09:00",
+      "monotonic_us": 25359486139,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:13:51.766465+09:00",
+      "monotonic_us": 25369724283,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "73471",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:13:51.772134+09:00",
+      "monotonic_us": 25369729952,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:13:51.772434+09:00",
+      "monotonic_us": 25369730252,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:13:56.754979+09:00",
+      "monotonic_us": 25374712797,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "73482",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:13:56.762582+09:00",
+      "monotonic_us": 25374720400,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:13:56.762677+09:00",
+      "monotonic_us": 25374720495,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:06.984642+09:00",
+      "monotonic_us": 25384942460,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "73499",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:14:06.990079+09:00",
+      "monotonic_us": 25384947897,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:06.990366+09:00",
+      "monotonic_us": 25384948184,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:12.016850+09:00",
+      "monotonic_us": 25389974668,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "73514",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:14:12.022727+09:00",
+      "monotonic_us": 25389980544,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:12.023084+09:00",
+      "monotonic_us": 25389980902,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:22.053799+09:00",
+      "monotonic_us": 25400011617,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "73533",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:14:22.059383+09:00",
+      "monotonic_us": 25400017201,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:22.059632+09:00",
+      "monotonic_us": 25400017450,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:27.258399+09:00",
+      "monotonic_us": 25405216217,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "73546",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:14:27.264236+09:00",
+      "monotonic_us": 25405222054,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:27.264297+09:00",
+      "monotonic_us": 25405222115,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:37.262343+09:00",
+      "monotonic_us": 25415220161,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "73561",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:14:37.268417+09:00",
+      "monotonic_us": 25415226235,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:37.268631+09:00",
+      "monotonic_us": 25415226449,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:42.511773+09:00",
+      "monotonic_us": 25420469591,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "73572",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:14:42.518062+09:00",
+      "monotonic_us": 25420475880,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:42.518386+09:00",
+      "monotonic_us": 25420476204,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:52.511819+09:00",
+      "monotonic_us": 25430469637,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "73586",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:14:52.516855+09:00",
+      "monotonic_us": 25430474672,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:52.517171+09:00",
+      "monotonic_us": 25430474989,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:57.764902+09:00",
+      "monotonic_us": 25435722720,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "73598",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:14:57.771250+09:00",
+      "monotonic_us": 25435729068,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:14:57.771585+09:00",
+      "monotonic_us": 25435729403,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:07.763327+09:00",
+      "monotonic_us": 25445721145,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "73613",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:15:07.768468+09:00",
+      "monotonic_us": 25445726285,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:07.768769+09:00",
+      "monotonic_us": 25445726587,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:13.016862+09:00",
+      "monotonic_us": 25450974680,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "73624",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:15:13.022450+09:00",
+      "monotonic_us": 25450980268,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:13.022766+09:00",
+      "monotonic_us": 25450980584,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:23.014787+09:00",
+      "monotonic_us": 25460972605,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "73637",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:15:23.020334+09:00",
+      "monotonic_us": 25460978152,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:23.020517+09:00",
+      "monotonic_us": 25460978335,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:28.267595+09:00",
+      "monotonic_us": 25466225413,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "73650",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:15:28.272753+09:00",
+      "monotonic_us": 25466230571,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:28.273108+09:00",
+      "monotonic_us": 25466230926,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:38.195652+09:00",
+      "monotonic_us": 25476153470,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "73666",
+      "message": "{\"ready\": false, \"hold\": \"Current clock is not ready: reference_age\"}"
+    },
+    {
+      "at_kst": "2026-10-09T07:15:38.200668+09:00",
+      "monotonic_us": 25476158486,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Failed with result 'exit-code'."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:38.201000+09:00",
+      "monotonic_us": 25476158818,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Failed to start marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:43.504809+09:00",
+      "monotonic_us": 25481462627,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "73677",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.1241952885, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 2.041135787963867, \"sample\": {\"boottime_ns\": 25481462490676, \"monotonic_ns\": 25481462490330, \"sampling_span_ns\": 991, \"wall_ns\": 1791497743504672288}, \"tracking\": {\"correction\": -0.000978049, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791497741.463515065,-0.000978049,0.000098872,0.000376617,26.790,0.003,0.361,0.238820583,0.003806948,1033.4,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791497741.463515, \"root_delay\": 0.238820583, \"root_dispersion\": 0.003806948, \"skew_ppm\": 0.361, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T07:15:43.677288+09:00",
+      "monotonic_us": 25481635106,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T07:15:53.511798+09:00",
+      "monotonic_us": 25491469616,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "73833",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.1242081275, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 12.048122882843018, \"sample\": {\"boottime_ns\": 25491469475698, \"monotonic_ns\": 25491469475322, \"sampling_span_ns\": 1032, \"wall_ns\": 1791497753511657320}, \"tracking\": {\"correction\": -0.000977236, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791497741.463515065,-0.000977236,0.000098872,0.000376617,26.790,0.003,0.361,0.238820583,0.003820600,1033.4,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791497741.463515, \"root_delay\": 0.238820583, \"root_dispersion\": 0.0038206, \"skew_ppm\": 0.361, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T07:15:53.660030+09:00",
+      "monotonic_us": 25491617848,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T08:15:47.032090+09:00",
+      "monotonic_us": 29084989908,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T08:16:00.086887+09:00",
+      "monotonic_us": 29098044705,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T08:16:02.264864+09:00",
+      "monotonic_us": 29100222682,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "81620",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.1227390155, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 262.3137671947479, \"sample\": {\"boottime_ns\": 29100222475828, \"monotonic_ns\": 29100222475017, \"sampling_span_ns\": 2404, \"wall_ns\": 1791501362264656709}, \"tracking\": {\"correction\": -0.001199181, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791501099.950848568,-0.001199181,0.001236643,0.000550151,26.958,0.022,0.347,0.235247493,0.003916088,1549.4,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791501099.9508486, \"root_delay\": 0.235247493, \"root_dispersion\": 0.003916088, \"skew_ppm\": 0.347, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T08:16:02.413980+09:00",
+      "monotonic_us": 29100371798,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T08:16:15.257213+09:00",
+      "monotonic_us": 29113215031,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "81655",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.1227549355, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 275.30621433258057, \"sample\": {\"boottime_ns\": 29113214906819, \"monotonic_ns\": 29113214906168, \"sampling_span_ns\": 1603, \"wall_ns\": 1791501375257088201}, \"tracking\": {\"correction\": -0.001197319, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791501099.950848568,-0.001197319,0.001236643,0.000550151,26.958,0.022,0.347,0.235247493,0.003933870,1549.4,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791501099.9508486, \"root_delay\": 0.235247493, \"root_dispersion\": 0.00393387, \"skew_ppm\": 0.347, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T08:16:15.400820+09:00",
+      "monotonic_us": 29113358638,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T09:16:05.225687+09:00",
+      "monotonic_us": 32703183504,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "marketdata-collector@depth.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T09:16:20.328983+09:00",
+      "monotonic_us": 32718286801,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "94928",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.1250078155, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 4.754742860794067, \"sample\": {\"boottime_ns\": 32718286630773, \"monotonic_ns\": 32718286630042, \"sampling_span_ns\": 2044, \"wall_ns\": 1791504980328811684}, \"tracking\": {\"correction\": 0.002486656, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791504975.574034619,0.002486656,-0.002488123,0.000972636,26.856,-0.031,0.352,0.235247493,0.004897413,2842.6,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791504975.5740347, \"root_delay\": 0.235247493, \"root_dispersion\": 0.004897413, \"skew_ppm\": 0.352, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T09:16:20.470649+09:00",
+      "monotonic_us": 32718428467,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@depth.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+    },
+    {
+      "at_kst": "2026-10-09T09:16:21.383239+09:00",
+      "monotonic_us": 32719341056,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "marketdata-collector@aggtrade.service: Deactivated successfully."
+    },
+    {
+      "at_kst": "2026-10-09T09:16:36.509504+09:00",
+      "monotonic_us": 32734467322,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "95166",
+      "message": "{\"clock\": {\"conditional_error_bound_seconds\": 0.1250249305, \"provider\": {\"argv\": [\"/usr/sbin/chronyd\", \"-F\", \"1\", \"-f\", \"/etc/chrony/marketdata.conf\", \"\"], \"invocation_id\": \"19420480ab3249529a075ca7cb2bd3c1\", \"pid\": 1245}, \"ready\": true, \"reasons\": [], \"reference_age_seconds\": 20.93507146835327, \"sample\": {\"boottime_ns\": 32734466977467, \"monotonic_ns\": 32734466976260, \"sampling_span_ns\": 3116, \"wall_ns\": 1791504996509157766}, \"tracking\": {\"correction\": 0.002481384, \"leap\": \"Normal\", \"raw_csv\": \"5BBD5B9D,91.189.91.157,3,1791504975.574034619,0.002481384,-0.002488123,0.000972636,26.856,-0.031,0.352,0.235247493,0.004919800,2842.6,Normal\", \"reference_address\": \"91.189.91.157\", \"reference_id\": \"5BBD5B9D\", \"reference_time\": 1791504975.5740347, \"root_delay\": 0.235247493, \"root_dispersion\": 0.0049198, \"skew_ppm\": 0.352, \"stratum\": 3}}, \"ready\": true, \"step_window_closed\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T09:16:36.660335+09:00",
+      "monotonic_us": 32734618153,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "marketdata-collector@aggtrade.service",
+      "pid": "1",
+      "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+    }
+  ]
+}

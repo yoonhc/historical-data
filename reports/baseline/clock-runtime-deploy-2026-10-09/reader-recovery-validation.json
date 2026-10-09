@@ -1,0 +1,20 @@
+{
+  "observed_at": "2026-10-09T10:32:37.860271+00:00",
+  "source_sha256": {
+    "continue_runtime.py": "fb7d502cc4516b916a366ce05c28e7a0014fbc195fbcb4837acb9d5261c82d23",
+    "test_systemctl_reader.py": "b4b46fd8c08abb46bc0ba0d9790b2352a59213c3b08e17e5fcb15d3923b05c36"
+  },
+  "regression": {
+    "total_passed": 67,
+    "new_reader_cases": 9,
+    "existing_transition_cases": 58,
+    "seconds": 1.28,
+    "command": "/tmp/clock-shutdown-correction-cpmkuynr/.venv/bin/python -B -m pytest reports/baseline/clock-runtime-deploy-2026-10-09/test_systemctl_reader.py reports/baseline/clock-runtime-transition-2026-10-09/release-final/test_transition.py -q -p no:cacheprovider"
+  },
+  "ruff": "passed",
+  "pending_actual_plan_validation": "passed, no operating writes",
+  "limitations": [
+    "Actual recovery root commit is pending; tests do not claim it completed",
+    "The source of the fixed transition tool is unchanged; runtime host property reading is explicitly supplied by the linked recovery source"
+  ]
+}

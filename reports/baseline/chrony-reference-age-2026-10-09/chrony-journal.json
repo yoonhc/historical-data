@@ -1,0 +1,86 @@
+{
+  "command": [
+    "journalctl",
+    "-b",
+    "--no-pager",
+    "-o",
+    "json",
+    "-u",
+    "chrony.service"
+  ],
+  "stderr": "",
+  "records": [
+    {
+      "at_kst": "2026-10-09T00:11:08.183450+09:00",
+      "monotonic_us": 6141268,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "chrony.service",
+      "pid": "1",
+      "message": "Starting chrony.service - chrony, an NTP client/server..."
+    },
+    {
+      "at_kst": "2026-10-09T00:11:08.270085+09:00",
+      "monotonic_us": 6227903,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "chrony.service",
+      "pid": "1185",
+      "message": "{\"rtc_utc\": true}"
+    },
+    {
+      "at_kst": "2026-10-09T00:11:08.293981+09:00",
+      "monotonic_us": 6251799,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "chrony.service",
+      "pid": "1245",
+      "message": "chronyd version 4.5 starting (+CMDMON +NTP +REFCLOCK +RTC +PRIVDROP +SCFILTER +SIGND +ASYNCDNS +NTS +SECHASH +IPV6 -DEBUG)"
+    },
+    {
+      "at_kst": "2026-10-09T00:11:08.294574+09:00",
+      "monotonic_us": 6252392,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "chrony.service",
+      "pid": "1245",
+      "message": "Frequency 24.944 +/- 24.314 ppm read from /var/lib/chrony/chrony.drift"
+    },
+    {
+      "at_kst": "2026-10-09T00:11:08.295668+09:00",
+      "monotonic_us": 6253486,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "chrony.service",
+      "pid": "1245",
+      "message": "Using right/UTC timezone to obtain leap second data"
+    },
+    {
+      "at_kst": "2026-10-09T00:11:08.296163+09:00",
+      "monotonic_us": 6253981,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "chrony.service",
+      "pid": "1245",
+      "message": "Loaded seccomp filter (level 1)"
+    },
+    {
+      "at_kst": "2026-10-09T00:11:08.297631+09:00",
+      "monotonic_us": 6255449,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "chrony.service",
+      "pid": "1",
+      "message": "Started chrony.service - chrony, an NTP client/server."
+    },
+    {
+      "at_kst": "2026-10-09T00:11:16.460841+09:00",
+      "monotonic_us": 14418659,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "chrony.service",
+      "pid": "1245",
+      "message": "Selected source 185.125.190.57 (ntp.ubuntu.com)"
+    },
+    {
+      "at_kst": "2026-10-09T04:49:28.120428+09:00",
+      "monotonic_us": 16706078246,
+      "boot_id": "eb163bf266424336b4d66cd58771b13d",
+      "unit": "chrony.service",
+      "pid": "1245",
+      "message": "Selected source 91.189.91.157 (ntp.ubuntu.com)"
+    }
+  ]
+}

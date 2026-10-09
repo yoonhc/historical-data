@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "scope": "installer extraction and exact offline dependency installation in a fresh user-owned temporary directory; no operating writes",
+  "fixture": "/tmp/clock-install-check-4y_07ul2",
+  "collector_release": "clock-evidence-policy-20261009-65296619a374c325",
+  "comparison_fields": [
+    "python",
+    "release_id",
+    "editable",
+    "runtime_files_sha256",
+    "distributions"
+  ],
+  "runtime_files": 37,
+  "events": [
+    {
+      "sample": {
+        "utc": "2026-10-09T10:18:53.181002+00:00",
+        "boottime_ns": 68871138832667
+      },
+      "phase": "validation",
+      "kind": "command_intent",
+      "argv": [
+        "/home/yoonhc/.local/bin/uv",
+        "sync",
+        "--frozen",
+        "--no-editable",
+        "--offline",
+        "--link-mode",
+        "copy",
+        "--python",
+        "/usr/bin/python3",
+        "--cache-dir",
+        "/home/yoonhc/projects/algoTrade/historical_data/.cache/uv",
+        "--reinstall-package",
+        "marketdata",
+        "--reinstall-package",
+        "marketdata-freqtrade"
+      ]
+    },
+    {
+      "sample": {
+        "utc": "2026-10-09T10:18:53.986005+00:00",
+        "boottime_ns": 68871943840593
+      },
+      "phase": "validation",
+      "kind": "command_result",
+      "argv": [
+        "/home/yoonhc/.local/bin/uv",
+        "sync",
+        "--frozen",
+        "--no-editable",
+        "--offline",
+        "--link-mode",
+        "copy",
+        "--python",
+        "/usr/bin/python3",
+        "--cache-dir",
+        "/home/yoonhc/projects/algoTrade/historical_data/.cache/uv",
+        "--reinstall-package",
+        "marketdata",
+        "--reinstall-package",
+        "marketdata-freqtrade"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Using CPython 3.12.3 interpreter at: /usr/bin/python3\nCreating virtual environment at: .venv\n   Building marketdata @ file:///tmp/clock-install-check-4y_07ul2/release/packages/marketdata\n   Building marketdata-freqtrade @ file:///tmp/clock-install-check-4y_07ul2/release/packages/marketdata_freqtrade\n      Built marketdata-freqtrade @ file:///tmp/clock-install-check-4y_07ul2/release/packages/marketdata_freqtrade\n      Built marketdata @ file:///tmp/clock-install-check-4y_07ul2/release/packages/marketdata\nPrepared 2 packages in 595ms\nInstalled 18 packages in 153ms\n + anyio==4.15.1\n + certifi==2026.7.22\n + duckdb==1.5.5\n + h11==0.16.0\n + httpcore==1.0.9\n + httpx==0.28.1\n + idna==3.20\n + iniconfig==2.3.0\n + marketdata==0.1.0 (from file:///tmp/clock-install-check-4y_07ul2/release/packages/marketdata)\n + marketdata-freqtrade==0.1.0 (from file:///tmp/clock-install-check-4y_07ul2/release/packages/marketdata_freqtrade)\n + packaging==26.3\n + pluggy==1.6.0\n + pyarrow==23.0.1\n + pygments==2.21.0\n + pytest==9.1.1\n + ruff==0.16.8\n + typing-extensions==4.16.0\n + websockets==17.1\n"
+    },
+    {
+      "sample": {
+        "utc": "2026-10-09T10:18:53.986127+00:00",
+        "boottime_ns": 68871943949885
+      },
+      "phase": "validation",
+      "kind": "command_intent",
+      "argv": [
+        "/tmp/clock-install-check-4y_07ul2/release/.venv/bin/python",
+        "-B",
+        "-I",
+        "/tmp/clock-install-check-4y_07ul2/release/integrations/runtime/seal_runtime.py"
+      ]
+    },
+    {
+      "sample": {
+        "utc": "2026-10-09T10:18:54.037000+00:00",
+        "boottime_ns": 68871994833500
+      },
+      "phase": "validation",
+      "kind": "command_result",
+      "argv": [
+        "/tmp/clock-install-check-4y_07ul2/release/.venv/bin/python",
+        "-B",
+        "-I",
+        "/tmp/clock-install-check-4y_07ul2/release/integrations/runtime/seal_runtime.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\"release_id\": \"clock-evidence-policy-20261009-65296619a374c325\", \"checked_files\": 37, \"marketdata_origin\": \"/tmp/clock-install-check-4y_07ul2/release/.venv/lib/python3.12/site-packages/marketdata\"}\n",
+      "stderr": ""
+    }
+  ]
+}

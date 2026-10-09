@@ -1,0 +1,57 @@
+{
+  "observed_at": "2026-10-09T00:31:12.019827+00:00",
+  "commands": [
+    {
+      "argv": [
+        "systemctl",
+        "--user",
+        "list-jobs",
+        "--no-pager"
+      ],
+      "returncode": 0,
+      "stdout": "No jobs running.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "--user",
+        "show",
+        "marketdata-clock-ready.service",
+        "marketdata-pack.service",
+        "marketdata-backup.service",
+        "marketdata-restic-archive.service",
+        "-p",
+        "Id",
+        "-p",
+        "ActiveState",
+        "-p",
+        "SubState",
+        "-p",
+        "Result"
+      ],
+      "returncode": 0,
+      "stdout": "Result=success\nId=marketdata-clock-ready.service\nActiveState=inactive\nSubState=dead\n\nResult=success\nId=marketdata-pack.service\nActiveState=inactive\nSubState=dead\n\nResult=success\nId=marketdata-backup.service\nActiveState=inactive\nSubState=dead\n\nResult=success\nId=marketdata-restic-archive.service\nActiveState=inactive\nSubState=dead\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "show",
+        "marketdata-collector@depth.service",
+        "marketdata-collector@aggtrade.service",
+        "-p",
+        "Id",
+        "-p",
+        "ActiveState",
+        "-p",
+        "SubState",
+        "-p",
+        "MainPID"
+      ],
+      "returncode": 0,
+      "stdout": "MainPID=94972\nId=marketdata-collector@depth.service\nActiveState=active\nSubState=running\n\nMainPID=95178\nId=marketdata-collector@aggtrade.service\nActiveState=active\nSubState=running\n",
+      "stderr": ""
+    }
+  ]
+}

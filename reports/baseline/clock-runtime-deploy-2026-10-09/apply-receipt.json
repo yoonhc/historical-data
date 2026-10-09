@@ -1,0 +1,205 @@
+{
+  "activation": {
+    "environment": {
+      "release_id": "clock-evidence-policy-20261009-65296619a374c325"
+    },
+    "provider": {
+      "provider": {
+        "argv": [
+          "/usr/sbin/chronyd",
+          "-F",
+          "1",
+          "-f",
+          "/etc/chrony/marketdata.conf",
+          ""
+        ],
+        "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+        "pid": 1245
+      }
+    },
+    "units": {
+      "marketdata-collector@aggtrade.service": {
+        "ActiveState": "failed",
+        "CapabilityBoundingSet": "",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecStart": "{ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py --profile /etc/marketdata/runtime.json --stream aggtrade --bootstrap-profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "ExecStartPre": "{ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\n{ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream aggtrade ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/etc/systemd/system/marketdata-collector@.service",
+        "KillMode": "mixed",
+        "KillSignal": "2",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "NoNewPrivileges": "yes",
+        "PrivateTmp": "yes",
+        "ProtectClock": "yes",
+        "ProtectHome": "read-only",
+        "ProtectSystem": "strict",
+        "ReadWritePaths": "/home/yoonhc/projects/algoTrade/historical_data /home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock",
+        "Restart": "always",
+        "RestrictAddressFamilies": "AF_INET AF_INET6 AF_NETLINK AF_UNIX",
+        "RuntimeMaxUSec": "infinity",
+        "TimeoutStopUSec": "5min 30s",
+        "User": "yoonhc",
+        "WorkingDirectory": "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325"
+      },
+      "marketdata-collector@depth.service": {
+        "ActiveState": "failed",
+        "CapabilityBoundingSet": "",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecStart": "{ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py --profile /etc/marketdata/runtime.json --stream depth --bootstrap-profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "ExecStartPre": "{ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\n{ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream depth ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/etc/systemd/system/marketdata-collector@.service",
+        "KillMode": "mixed",
+        "KillSignal": "2",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "NoNewPrivileges": "yes",
+        "PrivateTmp": "yes",
+        "ProtectClock": "yes",
+        "ProtectHome": "read-only",
+        "ProtectSystem": "strict",
+        "ReadWritePaths": "/home/yoonhc/projects/algoTrade/historical_data /home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock",
+        "Restart": "always",
+        "RestrictAddressFamilies": "AF_INET AF_INET6 AF_NETLINK AF_UNIX",
+        "RuntimeMaxUSec": "infinity",
+        "TimeoutStopUSec": "5min 30s",
+        "User": "yoonhc",
+        "WorkingDirectory": "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325"
+      }
+    }
+  },
+  "approval_sha256": "cfa1c9a10da9d4eff6601cb69d484505ae8cb6849ddcffe11a32cad3c75b98f0",
+  "clock_at_commit": {
+    "conditional_error_bound_seconds": 0.12579378,
+    "provider": {
+      "argv": [
+        "/usr/sbin/chronyd",
+        "-F",
+        "1",
+        "-f",
+        "/etc/chrony/marketdata.conf",
+        ""
+      ],
+      "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+      "pid": 1245
+    },
+    "ready": true,
+    "reasons": [],
+    "reference_age_seconds": 82.62514925003052,
+    "sample": {
+      "boottime_ns": 69764547603407,
+      "monotonic_ns": 69764547602580,
+      "sampling_span_ns": 2535,
+      "wall_ns": 1791542026589784217
+    },
+    "tracking": {
+      "correction": 0.002274192,
+      "leap": "Normal",
+      "raw_csv": "5BBD5B9D,91.189.91.157,3,1791541943.964594056,0.002274192,-0.000435690,0.001090743,25.632,-0.005,0.337,0.237829864,0.004604656,517.9,Normal",
+      "reference_address": "91.189.91.157",
+      "reference_id": "5BBD5B9D",
+      "reference_time": 1791541943.9645941,
+      "root_delay": 0.237829864,
+      "root_dispersion": 0.004604656,
+      "skew_ppm": 0.337,
+      "stratum": 3
+    }
+  },
+  "direction": "apply",
+  "ledger_after": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "closed_boottime": 15.635695814,
+    "closed_observation": {
+      "conditional_error_bound_seconds": 0.1957006285,
+      "provider": {
+        "argv": [
+          "/usr/sbin/chronyd",
+          "-F",
+          "1",
+          "-f",
+          "/etc/chrony/marketdata.conf",
+          ""
+        ],
+        "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+        "pid": 1245
+      },
+      "ready": true,
+      "reasons": [],
+      "reference_age_seconds": 2.038670778274536,
+      "sample": {
+        "boottime_ns": 15873612363,
+        "monotonic_ns": 15873611848,
+        "sampling_span_ns": 1579,
+        "wall_ns": 1791472277915793853
+      },
+      "tracking": {
+        "correction": -0.066962399,
+        "leap": "Normal",
+        "raw_csv": "B97DBE39,185.125.190.57,3,1791472275.877091736,-0.066962399,0.198808655,0.198808655,24.944,7.388,24.314,0.253650129,0.001913165,0.0,Normal",
+        "reference_address": "185.125.190.57",
+        "reference_id": "B97DBE39",
+        "reference_time": 1791472275.8770916,
+        "root_delay": 0.253650129,
+        "root_dispersion": 0.001913165,
+        "skew_ppm": 24.314,
+        "stratum": 3
+      }
+    },
+    "configuration_history": [
+      {
+        "approval_sha256": "cfa1c9a10da9d4eff6601cb69d484505ae8cb6849ddcffe11a32cad3c75b98f0",
+        "direction": "apply",
+        "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+        "receipt": "/var/lib/marketdata-clock/runtime-transitions/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/apply-receipt.json"
+      }
+    ],
+    "first_boottime": 10.33559517,
+    "last_wait": {
+      "long_wait": false,
+      "needs_review": false,
+      "phase": "preparing",
+      "ready": false,
+      "reasons": [
+        "no_external_reference",
+        "not_synchronized_or_leap_pending",
+        "reference_age",
+        "clock_error_bound"
+      ],
+      "step_attempts": 0,
+      "wait_seconds": 0
+    },
+    "phase": "closed",
+    "profile_sha256": "7e10950ef3cced4ac226aadbc5a92e26a7e81cfce26ea3145ca1545f32aea888",
+    "schema": 1,
+    "step_attempts": 0
+  },
+  "ledger_after_sha256": "6a868a7a5f692115c10413c567a7b2978889a53a26f24c5a4732bc6f861775de",
+  "ledger_before_sha256": "666e49943506429f386417d2e81ba8a2a07b2891c985bd8846098e6f5be249f0",
+  "observed_boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+  "receipt_id": "78892dc07bcc906857971d9a05f4363b8495c30b6b778ed97af30a6bb9e678f5",
+  "sample": {
+    "boottime_ns": 69764548341793,
+    "monotonic_ns": 69764548341397,
+    "sampling_span_ns": 1493,
+    "wall_ns": 1791542026590523345
+  },
+  "schema": 1,
+  "systemctl_reader_recovery": {
+    "original_plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+    "original_tool_sha256": {
+      "clock_gate.py": "91c403fb2c37a9062a13818209a0b262146a01f402c2a456fb903012898210c0",
+      "collector_transition.py": "e7d5f4a6757ba2c2663e38ad15756534e2752ae71d98289c223fb6db98e2425a",
+      "marketdata_runtime.py": "0b145143706bd06f18f3e7b73da9a68f4e787b8f14878147f20c2b2d73883813",
+      "release-pins.json": "fa30446a34813ad0cdd6ca8e37ec9d28a3b2d5f0ed92fc92277c3164e594cd30",
+      "render_units.py": "3717aeabffa131659da44bfd39eb88463bec148ad3e35b5b334d2c6b5541d4d2"
+    },
+    "reason": "Preserve all repeated ExecStartPre properties; no activation checks waived",
+    "sha256": "fb7d502cc4516b916a366ce05c28e7a0014fbc195fbcb4837acb9d5261c82d23",
+    "source": "/var/lib/marketdata-clock/runtime-approvals/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/reader-recovery-fb7d502cc4516b91/continue_runtime.py"
+  }
+}
