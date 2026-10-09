@@ -1,0 +1,438 @@
+{
+  "scope": "preserve existing code and evidence; documentation only, no operating changes or test reruns",
+  "base_commit": "dbbbf3fc92e60d6db6cfc519e437d93383d17b37",
+  "checked_at": "2026-10-09T11:42:20.650944+00:00",
+  "evidence_files": 1041,
+  "evidence_bytes": 84808682,
+  "unique_evidence_contents": 462,
+  "preserved_ignored_chrony_logs": 26,
+  "parsing": {
+    "json_unique": 158,
+    "jsonl_unique": 15,
+    "python_unique": 145
+  },
+  "release_checks": [
+    {
+      "manifest": "reports/baseline/chrony-source-candidate-2026-10-09/release.json",
+      "release_id": "clock-config-20261009-904f84547ed4ecf9",
+      "archive": "reports/baseline/chrony-source-candidate-2026-10-09/clock-config-20261009-904f84547ed4ecf9.tar.gz",
+      "source_files": 4,
+      "errors": []
+    },
+    {
+      "manifest": "reports/baseline/chrony-source-candidate-2026-10-09/release-final.json",
+      "release_id": "clock-config-20261009-c365499dab14a4b1",
+      "archive": "reports/baseline/chrony-source-candidate-2026-10-09/clock-config-20261009-c365499dab14a4b1.tar.gz",
+      "source_files": 4,
+      "errors": []
+    },
+    {
+      "manifest": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/release.json",
+      "release_id": "clock-evidence-policy-20261009-a2cddb95dd879544",
+      "archive": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/source.tar.gz",
+      "source_files": 175,
+      "errors": []
+    },
+    {
+      "manifest": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/release-final.json",
+      "release_id": "clock-evidence-policy-20261009-26e7fd4bbd0a68a5",
+      "archive": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/source-final.tar.gz",
+      "source_files": 175,
+      "errors": []
+    },
+    {
+      "manifest": "reports/baseline/clock-runtime-transition-2026-10-09/collector-correction/release.json",
+      "release_id": "clock-evidence-policy-20261009-65296619a374c325",
+      "archive": "reports/baseline/clock-runtime-transition-2026-10-09/collector-correction/source.tar.gz",
+      "source_files": 175,
+      "errors": []
+    },
+    {
+      "manifest": "reports/baseline/clock-runtime-transition-2026-10-09/release-initial.json",
+      "release_id": "collector-transition-20261009-5e638d1f248b8d94",
+      "archive": "reports/baseline/clock-runtime-transition-2026-10-09/transition-source-initial.tar.gz",
+      "source_files": 9,
+      "errors": []
+    },
+    {
+      "manifest": "reports/baseline/clock-runtime-transition-2026-10-09/release.json",
+      "release_id": "collector-transition-20261009-a1d044656ad1c035",
+      "archive": "reports/baseline/clock-runtime-transition-2026-10-09/transition-source.tar.gz",
+      "source_files": 9,
+      "errors": []
+    },
+    {
+      "manifest": "reports/baseline/clock-runtime-transition-2026-10-09/release-final.json",
+      "release_id": "collector-transition-20261009-1c7c4120369fd893",
+      "archive": "reports/baseline/clock-runtime-transition-2026-10-09/transition-source-final.tar.gz",
+      "source_files": 9,
+      "errors": []
+    }
+  ],
+  "recorded_test_results": [
+    {
+      "path": "reports/baseline/chrony-source-candidate-2026-10-09/transition-tests-final.xml",
+      "counts": {
+        "tests": 48,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "rerun_this_task": false
+    },
+    {
+      "path": "reports/baseline/chrony-source-candidate-2026-10-09/clean-transition-tests-final.xml",
+      "counts": {
+        "tests": 48,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "rerun_this_task": false
+    },
+    {
+      "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/clean-final-regression.xml",
+      "counts": {
+        "tests": 304,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "rerun_this_task": false
+    },
+    {
+      "path": "reports/baseline/clock-runtime-transition-2026-10-09/collector-correction/regression.xml",
+      "counts": {
+        "tests": 305,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "rerun_this_task": false
+    },
+    {
+      "path": "reports/baseline/clock-runtime-transition-2026-10-09/transition-final.xml",
+      "counts": {
+        "tests": 58,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "rerun_this_task": false
+    },
+    {
+      "path": "reports/baseline/clock-runtime-transition-2026-10-09/transition-final-clean.xml",
+      "counts": {
+        "tests": 58,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "rerun_this_task": false
+    }
+  ],
+  "reader_recovery_source_hashes_match": true,
+  "reader_recorded_results": {
+    "total_passed": 67,
+    "new_reader_cases": 9,
+    "existing_transition_cases": 58,
+    "seconds": 1.28,
+    "command": "/tmp/clock-shutdown-correction-cpmkuynr/.venv/bin/python -B -m pytest reports/baseline/clock-runtime-deploy-2026-10-09/test_systemctl_reader.py reports/baseline/clock-runtime-transition-2026-10-09/release-final/test_transition.py -q -p no:cacheprovider"
+  },
+  "checked_document_paths": [
+    "README.md",
+    "TODO.md",
+    "reports/README.md",
+    "docs/system-runtime-operations.md",
+    "docs/milestones/2026-10-09-clock-evidence-and-capture-policy.md",
+    "reports/baseline/work-summary-2026-10-09/summary.md"
+  ],
+  "credential_pattern_findings": [],
+  "failures": [],
+  "passed": true,
+  "local_links_checked": 162,
+  "staged_group_1": {
+    "files": 980,
+    "allowlist_and_content_hashes_match": true,
+    "source_and_document_whitespace_check_passed": true,
+    "preserved_raw_whitespace_diagnostics": [
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate-final.patch",
+        "line": 490,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate-final.patch",
+        "line": 497,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate-final.patch",
+        "line": 506,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate-final.patch",
+        "line": 507,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate-final.patch",
+        "line": 907,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate-final.patch",
+        "line": 921,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate-final.patch",
+        "line": 922,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate.patch",
+        "line": 453,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate.patch",
+        "line": 460,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate.patch",
+        "line": 469,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate.patch",
+        "line": 470,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate.patch",
+        "line": 855,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate.patch",
+        "line": 869,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/candidate.patch",
+        "line": 870,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/deployment/configuration.diff",
+        "line": 78,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-final.xml",
+        "line": 23,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-final.xml",
+        "line": 27,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 8,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 30,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 31,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 37,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 58,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 68,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 76,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 79,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 81,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 102,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 104,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 122,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 156,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 160,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 172,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 182,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 222,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 244,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 245,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 251,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 272,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 282,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 290,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 293,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 295,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 316,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 318,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 336,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 370,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 374,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 386,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-evidence-policy-candidate-2026-10-09/regression-initial.xml",
+        "line": 396,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-runtime-transition-2026-10-09/configuration-final.diff",
+        "line": 30,
+        "diagnostic": "trailing whitespace."
+      },
+      {
+        "path": "reports/baseline/clock-runtime-transition-2026-10-09/shutdown-order-before.xml",
+        "line": 25,
+        "diagnostic": "trailing whitespace."
+      }
+    ],
+    "note": "Unified-diff context blank lines and original failure XML whitespace are preserved byte-for-byte; no pinned artifacts rewritten."
+  },
+  "staged_group_2": {
+    "files": 61,
+    "allowlist_and_content_hashes_match": true,
+    "whitespace_check_passed": true
+  },
+  "preservation_commits": [
+    {
+      "commit": "d27483c150577c086437ab1228c1a1c07c7788a7",
+      "files": 980,
+      "allowlist_matches": true
+    },
+    {
+      "commit": "c4aa6beb289eb9f82f18c390172ac62c1d661edb",
+      "files": 61,
+      "allowlist_matches": true
+    }
+  ],
+  "committed_evidence_verified": {
+    "files": 1041,
+    "all_sizes_and_sha256_match": true
+  }
+}

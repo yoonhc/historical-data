@@ -1,9 +1,41 @@
 # 검증 기록
 
-[2026-10-09 후속 작업 마일스톤](../docs/milestones/2026-10-09-system-runtime-and-cutover.md)이
+[2026-10-09 시스템 전환 마일스톤](../docs/milestones/2026-10-09-system-runtime-and-cutover.md)이
 이전 10/3 마일스톤 이후의 독립 복구·정리·호가 보완부터 시각 관리·운영 전환까지 묶습니다.
+[같은 날 후속 마일스톤](../docs/milestones/2026-10-09-clock-evidence-and-capture-policy.md)은 그 기준 시각
+00:47 이후의 aggTrade 보강·백업 편입과 T04·T11 구현·실제 적용을 다룹니다.
 후보의 미설치·미검증 표시는 각 시험 당시 상태이며,
 현재 적용 상태는 [시스템 서비스 운영 안내](../docs/system-runtime-operations.md), 남은 일은 [TODO](../TODO.md)를 따릅니다.
+
+이번 Git 보존 범위와 고정 배포본 해시·기존 검사 결과·문서 링크 대조는
+[작업 정리 검증](baseline/work-summary-2026-10-09/summary.md)에 기록했습니다.
+
+`baseline/clock-runtime-deploy-2026-10-09/`는 T04·T11의 실제 운영 적용 기록입니다.
+[요약](baseline/clock-runtime-deploy-2026-10-09/summary.md)에 반복 ExecStartPre 출력 파서 결함으로 인한 중단,
+보완 코드·원래 계획의 해시 연결, 19:33 적용·초기 저장과 20:17까지의 시각 근거 관측을 남겼습니다.
+전환 공백의 aggTrade 4,031개 자동 보강과 호가 원문 공백을 구분하며, 첫 child 전환·새 근거 백업은 아직 미완료입니다.
+
+`baseline/clock-runtime-transition-2026-10-09/`는 최종 수집본 `65296619a374c325`와 전환 도구의 검증입니다.
+[요약](baseline/clock-runtime-transition-2026-10-09/summary.md)에 종료 표본 순서 수정·305건,
+전환 58건과 clean 재현, 실제 root 종료·재시작, 새 근거가 남은 상태의 이전 runtime 원복·백업 호환을 보존했습니다.
+원래 후보·실패 기록과 고정 재현 입력도 포함합니다.
+
+`baseline/clock-evidence-policy-candidate-2026-10-09/`는 T04·T11 최소 구현의 초기 고정 후보입니다.
+[요약](baseline/clock-evidence-policy-candidate-2026-10-09/summary.md)에 collection 연결·불변 artifact·조회,
+지속 supervisor와 stale 단독 예외, 304건과 격리 restic 복원 근거를 남겼습니다.
+그 후보의 `26e7fd4bbd0a68a5`와 이후 운영 적용된 `65296619a374c325`를 구분합니다.
+
+`baseline/chrony-source-candidate-2026-10-09/`는 미적용 시간원 후보와 설정 전환 도구입니다.
+[요약](baseline/chrony-source-candidate-2026-10-09/summary.md)에 실측·Chrony 4.5 장애 관측·전환 도구 48건을 보존했고,
+T10은 이후 활성 목록에서 제외했습니다. 600초 내 선택 변경을 Chrony의 보장으로 요구하지 않습니다.
+검토용 설정·승인되지 않은 계획을 현재 운영에 적용한 것으로 취급하지 않습니다.
+
+`baseline/chrony-reference-age-2026-10-09/`는 [응답 수신 격차와 기존 600초 gate의 영향 조사](baseline/chrony-reference-age-2026-10-09/summary.md)입니다.
+당시 원문 관측과 시각·ID 연결 근거를 보존하며, 이후 실행 정책 변경은 T11의 별도 적용 기록을 따릅니다.
+
+`baseline/aggtrade-gap-repair-2026-10-09/`는 [264,069개 누락 ID 보강·독립 파일 대조](baseline/aggtrade-gap-repair-2026-10-09/summary.md)와
+[530개 파일의 실제 checkpoint·예약 restic 전체 검사 편입](baseline/aggtrade-gap-repair-2026-10-09/backup-inclusion.md) 근거입니다.
+과거 WS 수신 시각·실패 보고서를 수정하지 않았으며 상시 수집 전 4개 공백은 남아 있습니다.
 
 `baseline/aggtrade-coverage-2026-10-09/`는 aggTrade 카탈로그 전체 범위와 공개 아카이브 제공 확인이다.
 [요약](baseline/aggtrade-coverage-2026-10-09/summary.md)에 상시 수집 이후 잔여 공백 1구간 264,069건,

@@ -5,9 +5,10 @@ Freqtrade와 연구 노트북은 이 프로젝트가 제공하는 데이터를 �
 
 현재 할 일·관찰 예정·보류 항목은 [TODO.md](TODO.md)에서 관리합니다. 작업 시작과 종료 때 갱신하며,
 완료 항목은 결과 문서에 근거를 남긴 뒤 목록에서 정리합니다.
-2026-10-09 현재 두 스트림은 고정 배포본의 **시스템 서비스**로 전환했습니다.
+2026-10-09 현재 두 스트림은 고정 배포본의 **시스템 서비스**로 실행하며,
+시각 근거 보존과 reference 지연만 있는 경우 다음 수집을 허용하는 정책을 운영에 적용했습니다.
 [현재 상태 조회·배포·되돌리기 안내](docs/system-runtime-operations.md)와
-[최신 전환 결과와 남은 관찰](reports/baseline/system-cutover-2026-10-08/post-reboot-summary.md)을 참고하세요.
+[최신 적용 결과와 남은 관찰](reports/baseline/clock-runtime-deploy-2026-10-09/summary.md)을 참고하세요.
 
 첫 구현과 실제 데이터 검증을 마쳤습니다. 수집 코어에는 Freqtrade 의존성이 없고,
 별도 어댑터가 고정 스냅샷을 Feather/Parquet으로 내보냅니다. Freqtrade는 공식 Docker 이미지에서 실행합니다.
@@ -31,6 +32,10 @@ restic 비교·복원과 병행 예약 3/3, 호가 재시도·조기 갱신·조
 시각 관리·고정 배포본·Windows/Linux UTC RTC·Chrony·시스템 서비스 전환은
 [2026-10-09 후속 작업 총정리](docs/milestones/2026-10-09-system-runtime-and-cutover.md)에 묶었습니다.
 실제 부팅·저장 성공과 aggTrade 공백·새 백업 관찰·자동 정리 보류를 구분합니다.
+
+그 문서의 10/9 00:47 기준 이후 aggTrade 보강·백업 편입, 시각 정책 개선·근거 보존,
+실제 적용과 실패/재개는 [2026-10-09 시각 근거와 수집 정책 후속](docs/milestones/2026-10-09-clock-evidence-and-capture-policy.md)에
+정리했습니다. 첫 child 전환과 신규 시각 근거의 운영 백업·복원은 아직 관찰 대기입니다.
 
 ## 현재 확보한 데이터
 
