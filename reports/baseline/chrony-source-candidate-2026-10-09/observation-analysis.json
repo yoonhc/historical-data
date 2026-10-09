@@ -1,0 +1,1767 @@
+{
+  "public": {
+    "public-observation-attempt-3": {
+      "started_at": "2026-10-09T01:36:12.491996+00:00",
+      "finished_at": "2026-10-09T02:06:12.506910+00:00",
+      "completed": true,
+      "sample_seconds": 30,
+      "binary_sha256": "7a834e478d8a904c39a348606a5d0ac58fd1ccbca24f333a8170c786af8ca508",
+      "clock_control": false,
+      "capabilities": "CapEff:\t0000000000000000",
+      "source_records": [
+        {
+          "operator": "cloudflare",
+          "hostname": "time.cloudflare.com",
+          "resolved_at": "2026-10-09T01:36:12.490319+00:00",
+          "ipv4_answers": [
+            "162.159.200.1",
+            "162.159.200.123"
+          ],
+          "observed_address": "162.159.200.1",
+          "tx": 30,
+          "rx": 30,
+          "valid_rx": 30,
+          "good_rx": 30,
+          "last_peer_delay_seconds": 0.00339007,
+          "last_source_offset_seconds": 0.003554859,
+          "observed_peer_delay_range_seconds": [
+            0.002012116,
+            0.00339007
+          ],
+          "observed_source_offset_range_seconds": [
+            -0.002510761,
+            0.00442511
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "0A6A0804",
+          "observed_leap": "Normal"
+        },
+        {
+          "operator": "nict",
+          "hostname": "ntp.nict.jp",
+          "resolved_at": "2026-10-09T01:36:12.490705+00:00",
+          "ipv4_answers": [
+            "133.243.238.163",
+            "133.243.238.164",
+            "133.243.238.243",
+            "133.243.238.244",
+            "61.205.120.130"
+          ],
+          "observed_address": "133.243.238.163",
+          "tx": 21,
+          "rx": 6,
+          "valid_rx": 6,
+          "good_rx": 6,
+          "last_peer_delay_seconds": 0.042140417,
+          "last_source_offset_seconds": -0.007076801,
+          "observed_peer_delay_range_seconds": [
+            0.042140417,
+            0.047718894
+          ],
+          "observed_source_offset_range_seconds": [
+            -0.007076801,
+            -0.002738488
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "4E494354",
+          "observed_leap": "Normal"
+        },
+        {
+          "operator": "netnod",
+          "hostname": "ntp.netnod.se",
+          "resolved_at": "2026-10-09T01:36:12.490870+00:00",
+          "ipv4_answers": [
+            "194.58.200.20"
+          ],
+          "observed_address": "194.58.200.20",
+          "tx": 19,
+          "rx": 5,
+          "valid_rx": 5,
+          "good_rx": 5,
+          "last_peer_delay_seconds": 0.244464055,
+          "last_source_offset_seconds": 0.002673191,
+          "observed_peer_delay_range_seconds": [
+            0.244464055,
+            0.246702492
+          ],
+          "observed_source_offset_range_seconds": [
+            -0.004217665,
+            0.002673191
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "50505300",
+          "observed_leap": "Normal"
+        },
+        {
+          "operator": "ptb",
+          "hostname": "ptbtime1.ptb.de",
+          "resolved_at": "2026-10-09T01:36:12.491014+00:00",
+          "ipv4_answers": [
+            "192.53.103.108"
+          ],
+          "observed_address": "192.53.103.108",
+          "tx": 17,
+          "rx": 3,
+          "valid_rx": 3,
+          "good_rx": 3,
+          "last_peer_delay_seconds": 0.273828983,
+          "last_source_offset_seconds": 0.014195639,
+          "observed_peer_delay_range_seconds": [
+            0.27145052,
+            0.273828983
+          ],
+          "observed_source_offset_range_seconds": [
+            0.012259422,
+            0.014195639
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "50544200",
+          "observed_leap": "Normal"
+        }
+      ],
+      "first_ready_observation": {
+        "observed_at": "2026-10-09T01:37:42.495565+00:00",
+        "selected_addresses": [
+          "162.159.200.1"
+        ],
+        "reference_address": "162.159.200.1",
+        "reference_epoch": 1791509842.1056714,
+        "reference_utc": "2026-10-09T01:37:22.105671+00:00",
+        "reference_age_seconds": 20.400132417678833,
+        "ready": true,
+        "reasons": []
+      },
+      "selection_changes": [
+        {
+          "observed_at": "2026-10-09T01:36:12.595861+00:00",
+          "selected_addresses": [],
+          "reference_address": "",
+          "reference_epoch": 0.0,
+          "reference_utc": "1970-01-01T00:00:00+00:00",
+          "reference_age_seconds": 1791509772.6060457,
+          "ready": false,
+          "reasons": [
+            "no_external_reference",
+            "not_synchronized_or_leap_pending",
+            "reference_age",
+            "clock_error_bound"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T01:36:42.495572+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791509778.7572885,
+          "reference_utc": "2026-10-09T01:36:18.757288+00:00",
+          "reference_age_seconds": 23.748077154159546,
+          "ready": false,
+          "reasons": [
+            "clock_error_bound",
+            "frequency_uncertainty"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T01:49:42.495833+00:00",
+          "selected_addresses": [],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791510489.28672,
+          "reference_utc": "2026-10-09T01:48:09.286720+00:00",
+          "reference_age_seconds": 93.21887421607971,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:58:12.496267+00:00",
+          "selected_addresses": [
+            "133.243.238.163"
+          ],
+          "reference_address": "133.243.238.163",
+          "reference_epoch": 1791511083.792132,
+          "reference_utc": "2026-10-09T01:58:03.792132+00:00",
+          "reference_age_seconds": 8.713306903839111,
+          "ready": true,
+          "reasons": []
+        }
+      ],
+      "reference_updates": [
+        {
+          "observed_at": "2026-10-09T01:36:12.595861+00:00",
+          "selected_addresses": [],
+          "reference_address": "",
+          "reference_epoch": 0.0,
+          "reference_utc": "1970-01-01T00:00:00+00:00",
+          "reference_age_seconds": 1791509772.6060457,
+          "ready": false,
+          "reasons": [
+            "no_external_reference",
+            "not_synchronized_or_leap_pending",
+            "reference_age",
+            "clock_error_bound"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T01:36:42.495572+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791509778.7572885,
+          "reference_utc": "2026-10-09T01:36:18.757288+00:00",
+          "reference_age_seconds": 23.748077154159546,
+          "ready": false,
+          "reasons": [
+            "clock_error_bound",
+            "frequency_uncertainty"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T01:37:42.495565+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791509842.1056714,
+          "reference_utc": "2026-10-09T01:37:22.105671+00:00",
+          "reference_age_seconds": 20.400132417678833,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:38:42.495586+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791509906.7648377,
+          "reference_utc": "2026-10-09T01:38:26.764838+00:00",
+          "reference_age_seconds": 15.74107551574707,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:39:42.495552+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791509970.798565,
+          "reference_utc": "2026-10-09T01:39:30.798565+00:00",
+          "reference_age_seconds": 11.707155227661133,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:40:42.496383+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791510035.7013786,
+          "reference_utc": "2026-10-09T01:40:35.701379+00:00",
+          "reference_age_seconds": 6.803886651992798,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:41:42.495593+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791510101.188753,
+          "reference_utc": "2026-10-09T01:41:41.188753+00:00",
+          "reference_age_seconds": 1.3152635097503662,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:43:12.495670+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791510165.9144404,
+          "reference_utc": "2026-10-09T01:42:45.914440+00:00",
+          "reference_age_seconds": 26.59137749671936,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:44:12.495582+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791510230.4839447,
+          "reference_utc": "2026-10-09T01:43:50.483945+00:00",
+          "reference_age_seconds": 22.018894910812378,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:45:12.495565+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791510295.0546968,
+          "reference_utc": "2026-10-09T01:44:55.054697+00:00",
+          "reference_age_seconds": 17.449026107788086,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:46:12.495570+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791510360.4952602,
+          "reference_utc": "2026-10-09T01:46:00.495260+00:00",
+          "reference_age_seconds": 12.00873851776123,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:47:12.495593+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791510424.3872075,
+          "reference_utc": "2026-10-09T01:47:04.387208+00:00",
+          "reference_age_seconds": 8.11771821975708,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:48:12.495554+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791510489.28672,
+          "reference_utc": "2026-10-09T01:48:09.286720+00:00",
+          "reference_age_seconds": 3.2170608043670654,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T01:58:12.496267+00:00",
+          "selected_addresses": [
+            "133.243.238.163"
+          ],
+          "reference_address": "133.243.238.163",
+          "reference_epoch": 1791511083.792132,
+          "reference_utc": "2026-10-09T01:58:03.792132+00:00",
+          "reference_age_seconds": 8.713306903839111,
+          "ready": true,
+          "reasons": []
+        }
+      ],
+      "readiness_changes": [
+        {
+          "observed_at": "2026-10-09T01:36:12.595861+00:00",
+          "selected_addresses": [],
+          "reference_address": "",
+          "reference_epoch": 0.0,
+          "reference_utc": "1970-01-01T00:00:00+00:00",
+          "reference_age_seconds": 1791509772.6060457,
+          "ready": false,
+          "reasons": [
+            "no_external_reference",
+            "not_synchronized_or_leap_pending",
+            "reference_age",
+            "clock_error_bound"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T01:36:42.495572+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791509778.7572885,
+          "reference_utc": "2026-10-09T01:36:18.757288+00:00",
+          "reference_age_seconds": 23.748077154159546,
+          "ready": false,
+          "reasons": [
+            "clock_error_bound",
+            "frequency_uncertainty"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T01:37:42.495565+00:00",
+          "selected_addresses": [
+            "162.159.200.1"
+          ],
+          "reference_address": "162.159.200.1",
+          "reference_epoch": 1791509842.1056714,
+          "reference_utc": "2026-10-09T01:37:22.105671+00:00",
+          "reference_age_seconds": 20.400132417678833,
+          "ready": true,
+          "reasons": []
+        }
+      ],
+      "max_reference_age_after_first_ready_seconds": 573.219203710556,
+      "post_ready_rejected_samples": 0,
+      "evidence": [
+        {
+          "path": "public-observation-attempt-3/start.json",
+          "sha256": "87f530a23ae24b26f8ebf469c5775cb401e820f7e7e1a7bd69a7cc603ab70801"
+        },
+        {
+          "path": "public-observation-attempt-3/result.json",
+          "sha256": "2e10caf00e608d1012a14081eb5e2b26358ae1cc294229006ac93fe85dfc335d"
+        },
+        {
+          "path": "public-observation-attempt-3/observations.jsonl",
+          "sha256": "60ec266d023175921befdd2ec4f4952feb3077f0ad27ccc5f8f3944dcfdcc17d"
+        },
+        {
+          "path": "public-observation-attempt-3/chrony.conf",
+          "sha256": "b216c056f4f61bbbd3263395235940aace5e79cb1a62d702eb5f0d08cce7663d"
+        }
+      ]
+    },
+    "public-alternatives": {
+      "started_at": "2026-10-09T02:08:18.292264+00:00",
+      "finished_at": "2026-10-09T02:38:18.316402+00:00",
+      "completed": true,
+      "sample_seconds": 30,
+      "binary_sha256": "7a834e478d8a904c39a348606a5d0ac58fd1ccbca24f333a8170c786af8ca508",
+      "clock_control": false,
+      "capabilities": "CapEff:\t0000000000000000",
+      "source_records": [
+        {
+          "operator": "nict",
+          "hostname": "ntp.nict.jp",
+          "resolved_at": "2026-10-09T02:08:17.773005+00:00",
+          "ipv4_answers": [
+            "133.243.238.163",
+            "133.243.238.164",
+            "133.243.238.243",
+            "133.243.238.244",
+            "61.205.120.130"
+          ],
+          "observed_address": "61.205.120.130",
+          "tx": 19,
+          "rx": 5,
+          "valid_rx": 5,
+          "good_rx": 5,
+          "last_peer_delay_seconds": 0.158531785,
+          "last_source_offset_seconds": 0.056327809,
+          "observed_peer_delay_range_seconds": [
+            0.147940457,
+            0.158531785
+          ],
+          "observed_source_offset_range_seconds": [
+            0.038028371,
+            0.056327809
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "4E494354",
+          "observed_leap": "Normal"
+        },
+        {
+          "operator": "internet_multifeed",
+          "hostname": "ntp1.jst.mfeed.ad.jp",
+          "resolved_at": "2026-10-09T02:08:18.240238+00:00",
+          "ipv4_answers": [
+            "210.173.160.27"
+          ],
+          "observed_address": "210.173.160.27",
+          "tx": 16,
+          "rx": 1,
+          "valid_rx": 1,
+          "good_rx": 1,
+          "last_peer_delay_seconds": 0.041884448,
+          "last_source_offset_seconds": -0.01135942,
+          "observed_peer_delay_range_seconds": [
+            0.041884448,
+            0.041884448
+          ],
+          "observed_source_offset_range_seconds": [
+            -0.01135942,
+            -0.01135942
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "85F3EC11",
+          "observed_leap": "Normal"
+        },
+        {
+          "operator": "korea_pool_operator_unconfirmed",
+          "hostname": "kr.pool.ntp.org",
+          "resolved_at": "2026-10-09T02:08:18.282570+00:00",
+          "ipv4_answers": [
+            "115.15.44.33",
+            "121.134.215.104",
+            "121.174.142.81",
+            "121.174.142.82"
+          ],
+          "observed_address": "115.15.44.33",
+          "tx": 24,
+          "rx": 24,
+          "valid_rx": 24,
+          "good_rx": 24,
+          "last_peer_delay_seconds": 0.010683059,
+          "last_source_offset_seconds": -0.00028049,
+          "observed_peer_delay_range_seconds": [
+            0.009265041,
+            0.01276302
+          ],
+          "observed_source_offset_range_seconds": [
+            -0.013268612,
+            0.001905459
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "9EF7CA67",
+          "observed_leap": "Normal"
+        },
+        {
+          "operator": "nist",
+          "hostname": "time.nist.gov",
+          "resolved_at": "2026-10-09T02:08:18.290233+00:00",
+          "ipv4_answers": [
+            "132.163.96.1"
+          ],
+          "observed_address": "132.163.96.1",
+          "tx": 19,
+          "rx": 5,
+          "valid_rx": 5,
+          "good_rx": 5,
+          "last_peer_delay_seconds": 0.177725375,
+          "last_source_offset_seconds": 0.004462483,
+          "observed_peer_delay_range_seconds": [
+            0.169317856,
+            0.177725375
+          ],
+          "observed_source_offset_range_seconds": [
+            0.000756748,
+            0.004462483
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "4E495354",
+          "observed_leap": "Normal"
+        }
+      ],
+      "first_ready_observation": {
+        "observed_at": "2026-10-09T02:09:48.295891+00:00",
+        "selected_addresses": [
+          "115.15.44.33"
+        ],
+        "reference_address": "115.15.44.33",
+        "reference_epoch": 1791511768.9755316,
+        "reference_utc": "2026-10-09T02:09:28.975532+00:00",
+        "reference_age_seconds": 19.329835891723633,
+        "ready": true,
+        "reasons": []
+      },
+      "selection_changes": [
+        {
+          "observed_at": "2026-10-09T02:08:18.396104+00:00",
+          "selected_addresses": [],
+          "reference_address": "",
+          "reference_epoch": 0.0,
+          "reference_utc": "1970-01-01T00:00:00+00:00",
+          "reference_age_seconds": 1791511698.405753,
+          "ready": false,
+          "reasons": [
+            "no_external_reference",
+            "not_synchronized_or_leap_pending",
+            "reference_age",
+            "clock_error_bound"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T02:08:48.295867+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791511704.7179646,
+          "reference_utc": "2026-10-09T02:08:24.717965+00:00",
+          "reference_age_seconds": 23.587294340133667,
+          "ready": false,
+          "reasons": [
+            "clock_error_bound",
+            "frequency_uncertainty"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T02:22:48.296083+00:00",
+          "selected_addresses": [],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791512479.703449,
+          "reference_utc": "2026-10-09T02:21:19.703449+00:00",
+          "reference_age_seconds": 88.60242342948914,
+          "ready": true,
+          "reasons": []
+        }
+      ],
+      "reference_updates": [
+        {
+          "observed_at": "2026-10-09T02:08:18.396104+00:00",
+          "selected_addresses": [],
+          "reference_address": "",
+          "reference_epoch": 0.0,
+          "reference_utc": "1970-01-01T00:00:00+00:00",
+          "reference_age_seconds": 1791511698.405753,
+          "ready": false,
+          "reasons": [
+            "no_external_reference",
+            "not_synchronized_or_leap_pending",
+            "reference_age",
+            "clock_error_bound"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T02:08:48.295867+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791511704.7179646,
+          "reference_utc": "2026-10-09T02:08:24.717965+00:00",
+          "reference_age_seconds": 23.587294340133667,
+          "ready": false,
+          "reasons": [
+            "clock_error_bound",
+            "frequency_uncertainty"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T02:09:48.295891+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791511768.9755316,
+          "reference_utc": "2026-10-09T02:09:28.975532+00:00",
+          "reference_age_seconds": 19.329835891723633,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:10:48.295969+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791511833.4705765,
+          "reference_utc": "2026-10-09T02:10:33.470577+00:00",
+          "reference_age_seconds": 14.834803581237793,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:11:48.295867+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791511898.0066152,
+          "reference_utc": "2026-10-09T02:11:38.006615+00:00",
+          "reference_age_seconds": 10.298524379730225,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:12:48.295891+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791511963.2444782,
+          "reference_utc": "2026-10-09T02:12:43.244478+00:00",
+          "reference_age_seconds": 5.06216025352478,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:13:48.295839+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791512027.4856472,
+          "reference_utc": "2026-10-09T02:13:47.485647+00:00",
+          "reference_age_seconds": 0.8202414512634277,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:15:18.295985+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791512092.6344633,
+          "reference_utc": "2026-10-09T02:14:52.634463+00:00",
+          "reference_age_seconds": 25.67103862762451,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:16:18.295933+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791512156.5598288,
+          "reference_utc": "2026-10-09T02:15:56.559829+00:00",
+          "reference_age_seconds": 21.747495412826538,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:17:18.295846+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791512221.0762417,
+          "reference_utc": "2026-10-09T02:17:01.076242+00:00",
+          "reference_age_seconds": 17.230043172836304,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:18:18.296608+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791512286.2596648,
+          "reference_utc": "2026-10-09T02:18:06.259665+00:00",
+          "reference_age_seconds": 12.046096563339233,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:19:18.296066+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791512351.4052231,
+          "reference_utc": "2026-10-09T02:19:11.405223+00:00",
+          "reference_age_seconds": 6.900826454162598,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:20:18.296366+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791512415.9975696,
+          "reference_utc": "2026-10-09T02:20:15.997570+00:00",
+          "reference_age_seconds": 2.306466817855835,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:21:48.295895+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791512479.703449,
+          "reference_utc": "2026-10-09T02:21:19.703449+00:00",
+          "reference_age_seconds": 28.602148056030273,
+          "ready": true,
+          "reasons": []
+        }
+      ],
+      "readiness_changes": [
+        {
+          "observed_at": "2026-10-09T02:08:18.396104+00:00",
+          "selected_addresses": [],
+          "reference_address": "",
+          "reference_epoch": 0.0,
+          "reference_utc": "1970-01-01T00:00:00+00:00",
+          "reference_age_seconds": 1791511698.405753,
+          "ready": false,
+          "reasons": [
+            "no_external_reference",
+            "not_synchronized_or_leap_pending",
+            "reference_age",
+            "clock_error_bound"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T02:08:48.295867+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791511704.7179646,
+          "reference_utc": "2026-10-09T02:08:24.717965+00:00",
+          "reference_age_seconds": 23.587294340133667,
+          "ready": false,
+          "reasons": [
+            "clock_error_bound",
+            "frequency_uncertainty"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T02:09:48.295891+00:00",
+          "selected_addresses": [
+            "115.15.44.33"
+          ],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791511768.9755316,
+          "reference_utc": "2026-10-09T02:09:28.975532+00:00",
+          "reference_age_seconds": 19.329835891723633,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:31:48.295848+00:00",
+          "selected_addresses": [],
+          "reference_address": "115.15.44.33",
+          "reference_epoch": 1791512479.703449,
+          "reference_utc": "2026-10-09T02:21:19.703449+00:00",
+          "reference_age_seconds": 628.6029517650604,
+          "ready": false,
+          "reasons": [
+            "reference_age"
+          ]
+        }
+      ],
+      "max_reference_age_after_first_ready_seconds": 1018.6117601394653,
+      "post_ready_rejected_samples": 14,
+      "evidence": [
+        {
+          "path": "public-alternatives/start.json",
+          "sha256": "cb453de9f88e65f6f937e3dfd5fe7d812f7e8bad4e4ffbeccc22422ce42d18f6"
+        },
+        {
+          "path": "public-alternatives/result.json",
+          "sha256": "d9a5035524e90a5eb3f818d8ab546f307d62df47f9962e7cd2a4cb0c204e62d8"
+        },
+        {
+          "path": "public-alternatives/observations.jsonl",
+          "sha256": "11c2eebdc7dd0f3110190500973cba820ed0c710db9b6294499691a835fb087b"
+        },
+        {
+          "path": "public-alternatives/chrony.conf",
+          "sha256": "65856b083ab19122ac7e373e5696fe0e85e4617b8d7acb67980e3bdc3cb80347"
+        }
+      ]
+    },
+    "public-regional": {
+      "started_at": "2026-10-09T03:05:17.727737+00:00",
+      "finished_at": "2026-10-09T03:35:17.741776+00:00",
+      "completed": true,
+      "sample_seconds": 30,
+      "binary_sha256": "7a834e478d8a904c39a348606a5d0ac58fd1ccbca24f333a8170c786af8ca508",
+      "clock_control": false,
+      "capabilities": "CapEff:\t0000000000000000",
+      "source_records": [
+        {
+          "operator": "sidn",
+          "hostname": "ntp1.time.nl",
+          "resolved_at": "2026-10-09T03:05:17.136929+00:00",
+          "ipv4_answers": [
+            "94.198.159.10"
+          ],
+          "observed_address": "94.198.159.10",
+          "tx": 16,
+          "rx": 3,
+          "valid_rx": 3,
+          "good_rx": 3,
+          "last_peer_delay_seconds": 0.246990487,
+          "last_source_offset_seconds": 0.012705495,
+          "observed_peer_delay_range_seconds": [
+            0.243298441,
+            0.246990487
+          ],
+          "observed_source_offset_range_seconds": [
+            0.008010612,
+            0.012705495
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "544D4E4C",
+          "observed_leap": "Normal"
+        },
+        {
+          "operator": "netnod",
+          "hostname": "gbg1.ntp.netnod.se",
+          "resolved_at": "2026-10-09T03:05:17.414628+00:00",
+          "ipv4_answers": [
+            "194.58.203.20"
+          ],
+          "observed_address": "194.58.203.20",
+          "tx": 18,
+          "rx": 4,
+          "valid_rx": 4,
+          "good_rx": 4,
+          "last_peer_delay_seconds": 0.286772072,
+          "last_source_offset_seconds": 0.000386095,
+          "observed_peer_delay_range_seconds": [
+            0.275639206,
+            0.314373523
+          ],
+          "observed_source_offset_range_seconds": [
+            -0.006004587,
+            0.014034807
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "50505300",
+          "observed_leap": "Normal"
+        },
+        {
+          "operator": "ptb",
+          "hostname": "ptbtime2.ptb.de",
+          "resolved_at": "2026-10-09T03:05:17.717738+00:00",
+          "ipv4_answers": [
+            "192.53.103.104"
+          ],
+          "observed_address": "192.53.103.104",
+          "tx": 18,
+          "rx": 6,
+          "valid_rx": 6,
+          "good_rx": 6,
+          "last_peer_delay_seconds": 0.269763291,
+          "last_source_offset_seconds": 0.025606493,
+          "observed_peer_delay_range_seconds": [
+            0.266247779,
+            0.287390351
+          ],
+          "observed_source_offset_range_seconds": [
+            0.009462272,
+            0.031267747
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "50544200",
+          "observed_leap": "Normal"
+        },
+        {
+          "operator": "korea_pool_operator_unconfirmed",
+          "hostname": "kr.pool.ntp.org",
+          "resolved_at": "2026-10-09T03:05:17.726022+00:00",
+          "ipv4_answers": [
+            "121.134.215.104",
+            "121.174.142.81",
+            "121.174.142.82",
+            "211.108.117.211"
+          ],
+          "observed_address": "121.174.142.81",
+          "tx": 24,
+          "rx": 24,
+          "valid_rx": 24,
+          "good_rx": 24,
+          "last_peer_delay_seconds": 0.009209052,
+          "last_source_offset_seconds": 0.000114611,
+          "observed_peer_delay_range_seconds": [
+            0.008661352,
+            0.012036437
+          ],
+          "observed_source_offset_range_seconds": [
+            -0.000869893,
+            0.000997083
+          ],
+          "timestamp_modes": {
+            "tx": "Kernel",
+            "rx": "Kernel"
+          },
+          "authenticated": "No",
+          "upstream_reference_id": "DC498E42",
+          "observed_leap": "Normal"
+        }
+      ],
+      "first_ready_observation": {
+        "observed_at": "2026-10-09T03:06:47.731523+00:00",
+        "selected_addresses": [
+          "121.174.142.81"
+        ],
+        "reference_address": "121.174.142.81",
+        "reference_epoch": 1791515188.9207828,
+        "reference_utc": "2026-10-09T03:06:28.920783+00:00",
+        "reference_age_seconds": 18.8194797039032,
+        "ready": true,
+        "reasons": []
+      },
+      "selection_changes": [
+        {
+          "observed_at": "2026-10-09T03:05:17.831844+00:00",
+          "selected_addresses": [],
+          "reference_address": "",
+          "reference_epoch": 0.0,
+          "reference_utc": "1970-01-01T00:00:00+00:00",
+          "reference_age_seconds": 1791515117.840079,
+          "ready": false,
+          "reasons": [
+            "no_external_reference",
+            "not_synchronized_or_leap_pending",
+            "reference_age",
+            "clock_error_bound"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T03:05:47.731584+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515124.404117,
+          "reference_utc": "2026-10-09T03:05:24.404117+00:00",
+          "reference_age_seconds": 23.337706565856934,
+          "ready": false,
+          "reasons": [
+            "clock_error_bound",
+            "frequency_uncertainty"
+          ]
+        }
+      ],
+      "reference_updates": [
+        {
+          "observed_at": "2026-10-09T03:05:17.831844+00:00",
+          "selected_addresses": [],
+          "reference_address": "",
+          "reference_epoch": 0.0,
+          "reference_utc": "1970-01-01T00:00:00+00:00",
+          "reference_age_seconds": 1791515117.840079,
+          "ready": false,
+          "reasons": [
+            "no_external_reference",
+            "not_synchronized_or_leap_pending",
+            "reference_age",
+            "clock_error_bound"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T03:05:47.731584+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515124.404117,
+          "reference_utc": "2026-10-09T03:05:24.404117+00:00",
+          "reference_age_seconds": 23.337706565856934,
+          "ready": false,
+          "reasons": [
+            "clock_error_bound",
+            "frequency_uncertainty"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T03:06:47.731523+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515188.9207828,
+          "reference_utc": "2026-10-09T03:06:28.920783+00:00",
+          "reference_age_seconds": 18.8194797039032,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:07:47.731792+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515253.5800579,
+          "reference_utc": "2026-10-09T03:07:33.580058+00:00",
+          "reference_age_seconds": 14.162538051605225,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:08:47.731615+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515318.0810623,
+          "reference_utc": "2026-10-09T03:08:38.081062+00:00",
+          "reference_age_seconds": 9.659318685531616,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:09:47.731533+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515383.0540552,
+          "reference_utc": "2026-10-09T03:09:43.054055+00:00",
+          "reference_age_seconds": 4.686107397079468,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:11:17.731592+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515447.679877,
+          "reference_utc": "2026-10-09T03:10:47.679877+00:00",
+          "reference_age_seconds": 30.062472105026245,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:12:17.731584+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515512.1277843,
+          "reference_utc": "2026-10-09T03:11:52.127784+00:00",
+          "reference_age_seconds": 25.612638235092163,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:13:17.731571+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515576.3372793,
+          "reference_utc": "2026-10-09T03:12:56.337279+00:00",
+          "reference_age_seconds": 21.40522074699402,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:14:17.731576+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515641.938135,
+          "reference_utc": "2026-10-09T03:14:01.938135+00:00",
+          "reference_age_seconds": 15.80287504196167,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:15:17.731547+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515705.9223318,
+          "reference_utc": "2026-10-09T03:15:05.922332+00:00",
+          "reference_age_seconds": 11.818549633026123,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:16:17.731570+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515770.9544892,
+          "reference_utc": "2026-10-09T03:16:10.954489+00:00",
+          "reference_age_seconds": 6.786359071731567,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:17:17.731499+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515835.375038,
+          "reference_utc": "2026-10-09T03:17:15.375038+00:00",
+          "reference_age_seconds": 2.365966558456421,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:18:47.732033+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515900.0719655,
+          "reference_utc": "2026-10-09T03:18:20.071965+00:00",
+          "reference_age_seconds": 27.669686794281006,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:19:47.731594+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515965.1603262,
+          "reference_utc": "2026-10-09T03:19:25.160326+00:00",
+          "reference_age_seconds": 22.581589221954346,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:20:47.731566+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791516029.8825686,
+          "reference_utc": "2026-10-09T03:20:29.882569+00:00",
+          "reference_age_seconds": 17.858698844909668,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:21:47.731538+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791516094.4786196,
+          "reference_utc": "2026-10-09T03:21:34.478620+00:00",
+          "reference_age_seconds": 13.262714385986328,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:23:47.731543+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791516224.588699,
+          "reference_utc": "2026-10-09T03:23:44.588699+00:00",
+          "reference_age_seconds": 3.1514737606048584,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:26:17.731895+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791516354.0961862,
+          "reference_utc": "2026-10-09T03:25:54.096186+00:00",
+          "reference_age_seconds": 23.645397901535034,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:28:17.731508+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791516482.8060231,
+          "reference_utc": "2026-10-09T03:28:02.806023+00:00",
+          "reference_age_seconds": 14.93410062789917,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:30:17.731548+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791516613.2964377,
+          "reference_utc": "2026-10-09T03:30:13.296438+00:00",
+          "reference_age_seconds": 4.4430177211761475,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T03:32:47.731564+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791516742.0263336,
+          "reference_utc": "2026-10-09T03:32:22.026334+00:00",
+          "reference_age_seconds": 25.71374273300171,
+          "ready": true,
+          "reasons": []
+        }
+      ],
+      "readiness_changes": [
+        {
+          "observed_at": "2026-10-09T03:05:17.831844+00:00",
+          "selected_addresses": [],
+          "reference_address": "",
+          "reference_epoch": 0.0,
+          "reference_utc": "1970-01-01T00:00:00+00:00",
+          "reference_age_seconds": 1791515117.840079,
+          "ready": false,
+          "reasons": [
+            "no_external_reference",
+            "not_synchronized_or_leap_pending",
+            "reference_age",
+            "clock_error_bound"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T03:05:47.731584+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515124.404117,
+          "reference_utc": "2026-10-09T03:05:24.404117+00:00",
+          "reference_age_seconds": 23.337706565856934,
+          "ready": false,
+          "reasons": [
+            "clock_error_bound",
+            "frequency_uncertainty"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T03:06:47.731523+00:00",
+          "selected_addresses": [
+            "121.174.142.81"
+          ],
+          "reference_address": "121.174.142.81",
+          "reference_epoch": 1791515188.9207828,
+          "reference_utc": "2026-10-09T03:06:28.920783+00:00",
+          "reference_age_seconds": 18.8194797039032,
+          "ready": true,
+          "reasons": []
+        }
+      ],
+      "max_reference_age_after_first_ready_seconds": 175.7141945362091,
+      "post_ready_rejected_samples": 0,
+      "evidence": [
+        {
+          "path": "public-regional/start.json",
+          "sha256": "8725ce59dcfd89aefd14bd5ad15149874c5c0ff96c1e1e960bfabd4f310a4bb8"
+        },
+        {
+          "path": "public-regional/result.json",
+          "sha256": "6af824dbef5d55c901988700bd2e9f75178fab91dab0f304f5cabf05e405ef4d"
+        },
+        {
+          "path": "public-regional/observations.jsonl",
+          "sha256": "4c81b2f010859dfa4d78863813e756faa108204631b1c1ab4d3b2307213a4574"
+        },
+        {
+          "path": "public-regional/chrony.conf",
+          "sha256": "e6d81d5b36f7e13eab1689fdb7c61a31b09b36c5ed9cad1f06e0c51d7f8e084e"
+        }
+      ]
+    }
+  },
+  "fault": {
+    "silent": {
+      "completed": true,
+      "case": "silent",
+      "fault_started_at": "2026-10-09T01:54:34.430701+00:00",
+      "finished_at": "2026-10-09T02:24:34.615768+00:00",
+      "warmup_seconds": 720,
+      "fault_window_seconds": 1800,
+      "sample_seconds": 5,
+      "last_valid_reference_before_fault": {
+        "address": "192.0.2.11",
+        "epoch": 1791510872.868408
+      },
+      "last_valid_reference_utc": "2026-10-09T01:54:32.868408+00:00",
+      "first_selection_to_another_source": null,
+      "first_new_reference_after_fault": null,
+      "first_reference_from_another_source": null,
+      "first_rejection": {
+        "observed_at": "2026-10-09T02:04:34.430707+00:00",
+        "selected_addresses": [
+          "192.0.2.11"
+        ],
+        "reference_address": "192.0.2.11",
+        "reference_epoch": 1791510872.868408,
+        "reference_utc": "2026-10-09T01:54:32.868408+00:00",
+        "reference_age_seconds": 601.5789287090302,
+        "ready": false,
+        "reasons": [
+          "reference_age"
+        ]
+      },
+      "first_ready_after_rejection": null,
+      "selection_changes": [
+        {
+          "observed_at": "2026-10-09T01:54:34.430701+00:00",
+          "selected_addresses": [
+            "192.0.2.11"
+          ],
+          "reference_address": "192.0.2.11",
+          "reference_epoch": 1791510872.868408,
+          "reference_utc": "2026-10-09T01:54:32.868408+00:00",
+          "reference_age_seconds": 1.582395315170288,
+          "ready": true,
+          "reasons": []
+        }
+      ],
+      "reference_updates": [],
+      "readiness_changes": [
+        {
+          "observed_at": "2026-10-09T01:54:34.430701+00:00",
+          "selected_addresses": [
+            "192.0.2.11"
+          ],
+          "reference_address": "192.0.2.11",
+          "reference_epoch": 1791510872.868408,
+          "reference_utc": "2026-10-09T01:54:32.868408+00:00",
+          "reference_age_seconds": 1.582395315170288,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:04:34.430707+00:00",
+          "selected_addresses": [
+            "192.0.2.11"
+          ],
+          "reference_address": "192.0.2.11",
+          "reference_epoch": 1791510872.868408,
+          "reference_utc": "2026-10-09T01:54:32.868408+00:00",
+          "reference_age_seconds": 601.5789287090302,
+          "ready": false,
+          "reasons": [
+            "reference_age"
+          ]
+        }
+      ],
+      "max_reference_age_seconds": 1796.5690605640411,
+      "last_observation": {
+        "observed_at": "2026-10-09T02:24:29.430668+00:00",
+        "selected_addresses": [
+          "192.0.2.11"
+        ],
+        "reference_address": "192.0.2.11",
+        "reference_epoch": 1791510872.868408,
+        "reference_utc": "2026-10-09T01:54:32.868408+00:00",
+        "reference_age_seconds": 1796.5690605640411,
+        "ready": false,
+        "reasons": [
+          "reference_age"
+        ]
+      },
+      "server_counters": [
+        {
+          "rx": 32,
+          "tx": 15,
+          "dropped": 17,
+          "fault_requests": 17
+        },
+        {
+          "rx": 31,
+          "tx": 31,
+          "dropped": 0,
+          "fault_requests": 0
+        },
+        {
+          "rx": 28,
+          "tx": 28,
+          "dropped": 0,
+          "fault_requests": 0
+        },
+        {
+          "rx": 27,
+          "tx": 27,
+          "dropped": 0,
+          "fault_requests": 0
+        }
+      ],
+      "failover_within_600_seconds_demonstrated": false,
+      "provider_gate": "not asserted: test daemon is intentionally -x",
+      "evidence": [
+        {
+          "path": "fault-observation-attempt-3/silent/result.json",
+          "sha256": "91a41f37aa92ddebfdb0769e25c6553324c62e4fbc650b8654cd4467f364b11a"
+        },
+        {
+          "path": "fault-observation-attempt-3/silent/observations.jsonl",
+          "sha256": "24fa5a54c1a8d3f66c110200ac07fca82adf2457b078e66e28322371c5f9f5f4"
+        },
+        {
+          "path": "fault-observation-attempt-3/silent/chrony.conf",
+          "sha256": "8554998eef8cf96012169396b2cc490f1d21915912709e9930cd9d97e85771cf"
+        }
+      ]
+    },
+    "intermittent": {
+      "completed": true,
+      "case": "intermittent",
+      "fault_started_at": "2026-10-09T01:54:34.430915+00:00",
+      "finished_at": "2026-10-09T02:24:34.572066+00:00",
+      "warmup_seconds": 720,
+      "fault_window_seconds": 1800,
+      "sample_seconds": 5,
+      "last_valid_reference_before_fault": {
+        "address": "192.0.2.21",
+        "epoch": 1791510871.3104196
+      },
+      "last_valid_reference_utc": "2026-10-09T01:54:31.310420+00:00",
+      "first_selection_to_another_source": null,
+      "first_new_reference_after_fault": {
+        "observed_at": "2026-10-09T01:59:59.430968+00:00",
+        "selected_addresses": [
+          "192.0.2.21"
+        ],
+        "reference_address": "192.0.2.21",
+        "reference_epoch": 1791511196.4850824,
+        "reference_utc": "2026-10-09T01:59:56.485082+00:00",
+        "reference_age_seconds": 2.977790594100952,
+        "ready": true,
+        "reasons": []
+      },
+      "first_reference_from_another_source": null,
+      "first_rejection": {
+        "observed_at": "2026-10-09T02:11:04.430913+00:00",
+        "selected_addresses": [
+          "192.0.2.21"
+        ],
+        "reference_address": "192.0.2.21",
+        "reference_epoch": 1791511261.0830104,
+        "reference_utc": "2026-10-09T02:01:01.083010+00:00",
+        "reference_age_seconds": 603.3575184345245,
+        "ready": false,
+        "reasons": [
+          "reference_age"
+        ]
+      },
+      "first_ready_after_rejection": {
+        "observed_at": "2026-10-09T02:11:54.430877+00:00",
+        "selected_addresses": [
+          "192.0.2.21"
+        ],
+        "reference_address": "192.0.2.21",
+        "reference_epoch": 1791511909.76946,
+        "reference_utc": "2026-10-09T02:11:49.769460+00:00",
+        "reference_age_seconds": 4.66828989982605,
+        "ready": true,
+        "reasons": []
+      },
+      "selection_changes": [
+        {
+          "observed_at": "2026-10-09T01:54:34.430915+00:00",
+          "selected_addresses": [
+            "192.0.2.21"
+          ],
+          "reference_address": "192.0.2.21",
+          "reference_epoch": 1791510871.3104196,
+          "reference_utc": "2026-10-09T01:54:31.310420+00:00",
+          "reference_age_seconds": 3.1405999660491943,
+          "ready": true,
+          "reasons": []
+        }
+      ],
+      "reference_updates": [
+        {
+          "observed_at": "2026-10-09T01:59:59.430968+00:00",
+          "selected_addresses": [
+            "192.0.2.21"
+          ],
+          "reference_address": "192.0.2.21",
+          "reference_epoch": 1791511196.4850824,
+          "reference_utc": "2026-10-09T01:59:56.485082+00:00",
+          "reference_age_seconds": 2.977790594100952,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:01:04.431248+00:00",
+          "selected_addresses": [
+            "192.0.2.21"
+          ],
+          "reference_address": "192.0.2.21",
+          "reference_epoch": 1791511261.0830104,
+          "reference_utc": "2026-10-09T02:01:01.083010+00:00",
+          "reference_age_seconds": 3.365623950958252,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:11:54.430877+00:00",
+          "selected_addresses": [
+            "192.0.2.21"
+          ],
+          "reference_address": "192.0.2.21",
+          "reference_epoch": 1791511909.76946,
+          "reference_utc": "2026-10-09T02:11:49.769460+00:00",
+          "reference_age_seconds": 4.66828989982605,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:14:04.431023+00:00",
+          "selected_addresses": [
+            "192.0.2.21"
+          ],
+          "reference_address": "192.0.2.21",
+          "reference_epoch": 1791512039.2220445,
+          "reference_utc": "2026-10-09T02:13:59.222044+00:00",
+          "reference_age_seconds": 5.225627899169922,
+          "ready": true,
+          "reasons": []
+        }
+      ],
+      "readiness_changes": [
+        {
+          "observed_at": "2026-10-09T01:54:34.430915+00:00",
+          "selected_addresses": [
+            "192.0.2.21"
+          ],
+          "reference_address": "192.0.2.21",
+          "reference_epoch": 1791510871.3104196,
+          "reference_utc": "2026-10-09T01:54:31.310420+00:00",
+          "reference_age_seconds": 3.1405999660491943,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:11:04.430913+00:00",
+          "selected_addresses": [
+            "192.0.2.21"
+          ],
+          "reference_address": "192.0.2.21",
+          "reference_epoch": 1791511261.0830104,
+          "reference_utc": "2026-10-09T02:01:01.083010+00:00",
+          "reference_age_seconds": 603.3575184345245,
+          "ready": false,
+          "reasons": [
+            "reference_age"
+          ]
+        },
+        {
+          "observed_at": "2026-10-09T02:11:54.430877+00:00",
+          "selected_addresses": [
+            "192.0.2.21"
+          ],
+          "reference_address": "192.0.2.21",
+          "reference_epoch": 1791511909.76946,
+          "reference_utc": "2026-10-09T02:11:49.769460+00:00",
+          "reference_age_seconds": 4.66828989982605,
+          "ready": true,
+          "reasons": []
+        },
+        {
+          "observed_at": "2026-10-09T02:23:59.430951+00:00",
+          "selected_addresses": [
+            "192.0.2.21"
+          ],
+          "reference_address": "192.0.2.21",
+          "reference_epoch": 1791512039.2220445,
+          "reference_utc": "2026-10-09T02:13:59.222044+00:00",
+          "reference_age_seconds": 600.2151265144348,
+          "ready": false,
+          "reasons": [
+            "reference_age"
+          ]
+        }
+      ],
+      "max_reference_age_seconds": 648.3542397022247,
+      "last_observation": {
+        "observed_at": "2026-10-09T02:24:29.430933+00:00",
+        "selected_addresses": [
+          "192.0.2.21"
+        ],
+        "reference_address": "192.0.2.21",
+        "reference_epoch": 1791512039.2220445,
+        "reference_utc": "2026-10-09T02:13:59.222044+00:00",
+        "reference_age_seconds": 630.2158069610596,
+        "ready": false,
+        "reasons": [
+          "reference_age"
+        ]
+      },
+      "server_counters": [
+        {
+          "rx": 30,
+          "tx": 19,
+          "dropped": 11,
+          "fault_requests": 15
+        },
+        {
+          "rx": 28,
+          "tx": 28,
+          "dropped": 0,
+          "fault_requests": 0
+        },
+        {
+          "rx": 37,
+          "tx": 37,
+          "dropped": 0,
+          "fault_requests": 0
+        },
+        {
+          "rx": 27,
+          "tx": 27,
+          "dropped": 0,
+          "fault_requests": 0
+        }
+      ],
+      "failover_within_600_seconds_demonstrated": false,
+      "provider_gate": "not asserted: test daemon is intentionally -x",
+      "evidence": [
+        {
+          "path": "fault-observation-attempt-3/intermittent/result.json",
+          "sha256": "845b06b830b3d2537e367ae371c1574c73156a9e40855d4afbdfaa3178f29569"
+        },
+        {
+          "path": "fault-observation-attempt-3/intermittent/observations.jsonl",
+          "sha256": "7beaa2d3fe52b95d0cb2a5aff514177800b0488edd3b9a28700e74afab8b82b5"
+        },
+        {
+          "path": "fault-observation-attempt-3/intermittent/chrony.conf",
+          "sha256": "1dcacc813d437c522ab0b16d48e746616d386d23d0c768c6965c92450979e15b"
+        }
+      ]
+    }
+  }
+}

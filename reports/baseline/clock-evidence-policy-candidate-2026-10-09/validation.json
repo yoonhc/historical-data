@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-10-09T08:25:05.258821+00:00",
+  "release_id": "clock-evidence-policy-20261009-26e7fd4bbd0a68a5",
+  "archive_sha256": "7296234b12dc09fbfdc1b90b0efdb54d65f7bf8b3742a432b3c1248f8d7ccfd1",
+  "source_files": 175,
+  "clean_regression": {
+    "tests": 304,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "test_groups": {
+    "tests.test_clock_evidence_policy": 42,
+    "tests.test_runtime_candidate": 49,
+    "tests.test_clock_bootstrap": 37,
+    "tests.test_clock_bootstrap_revision": 12,
+    "tests.test_backup": 16,
+    "tests.test_incremental_backup": 15,
+    "tests.test_aggtrades": 27,
+    "tests.test_depth": 33,
+    "tests.test_depth_failure_publication": 29,
+    "tests.test_depth_reference": 33,
+    "tests.test_depth_independent_cases": 6,
+    "tests.test_stream_guard": 5
+  },
+  "new_candidate_tests": 42,
+  "existing_related_tests": 262,
+  "noneditable_import_verified_modules": 31,
+  "clean_install_receipt": "clean-final-runtime-manifest.json",
+  "ruff_new_files": "passed",
+  "systemd_syntax": {
+    "returncode": 0,
+    "unit": "/tmp/clock-evidence-unit-verify/marketdata-collector@.service",
+    "release_path_substituted_only": true,
+    "actual_final_root_service_started": false
+  },
+  "inert_plan_id": "f25a43909700fd3de9b7809b4b20f088dc67043f13038cf43d2ac0184aba2c86",
+  "deployment_gate_simulation": "8 cases passed; unchanged gate semantics, not promotion executor crash recovery",
+  "production_applied": false,
+  "production_promotion_executor_tested": false,
+  "old_v1_logs_automatically_backed_up": false,
+  "T03": "completed from real checkpoint/restic scheduled evidence; separate report",
+  "retirement": "persistent masks unchanged",
+  "limitations": [
+    "Synthetic provider observations, no host clock control.",
+    "Runtime/session continuity is measured within one supervisor; restart requires strict readiness.",
+    "Evidence coverage is sampled and old/unpublished evidence remains unknown.",
+    "Deployment transaction/root system unit and post-deployment scheduled evidence backup are pending."
+  ],
+  "document_links_valid": true
+}

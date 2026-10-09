@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "scope": "unchanged gate semantic checks with fixture ledger; NOT a tested production promotion transaction",
+  "plan_id": "f25a43909700fd3de9b7809b4b20f088dc67043f13038cf43d2ac0184aba2c86",
+  "preserved_boot_step_and_closed_evidence": true,
+  "cases": [
+    {
+      "case": "original_ready",
+      "allowed": true,
+      "error": null
+    },
+    {
+      "case": "pending_with_old_profile",
+      "allowed": false,
+      "error": "Missing/corrupt ledger; explicit enrollment/review required"
+    },
+    {
+      "case": "pending_with_new_profile",
+      "allowed": false,
+      "error": "Missing/corrupt ledger; explicit enrollment/review required"
+    },
+    {
+      "case": "new_profile_before_bound_ledger",
+      "allowed": false,
+      "error": "Closed preparation belongs to a different profile"
+    },
+    {
+      "case": "reviewed_binding_not_current_ready",
+      "allowed": false,
+      "error": "Current clock is not ready: reference_age"
+    },
+    {
+      "case": "reviewed_binding_current_ready",
+      "allowed": true,
+      "error": null
+    },
+    {
+      "case": "boot_changed",
+      "allowed": false,
+      "error": "This boot has not closed initial clock preparation"
+    },
+    {
+      "case": "rollback_keeps_closed_history",
+      "allowed": true,
+      "error": null
+    }
+  ]
+}

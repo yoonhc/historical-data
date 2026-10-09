@@ -1,0 +1,20 @@
+{
+  "module": "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+  "fixture": "/tmp/clock-duplicate-control-vmywkspc",
+  "input": "same update IDs, payloads and synthetic received_at reused in both collections",
+  "runs": [
+    {
+      "id": "014fcc41911f4e8ba149f9ce817dceeb",
+      "replay_matches_live": true,
+      "rows": 3,
+      "report_messages": 2
+    },
+    {
+      "id": "8a171526de1742699c7ba0067d175bc3",
+      "replay_matches_live": false,
+      "rows": 1,
+      "report_messages": 2
+    }
+  ],
+  "preexisting_on_old_code": true
+}

@@ -1,0 +1,116 @@
+{
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "chronyd_sha256": "7a834e478d8a904c39a348606a5d0ac58fd1ccbca24f333a8170c786af8ca508",
+  "files": {
+    "bootstrap": {
+      "after": "{\n  \"chrony_socket\": \"/run/chrony/chronyd.sock\",\n  \"guard_command\": \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\",\n  \"guard_files\": {\n    \"/etc/systemd/system/chrony-wait.service.d/marketdata.conf\": \"bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12\",\n    \"/etc/systemd/system/chrony.service.d/marketdata.conf\": \"624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4\",\n    \"/etc/systemd/system/marketdata-clock-bootstrap.service\": \"fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc\",\n    \"/etc/systemd/system/marketdata-collector@.service\": \"74d8d5747cebb77993559cfaafe7edcd07c94e19a6960eb368d8fbdcfff037d5\",\n    \"/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-clock-ready.service\": \"e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab\",\n    \"/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\"\n  },\n  \"policy\": {\n    \"attempt_seconds\": 120.0,\n    \"long_wait_seconds\": 600.0,\n    \"max_initial_correction_seconds\": 300.0,\n    \"poll_seconds\": 5.0,\n    \"source_age_seconds\": 30.0,\n    \"step_above_seconds\": 0.1\n  },\n  \"rtc_confirmation\": \"/etc/marketdata/rtc-utc-confirmation.json\",\n  \"runtime_profile\": \"/etc/marketdata/runtime.json\",\n  \"runtime_profile_sha256\": \"10b747dd1074fab01e57332b56b7570e019dc55943e74f56e0d936eee6710543\",\n  \"schema\": 2,\n  \"state_dir\": \"/var/lib/marketdata-clock\",\n  \"system_collectors\": [\n    \"marketdata-collector@depth.service\",\n    \"marketdata-collector@aggtrade.service\"\n  ],\n  \"uid\": 1000,\n  \"user\": \"yoonhc\",\n  \"user_units\": {\n    \"marketdata-aggtrade.service\": \"masked\",\n    \"marketdata-backup.service\": \"guarded\",\n    \"marketdata-backup.timer\": \"timer\",\n    \"marketdata-checkpoint-retirement.service\": \"masked\",\n    \"marketdata-checkpoint-retirement.timer\": \"masked\",\n    \"marketdata-clock-ready.service\": \"waiter\",\n    \"marketdata-daily.service\": \"guarded\",\n    \"marketdata-daily.timer\": \"timer\",\n    \"marketdata-depth.service\": \"masked\",\n    \"marketdata-network-observer.service\": \"guarded\",\n    \"marketdata-network-observer.timer\": \"timer\",\n    \"marketdata-oi-probe.service\": \"guarded\",\n    \"marketdata-oi-probe.timer\": \"timer\",\n    \"marketdata-oi-quality.service\": \"guarded\",\n    \"marketdata-oi-quality.timer\": \"timer\",\n    \"marketdata-oi.service\": \"guarded\",\n    \"marketdata-oi.timer\": \"timer\",\n    \"marketdata-pack.service\": \"guarded\",\n    \"marketdata-pack.timer\": \"timer\",\n    \"marketdata-restic-archive.service\": \"guarded\",\n    \"marketdata-restic-archive.timer\": \"timer\"\n  },\n  \"wait_command\": \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py wait --profile /etc/marketdata/clock-bootstrap.json\",\n  \"wait_unit\": \"marketdata-clock-ready.service\"\n}\n",
+      "after_sha256": "d0be8d39b92b157790c4772669a008bcd319ef995d82c73d9e442bfa594c92bf",
+      "before": "{\n  \"chrony_socket\": \"/run/chrony/chronyd.sock\",\n  \"guard_command\": \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\",\n  \"guard_files\": {\n    \"/etc/systemd/system/chrony-wait.service.d/marketdata.conf\": \"bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12\",\n    \"/etc/systemd/system/chrony.service.d/marketdata.conf\": \"624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4\",\n    \"/etc/systemd/system/marketdata-clock-bootstrap.service\": \"fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc\",\n    \"/etc/systemd/system/marketdata-collector@.service\": \"74d8d5747cebb77993559cfaafe7edcd07c94e19a6960eb368d8fbdcfff037d5\",\n    \"/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-clock-ready.service\": \"e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab\",\n    \"/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\"\n  },\n  \"policy\": {\n    \"attempt_seconds\": 120.0,\n    \"long_wait_seconds\": 600.0,\n    \"max_initial_correction_seconds\": 300.0,\n    \"poll_seconds\": 5.0,\n    \"source_age_seconds\": 30.0,\n    \"step_above_seconds\": 0.1\n  },\n  \"rtc_confirmation\": \"/etc/marketdata/rtc-utc-confirmation.json\",\n  \"runtime_profile\": \"/etc/marketdata/runtime.json\",\n  \"runtime_profile_sha256\": \"f10663335fd42b8df75da8c5e7b43ec353244b24898f7c7dcc26d6eee77248c7\",\n  \"schema\": 2,\n  \"state_dir\": \"/var/lib/marketdata-clock\",\n  \"system_collectors\": [\n    \"marketdata-collector@depth.service\",\n    \"marketdata-collector@aggtrade.service\"\n  ],\n  \"uid\": 1000,\n  \"user\": \"yoonhc\",\n  \"user_units\": {\n    \"marketdata-aggtrade.service\": \"masked\",\n    \"marketdata-backup.service\": \"guarded\",\n    \"marketdata-backup.timer\": \"timer\",\n    \"marketdata-checkpoint-retirement.service\": \"masked\",\n    \"marketdata-checkpoint-retirement.timer\": \"masked\",\n    \"marketdata-clock-ready.service\": \"waiter\",\n    \"marketdata-daily.service\": \"guarded\",\n    \"marketdata-daily.timer\": \"timer\",\n    \"marketdata-depth.service\": \"masked\",\n    \"marketdata-network-observer.service\": \"guarded\",\n    \"marketdata-network-observer.timer\": \"timer\",\n    \"marketdata-oi-probe.service\": \"guarded\",\n    \"marketdata-oi-probe.timer\": \"timer\",\n    \"marketdata-oi-quality.service\": \"guarded\",\n    \"marketdata-oi-quality.timer\": \"timer\",\n    \"marketdata-oi.service\": \"guarded\",\n    \"marketdata-oi.timer\": \"timer\",\n    \"marketdata-pack.service\": \"guarded\",\n    \"marketdata-pack.timer\": \"timer\",\n    \"marketdata-restic-archive.service\": \"guarded\",\n    \"marketdata-restic-archive.timer\": \"timer\"\n  },\n  \"wait_command\": \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py wait --profile /etc/marketdata/clock-bootstrap.json\",\n  \"wait_unit\": \"marketdata-clock-ready.service\"\n}\n",
+      "before_sha256": "4f7a3e2704ac9def68673220855c44f257c8a25cac8ea00f736fc5ca3ba2732b",
+      "mode": 420,
+      "path": "/etc/marketdata/clock-bootstrap.json",
+      "uid": 0
+    },
+    "chrony": {
+      "after": "# Candidate only. Install under /etc/chrony/marketdata.conf after a separately approved cutover.\n# RTC UTC confirmation is required by the chrony unit's ExecStartPre.\n# Steady daemon has no automatic step; the separate boot coordinator owns it.\nserver 162.159.200.1 iburst minpoll 6 maxpoll 8\nserver 133.243.238.163 iburst minpoll 6 maxpoll 8\nserver 194.58.200.20 iburst minpoll 6 maxpoll 8\nserver 192.53.103.108 iburst minpoll 6 maxpoll 8\nrtcsync\ndriftfile /var/lib/chrony/chrony.drift\nlogdir /var/log/chrony\nmaxupdateskew 100.0\nleapsectz right/UTC\nleapsecmode slew\nport 0\nbindcmdaddress 127.0.0.1\ncmdport 323\n",
+      "after_sha256": "f3ccefcc94f4a01f7051566d2b53db5e0efe5a8b1e8d54c8e598d35c83b58241",
+      "before": "# Candidate only. Install under /etc/chrony/marketdata.conf after a separately approved cutover.\n# RTC UTC confirmation is required by the chrony unit's ExecStartPre.\n# Steady daemon has no automatic step; the separate boot coordinator owns it.\npool ntp.ubuntu.com iburst maxsources 4 minpoll 6 maxpoll 8\nrtcsync\ndriftfile /var/lib/chrony/chrony.drift\nlogdir /var/log/chrony\nmaxupdateskew 100.0\nleapsectz right/UTC\nleapsecmode slew\nport 0\nbindcmdaddress 127.0.0.1\ncmdport 323\n",
+      "before_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "mode": 420,
+      "path": "/etc/chrony/marketdata.conf",
+      "uid": 0
+    },
+    "runtime": {
+      "after": "{\n  \"chrony_config\": \"/etc/chrony/marketdata.conf\",\n  \"chrony_config_sha256\": \"f3ccefcc94f4a01f7051566d2b53db5e0efe5a8b1e8d54c8e598d35c83b58241\",\n  \"chronyc\": \"/usr/bin/chronyc\",\n  \"data_root\": \"/home/yoonhc/projects/algoTrade/historical_data\",\n  \"dns_hosts\": [\n    \"fstream.binance.com\",\n    \"fapi.binance.com\"\n  ],\n  \"evidence_root\": \"/home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock\",\n  \"mount_uuid\": \"d8020c0b-a5df-4e47-99d9-2378b12ab2ea\",\n  \"policy\": {\n    \"heartbeat_seconds\": 10.0,\n    \"max_correction_seconds\": 0.1,\n    \"max_error_seconds\": 0.5,\n    \"max_reference_age_seconds\": 600.0,\n    \"max_sample_gap_seconds\": 5.0,\n    \"max_skew_ppm\": 100.0,\n    \"provider_seconds\": 10.0,\n    \"ready_poll_seconds\": 5.0,\n    \"ready_timeout_seconds\": 120.0,\n    \"sample_seconds\": 1.0,\n    \"status_max_age_seconds\": 25.0,\n    \"step_threshold_seconds\": 0.25,\n    \"stop_timeout_seconds\": 120.0\n  },\n  \"release_root\": \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee\",\n  \"schema\": 1,\n  \"uid\": 1000\n}\n",
+      "after_sha256": "10b747dd1074fab01e57332b56b7570e019dc55943e74f56e0d936eee6710543",
+      "before": "{\n  \"schema\": 1,\n  \"uid\": 1000,\n  \"release_root\": \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee\",\n  \"data_root\": \"/home/yoonhc/projects/algoTrade/historical_data\",\n  \"evidence_root\": \"/home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock\",\n  \"mount_uuid\": \"d8020c0b-a5df-4e47-99d9-2378b12ab2ea\",\n  \"chronyc\": \"/usr/bin/chronyc\",\n  \"chrony_config\": \"/etc/chrony/marketdata.conf\",\n  \"chrony_config_sha256\": \"7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86\",\n  \"dns_hosts\": [\n    \"fstream.binance.com\",\n    \"fapi.binance.com\"\n  ],\n  \"policy\": {\n    \"max_correction_seconds\": 0.1,\n    \"max_error_seconds\": 0.5,\n    \"max_reference_age_seconds\": 600.0,\n    \"max_skew_ppm\": 100.0,\n    \"step_threshold_seconds\": 0.25,\n    \"max_sample_gap_seconds\": 5.0,\n    \"sample_seconds\": 1.0,\n    \"provider_seconds\": 10.0,\n    \"heartbeat_seconds\": 10.0,\n    \"status_max_age_seconds\": 25.0,\n    \"ready_timeout_seconds\": 120.0,\n    \"ready_poll_seconds\": 5.0,\n    \"stop_timeout_seconds\": 120.0\n  }\n}\n",
+      "before_sha256": "f10663335fd42b8df75da8c5e7b43ec353244b24898f7c7dcc26d6eee77248c7",
+      "mode": 420,
+      "path": "/etc/marketdata/runtime.json",
+      "uid": 0
+    }
+  },
+  "kind": "chrony_source_configuration",
+  "ledger_before": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "closed_boottime": 15.635695814,
+    "closed_observation": {
+      "conditional_error_bound_seconds": 0.1957006285,
+      "provider": {
+        "argv": [
+          "/usr/sbin/chronyd",
+          "-F",
+          "1",
+          "-f",
+          "/etc/chrony/marketdata.conf",
+          ""
+        ],
+        "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+        "pid": 1245
+      },
+      "ready": true,
+      "reasons": [],
+      "reference_age_seconds": 2.038670778274536,
+      "sample": {
+        "boottime_ns": 15873612363,
+        "monotonic_ns": 15873611848,
+        "sampling_span_ns": 1579,
+        "wall_ns": 1791472277915793853
+      },
+      "tracking": {
+        "correction": -0.066962399,
+        "leap": "Normal",
+        "raw_csv": "B97DBE39,185.125.190.57,3,1791472275.877091736,-0.066962399,0.198808655,0.198808655,24.944,7.388,24.314,0.253650129,0.001913165,0.0,Normal",
+        "reference_address": "185.125.190.57",
+        "reference_id": "B97DBE39",
+        "reference_time": 1791472275.8770916,
+        "root_delay": 0.253650129,
+        "root_dispersion": 0.001913165,
+        "skew_ppm": 24.314,
+        "stratum": 3
+      }
+    },
+    "first_boottime": 10.33559517,
+    "last_wait": {
+      "long_wait": false,
+      "needs_review": false,
+      "phase": "preparing",
+      "ready": false,
+      "reasons": [
+        "no_external_reference",
+        "not_synchronized_or_leap_pending",
+        "reference_age",
+        "clock_error_bound"
+      ],
+      "step_attempts": 0,
+      "wait_seconds": 0
+    },
+    "phase": "closed",
+    "profile_sha256": "c15cae7653cf99f4f59f6e3b124eea90cc2bd6f27eaa0477ed8c4a7546958b4c",
+    "schema": 1,
+    "step_attempts": 0
+  },
+  "ledger_before_sha256": "666e49943506429f386417d2e81ba8a2a07b2891c985bd8846098e6f5be249f0",
+  "new_source_addresses": [
+    "162.159.200.1",
+    "133.243.238.163",
+    "194.58.200.20",
+    "192.53.103.108"
+  ],
+  "plan_id": "c36acd75fb6363817da0792ebe61d2a3546c6d427d9d955d1c34f96a09aec057",
+  "prepared_sample": {
+    "boottime_ns": 43916121400490,
+    "monotonic_ns": 43916121399833,
+    "sampling_span_ns": 1753,
+    "wall_ns": 1791516178163581851
+  },
+  "recovery_policy": "new_boot_rollback_only_with_bootstrap_stopped_and_disabled",
+  "schema": 1,
+  "source_review_sha256": "879faaadbce63db4a63d0ceafa2b3ae2c0aced33a03fcf4c699f37bcce01bee7",
+  "state_dir": "/var/lib/marketdata-clock",
+  "tools_sha256": {
+    "clock_config_transition.py": "b23a1de273a36fb7dc3930d25697f12eafff5dcdc76e5935b98c32eb1f1c695e",
+    "clock_gate.py": "91c403fb2c37a9062a13818209a0b262146a01f402c2a456fb903012898210c0",
+    "marketdata_runtime.py": "0b145143706bd06f18f3e7b73da9a68f4e787b8f14878147f20c2b2d73883813"
+  }
+}

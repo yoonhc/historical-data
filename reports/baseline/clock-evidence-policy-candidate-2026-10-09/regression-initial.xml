@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="299" time="20.357" timestamp="2026-10-09T16:52:02.462591+09:00" hostname="hclm"><testcase classname="tests.test_clock_evidence_policy" name="test_old_reference_only_is_warning_not_child_ban[600.001]" time="0.002" /><testcase classname="tests.test_clock_evidence_policy" name="test_old_reference_only_is_warning_not_child_ban[900]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_old_reference_only_is_warning_not_child_ban[3600]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_old_reference_only_is_warning_not_child_ban[14400]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_no_exception_for_other_clock_faults[fields0]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_no_exception_for_other_clock_faults[fields1]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_no_exception_for_other_clock_faults[fields2]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_no_exception_for_other_clock_faults[fields3]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_no_exception_for_other_clock_faults[fields4]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_no_exception_for_other_clock_faults[fields5]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_no_exception_for_other_clock_faults[fields6]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_no_exception_for_other_clock_faults[fields7]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_no_exception_for_other_clock_faults[fields8]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_monitor_or_provider_failure_blocks_stale_exception[query]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_monitor_or_provider_failure_blocks_stale_exception[expired]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_monitor_or_provider_failure_blocks_stale_exception[provider]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_monitor_or_provider_failure_blocks_stale_exception[gap]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_monitor_or_provider_failure_blocks_stale_exception[step]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_monitor_or_provider_failure_blocks_stale_exception[suspend]" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_first_start_stays_strict" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_next_child_starts_stale_while_supervisor_observation_continues" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_evidence_backup_restore_query_and_new_backup[depth]" time="0.060" /><testcase classname="tests.test_clock_evidence_policy" name="test_evidence_backup_restore_query_and_new_backup[aggtrade]" time="0.046" /><testcase classname="tests.test_clock_evidence_policy" name="test_legacy_missing_open_and_backup_tail_are_unknown" time="0.029" /><testcase classname="tests.test_clock_evidence_policy" name="test_rotation_and_retry_after_commit_before_spool_unlink" time="0.017" /><testcase classname="tests.test_clock_evidence_policy" name="test_uncommitted_spool_and_capacity_fail_closed" time="0.018" /><testcase classname="tests.test_clock_evidence_policy" name="test_corruption_and_missing_chain_never_become_good" time="0.024" /><testcase classname="tests.test_clock_evidence_policy" name="test_commit_worker_does_not_block_sampling_and_reports_failure" time="0.029" /><testcase classname="tests.test_clock_evidence_policy" name="test_real_child_stopped_on_evidence_failure" time="1.005" /><testcase classname="tests.test_clock_evidence_policy" name="test_restic_extract_restore_and_query" time="5.842" /><testcase classname="tests.test_clock_evidence_policy" name="test_policy_does_not_reopen_bootstrap_or_relax_job_gate" time="0.005" /><testcase classname="tests.test_clock_evidence_policy" name="test_slow_commit_rechecks_clock_before_spawn" time="0.001" /><testcase classname="tests.test_clock_evidence_policy" name="test_actual_sigkill_preserves_and_recovers_spool[False]" time="0.133" /><testcase classname="tests.test_clock_evidence_policy" name="test_actual_sigkill_preserves_and_recovers_spool[True]" time="0.133" /><testcase classname="tests.test_clock_evidence_policy" name="test_rotation_bounds_and_partial_tail_are_preserved" time="0.044" /><testcase classname="tests.test_clock_evidence_policy" name="test_async_worker_failure_is_visible_and_staging_retained" time="0.016" /><testcase classname="tests.test_clock_evidence_policy" name="test_actual_cli_preserves_unknown_vs_available" time="0.168" /><testcase classname="tests.test_runtime_candidate" name="test_csv_and_conditional_bound" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_malformed_csv_refused[]" time="0.000" /><testcase classname="tests.test_runtime_candidate" name="test_malformed_csv_refused[1,2,3]" time="0.000" /><testcase classname="tests.test_runtime_candidate" name="test_malformed_csv_refused[x\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx]" time="0.000" /><testcase classname="tests.test_runtime_candidate" name="test_malformed_csv_refused[A,1.2.3.4,2,999,nan,0,0,0,0,0,0,0,0,Normal]" time="0.000" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[reference_address-127.127.1.1-no_external_reference]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[reference_id-7F7F0101-no_external_reference]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[stratum-0-not_synchronized_or_leap_pending]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[leap-Not synchronised-not_synchronized_or_leap_pending]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[leap-Insert second-not_synchronized_or_leap_pending]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[correction-0.101-remaining_correction]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[root_dispersion-0.6-clock_error_bound]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[root_dispersion--0.1-clock_error_bound]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[reference_time-399-reference_age]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[reference_time-1001-reference_age]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_actual_quality_not_merely_daemon_active[skew_ppm-101-frequency_uncertainty]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_probe_rejects_changed_instance_or_configuration" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_clock_disabled_or_stepping_startup_mode_refused[options0]" time="0.000" /><testcase classname="tests.test_runtime_candidate" name="test_clock_disabled_or_stepping_startup_mode_refused[options1]" time="0.000" /><testcase classname="tests.test_runtime_candidate" name="test_clock_disabled_or_stepping_startup_mode_refused[options2]" time="0.000" /><testcase classname="tests.test_runtime_candidate" name="test_clock_disabled_or_stepping_startup_mode_refused[options3]" time="0.000" /><testcase classname="tests.test_runtime_candidate" name="test_clock_disabled_or_stepping_startup_mode_refused[options4]" time="0.000" /><testcase classname="tests.test_runtime_candidate" name="test_clock_anomalies_latched_without_rewriting_input[current0-wall_clock_discontinuity]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_clock_anomalies_latched_without_rewriting_input[current1-wall_clock_discontinuity]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_clock_anomalies_latched_without_rewriting_input[current2-suspend_or_boottime_discontinuity]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_clock_anomalies_latched_without_rewriting_input[current3-observation_gap]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_provider_recovery_keeps_session_history" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_wait_recovers_and_does_not_use_wall_deadline" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_wait_expiry_never_starts_child" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_ready_not_reused_for_run" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_supervisor_raw_child_continues_when_time_untrusted" time="0.305" /><testcase classname="tests.test_runtime_candidate" name="test_evidence_failure_stops_unmonitored_child" time="0.003" /><testcase classname="tests.test_runtime_candidate" name="test_duplicate_supervisor_and_stale_status" time="0.003" /><testcase classname="tests.test_runtime_candidate" name="test_atomic_latest_failure_keeps_append_only_record" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_collector_options_and_interpreter_isolation" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_existing_collector_lock_blocks_duplicate_cli[depth]" time="0.015"><failure message="FileNotFoundError: [Errno 2] No such file or directory: '/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/clock-evidence-policy-candidate-2026-10-09/work/.venv/bin/python'">stream = 'depth'
+tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-11/test_existing_collector_lock_b0')
+
+    @pytest.mark.parametrize("stream", ["depth", "aggtrade"])
+    def test_existing_collector_lock_blocks_duplicate_cli(stream, tmp_path):
+        from marketdata import aggtrade_stream, depth_stream
+        from marketdata.store import Store
+    
+        store = Store(tmp_path / "store")
+        module = depth_stream if stream == "depth" else aggtrade_stream
+        try:
+            with module.stream_lock(store):
+&gt;               result = subprocess.run(
+                    [
+                        str(ROOT / ".venv/bin/python"),
+                        "-I",
+                        "-c",
+                        "from marketdata.cli import main; raise SystemExit(main())",
+                        "--root",
+                        str(store.root),
+                        f"{stream}-stream",
+                        "--seconds",
+                        "1",
+                    ],
+                    capture_output=True,
+                    text=True,
+                    timeout=15,
+                )
+
+tests/test_runtime_candidate.py:352: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/subprocess.py:548: in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Popen: returncode: 255 args: ['/home/yoonhc/projects/algoTrade/historical_d...&gt;
+args = ['/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/clock-evidence-policy-candidate-2026-10-09/work/.ve...ain; raise SystemExit(main())', '--root', '/tmp/pytest-of-yoonhc/pytest-11/test_existing_collector_lock_b0/store', ...]
+executable = b'/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/clock-evidence-policy-candidate-2026-10-09/work/.venv/bin/python'
+preexec_fn = None, close_fds = True, pass_fds = (), cwd = None, env = None
+startupinfo = None, creationflags = 0, shell = False, p2cread = -1
+p2cwrite = -1, c2pread = 16, c2pwrite = 17, errread = 18, errwrite = 19
+restore_signals = True, gid = None, gids = None, uid = None, umask = -1
+start_new_session = False, process_group = -1
+
+    def _execute_child(self, args, executable, preexec_fn, close_fds,
+                       pass_fds, cwd, env,
+                       startupinfo, creationflags, shell,
+                       p2cread, p2cwrite,
+                       c2pread, c2pwrite,
+                       errread, errwrite,
+                       restore_signals,
+                       gid, gids, uid, umask,
+                       start_new_session, process_group):
+        """Execute program (POSIX version)"""
+    
+        if isinstance(args, (str, bytes)):
+            args = [args]
+        elif isinstance(args, os.PathLike):
+            if shell:
+                raise TypeError('path-like args is not allowed when '
+                                'shell is true')
+            args = [args]
+        else:
+            args = list(args)
+    
+        if shell:
+            # On Android the default shell is at '/system/bin/sh'.
+            unix_shell = ('/system/bin/sh' if
+                      hasattr(sys, 'getandroidapilevel') else '/bin/sh')
+            args = [unix_shell, "-c"] + args
+            if executable:
+                args[0] = executable
+    
+        if executable is None:
+            executable = args[0]
+    
+        sys.audit("subprocess.Popen", executable, args, cwd, env)
+    
+        if (_USE_POSIX_SPAWN
+                and os.path.dirname(executable)
+                and preexec_fn is None
+                and not close_fds
+                and not pass_fds
+                and cwd is None
+                and (p2cread == -1 or p2cread &gt; 2)
+                and (c2pwrite == -1 or c2pwrite &gt; 2)
+                and (errwrite == -1 or errwrite &gt; 2)
+                and not start_new_session
+                and process_group == -1
+                and gid is None
+                and gids is None
+                and uid is None
+                and umask &lt; 0):
+            self._posix_spawn(args, executable, env, restore_signals,
+                              p2cread, p2cwrite,
+                              c2pread, c2pwrite,
+                              errread, errwrite)
+            return
+    
+        orig_executable = executable
+    
+        # For transferring possible exec failure from child to parent.
+        # Data format: "exception name:hex errno:description"
+        # Pickle is not used; it is complex and involves memory allocation.
+        errpipe_read, errpipe_write = os.pipe()
+        # errpipe_write must not be in the standard io 0, 1, or 2 fd range.
+        low_fds_to_close = []
+        while errpipe_write &lt; 3:
+            low_fds_to_close.append(errpipe_write)
+            errpipe_write = os.dup(errpipe_write)
+        for low_fd in low_fds_to_close:
+            os.close(low_fd)
+        try:
+            try:
+                # We must avoid complex work that could involve
+                # malloc or free in the child process to avoid
+                # potential deadlocks, thus we do all this here.
+                # and pass it to fork_exec()
+    
+                if env is not None:
+                    env_list = []
+                    for k, v in env.items():
+                        k = os.fsencode(k)
+                        if b'=' in k:
+                            raise ValueError("illegal environment variable name")
+                        env_list.append(k + b'=' + os.fsencode(v))
+                else:
+                    env_list = None  # Use execv instead of execve.
+                executable = os.fsencode(executable)
+                if os.path.dirname(executable):
+                    executable_list = (executable,)
+                else:
+                    # This matches the behavior of os._execvpe().
+                    executable_list = tuple(
+                        os.path.join(os.fsencode(dir), executable)
+                        for dir in os.get_exec_path(env))
+                fds_to_keep = set(pass_fds)
+                fds_to_keep.add(errpipe_write)
+                self.pid = _fork_exec(
+                        args, executable_list,
+                        close_fds, tuple(sorted(map(int, fds_to_keep))),
+                        cwd, env_list,
+                        p2cread, p2cwrite, c2pread, c2pwrite,
+                        errread, errwrite,
+                        errpipe_read, errpipe_write,
+                        restore_signals, start_new_session,
+                        process_group, gid, gids, uid, umask,
+                        preexec_fn, _USE_VFORK)
+                self._child_created = True
+            finally:
+                # be sure the FD is closed no matter what
+                os.close(errpipe_write)
+    
+            self._close_pipe_fds(p2cread, p2cwrite,
+                                 c2pread, c2pwrite,
+                                 errread, errwrite)
+    
+            # Wait for exec to fail or succeed; possibly raising an
+            # exception (limited in size)
+            errpipe_data = bytearray()
+            while True:
+                part = os.read(errpipe_read, 50000)
+                errpipe_data += part
+                if not part or len(errpipe_data) &gt; 50000:
+                    break
+        finally:
+            # be sure the FD is closed no matter what
+            os.close(errpipe_read)
+    
+        if errpipe_data:
+            try:
+                pid, sts = os.waitpid(self.pid, 0)
+                if pid == self.pid:
+                    self._handle_exitstatus(sts)
+                else:
+                    self.returncode = sys.maxsize
+            except ChildProcessError:
+                pass
+    
+            try:
+                exception_name, hex_errno, err_msg = (
+                        errpipe_data.split(b':', 2))
+                # The encoding here should match the encoding
+                # written in by the subprocess implementations
+                # like _posixsubprocess
+                err_msg = err_msg.decode()
+            except ValueError:
+                exception_name = b'SubprocessError'
+                hex_errno = b'0'
+                err_msg = 'Bad exception data from child: {!r}'.format(
+                              bytes(errpipe_data))
+            child_exception_type = getattr(
+                    builtins, exception_name.decode('ascii'),
+                    SubprocessError)
+            if issubclass(child_exception_type, OSError) and hex_errno:
+                errno_num = int(hex_errno, 16)
+                if err_msg == "noexec:chdir":
+                    err_msg = ""
+                    # The error must be from chdir(cwd).
+                    err_filename = cwd
+                elif err_msg == "noexec":
+                    err_msg = ""
+                    err_filename = None
+                else:
+                    err_filename = orig_executable
+                if errno_num != 0:
+                    err_msg = os.strerror(errno_num)
+                if err_filename is not None:
+&gt;                   raise child_exception_type(errno_num, err_msg, err_filename)
+E                   FileNotFoundError: [Errno 2] No such file or directory: '/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/clock-evidence-policy-candidate-2026-10-09/work/.venv/bin/python'
+
+/usr/lib/python3.12/subprocess.py:1955: FileNotFoundError</failure></testcase><testcase classname="tests.test_runtime_candidate" name="test_existing_collector_lock_blocks_duplicate_cli[aggtrade]" time="0.017"><failure message="FileNotFoundError: [Errno 2] No such file or directory: '/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/clock-evidence-policy-candidate-2026-10-09/work/.venv/bin/python'">stream = 'aggtrade'
+tmp_path = PosixPath('/tmp/pytest-of-yoonhc/pytest-11/test_existing_collector_lock_b1')
+
+    @pytest.mark.parametrize("stream", ["depth", "aggtrade"])
+    def test_existing_collector_lock_blocks_duplicate_cli(stream, tmp_path):
+        from marketdata import aggtrade_stream, depth_stream
+        from marketdata.store import Store
+    
+        store = Store(tmp_path / "store")
+        module = depth_stream if stream == "depth" else aggtrade_stream
+        try:
+            with module.stream_lock(store):
+&gt;               result = subprocess.run(
+                    [
+                        str(ROOT / ".venv/bin/python"),
+                        "-I",
+                        "-c",
+                        "from marketdata.cli import main; raise SystemExit(main())",
+                        "--root",
+                        str(store.root),
+                        f"{stream}-stream",
+                        "--seconds",
+                        "1",
+                    ],
+                    capture_output=True,
+                    text=True,
+                    timeout=15,
+                )
+
+tests/test_runtime_candidate.py:352: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/subprocess.py:548: in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/subprocess.py:1026: in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Popen: returncode: 255 args: ['/home/yoonhc/projects/algoTrade/historical_d...&gt;
+args = ['/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/clock-evidence-policy-candidate-2026-10-09/work/.ve...ain; raise SystemExit(main())', '--root', '/tmp/pytest-of-yoonhc/pytest-11/test_existing_collector_lock_b1/store', ...]
+executable = b'/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/clock-evidence-policy-candidate-2026-10-09/work/.venv/bin/python'
+preexec_fn = None, close_fds = True, pass_fds = (), cwd = None, env = None
+startupinfo = None, creationflags = 0, shell = False, p2cread = -1
+p2cwrite = -1, c2pread = 16, c2pwrite = 17, errread = 18, errwrite = 19
+restore_signals = True, gid = None, gids = None, uid = None, umask = -1
+start_new_session = False, process_group = -1
+
+    def _execute_child(self, args, executable, preexec_fn, close_fds,
+                       pass_fds, cwd, env,
+                       startupinfo, creationflags, shell,
+                       p2cread, p2cwrite,
+                       c2pread, c2pwrite,
+                       errread, errwrite,
+                       restore_signals,
+                       gid, gids, uid, umask,
+                       start_new_session, process_group):
+        """Execute program (POSIX version)"""
+    
+        if isinstance(args, (str, bytes)):
+            args = [args]
+        elif isinstance(args, os.PathLike):
+            if shell:
+                raise TypeError('path-like args is not allowed when '
+                                'shell is true')
+            args = [args]
+        else:
+            args = list(args)
+    
+        if shell:
+            # On Android the default shell is at '/system/bin/sh'.
+            unix_shell = ('/system/bin/sh' if
+                      hasattr(sys, 'getandroidapilevel') else '/bin/sh')
+            args = [unix_shell, "-c"] + args
+            if executable:
+                args[0] = executable
+    
+        if executable is None:
+            executable = args[0]
+    
+        sys.audit("subprocess.Popen", executable, args, cwd, env)
+    
+        if (_USE_POSIX_SPAWN
+                and os.path.dirname(executable)
+                and preexec_fn is None
+                and not close_fds
+                and not pass_fds
+                and cwd is None
+                and (p2cread == -1 or p2cread &gt; 2)
+                and (c2pwrite == -1 or c2pwrite &gt; 2)
+                and (errwrite == -1 or errwrite &gt; 2)
+                and not start_new_session
+                and process_group == -1
+                and gid is None
+                and gids is None
+                and uid is None
+                and umask &lt; 0):
+            self._posix_spawn(args, executable, env, restore_signals,
+                              p2cread, p2cwrite,
+                              c2pread, c2pwrite,
+                              errread, errwrite)
+            return
+    
+        orig_executable = executable
+    
+        # For transferring possible exec failure from child to parent.
+        # Data format: "exception name:hex errno:description"
+        # Pickle is not used; it is complex and involves memory allocation.
+        errpipe_read, errpipe_write = os.pipe()
+        # errpipe_write must not be in the standard io 0, 1, or 2 fd range.
+        low_fds_to_close = []
+        while errpipe_write &lt; 3:
+            low_fds_to_close.append(errpipe_write)
+            errpipe_write = os.dup(errpipe_write)
+        for low_fd in low_fds_to_close:
+            os.close(low_fd)
+        try:
+            try:
+                # We must avoid complex work that could involve
+                # malloc or free in the child process to avoid
+                # potential deadlocks, thus we do all this here.
+                # and pass it to fork_exec()
+    
+                if env is not None:
+                    env_list = []
+                    for k, v in env.items():
+                        k = os.fsencode(k)
+                        if b'=' in k:
+                            raise ValueError("illegal environment variable name")
+                        env_list.append(k + b'=' + os.fsencode(v))
+                else:
+                    env_list = None  # Use execv instead of execve.
+                executable = os.fsencode(executable)
+                if os.path.dirname(executable):
+                    executable_list = (executable,)
+                else:
+                    # This matches the behavior of os._execvpe().
+                    executable_list = tuple(
+                        os.path.join(os.fsencode(dir), executable)
+                        for dir in os.get_exec_path(env))
+                fds_to_keep = set(pass_fds)
+                fds_to_keep.add(errpipe_write)
+                self.pid = _fork_exec(
+                        args, executable_list,
+                        close_fds, tuple(sorted(map(int, fds_to_keep))),
+                        cwd, env_list,
+                        p2cread, p2cwrite, c2pread, c2pwrite,
+                        errread, errwrite,
+                        errpipe_read, errpipe_write,
+                        restore_signals, start_new_session,
+                        process_group, gid, gids, uid, umask,
+                        preexec_fn, _USE_VFORK)
+                self._child_created = True
+            finally:
+                # be sure the FD is closed no matter what
+                os.close(errpipe_write)
+    
+            self._close_pipe_fds(p2cread, p2cwrite,
+                                 c2pread, c2pwrite,
+                                 errread, errwrite)
+    
+            # Wait for exec to fail or succeed; possibly raising an
+            # exception (limited in size)
+            errpipe_data = bytearray()
+            while True:
+                part = os.read(errpipe_read, 50000)
+                errpipe_data += part
+                if not part or len(errpipe_data) &gt; 50000:
+                    break
+        finally:
+            # be sure the FD is closed no matter what
+            os.close(errpipe_read)
+    
+        if errpipe_data:
+            try:
+                pid, sts = os.waitpid(self.pid, 0)
+                if pid == self.pid:
+                    self._handle_exitstatus(sts)
+                else:
+                    self.returncode = sys.maxsize
+            except ChildProcessError:
+                pass
+    
+            try:
+                exception_name, hex_errno, err_msg = (
+                        errpipe_data.split(b':', 2))
+                # The encoding here should match the encoding
+                # written in by the subprocess implementations
+                # like _posixsubprocess
+                err_msg = err_msg.decode()
+            except ValueError:
+                exception_name = b'SubprocessError'
+                hex_errno = b'0'
+                err_msg = 'Bad exception data from child: {!r}'.format(
+                              bytes(errpipe_data))
+            child_exception_type = getattr(
+                    builtins, exception_name.decode('ascii'),
+                    SubprocessError)
+            if issubclass(child_exception_type, OSError) and hex_errno:
+                errno_num = int(hex_errno, 16)
+                if err_msg == "noexec:chdir":
+                    err_msg = ""
+                    # The error must be from chdir(cwd).
+                    err_filename = cwd
+                elif err_msg == "noexec":
+                    err_msg = ""
+                    err_filename = None
+                else:
+                    err_filename = orig_executable
+                if errno_num != 0:
+                    err_msg = os.strerror(errno_num)
+                if err_filename is not None:
+&gt;                   raise child_exception_type(errno_num, err_msg, err_filename)
+E                   FileNotFoundError: [Errno 2] No such file or directory: '/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/clock-evidence-policy-candidate-2026-10-09/work/.venv/bin/python'
+
+/usr/lib/python3.12/subprocess.py:1955: FileNotFoundError</failure></testcase><testcase classname="tests.test_runtime_candidate" name="test_unknown_policy_and_root_uid_refused" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_units_use_system_manager_and_normal_account" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_steady_chrony_has_rtc_sync_but_never_automatically_steps" time="0.000" /><testcase classname="tests.test_runtime_candidate" name="test_installed_origin_hash_uuid_dns_and_data_paths" time="0.002" /><testcase classname="tests.test_runtime_candidate" name="test_environment_fail_closed[wrong_mount-UUID]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_environment_fail_closed[tampered_package-file changed]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_environment_fail_closed[checkpoint_root-Checkpoint]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_environment_fail_closed[missing_catalog-catalog]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_environment_fail_closed[wrong_python-Python version]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_environment_fail_closed[dns_failure-DNS]" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_editable_import_refused" time="0.001" /><testcase classname="tests.test_runtime_candidate" name="test_foreign_boot_dead_pid_and_changed_profile_are_unusable" time="0.003" /><testcase classname="tests.test_clock_bootstrap" name="test_large_initial_offset_uses_source_then_step_then_readiness[41]" time="0.008" /><testcase classname="tests.test_clock_bootstrap" name="test_large_initial_offset_uses_source_then_step_then_readiness[-41]" time="0.008" /><testcase classname="tests.test_clock_bootstrap" name="test_large_initial_offset_uses_source_then_step_then_readiness[0.101]" time="0.008" /><testcase classname="tests.test_clock_bootstrap" name="test_large_initial_offset_uses_source_then_step_then_readiness[-0.101]" time="0.008" /><testcase classname="tests.test_clock_bootstrap" name="test_large_initial_offset_uses_source_then_step_then_readiness[0.1]" time="0.004" /><testcase classname="tests.test_clock_bootstrap" name="test_large_initial_offset_uses_source_then_step_then_readiness[-0.1]" time="0.004" /><testcase classname="tests.test_clock_bootstrap" name="test_large_initial_offset_uses_source_then_step_then_readiness[0]" time="0.005" /><testcase classname="tests.test_clock_bootstrap" name="test_never_steps_without_source_rtc_or_quiescence[unsynced]" time="0.004" /><testcase classname="tests.test_clock_bootstrap" name="test_never_steps_without_source_rtc_or_quiescence[stale]" time="0.004" /><testcase classname="tests.test_clock_bootstrap" name="test_never_steps_without_source_rtc_or_quiescence[too_large]" time="0.004" /><testcase classname="tests.test_clock_bootstrap" name="test_never_steps_without_source_rtc_or_quiescence[rtc]" time="0.003" /><testcase classname="tests.test_clock_bootstrap" name="test_never_steps_without_source_rtc_or_quiescence[busy]" time="0.003" /><testcase classname="tests.test_clock_bootstrap" name="test_wait_recovers_and_long_wait_survives_service_retries" time="0.009" /><testcase classname="tests.test_clock_bootstrap" name="test_installation_boot_cannot_step_or_be_reenrolled" time="0.002" /><testcase classname="tests.test_clock_bootstrap" name="test_broken_or_foreign_state_does_not_rearm[missing]" time="0.002" /><testcase classname="tests.test_clock_bootstrap" name="test_broken_or_foreign_state_does_not_rearm[corrupt]" time="0.002" /><testcase classname="tests.test_clock_bootstrap" name="test_broken_or_foreign_state_does_not_rearm[profile]" time="0.002" /><testcase classname="tests.test_clock_bootstrap" name="test_closed_window_stays_closed_even_with_no_jobs_and_new_daemon" time="0.008" /><testcase classname="tests.test_clock_bootstrap" name="test_sigkill_at_step_boundary_is_not_replayed[False]" time="0.091" /><testcase classname="tests.test_clock_bootstrap" name="test_sigkill_at_step_boundary_is_not_replayed[True]" time="0.091" /><testcase classname="tests.test_clock_bootstrap" name="test_storage_failure_cannot_publish_unearned_readiness[intent]" time="0.003" /><testcase classname="tests.test_clock_bootstrap" name="test_storage_failure_cannot_publish_unearned_readiness[event]" time="0.004" /><testcase classname="tests.test_clock_bootstrap" name="test_storage_failure_cannot_publish_unearned_readiness[close]" time="0.007" /><testcase classname="tests.test_clock_bootstrap" name="test_real_flock_excludes_another_bootstrap" time="0.008" /><testcase classname="tests.test_clock_bootstrap" name="test_command_has_no_future_step_window_and_detects_provider_change" time="0.002" /><testcase classname="tests.test_clock_bootstrap" name="test_untrusted_input_is_refused_by_real_cli" time="0.030" /><testcase classname="tests.test_clock_bootstrap" name="test_inventory_guards_and_persistent_masks" time="0.003" /><testcase classname="tests.test_clock_bootstrap" name="test_rendered_units_gate_all_known_jobs_before_clock_wait" time="0.003" /><testcase classname="tests.test_clock_bootstrap" name="test_rtc_write_daemon_cannot_start_before_both_os_confirmation[None]" time="0.003" /><testcase classname="tests.test_clock_bootstrap" name="test_rtc_write_daemon_cannot_start_before_both_os_confirmation[windows_unconfirmed]" time="0.002" /><testcase classname="tests.test_clock_bootstrap" name="test_rtc_write_daemon_cannot_start_before_both_os_confirmation[empty_adjtime]" time="0.003" /><testcase classname="tests.test_clock_bootstrap" name="test_rtc_write_daemon_cannot_start_before_both_os_confirmation[local_adjtime]" time="0.002" /><testcase classname="tests.test_clock_bootstrap" name="test_rtc_write_daemon_cannot_start_before_both_os_confirmation[local_timedated]" time="0.002" /><testcase classname="tests.test_clock_bootstrap" name="test_step_command_failure_is_unknown_and_never_retried" time="0.006" /><testcase classname="tests.test_clock_bootstrap" name="test_final_publication_failure_can_recover_without_second_step" time="0.008" /><testcase classname="tests.test_clock_bootstrap" name="test_source_ready_but_post_step_quality_bad_never_releases_jobs" time="0.008" /><testcase classname="tests.test_clock_bootstrap" name="test_forged_closed_record_without_observation_is_not_a_marker" time="0.003" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_wait_does_not_consume_job_failures_and_recovers_after_long_delay" time="0.000" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_wait_cancellation_never_reports_ready[error0]" time="0.000" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_wait_cancellation_never_reports_ready[error1]" time="0.000" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_wait_cancellation_never_reports_ready[error2]" time="0.000" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_wait_releases_shared_lock_while_waiting" time="0.002" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_coordinator_accepts_verified_waiter_but_never_running_business[None]" time="0.000" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_coordinator_accepts_verified_waiter_but_never_running_business[wait_command]" time="0.000" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_coordinator_accepts_verified_waiter_but_never_running_business[wait_extra]" time="0.000" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_coordinator_accepts_verified_waiter_but_never_running_business[wait_post]" time="0.000" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_coordinator_accepts_verified_waiter_but_never_running_business[dependency]" time="0.000" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_coordinator_accepts_verified_waiter_but_never_running_business[job_active]" time="0.000" /><testcase classname="tests.test_clock_bootstrap_revision" name="test_render_preserves_business_restart_timeout_and_grants_only_socket_directory" time="0.001" /><testcase classname="tests.test_backup" name="test_checkpoint_preserves_revisions_snapshots_issues_and_receipts" time="0.104" /><testcase classname="tests.test_backup" name="test_corrupted_backup_is_rejected[raw]" time="0.067" /><testcase classname="tests.test_backup" name="test_corrupted_backup_is_rejected[canonical]" time="0.065" /><testcase classname="tests.test_backup" name="test_corrupted_backup_is_rejected[snapshots]" time="0.069" /><testcase classname="tests.test_backup" name="test_corrupted_backup_is_rejected[catalog]" time="0.061" /><testcase classname="tests.test_backup" name="test_corrupted_backup_is_rejected[manifest]" time="0.057" /><testcase classname="tests.test_backup" name="test_incomplete_copy_never_has_completion_marker" time="0.054" /><testcase classname="tests.test_backup" name="test_damaged_source_is_not_certified_as_backup" time="0.057" /><testcase classname="tests.test_backup" name="test_insufficient_capacity_and_existing_destination_are_safe" time="0.049" /><testcase classname="tests.test_backup" name="test_backup_cannot_be_nested_in_store_data[data/backup]" time="0.014" /><testcase classname="tests.test_backup" name="test_backup_cannot_be_nested_in_store_data[state/backup]" time="0.014" /><testcase classname="tests.test_backup" name="test_catalog_path_traversal_and_symlink_rejected" time="0.024" /><testcase classname="tests.test_backup" name="test_inventory_cannot_omit_catalog_file_even_with_rehashed_manifest" time="0.062" /><testcase classname="tests.test_backup" name="test_restore_never_overwrites_existing_store_or_follows_destination_symlink" time="0.066" /><testcase classname="tests.test_backup" name="test_storage_capacity_warning_does_not_create_catalog" time="0.006" /><testcase classname="tests.test_backup" name="test_cli_backup_restore_and_verify_do_not_initialize_unused_root" time="0.096" /><testcase classname="tests.test_incremental_backup" name="test_linked_snapshot_adds_only_new_data_and_restores_without_previous_path" time="0.094" /><testcase classname="tests.test_incremental_backup" name="test_linking_never_hides_corruption_in_live_or_reused_bytes[live]" time="0.062" /><testcase classname="tests.test_incremental_backup" name="test_linking_never_hides_corruption_in_live_or_reused_bytes[previous]" time="0.066" /><testcase classname="tests.test_incremental_backup" name="test_shared_archive_corruption_is_detected_in_both_checkpoints_but_not_live" time="0.074" /><testcase classname="tests.test_incremental_backup" name="test_existing_archive_linked_to_live_input_is_rejected" time="0.066" /><testcase classname="tests.test_incremental_backup" name="test_link_failure_retains_incomplete_attempt_and_does_not_fallback_to_full_copy" time="0.077" /><testcase classname="tests.test_incremental_backup" name="test_capacity_reserves_only_new_file_bytes_for_incremental_backup" time="0.043" /><testcase classname="tests.test_incremental_backup" name="test_packed_snapshot_links_packs_and_preserves_old_format_compatibility" time="0.072" /><testcase classname="tests.test_incremental_backup" name="test_storage_reports_unique_backups_without_counting_shared_inodes_twice" time="0.070" /><testcase classname="tests.test_incremental_backup" name="test_daily_external_destination_incremental_success_retry_and_unavailable_status" time="0.143" /><testcase classname="tests.test_incremental_backup" name="test_invalid_backup_destination_never_falls_back_to_local[missing_directory]" time="0.018" /><testcase classname="tests.test_incremental_backup" name="test_invalid_backup_destination_never_falls_back_to_local[missing_mount]" time="0.018" /><testcase classname="tests.test_incremental_backup" name="test_invalid_backup_destination_never_falls_back_to_local[data_directory]" time="0.017" /><testcase classname="tests.test_incremental_backup" name="test_backup_folder_cannot_reuse_another_stores_same_day_snapshot" time="0.066" /><testcase classname="tests.test_incremental_backup" name="test_cli_linked_backup_and_archived_root_guard" time="0.079" /><testcase classname="tests.test_aggtrades" name="test_more_than_one_page_at_same_millisecond_uses_ids_and_keeps_exclusive_end" time="0.554" /><testcase classname="tests.test_aggtrades" name="test_page_budget_does_not_claim_complete_query" time="0.028" /><testcase classname="tests.test_aggtrades" name="test_rest_missing_ids_and_requested_edges_are_explicit" time="0.019" /><testcase classname="tests.test_aggtrades" name="test_nonadvancing_or_duplicate_api_page_retains_raw_and_fails" time="0.017" /><testcase classname="tests.test_aggtrades" name="test_schema_rejects_invalid_values[m-false]" time="0.001" /><testcase classname="tests.test_aggtrades" name="test_schema_rejects_invalid_values[a-True]" time="0.000" /><testcase classname="tests.test_aggtrades" name="test_schema_rejects_invalid_values[q-0]" time="0.000" /><testcase classname="tests.test_aggtrades" name="test_schema_rejects_invalid_values[p-NaN]" time="0.000" /><testcase classname="tests.test_aggtrades" name="test_schema_rejects_invalid_values[nq-2]" time="0.000" /><testcase classname="tests.test_aggtrades" name="test_schema_rejects_invalid_values[st-2]" time="0.000" /><testcase classname="tests.test_aggtrades" name="test_schema_rejects_invalid_values[f-100]" time="0.000" /><testcase classname="tests.test_aggtrades" name="test_rate_limit_body_is_saved_and_retry_after_survives_another_command" time="0.019" /><testcase classname="tests.test_aggtrades" name="test_source_conflicts_are_not_hidden_by_deduplication_or_missing_optional_field" time="0.034" /><testcase classname="tests.test_aggtrades" name="test_rest_and_websocket_parity_preserves_distinct_clocks" time="0.025" /><testcase classname="tests.test_aggtrades" name="test_cross_source_normal_quantity_conflict_is_not_hidden_by_old_missing_field" time="0.030" /><testcase classname="tests.test_aggtrades" name="test_candle_comparison_uses_exact_volumes_and_does_not_equate_trade_counts" time="0.025" /><testcase classname="tests.test_aggtrades" name="test_event_segments_are_validated_backed_up_and_restored" time="0.038" /><testcase classname="tests.test_aggtrades" name="test_candle_value_differences_are_reported_without_modifying_canonical" time="0.027" /><testcase classname="tests.test_aggtrades" name="test_segment_write_interruption_can_be_replayed" time="0.018" /><testcase classname="tests.test_aggtrades" name="test_planned_reconnect_recovers_missing_ids_and_retains_original_gap" time="0.047" /><testcase classname="tests.test_aggtrades" name="test_abrupt_disconnect_reconnects_and_failed_repair_stays_partial" time="0.033" /><testcase classname="tests.test_aggtrades" name="test_duplicate_messages_are_retained_but_reader_counts_once" time="0.028" /><testcase classname="tests.test_aggtrades" name="test_interrupt_flushes_and_restart_uses_last_persisted_id" time="0.032" /><testcase classname="tests.test_aggtrades" name="test_invalid_stream_message_is_preserved_and_cannot_pass_as_healthy" time="0.017" /><testcase classname="tests.test_aggtrades" name="test_unclean_exit_is_recorded_when_the_next_stream_gets_exclusive_lock" time="0.022" /><testcase classname="tests.test_aggtrades" name="test_reader_budget_and_missing_cli_arguments_fail_cleanly" time="0.023" /><testcase classname="tests.test_aggtrades" name="test_fresh_scope_records_prior_gap_and_still_repairs_new_gaps" time="0.032" /><testcase classname="tests.test_depth" name="test_snapshot_bridge_uses_futures_inclusive_rule_and_pu_chain" time="0.000" /><testcase classname="tests.test_depth" name="test_absolute_quantities_zero_deletion_and_unknown_removal" time="0.000" /><testcase classname="tests.test_depth" name="test_duplicate_conflict_and_gap_do_not_silently_change_book" time="0.000" /><testcase classname="tests.test_depth" name="test_missing_initial_bridge_and_crossed_update_require_new_snapshot" time="0.000" /><testcase classname="tests.test_depth" name="test_known_price_frontier_does_not_claim_unobserved_outer_depth" time="0.000" /><testcase classname="tests.test_depth" name="test_invalid_source_fields_are_rejected[u-True]" time="0.000" /><testcase classname="tests.test_depth" name="test_invalid_source_fields_are_rejected[s-ETHUSDT]" time="0.000" /><testcase classname="tests.test_depth" name="test_invalid_source_fields_are_rejected[st-2]" time="0.000" /><testcase classname="tests.test_depth" name="test_invalid_source_fields_are_rejected[b-value3]" time="0.000" /><testcase classname="tests.test_depth" name="test_invalid_source_fields_are_rejected[b-value4]" time="0.000" /><testcase classname="tests.test_depth" name="test_invalid_source_fields_are_rejected[b-value5]" time="0.000" /><testcase classname="tests.test_depth" name="test_independent_snapshot_is_aligned_to_same_update_before_comparison" time="0.000" /><testcase classname="tests.test_depth" name="test_independent_snapshot_difference_and_unalignable_check_are_explicit" time="0.000" /><testcase classname="tests.test_depth" name="test_verified_snapshot_refresh_extends_coverage_without_breaking_update_chain" time="0.000" /><testcase classname="tests.test_depth" name="test_equal_id_refresh_preserves_duplicate_detection_and_legacy_policy" time="0.000" /><testcase classname="tests.test_depth" name="test_capture_refreshes_thinning_coverage_before_periodic_check" time="0.055" /><testcase classname="tests.test_depth" name="test_offline_delayed_snapshot_check_uses_prior_deltas_and_detects_mismatch[2-True]" time="0.075" /><testcase classname="tests.test_depth" name="test_offline_delayed_snapshot_check_uses_prior_deltas_and_detects_mismatch[9-False]" time="0.075" /><testcase classname="tests.test_depth" name="test_planned_rotation_starts_new_epoch_and_offline_replay_matches" time="0.053" /><testcase classname="tests.test_depth" name="test_live_snapshot_verification_and_replay" time="0.059" /><testcase classname="tests.test_depth" name="test_missing_update_resynchronizes_but_missing_history_remains_invalid" time="0.048" /><testcase classname="tests.test_depth" name="test_coverage_exhaustion_keeps_socket_and_every_queued_update" time="0.065" /><testcase classname="tests.test_depth" name="test_coverage_reset_gets_its_own_snapshot_bridge_deadline" time="0.078" /><testcase classname="tests.test_depth" name="test_lagged_snapshots_keep_all_raw_updates_until_source_recovers" time="0.117" /><testcase classname="tests.test_depth" name="test_disconnect_starts_fresh_book_and_records_unrecoverable_boundary" time="0.049" /><testcase classname="tests.test_depth" name="test_malformed_websocket_keeps_raw_and_marks_failure" time="0.029" /><testcase classname="tests.test_depth" name="test_rest_rate_limit_preserves_body_and_persists_cooldown" time="0.018" /><testcase classname="tests.test_depth" name="test_ctrl_c_flushes_and_next_run_uses_new_snapshot" time="0.071" /><testcase classname="tests.test_depth" name="test_orphan_running_record_is_interrupted_on_restart" time="0.033" /><testcase classname="tests.test_depth" name="test_low_disk_stops_before_network_snapshot" time="0.016" /><testcase classname="tests.test_depth" name="test_depth_backup_restore_and_corruption_detection" time="0.078" /><testcase classname="tests.test_depth" name="test_journal_sequence_holes_and_replay_budget_are_detected" time="0.035" /><testcase classname="tests.test_depth" name="test_cli_empty_store_and_invalid_duration" time="0.031" /><testcase classname="tests.test_depth_failure_publication" name="test_external_cli_rejects_while_event_persistence_is_blocked[0]" time="0.410" /><testcase classname="tests.test_depth_failure_publication" name="test_external_cli_rejects_while_event_persistence_is_blocked[8]" time="0.410" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[json_once-0]" time="0.048" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[json_once-8]" time="0.051" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[json_always-0]" time="0.038" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[json_always-8]" time="0.039" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[json_after_flush_once-0]" time="0.048" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[json_after_flush_once-8]" time="0.048" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[raw_once-0]" time="0.048" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[raw_once-8]" time="0.048" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[raw_always-0]" time="0.041" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[raw_always-8]" time="0.040" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[db_once-0]" time="0.050" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[db_once-8]" time="0.048" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[db_always-0]" time="0.040" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[db_always-8]" time="0.035" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[commit_once-0]" time="0.049" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[commit_once-8]" time="0.048" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[commit_always-0]" time="0.035" /><testcase classname="tests.test_depth_failure_publication" name="test_failure_publication_faults_through_collector_exception_handler[commit_always-8]" time="0.038" /><testcase classname="tests.test_depth_failure_publication" name="test_two_failures_stay_monotonic_and_older_retry_cannot_replace_latest[0]" time="0.106" /><testcase classname="tests.test_depth_failure_publication" name="test_two_failures_stay_monotonic_and_older_retry_cannot_replace_latest[8]" time="0.107" /><testcase classname="tests.test_depth_failure_publication" name="test_force_kill_after_publication_preserves_notice_and_restart_boundary[0]" time="0.256" /><testcase classname="tests.test_depth_failure_publication" name="test_force_kill_after_publication_preserves_notice_and_restart_boundary[8]" time="0.256" /><testcase classname="tests.test_depth_failure_publication" name="test_publication_rejects_nested_transaction_and_conflicting_retry" time="0.043" /><testcase classname="tests.test_depth_failure_publication" name="test_normal_book_flush_faults_preserve_confirmed_bounds_without_reconnecting[raw_always]" time="0.041" /><testcase classname="tests.test_depth_failure_publication" name="test_normal_book_flush_faults_preserve_confirmed_bounds_without_reconnecting[raw_once]" time="0.046" /><testcase classname="tests.test_depth_failure_publication" name="test_normal_book_flush_faults_preserve_confirmed_bounds_without_reconnecting[json_once]" time="0.049" /><testcase classname="tests.test_depth_failure_publication" name="test_normal_book_flush_faults_preserve_confirmed_bounds_without_reconnecting[json_always]" time="0.045" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[0]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[1]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[2]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[3]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[4]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[5]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[6]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[7]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[8]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[9]" time="0.050" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[10]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[11]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[12]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[13]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[14]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[15]" time="0.052" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[16]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[17]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[18]" time="0.047" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[19]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[20]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[21]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[22]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[23]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[24]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[25]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[26]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[27]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[28]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[29]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[30]" time="0.049" /><testcase classname="tests.test_depth_reference" name="test_recovery_matches_independent_exchange_state[31]" time="0.048" /><testcase classname="tests.test_depth_reference" name="test_failed_partial_history_candidate_does_not_change_the_active_book" time="0.002" /><testcase classname="tests.test_depth_independent_cases" name="test_frozen_raw_incidents_without_production_book_engine[c595e79851ef4ced8e4194f22cf58b84-74-0-0]" time="2.400" /><testcase classname="tests.test_depth_independent_cases" name="test_frozen_raw_incidents_without_production_book_engine[54d28ea721ed41fab80928c064514159-7-0-8]" time="0.307" /><testcase classname="tests.test_depth_independent_cases" name="test_consumer_failure_lifecycle_with_early_failure_publication[0-0]" time="0.203" /><testcase classname="tests.test_depth_independent_cases" name="test_consumer_failure_lifecycle_with_early_failure_publication[0-8]" time="0.172" /><testcase classname="tests.test_depth_independent_cases" name="test_consumer_failure_lifecycle_with_early_failure_publication[2-0]" time="0.144" /><testcase classname="tests.test_depth_independent_cases" name="test_consumer_failure_lifecycle_with_early_failure_publication[2-8]" time="0.143" /><testcase classname="tests.test_stream_guard" name="test_rate_limit_survives_process_restart_without_network[429-300-marketdata.aggtrade_stream-aggtrade]" time="0.023" /><testcase classname="tests.test_stream_guard" name="test_rate_limit_survives_process_restart_without_network[429-300-marketdata.depth_stream-depth]" time="0.044" /><testcase classname="tests.test_stream_guard" name="test_rate_limit_survives_process_restart_without_network[418-3600-marketdata.aggtrade_stream-aggtrade]" time="0.022" /><testcase classname="tests.test_stream_guard" name="test_rate_limit_survives_process_restart_without_network[418-3600-marketdata.depth_stream-depth]" time="0.043" /><testcase classname="tests.test_stream_guard" name="test_websocket_retry_after_can_extend_minimum_delay" time="0.015" /></testsuite></testsuites>

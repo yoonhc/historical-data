@@ -1,0 +1,64 @@
+{
+  "observed_at": "2026-10-09T08:55:58.353220+00:00",
+  "scope": "Read-only follow-up review; no transition implementation or test rerun in this turn",
+  "release_id": "clock-evidence-policy-20261009-26e7fd4bbd0a68a5",
+  "archive_hash_verified": true,
+  "files": {
+    "packages/marketdata/src/marketdata/packing.py": {
+      "candidate": "cc4ebc9811385ad1702a4c10d9a4944529ea9e67c884c46101cc3c573f577f4f",
+      "parent": "cc4ebc9811385ad1702a4c10d9a4944529ea9e67c884c46101cc3c573f577f4f",
+      "workspace": "cc4ebc9811385ad1702a4c10d9a4944529ea9e67c884c46101cc3c573f577f4f"
+    },
+    "packages/marketdata/src/marketdata/backup.py": {
+      "candidate": "e522ec6e7246c6109ddc09ab605839c90a240e66736ce0c353af682878c1963f",
+      "parent": "e522ec6e7246c6109ddc09ab605839c90a240e66736ce0c353af682878c1963f",
+      "workspace": "e522ec6e7246c6109ddc09ab605839c90a240e66736ce0c353af682878c1963f"
+    },
+    "packages/marketdata/src/marketdata/maintenance.py": {
+      "candidate": "d284e83dca37971fd3ff7423a01a831222e6bdb71e824c1a55f3e7495e81546a",
+      "parent": "d284e83dca37971fd3ff7423a01a831222e6bdb71e824c1a55f3e7495e81546a",
+      "workspace": "d284e83dca37971fd3ff7423a01a831222e6bdb71e824c1a55f3e7495e81546a"
+    },
+    "packages/marketdata/src/marketdata/store.py": {
+      "candidate": "f20eae1f5bb7aeecfd2838191dab2e4bbb08108bae2179428549416f0a799aec",
+      "parent": "a2ff36df17a3289f9855e29b12d9ad4f930b5c094cafe7fa327c51ad2e0f4d52",
+      "workspace": "a2ff36df17a3289f9855e29b12d9ad4f930b5c094cafe7fa327c51ad2e0f4d52"
+    },
+    "scripts/archive_backups.py": {
+      "candidate": "91fb91bc0615f4ab59a2bedd2c51accd5481d3d98ff9843e06a3678f14e73d0a",
+      "parent": "91fb91bc0615f4ab59a2bedd2c51accd5481d3d98ff9843e06a3678f14e73d0a",
+      "workspace": "91fb91bc0615f4ab59a2bedd2c51accd5481d3d98ff9843e06a3678f14e73d0a"
+    },
+    "scripts/restic_schedule.py": {
+      "candidate": "6a1deb90bca139f60cae3505fb522a2a4d7017887edf9fa0d9c7961de252d855",
+      "parent": "6a1deb90bca139f60cae3505fb522a2a4d7017887edf9fa0d9c7961de252d855",
+      "workspace": "6a1deb90bca139f60cae3505fb522a2a4d7017887edf9fa0d9c7961de252d855"
+    }
+  },
+  "existing_job_execution": {
+    "daily_pack_backup": "workspace .venv marketdata; actual import resolves to packages/marketdata/src",
+    "restic_python": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+    "guard_execution": "old fixed release clock_gate.py"
+  },
+  "effective_current_collectors": {
+    "instances": [
+      "depth",
+      "aggtrade"
+    ],
+    "RuntimeMaxUSec": "infinity",
+    "Restart": "always",
+    "KillMode": "mixed",
+    "KillSignal": 2,
+    "TimeoutStopUSec": "2min 30s",
+    "DropInPaths": [],
+    "inspection": "systemctl show outside sandbox; sandbox bus access denied"
+  },
+  "candidate_stop_timeout_seconds": 330,
+  "not_yet_verified": [
+    "New evidence with the actual existing job executables",
+    "Old collector and backup after new evidence creation",
+    "Root-systemd candidate startup and stop in an isolated test unit",
+    "Deployment transaction interruption/resume/rollback executor"
+  ],
+  "production_changed": false
+}

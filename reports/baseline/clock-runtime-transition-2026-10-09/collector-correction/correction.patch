@@ -1,0 +1,78 @@
+--- a/integrations/runtime/capture_runtime.py
++++ b/integrations/runtime/capture_runtime.py
+@@ -352,7 +352,8 @@
+         stop_child(child, profile["policy"]["stop_timeout_seconds"])
+         # The child has saved its terminal collection interval before this final
+         # sample is published. Interrupted/crashed reports can lack an end.
+-        observation = monitor.observe(stamp(), checker(profile))
++        clock = checker(profile)
++        observation = monitor.observe(stamp(), clock)
+         evidence.write("finished", children=sessions, **observation)
+         evidence.flush()
+         return exit_code if exit_code >= 0 else 128 - exit_code
+--- a/tests/test_clock_evidence_policy.py
++++ b/tests/test_clock_evidence_policy.py
+@@ -286,10 +286,18 @@
+     monkeypatch.setattr(ce, "sample", lambda: stamp(2))
+     report = depth.start_collection(store, {})
+     journal = ce.Journal(store, tmp_path / "spool", b, min_free_bytes=0)
+-    bad = {"reference_stale": True, "current_estimate_usable": False,
+-           "raw_start_allowed": False, "reasons": ["provider_observation_expired"]}
+-    good = {"reference_stale": False, "current_estimate_usable": True,
+-            "raw_start_allowed": True, "reasons": []}
++    bad = {
++        "reference_stale": True,
++        "current_estimate_usable": False,
++        "raw_start_allowed": False,
++        "reasons": ["provider_observation_expired"],
++    }
++    good = {
++        "reference_stale": False,
++        "current_estimate_usable": True,
++        "raw_start_allowed": True,
++        "reasons": [],
++    }
+     journal.write("running", sample_value=stamp(1), decision=bad)
+     journal.write("running", sample_value=stamp(3), decision=good)
+     monkeypatch.setattr(ce, "sample", lambda: stamp(4))
+@@ -743,3 +751,40 @@
+         assert not e.partial_child_finished(identity)
+     finally:
+         e.close()
++
++
++def test_final_observation_is_sampled_after_provider_query(profile):
++    timer, evidence = Timer(), Memory()
++
++    class Child:
++        pid = os.getpid()
++        returncode = 0
++
++        def poll(self):
++            return 0
++
++    def checker(_):
++        # Real provider queries finish after the call begins. The final sample
++        # must be taken after this observation, as it is for ordinary loop probes.
++        timer.t += 0.01
++        return clock(profile, timer.t)
++
++    result = cr.supervise(
++        profile,
++        "depth",
++        evidence,
++        timer,
++        {"ready": True},
++        checker=checker,
++        env_check=lambda _: "fixture",
++        spawn=lambda *a, **k: Child(),
++        stamp=lambda: stamp(timer.t),
++        monotonic=lambda: timer.t,
++        max_children=1,
++    )
++    assert result == 0
++    final = evidence.rows[-1]
++    assert final["state"] == "finished"
++    assert final["decision"]["reasons"] == []
++    assert final["decision"]["current_estimate_usable"]
++    assert not final["history"]["hard_fault_seen"]

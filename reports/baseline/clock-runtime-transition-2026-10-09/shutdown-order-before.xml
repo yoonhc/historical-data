@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.112" timestamp="2026-10-09T18:32:52.423112+09:00" hostname="hclm"><testcase classname="tests.test_clock_evidence_policy" name="test_final_observation_is_sampled_after_provider_query" time="0.003"><failure message="AssertionError: assert ['provider_ob...tion_expired'] == []&#10;  &#10;  Left contains one more item: 'provider_observation_expired'&#10;  Use -v to get more diff">profile = {'schema': 1, 'uid': 1000, 'release_root': '/opt/marketdata/releases/RELEASE_ID', 'data_root': '/tmp/pytest-of-yoonhc/pytest-25/test_final_observation_is_samp0/store', ...}
+
+    def test_final_observation_is_sampled_after_provider_query(profile):
+        timer, evidence = Timer(), Memory()
+        class Child:
+            pid = os.getpid()
+            returncode = 0
+            def poll(self):
+                return 0
+        def checker(_):
+            # Real provider queries finish after the call begins. The final sample
+            # must be taken after this observation, as it is for ordinary loop probes.
+            timer.t += 0.01
+            return clock(profile, timer.t)
+        result = cr.supervise(
+            profile, 'depth', evidence, timer, {'ready': True},
+            checker=checker, env_check=lambda _: 'fixture', spawn=lambda *a, **k: Child(),
+            stamp=lambda: stamp(timer.t), monotonic=lambda: timer.t, max_children=1,
+        )
+        assert result == 0
+        final = evidence.rows[-1]
+        assert final['state'] == 'finished'
+&gt;       assert final['decision']['reasons'] == []
+E       AssertionError: assert ['provider_ob...tion_expired'] == []
+E         
+E         Left contains one more item: 'provider_observation_expired'
+E         Use -v to get more diff
+
+/tmp/clock-shutdown-correction-cpmkuynr/tests/test_clock_evidence_policy.py:768: AssertionError</failure></testcase></testsuite></testsuites>

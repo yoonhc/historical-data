@@ -1,0 +1,11 @@
+[Unit]
+Description=Pack closed market data sessions hourly
+
+[Timer]
+OnActiveSec=5min
+OnCalendar=*-*-* *:15:00 UTC
+Persistent=true
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target

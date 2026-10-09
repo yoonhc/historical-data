@@ -1,0 +1,37 @@
+{
+  "observed_at": "2026-10-09T12:31:56+09:00",
+  "source": "read-only systemctl show; exact output recorded below",
+  "command": [
+    "/usr/bin/systemctl",
+    "show",
+    "chrony.service",
+    "marketdata-collector@depth.service",
+    "marketdata-collector@aggtrade.service",
+    "--no-pager",
+    "--property=Id,ActiveState,SubState,MainPID,InvocationID,ExecMainStartTimestamp,Result"
+  ],
+  "chrony": {
+    "MainPID": 1245,
+    "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+    "ExecMainStartTimestamp": "Fri 2026-10-09 00:11:08 KST",
+    "ActiveState": "active",
+    "SubState": "running",
+    "Result": "success"
+  },
+  "depth": {
+    "MainPID": 137953,
+    "InvocationID": "93b2452bb21742feae03e54a42924b3c",
+    "ExecMainStartTimestamp": "Fri 2026-10-09 12:30:26 KST",
+    "ActiveState": "active",
+    "SubState": "running"
+  },
+  "aggtrade": {
+    "MainPID": 137908,
+    "InvocationID": "a79d9a98c8464050adef64be36285050",
+    "ExecMainStartTimestamp": "Fri 2026-10-09 12:30:23 KST",
+    "ActiveState": "active",
+    "SubState": "running"
+  },
+  "service_control_sent": false,
+  "collector_note": "Existing hourly supervision continues; no manual collector stop/start was sent by this task."
+}

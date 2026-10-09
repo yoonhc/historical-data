@@ -1,0 +1,60 @@
+{
+  "backup_id": "3f2cac1a2d94fe2bd21e98476f195780afc7d4ea9a98b2f60c911b341b0a1945",
+  "catalog_counts": {
+    "active": 0,
+    "artifacts": 1,
+    "event_collections": 1,
+    "event_segments": 0,
+    "fetches": 1,
+    "file_packs": 0,
+    "issues": 0,
+    "jobs": 0,
+    "packed_files": 0,
+    "queries": 0,
+    "revisions": 0,
+    "snapshots": 0,
+    "sync_coverage": 0,
+    "sync_runs": 0,
+    "sync_targets": 0
+  },
+  "checkpoint_finished_at": "2026-10-09T08:16:05.688777+00:00",
+  "checkpoint_started_at": "2026-10-09T08:16:05.686153+00:00",
+  "completed_at": "2026-10-09T08:16:05.691048+00:00",
+  "excluded": [
+    "unregistered/orphan files",
+    "derived exports",
+    "reports and backtest results",
+    "code/configuration/environment",
+    "runtime locks, state JSON and prior backups"
+  ],
+  "files": [
+    {
+      "bytes": 413,
+      "kind": "raw",
+      "path": "data/raw/95/9506be5591db2a8a8e6e2157ba552b929b2c6ea2b88a5bc8fd40486b08fd8168/payload",
+      "sha256": "9506be5591db2a8a8e6e2157ba552b929b2c6ea2b88a5bc8fd40486b08fd8168"
+    },
+    {
+      "bytes": 151552,
+      "kind": "catalog",
+      "path": "state/catalog.sqlite",
+      "sha256": "e46392811129762212ad096f99ad5df1cea3c83a69b64548753c8fd95059684b"
+    }
+  ],
+  "format_version": 1,
+  "same_filesystem_as_source": true,
+  "scope": "catalog_and_all_referenced_raw_revisions_snapshots",
+  "source_root": "/tmp/pytest-of-yoonhc/pytest-18/test_restic_extract_restore_an0/store",
+  "started_at": "2026-10-09T08:16:05.686130+00:00",
+  "storage": {
+    "mode": "independent_copy",
+    "new_bytes": 151965,
+    "new_files": 2,
+    "reuse_backup_id": null,
+    "reuse_from": null,
+    "reused_bytes": 0,
+    "reused_files": 0,
+    "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata"
+  },
+  "writer_lock_seconds": 0.002625736000481993
+}

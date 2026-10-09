@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "assessment": "NOT_QUALIFIED_FOR_OPERATING_DEPLOYMENT",
+  "configuration": "candidate-review-only.conf",
+  "configuration_sha256": "f3ccefcc94f4a01f7051566d2b53db5e0efe5a8b1e8d54c8e598d35c83b58241",
+  "source_addresses": [
+    "162.159.200.1",
+    "133.243.238.163",
+    "194.58.200.20",
+    "192.53.103.108"
+  ],
+  "reason": [
+    "Three sources had only 3–6 replies out of 17–21 transmitted requests in 30 minutes.",
+    "Current non-smear handling is explicit for Cloudflare; national UTC/older leap handling documentation for the other sources is not a current end-to-end policy attestation.",
+    "The real 4.5 failure tests did not demonstrate automatic selection change within 600 seconds."
+  ],
+  "configuration_role": "Exact first tested source set for review and transition reproduction only; not a recommended replacement.",
+  "constraints_preserved": [
+    "600 second reference-age limit",
+    "maxpoll 8 / minpoll 6",
+    "no automatic makestep",
+    "leapsecmode slew",
+    "rtcsync",
+    "all non-source options",
+    "fixed collector release and units"
+  ],
+  "dns_policy": {
+    "candidate": "Four literal IPv4 addresses, no pool/server DNS, no include/sourcedir; observed 91.189.91.157 cannot be reintroduced by DNS in this file.",
+    "limits": [
+      "Pinned addresses can change ownership or disappear.",
+      "Same IP does not prove same physical server or path (anycast).",
+      "No NTS authentication added.",
+      "Rollback restores original ntp.ubuntu.com pool semantics and can reintroduce the problem address."
+    ]
+  },
+  "independence": {
+    "operator_names": [
+      "Cloudflare",
+      "NICT",
+      "Netnod",
+      "PTB"
+    ],
+    "origin_asns": [
+      "13335",
+      "9355",
+      "57021",
+      "680"
+    ],
+    "confirmed": "Different documented operators and observed BGP origin ASNs.",
+    "not_confirmed": "End-to-end paths and independent upstream clocks; the home router, ISP and host remain shared."
+  },
+  "observation_evidence": "public-observation-attempt-3/",
+  "source_policy_report": "source-review.md",
+  "operator_sources": [
+    "https://developers.cloudflare.com/time-services/ntp/",
+    "https://www.nict.go.jp/sts/ntp.html",
+    "https://www2.nict.go.jp/sts/jst/QandA/reference/leapsec-addendum2017.html",
+    "https://www.netnod.se/ntp/connect-to-ntp-servers",
+    "https://www.netnod.se/news/leap-second-added-to-the-global-time-scale",
+    "https://www.ptb.de/cms/ptb/fachabteilungen/abt9/gruppe-95/ref-952/zeitsynchronisation-technische-hinweise.html"
+  ]
+}

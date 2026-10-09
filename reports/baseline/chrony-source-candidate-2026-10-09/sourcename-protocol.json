@@ -1,0 +1,16 @@
+{
+  "version": "chronyc 4.5",
+  "daemon": "private public-regional -x -U non-root",
+  "socket": "/tmp/md-source-observe-_0g_l76a/chronyd.sock",
+  "command": [
+    "/usr/bin/chronyc",
+    "-n",
+    "-h",
+    "/tmp/md-source-observe-_0g_l76a/chronyd.sock",
+    "sourcename",
+    "94.198.159.10"
+  ],
+  "returncode": 0,
+  "stdout": "94.198.159.10\n",
+  "host_time_control": false
+}

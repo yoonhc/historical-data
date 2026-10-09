@@ -1,0 +1,1585 @@
+--- a/integrations/runtime/capture_runtime.py
++++ b/integrations/runtime/capture_runtime.py
+@@ -0,0 +1,434 @@
++"""Collector-only policy v2; initial bootstrap and scheduled job gates stay strict.
++
++The supervisor remains alive across normal one-hour children, so the exception
++does not rely on pretending that an unobserved process restart was continuous.
++After a supervisor crash/restart, a fresh strict clock observation is required.
++"""
++
++import argparse
++import fcntl
++import gzip
++import hashlib
++import importlib.util
++import json
++import os
++import queue
++import signal
++import subprocess
++import threading
++import time
++import uuid
++from pathlib import Path
++
++from marketdata.clock_evidence import POLICY, Journal, publish_chunk
++from marketdata.domain import DataError
++from marketdata.store import Store
++
++SPEC = importlib.util.spec_from_file_location(
++    "runtime_v1", Path(__file__).with_name("marketdata_runtime.py")
++)
++rt = importlib.util.module_from_spec(SPEC)
++SPEC.loader.exec_module(rt)
++
++
++def assessment(clock, policy, at):
++    """Fresh provider observation first; never waive a reason string blindly."""
++    result = {
++        "reference_stale": None,
++        "current_estimate_usable": False,
++        "reasons": [],
++        "raw_start_allowed": False,
++    }
++    try:
++        elapsed = (at["boottime_ns"] - clock["sample"]["boottime_ns"]) / 1e9
++        if not 0 <= elapsed <= policy["provider_seconds"] + policy["max_sample_gap_seconds"]:
++            raise ValueError("provider_observation_expired")
++        if not clock.get("provider"):
++            raise ValueError("provider_identity_missing")
++        current = rt.assess_clock(clock["tracking"], policy, at["wall_ns"] / 1e9)
++        result["reference_stale"] = (
++            current["reference_age_seconds"] > policy["max_reference_age_seconds"]
++        )
++        result["reasons"] = [
++            r
++            for r in current["reasons"]
++            if not (r == "reference_age" and result["reference_stale"])
++        ]
++        # Both the observation-time verdict and the current projection must be
++        # otherwise good. No projection rescues a failed query or invalid sample.
++        observed_reasons = clock.get("reasons", [])
++        observed_stale_only = (
++            observed_reasons == ["reference_age"]
++            and clock.get("reference_age_seconds", -1) > policy["max_reference_age_seconds"]
++        )
++        if not clock.get("ready") and not observed_stale_only:
++            result["reasons"].append("observation_not_usable")
++        result["current_estimate_usable"] = not result["reasons"]
++        result["reference_age_seconds"] = current["reference_age_seconds"]
++        result["conditional_error_bound_seconds"] = current["conditional_error_bound_seconds"]
++    except (KeyError, ValueError, TypeError) as exc:
++        result["reasons"].append(str(exc))
++    return result
++
++
++class Monitor:
++    def __init__(self, profile, initial, at, boot_receipt):
++        if not initial["ready"] or not boot_receipt.get("ready"):
++            raise rt.NotReady("Initial strict preparation required")
++        self.policy = profile["policy"]
++        self.legacy = rt.ClockMonitor(self.policy, initial, at)
++        self.hard_fault_seen = False
++        self.stale_seen = False
++        self.boot_receipt = boot_receipt
++
++    def observe(self, at, clock):
++        legacy = self.legacy.observe(at, clock)
++        decision = assessment(clock, self.policy, at)
++        structural = [r for r in legacy["reasons"] if r != "provider_unready"]
++        if structural or not decision["current_estimate_usable"]:
++            self.hard_fault_seen = True
++        self.stale_seen |= bool(decision["reference_stale"])
++        decision["reasons"].extend(structural)
++        decision["current_estimate_usable"] &= not structural
++        # An earlier hard fault is not erased by an hourly boundary. A strictly
++        # fresh observation may start a later child; stale-only permission stays
++        # disabled for this supervisor after any hard fault.
++        decision["raw_start_allowed"] = decision["current_estimate_usable"] and (
++            not decision["reference_stale"] or not self.hard_fault_seen
++        )
++        if decision["reference_stale"] and self.hard_fault_seen:
++            decision["reasons"].append("prior_hard_fault_blocks_stale_exception")
++        return {
++            "decision": decision,
++            "clock": clock,
++            "clock_usable": legacy["clock_usable"],
++            "history": {
++                "reference_stale_seen": self.stale_seen,
++                "hard_fault_seen": self.hard_fault_seen,
++                "legacy_violations": legacy["violations"],
++            },
++            "uncertain_interval": legacy["uncertain_interval"],
++        }
++
++
++class Evidence:
++    def __init__(self, profile, stream, *, journal_factory=Journal):
++        self.profile, self.stream = profile, stream
++        self.root = Path(profile["evidence_root"]) / "v2" / stream
++        self.root.mkdir(parents=True, exist_ok=True, mode=0o700)
++        self.lock = (self.root / "supervisor.lock").open("a")
++        try:
++            fcntl.flock(self.lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
++        except BlockingIOError:
++            self.lock.close()
++            raise rt.NotReady("Another v2 supervisor owns this stream")
++        self.run_id = uuid.uuid4().hex
++        self.context = {
++            "schema": 2,
++            "run_id": self.run_id,
++            "boot_id": rt.boot_id(),
++            "stream": stream,
++            "policy_version": POLICY,
++        }
++        self.base = {
++            **self.context,
++            "supervisor_pid": os.getpid(),
++            "supervisor_start_ticks": rt.process_start(os.getpid()),
++            "systemd_invocation_id": os.environ.get("INVOCATION_ID"),
++            "profile_sha256": rt.profile_hash(profile),
++            "policy": profile["policy"],
++            "scope": "sampled_process_clock_not_per_event",
++        }
++        self.store = Store(profile["data_root"])
++        self.publisher = Publisher(profile["data_root"])
++        try:
++            self.journal = journal_factory(
++                self.store, self.root / "spool", self.base, publisher=self.publisher.submit
++            )
++        except BaseException:
++            self.store.close()
++            self.publisher.close()
++            self.lock.close()
++            raise
++
++    def write(self, state, **extra):
++        self.publisher.check()
++        row = self.journal.write(state, **extra)
++        rt.atomic_json(self.root / "latest.json", row)
++        return row
++
++    def flush(self):
++        self.journal.flush()
++        self.publisher.drain()
++
++    def close(self):
++        self.publisher.close()
++        self.store.close()
++        self.lock.close()
++
++
++class Publisher:
++    """Ordered bounded commits; a checkpoint writer does not block clock sampling."""
++
++    def __init__(self, root):
++        self.root, self.error = root, None
++        self.queue = queue.Queue(maxsize=4)
++        self.thread = threading.Thread(target=self.run, daemon=True)
++        self.thread.start()
++
++    def run(self):
++        store = None
++        try:
++            store = Store(self.root)
++            while True:
++                path = self.queue.get()
++                try:
++                    if path is None:
++                        return
++                    if self.error is None:
++                        publish_chunk(store, path)
++                except Exception as exc:
++                    self.error = exc
++                finally:
++                    self.queue.task_done()
++        except Exception as exc:
++            self.error = exc
++        finally:
++            if store is not None:
++                store.close()
++
++    def check(self):
++        if self.error is not None:
++            raise DataError(f"Clock evidence publication failed: {self.error}") from self.error
++
++    def submit(self, store, path):
++        self.check()
++        identity = hashlib.sha256(gzip.compress(path.read_bytes(), mtime=0)).hexdigest()
++        try:
++            self.queue.put_nowait(path)
++        except queue.Full as exc:
++            raise DataError("Clock publication backlog exceeded four closed chunks") from exc
++        return identity
++
++    def drain(self):
++        deadline = time.monotonic() + 90
++        while self.queue.unfinished_tasks:
++            self.check()
++            if time.monotonic() >= deadline:
++                raise DataError("Clock publication timeout; spool retained")
++            time.sleep(0.01)
++        self.check()
++
++    def close(self):
++        try:
++            self.queue.put(None, timeout=1)
++        except queue.Full:
++            return
++        self.thread.join(timeout=90)
++
++
++def stop_child(child, timeout):
++    if child is not None and child.poll() is None:
++        os.killpg(child.pid, signal.SIGINT)
++        try:
++            child.wait(timeout=timeout)
++        except subprocess.TimeoutExpired:
++            os.killpg(child.pid, signal.SIGKILL)
++            child.wait()
++
++
++def supervise(
++    profile,
++    stream,
++    evidence,
++    stop,
++    boot_receipt,
++    *,
++    checker=rt.probe,
++    env_check=rt.environment_check,
++    spawn=subprocess.Popen,
++    stamp=rt.stamp,
++    monotonic=time.monotonic,
++    max_children=None,
++):
++    initial = rt.wait_ready(
++        profile, evidence, stop, checker=checker, env_check=env_check, monotonic=monotonic
++    )
++    initial = checker(profile)
++    if not initial["ready"] or stop.is_set():
++        raise rt.NotReady("Strict readiness changed before first child")
++    monitor = Monitor(profile, initial, stamp(), boot_receipt)
++    child, sessions, next_start, next_probe = None, 0, 0.0, 0.0
++    child_start = None
++    clock, exit_code = initial, 0
++    # Backup authority for this run is committed before the child can create a
++    # collection. Open evidence after this point has an explicit unknown tail.
++    evidence.write("prepared", boot_receipt=boot_receipt, clock=initial, clock_usable=False)
++    evidence.flush()
++    try:
++        while not stop.is_set():
++            tick = monotonic()
++            if tick >= next_probe:
++                clock = checker(profile)
++                next_probe = monotonic() + profile["policy"]["provider_seconds"]
++            at = stamp()
++            observation = monitor.observe(at, clock)
++            evidence.write(
++                "running" if child else "between_sessions",
++                sample_value=at,
++                child_pid=child.pid if child else None,
++                child_start_ticks=child_start if child else None,
++                **observation,
++            )
++            if child is not None and child.poll() is not None:
++                exit_code = child.returncode
++                evidence.write(
++                    "child_finished",
++                    child_pid=child.pid,
++                    collector_exit_code=exit_code,
++                    **observation,
++                )
++                evidence.flush()
++                child = None
++                if exit_code != 0 or (max_children is not None and sessions >= max_children):
++                    break
++                next_start = monotonic() + 15.0
++            if (
++                child is None
++                and monotonic() >= next_start
++                and observation["decision"]["raw_start_allowed"]
++            ):
++                # Refresh the query at the actual child start, not only at the
++                # ten-second monitor cadence. This also catches a provider restart.
++                clock = checker(profile)
++                observation = monitor.observe(stamp(), clock)
++                if observation["decision"]["raw_start_allowed"]:
++                    evidence.write("starting_child", **observation)
++                    evidence.flush()
++                    clock = checker(profile)
++                    observation = monitor.observe(stamp(), clock)
++                    if not observation["decision"]["raw_start_allowed"]:
++                        evidence.write("start_refused_after_commit", **observation)
++                        continue
++                    env = {
++                        **os.environ,
++                        "MARKETDATA_RUNTIME_RUN_ID": evidence.run_id,
++                        "MARKETDATA_CLOCK_CONTEXT": json.dumps(evidence.context),
++                    }
++                    child = spawn(
++                        rt.collector_command(profile, stream), start_new_session=True, env=env
++                    )
++                    child_start = rt.process_start(child.pid)
++                    sessions += 1
++            stop.wait(profile["policy"]["sample_seconds"])
++        stop_child(child, profile["policy"]["stop_timeout_seconds"])
++        # The child has saved its terminal collection interval before this final
++        # sample is published. Interrupted/crashed reports can lack an end.
++        observation = monitor.observe(stamp(), checker(profile))
++        evidence.write("finished", children=sessions, **observation)
++        evidence.flush()
++        return exit_code if exit_code >= 0 else 128 - exit_code
++    finally:
++        stop_child(child, profile["policy"]["stop_timeout_seconds"])
++
++
++def bootstrap_receipt(path, profile):
++    spec = importlib.util.spec_from_file_location(
++        "bootstrap_gate", Path(__file__).with_name("clock_gate.py")
++    )
++    gate = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(gate)
++    p, runtime = gate.read_profile(path)
++    if runtime != profile:
++        raise rt.NotReady("Collector profile differs from the bootstrap-bound profile")
++    gate.trusted(runtime["release_root"], directory=True)
++    result = gate.check_gate(p, runtime)
++    ledger = gate.Ledger(p["state_dir"])
++    with ledger.lock(shared=True):
++        state = ledger.read()
++        if state["boot_id"] != rt.boot_id() or state["phase"] != "closed":
++            raise rt.NotReady("Bootstrap evidence changed")
++        return {
++            **result,
++            "boot_id": state["boot_id"],
++            "profile_sha256": state["profile_sha256"],
++            "closed_observation": state["closed_observation"],
++            "step_attempts": state["step_attempts"],
++            "phase": state["phase"],
++        }
++
++
++def status(profile, stream):
++    path = Path(profile["evidence_root"]) / "v2" / stream / "latest.json"
++    row = json.loads(path.read_text())
++    at = rt.stamp()
++    age = (at["boottime_ns"] - row["sample"]["boottime_ns"]) / 1e9
++    current = assessment(row.get("clock", {}), profile["policy"], at)
++    identity_ok = False
++    try:
++        identity_ok = (
++            rt.process_start(row["supervisor_pid"]) == row["supervisor_start_ticks"]
++            and rt.process_start(row["child_pid"]) == row["child_start_ticks"]
++        )
++    except (KeyError, OSError, TypeError, ValueError):
++        pass
++    valid = (
++        identity_ok
++        and row["boot_id"] == rt.boot_id()
++        and row["profile_sha256"] == rt.profile_hash(profile)
++        and row["state"] == "running"
++        and 0 <= age <= profile["policy"]["status_max_age_seconds"]
++        and abs((at["wall_ns"] - row["sample"]["wall_ns"]) / 1e9 - age)
++        <= profile["policy"]["step_threshold_seconds"]
++    )
++    return {
++        "policy_version": POLICY,
++        "raw_running": valid,
++        "current_estimate_usable": valid and current["current_estimate_usable"],
++        "reference_stale": current["reference_stale"] if valid else None,
++        "history": row.get("history"),
++        "clock_usable": valid and row.get("clock_usable", False),
++        "evidence_age_seconds": age,
++        "record": row,
++        "note": "Sampled clock status; combine with market data quality. Unknown on stale process evidence.",
++    }
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--profile", type=Path, required=True)
++    parser.add_argument("--bootstrap-profile", type=Path, required=True)
++    parser.add_argument("--stream", choices=["depth", "aggtrade"], required=True)
++    parser.add_argument("--status", action="store_true")
++    args = parser.parse_args()
++    stop, evidence = threading.Event(), None
++    for sig in (signal.SIGINT, signal.SIGTERM):
++        signal.signal(sig, lambda *_: stop.set())
++    try:
++        profile = rt.load_profile(args.profile)
++        if args.status:
++            result = status(profile, args.stream)
++            print(json.dumps(result))
++            return 0 if result["raw_running"] else 2
++        # Even recovery/import of staged logs must use the reviewed environment.
++        rt.environment_check(profile)
++        receipt = bootstrap_receipt(args.bootstrap_profile, profile)
++        evidence = Evidence(profile, args.stream)
++        return supervise(profile, args.stream, evidence, stop, receipt)
++    except (
++        DataError,
++        RuntimeError,
++        OSError,
++        ValueError,
++        KeyError,
++        subprocess.SubprocessError,
++    ) as exc:
++        print(json.dumps({"state": "failed", "error": str(exc)}), flush=True)
++        return 75 if isinstance(exc, rt.NotReady) else 1
++    finally:
++        if evidence is not None:
++            evidence.close()
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- a/integrations/runtime/render_units.py
++++ b/integrations/runtime/render_units.py
+@@ -36,7 +36,7 @@
+ Environment=PYTHONDONTWRITEBYTECODE=1
+ ExecStartPre={gate}
+ ExecStartPre={run} wait-ready {args}
+-ExecStart={run} run {args}
++ExecStart={root}/.venv/bin/python -I {root}/integrations/runtime/capture_runtime.py {args} --bootstrap-profile {boot_config}
+ Restart=always
+ RestartSec=15s
+ TimeoutStartSec=150s
+--- a/packages/marketdata/src/marketdata/aggtrades.py
++++ b/packages/marketdata/src/marketdata/aggtrades.py
+@@ -11,6 +11,7 @@
+ import pyarrow.parquet as pq
+ 
+ from .binance import FUTURES, Fetcher, SourceError
++from .clock_evidence import collection_context, finish_context
+ from .domain import DataError, Key, from_epoch, json_bytes, micros, now, number, sha256, utc
+ from .oi_probe import retry_delay
+ from .schema import TIME, VALUE
+@@ -105,7 +106,7 @@
+ 
+ def start_collection(store, kind, details=None):
+     identity, stamp = uuid4().hex, now()
+-    report = {"id": identity, "kind": kind, "started_at": stamp, **(details or {})}
++    report = {"id": identity, "kind": kind, "started_at": stamp, **(details or {}), **collection_context(kind)}
+     with store.writer(timeout=60), store.db:
+         store.db.execute(
+             "INSERT INTO event_collections VALUES(?,?,?,?,?,?,?)",
+@@ -123,6 +124,7 @@
+ 
+ 
+ def save_collection(store, report, state):
++    finish_context(report, state)
+     report = {**report, "state": state, "updated_at": now()}
+     with store.writer(timeout=60), store.db:
+         store.db.execute(
+--- a/packages/marketdata/src/marketdata/cli.py
++++ b/packages/marketdata/src/marketdata/cli.py
+@@ -13,6 +13,7 @@
+ from .backfill import backfill_set
+ from .backup import create_backup, restore_backup, storage_report, verify_backup
+ from .binance import SourceError, archive_units, archive_url
++from .clock_evidence import query_root as clock_evidence_query
+ from .depth import replay as depth_replay
+ from .depth import status as depth_status
+ from .depth_stream import capture as depth_capture
+@@ -122,6 +123,8 @@
+         default=1,
+         help="Release the writer between archive/REST batches and pause this long",
+     )
++    p = sub.add_parser("clock-evidence", help="Query preserved sampled clock evidence for a collection")
++    p.add_argument("--collection-id", required=True)
+     sub.add_parser("validate")
+     p = sub.add_parser(
+         "maintenance", help="Apply verified packing; daily mode validates and backs up"
+@@ -364,6 +367,10 @@
+     args = parser().parse_args(argv)
+     store = collector = None
+     try:
++        if args.command == "clock-evidence":
++            result = clock_evidence_query(args.root, args.collection_id)
++            emit(result)
++            return 0 if result["evidence_state"] == "available" else 2
+         if args.command in {"backup-verify", "restore", "storage"}:
+             if args.command == "backup-verify":
+                 result = verify_backup(args.path)
+--- a/packages/marketdata/src/marketdata/clock_evidence.py
++++ b/packages/marketdata/src/marketdata/clock_evidence.py
+@@ -0,0 +1,341 @@
++"""Versioned sampled clock evidence, using the existing immutable raw catalog.
++
++Only committed chunks are backup inputs. Missing chunks, open tails and absent
++collection links are unknown, never evidence of good local receive timestamps.
++"""
++
++import gzip
++import json
++import os
++import re
++import shutil
++import sqlite3
++import time
++from contextlib import closing, nullcontext
++from pathlib import Path
++
++from .domain import DataError, json_bytes, sha256
++
++KIND = "runtime_clock_v2"
++POLICY = "reference-freshness-v2"
++MAX_CHUNK = 1024 * 1024
++MAX_RECORD = 64 * 1024
++CHUNK_SECONDS = 300
++
++
++def sample():
++    before = time.monotonic_ns()
++    wall = time.time_ns()
++    boot = time.clock_gettime_ns(time.CLOCK_BOOTTIME)
++    after = time.monotonic_ns()
++    return {
++        "wall_ns": wall,
++        "monotonic_ns": (before + after) // 2,
++        "boottime_ns": boot,
++        "sampling_span_ns": after - before,
++    }
++
++
++def collection_context(kind):
++    value = os.environ.get("MARKETDATA_CLOCK_CONTEXT")
++    if kind != "websocket" or value is None:
++        return {}
++    try:
++        context = json.loads(value)
++        if (
++            set(context) != {"schema", "run_id", "boot_id", "stream", "policy_version"}
++            or context["schema"] != 2
++            or context["policy_version"] != POLICY
++            or not re.fullmatch(r"[0-9a-f]{32}", context["run_id"])
++            or not re.fullmatch(r"[0-9a-f-]{36}", context["boot_id"])
++            or context["stream"] not in {"depth", "aggtrade"}
++        ):
++            raise ValueError("invalid runtime context")
++    except (ValueError, TypeError, KeyError) as exc:
++        raise DataError("Invalid clock evidence context") from exc
++    return {"runtime_clock": {**context, "collection_start": sample()}}
++
++
++def finish_context(report, state):
++    if "runtime_clock" in report and state != "running":
++        report["runtime_clock"] = {
++            **report["runtime_clock"],
++            "collection_end": sample(),
++            "terminal_state": state,
++        }
++
++
++def decode_chunk(blob):
++    try:
++        raw = gzip.decompress(blob)
++        if len(raw) > MAX_CHUNK + MAX_RECORD:
++            raise ValueError("oversized chunk")
++        boundary = raw.rfind(b"\n") + 1
++        rows = [json.loads(line) for line in raw[:boundary].splitlines()]
++        header, records = rows[0], rows[1:]
++        if header["schema"] != 2 or header["kind"] != KIND or not records:
++            raise ValueError("invalid chunk header/empty chunk")
++        if not re.fullmatch(r"[0-9a-f]{32}", header["run_id"]):
++            raise ValueError("invalid run ID")
++        if type(header["chunk"]) is not int or header["chunk"] < 0:
++            raise ValueError("invalid chunk index")
++        for row in records:
++            if (
++                row["run_id"] != header["run_id"]
++                or row["schema"] != 2
++                or row["policy_version"] != POLICY
++            ):
++                raise ValueError("record/chunk identity mismatch")
++        return header, records, raw[boundary:]
++    except (OSError, ValueError, IndexError, KeyError, TypeError) as exc:
++        raise DataError("Invalid clock evidence chunk") from exc
++
++
++def publish_chunk(store, path):
++    """Idempotent commit; leave spool bytes intact on any failure."""
++    path = Path(path)
++    if path.is_symlink() or path.stat().st_size > MAX_CHUNK + MAX_RECORD:
++        raise DataError("Unsafe/oversized clock spool")
++    raw = path.read_bytes()
++    blob = gzip.compress(raw, mtime=0)
++    header, records, tail = decode_chunk(blob)
++    url = f"runtime-clock://{header['run_id']}/{header['chunk']}"
++    identity = sha256(blob)
++    with store.writer(timeout=60):
++        previous = store.db.execute(
++            "SELECT artifact_id FROM fetches WHERE url=?", (url,)
++        ).fetchall()
++        if previous:
++            if len(previous) != 1 or previous[0][0] != identity or store.raw(identity)[0] != blob:
++                raise DataError("Conflicting clock evidence retry")
++        else:
++            store.put_raw(
++                blob,
++                url,
++                KIND,
++                metadata={
++                    **header,
++                    "records": len(records),
++                    "partial_tail_bytes": len(tail),
++                    "uncompressed_sha256": sha256(raw),
++                    "uncompressed_bytes": len(raw),
++                    "first_sample": records[0]["sample"],
++                    "last_sample": records[-1]["sample"],
++                },
++            )
++    # Delete only the byte-identical staging duplicate AFTER its immutable copy
++    # and catalog link have committed. Never delete historical runtime JSONL.
++    if path.read_bytes() != raw:
++        raise DataError("Clock spool changed during publication")
++    path.unlink()
++    fd = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
++    try:
++        os.fsync(fd)
++    finally:
++        os.close(fd)
++    return identity
++
++
++class Journal:
++    """One bounded active chunk per supervisor; caller holds its stream lock."""
++
++    def __init__(self, store, root, base, *, min_free_bytes=10 * 1024**3, publisher=publish_chunk):
++        self.store, self.root, self.base = store, Path(root), base
++        self.root.mkdir(parents=True, exist_ok=True, mode=0o700)
++        self.minimum = min_free_bytes
++        self.publisher = publisher
++        # Recovery runs before any child starts. A damaged/header-only spool is
++        # retained and blocks startup; it is not silently discarded.
++        for path in sorted(self.root.glob("*.jsonl")):
++            publish_chunk(store, path)
++        self.chunk, self.previous, self.path, self.since = 0, None, None, None
++        self.index = 0
++
++    def write(self, state, *, sample_value=None, **extra):
++        row = {
++            **self.base,
++            "schema": 2,
++            "policy_version": POLICY,
++            "record": self.index,
++            "state": state,
++            "sample": sample_value or sample(),
++            **extra,
++        }
++        encoded = json_bytes(row) + b"\n"
++        if len(encoded) > MAX_RECORD:
++            raise DataError("Clock record exceeds bound")
++        if shutil.disk_usage(self.root).free < self.minimum + MAX_CHUNK + MAX_RECORD:
++            raise DataError("Clock evidence capacity reserve exhausted")
++        tick = time.monotonic()
++        if self.path is not None and (
++            self.path.stat().st_size + len(encoded) > MAX_CHUNK
++            or tick - self.since >= CHUNK_SECONDS
++        ):
++            self.flush()
++        if self.path is None:
++            self.path = self.root / f"{self.base['run_id']}.{self.chunk:08d}.jsonl"
++            header = {
++                "schema": 2,
++                "kind": KIND,
++                "run_id": self.base["run_id"],
++                "chunk": self.chunk,
++                "previous": self.previous,
++            }
++            # Header and first record become one recoverable append operation.
++            with self.path.open("xb") as f:
++                f.write(json_bytes(header) + b"\n" + encoded)
++                f.flush()
++                os.fsync(f.fileno())
++            fd = os.open(self.root, os.O_RDONLY | os.O_DIRECTORY)
++            try:
++                os.fsync(fd)
++            finally:
++                os.close(fd)
++            self.since = tick
++        else:
++            with self.path.open("ab") as f:
++                f.write(encoded)
++                f.flush()
++                os.fsync(f.fileno())
++        self.index += 1
++        return row
++
++    def flush(self):
++        if self.path is not None:
++            self.previous = self.publisher(self.store, self.path)
++            self.path, self.since = None, None
++            self.chunk += 1
++
++
++def query(store, collection_id):
++    """Return sampled intervals, independently of market/sequence quality."""
++    entry = store.db.execute(
++        "SELECT report FROM event_collections WHERE id=?", (collection_id,)
++    ).fetchone()
++    if entry is None:
++        raise DataError("Unknown collection")
++    link = json.loads(entry[0]).get("runtime_clock")
++    result = {
++        "collection_id": collection_id,
++        "evidence_state": "unknown",
++        "scope": "sampled_runtime_clock_not_per_event_accuracy",
++        "link": link,
++        "chunks": [],
++        "intervals": [],
++        "unknown_reasons": [],
++    }
++    if link is None:
++        result["unknown_reasons"].append("collection_has_no_runtime_link")
++        return result
++    prefix = f"runtime-clock://{link['run_id']}/"
++    chunks = []
++    for row in store.db.execute(
++        "SELECT artifact_id, metadata FROM fetches WHERE url>=? AND url<?",
++        (prefix, prefix + "\uffff"),
++    ):
++        metadata = json.loads(row[1])
++        chunks.append((metadata["chunk"], row[0], metadata))
++    chunks.sort(key=lambda c: c[0])
++    previous, record_index, last = None, 0, None
++    start = link["collection_start"]["boottime_ns"]
++    end = link.get("collection_end", {}).get("boottime_ns")
++    before = [n for n, _, m in chunks if m["last_sample"]["boottime_ns"] < start]
++    after = [n for n, _, m in chunks if end is not None and m["first_sample"]["boottime_ns"] > end]
++    lower = before[-1] if before else 0
++    upper = after[0] if after else len(chunks) - 1
++    for n, (number, identity, metadata) in enumerate(chunks):
++        if number != n or metadata["previous"] != previous or metadata["run_id"] != link["run_id"]:
++            raise DataError("Missing/conflicting clock evidence chunk chain")
++        previous = identity
++        if not lower <= n <= upper:
++            record_index += metadata["records"]
++            continue
++        result["chunks"].append(identity)
++        blob = store.raw(identity)[0]
++        header, records, tail = decode_chunk(blob)
++        if (
++            any(header[k] != metadata[k] for k in header)
++            or len(records) != metadata["records"]
++            or records[0]["sample"] != metadata["first_sample"]
++            or records[-1]["sample"] != metadata["last_sample"]
++        ):
++            raise DataError("Clock evidence metadata mismatch")
++        if tail:
++            result["unknown_reasons"].append("truncated_uncommitted_record")
++        for r in records:
++            if (
++                r["record"] != record_index
++                or r["boot_id"] != link["boot_id"]
++                or r["policy_version"] != link["policy_version"]
++                or r["stream"] != link["stream"]
++            ):
++                raise DataError("Clock evidence identity/sequence mismatch")
++            record_index += 1
++            b = r["sample"]["boottime_ns"]
++            if last is not None and b < last["sample"]["boottime_ns"]:
++                raise DataError("Clock evidence boottime reversed")
++            if last is not None:
++                a = last["sample"]["boottime_ns"]
++                if b > start and (end is None or a < end):
++                    verdict = r.get("decision", {})
++                    result["intervals"].append(
++                        {
++                            "start_boottime_ns": max(a, start),
++                            "end_boottime_ns": min(b, end) if end is not None else b,
++                            "sample_before": last["sample"],
++                            "sample_after": r["sample"],
++                            "current_estimate_usable": verdict.get(
++                                "current_estimate_usable", False
++                            ),
++                            "reference_stale": verdict.get("reference_stale"),
++                            "raw_start_allowed": verdict.get("raw_start_allowed", False),
++                            "reasons": verdict.get("reasons", ["no_clock_decision"]),
++                            "history": r.get("history"),
++                            "provider": r.get("clock", {}).get("provider"),
++                            "clock_observation": r.get("clock"),
++                        }
++                    )
++            last = r
++    intervals = result["intervals"]
++    if not intervals or intervals[0]["start_boottime_ns"] != start:
++        result["unknown_reasons"].append("start_not_covered_by_committed_evidence")
++    if end is None:
++        result["unknown_reasons"].append("collection_end_unknown")
++    elif not intervals or intervals[-1]["end_boottime_ns"] != end:
++        result["unknown_reasons"].append("end_not_covered_by_committed_evidence")
++    if not result["unknown_reasons"]:
++        result["evidence_state"] = "available"
++    result["note"] = "Available means evidence exists, not that its clock or market data is good"
++    return result
++
++
++def query_root(root, collection_id):
++    from .checkpoint_locks import checkpoint_locks
++    from .fileio import layout_lock, packed_record, read_packed, safe_file
++
++    root = Path(root).resolve()
++    checkpoint = (root / "backup.json").is_file()
++    catalog = root / "state/catalog.sqlite"
++    uri = catalog.as_uri() + "?mode=ro" + ("&immutable=1" if checkpoint else "")
++    with (
++        checkpoint_locks([root]) if checkpoint else nullcontext(),
++        nullcontext() if checkpoint else layout_lock(root),
++        closing(sqlite3.connect(uri, uri=True)) as db,
++    ):
++        db.row_factory = sqlite3.Row
++        db.execute("BEGIN")
++
++        class Reader:
++            def raw(self, identity):
++                r = db.execute("SELECT path FROM artifacts WHERE id=?", (identity,)).fetchone()
++                if r is None:
++                    raise DataError("Missing clock artifact")
++                pack = packed_record(db, r[0])
++                blob = read_packed(root, pack) if pack else safe_file(root, r[0]).read_bytes()
++                if sha256(blob) != identity:
++                    raise DataError("Clock artifact hash mismatch")
++                return blob, None
++
++        reader = Reader()
++        reader.db = db
++        return query(reader, collection_id)
+--- a/packages/marketdata/src/marketdata/depth.py
++++ b/packages/marketdata/src/marketdata/depth.py
+@@ -7,6 +7,7 @@
+ import pyarrow as pa
+ import pyarrow.parquet as pq
+ 
++from .clock_evidence import collection_context, finish_context
+ from .domain import DataError, from_epoch, json_bytes, now, number, sha256, utc
+ from .schema import TIME, VALUE
+ from .store import atomic_write
+@@ -428,6 +429,7 @@
+         "kind": "websocket",
+         "started_at": now(),
+         **details,
++        **collection_context("websocket"),
+     }
+     with store.writer(timeout=60), store.db:
+         store.db.execute(
+@@ -446,6 +448,7 @@
+ 
+ 
+ def save_collection(store, report, state):
++    finish_context(report, state)
+     report.update(state=state, updated_at=now())
+     with store.writer(timeout=60), store.db:
+         store.db.execute(
+--- a/packages/marketdata/src/marketdata/store.py
++++ b/packages/marketdata/src/marketdata/store.py
+@@ -66,6 +66,7 @@
+                 id INTEGER PRIMARY KEY, artifact_id TEXT REFERENCES artifacts(id),
+                 url TEXT NOT NULL, observed_at TEXT NOT NULL, metadata TEXT NOT NULL);
+             CREATE INDEX IF NOT EXISTS fetches_observed ON fetches(observed_at);
++            CREATE INDEX IF NOT EXISTS fetches_url ON fetches(url);
+             CREATE TABLE IF NOT EXISTS revisions (
+                 id TEXT PRIMARY KEY, key_id TEXT NOT NULL, key_json TEXT NOT NULL,
+                 day TEXT NOT NULL, path TEXT NOT NULL, file_sha TEXT NOT NULL,
+--- a/tests/test_clock_evidence_policy.py
++++ b/tests/test_clock_evidence_policy.py
+@@ -0,0 +1,697 @@
++import importlib.util
++import json
++import os
++import subprocess
++import sys
++import threading
++import uuid
++from pathlib import Path
++
++import pytest
++from marketdata import aggtrades, backup, depth
++from marketdata import clock_evidence as ce
++from marketdata.domain import DataError
++from marketdata.store import Store
++
++ROOT = Path(__file__).resolve().parents[1]
++SPEC = importlib.util.spec_from_file_location(
++    "capture_v2", ROOT / "integrations/runtime/capture_runtime.py"
++)
++cr = importlib.util.module_from_spec(SPEC)
++SPEC.loader.exec_module(cr)
++
++
++@pytest.fixture
++def profile(tmp_path):
++    p = cr.rt.load_profile(ROOT / "integrations/runtime/profile.example.json")
++    p["data_root"] = str(tmp_path / "store")
++    p["evidence_root"] = str(tmp_path / "evidence")
++    return p
++
++
++def stamp(t, wall=None, boot=None):
++    return {
++        "wall_ns": int((100000 + t if wall is None else wall) * 1e9),
++        "monotonic_ns": int(t * 1e9),
++        "boottime_ns": int((t if boot is None else boot) * 1e9),
++        "sampling_span_ns": 500,
++    }
++
++
++def clock(profile, t, age=1, **fields):
++    track = cr.rt.tracking(
++        f"CB00710F,203.0.113.15,3,{100000 + t - age},0.001,0,0,1,0,0.2,0.01,0.02,64,Normal"
++    )
++    track.update(fields)
++    return {
++        **cr.rt.assess_clock(track, profile["policy"], 100000 + t),
++        "provider": {"pid": 42, "invocation_id": "original", "argv": ["chronyd"]},
++        "sample": stamp(t),
++    }
++
++
++def monitor(profile):
++    return cr.Monitor(profile, clock(profile, 1), stamp(1), {"ready": True, "phase": "closed"})
++
++
++@pytest.mark.parametrize("age", [600.001, 900, 3600, 14400])
++def test_old_reference_only_is_warning_not_child_ban(profile, age):
++    m = monitor(profile)
++    r = m.observe(stamp(2), clock(profile, 2, age=age))
++    assert r["decision"]["reference_stale"]
++    assert r["decision"]["current_estimate_usable"] and r["decision"]["raw_start_allowed"]
++    assert r["clock_usable"] is False  # Existing cumulative meaning is not rewritten.
++    assert r["history"]["reference_stale_seen"] and not r["history"]["hard_fault_seen"]
++    r = m.observe(stamp(3), clock(profile, 3))
++    assert r["decision"]["raw_start_allowed"] and not r["decision"]["reference_stale"]
++    assert r["history"]["reference_stale_seen"] and r["clock_usable"] is False
++
++
++@pytest.mark.parametrize(
++    "fields",
++    [
++        {"reference_time": 100003},
++        {"correction": 0.101},
++        {"root_dispersion": 0.6},
++        {"root_dispersion": -1},
++        {"stratum": 0},
++        {"leap": "Not synchronised"},
++        {"reference_id": "00000000"},
++        {"reference_address": "127.0.0.1"},
++        {"skew_ppm": 101},
++    ],
++)
++def test_no_exception_for_other_clock_faults(profile, fields):
++    m = monitor(profile)
++    r = m.observe(stamp(2), clock(profile, 2, age=900, **fields))
++    assert not r["decision"]["raw_start_allowed"]
++    assert r["history"]["hard_fault_seen"]
++    # A subsequent age-only sample cannot erase the earlier fault.
++    r = m.observe(stamp(3), clock(profile, 3, age=900))
++    assert not r["decision"]["raw_start_allowed"]
++
++
++@pytest.mark.parametrize("failure", ["query", "expired", "provider", "gap", "step", "suspend"])
++def test_monitor_or_provider_failure_blocks_stale_exception(profile, failure):
++    m, c, s = monitor(profile), clock(profile, 2, age=900), stamp(2)
++    if failure == "query":
++        c = {"ready": False, "reasons": ["query failed"], "provider": None, "sample": s}
++    elif failure == "expired":
++        c["sample"] = stamp(-100)
++    elif failure == "provider":
++        c["provider"] = {"pid": 43, "invocation_id": "new"}
++    elif failure == "gap":
++        s = stamp(10)
++        c = clock(profile, 10, age=900)
++    elif failure == "step":
++        s = stamp(2, wall=99900)
++    elif failure == "suspend":
++        s = stamp(2, boot=10)
++    r = m.observe(s, c)
++    assert not r["decision"]["raw_start_allowed"]
++    assert r["history"]["hard_fault_seen"]
++
++
++def test_first_start_stays_strict(profile):
++    with pytest.raises(cr.rt.NotReady):
++        cr.Monitor(profile, clock(profile, 1, age=900), stamp(1), {"ready": True})
++    with pytest.raises(cr.rt.NotReady):
++        cr.Monitor(profile, clock(profile, 1), stamp(1), {"ready": False})
++
++
++class Timer:
++    def __init__(self):
++        self.t, self.stopped = 1.0, False
++
++    def is_set(self):
++        return self.stopped
++
++    def wait(self, seconds):
++        self.t += seconds
++        assert self.t < 200
++
++
++class Memory:
++    run_id = "a" * 32
++    context = {"run_id": run_id}
++
++    def __init__(self):
++        self.rows, self.flushes = [], 0
++
++    def write(self, state, **extra):
++        self.rows.append({"state": state, **extra})
++
++    def flush(self):
++        self.flushes += 1
++
++
++def test_next_child_starts_stale_while_supervisor_observation_continues(profile, monkeypatch):
++    timer, evidence, starts = Timer(), Memory(), []
++
++    class Child:
++        pid = 123
++        returncode = 0
++
++        def __init__(self):
++            self.end = timer.t + 3
++
++        def poll(self):
++            return 0 if timer.t >= self.end else None
++
++    def spawn(*args, **kw):
++        starts.append((timer.t, kw["env"]["MARKETDATA_CLOCK_CONTEXT"]))
++        return Child()
++
++    monkeypatch.setattr(cr.rt, "process_start", lambda pid: "123")
++    result = cr.supervise(
++        profile,
++        "depth",
++        evidence,
++        timer,
++        {"ready": True},
++        checker=lambda _: clock(profile, timer.t, age=1 if timer.t < 10 else 900),
++        env_check=lambda _: "fixture",
++        spawn=spawn,
++        stamp=lambda: stamp(timer.t),
++        monotonic=lambda: timer.t,
++        max_children=2,
++    )
++    assert result == 0 and len(starts) == 2 and starts[1][0] >= 19
++    assert starts[0][1] == starts[1][1]
++    second = [r for r in evidence.rows if r["state"] == "starting_child"][1]
++    assert second["decision"]["reference_stale"] and second["decision"]["raw_start_allowed"]
++    assert any(
++        r["state"] == "between_sessions" and r["clock_usable"] is False for r in evidence.rows
++    )
++
++
++def base(stream="depth"):
++    return {
++        "run_id": uuid.uuid4().hex,
++        "boot_id": "11111111-1111-1111-1111-111111111111",
++        "stream": stream,
++        "policy_version": ce.POLICY,
++        "schema": 2,
++    }
++
++
++def recorded_collection(store, tmp_path, monkeypatch, stream="depth", close=True):
++    b = base(stream)
++    monkeypatch.setenv("MARKETDATA_CLOCK_CONTEXT", json.dumps(b))
++    monkeypatch.setattr(ce, "sample", lambda: stamp(2))
++    start = (
++        depth.start_collection
++        if stream == "depth"
++        else lambda s, d: aggtrades.start_collection(s, "websocket", d)
++    )
++    report = start(store, {})
++    j = ce.Journal(store, tmp_path / "spool", b, min_free_bytes=0)
++    d = {
++        "reference_stale": True,
++        "current_estimate_usable": True,
++        "raw_start_allowed": True,
++        "reasons": [],
++    }
++    for t in (1, 2, 3):
++        j.write(
++            "running",
++            sample_value=stamp(t),
++            decision=d,
++            history={"reference_stale_seen": True, "hard_fault_seen": False},
++        )
++    if close:
++        monkeypatch.setattr(ce, "sample", lambda: stamp(3))
++        (depth.save_collection if stream == "depth" else aggtrades.save_collection)(
++            store, report, "partial"
++        )
++        j.write("finished", sample_value=stamp(4), decision=d)
++    j.flush()
++    return report, j, b
++
++
++@pytest.mark.parametrize("stream", ["depth", "aggtrade"])
++def test_evidence_backup_restore_query_and_new_backup(store, tmp_path, monkeypatch, stream):
++    report, j, b = recorded_collection(store, tmp_path, monkeypatch, stream)
++    original = ce.query(store, report["id"])
++    assert original["evidence_state"] == "available"
++    assert original["intervals"][0]["reference_stale"]
++    checkpoint = tmp_path / "checkpoint"
++    backup.create_backup(store, checkpoint, min_free_gib=0)
++    assert backup.verify_backup(checkpoint)["ok"]
++    assert ce.query_root(checkpoint, report["id"]) == original
++    restored = tmp_path / "restored"
++    backup.restore_backup(checkpoint, restored, min_free_gib=0)
++    assert ce.query_root(restored, report["id"]) == original
++    with_context = json.loads(
++        backup.open_catalog(checkpoint / "state/catalog.sqlite")
++        .execute("SELECT report FROM event_collections WHERE id=?", (report["id"],))
++        .fetchone()[0]
++    )
++    assert with_context["state"] == "partial"  # Clock evidence does not repair market quality.
++    restored_store = Store(restored)
++    try:
++        assert restored_store.validate()["ok"]
++        backup.create_backup(restored_store, tmp_path / "independent", min_free_gib=0)
++        assert backup.verify_backup(tmp_path / "independent")["ok"]
++    finally:
++        restored_store.close()
++    assert not list(j.root.glob("*.jsonl"))
++    cp_manifest = json.loads((checkpoint / "backup.json").read_text())
++    assert cp_manifest["source_root"] == str(store.root)
++    assert json.loads((tmp_path / "independent/backup.json").read_text())["source_root"] == str(
++        restored
++    )
++
++
++def test_legacy_missing_open_and_backup_tail_are_unknown(store, tmp_path, monkeypatch):
++    monkeypatch.delenv("MARKETDATA_CLOCK_CONTEXT", raising=False)
++    old = depth.start_collection(store, {})
++    assert ce.query(store, old["id"])["evidence_state"] == "unknown"
++    report, j, _ = recorded_collection(store, tmp_path, monkeypatch, close=False)
++    assert "collection_end_unknown" in ce.query(store, report["id"])["unknown_reasons"]
++    monkeypatch.setattr(ce, "sample", lambda: stamp(10))
++    depth.save_collection(store, report, "partial")
++    j.write("finished", sample_value=stamp(11), decision={})  # Still mutable and NOT in backup.
++    backup.create_backup(store, tmp_path / "checkpoint", min_free_gib=0)
++    result = ce.query_root(tmp_path / "checkpoint", report["id"])
++    assert result["evidence_state"] == "unknown"
++    assert "end_not_covered_by_committed_evidence" in result["unknown_reasons"]
++
++
++def test_rotation_and_retry_after_commit_before_spool_unlink(store, tmp_path, monkeypatch):
++    b = base()
++    j = ce.Journal(store, tmp_path / "spool", b, min_free_bytes=0)
++    j.write("running", sample_value=stamp(1))
++    path = j.path
++    original = Path.unlink
++    monkeypatch.setattr(
++        Path,
++        "unlink",
++        lambda p, *a, **kw: (
++            (_ for _ in ()).throw(OSError("crash after commit"))
++            if p == path
++            else original(p, *a, **kw)
++        ),
++    )
++    with pytest.raises(OSError, match="crash"):
++        j.flush()
++    assert path.exists() and store.db.execute("SELECT count(*) FROM fetches").fetchone()[0] == 1
++    monkeypatch.setattr(Path, "unlink", original)
++    ce.Journal(store, j.root, base(), min_free_bytes=0)
++    assert not path.exists() and store.db.execute("SELECT count(*) FROM fetches").fetchone()[0] == 1
++
++
++def test_uncommitted_spool_and_capacity_fail_closed(store, tmp_path, monkeypatch):
++    j = ce.Journal(store, tmp_path / "spool", base(), min_free_bytes=0)
++    j.write("running", sample_value=stamp(1))
++    path = j.path
++    original = store.put_raw
++    monkeypatch.setattr(store, "put_raw", lambda *a, **kw: (_ for _ in ()).throw(OSError("disk")))
++    with pytest.raises(OSError):
++        j.flush()
++    assert path.exists() and store.db.execute("SELECT count(*) FROM artifacts").fetchone()[0] == 0
++    monkeypatch.setattr(store, "put_raw", original)
++    ce.Journal(store, j.root, base(), min_free_bytes=0)
++    assert not path.exists()
++    monkeypatch.setattr(ce.shutil, "disk_usage", lambda _: type("Usage", (), {"free": 0})())
++    with pytest.raises(DataError, match="capacity"):
++        j.write("running", sample_value=stamp(2))
++
++
++def test_corruption_and_missing_chain_never_become_good(store, tmp_path, monkeypatch):
++    report, j, _ = recorded_collection(store, tmp_path, monkeypatch)
++    j.write("finished", sample_value=stamp(5))
++    j.flush()
++    with store.db:
++        store.db.execute("DELETE FROM fetches WHERE url LIKE '%/0'")
++    with pytest.raises(DataError, match="chain"):
++        ce.query(store, report["id"])
++
++
++def test_commit_worker_does_not_block_sampling_and_reports_failure(profile, tmp_path, monkeypatch):
++    Store(profile["data_root"]).close()
++    entered, release = threading.Event(), threading.Event()
++    original = cr.publish_chunk
++
++    def delayed(store, path):
++        entered.set()
++        assert release.wait(10)
++        return original(store, path)
++
++    monkeypatch.setattr(cr, "publish_chunk", delayed)
++    e = cr.Evidence(
++        profile, "depth", journal_factory=lambda *a, **kw: ce.Journal(*a, **kw, min_free_bytes=0)
++    )
++    try:
++        e.write("running", sample_value=stamp(1))
++        e.journal.flush()
++        assert entered.wait(5)
++        # The writer is deliberately stalled. New evidence still reaches fsync.
++        e.write("running", sample_value=stamp(2))
++        assert e.journal.path.read_bytes().endswith(b"\n")
++        release.set()
++        e.flush()
++    finally:
++        release.set()
++        e.close()
++
++
++def test_real_child_stopped_on_evidence_failure(profile, monkeypatch):
++    e = Memory()
++    original = e.write
++    child_ref = []
++
++    def write(state, **kw):
++        if child_ref and state == "running":
++            raise OSError("evidence write failed")
++        original(state, **kw)
++
++    e.write = write
++
++    def spawn(*args, **kw):
++        child = subprocess.Popen(
++            [sys.executable, "-c", "import time; time.sleep(60)"], start_new_session=True
++        )
++        child_ref.append(child)
++        return child
++
++    def real_clock(_):
++        at = cr.rt.stamp()
++        t = at["wall_ns"] / 1e9 - 100000
++        c = clock(profile, t)
++        c["sample"] = at
++        return c
++
++    with pytest.raises(OSError, match="evidence"):
++        cr.supervise(
++            profile,
++            "depth",
++            e,
++            threading.Event(),
++            {"ready": True},
++            checker=real_clock,
++            env_check=lambda _: "fixture",
++            spawn=spawn,
++        )
++    assert len(child_ref) == 1 and child_ref[0].poll() is not None
++
++
++def test_restic_extract_restore_and_query(store, tmp_path, monkeypatch):
++    binary = os.environ.get("CLOCK_TEST_RESTIC")
++    if binary is None:
++        pytest.skip("explicit isolated restic binary required")
++    report, _, _ = recorded_collection(store, tmp_path, monkeypatch)
++    checkpoint = tmp_path / "checkpoint"
++    backup.create_backup(store, checkpoint, min_free_gib=0)
++    expected = ce.query_root(checkpoint, report["id"])
++    password = tmp_path / "test-password"
++    password.write_text(uuid.uuid4().hex)
++    password.chmod(0o600)
++    env = {
++        **os.environ,
++        "RESTIC_REPOSITORY": str(tmp_path / "repository"),
++        "RESTIC_PASSWORD_FILE": str(password),
++        "RESTIC_CACHE_DIR": str(tmp_path / "cache"),
++    }
++
++    def run(args, cwd=None):
++        result = subprocess.run(
++            [binary, *args], cwd=cwd, env=env, capture_output=True, text=True, timeout=90
++        )
++        assert result.returncode == 0, result.stderr
++        return result.stdout
++
++    run(["init"])
++    run(["backup", "--json", "."], checkpoint)
++    snapshot = json.loads(run(["snapshots", "--json"]))[0]["id"]
++    run(["check", "--read-data"])
++    extracted = tmp_path / "extracted"
++    run(["restore", snapshot, "--target", str(extracted)])
++    assert backup.verify_backup(extracted)["ok"]
++    restored = tmp_path / "from-restic"
++    backup.restore_backup(extracted, restored, min_free_gib=0)
++    assert ce.query_root(restored, report["id"]) == expected
++    with_store = Store(restored)
++    try:
++        assert with_store.validate()["ok"]
++        backup.create_backup(with_store, tmp_path / "independent", min_free_gib=0)
++        assert backup.verify_backup(tmp_path / "independent")["ok"]
++    finally:
++        with_store.close()
++
++
++def test_policy_does_not_reopen_bootstrap_or_relax_job_gate(profile, tmp_path):
++    spec = importlib.util.spec_from_file_location(
++        "gate", ROOT / "integrations/runtime/clock_gate.py"
++    )
++    gate = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(gate)
++    ledger = gate.Ledger(tmp_path)
++    with ledger.lock():
++        gate.enroll({}, ledger, "fixture")
++        state = ledger.read()
++        state.update(phase="closed", closed_observation={"ready": True})
++        ledger.save(state)
++    original = ledger.path.read_bytes()
++    with pytest.raises(gate.Hold, match="Current clock"):
++        gate.check_gate(
++            {},
++            profile,
++            ledger=ledger,
++            current_boot="fixture",
++            checker=lambda _: clock(profile, 1, age=900),
++        )
++    assert ledger.path.read_bytes() == original
++
++
++def test_slow_commit_rechecks_clock_before_spawn(profile):
++    timer, evidence, starts = Timer(), Memory(), []
++
++    def flush():
++        evidence.flushes += 1
++        if evidence.flushes == 2:
++            timer.t += 6
++
++    evidence.flush = flush
++    timer.is_set = lambda: timer.t > 15
++    cr.supervise(
++        profile,
++        "depth",
++        evidence,
++        timer,
++        {"ready": True},
++        checker=lambda _: clock(profile, timer.t, age=900 if timer.t > 5 else 1),
++        env_check=lambda _: "fixture",
++        spawn=lambda *a, **kw: starts.append(kw),
++        stamp=lambda: stamp(timer.t),
++        monotonic=lambda: timer.t,
++    )
++    assert starts == []
++    assert any(r["state"] == "start_refused_after_commit" for r in evidence.rows)
++
++
++@pytest.mark.parametrize("after_commit", [False, True])
++def test_actual_sigkill_preserves_and_recovers_spool(store, tmp_path, after_commit):
++    import signal
++
++    spool = tmp_path / "spool"
++    run = base()
++    code = """
++import json, os, signal, sys
++from pathlib import Path
++from marketdata.store import Store
++from marketdata.clock_evidence import Journal
++store=Store(sys.argv[1])
++j=Journal(store,sys.argv[2],json.loads(sys.argv[3]),min_free_bytes=0)
++j.write("running", sample_value={"wall_ns":1,"boottime_ns":1,"monotonic_ns":1,"sampling_span_ns":0})
++if sys.argv[4] == "yes":
++    orig=Path.unlink
++    Path.unlink=lambda self,*a,**kw: os.kill(os.getpid(),signal.SIGKILL) if self==j.path else orig(self,*a,**kw)
++    j.flush()
++os.kill(os.getpid(),signal.SIGKILL)
++"""
++    result = subprocess.run(
++        [
++            sys.executable,
++            "-c",
++            code,
++            str(store.root),
++            str(spool),
++            json.dumps(run),
++            "yes" if after_commit else "no",
++        ],
++        timeout=15,
++    )
++    assert result.returncode == -signal.SIGKILL
++    assert len(list(spool.glob("*.jsonl"))) == 1
++    ce.Journal(store, spool, base(), min_free_bytes=0)
++    assert not list(spool.glob("*.jsonl"))
++    assert store.db.execute("SELECT count(*) FROM artifacts").fetchone()[0] == 1
++    assert store.db.execute("SELECT count(*) FROM fetches").fetchone()[0] == 1
++
++
++def test_rotation_bounds_and_partial_tail_are_preserved(store, tmp_path, monkeypatch):
++    j = ce.Journal(store, tmp_path / "spool", base(), min_free_bytes=0)
++    monkeypatch.setattr(ce, "MAX_CHUNK", 2048)
++    for t in range(10):
++        j.write("running", sample_value=stamp(t), padding="x" * 700)
++    assert j.chunk > 1 and j.path.stat().st_size <= 2048
++    with j.path.open("ab") as f:
++        f.write(b'{"partial":')
++    j.flush()
++    record = store.db.execute("SELECT metadata FROM fetches ORDER BY id DESC LIMIT 1").fetchone()
++    assert json.loads(record[0])["partial_tail_bytes"] > 0
++    assert store.validate()["ok"]
++
++
++def test_async_worker_failure_is_visible_and_staging_retained(profile, monkeypatch):
++    Store(profile["data_root"]).close()
++    entered = threading.Event()
++
++    def fail(store, path):
++        entered.set()
++        raise OSError("injected publication failure")
++
++    monkeypatch.setattr(cr, "publish_chunk", fail)
++    e = cr.Evidence(
++        profile, "aggtrade", journal_factory=lambda *a, **kw: ce.Journal(*a, **kw, min_free_bytes=0)
++    )
++    try:
++        e.write("running", sample_value=stamp(1))
++        e.journal.flush()
++        assert entered.wait(5)
++        with pytest.raises(DataError, match="publication"):
++            e.publisher.drain()
++        assert list((e.root / "spool").glob("*.jsonl"))
++    finally:
++        e.close()
++
++
++def test_actual_cli_preserves_unknown_vs_available(store, tmp_path, monkeypatch):
++    report, _, _ = recorded_collection(store, tmp_path, monkeypatch)
++    checkpoint = tmp_path / "checkpoint"
++    backup.create_backup(store, checkpoint, min_free_gib=0)
++    result = subprocess.run(
++        [
++            sys.executable,
++            "-m",
++            "marketdata.cli",
++            "--root",
++            str(checkpoint),
++            "clock-evidence",
++            "--collection-id",
++            report["id"],
++        ],
++        capture_output=True,
++        text=True,
++        timeout=20,
++    )
++    assert result.returncode == 0, result.stderr
++    assert json.loads(result.stdout) == ce.query_root(checkpoint, report["id"])
++    assert not (checkpoint / "state/catalog.sqlite-wal").exists()
++    assert backup.verify_backup(checkpoint)["ok"]
++
++
++@pytest.mark.parametrize("stream", ["depth", "aggtrade"])
++def test_real_hour_boundary_protocol_with_two_children(profile, tmp_path, monkeypatch, stream):
++    # Real processes and real catalog/immutable evidence, with a deterministic
++    # read-only clock provider. No exchange traffic or host clock control.
++    first_finished = threading.Event()
++    child_count = []
++    code = """
++import sys, time
++from marketdata import depth, aggtrades
++from marketdata.store import Store
++s=Store(sys.argv[1])
++if sys.argv[2]=='depth':
++    r=depth.start_collection(s, {"complete":False})
++    time.sleep(0.1)
++    depth.save_collection(s,r,"partial")
++else:
++    r=aggtrades.start_collection(s,"websocket", {"complete":True})
++    time.sleep(0.1)
++    aggtrades.save_collection(s,r,"complete")
++s.close()
++"""
++    monkeypatch.setattr(
++        cr.rt,
++        "collector_command",
++        lambda p, stream: [sys.executable, "-I", "-c", code, p["data_root"], stream],
++    )
++    original_spawn = subprocess.Popen
++
++    def spawn(*args, **kw):
++        child = original_spawn(*args, **kw)
++        child_count.append(child)
++        return child
++
++    def checker(_):
++        if child_count and child_count[0].poll() is not None:
++            first_finished.set()
++        at = cr.rt.stamp()
++        c = clock(profile, at["wall_ns"] / 1e9 - 100000, age=900 if first_finished.is_set() else 1)
++        c["sample"] = at
++        return c
++
++    e = cr.Evidence(
++        profile, stream, journal_factory=lambda *a, **kw: ce.Journal(*a, **kw, min_free_bytes=0)
++    )
++    try:
++        assert (
++            cr.supervise(
++                profile,
++                stream,
++                e,
++                threading.Event(),
++                {"ready": True},
++                checker=checker,
++                env_check=lambda _: "fixture",
++                spawn=spawn,
++                max_children=2,
++            )
++            == 0
++        )
++        collections = list(
++            e.store.db.execute("SELECT id,report FROM event_collections ORDER BY started_at")
++        )
++        assert len(collections) == 2
++        links = [json.loads(c["report"])["runtime_clock"] for c in collections]
++        assert links[0]["run_id"] == links[1]["run_id"] == e.run_id
++        result = ce.query(e.store, collections[1]["id"])
++        assert result["evidence_state"] == "available"
++        assert any(i["reference_stale"] and i["raw_start_allowed"] for i in result["intervals"])
++        checkpoint = tmp_path / "protocol-checkpoint"
++        backup.create_backup(e.store, checkpoint, min_free_gib=0)
++        assert ce.query_root(checkpoint, collections[1]["id"]) == result
++    finally:
++        e.close()
++    assert all(c.poll() is not None for c in child_count)
++
++
++def test_late_collection_query_does_not_load_whole_long_running_history(
++    store, tmp_path, monkeypatch
++):
++    b = base()
++    j = ce.Journal(store, tmp_path / "spool", b, min_free_bytes=0)
++    for t in range(40):
++        j.write("running", sample_value=stamp(t), decision={})
++        j.flush()
++    monkeypatch.setenv("MARKETDATA_CLOCK_CONTEXT", json.dumps(b))
++    monkeypatch.setattr(ce, "sample", lambda: stamp(40))
++    report = depth.start_collection(store, {})
++    for t in (40, 41, 42):
++        j.write("running", sample_value=stamp(t), decision={})
++        j.flush()
++    monkeypatch.setattr(ce, "sample", lambda: stamp(41))
++    depth.save_collection(store, report, "partial")
++    reads = []
++    original = store.raw
++
++    def raw(identity):
++        reads.append(identity)
++        return original(identity)
++
++    monkeypatch.setattr(store, "raw", raw)
++    result = ce.query(store, report["id"])
++    assert result["evidence_state"] == "available"
++    assert len(reads) <= 4

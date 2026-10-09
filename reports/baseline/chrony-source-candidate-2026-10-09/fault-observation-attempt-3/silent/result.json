@@ -1,0 +1,439 @@
+{
+  "case": "silent",
+  "started_at": "2026-10-09T01:42:34.429677+00:00",
+  "argv": [
+    "/usr/bin/setpriv",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "/tmp/md-source-silent-zs2bl4g2/chronyd",
+    "-x",
+    "-U",
+    "-u",
+    "root",
+    "-n",
+    "-f",
+    "/tmp/md-source-silent-zs2bl4g2/chrony.conf"
+  ],
+  "sources": [
+    "192.0.2.11",
+    "192.0.2.12",
+    "192.0.2.13",
+    "192.0.2.14"
+  ],
+  "warmup_seconds": 720,
+  "fault_window_seconds": 1800,
+  "policy": {
+    "max_correction_seconds": 0.1,
+    "max_error_seconds": 0.5,
+    "max_reference_age_seconds": 600.0,
+    "max_skew_ppm": 100.0,
+    "step_threshold_seconds": 0.25,
+    "max_sample_gap_seconds": 5.0,
+    "sample_seconds": 1.0,
+    "provider_seconds": 10.0,
+    "heartbeat_seconds": 10.0,
+    "status_max_age_seconds": 25.0,
+    "ready_timeout_seconds": 120.0,
+    "ready_poll_seconds": 5.0,
+    "stop_timeout_seconds": 120.0
+  },
+  "host_clock_control": false,
+  "full_operating_provider_gate": "not asserted: test daemon is intentionally -x",
+  "assessment": "unchanged assess_clock on actual Chrony CSV; synthetic TEST-NET source clocks",
+  "capabilities": "CapEff:\t0000000000000000",
+  "last_valid_reference_before_fault": {
+    "address": "192.0.2.11",
+    "epoch": 1791510872.868408
+  },
+  "fault_started_at": "2026-10-09T01:54:34.430701+00:00",
+  "fault_started_elapsed": 720.0001666440003,
+  "completed": true,
+  "reference_events": [
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:42:34.531286+00:00",
+      "elapsed": 0.10074556400650181,
+      "reference_address": "",
+      "reference_time": 0.0,
+      "assessment": {
+        "ready": false,
+        "reasons": [
+          "no_external_reference",
+          "not_synchronized_or_leap_pending",
+          "reference_age",
+          "clock_error_bound"
+        ],
+        "reference_age_seconds": 1791510154.536744,
+        "conditional_error_bound_seconds": 1.5,
+        "tracking": {
+          "reference_id": "00000000",
+          "reference_address": "",
+          "stratum": 0,
+          "reference_time": 0.0,
+          "correction": 0.0,
+          "skew_ppm": 0.0,
+          "root_delay": 1.0,
+          "root_dispersion": 1.0,
+          "leap": "Not synchronised",
+          "raw_csv": "00000000,,0,0.000000000,0.000000000,0.000000000,0.000000000,0.000,0.000,0.000,1.000000000,1.000000000,0.0,Not synchronised"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:42:39.430755+00:00",
+      "elapsed": 5.00023370100098,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510159.1151836,
+      "assessment": {
+        "ready": false,
+        "reasons": [
+          "frequency_uncertainty"
+        ],
+        "reference_age_seconds": 0.3238396644592285,
+        "conditional_error_bound_seconds": 0.32078997149999994,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510159.1151836,
+          "correction": 1.9289e-05,
+          "skew_ppm": 1000000.0,
+          "root_delay": 0.002143029,
+          "root_dispersion": 0.319699168,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510159.115183606,0.000019289,-0.000019289,0.000019289,0.000,-1.448,1000000.000,0.002143029,0.319699168,0.0,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:42:44.430650+00:00",
+      "elapsed": 10.000115332004498,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510160.6523643,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 3.784057140350342,
+        "conditional_error_bound_seconds": 0.002383974,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510160.6523643,
+          "correction": 1.5313e-05,
+          "skew_ppm": 81.315,
+          "root_delay": 0.002079084,
+          "root_dispersion": 0.001329119,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510160.652364223,0.000015313,0.000003672,0.000003672,0.098,0.000,81.315,0.002079084,0.001329119,2.0,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:43:49.431282+00:00",
+      "elapsed": 75.0007399410024,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510226.0463579,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 3.4025795459747314,
+        "conditional_error_bound_seconds": 0.002099335,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510226.0463579,
+          "correction": 2.6983e-05,
+          "skew_ppm": 1.96,
+          "root_delay": 0.00208932,
+          "root_dispersion": 0.001027692,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510226.046357901,0.000026983,-0.000017327,0.000017327,-0.154,-0.000,1.960,0.002089320,0.001027692,65.2,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:44:54.430679+00:00",
+      "elapsed": 140.0001446680035,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510290.8256586,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 3.620988368988037,
+        "conditional_error_bound_seconds": 0.0021093995000000003,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510290.8256586,
+          "correction": 3.1942e-05,
+          "skew_ppm": 0.673,
+          "root_delay": 0.002109215,
+          "root_dispersion": 0.00102285,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510290.825658489,0.000031942,0.000004952,0.000016512,-0.117,0.001,0.673,0.002109215,0.001022850,64.7,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:45:59.430700+00:00",
+      "elapsed": 205.00016609000158,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510354.771194,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 4.675240755081177,
+        "conditional_error_bound_seconds": 0.0021029200000000003,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510354.771194,
+          "correction": 3.3758e-05,
+          "skew_ppm": 0.301,
+          "root_delay": 0.002096232,
+          "root_dispersion": 0.001021046,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510354.771193918,0.000033758,0.000005680,0.000015768,-0.088,0.002,0.301,0.002096232,0.001021046,64.3,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:47:04.430718+00:00",
+      "elapsed": 270.0001912870066,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510419.615641,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 4.832482099533081,
+        "conditional_error_bound_seconds": 0.0020988730000000002,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510419.615641,
+          "correction": 3.0386e-05,
+          "skew_ppm": 0.197,
+          "root_delay": 0.00209618,
+          "root_dispersion": 0.001020397,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510419.615641070,0.000030386,0.000008931,0.000015223,-0.054,0.004,0.197,0.002096180,0.001020397,64.9,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:48:09.430723+00:00",
+      "elapsed": 335.0001962250026,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510484.7209837,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 4.7165117263793945,
+        "conditional_error_bound_seconds": 0.0021160529999999997,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510484.7209837,
+          "correction": 3.8275e-05,
+          "skew_ppm": 0.151,
+          "root_delay": 0.00209618,
+          "root_dispersion": 0.001029688,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510484.720983724,0.000038275,-0.000004352,0.000014507,-0.064,-0.002,0.151,0.002096180,0.001029688,64.8,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:49:14.430670+00:00",
+      "elapsed": 400.00013969400607,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510550.126048,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 4.322675704956055,
+        "conditional_error_bound_seconds": 0.002115568,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510550.126048,
+          "correction": 4.0613e-05,
+          "skew_ppm": 0.103,
+          "root_delay": 0.00211169,
+          "root_dispersion": 0.00101911,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510550.126048057,0.000040613,0.000001786,0.000013774,-0.060,0.000,0.103,0.002111690,0.001019110,65.0,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:50:19.430632+00:00",
+      "elapsed": 465.0000920980019,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510614.7979627,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 4.638876676559448,
+        "conditional_error_bound_seconds": 0.0021173909999999997,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510614.7979627,
+          "correction": 4.4327e-05,
+          "skew_ppm": 0.078,
+          "root_delay": 0.002040246,
+          "root_dispersion": 0.001052941,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510614.797962720,0.000044327,0.000000211,0.000013067,-0.060,0.000,0.078,0.002040246,0.001052941,64.8,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:51:24.430635+00:00",
+      "elapsed": 530.0000978990065,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510679.217227,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 5.219716787338257,
+        "conditional_error_bound_seconds": 0.0020761655,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510679.217227,
+          "correction": 2.6841e-05,
+          "skew_ppm": 0.089,
+          "root_delay": 0.002058855,
+          "root_dispersion": 0.001019897,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510679.217227004,0.000026841,0.000021205,0.000014094,-0.024,0.009,0.089,0.002058855,0.001019897,65.0,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:52:24.431510+00:00",
+      "elapsed": 590.0009682529999,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510744.204701,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 0.24345922470092773,
+        "conditional_error_bound_seconds": 0.0020752074999999997,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510744.204701,
+          "correction": 2.8006e-05,
+          "skew_ppm": 0.064,
+          "root_delay": 0.002058855,
+          "root_dispersion": 0.001017774,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510744.204700888,0.000028006,0.000000256,0.000013371,-0.016,0.001,0.064,0.002058855,0.001017774,64.3,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:53:29.430755+00:00",
+      "elapsed": 655.0002294500009,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510808.029798,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 1.4094429016113281,
+        "conditional_error_bound_seconds": 0.0020821555,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510808.029798,
+          "correction": 3.0471e-05,
+          "skew_ppm": 0.054,
+          "root_delay": 0.002058855,
+          "root_dispersion": 0.001022257,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510808.029798138,0.000030471,-0.000001409,0.000012693,-0.018,-0.000,0.054,0.002058855,0.001022257,64.6,Normal"
+        }
+      }
+    },
+    {
+      "kind": "reference_changed",
+      "at": "2026-10-09T01:54:34.430701+00:00",
+      "elapsed": 720.0001666440003,
+      "reference_address": "192.0.2.11",
+      "reference_time": 1791510872.868408,
+      "assessment": {
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 1.582395315170288,
+        "conditional_error_bound_seconds": 0.0020893545,
+        "tracking": {
+          "reference_id": "C000020B",
+          "reference_address": "192.0.2.11",
+          "stratum": 2,
+          "reference_time": 1791510872.868408,
+          "correction": 3.4118e-05,
+          "skew_ppm": 0.052,
+          "root_delay": 0.002058855,
+          "root_dispersion": 0.001025809,
+          "leap": "Normal",
+          "raw_csv": "C000020B,192.0.2.11,2,1791510872.868407931,0.000034118,-0.000002505,0.000012067,-0.021,-0.001,0.052,0.002058855,0.001025809,64.7,Normal"
+        }
+      }
+    }
+  ],
+  "counters": [
+    {
+      "rx": 32,
+      "tx": 15,
+      "dropped": 17,
+      "fault_requests": 17
+    },
+    {
+      "rx": 31,
+      "tx": 31,
+      "dropped": 0,
+      "fault_requests": 0
+    },
+    {
+      "rx": 28,
+      "tx": 28,
+      "dropped": 0,
+      "fault_requests": 0
+    },
+    {
+      "rx": 27,
+      "tx": 27,
+      "dropped": 0,
+      "fault_requests": 0
+    }
+  ],
+  "finished_at": "2026-10-09T02:24:34.615768+00:00",
+  "child_exit": 0
+}

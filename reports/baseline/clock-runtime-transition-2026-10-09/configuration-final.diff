@@ -1,0 +1,99 @@
+--- /etc/marketdata/clock-bootstrap.json.before
++++ /etc/marketdata/clock-bootstrap.json.after
+@@ -5,7 +5,7 @@
+     "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12",
+     "/etc/systemd/system/chrony.service.d/marketdata.conf": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4",
+     "/etc/systemd/system/marketdata-clock-bootstrap.service": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+-    "/etc/systemd/system/marketdata-collector@.service": "74d8d5747cebb77993559cfaafe7edcd07c94e19a6960eb368d8fbdcfff037d5",
++    "/etc/systemd/system/marketdata-collector@.service": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+     "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+     "/etc/systemd/user/marketdata-clock-ready.service": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab",
+     "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+@@ -26,7 +26,7 @@
+   },
+   "rtc_confirmation": "/etc/marketdata/rtc-utc-confirmation.json",
+   "runtime_profile": "/etc/marketdata/runtime.json",
+-  "runtime_profile_sha256": "f10663335fd42b8df75da8c5e7b43ec353244b24898f7c7dcc26d6eee77248c7",
++  "runtime_profile_sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+   "schema": 2,
+   "state_dir": "/var/lib/marketdata-clock",
+   "system_collectors": [
+--- /etc/systemd/system/marketdata-collector@.service.before
++++ /etc/systemd/system/marketdata-collector@.service.after
+@@ -2,22 +2,22 @@
+ Description=Market data %i collector with sampled clock quality
+ Wants=network-online.target chrony.service chrony-wait.service marketdata-clock-bootstrap.service
+ After=network-online.target chrony.service marketdata-clock-bootstrap.service chrony-wait.service time-sync.target
+-RequiresMountsFor=/home/yoonhc/projects/algoTrade/historical_data /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee /home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock
++RequiresMountsFor=/home/yoonhc/projects/algoTrade/historical_data /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325 /home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock
+ StartLimitIntervalSec=0
+ 
+ [Service]
+ Type=exec
+ User=yoonhc
+-WorkingDirectory=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee
++WorkingDirectory=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325
+ Environment=PYTHONNOUSERSITE=1
+ Environment=PYTHONDONTWRITEBYTECODE=1
+-ExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json
+-ExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream %i
+-ExecStart=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/marketdata_runtime.py run --profile /etc/marketdata/runtime.json --stream %i
++ExecStartPre=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json
++ExecStartPre=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream %i
++ExecStart=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py --profile /etc/marketdata/runtime.json --stream %i --bootstrap-profile /etc/marketdata/clock-bootstrap.json
+ Restart=always
+ RestartSec=15s
+ TimeoutStartSec=150s
+-TimeoutStopSec=150s
++TimeoutStopSec=330s
+ KillSignal=SIGINT
+ KillMode=mixed
+ SendSIGKILL=yes
+--- /etc/marketdata/runtime.json.before
++++ /etc/marketdata/runtime.json.after
+@@ -1,30 +1,30 @@
+ {
+-  "schema": 1,
+-  "uid": 1000,
+-  "release_root": "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee",
+-  "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+-  "evidence_root": "/home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock",
+-  "mount_uuid": "d8020c0b-a5df-4e47-99d9-2378b12ab2ea",
+-  "chronyc": "/usr/bin/chronyc",
+   "chrony_config": "/etc/chrony/marketdata.conf",
+   "chrony_config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
++  "chronyc": "/usr/bin/chronyc",
++  "data_root": "/home/yoonhc/projects/algoTrade/historical_data",
+   "dns_hosts": [
+     "fstream.binance.com",
+     "fapi.binance.com"
+   ],
++  "evidence_root": "/home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock",
++  "mount_uuid": "d8020c0b-a5df-4e47-99d9-2378b12ab2ea",
+   "policy": {
++    "heartbeat_seconds": 10.0,
+     "max_correction_seconds": 0.1,
+     "max_error_seconds": 0.5,
+     "max_reference_age_seconds": 600.0,
++    "max_sample_gap_seconds": 5.0,
+     "max_skew_ppm": 100.0,
++    "provider_seconds": 10.0,
++    "ready_poll_seconds": 5.0,
++    "ready_timeout_seconds": 120.0,
++    "sample_seconds": 1.0,
++    "status_max_age_seconds": 25.0,
+     "step_threshold_seconds": 0.25,
+-    "max_sample_gap_seconds": 5.0,
+-    "sample_seconds": 1.0,
+-    "provider_seconds": 10.0,
+-    "heartbeat_seconds": 10.0,
+-    "status_max_age_seconds": 25.0,
+-    "ready_timeout_seconds": 120.0,
+-    "ready_poll_seconds": 5.0,
+     "stop_timeout_seconds": 120.0
+-  }
++  },
++  "release_root": "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325",
++  "schema": 1,
++  "uid": 1000
+ }

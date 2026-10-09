@@ -1,0 +1,62 @@
+{
+  "scope": "public_candidates_separate_chronyd_clock_control_disabled",
+  "sources": [
+    {
+      "operator": "cloudflare",
+      "hostname": "time.cloudflare.com",
+      "resolved_at": "2026-10-09T01:35:29.742371+00:00",
+      "ipv4_answers": [
+        "162.159.200.1",
+        "162.159.200.123"
+      ],
+      "observed_address": "162.159.200.1"
+    },
+    {
+      "operator": "nict",
+      "hostname": "ntp.nict.jp",
+      "resolved_at": "2026-10-09T01:35:29.750124+00:00",
+      "ipv4_answers": [
+        "133.243.238.163",
+        "133.243.238.164",
+        "133.243.238.243",
+        "133.243.238.244",
+        "61.205.120.130"
+      ],
+      "observed_address": "133.243.238.163"
+    },
+    {
+      "operator": "netnod",
+      "hostname": "ntp.netnod.se",
+      "resolved_at": "2026-10-09T01:35:30.028719+00:00",
+      "ipv4_answers": [
+        "194.58.200.20"
+      ],
+      "observed_address": "194.58.200.20"
+    },
+    {
+      "operator": "ptb",
+      "hostname": "ptbtime1.ptb.de",
+      "resolved_at": "2026-10-09T01:35:30.317807+00:00",
+      "ipv4_answers": [
+        "192.53.103.108"
+      ],
+      "observed_address": "192.53.103.108"
+    }
+  ],
+  "started_at": "2026-10-09T01:35:30.318630+00:00",
+  "requested_seconds": 1800,
+  "work": "/tmp/md-source-observe-da_mmu35",
+  "argv": [
+    "/usr/sbin/chronyd",
+    "-x",
+    "-U",
+    "-u",
+    "yoonhc",
+    "-n",
+    "-f",
+    "/tmp/md-source-observe-da_mmu35/chrony.conf"
+  ],
+  "host_accuracy_certified": false,
+  "binary_sha256": "7a834e478d8a904c39a348606a5d0ac58fd1ccbca24f333a8170c786af8ca508",
+  "version": "chronyd (chrony) version 4.5 (+CMDMON +NTP +REFCLOCK +RTC +PRIVDROP +SCFILTER +SIGND +ASYNCDNS +NTS +SECHASH +IPV6 -DEBUG)"
+}

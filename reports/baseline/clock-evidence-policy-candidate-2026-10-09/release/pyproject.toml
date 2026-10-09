@@ -1,0 +1,29 @@
+[project]
+name = "historical-data-workspace"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = ["marketdata", "marketdata-freqtrade"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.12,<1"]
+
+[tool.uv]
+package = false
+build-constraint-dependencies = ["setuptools==83.0.0"]
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.uv.sources]
+marketdata = { workspace = true }
+marketdata-freqtrade = { workspace = true }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

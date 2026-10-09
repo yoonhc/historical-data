@@ -1,0 +1,28 @@
+{
+  "release_id": "clock-config-20261009-c365499dab14a4b1",
+  "runtime_files_sha256": {
+    "clock_config_transition.py": "b23a1de273a36fb7dc3930d25697f12eafff5dcdc76e5935b98c32eb1f1c695e",
+    "clock_gate.py": "91c403fb2c37a9062a13818209a0b262146a01f402c2a456fb903012898210c0",
+    "marketdata_runtime.py": "0b145143706bd06f18f3e7b73da9a68f4e787b8f14878147f20c2b2d73883813"
+  },
+  "tests_sha256": "ea517376468e9f0f69c3b6343995681972bf765074809c598129e2429ae41064",
+  "operating_release_unchanged": "system-bootstrap-20261007-f85eb8321a19c1ee",
+  "operating_deployed": false,
+  "source_configuration_qualified": false,
+  "scope": "Standalone configuration transition; original clock gate/runtime byte-identical",
+  "archive": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/chrony-source-candidate-2026-10-09/clock-config-20261009-c365499dab14a4b1.tar.gz",
+  "archive_sha256": "2a03d113cb58b95de7c63ee9daedff2e8954271287cd9f5d64cc2299cca6fe1f",
+  "clean_directory": "/tmp/md-clock-config-final-79sz3ijj/clock-config-20261009-c365499dab14a4b1",
+  "test_command": [
+    "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "/tmp/md-clock-config-final-79sz3ijj/clock-config-20261009-c365499dab14a4b1/test_transition.py",
+    "--junitxml=/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/chrony-source-candidate-2026-10-09/clean-transition-tests-final.xml"
+  ],
+  "test_returncode": 0,
+  "clean_hashes_match": true,
+  "root_application_tested": false,
+  "test_scope": "Real files/flock/SIGKILL and unchanged gate; service/provider calls use explicit doubles"
+}

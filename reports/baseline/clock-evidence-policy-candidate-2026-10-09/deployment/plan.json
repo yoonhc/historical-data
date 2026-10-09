@@ -1,0 +1,134 @@
+{
+  "after_bootstrap_canonical_sha256": "6f00ed2950078bb5519c351de908797e2abb7067ed71d7e5d424f92e25d64f2a",
+  "approval": null,
+  "archive_sha256": "7296234b12dc09fbfdc1b90b0efdb54d65f7bf8b3742a432b3c1248f8d7ccfd1",
+  "automatic_checkpoint_retirement": "remain_masked",
+  "before_bootstrap_canonical_sha256": "c15cae7653cf99f4f59f6e3b124eea90cc2bd6f27eaa0477ed8c4a7546958b4c",
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "chrony_config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+  "executable": false,
+  "files": {
+    "bootstrap": {
+      "after_file": "bootstrap.after",
+      "after_sha256": "d4010e9b9fbc018e08c486a013c8eb7784f64bfc78c9361f8778266cefaec5cc",
+      "before_file": "bootstrap.before",
+      "before_sha256": "4f7a3e2704ac9def68673220855c44f257c8a25cac8ea00f736fc5ca3ba2732b",
+      "mode": 420,
+      "path": "/etc/marketdata/clock-bootstrap.json",
+      "uid": 0,
+      "uid_evidence": "host stat outside sandbox, 2026-10-09; sandbox root maps to 65534"
+    },
+    "collector_unit": {
+      "after_file": "collector_unit.after",
+      "after_sha256": "a2ae0c812c0699a71cc18dae55dc62920c4b79659385a62827a1a70f3884fe7e",
+      "before_file": "collector_unit.before",
+      "before_sha256": "74d8d5747cebb77993559cfaafe7edcd07c94e19a6960eb368d8fbdcfff037d5",
+      "mode": 420,
+      "path": "/etc/systemd/system/marketdata-collector@.service",
+      "uid": 0,
+      "uid_evidence": "host stat outside sandbox, 2026-10-09; sandbox root maps to 65534"
+    },
+    "runtime": {
+      "after_file": "runtime.after",
+      "after_sha256": "5581ce5e8749e6f93d61c551de62be2a8fd79451c94b54e96a17647f19ecb7ac",
+      "before_file": "runtime.before",
+      "before_sha256": "f10663335fd42b8df75da8c5e7b43ec353244b24898f7c7dcc26d6eee77248c7",
+      "mode": 420,
+      "path": "/etc/marketdata/runtime.json",
+      "uid": 0,
+      "uid_evidence": "host stat outside sandbox, 2026-10-09; sandbox root maps to 65534"
+    }
+  },
+  "kind": "collector_clock_evidence_runtime_review",
+  "ledger_before": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "closed_boottime": 15.635695814,
+    "closed_observation": {
+      "conditional_error_bound_seconds": 0.1957006285,
+      "provider": {
+        "argv": [
+          "/usr/sbin/chronyd",
+          "-F",
+          "1",
+          "-f",
+          "/etc/chrony/marketdata.conf",
+          ""
+        ],
+        "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+        "pid": 1245
+      },
+      "ready": true,
+      "reasons": [],
+      "reference_age_seconds": 2.038670778274536,
+      "sample": {
+        "boottime_ns": 15873612363,
+        "monotonic_ns": 15873611848,
+        "sampling_span_ns": 1579,
+        "wall_ns": 1791472277915793853
+      },
+      "tracking": {
+        "correction": -0.066962399,
+        "leap": "Normal",
+        "raw_csv": "B97DBE39,185.125.190.57,3,1791472275.877091736,-0.066962399,0.198808655,0.198808655,24.944,7.388,24.314,0.253650129,0.001913165,0.0,Normal",
+        "reference_address": "185.125.190.57",
+        "reference_id": "B97DBE39",
+        "reference_time": 1791472275.8770916,
+        "root_delay": 0.253650129,
+        "root_dispersion": 0.001913165,
+        "skew_ppm": 24.314,
+        "stratum": 3
+      }
+    },
+    "first_boottime": 10.33559517,
+    "last_wait": {
+      "long_wait": false,
+      "needs_review": false,
+      "phase": "preparing",
+      "ready": false,
+      "reasons": [
+        "no_external_reference",
+        "not_synchronized_or_leap_pending",
+        "reference_age",
+        "clock_error_bound"
+      ],
+      "step_attempts": 0,
+      "wait_seconds": 0
+    },
+    "phase": "closed",
+    "profile_sha256": "c15cae7653cf99f4f59f6e3b124eea90cc2bd6f27eaa0477ed8c4a7546958b4c",
+    "schema": 1,
+    "step_attempts": 0
+  },
+  "ledger_before_sha256": "c7bf1f831e3249d2c77d90b46395c5d9d7a80076123f50a7f9442cbf115070f3",
+  "ledger_path": "/var/lib/marketdata-clock/boot-state.json",
+  "plan_id": "f25a43909700fd3de9b7809b4b20f088dc67043f13038cf43d2ac0184aba2c86",
+  "promotion_boundary": "Exact apply/rollback executor and crash recovery must be prepared and verified against this plan before requesting operating approval. T10 source transition tool is not authorized for this scope.",
+  "release_id": "clock-evidence-policy-20261009-26e7fd4bbd0a68a5",
+  "required_preserved_ledger_fields": [
+    "boot_id",
+    "closed_boottime",
+    "closed_observation",
+    "first_boottime",
+    "last_wait",
+    "phase",
+    "schema",
+    "step_attempts"
+  ],
+  "required_sequence": [
+    "Install sealed release and verify non-editable import/source hashes; do not overwrite old release.",
+    "Drain and stop the two system collectors under an approved short collection gap. Confirm relevant scheduled jobs quiescent; prevent starts with the coordinator lock and pending schema.",
+    "Persist exact before files, approval, plan, and original closed ledger. Under coordinator exclusive lock write an explicitly scoped pending envelope (schema 2) before any profile/unit writes.",
+    "Apply and fsync the exact three files, daemon-reload, verify effective system unit and import identity under final permissions. No Chrony restart/step/RTC/reboot.",
+    "Commit a linked runtime promotion receipt and new bootstrap profile binding, preserving original closed evidence and appending history; query current strict clock separately.",
+    "Start the two collectors and verify singleton processes, actual storage, closed clock chunk and linked collection. Other jobs stay strict and retirement stays masked."
+  ],
+  "rollback_sequence": [
+    "Stop only candidate collectors; do not restart Chrony or reenroll clock state.",
+    "Use the same coordinator/pending mechanism and recorded actual completed stage. Verify current files belong to the approved before/after hashes.",
+    "Restore exact three before files, daemon-reload; append rollback receipt and restore old profile binding without deleting original or later history.",
+    "Recheck current strict readiness, restart old collectors; retain v2 catalog artifacts, spool and collection links. Use retained candidate query CLI to read new evidence.",
+    "If boot or ledger baseline changed, keep jobs blocked; do not overwrite newer state or automatically reopen initial correction."
+  ],
+  "schema": 1,
+  "work_allowed": false
+}

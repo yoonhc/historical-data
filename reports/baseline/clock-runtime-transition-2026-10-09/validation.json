@@ -1,0 +1,364 @@
+{
+  "schema": 1,
+  "reported_at": "2026-10-09T09:54:27.764127+00:00",
+  "status": "candidate_transition_verification_complete_operating_approval_pending",
+  "operational_applied": false,
+  "operating_service_restarts_performed": false,
+  "clock_control_performed": false,
+  "automatic_checkpoint_retirement": "masked_unchanged",
+  "approved_for_operational_deployment": false,
+  "collector": {
+    "release_id": "clock-evidence-policy-20261009-65296619a374c325",
+    "parent_release_id": "clock-evidence-policy-20261009-26e7fd4bbd0a68a5",
+    "archive": "collector-correction/source.tar.gz",
+    "archive_sha256": "0c1ae174206c984dc73ac8d2572d2cf4bad9283c72132e8d0000145c1ba40841",
+    "changed_from_parent": [
+      "integrations/runtime/capture_runtime.py",
+      "tests/test_clock_evidence_policy.py"
+    ],
+    "correction": "sample final observation after the provider query; no policy change"
+  },
+  "transition": {
+    "release_id": "collector-transition-20261009-1c7c4120369fd893",
+    "archive": "transition-source-final.tar.gz",
+    "archive_sha256": "4898fc07a2458880e59c1bbb1b1040e73623c32b5951360e9e5564761f60dec4",
+    "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "recovery_policy": "same_boot_only_other_boot_hold_for_review"
+  },
+  "tests": {
+    "collector": {
+      "path": "collector-correction/regression.xml",
+      "sha256": "76026528ae5076fefbaffb8144bece09043542e67505088d13d549ac9fc3494d",
+      "tests": 305,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "transition": {
+      "path": "transition-final.xml",
+      "sha256": "7d8d15946245a6d083aa35703c9fc6f428f032ead209886cc0481b5a66f197eb",
+      "tests": 58,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "transition_clean_repeat": {
+      "path": "transition-final-clean.xml",
+      "sha256": "409cb34def59a6197544c1add1eda6a6bccf77128d28eff9e2331068cca03c08",
+      "tests": 58,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "shutdown_regression_before": {
+      "path": "shutdown-order-before.xml",
+      "sha256": "81bcf90c9fcc8d8bd730db30d54fe606bc6f1d299083b20fa26e1c7c73e0d34d",
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "shutdown_regression_after": {
+      "path": "shutdown-order-after.xml",
+      "sha256": "9de62bf0ed313ffcb9fab2b797b5c13b2b2c140b7239b38bf9096caadaddac49",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "systemd": {
+    "root_runs": [
+      {
+        "path": "system-preflight-result-9cfb66959a404283.json",
+        "sha256": "d521e0791ec3d5c129a16fb00074b804050b9db596994287c3521f00051a6967",
+        "run_passed": false,
+        "scenarios": [],
+        "cleanup": {
+          "errors": [],
+          "paths_absent": true,
+          "units": {
+            "md-clock-probe-9cfb66959a404283-graceful.service": "not-found",
+            "md-clock-probe-9cfb66959a404283-kill.service": "not-found"
+          }
+        },
+        "operating_unchanged": true
+      },
+      {
+        "path": "system-preflight-result-34a1b88acced4c65.json",
+        "sha256": "ca64f44f1f145f21dac84fb782f67066d47ad7ced8ce36dac555382186a4cf8f",
+        "run_passed": false,
+        "scenarios": [],
+        "cleanup": {
+          "errors": [],
+          "paths_absent": true,
+          "units": {
+            "md-clock-probe-34a1b88acced4c65-graceful.service": "not-found",
+            "md-clock-probe-34a1b88acced4c65-kill.service": "not-found"
+          }
+        },
+        "operating_unchanged": true
+      },
+      {
+        "path": "system-preflight-result-2e3a2ee7012c4920.json",
+        "sha256": "ae941736ad937e2209788b4df605273f88f8c7cd79ce3d5b861a98eff63f460c",
+        "run_passed": false,
+        "scenarios": [
+          "graceful",
+          "kill"
+        ],
+        "cleanup": {
+          "errors": [],
+          "paths_absent": true,
+          "units": {
+            "md-clock-probe-2e3a2ee7012c4920-graceful.service": "not-found",
+            "md-clock-probe-2e3a2ee7012c4920-kill.service": "not-found"
+          }
+        },
+        "operating_unchanged": true
+      },
+      {
+        "path": "system-preflight-result-08b7a916b7fc4a46.json",
+        "sha256": "6a4140f7c54fd5eb1cf3f74faf20e2c7e63323240144a881f4c3137d029038b1",
+        "run_passed": true,
+        "scenarios": [
+          "kill"
+        ],
+        "cleanup": {
+          "errors": [],
+          "paths_absent": true,
+          "units": {
+            "md-clock-probe-08b7a916b7fc4a46-kill.service": "not-found"
+          }
+        },
+        "operating_unchanged": true
+      }
+    ],
+    "passed_scenarios": {
+      "graceful": {
+        "source": "system-preflight-result-2e3a2ee7012c4920.json",
+        "case_passed": true,
+        "whole_run_passed": false,
+        "effective": {
+          "User": "yoonhc",
+          "RuntimeMaxUSec": "infinity",
+          "Restart": "always",
+          "KillMode": "mixed",
+          "KillSignal": "2",
+          "TimeoutStopUSec": "5min 30s",
+          "NoNewPrivileges": "yes",
+          "ProtectClock": "yes",
+          "ProtectSystem": "strict",
+          "ProtectHome": "read-only",
+          "CapabilityBoundingSet": "",
+          "PrivateTmp": "yes"
+        },
+        "child_saved_before_worker_drain": true,
+        "supervisor_alive_while_publication_blocked": true,
+        "closed": {
+          "open_spool": [],
+          "pending": 0,
+          "pid": 207974,
+          "result": 2,
+          "time": 66337.815305658,
+          "worker_alive": false
+        }
+      },
+      "kill": {
+        "source": "system-preflight-result-08b7a916b7fc4a46.json",
+        "case_passed": true,
+        "whole_run_passed": true,
+        "effective": {
+          "User": "yoonhc",
+          "RuntimeMaxUSec": "infinity",
+          "Restart": "always",
+          "KillMode": "mixed",
+          "KillSignal": "2",
+          "TimeoutStopUSec": "5min 30s",
+          "NoNewPrivileges": "yes",
+          "ProtectClock": "yes",
+          "ProtectSystem": "strict",
+          "ProtectHome": "read-only",
+          "CapabilityBoundingSet": "",
+          "PrivateTmp": "yes"
+        },
+        "kill_command_result": {
+          "argv": [
+            "/usr/bin/systemctl",
+            "kill",
+            "--kill-whom=all",
+            "--signal=SIGKILL",
+            "md-clock-probe-08b7a916b7fc4a46-kill.service"
+          ],
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Failed to kill unit md-clock-probe-08b7a916b7fc4a46-kill.service: Failed to send signal SIGKILL to auxiliary processes: Invalid argument\n"
+        },
+        "old_main_and_child_absent": true,
+        "first_invocation": "233925c7d3044369b21e12df5dbf266f",
+        "new_invocation": "a61809b2fa524e15bfc5738a5d71c25c",
+        "closed": {
+          "open_spool": [],
+          "pending": 0,
+          "pid": 210244,
+          "result": 0,
+          "time": 66715.368839776,
+          "worker_alive": false
+        },
+        "old_collection_evidence": "unknown_collection_end_unknown",
+        "new_collection_evidence": "available"
+      }
+    },
+    "limits": [
+      "synthetic_clock_and_child_payload",
+      "fixture_paths_and_test_control_directory",
+      "accelerated_child_sessions_not_hour_long_soak",
+      "operating_bootstrap_or_installation_not_executed"
+    ]
+  },
+  "actual_version_combination": {
+    "result": "mixed-versions-result.json",
+    "versions": {
+      "new": "/tmp/clock-shutdown-correction-cpmkuynr",
+      "old": "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee",
+      "maintenance": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    "steps": [
+      {
+        "action": "new-capture",
+        "python": "/tmp/clock-shutdown-correction-cpmkuynr/.venv/bin/python",
+        "returncode": 0
+      },
+      {
+        "action": "archive-1",
+        "python": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "returncode": 0
+      },
+      {
+        "action": "query-1",
+        "python": "/tmp/clock-shutdown-correction-cpmkuynr/.venv/bin/python",
+        "returncode": 0
+      },
+      {
+        "action": "old-capture",
+        "python": "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python",
+        "returncode": 0
+      },
+      {
+        "action": "archive-2",
+        "python": "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+        "returncode": 0
+      },
+      {
+        "action": "query-2",
+        "python": "/tmp/clock-shutdown-correction-cpmkuynr/.venv/bin/python",
+        "returncode": 0
+      }
+    ],
+    "simulated": [
+      "exchange transport/clock",
+      "dedicated backup mount identity"
+    ],
+    "phases": [
+      {
+        "phase": "archive-1",
+        "backup_id": "0315623ec54fad10c0fed9d8f5c71abd43efff77821f19785cf5e3d9bac0dc4b",
+        "snapshot_id": "1e926d4d5d8b48d974900525b5fac989b40be1366ff90963cb57c8aea048edf0",
+        "new_backup_id": "64c039eb2e8e3af89cc5161a0664a0f2934e32f9e0e4b8dc7f2b7ab92c9bba71",
+        "queries_ok": true,
+        "depth_replay_matches": true,
+        "idempotent_repeat_processed": 0,
+        "catalog_counts": {
+          "artifacts": 7,
+          "fetches": 7,
+          "revisions": 0,
+          "active": 0,
+          "snapshots": 0,
+          "issues": 0,
+          "queries": 0,
+          "jobs": 0,
+          "sync_targets": 0,
+          "sync_runs": 0,
+          "sync_coverage": 0,
+          "event_collections": 2,
+          "event_segments": 4,
+          "file_packs": 2,
+          "packed_files": 8
+        }
+      },
+      {
+        "phase": "archive-2",
+        "backup_id": "047cb2867ed61b3f962edbfc900b87899b7d2565de879f21cdc0c5911e1004c7",
+        "snapshot_id": "f642dff5443582175b8c3372cb47cd2e98da3450435d8d1ce7700295f82d2837",
+        "new_backup_id": "4da70e274281993014d93b1fece48eff8454e1ebad87a89de01c29026eca6226",
+        "queries_ok": true,
+        "depth_replay_matches": true,
+        "idempotent_repeat_processed": 0,
+        "catalog_counts": {
+          "artifacts": 12,
+          "fetches": 12,
+          "revisions": 0,
+          "active": 0,
+          "snapshots": 0,
+          "issues": 0,
+          "queries": 0,
+          "jobs": 0,
+          "sync_targets": 0,
+          "sync_runs": 0,
+          "sync_coverage": 0,
+          "event_collections": 4,
+          "event_segments": 8,
+          "file_packs": 4,
+          "packed_files": 16
+        }
+      }
+    ],
+    "query_comparisons": 20,
+    "all_query_comparisons_equal": true,
+    "new_artifacts_unchanged": 7,
+    "index_retained": "fetches_url"
+  },
+  "operating_audit": {
+    "path": "final-audit.json",
+    "observed_at": "2026-10-09T09:49:41.185338+00:00",
+    "files_checked": 38,
+    "passed": true,
+    "chrony_unchanged": true,
+    "plan_matches_current_boot_and_ledger": true,
+    "t10_tool_preserved": true,
+    "test_paths_absent": true
+  },
+  "known_preexisting_edge": {
+    "result": "duplicate-fixture-control.json",
+    "todo": "T12",
+    "description": "identical event IDs/payload/local received_at across collections can lose second segment association",
+    "reproduced_old_to_old": true,
+    "operating_occurrence_audited": false
+  },
+  "remaining": [
+    "explicit_operating_deployment_approval",
+    "actual_operating_installation_and_collector_start",
+    "first_actual_child_boundary_and_new_evidence",
+    "scheduled_backup_and_restore_of_new_operating_clock_evidence",
+    "legacy_v1_logs_separate",
+    "other_eight_jobs_policy_separate",
+    "T05_separate_approval_mask_maintained"
+  ],
+  "evidence_sha256": {
+    "collector-correction/release.json": "edc4f8f4ec69153e7e532c5a7bf2dcd534da988e97c408e300fb01d71af00add",
+    "release-final.json": "276f2d03d470b6f1d5c3ef5cf699d2d76f1d72ffe3d2e11364592fff16bf46d1",
+    "operating-plan-final.json": "a005f23f018f73483feb58108b7a067454e0dcea444848a149becae47fad72ee",
+    "configuration-final.diff": "6ef08969bd116a797d332d2b242bbe31c1c3f9c97c6c26f3570ec1e9999ac897",
+    "approval.template.json": "c8d96c7923379c46ace2383c8086ab48fe8713a6a5b13348ae0aae57a594aa7a",
+    "final-audit.json": "e016f2c49a8a17e28d2055b1346d599aab9f43474224d2a0630ff81d23b90634",
+    "mixed-versions-result.json": "4bbaad808a262e03c26d5ed22b12962d382caca770cda9e7620d60ae9c18366c",
+    "duplicate-fixture-control.json": "1615070cb26fee8d681ad7b14dd747a6f1385e64e944b26618f853d3d9d0fb7a",
+    "system-preflight-inputs.json": "566fc425024a8a3491c34e277dc8bb5fdc106d21eae47d8606aa9fbcef672e99",
+    "system-preflight-inventory.json": "5df30a3e0d8f92f5dbb98c27173c14817b19dc15304415a357d5891f6cadcabe",
+    "system_preflight.py": "9ba155425d2ef8a34e38f75916b7751036ad28055608698a0404bdb8a709b4c2",
+    "system_probe_worker.py": "a423ba01bb5d833aad959a97391f3e4fc84420be13cf792cd1ed6c01da683ae7",
+    "mixed_versions.py": "4959becb97fb06193ecf81d8cac93f85e4e97a5ee6fddef5c61938cc293de833",
+    "collector-correction/correction.patch": "bd5903a2996ea09a9ec036e1e24430f92ace5d1d287604a505d3da84a88bf4fe"
+  }
+}
