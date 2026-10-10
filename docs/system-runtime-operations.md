@@ -4,14 +4,20 @@
 [실제 적용·실패/재개·초기 저장 확인](../reports/baseline/clock-runtime-deploy-2026-10-09/summary.md)과
 [남은 작업](../TODO.md)을 함께 확인한다. **21:59 KST의 후속 확인**에서
 [첫 child 전환과 자연스러운 reference 지연 중 다음 시작](../reports/baseline/t11-first-child-boundary-2026-10-09/summary.md)을 확인했다.
-새 시각 근거의 운영 백업·복원은 관찰 대기다. 과거 후보의 미적용 표시는 당시 상태다.
+신규 v2 시각 근거의 운영 백업·복원도 **10/10 15:24 KST 완료**했다.
+[실제 checkpoint·restic 전체 검사·복원 조회](../reports/baseline/t04-operating-clock-restore-2026-10-10/summary.md)를 확인한다.
+기존 v1 로그 편입은 별도 잔여 범위이며, 과거 후보의 미적용 표시는 당시 상태다.
+**10/11 00:51 KST에는 T13 daily를 별도 고정 배포본으로 전환했고 00:53 타이머를 활성화했다.**
+[설치·전환 중단과 재개, 첫 실행/처리 0건 확인](../reports/baseline/t13-daily-deploy-2026-10-11/summary.md)을 남겼다.
+정오·저녁·날짜 경계의 실제 자료 처리와 새 원장 운영 백업·복원은 아직 관찰 대기다.
 
 ## 실행 코드와 관리 주체
 
 | 대상 | 현재 구성 |
 |---|---|
 | 수집 고정 배포본 | `/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325` |
-| 부팅 준비·기존 업무의 배포본 | `/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee` 유지 |
+| 부팅 준비·기존 업무 시각 검사 배포본 | `/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee` 유지 |
+| daily 고정 배포본 | `/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b` |
 | 설치 방식 | root 소유 코드·비 editable venv, `python -I`, 수집 프로세스는 `yoonhc` |
 | 시스템 수집 유닛 | `marketdata-collector@depth.service`, `marketdata-collector@aggtrade.service` |
 | 수집 수명 | 지속 supervisor 아래 3,600초 child, child 사이 15초도 시각 감시 유지 |
@@ -22,13 +28,15 @@
 | 이전 사용자 수집 유닛 | `marketdata-depth.service`, `marketdata-aggtrade.service`는 masked·비활성 |
 | 자동 checkpoint 정리 | service/timer 모두 persistent masked. 상시 시각 검사 검증·승인 전까지 보류 |
 
-개발 폴더 변경은 이 배포본에 자동 반영되지 않는다. 새 배포는 별도 경로에서 후보를 검증·고정하고
+개발 폴더 변경은 고정된 수집·daily 배포본에 자동 반영되지 않는다. 새 배포는 별도 경로에서 후보를 검증·고정하고
 검토한 종료/기동 경계에서 적용한다. 설치된 venv나 고정 후보의 파일을 직접 덮어쓰지 않는다.
 새 수집본의 [소스·해시](../reports/baseline/clock-runtime-transition-2026-10-09/collector-correction/release.json)와
 [재현 절차](../reports/baseline/clock-runtime-transition-2026-10-09/reproduce.md)를 보존한다.
 이전 부팅 준비본의 [소스·해시](../reports/baseline/system-runtime-bootstrap-revision-2026-10-07/release.json)도 유지한다.
 기존 workspace의 pack·backup·restic과 새 수집본의 호환은 격리 저장소에서 검증했다.
 workspace의 패키지와 설치된 collector가 항상 같은 버전이라고 가정하지 않는다.
+daily도 별도 [고정 소스·검증 환경](../reports/baseline/t13-daily-review-2026-10-10/manifest.json)을 사용한다.
+pack·backup·restic 등 나머지 업무의 실행 경로는 이번 daily 전환에서 바꾸지 않았다.
 
 T11은 supervisor 감시를 이어 다음 child의 reference 지연 대기를 줄였다.
 WebSocket의 연속 수신은 아직 별도 과제다. Depth는 한 시간 child 경계 외에도 15분마다 기존 소켓을 닫고
@@ -94,6 +102,38 @@ supervisor 자체가 재시작되면 엄격한 준비부터 다시 확인한다.
 실제 업무 오류의 기존 재시도·시작 제한은 유지한다. 600초 장기 준비 대기는 journal 경고로 남으며 외부 알림은 없다.
 waiter만 임의로 stop하면 의존 업무의 요청도 취소될 수 있으므로 업무 재시도나 되돌리기 수단으로 쓰지 않는다.
 
+## 대상별 daily 운영
+
+daily는 여전히 사용자 manager가 관리하며 기존 clock waiter·strict gate를 사용한다.
+`/etc/marketdata/daily-scheduler.toml`의 일정은 12:20 KST 현물 봉·펀딩·현물/선물 metadata,
+18:00 선물 봉·마크·지수·OI 아카이브, 미완료만 20:00·22:00 재확인이다.
+5분 timer는 실행 자격을 평가한다. 이미 완료된 acquire와 아직 예정 전인 작업에 HTTP 요청을 보내는 일정이 아니다.
+refresh는 최근 3일 수정 확인으로 따로 식별하고, 미확보 UTC 날짜는 그 범위를 벗어나도 보존한다.
+
+```bash
+systemctl --user status marketdata-daily.service marketdata-daily.timer
+journalctl --user -u marketdata-daily.service -n 100 --no-pager
+marketdata_daily_release=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b
+"$marketdata_daily_release/.venv/bin/python" -B -I -m marketdata.daily_schedule status --root "$marketdata_root"
+```
+
+최신 요약은 `state/daily-scheduler-latest.json`, 영속 작업·시도·냉각·재개 이력은 카탈로그의 daily 테이블이다.
+기존 `daily-latest.json`을 새 scheduler의 최신 실행 결과로 읽지 않는다.
+`runner_ok`는 실행기 정상 종료, `data_complete`는 계획된 자료의 완료이며 서로 다르다.
+처리 0건과 oneshot의 `inactive/dead`는 직전 `Result=success`·종료 코드·원장과 함께 판단한다.
+00:59 초기 관측은 실행 4회·기존 확보 156개·예정 전 20개·시도 0개였다. 이는 정오/저녁 자료 완료 근거가 아니다.
+
+`needs_review` 재개는 [정확한 작업의 inspect → 요청 검토 → apply 절차](../reports/baseline/t13-daily-review-2026-10-10/deployment-review.md#실제-사용-절차)를 따른다.
+이미 저장된 유효 근거와의 완료 연결 또는 추가 1–3회 시도 허용을 구분하며 과거 실패·냉각·검증 기준을 유지한다.
+스케줄러 반복 실행 승인은 모든 점검 상태의 자동 해제 승인이 아니다. 현재 운영 수동 재개는 0건이다.
+`plan()`은 운영 원장을 쓰므로 미리보기에는 [일관된 사본 절차](../reports/baseline/t13-daily-review-2026-10-10/deployment-review.md#미리보기)를 사용한다.
+
+공개 HEAD 관측기는 `/etc/marketdata/daily-publication-probe.toml`의 `enabled=false`를 유지한다.
+새 daily의 향후 예약만 보류하려면 `systemctl --user disable --now marketdata-daily.timer`를 실행하고,
+진행 중 daily는 정상 종료를 확인한다. 두 수집기·backup/restic·Chrony를 함께 중지하지 않는다.
+원복은 [이전 base 링크·enable 상태 복원](../reports/baseline/t13-daily-deploy-2026-10-11/deployment-plan.md#실패-시-복구와-원복)이며,
+새 원장·자료·revision·실패를 보존한다. 이전 실행기는 새 냉각/needs_review를 따르지 않으므로 제한 상태 확인 없이 재실행하지 않는다.
+
 ## 종료·배포·되돌리기
 
 중지나 재시작에는 수집 공백이 생긴다. 승인된 작업창에서 해당 스트림만 system manager로 제어하고,
@@ -126,7 +166,9 @@ Linux만 LOCAL로 되돌리거나 ledger를 지워 시작 검사를 통과시키
 
 신규 v2 시각 근거는 300초 또는 1MiB에 닫힌 JSONL을 불변 raw artifact로 등록하며,
 collection·supervisor run·boot·child와 연결한다. 등록된 근거는 기존 pack·checkpoint·restic·restore 경로를 따른다.
-격리 복원과 조회는 통과했으며, 운영에서 생성한 새 근거의 첫 예약 백업·복원 확인은 아직 남아 있다.
+격리 시험에 이어 10/10 예약 checkpoint `4381041b…` → restic snapshot `764f183c…` → 전체 읽기 검사 →
+별도 경로 전체 추출·프로그램 복원을 완료했다. 첫 종료 collection 두 개의 artifact 32개와
+조회 7,111개 구간이 고정 기준과 일치했다. 정확한 ID·해시·범위는 위 운영 검증 보고서를 따른다.
 기존 v1 로그는 자동 편입하지 않았고, 근거가 없는 과거 구간을 정상으로 추정하지 않는다.
 
 다음은 처음 적용한 depth collection의 읽기 전용 조회 예다. 다른 collection이나 복원 저장소는 해당 ID·root를 지정한다.

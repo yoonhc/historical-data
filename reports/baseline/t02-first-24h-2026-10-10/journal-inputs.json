@@ -1,0 +1,128 @@
+{
+  "collector": {
+    "argv": [
+      "/usr/bin/journalctl",
+      "-b",
+      "eb163bf266424336b4d66cd58771b13d",
+      "--all",
+      "--no-pager",
+      "-o",
+      "json",
+      "--since",
+      "2026-10-09 00:11:18",
+      "--until",
+      "2026-10-10 00:11:17.999999",
+      "-u",
+      "marketdata-collector@depth.service",
+      "-u",
+      "marketdata-collector@aggtrade.service"
+    ],
+    "stderr": "",
+    "input": {
+      "path": "reports/t02-first-24h-2026-10-10/collector-journal.jsonl.gz",
+      "bytes": 4452150,
+      "sha256": "d3299bf5612c7ac5e2fc11fff74e49124a168e68477846af573ebaefedc13830"
+    },
+    "events": 41652,
+    "event_counts": {
+      "message": 2369,
+      "structured_payload": 39283
+    },
+    "parsed": {
+      "path": "reports/t02-first-24h-2026-10-10/collector-journal-parsed.json.gz",
+      "bytes": 811760,
+      "sha256": "8cc294b6f05175b645dd8d15851c641adf41c1e3432d145532587a45200c2695"
+    },
+    "wait_count": 423,
+    "failed_payload_count": 0
+  },
+  "chrony": {
+    "argv": [
+      "/usr/bin/journalctl",
+      "-b",
+      "eb163bf266424336b4d66cd58771b13d",
+      "--all",
+      "--no-pager",
+      "-o",
+      "json",
+      "--since",
+      "2026-10-09 00:10:00",
+      "--until",
+      "2026-10-10 00:11:17.999999",
+      "-u",
+      "chrony.service",
+      "-u",
+      "marketdata-clock-bootstrap.service"
+    ],
+    "stderr": "",
+    "input": {
+      "path": "reports/t02-first-24h-2026-10-10/chrony-journal.jsonl.gz",
+      "bytes": 29327,
+      "sha256": "cfd78b4dae11e8e27f5f02a4607b8ab7eb81521deedd38ab93bc81d6957dfce1"
+    },
+    "events": 277,
+    "event_counts": {
+      "message": 274,
+      "structured_payload": 3
+    },
+    "parsed": {
+      "path": "reports/t02-first-24h-2026-10-10/chrony-journal-parsed.json.gz",
+      "bytes": 4664,
+      "sha256": "82d0f1804ab2f886d7d70c1d3b06df54dd883d530e0819ab82ef84c5df554951"
+    },
+    "wait_count": 1,
+    "failed_payload_count": 0
+  },
+  "jobs": {
+    "argv": [
+      "/usr/bin/journalctl",
+      "-b",
+      "eb163bf266424336b4d66cd58771b13d",
+      "--all",
+      "--no-pager",
+      "-o",
+      "json",
+      "--since",
+      "2026-10-09 00:11:18",
+      "--until",
+      "2026-10-10 00:11:17.999999",
+      "--user",
+      "-u",
+      "marketdata-clock-ready.service",
+      "-u",
+      "marketdata-daily.service",
+      "-u",
+      "marketdata-pack.service",
+      "-u",
+      "marketdata-backup.service",
+      "-u",
+      "marketdata-restic-archive.service",
+      "-u",
+      "marketdata-network-observer.service",
+      "-u",
+      "marketdata-oi.service",
+      "-u",
+      "marketdata-oi-quality.service",
+      "-u",
+      "marketdata-oi-probe.service"
+    ],
+    "stderr": "",
+    "input": {
+      "path": "reports/t02-first-24h-2026-10-10/jobs-journal.jsonl.gz",
+      "bytes": 7131143,
+      "sha256": "8a6e6e6a08610038151a2ef389746a9b86a5c6bdd0f257fb195db2e508f30902"
+    },
+    "events": 40428,
+    "event_counts": {
+      "structured_payload": 21432,
+      "message": 18996
+    },
+    "parsed": {
+      "path": "reports/t02-first-24h-2026-10-10/jobs-journal-parsed.json.gz",
+      "bytes": 1087637,
+      "sha256": "b2cf4f69e2c84f1ae060e8064c548fdc0a5099ec80240cdbd7de092d29b60b49"
+    },
+    "wait_count": 6775,
+    "failed_payload_count": 0
+  }
+}

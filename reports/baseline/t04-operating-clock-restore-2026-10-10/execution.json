@@ -1,0 +1,307 @@
+{
+  "started_at": "2026-10-10T06:13:20.362873+00:00",
+  "passed": true,
+  "work_root": "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10",
+  "scope": "full snapshot extraction, application restore, two fixed collection queries",
+  "new_repository_check": false,
+  "new_backup": false,
+  "services_started": false,
+  "backup": {
+    "backup_id": "4381041be823394454ef9135162399d1540fa548025bfde05d791b250068a0de",
+    "bytes": 39645876117,
+    "checkpoint_at": "2026-10-10T05:36:03.067349+00:00",
+    "checkpoint_started_at": "2026-10-10T05:35:58.298938+00:00",
+    "completed_at": "2026-10-10T05:42:03.387063+00:00",
+    "manifest_sha256": "04b2958bd92efe2cc6df2a5c548e85944e38c6e756868a68b31a8c61b87d538b",
+    "path": "/mnt/backup/marketdata-historical/automatic/2026-10-10/cc5773d4224b45c1963479adb41ab705",
+    "snapshot_time_basis": "checkpoint_finished_at",
+    "snapshot_timezone": "UTC",
+    "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+  },
+  "stored": {
+    "archive_finished_at": "2026-10-10T06:11:34.024196+00:00",
+    "archive_started_at": "2026-10-10T06:10:06.995337+00:00",
+    "evidence": "exit_0_summary_metadata_manifest",
+    "snapshot_id": "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099"
+  },
+  "restic_version": "restic 0.19.1 compiled with go1.26.4 on linux/amd64",
+  "matched_attempt_id": "88cd2c5478cf4dfc889080ec0d94b586",
+  "checkpoint_queries": {
+    "depth": {
+      "started_at": "2026-10-10T06:13:26.406806+00:00",
+      "finished_at": "2026-10-10T06:13:26.952733+00:00",
+      "command": [
+        "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+        "-B",
+        "-I",
+        "-m",
+        "marketdata.cli",
+        "--root",
+        "/mnt/backup/marketdata-historical/automatic/2026-10-10/cc5773d4224b45c1963479adb41ab705",
+        "clock-evidence",
+        "--collection-id",
+        "d2d18424592f4f549f5bda828e270759"
+      ],
+      "exit_code": 0,
+      "query_sha256": "3a1a430fa28b71ffc72437fbfeaa95b4352ccfe84ebbeea2d36c86fcd2e60033",
+      "matches_fixed_baseline": true,
+      "link": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_id": "2dd4c5d6173140509876368768c76755",
+        "collection_end": {
+          "boottime_ns": 73366252985790,
+          "monotonic_ns": 73366252985088,
+          "sampling_span_ns": 1763,
+          "wall_ns": 1791545628295167191
+        },
+        "collection_start": {
+          "boottime_ns": 69766188095691,
+          "monotonic_ns": 69766188094884,
+          "sampling_span_ns": 1954,
+          "wall_ns": 1791542028230276822
+        },
+        "policy_version": "reference-freshness-v2",
+        "run_id": "9415ca491ca34ddfb75b1ec7cfeb4e8e",
+        "schema": 2,
+        "stream": "depth",
+        "terminal_state": "partial"
+      },
+      "evidence_state": "available",
+      "intervals": 3553,
+      "stale_intervals": 1950,
+      "unusable_intervals": 0,
+      "artifact_ids": [
+        "a70bf336da87d4e4928a1e7b246cd9933628f1048c75de48488234f513da2663",
+        "55948d7fbba5d3a8aa91257707c57b3f2f68573d61cf69f9fa54ddcbc27fd094",
+        "1754bdf018f16488dba6af121572e4f8e1b70541b0bea6bc6f117228abffab3d",
+        "5a69e044f0968d82da6054608d50076be8fc284c1e58c11a753a57430fe2a35d",
+        "9d29af758574c83b0e7cec5ac7f79393798caff32de331ba01ee19275e73ddaf",
+        "07fc44482fe6d4c758b882d611b740f7e979e40383e3b079cc2173c9b895b894",
+        "c804d59634ef06302026a56611240d0145ce89bcb1dcf51bdc79d709cc8a9f19",
+        "85666a55dca0d0b9072de890dcd5e43a1b3a05ad50bb3d4b901f0d7329ad443d",
+        "efaa3ad9d8e2f9a65d258317aca4236e6bc13fa100bb08c6e06b696e2bd33e73",
+        "384c7a1d29154e429c978d7e2e7e71dcc605d9e01f7960bb441fe1471e8d7047",
+        "b8abaffb4451c253df84e7dde2482e1d64dbbdc475fd053befbc7355ba4a2158",
+        "b239bde31a53ba1f0dd9331e8729693b1b8feb3d77ad9b032986d1e5a15c05c2",
+        "2003aa6360518d5aa7b66f475a79191bacfefc2bf9ec8a213a6976ec097dd27f",
+        "707c2bd71f93ed4755b2a89f4c903fd344d12fbd81a40e57e8191132605f8fcb"
+      ],
+      "retained_stdout_gzip": "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-operating-clock-restore-2026-10-10/depth-checkpoint.json.gz",
+      "retained_stdout_sha256": "8ac2415ce90dacc9cf080e5b63da1908189c8b15e195bf61458e2a408483aaf5"
+    },
+    "aggtrade": {
+      "started_at": "2026-10-10T06:13:26.970946+00:00",
+      "finished_at": "2026-10-10T06:13:27.489134+00:00",
+      "command": [
+        "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+        "-B",
+        "-I",
+        "-m",
+        "marketdata.cli",
+        "--root",
+        "/mnt/backup/marketdata-historical/automatic/2026-10-10/cc5773d4224b45c1963479adb41ab705",
+        "clock-evidence",
+        "--collection-id",
+        "c5b36646466344d5b1672275ffb2faf8"
+      ],
+      "exit_code": 0,
+      "query_sha256": "6a902e5ec7f4a2909178fe6ea551ac62505f484a23bcef4fbd54c98d425769a4",
+      "matches_fixed_baseline": true,
+      "link": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_id": "8d5878b92ad54c4cab61ecd854c85f92",
+        "collection_end": {
+          "boottime_ns": 73371350560950,
+          "monotonic_ns": 73371350560063,
+          "sampling_span_ns": 2715,
+          "wall_ns": 1791545633392742021
+        },
+        "collection_start": {
+          "boottime_ns": 69766021692867,
+          "monotonic_ns": 69766021692155,
+          "sampling_span_ns": 1904,
+          "wall_ns": 1791542028063874178
+        },
+        "policy_version": "reference-freshness-v2",
+        "run_id": "87dddac11b184080b5b5d75a4f167db4",
+        "schema": 2,
+        "stream": "aggtrade",
+        "terminal_state": "complete"
+      },
+      "evidence_state": "available",
+      "intervals": 3558,
+      "stale_intervals": 1955,
+      "unusable_intervals": 0,
+      "artifact_ids": [
+        "89e95b9f1725b8dbed94e1cd423c6f38f798f45105e9932f4d81c015425d2f67",
+        "0dec6db89168c5528b70b92208312513d871f22fb39626bfc2de25038e41d2a7",
+        "0d356e87f644bb0074bd8ef30377e7617702123aee40b52a7be25bdd06be82ee",
+        "8a76984c94d055e37a6e2de5ddde31a1aa7a3d3eebb949a9423603f8bc05d0f6",
+        "fb820d4c36e3e5452e8b5b0071937cba996d9803127d2a45dcd2f1637c07f428",
+        "abe37c1b6c409f19d9d3809bb24e937686f485287afc32957694a01f2b4d7237",
+        "a0425d1f40340ccfec610a79c9866e97b44392f5e68da4be5e731413399bd176",
+        "e8861b0262977f6dcc992bdaa2fc7b94607e5b571e59c8d72759521067c53a7e",
+        "0b61b93450169c88a3dc061ae0c1a541ed4f955d2e71315ed6b053a0c9e7df8c",
+        "801300057da97739e0793b3ddc12083b5b403e080425f7ac56379c998db11231",
+        "f9ee415d6710cef9660dc069e37161c38914583da6ea321394a2f05ed2f22ee3",
+        "6ff132f2220f4160ee2adf8eee2781b21c188a45627e21e94ed170b207d554ab",
+        "28ece0cf8952fcb5d9f073c543cdb9d0ec724fbeaab4be51f5a9177f695f3291",
+        "a5a512df7ead1ab9db6239e02511765dc9fe8c0f2499f34f411982d35b52d680"
+      ],
+      "retained_stdout_gzip": "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-operating-clock-restore-2026-10-10/aggtrade-checkpoint.json.gz",
+      "retained_stdout_sha256": "fd6aa62996badc96673d751d5a368d3a3904bf00e9a47f9daa5cf78ce09a968a"
+    }
+  },
+  "phase": "complete",
+  "snapshot_id": "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099",
+  "extracted": "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10/extracted",
+  "restored": "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10/store",
+  "restic_restore_receipt": {
+    "operation": "restore",
+    "arguments": [
+      "restore",
+      "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099",
+      "--target",
+      "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10/extracted",
+      "--verify"
+    ],
+    "cwd": null,
+    "started_at": "2026-10-10T06:13:27.508783+00:00",
+    "stdout": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/d518aae5655241e595cf0dfc7a8682ec.stdout",
+    "stderr": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/d518aae5655241e595cf0dfc7a8682ec.stderr",
+    "returncode": 0,
+    "finished_at": "2026-10-10T06:15:14.521225+00:00",
+    "wall_seconds": 107.01170483601163
+  },
+  "archive_state_sha256_before_after": "c671e6457a0c98a8d551cabae54bac932bcb27472dca2f8b20bd20ad0e717882",
+  "snapshot_inventory_unchanged": true,
+  "restored_queries": {
+    "depth": {
+      "started_at": "2026-10-10T06:24:18.129622+00:00",
+      "finished_at": "2026-10-10T06:24:18.670051+00:00",
+      "command": [
+        "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+        "-B",
+        "-I",
+        "-m",
+        "marketdata.cli",
+        "--root",
+        "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10/store",
+        "clock-evidence",
+        "--collection-id",
+        "d2d18424592f4f549f5bda828e270759"
+      ],
+      "exit_code": 0,
+      "query_sha256": "3a1a430fa28b71ffc72437fbfeaa95b4352ccfe84ebbeea2d36c86fcd2e60033",
+      "matches_fixed_baseline": true,
+      "link": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_id": "2dd4c5d6173140509876368768c76755",
+        "collection_end": {
+          "boottime_ns": 73366252985790,
+          "monotonic_ns": 73366252985088,
+          "sampling_span_ns": 1763,
+          "wall_ns": 1791545628295167191
+        },
+        "collection_start": {
+          "boottime_ns": 69766188095691,
+          "monotonic_ns": 69766188094884,
+          "sampling_span_ns": 1954,
+          "wall_ns": 1791542028230276822
+        },
+        "policy_version": "reference-freshness-v2",
+        "run_id": "9415ca491ca34ddfb75b1ec7cfeb4e8e",
+        "schema": 2,
+        "stream": "depth",
+        "terminal_state": "partial"
+      },
+      "evidence_state": "available",
+      "intervals": 3553,
+      "stale_intervals": 1950,
+      "unusable_intervals": 0,
+      "artifact_ids": [
+        "a70bf336da87d4e4928a1e7b246cd9933628f1048c75de48488234f513da2663",
+        "55948d7fbba5d3a8aa91257707c57b3f2f68573d61cf69f9fa54ddcbc27fd094",
+        "1754bdf018f16488dba6af121572e4f8e1b70541b0bea6bc6f117228abffab3d",
+        "5a69e044f0968d82da6054608d50076be8fc284c1e58c11a753a57430fe2a35d",
+        "9d29af758574c83b0e7cec5ac7f79393798caff32de331ba01ee19275e73ddaf",
+        "07fc44482fe6d4c758b882d611b740f7e979e40383e3b079cc2173c9b895b894",
+        "c804d59634ef06302026a56611240d0145ce89bcb1dcf51bdc79d709cc8a9f19",
+        "85666a55dca0d0b9072de890dcd5e43a1b3a05ad50bb3d4b901f0d7329ad443d",
+        "efaa3ad9d8e2f9a65d258317aca4236e6bc13fa100bb08c6e06b696e2bd33e73",
+        "384c7a1d29154e429c978d7e2e7e71dcc605d9e01f7960bb441fe1471e8d7047",
+        "b8abaffb4451c253df84e7dde2482e1d64dbbdc475fd053befbc7355ba4a2158",
+        "b239bde31a53ba1f0dd9331e8729693b1b8feb3d77ad9b032986d1e5a15c05c2",
+        "2003aa6360518d5aa7b66f475a79191bacfefc2bf9ec8a213a6976ec097dd27f",
+        "707c2bd71f93ed4755b2a89f4c903fd344d12fbd81a40e57e8191132605f8fcb"
+      ],
+      "retained_stdout_gzip": "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-operating-clock-restore-2026-10-10/depth-restored.json.gz",
+      "retained_stdout_sha256": "8ac2415ce90dacc9cf080e5b63da1908189c8b15e195bf61458e2a408483aaf5"
+    },
+    "aggtrade": {
+      "started_at": "2026-10-10T06:24:18.678759+00:00",
+      "finished_at": "2026-10-10T06:24:19.183158+00:00",
+      "command": [
+        "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python",
+        "-B",
+        "-I",
+        "-m",
+        "marketdata.cli",
+        "--root",
+        "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10/store",
+        "clock-evidence",
+        "--collection-id",
+        "c5b36646466344d5b1672275ffb2faf8"
+      ],
+      "exit_code": 0,
+      "query_sha256": "6a902e5ec7f4a2909178fe6ea551ac62505f484a23bcef4fbd54c98d425769a4",
+      "matches_fixed_baseline": true,
+      "link": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_id": "8d5878b92ad54c4cab61ecd854c85f92",
+        "collection_end": {
+          "boottime_ns": 73371350560950,
+          "monotonic_ns": 73371350560063,
+          "sampling_span_ns": 2715,
+          "wall_ns": 1791545633392742021
+        },
+        "collection_start": {
+          "boottime_ns": 69766021692867,
+          "monotonic_ns": 69766021692155,
+          "sampling_span_ns": 1904,
+          "wall_ns": 1791542028063874178
+        },
+        "policy_version": "reference-freshness-v2",
+        "run_id": "87dddac11b184080b5b5d75a4f167db4",
+        "schema": 2,
+        "stream": "aggtrade",
+        "terminal_state": "complete"
+      },
+      "evidence_state": "available",
+      "intervals": 3558,
+      "stale_intervals": 1955,
+      "unusable_intervals": 0,
+      "artifact_ids": [
+        "89e95b9f1725b8dbed94e1cd423c6f38f798f45105e9932f4d81c015425d2f67",
+        "0dec6db89168c5528b70b92208312513d871f22fb39626bfc2de25038e41d2a7",
+        "0d356e87f644bb0074bd8ef30377e7617702123aee40b52a7be25bdd06be82ee",
+        "8a76984c94d055e37a6e2de5ddde31a1aa7a3d3eebb949a9423603f8bc05d0f6",
+        "fb820d4c36e3e5452e8b5b0071937cba996d9803127d2a45dcd2f1637c07f428",
+        "abe37c1b6c409f19d9d3809bb24e937686f485287afc32957694a01f2b4d7237",
+        "a0425d1f40340ccfec610a79c9866e97b44392f5e68da4be5e731413399bd176",
+        "e8861b0262977f6dcc992bdaa2fc7b94607e5b571e59c8d72759521067c53a7e",
+        "0b61b93450169c88a3dc061ae0c1a541ed4f955d2e71315ed6b053a0c9e7df8c",
+        "801300057da97739e0793b3ddc12083b5b403e080425f7ac56379c998db11231",
+        "f9ee415d6710cef9660dc069e37161c38914583da6ea321394a2f05ed2f22ee3",
+        "6ff132f2220f4160ee2adf8eee2781b21c188a45627e21e94ed170b207d554ab",
+        "28ece0cf8952fcb5d9f073c543cdb9d0ec724fbeaab4be51f5a9177f695f3291",
+        "a5a512df7ead1ab9db6239e02511765dc9fe8c0f2499f34f411982d35b52d680"
+      ],
+      "retained_stdout_gzip": "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-operating-clock-restore-2026-10-10/aggtrade-restored.json.gz",
+      "retained_stdout_sha256": "fd6aa62996badc96673d751d5a368d3a3904bf00e9a47f9daa5cf78ce09a968a"
+    }
+  },
+  "independent_selected_files": 33,
+  "application_restore_receipt": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/application-restore.json",
+  "finished_at": "2026-10-10T06:24:19.192630+00:00"
+}

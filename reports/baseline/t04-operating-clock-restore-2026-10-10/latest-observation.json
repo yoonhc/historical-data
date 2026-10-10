@@ -1,0 +1,107 @@
+{
+  "observed_at": "2026-10-10T06:13:20.361280+00:00",
+  "ready": true,
+  "daily": {
+    "id": "521ecd28fd7349eda1759f539dc0cac7",
+    "state": "complete",
+    "phase": "finished",
+    "ok": true,
+    "requested_at": "2026-10-10T04:34:10.624961+00:00",
+    "started_at": "2026-10-10T04:34:10.625006+00:00",
+    "updated_at": "2026-10-10T05:42:05.609496+00:00",
+    "finished_at": "2026-10-10T05:42:05.609492+00:00",
+    "backup": {
+      "backup_id": "4381041be823394454ef9135162399d1540fa548025bfde05d791b250068a0de",
+      "bytes": 39645876117,
+      "catalog_counts": {
+        "active": 15270,
+        "artifacts": 728844,
+        "event_collections": 1258,
+        "event_segments": 704032,
+        "fetches": 825236,
+        "file_packs": 1995,
+        "issues": 24,
+        "jobs": 10923,
+        "packed_files": 1397902,
+        "queries": 20682,
+        "revisions": 20433,
+        "snapshots": 20,
+        "sync_coverage": 5138,
+        "sync_runs": 5885,
+        "sync_targets": 9
+      },
+      "files": 57423,
+      "ok": true,
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-10/cc5773d4224b45c1963479adb41ab705",
+      "reused": false,
+      "same_filesystem_as_source": false,
+      "storage": {
+        "mode": "linked_snapshot",
+        "new_bytes": 4418898216,
+        "new_files": 11724,
+        "reuse_backup_id": "6ba0fadd2ede16951c0448f6a7174c53e4cf22d9e19ee26c92e0be44b125b145",
+        "reuse_from": "/mnt/backup/marketdata-historical/automatic/2026-10-09/d7d2be14890140e8ae11be2943f1730e",
+        "reused_bytes": 35226977901,
+        "reused_files": 45699,
+        "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata"
+      },
+      "writer_lock_seconds": 4.768420444976073
+    }
+  },
+  "repository_check": {
+    "finished_at": "2026-10-10T06:12:53.779048+00:00",
+    "ok": true,
+    "read_data": true,
+    "receipt": {
+      "arguments": [
+        "check",
+        "--read-data"
+      ],
+      "cwd": null,
+      "finished_at": "2026-10-10T06:12:53.779048+00:00",
+      "operation": "check",
+      "returncode": 0,
+      "started_at": "2026-10-10T06:11:36.252116+00:00",
+      "stderr": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/dde8d66427b041f08f3eba01021c75b8/91b40158061d419398ee5ef15b474384.stderr",
+      "stdout": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/dde8d66427b041f08f3eba01021c75b8/91b40158061d419398ee5ef15b474384.stdout",
+      "wall_seconds": 77.5268883180106
+    },
+    "snapshot_ids": [
+      "057cd08adc8e07dda2a93eb97f4ecfacce76a60971beb5c0d795566d1202f57b",
+      "0c9f8bc23d1125cbfd7e0d3c442af4376298e22c8116f5526170797f0d9b9135",
+      "12ee905237a76788c93a9963c2c0425739042c57e49effe73135b90d2eee377f",
+      "19bde5fb81b7dde7d45e2bba3504a9bd7969c7b2d1414803a528a0b4f1f6d462",
+      "1dd34456b08a6a7da4d3f55685852bed44233ee7cad304ef9910ea03dad1c024",
+      "648d7c93eadab36b79295808bfa54b0e6f45b22e4e38e5ed363b540572361f9e",
+      "711137213f16926f19d58e4a07e1a8a28c10e6b1dd5446c0d26561d142692e94",
+      "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1",
+      "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099",
+      "7ddea5243f9262eb058b15e97df1976eb5c369de386010c736b449a10a250713",
+      "bbb553b48c9ea943e64dbf1e2f2d021b46d7c2c78313c505029d7c842c9d8df2",
+      "be8d132a6f36336b131849eb15b9952e418bf5ef0fecc1794c2adc5b14fbb09a",
+      "c17a01a46e723b87f0c3c48403bf76e742c014b4682d02644416e50924324fd5",
+      "d27a0a557e1795a4651132016491f1b2c6735e8181b71303f3adccd414f0f8ad",
+      "da1af66eeece550548f2b6daf549ffa22b662a9d32155bf4485c20c6cae51ae2"
+    ],
+    "started_at": "2026-10-10T06:11:36.246346+00:00",
+    "status": "complete"
+  },
+  "entry": {
+    "backup_id": "4381041be823394454ef9135162399d1540fa548025bfde05d791b250068a0de",
+    "bytes": 39645876117,
+    "checkpoint_at": "2026-10-10T05:36:03.067349+00:00",
+    "checkpoint_started_at": "2026-10-10T05:35:58.298938+00:00",
+    "completed_at": "2026-10-10T05:42:03.387063+00:00",
+    "manifest_sha256": "04b2958bd92efe2cc6df2a5c548e85944e38c6e756868a68b31a8c61b87d538b",
+    "path": "/mnt/backup/marketdata-historical/automatic/2026-10-10/cc5773d4224b45c1963479adb41ab705",
+    "snapshot_time_basis": "checkpoint_finished_at",
+    "snapshot_timezone": "UTC",
+    "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+  },
+  "stored": {
+    "archive_finished_at": "2026-10-10T06:11:34.024196+00:00",
+    "archive_started_at": "2026-10-10T06:10:06.995337+00:00",
+    "evidence": "exit_0_summary_metadata_manifest",
+    "snapshot_id": "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099"
+  }
+}

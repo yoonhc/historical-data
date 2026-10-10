@@ -1,0 +1,315 @@
+{
+  "observed_at": "2026-10-10T09:39:40.327352+00:00",
+  "read_only": true,
+  "systemd": {
+    "argv": [
+      "/usr/bin/systemctl",
+      "--user",
+      "show",
+      "marketdata-daily.service",
+      "marketdata-daily.timer",
+      "marketdata-checkpoint-retirement.service",
+      "marketdata-checkpoint-retirement.timer",
+      "--all",
+      "--property=Id,LoadState,UnitFileState,ActiveState,SubState,Result,NRestarts,ExecMainStatus,ExecMainStartTimestamp,ExecMainExitTimestamp,LastTriggerUSec,NextElapseUSecRealtime,StartLimitBurst,StartLimitIntervalUSec"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "29ca3def827ff03d500b5d8caa770c16488362ebd9c8d14cd6837a88faa46ff2",
+    "stderr": "",
+    "stdout": "Result=exit-code\nNRestarts=5\nExecMainStartTimestamp=Sat 2026-10-10 12:26:27 KST\nExecMainExitTimestamp=Sat 2026-10-10 12:26:33 KST\nExecMainStatus=2\nId=marketdata-daily.service\nLoadState=loaded\nActiveState=failed\nSubState=failed\nUnitFileState=linked\nStartLimitIntervalUSec=10min\nStartLimitBurst=5\n\nNextElapseUSecRealtime=Sun 2026-10-11 12:24:03 KST\nLastTriggerUSec=Sat 2026-10-10 12:22:01 KST\nResult=success\nId=marketdata-daily.timer\nLoadState=loaded\nActiveState=active\nSubState=waiting\nUnitFileState=enabled\nStartLimitIntervalUSec=10s\nStartLimitBurst=5\n\nResult=success\nNRestarts=0\nExecMainStartTimestamp=\nExecMainExitTimestamp=\nExecMainStatus=0\nId=marketdata-checkpoint-retirement.service\nLoadState=masked\nActiveState=inactive\nSubState=dead\nUnitFileState=masked\nStartLimitIntervalUSec=10s\nStartLimitBurst=5\n\nNextElapseUSecRealtime=\nLastTriggerUSec=\nResult=success\nId=marketdata-checkpoint-retirement.timer\nLoadState=masked\nActiveState=inactive\nSubState=dead\nUnitFileState=masked\nStartLimitIntervalUSec=10s\nStartLimitBurst=5\n"
+  },
+  "journal": {
+    "argv": [
+      "/usr/bin/journalctl",
+      "--user",
+      "-u",
+      "marketdata-daily.service",
+      "--since",
+      "2026-10-10 00:00:00",
+      "--until",
+      "2026-10-10 18:40:00",
+      "--no-pager",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "33b5f5dc37abbdf6ea9d7fe7f00a37690005ecc7c0ce3564ead19eec241a325e",
+    "stderr": "",
+    "rows": 174,
+    "summary": [
+      {
+        "__REALTIME_TIMESTAMP": "1791602521993441",
+        "__MONOTONIC_TIMESTAMP": "130259951259",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602527687279",
+        "__MONOTONIC_TIMESTAMP": "130265645097",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": "6352f278cb764fbaa81f285e4a4a438e",
+        "MESSAGE": null
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602527710400",
+        "__MONOTONIC_TIMESTAMP": "130265668217",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602527710822",
+        "__MONOTONIC_TIMESTAMP": "130265668640",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602527710926",
+        "__MONOTONIC_TIMESTAMP": "130265668744",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602527711008",
+        "__MONOTONIC_TIMESTAMP": "130265668826",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Consumed 1.991s CPU time."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602587949779",
+        "__MONOTONIC_TIMESTAMP": "130325907597",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Scheduled restart job, restart counter is at 1."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602588020683",
+        "__MONOTONIC_TIMESTAMP": "130325978501",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602594034416",
+        "__MONOTONIC_TIMESTAMP": "130331992234",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": "c04e181a8cdf40b6b0c2ac6e1eeb12b7",
+        "MESSAGE": null
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602594058163",
+        "__MONOTONIC_TIMESTAMP": "130332015981",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602594058545",
+        "__MONOTONIC_TIMESTAMP": "130332016363",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602594058694",
+        "__MONOTONIC_TIMESTAMP": "130332016512",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602594058777",
+        "__MONOTONIC_TIMESTAMP": "130332016595",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Consumed 2.342s CPU time."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602654199489",
+        "__MONOTONIC_TIMESTAMP": "130392157307",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Scheduled restart job, restart counter is at 2."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602654279414",
+        "__MONOTONIC_TIMESTAMP": "130392237231",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602660463104",
+        "__MONOTONIC_TIMESTAMP": "130398420922",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": "dd67db601ed246bcbc340d4d23318209",
+        "MESSAGE": null
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602660491600",
+        "__MONOTONIC_TIMESTAMP": "130398449418",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602660491843",
+        "__MONOTONIC_TIMESTAMP": "130398449661",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602660492156",
+        "__MONOTONIC_TIMESTAMP": "130398449974",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602660492224",
+        "__MONOTONIC_TIMESTAMP": "130398450042",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Consumed 2.455s CPU time."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602720699839",
+        "__MONOTONIC_TIMESTAMP": "130458657657",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Scheduled restart job, restart counter is at 3."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602720774599",
+        "__MONOTONIC_TIMESTAMP": "130458732416",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602726780268",
+        "__MONOTONIC_TIMESTAMP": "130464738085",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": "d350889d787f442186d508c56ba6e98a",
+        "MESSAGE": null
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602726804083",
+        "__MONOTONIC_TIMESTAMP": "130464761901",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602726804331",
+        "__MONOTONIC_TIMESTAMP": "130464762149",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602726804586",
+        "__MONOTONIC_TIMESTAMP": "130464762404",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602726804658",
+        "__MONOTONIC_TIMESTAMP": "130464762475",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Consumed 2.337s CPU time."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602786949789",
+        "__MONOTONIC_TIMESTAMP": "130524907607",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Scheduled restart job, restart counter is at 4."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602787029598",
+        "__MONOTONIC_TIMESTAMP": "130524987416",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602793378430",
+        "__MONOTONIC_TIMESTAMP": "130531336247",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": "159c28fa7290488387c0d013835f29c8",
+        "MESSAGE": null
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602793401993",
+        "__MONOTONIC_TIMESTAMP": "130531359811",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602793402304",
+        "__MONOTONIC_TIMESTAMP": "130531360121",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602793402578",
+        "__MONOTONIC_TIMESTAMP": "130531360396",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602793402635",
+        "__MONOTONIC_TIMESTAMP": "130531360452",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Consumed 2.319s CPU time."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602853450039",
+        "__MONOTONIC_TIMESTAMP": "130591407857",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Scheduled restart job, restart counter is at 5."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602853511922",
+        "__MONOTONIC_TIMESTAMP": "130591469740",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Start request repeated too quickly."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602853511999",
+        "__MONOTONIC_TIMESTAMP": "130591469816",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602853512067",
+        "__MONOTONIC_TIMESTAMP": "130591469884",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "__REALTIME_TIMESTAMP": "1791602853512120",
+        "__MONOTONIC_TIMESTAMP": "130591469938",
+        "_BOOT_ID": "eb163bf266424336b4d66cd58771b13d",
+        "_SYSTEMD_INVOCATION_ID": null,
+        "MESSAGE": "marketdata-daily.service: Consumed 2.319s CPU time."
+      }
+    ]
+  }
+}

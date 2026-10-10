@@ -1,0 +1,96 @@
+{
+  "observed_at": "2026-10-10T09:39:27.710556+00:00",
+  "read_only": true,
+  "helper": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/system-cutover-readiness-2026-10-07/check_remote.py",
+  "helper_sha256": "506de5c7fbad5b17064efd41807dabd22474606201e2a1b346e67978fdeed73e",
+  "observations": [
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+      "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+      "checked_at": "2026-10-10T09:39:27.663488+00:00",
+      "requests": [
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+          "status": null,
+          "error": "URLError(gaierror(-2, 'Name or service not known'))",
+          "elapsed_seconds": 0.04662717098835856
+        },
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM",
+          "status": null,
+          "error": "URLError(gaierror(-2, 'Name or service not known'))",
+          "elapsed_seconds": 0.00024726599804125726
+        }
+      ],
+      "classification": "needs_review"
+    },
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+      "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+      "checked_at": "2026-10-10T09:39:27.664557+00:00",
+      "requests": [
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+          "status": null,
+          "error": "URLError(gaierror(-2, 'Name or service not known'))",
+          "elapsed_seconds": 0.045266748988069594
+        },
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM",
+          "status": null,
+          "error": "URLError(gaierror(-2, 'Name or service not known'))",
+          "elapsed_seconds": 0.0004666709864977747
+        }
+      ],
+      "classification": "needs_review"
+    },
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+      "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+      "checked_at": "2026-10-10T09:39:27.665049+00:00",
+      "requests": [
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+          "status": null,
+          "error": "URLError(gaierror(-2, 'Name or service not known'))",
+          "elapsed_seconds": 0.04457075402024202
+        },
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM",
+          "status": null,
+          "error": "URLError(gaierror(-2, 'Name or service not known'))",
+          "elapsed_seconds": 0.0006180509808473289
+        }
+      ],
+      "classification": "needs_review"
+    },
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+      "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-09.zip",
+      "checked_at": "2026-10-10T09:39:27.665727+00:00",
+      "requests": [
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-09.zip",
+          "status": null,
+          "error": "URLError(gaierror(-2, 'Name or service not known'))",
+          "elapsed_seconds": 0.044266823009820655
+        },
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-09.zip.CHECKSUM",
+          "status": null,
+          "error": "URLError(gaierror(-2, 'Name or service not known'))",
+          "elapsed_seconds": 0.0003397069813217968
+        }
+      ],
+      "classification": "needs_review"
+    }
+  ]
+}

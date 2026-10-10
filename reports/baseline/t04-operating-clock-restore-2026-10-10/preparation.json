@@ -1,0 +1,84 @@
+{
+  "prepared_at": "2026-10-10T04:52:08.965856+00:00",
+  "passed": true,
+  "release_id": "clock-evidence-policy-20261009-65296619a374c325",
+  "targets": {
+    "depth": {
+      "collection_id": "d2d18424592f4f549f5bda828e270759",
+      "link": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_id": "2dd4c5d6173140509876368768c76755",
+        "collection_end": {
+          "boottime_ns": 73366252985790,
+          "monotonic_ns": 73366252985088,
+          "sampling_span_ns": 1763,
+          "wall_ns": 1791545628295167191
+        },
+        "collection_start": {
+          "boottime_ns": 69766188095691,
+          "monotonic_ns": 69766188094884,
+          "sampling_span_ns": 1954,
+          "wall_ns": 1791542028230276822
+        },
+        "policy_version": "reference-freshness-v2",
+        "run_id": "9415ca491ca34ddfb75b1ec7cfeb4e8e",
+        "schema": 2,
+        "stream": "depth",
+        "terminal_state": "partial"
+      },
+      "query_sha256": "3a1a430fa28b71ffc72437fbfeaa95b4352ccfe84ebbeea2d36c86fcd2e60033",
+      "intervals": 3553,
+      "prefix_chunks": 16,
+      "prefix_bytes": 300083,
+      "original_query_gzip": "/home/yoonhc/projects/algoTrade/historical_data/reports/t11-first-child-boundary-2026-10-09/depth-clock-query.json.gz",
+      "original_query_file_sha256": "8ac2415ce90dacc9cf080e5b63da1908189c8b15e195bf61458e2a408483aaf5"
+    },
+    "aggtrade": {
+      "collection_id": "c5b36646466344d5b1672275ffb2faf8",
+      "link": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_id": "8d5878b92ad54c4cab61ecd854c85f92",
+        "collection_end": {
+          "boottime_ns": 73371350560950,
+          "monotonic_ns": 73371350560063,
+          "sampling_span_ns": 2715,
+          "wall_ns": 1791545633392742021
+        },
+        "collection_start": {
+          "boottime_ns": 69766021692867,
+          "monotonic_ns": 69766021692155,
+          "sampling_span_ns": 1904,
+          "wall_ns": 1791542028063874178
+        },
+        "policy_version": "reference-freshness-v2",
+        "run_id": "87dddac11b184080b5b5d75a4f167db4",
+        "schema": 2,
+        "stream": "aggtrade",
+        "terminal_state": "complete"
+      },
+      "query_sha256": "6a902e5ec7f4a2909178fe6ea551ac62505f484a23bcef4fbd54c98d425769a4",
+      "intervals": 3558,
+      "prefix_chunks": 16,
+      "prefix_bytes": 300361,
+      "original_query_gzip": "/home/yoonhc/projects/algoTrade/historical_data/reports/t11-first-child-boundary-2026-10-09/aggtrade-clock-query.json.gz",
+      "original_query_file_sha256": "fd6aa62996badc96673d751d5a368d3a3904bf00e9a47f9daa5cf78ce09a968a"
+    }
+  },
+  "inputs": {
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/verify.py": "a88eb306a886936cbdb87eccfb36e5f7fecdccf031207390d2cff0ac3d40aab3",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t11-first-child-boundary-2026-10-09/backup-followup.json": "1c2ba8d45575f77c36aafa03dc045093da0400eb1f6a5ff874a5fcb82bdf1215",
+    "/home/yoonhc/.config/marketdata/restic-archive.toml": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+    "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/lib/python3.12/site-packages/marketdata/clock_evidence.py": "75a3a5ab156e13cc3ecf3dc1d997fc5e81095ffbce5dd6480388687ad9656a82",
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/archive_backups.py": "91fb91bc0615f4ab59a2bedd2c51accd5481d3d98ff9843e06a3678f14e73d0a",
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/backup.py": "e522ec6e7246c6109ddc09ab605839c90a240e66736ce0c353af682878c1963f"
+  },
+  "restore_scope": "full snapshot extraction and existing application restore; no new backup",
+  "preserve": [
+    "market partial",
+    "reference stale history",
+    "original timestamps",
+    "archive state",
+    "boot/step ledger",
+    "automatic retirement mask"
+  ]
+}

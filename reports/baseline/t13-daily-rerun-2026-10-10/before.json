@@ -1,0 +1,48 @@
+{
+  "observed_at": "2026-10-10T09:52:40.114163+00:00",
+  "authorized_action": "start existing marketdata-daily.service for missing 2026-10-09 data; no policy changes",
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "files_sha256": {
+    "configs/daily.toml": "148196109805269fb339dd504d019e2a7243956d16c698b655fc3e766bd25ba3",
+    "integrations/systemd/marketdata-daily.service": "7ba5289fc742422fd1935bfe4515c274775262a5e6195214b2533311ab8d9d5c",
+    "integrations/systemd/marketdata-daily.timer": "c67b3d1268e6b38f9ccee07d12192579708b826851e7269be5c0b7a61eee03dd",
+    "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-clock-ready.service": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab",
+    "/etc/marketdata/runtime.json": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+    "/etc/marketdata/clock-bootstrap.json": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+    "/etc/chrony/marketdata.conf": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86"
+  },
+  "previous_daily_sha256": "fe4854424ef5f8a4543e40166a11d2c5edab50077958d3273fe9da30164a9543",
+  "active_20261009_before": [
+    {
+      "key_id": "binance:linear_perpetual:BTCUSDT:open_interest:5m:rest",
+      "day": "2026-10-09",
+      "revision_id": "4f2d75ac2b30b2f5e10e1f4baaf4cb146fe3192300660b1a17bab018e4e32e40",
+      "created_at": "2026-10-09T23:55:46.361492+00:00"
+    },
+    {
+      "key_id": "binance:spot:BTCUSDT:instrument_metadata:event:primary",
+      "day": "2026-10-09",
+      "revision_id": "5a5626aa072fb1452f7c449c552236826d39f17626c23a1d69494b910c9ad3e2",
+      "created_at": "2026-10-09T03:27:49.858059+00:00"
+    },
+    {
+      "key_id": "binance:linear_perpetual:BTCUSDT:instrument_metadata:event:primary",
+      "day": "2026-10-09",
+      "revision_id": "4299bc12c4df0021d5f73a05bc5ef9837bf8a7e502e57bbbd90a6ed144ea97aa",
+      "created_at": "2026-10-09T03:27:50.008727+00:00"
+    },
+    {
+      "key_id": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+      "day": "2026-10-09",
+      "revision_id": "7bea98e86cc65f77b1e7a3efe1386c26720c169160d8108edc4e2c786eaf6f29",
+      "created_at": "2026-10-10T03:22:03.580247+00:00"
+    },
+    {
+      "key_id": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+      "day": "2026-10-09",
+      "revision_id": "a81cc7ca0bfcc2731c5d49415ffcc0e25472196c24e6f4bfff64b33a012e6487",
+      "created_at": "2026-10-10T03:22:06.554781+00:00"
+    }
+  ]
+}

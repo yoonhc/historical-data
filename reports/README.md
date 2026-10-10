@@ -7,19 +7,81 @@
 후보의 미설치·미검증 표시는 각 시험 당시 상태이며,
 현재 적용 상태는 [시스템 서비스 운영 안내](../docs/system-runtime-operations.md), 남은 일은 [TODO](../TODO.md)를 따릅니다.
 
-이번 Git 보존 범위와 고정 배포본 해시·기존 검사 결과·문서 링크 대조는
-[작업 정리 검증](baseline/work-summary-2026-10-09/summary.md)에 기록했습니다.
+최신 [10/11 마일스톤](../docs/milestones/2026-10-11-daily-scheduler-and-operating-verification.md)은
+10/9 20:17 이후의 운영 검증·시험 정리·시각 근거 복원·T13 구현과 실제 배포를 다룹니다.
+이번 Git 보존 범위와 고정 입력·기존 검사·문서 대조는 [10/11 작업 정리](baseline/work-summary-2026-10-11/summary.md),
+이전 커밋 묶음의 근거는 [10/9 작업 정리](baseline/work-summary-2026-10-09/summary.md)에 기록했습니다.
+
+`baseline/t13-daily-deploy-2026-10-11/`는 승인한 최종 T13 daily의 **운영 적용 기록**입니다.
+[실제 결과](baseline/t13-daily-deploy-2026-10-11/summary.md)에 설치 권한 검사와 timer 링크 검사 중단·재개,
+00:51 새 고정 실행본 시작·00:53 timer 활성화와 첫 실행/자동 재평가 4회 성공을 기록했습니다.
+기존 확보 156개·예정 전 20개·수집 시도 0개를 구분했으며, 기존 수집기·Chrony·guard·백업·정리 mask는 유지했습니다.
+정오·저녁·날짜 경계의 실제 자료 처리와 새 원장의 운영 checkpoint/restic·복원은 아직 남았습니다.
+
+`baseline/t13-daily-review-2026-10-10/`는 needs_review 재개·사본 미리보기를 보완한 **최종 후보의 검증 기록**입니다.
+[보완 결과](baseline/t13-daily-review-2026-10-10/summary.md)에 정확한 작업의 저장 근거 연결/추가 1–3회 승인,
+이력·냉각·충돌 보호, 반복/중단/경합과 기존 회귀를 포함한 213개 검사 및 깨끗한 설치 재현을 기록했습니다.
+10/11 00:11 KST 운영 사본 미리보기는 기존 확보 156건 제외·예정 전 20건·HTTP 0건입니다.
+[새 후보의 적용·재개·원복안](baseline/t13-daily-review-2026-10-10/deployment-review.md)을 고정했으며,
+검증 당시 운영 미적용이었으며 이후 daily 적용·첫 처리 0건 확인은 위 10/11 기록을 따릅니다.
+실제 자료 예약 처리·새 원장 운영 백업/복원은 아직 남았습니다. 공개 관측기는 비활성이고 자동 정리 mask를 유지했습니다.
+
+`baseline/t13-daily-scheduler-2026-10-10/`는 승인한 daily 예약·재시도 설계의 **이전 미적용 고정 후보**입니다.
+[후보 결과](baseline/t13-daily-scheduler-2026-10-10/summary.md)에 UTC 날짜별 영속 작업·정오/저녁 분리·미완료 이월·수정 확인,
+최종 178개 검사와 SIGKILL/저장 복구·기존 backup/status 호환·깨끗한 설치 재현을 기록했습니다.
+[정확한 변경·원복안](baseline/t13-daily-scheduler-2026-10-10/deployment-review.md)을 준비했고 운영 소스·유닛·시각·백업·정리 mask는 유지했습니다.
+공개 시각 HEAD 관측은 비활성 후보이며 실제 며칠간의 관측은 아직 하지 않았습니다.
+
+`baseline/archive-publication-times-2026-10-10/`는 Binance 공식 목록의 파일 시각 조사입니다.
+[18일·144개 객체 대조](baseline/archive-publication-times-2026-10-10/summary.md)에 오후·저녁의 수정 시각 분포와
+이미 받은 파일의 수정 시각이 더 늦게 표시된 실제 사례를 기록했습니다. 최초 공개 시각과 LastModified를 구분하며 예약 정책은 유지했습니다.
+후속 [실제 본문 대조](baseline/archive-content-recheck-2026-10-10/summary.md)에서 20:43 수정으로 표시된 mark와
+20:38의 trade ZIP을 다시 받아 기존 원본·CSV·CHECKSUM 모두 동일함을 확인했습니다. 운영 데이터는 갱신하지 않았습니다.
+
+`baseline/daily-schedule-history-2026-10-10/`는 daily 예약·재시도의 누적 기록 대조입니다.
+[18일 현황](baseline/daily-schedule-history-2026-10-10/summary.md)에 9/23–10/10 정오 90회 모두
+네 자료 waiting_source·5회 안 전체 완료 0일, 정오 외 성공 9회와 다음 날 따라잡기를 구분했습니다.
+현재 날짜 자료 보강은 완료했고, 예약·재시도 정책은 변경하지 않았습니다.
+후속 [정오 완료 네 대상 대조](baseline/daily-early-targets-2026-10-10/summary.md)에서 대상별 정오 90/90 complete,
+현물의 아침 추가 실행 예외 7회, 현물 ZIP/CHECKSUM의 저장된 수정 시각 10:26–11:40 KST와 REST 세 대상의 제공 방식을 구분했습니다.
+
+`baseline/t13-daily-rerun-2026-10-10/`는 승인한 기존 daily의 실제 재실행 결과입니다.
+[완료 결과](baseline/t13-daily-rerun-2026-10-10/summary.md)에 18:52:54 KST 성공 종료·약 7초 실행,
+10/9 UTC 네 종류 4,608행의 편입·파일 해시·날짜 격자 대조와 8개 target complete를 기록했습니다.
+T13의 현재 날짜 보강은 완료했고 예약·재시도 정책은 이후 승인에 따라 후보 구현·위 10/11 운영 적용까지 진행했습니다. 신규 보강분의 백업 편입은 아직 확인하지 않았습니다.
+
+`baseline/t13-daily-followup-2026-10-10/`는 공개 아카이브 daily의 읽기 전용 후속 확인입니다.
+[결과](baseline/t13-daily-followup-2026-10-10/summary.md)에 기존 10/8 UTC 네 종류의 실제 편입·4,608행 파일 검증,
+오늘 재시도와 10/9 UTC 미완료, 오후의 ZIP·CHECKSUM HTTP 200 응답을 구분했습니다.
+그 점검에서는 서비스 실행·정책 변경을 하지 않았으며, 이후 승인한 재실행은 위 완료 기록으로 구분합니다.
+
+`baseline/backup-pipeline-review-2026-10-10/`는 10/9 완료된 백업의 기존 단계별 시간 대조입니다.
+[원본 로그·receipt 연결](baseline/backup-pipeline-review-2026-10-10/existing-run-timing.json)에
+Daily 62분 59초 중 저장소 검증 53분 7초, restic 입력 검증·저장·전체 검사의 별도 시간을 기록했습니다.
+단계별 I/O·CPU 세부 비용과 병목은 아직 측정하지 않았으며, 성능 후속은 T14로 구분합니다.
+
+`baseline/t04-operating-clock-restore-2026-10-10/`는 운영 v2 시각 근거의 첫 예약 백업·복원 점검입니다.
+[완료 결과](baseline/t04-operating-clock-restore-2026-10-10/summary.md)에 두 종료 collection의 고정 조회·32개 artifact,
+동일 backup ID의 예약 restic 전체 검사와 39.65GB 전체 추출·프로그램 복원을 기록했습니다.
+15:24 KST에 조회 7,111개 구간 대조를 완료했고 16:02에 운영 설정·수집 supervisor·자동 정리 mask 유지를 확인했습니다.
+신규 v2의 운영 검증 완료이며 기존 v1 로그 편입은 T04 잔여 항목으로 유지합니다.
 
 `baseline/t02-first-session-2026-10-09/`는 최초 시스템 전환 뒤 첫 세션의 후속 확인입니다.
 [결과](baseline/t02-first-session-2026-10-09/summary.md)에 실제 종료·partial·다음 수집 시작,
 첫 collection 1,960개 파일 검증·호가 재생 일치와 세션 경계 aggTrade 776개 자동 보강을 기록했습니다.
-T02의 첫 세션 확인은 완료했으며 24시간 관찰은 별도로 남아 있습니다.
+첫 세션 확인에 이어 첫 24시간 관찰도 아래 결과로 완료했습니다.
+
+`baseline/t02-first-24h-2026-10-10/`는 10/9 00:11:18–10/10 00:11:18의 고정 구간 관찰입니다.
+[결과](baseline/t02-first-24h-2026-10-10/summary.md)에 두 버전·전환 공백, 구버전의 시각 gate 재시도,
+새 supervisor에서 stale 중 다음 child 4회씩 시작, 저장 건수·선택 파일 대조를 기록했습니다.
+호가 손실 3건은 T07, 데이터 갱신 daily의 미완료 4종은 T13으로 남겼습니다.
+T04의 신규 시각 근거 운영 백업·복원과 T05는 별도이며 자동 정리 mask는 유지합니다.
 
 `baseline/t11-first-child-boundary-2026-10-09/`는 새 runtime의 첫 실제 child 경계 확인입니다.
 [결과](baseline/t11-first-child-boundary-2026-10-09/summary.md)에 같은 supervisor 유지,
 자연스러운 reference 지연 중 다음 child 시작, Depth partial·시각 경고 보존, 경계 aggTrade 1,266개 자동 보강,
 종료 collection 두 개의 전체 시각 근거 조회를 기록했습니다. T11의 두 스트림 다음 child 시작 정책과 첫 경계 관찰은 완료했고,
-업무별 정책 확대는 조건부 후속으로 유지합니다. 새 근거의 운영 백업·복원(T04)도 남아 있습니다.
+업무별 정책 확대는 조건부 후속으로 유지합니다. 새 근거의 운영 백업·복원은 위 10/10 T04 결과에서 완료했습니다.
 
 `baseline/trial-artifact-retirement-2026-10-09/`는 T06의 승인된 수동 정리 완료 기록입니다.
 [결과](baseline/trial-artifact-retirement-2026-10-09/summary.md)에 네 경로의 파일 450,212개·디렉터리 389,756개 삭제,
@@ -35,7 +97,7 @@ T02의 첫 세션 확인은 완료했으며 24시간 관찰은 별도로 남아 
 [요약](baseline/clock-runtime-deploy-2026-10-09/summary.md)에 반복 ExecStartPre 출력 파서 결함으로 인한 중단,
 보완 코드·원래 계획의 해시 연결, 19:33 적용·초기 저장과 20:17까지의 시각 근거 관측을 남겼습니다.
 전환 공백의 aggTrade 4,031개 자동 보강과 호가 원문 공백을 구분합니다.
-당시 미완료였던 첫 child 전환은 위 T11 후속에서 확인했고, 새 근거 백업·복원은 아직 남아 있습니다.
+당시 미완료였던 첫 child 전환은 위 T11 후속, 새 근거 백업·복원은 위 10/10 T04 결과에서 확인했습니다.
 
 `baseline/clock-runtime-transition-2026-10-09/`는 최종 수집본 `65296619a374c325`와 전환 도구의 검증입니다.
 [요약](baseline/clock-runtime-transition-2026-10-09/summary.md)에 종료 표본 순서 수정·305건,

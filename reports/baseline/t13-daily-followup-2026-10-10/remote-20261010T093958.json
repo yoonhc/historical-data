@@ -1,0 +1,216 @@
+{
+  "observed_at": "2026-10-10T09:39:58.611938+00:00",
+  "read_only": true,
+  "helper": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/system-cutover-readiness-2026-10-07/check_remote.py",
+  "helper_sha256": "506de5c7fbad5b17064efd41807dabd22474606201e2a1b346e67978fdeed73e",
+  "observations": [
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+      "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+      "checked_at": "2026-10-10T09:39:58.380868+00:00",
+      "requests": [
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+          "status": 200,
+          "final_url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+          "headers": {
+            "Content-Type": "binary/octet-stream",
+            "Content-Length": "60398",
+            "Connection": "close",
+            "Server": "AmazonS3",
+            "Date": "Sat, 10 Oct 2026 09:39:59 GMT",
+            "Last-Modified": "Sat, 10 Oct 2026 08:05:55 GMT",
+            "ETag": "\"de2002c6c3c889ef72e89609aa0ee22a\"",
+            "x-amz-server-side-encryption": "AES256",
+            "Accept-Ranges": "bytes",
+            "X-Cache": "Miss from cloudfront",
+            "Via": "1.1 acbd842b6b7af8ad3bc3dff072f42ac0.cloudfront.net (CloudFront)",
+            "X-Amz-Cf-Pop": "ICN80-P3",
+            "X-Amz-Cf-Id": "NUKn6gKtV0thLa4Ejo0UzN9uDBn5a7Qxk3BWINaat-FrCZGqxx0Atw=="
+          },
+          "elapsed_seconds": 0.10164462198736146
+        },
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM",
+          "status": 200,
+          "final_url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM",
+          "headers": {
+            "Content-Type": "binary/octet-stream",
+            "Content-Length": "92",
+            "Connection": "close",
+            "Server": "AmazonS3",
+            "Date": "Sat, 10 Oct 2026 09:39:59 GMT",
+            "Last-Modified": "Sat, 10 Oct 2026 08:05:55 GMT",
+            "ETag": "\"d3b600e9563ae6647d1a0a6eb5efe331\"",
+            "x-amz-server-side-encryption": "AES256",
+            "Accept-Ranges": "bytes",
+            "X-Cache": "Miss from cloudfront",
+            "Via": "1.1 106362173b98277cf826f726a8ec546c.cloudfront.net (CloudFront)",
+            "X-Amz-Cf-Pop": "ICN80-P3",
+            "X-Amz-Cf-Id": "a5Agva25QdQTgaixLUFmJsFVKK7Pi4A4kZdKftYhTSpVZI7t__0QAA=="
+          },
+          "elapsed_seconds": 0.0647875010035932
+        }
+      ],
+      "classification": "available"
+    },
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+      "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+      "checked_at": "2026-10-10T09:39:58.381801+00:00",
+      "requests": [
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+          "status": 200,
+          "final_url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+          "headers": {
+            "Content-Type": "binary/octet-stream",
+            "Content-Length": "33531",
+            "Connection": "close",
+            "Server": "AmazonS3",
+            "Date": "Sat, 10 Oct 2026 09:39:59 GMT",
+            "Last-Modified": "Sat, 10 Oct 2026 08:27:34 GMT",
+            "ETag": "\"16bb159275e74f80cceace584e9cb973\"",
+            "x-amz-server-side-encryption": "AES256",
+            "Accept-Ranges": "bytes",
+            "X-Cache": "Miss from cloudfront",
+            "Via": "1.1 3e04bd2eb192dd88152d5177a42407f4.cloudfront.net (CloudFront)",
+            "X-Amz-Cf-Pop": "ICN80-P3",
+            "X-Amz-Cf-Id": "0Z5vJTZd3RfbvfjLi_Y8cIxBS4li0v2laWPOI93TNqse6aSLEbzjtg=="
+          },
+          "elapsed_seconds": 0.10226840400719084
+        },
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM",
+          "status": 200,
+          "final_url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM",
+          "headers": {
+            "Content-Type": "binary/octet-stream",
+            "Content-Length": "92",
+            "Connection": "close",
+            "Server": "AmazonS3",
+            "Date": "Sat, 10 Oct 2026 09:39:59 GMT",
+            "Last-Modified": "Sat, 10 Oct 2026 08:27:34 GMT",
+            "ETag": "\"395f9002ff3e513cba3d43e2295f9919\"",
+            "x-amz-server-side-encryption": "AES256",
+            "Accept-Ranges": "bytes",
+            "X-Cache": "Miss from cloudfront",
+            "Via": "1.1 924bef5002a8c512dd3bf3db359d7cec.cloudfront.net (CloudFront)",
+            "X-Amz-Cf-Pop": "ICN80-P3",
+            "X-Amz-Cf-Id": "WqBFTBGSnUgg2H1eS5qtAhIxJEPphYQJmt0zmRDw37nKPStmNyFs8g=="
+          },
+          "elapsed_seconds": 0.06273031301680021
+        }
+      ],
+      "classification": "available"
+    },
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+      "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+      "checked_at": "2026-10-10T09:39:58.382382+00:00",
+      "requests": [
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+          "status": 200,
+          "final_url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip",
+          "headers": {
+            "Content-Type": "binary/octet-stream",
+            "Content-Length": "34335",
+            "Connection": "close",
+            "Server": "AmazonS3",
+            "Date": "Sat, 10 Oct 2026 09:39:59 GMT",
+            "Last-Modified": "Sat, 10 Oct 2026 07:53:12 GMT",
+            "ETag": "\"39256a830afef7d0e3ad4c43c9fd8d5c\"",
+            "x-amz-server-side-encryption": "AES256",
+            "Accept-Ranges": "bytes",
+            "X-Cache": "Miss from cloudfront",
+            "Via": "1.1 3edd8f253ca7bea8250ee70d7c0eeae6.cloudfront.net (CloudFront)",
+            "X-Amz-Cf-Pop": "ICN80-P3",
+            "X-Amz-Cf-Id": "OxzaN33iPV7zsyYhhXksJzDKCtwO_ALALri3knfb707TnmdhZDop9Q=="
+          },
+          "elapsed_seconds": 0.09448567501385696
+        },
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM",
+          "status": 200,
+          "final_url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM",
+          "headers": {
+            "Content-Type": "binary/octet-stream",
+            "Content-Length": "92",
+            "Connection": "close",
+            "Server": "AmazonS3",
+            "Date": "Sat, 10 Oct 2026 09:39:59 GMT",
+            "Last-Modified": "Sat, 10 Oct 2026 07:53:12 GMT",
+            "ETag": "\"7577dd276d5d4c5533d534cc3341f2f2\"",
+            "x-amz-server-side-encryption": "AES256",
+            "Accept-Ranges": "bytes",
+            "X-Cache": "Miss from cloudfront",
+            "Via": "1.1 379e6db4794e24135383633023670796.cloudfront.net (CloudFront)",
+            "X-Amz-Cf-Pop": "ICN80-P3",
+            "X-Amz-Cf-Id": "2cCmA3lV9pertkvwuaolfTjsReWliLr0b69gRzSpZYFT5N6z3qZwTA=="
+          },
+          "elapsed_seconds": 0.06096696702297777
+        }
+      ],
+      "classification": "available"
+    },
+    {
+      "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+      "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-09.zip",
+      "checked_at": "2026-10-10T09:39:58.382921+00:00",
+      "requests": [
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-09.zip",
+          "status": 200,
+          "final_url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-09.zip",
+          "headers": {
+            "Content-Type": "binary/octet-stream",
+            "Content-Length": "11408",
+            "Connection": "close",
+            "Server": "AmazonS3",
+            "Date": "Sat, 10 Oct 2026 09:39:59 GMT",
+            "Last-Modified": "Sat, 10 Oct 2026 06:41:42 GMT",
+            "ETag": "\"91349c201d946b04dd8aa0bfcef26416\"",
+            "x-amz-server-side-encryption": "AES256",
+            "Accept-Ranges": "bytes",
+            "X-Cache": "Miss from cloudfront",
+            "Via": "1.1 ec9c45f10d25694ad2ad6fc1fa785d9c.cloudfront.net (CloudFront)",
+            "X-Amz-Cf-Pop": "ICN80-P3",
+            "X-Amz-Cf-Id": "vp5X7ItZgsS3Webw1BzeKe5xTUNsdXmx-9Z_t0uwCMar_nF4sNnKdw=="
+          },
+          "elapsed_seconds": 0.1639365250011906
+        },
+        {
+          "method": "HEAD",
+          "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-09.zip.CHECKSUM",
+          "status": 200,
+          "final_url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-09.zip.CHECKSUM",
+          "headers": {
+            "Content-Type": "binary/octet-stream",
+            "Content-Length": "97",
+            "Connection": "close",
+            "Server": "AmazonS3",
+            "Date": "Sat, 10 Oct 2026 09:39:59 GMT",
+            "Last-Modified": "Sat, 10 Oct 2026 06:41:42 GMT",
+            "ETag": "\"00d72a3024b23e707cb47a613b33dce2\"",
+            "x-amz-server-side-encryption": "AES256",
+            "Accept-Ranges": "bytes",
+            "X-Cache": "Miss from cloudfront",
+            "Via": "1.1 a931e2798e7fe85422644b2563d23fdc.cloudfront.net (CloudFront)",
+            "X-Amz-Cf-Pop": "ICN80-P3",
+            "X-Amz-Cf-Id": "RdsJ5sW7rGBUGR-6wkFxvSwDCbGg3flHcfD8ThsAzcEg_fTit-3lug=="
+          },
+          "elapsed_seconds": 0.06455559199093841
+        }
+      ],
+      "classification": "available"
+    }
+  ]
+}

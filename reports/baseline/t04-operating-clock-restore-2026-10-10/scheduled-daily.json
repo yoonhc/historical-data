@@ -1,0 +1,154 @@
+{
+  "backup": {
+    "backup_id": "4381041be823394454ef9135162399d1540fa548025bfde05d791b250068a0de",
+    "bytes": 39645876117,
+    "catalog_counts": {
+      "active": 15270,
+      "artifacts": 728844,
+      "event_collections": 1258,
+      "event_segments": 704032,
+      "fetches": 825236,
+      "file_packs": 1995,
+      "issues": 24,
+      "jobs": 10923,
+      "packed_files": 1397902,
+      "queries": 20682,
+      "revisions": 20433,
+      "snapshots": 20,
+      "sync_coverage": 5138,
+      "sync_runs": 5885,
+      "sync_targets": 9
+    },
+    "files": 57423,
+    "ok": true,
+    "path": "/mnt/backup/marketdata-historical/automatic/2026-10-10/cc5773d4224b45c1963479adb41ab705",
+    "reused": false,
+    "same_filesystem_as_source": false,
+    "storage": {
+      "mode": "linked_snapshot",
+      "new_bytes": 4418898216,
+      "new_files": 11724,
+      "reuse_backup_id": "6ba0fadd2ede16951c0448f6a7174c53e4cf22d9e19ee26c92e0be44b125b145",
+      "reuse_from": "/mnt/backup/marketdata-historical/automatic/2026-10-09/d7d2be14890140e8ae11be2943f1730e",
+      "reused_bytes": 35226977901,
+      "reused_files": 45699,
+      "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata"
+    },
+    "writer_lock_seconds": 4.768420444976073
+  },
+  "backup_capacity_after": {
+    "free_bytes": 871085457408,
+    "free_inodes": 62052702,
+    "healthy": true,
+    "min_free_bytes": 10737418240,
+    "total_inodes": 62513152,
+    "warnings": []
+  },
+  "backup_capacity_before": {
+    "free_bytes": 875738603520,
+    "free_inodes": 62110643,
+    "healthy": true,
+    "min_free_bytes": 10737418240,
+    "total_inodes": 62513152,
+    "warnings": []
+  },
+  "backup_configuration": {
+    "directory": "/mnt/backup/marketdata-historical/automatic",
+    "incremental": true,
+    "required_mount": "/mnt/backup"
+  },
+  "capacity_after": {
+    "free_bytes": 128234921984,
+    "free_inodes": 16971340,
+    "healthy": true,
+    "min_free_bytes": 10737418240,
+    "total_inodes": 18751488,
+    "warnings": []
+  },
+  "capacity_before": {
+    "free_bytes": 128826920960,
+    "free_inodes": 16972295,
+    "healthy": true,
+    "min_free_bytes": 10737418240,
+    "total_inodes": 18751488,
+    "warnings": []
+  },
+  "finished_at": "2026-10-10T05:42:05.609492+00:00",
+  "id": "521ecd28fd7349eda1759f539dc0cac7",
+  "lock_wait_seconds": 3.5570119507610798e-06,
+  "logical_files_deleted": 0,
+  "mode": "daily",
+  "new_prune": {
+    "packs": [
+      "b72efa276956c73c3ecffaa1cdf74bbab3a595eb463554212c464ed869626005",
+      "944b77afba9905aaabbe89d9ca9aa7d4c3423e16e9a341199b35a15d0a29eb20",
+      "4ff9a9f81eff1e4f1d29e2a50c257b9bfdef2e898f561e489428f35a73dc7590",
+      "f1792031b58eb8b61a96f59abf9b8ed608f176da72370f1a00bf5b191e804856",
+      "51bd8bce08205549a11dcd00d0e1e7388aaf28bcc5a19ba8e3fa7ffe28637435"
+    ],
+    "removed": 3486
+  },
+  "ok": true,
+  "packing": {
+    "applied": true,
+    "checked_at": "2026-10-10T04:35:22.444826+00:00",
+    "files": 3486,
+    "loose_files_removed": 0,
+    "packs": [
+      {
+        "bytes": 4385775,
+        "created_at": "2026-10-10T04:35:21.597918+00:00",
+        "id": "b72efa276956c73c3ecffaa1cdf74bbab3a595eb463554212c464ed869626005",
+        "members": 1024,
+        "path": "data/packs/b7/b72efa276956c73c3ecffaa1cdf74bbab3a595eb463554212c464ed869626005.zip"
+      },
+      {
+        "bytes": 285409,
+        "created_at": "2026-10-10T04:35:21.742118+00:00",
+        "id": "944b77afba9905aaabbe89d9ca9aa7d4c3423e16e9a341199b35a15d0a29eb20",
+        "members": 330,
+        "path": "data/packs/94/944b77afba9905aaabbe89d9ca9aa7d4c3423e16e9a341199b35a15d0a29eb20.zip"
+      },
+      {
+        "bytes": 32300517,
+        "created_at": "2026-10-10T04:35:21.984765+00:00",
+        "id": "4ff9a9f81eff1e4f1d29e2a50c257b9bfdef2e898f561e489428f35a73dc7590",
+        "members": 1024,
+        "path": "data/packs/4f/4ff9a9f81eff1e4f1d29e2a50c257b9bfdef2e898f561e489428f35a73dc7590.zip"
+      },
+      {
+        "bytes": 24294572,
+        "created_at": "2026-10-10T04:35:22.312685+00:00",
+        "id": "f1792031b58eb8b61a96f59abf9b8ed608f176da72370f1a00bf5b191e804856",
+        "members": 1024,
+        "path": "data/packs/f1/f1792031b58eb8b61a96f59abf9b8ed608f176da72370f1a00bf5b191e804856.zip"
+      },
+      {
+        "bytes": 2196569,
+        "created_at": "2026-10-10T04:35:22.436114+00:00",
+        "id": "51bd8bce08205549a11dcd00d0e1e7388aaf28bcc5a19ba8e3fa7ffe28637435",
+        "members": 84,
+        "path": "data/packs/51/51bd8bce08205549a11dcd00d0e1e7388aaf28bcc5a19ba8e3fa7ffe28637435.zip"
+      }
+    ],
+    "retention": "indefinite",
+    "source_bytes": 62539356
+  },
+  "pending_prune": {
+    "limit_reached": false,
+    "packs": [],
+    "removed": 0
+  },
+  "phase": "finished",
+  "requested_at": "2026-10-10T04:34:10.624961+00:00",
+  "retention": "indefinite",
+  "started_at": "2026-10-10T04:34:10.625006+00:00",
+  "state": "complete",
+  "updated_at": "2026-10-10T05:42:05.609496+00:00",
+  "validation": {
+    "checked": 1450403,
+    "failures": [],
+    "ok": true
+  },
+  "wait_for_lock": true
+}

@@ -1,0 +1,4606 @@
+{
+  "collector": {
+    "raw_records": 41652,
+    "manager_event_counts": [
+      {
+        "unit": "marketdata-collector@depth.service",
+        "message": "marketdata-collector@depth.service: Main process exited, code=exited, status=2/INVALIDARGUMENT",
+        "count": 2
+      },
+      {
+        "unit": "marketdata-collector@depth.service",
+        "message": "marketdata-collector@depth.service: Failed with result 'exit-code'.",
+        "count": 217
+      },
+      {
+        "unit": "marketdata-collector@aggtrade.service",
+        "message": "marketdata-collector@aggtrade.service: Main process exited, code=exited, status=2/INVALIDARGUMENT",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-collector@aggtrade.service",
+        "message": "marketdata-collector@aggtrade.service: Failed with result 'exit-code'.",
+        "count": 211
+      },
+      {
+        "unit": "marketdata-collector@depth.service",
+        "message": "marketdata-collector@depth.service: Control process exited, code=exited, status=75/TEMPFAIL",
+        "count": 214
+      },
+      {
+        "unit": "marketdata-collector@aggtrade.service",
+        "message": "marketdata-collector@aggtrade.service: Control process exited, code=exited, status=75/TEMPFAIL",
+        "count": 209
+      },
+      {
+        "unit": "marketdata-collector@depth.service",
+        "message": "marketdata-collector@depth.service: Main process exited, code=exited, status=130/n/a",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-collector@aggtrade.service",
+        "message": "marketdata-collector@aggtrade.service: Main process exited, code=exited, status=130/n/a",
+        "count": 1
+      }
+    ],
+    "gate_refusals": [
+      {
+        "unit": "marketdata-collector@depth.service",
+        "hold": "Current clock is not ready: reference_age",
+        "count": 214
+      },
+      {
+        "unit": "marketdata-collector@aggtrade.service",
+        "hold": "Current clock is not ready: reference_age",
+        "count": 209
+      }
+    ],
+    "phase_counts": [
+      {
+        "unit": "marketdata-collector@depth.service",
+        "phase": "depth_stream",
+        "count": 23042
+      },
+      {
+        "unit": "marketdata-collector@aggtrade.service",
+        "phase": "aggtrade_stream",
+        "count": 15754
+      }
+    ],
+    "selected_lifecycle_and_gates": [
+      {
+        "at": "2026-10-09T00:11:18.494515+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T00:11:18.494697+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T01:11:19.986726+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "marketdata-collector@depth.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "at": "2026-10-09T01:11:29.014875+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "marketdata-collector@aggtrade.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "at": "2026-10-09T01:11:35.412662+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T01:11:44.403171+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T02:11:38.609035+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "marketdata-collector@depth.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "at": "2026-10-09T02:11:53.925254+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T02:12:05.658158+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T03:12:12.695089+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T03:12:27.400074+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T04:12:31.110832+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T04:12:48.911107+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T05:12:49.646224+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T05:13:10.088382+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T06:13:07.926720+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T06:13:30.904991+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T07:13:26.254561+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "73430",
+        "invocation_id": "8a080fc90863411bb8f4ead7a3d781ec",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:13:41.522503+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "73456",
+        "invocation_id": "7618b023eb764e3b907f598c08aa9c73",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:13:51.766465+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "73471",
+        "invocation_id": "f85f21a767e3431aa9fef40b1f7b5fc4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:13:56.754979+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "73482",
+        "invocation_id": "983cdf1a27fa49ddba57c0dc016becb6",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:14:06.984642+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "73499",
+        "invocation_id": "48289909ebe14ab7b55084a92ad6e282",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:14:12.016850+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "73514",
+        "invocation_id": "8fdc918bbc3b43969f65ea9c2f2dad0c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:14:22.053799+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "73533",
+        "invocation_id": "66c51c636dbc4d5fa5b693bb51dbb79c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:14:27.258399+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "73546",
+        "invocation_id": "c9b0db1df1064bcb80e93c1162d3cba9",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:14:37.262343+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "73561",
+        "invocation_id": "73051fb632204a7295b46c44105f536a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:14:42.511773+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "73572",
+        "invocation_id": "aa94d360985445bdb2b427d8294a6dc6",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:14:52.511819+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "73586",
+        "invocation_id": "f7911c31c9f149998a30703939a93519",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:14:57.764902+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "73598",
+        "invocation_id": "373915993b5f48f7a6252709a35146f8",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:15:07.763327+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "73613",
+        "invocation_id": "89bd520e21954c4286ce966055f9aeea",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:15:13.016862+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "73624",
+        "invocation_id": "62a4491a076f41c7ae7e96b878950057",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:15:23.014787+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "73637",
+        "invocation_id": "d6628ae1e80b43babdf86a75e9030ee7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:15:28.267595+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "73650",
+        "invocation_id": "3f1565992bce4de9acdf79527ec484c2",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:15:38.195652+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "73666",
+        "invocation_id": "d5c7fa3394124860a67e78e0fe2cf363",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T07:15:43.677288+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T07:15:53.660030+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T08:16:02.413980+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T08:16:15.400820+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T09:16:20.470649+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T09:16:36.660335+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T10:16:36.768362+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107023",
+        "invocation_id": "53ad75cabc6e41cd95bf9d9a1d0d93db",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:16:52.024064+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107050",
+        "invocation_id": "5e9f0d9bcc794078bf5c2e94e9f234b6",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:16:58.011055+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107069",
+        "invocation_id": "7d9a9af996bf4a829ad75900b573c2f1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:17:07.257655+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107092",
+        "invocation_id": "7648cbea62f54c608cab990b383d4f58",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:17:13.259487+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107107",
+        "invocation_id": "ed06cba21d8e40509ee1835e73b67d9b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:17:22.517517+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107130",
+        "invocation_id": "8b4546a8c78143dcba152c7fc7f898c3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:17:28.511543+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107141",
+        "invocation_id": "fa31a60d674640de8ae84f64172b4874",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:17:37.756974+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107161",
+        "invocation_id": "640600e8a3984ddba3ad316b1282e767",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:17:43.760079+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107176",
+        "invocation_id": "143fdd28ec714ff1a81ba2d096ab5185",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:17:53.018295+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107193",
+        "invocation_id": "96428ed8cb074393b903edf24091e6f0",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:17:59.033123+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107204",
+        "invocation_id": "12414af02bdf46ad8f3016bb02bd0851",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:18:08.253983+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107225",
+        "invocation_id": "ada5ea959faf4cd78b443ad1b2e6b2b9",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:18:14.265674+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107243",
+        "invocation_id": "12d49d815fa8459385329fc8355b318d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:18:23.502702+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107259",
+        "invocation_id": "da9715011b35417fb03956bf6e8cf46b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:18:29.515649+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107271",
+        "invocation_id": "11be976d89d44a379211869e3cbaf3cc",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:18:38.756595+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107288",
+        "invocation_id": "a3a364ad88974c6c8eca40538d8bbc1f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:18:44.761514+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107306",
+        "invocation_id": "6b49f53203cb48bab1381482651b25d7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:18:54.015346+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107325",
+        "invocation_id": "378a3a8996e44817a62fcd3d7321bdaa",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:19:00.020286+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107341",
+        "invocation_id": "eca03a97f94746298f4edf2ef1e7ba6e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:19:09.261799+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107362",
+        "invocation_id": "0adf60b85bdd4ba2bb38a95f2a1b6d5e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:19:15.265758+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107374",
+        "invocation_id": "8abeae746d814649b79ce9f39800ae6a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:19:24.512357+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107392",
+        "invocation_id": "99c6c8777c184aa0951d0da1fd38b5b4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:19:30.509409+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107406",
+        "invocation_id": "c357a9a2ee87464a81a4ff5049332a97",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:19:39.765716+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107422",
+        "invocation_id": "380954180bbf443597a72d7ef74a2188",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:19:45.753885+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107442",
+        "invocation_id": "0e85d81c0b504434b32f2d1efb2794ae",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:19:55.008580+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107462",
+        "invocation_id": "573519c0e63345339c816ebd04b5dac1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:20:01.012462+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107474",
+        "invocation_id": "8a043a7dd4ab460b9f1f7c2830a24bfc",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:20:10.260791+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107496",
+        "invocation_id": "f8236d3bb21b480bb97117622523b99f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:20:16.262002+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107508",
+        "invocation_id": "0b173ab5663944edadd73d5d1b6eae37",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:20:25.521322+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107526",
+        "invocation_id": "949c6031243e4f69aa09cd2de629775a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:20:31.504305+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107544",
+        "invocation_id": "aa3310238ef3406a85770e563723daa7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:20:40.763955+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107565",
+        "invocation_id": "db8839ec344347f28e965af26b0edddb",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:20:46.766258+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107583",
+        "invocation_id": "4ad486e768e0433f89c8e6479bdf54e7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:20:56.024408+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107599",
+        "invocation_id": "3cbf7b67a86749cba9da0b3938e181e7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:21:02.021833+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107613",
+        "invocation_id": "46ce4daa4d1b4748a42432ebbcd3f0dd",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:21:11.259858+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107644",
+        "invocation_id": "328e872f6f5446aaac74bf91488f8fd4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:21:17.263513+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107655",
+        "invocation_id": "7413713096eb4340977fb05b12c818e0",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:21:26.509090+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107673",
+        "invocation_id": "ce199fb46c2e4766ab74c06f24caf909",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:21:32.398352+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107690",
+        "invocation_id": "39a921ba768347a5805ada1b63f96395",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:21:41.755839+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107706",
+        "invocation_id": "93a8c45f7a4a406694afb20d4674f444",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:21:47.504369+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107726",
+        "invocation_id": "3bf1a6888536440fba8df6ef0f2136f0",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:21:57.013542+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107740",
+        "invocation_id": "4dbeb851242b4df2bb59425ec88f7b2d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:22:02.760078+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107757",
+        "invocation_id": "f73a9c66c5a74095b093947d31a2f345",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:22:12.264675+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107776",
+        "invocation_id": "4a6045fbea6949ed9f5398932a9fc4bb",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:22:18.011685+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107793",
+        "invocation_id": "6a7559c2bfe44c029c01902d13e394bf",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:22:27.507824+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107806",
+        "invocation_id": "05128afe460b4e62bb865a3714b745e7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:22:33.262787+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107821",
+        "invocation_id": "45d1de465afe4243af79e4e41520242d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:22:42.604061+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107834",
+        "invocation_id": "a116a0c609b24384a9fa9c4ea21fa1a7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:22:48.512345+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "107855",
+        "invocation_id": "d8f4b0b6aa6643449585a1c923ab03fa",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:22:57.766079+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "107875",
+        "invocation_id": "a8baccbe1ec047c6858c0fdbd729488d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:23:03.762579+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "108596",
+        "invocation_id": "cd7b972393f344ab8e57f2a335bb368c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:23:13.010998+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "108987",
+        "invocation_id": "b03e7ac97b89484abc79251eac4621fd",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:23:19.005151+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "108998",
+        "invocation_id": "8df8cc9abf9942a1b83c91715184108c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:23:28.265235+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "109018",
+        "invocation_id": "79b6d0c0af52403aa7112e4182a13f0d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:23:34.272538+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "109031",
+        "invocation_id": "b153fbcf2b24481f83c8d3dacd47e288",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:23:43.506966+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "109053",
+        "invocation_id": "cb4b2c93df364140b7f2684826e93d9c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:23:49.510208+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "109071",
+        "invocation_id": "6ba921882c95455a934c1b08bb347359",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:23:58.753712+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "109092",
+        "invocation_id": "be9c33593e914aa08cf059f518da6b06",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:24:04.763712+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "109107",
+        "invocation_id": "9402a7e3125d47a99177f73259554640",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:24:14.011780+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "109123",
+        "invocation_id": "0e114072f78c43b78511fa519402d5fd",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:24:20.009580+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "109135",
+        "invocation_id": "af86e354e68e49f89786f4eee2cd1759",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:24:29.261807+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "109153",
+        "invocation_id": "5d6ad5e8697b459fa3b18ef38aaa0853",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:24:35.271993+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "109167",
+        "invocation_id": "77a91528868c455b91a0949715be86aa",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:24:44.507145+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "109185",
+        "invocation_id": "0cd11496177f4f4dafadb90fd6502aa2",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:24:50.513659+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "109198",
+        "invocation_id": "9822d6b46a9d412bb4bfc82cde8a9f42",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:24:59.764891+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "109216",
+        "invocation_id": "c69e051b62f04845acf523fac130ef48",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:25:05.764485+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "109232",
+        "invocation_id": "ff11ea11b8bb477ba00e4ce5bbf02e02",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T10:25:15.164353+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T10:25:20.937809+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T11:25:33.504982+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124235",
+        "invocation_id": "291ce21912e64ffda2571489899ee1d7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:25:42.508282+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124250",
+        "invocation_id": "8996b83540db45f7aa5e099ca4d8ce86",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:25:48.758158+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124272",
+        "invocation_id": "29fdf98e7fdb47a9a80219089fb9e385",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:25:57.757941+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124288",
+        "invocation_id": "47e9dfe80c2c4f2897ff4b5a28965001",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:26:04.015144+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124303",
+        "invocation_id": "0b23568eea8d4f718b18916fc8acd01b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:26:13.005231+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124321",
+        "invocation_id": "ffce671451a54a34b5abdec77b70d691",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:26:19.254205+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124339",
+        "invocation_id": "3f016377ad7f49d48ae91928348e2983",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:26:28.262184+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124354",
+        "invocation_id": "5fb4448b55e845e08fc0f488df7726a5",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:26:34.513063+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124367",
+        "invocation_id": "ac6e548fde5041319d4fffb3ceda3438",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:26:43.513805+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124382",
+        "invocation_id": "df43b3729c8d404d9e182d3ba2b1d81f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:26:49.715770+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124408",
+        "invocation_id": "d2e8bbd3ac014e8c8d9c3ba08418c218",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:26:58.760910+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124423",
+        "invocation_id": "cc875c0ea5354a9a99425bc8fb74a4f3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:27:05.013778+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124440",
+        "invocation_id": "b56d870eff344a08ae91dbe580678a57",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:27:14.009612+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124456",
+        "invocation_id": "ca75335029934550919ec7c1ce18409d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:27:20.257812+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124476",
+        "invocation_id": "fa61256110e94896bbad34456f4931c0",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:27:29.258490+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124490",
+        "invocation_id": "06984b8544d54d6f8f2a44905d035233",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:27:35.515893+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124504",
+        "invocation_id": "aa7df3f700a445818a2e19fdd1bc5011",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:27:44.506565+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124517",
+        "invocation_id": "91b55d8560ec44a0a698ca3857cb80b8",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:27:50.757395+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124544",
+        "invocation_id": "d5f1a48977ce405a814515aaceb97a6e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:27:59.757476+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124558",
+        "invocation_id": "5458a6b15bed4c908dc85dbe0f37f82f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:28:06.012075+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124579",
+        "invocation_id": "4fb90cc98712469a9011efab0d495040",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:28:14.977821+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124596",
+        "invocation_id": "a76490b071584f45beb68ab6f43ca484",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:28:21.256806+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124615",
+        "invocation_id": "7fa98639f04b4433848e31472bf3afef",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:28:30.258172+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124631",
+        "invocation_id": "4a08b89601364e7fae22ca21ab41e99f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:28:36.517965+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124642",
+        "invocation_id": "532b1cbfd09240c79eaf32acc9a0181b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:28:45.510172+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124663",
+        "invocation_id": "cd2d6e2bcbd84a51b9a669cfb80fcd67",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:28:51.762227+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124683",
+        "invocation_id": "24652174a0c44b00acb34be1ded5e92f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:29:00.759489+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124698",
+        "invocation_id": "f3a6b5f1ca56445294d522f56d7564e7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:29:07.010292+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124713",
+        "invocation_id": "76cd184f67ab441585bb2918be4e725a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:29:16.015712+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124733",
+        "invocation_id": "6e1fcf427d6745b0913aafb725b4b74e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:29:22.255671+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124750",
+        "invocation_id": "f4d169a9a4fa4753816876d30134abb4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:29:31.264701+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124765",
+        "invocation_id": "2d9ce3c8c7af460e8eceacffa908f3f8",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:29:37.518061+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124777",
+        "invocation_id": "7a2b47ac25b24509950fc53d622cef1a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:29:46.512146+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "124796",
+        "invocation_id": "137fcfefcb67452687629e7980b529ba",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:29:52.756024+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "124816",
+        "invocation_id": "56009988995a4740b3494c693728d4b2",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T11:30:01.911124+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T11:30:08.155006+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T12:30:23.943227+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T12:30:26.906385+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T13:30:45.156638+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T13:30:45.158995+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T14:31:03.770784+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155612",
+        "invocation_id": "692f16c8255a473d8a66d4db30680078",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:31:06.784698+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155621",
+        "invocation_id": "1af2ab88088844ae80d8cb4888c3cf6a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:31:19.028371+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155647",
+        "invocation_id": "9acf506472b446adb0eb9d6dd5eb1cb2",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:31:22.046186+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155655",
+        "invocation_id": "e3e1ced587484c48ac4ef99d0fe45c85",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:31:34.264165+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155676",
+        "invocation_id": "0e69e41e54984363b56f7179971c3692",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:31:37.294700+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155684",
+        "invocation_id": "86508da4b77d4ee78842bcd2eeb27416",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:31:49.530614+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155703",
+        "invocation_id": "0693c1b170c14c808351bda822410d0e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:31:52.529402+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155714",
+        "invocation_id": "4238909acac14239ab342dd90598eb8d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:32:04.769826+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155734",
+        "invocation_id": "3b65546af07b48768c14b35b24acfa80",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:32:07.778943+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155744",
+        "invocation_id": "853b9d5d57de4eb3a7cb434134540b7f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:32:20.028704+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155763",
+        "invocation_id": "86b237eecd05458784a04fc0616e99c7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:32:23.034139+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155770",
+        "invocation_id": "933a94373f8d43f1aadfc05806d051f3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:32:35.283139+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155790",
+        "invocation_id": "aefb12ecfcbe462fa4d7c7d6fa316cca",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:32:38.273672+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155798",
+        "invocation_id": "af0cc460bd0e459184961eb974cc553b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:32:50.541072+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155818",
+        "invocation_id": "4a76199d550948e39e26f8bcc9a10011",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:32:53.530081+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155829",
+        "invocation_id": "1887c6dc35014648ac3d6fc0a8a0fecf",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:33:05.770140+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155844",
+        "invocation_id": "77818a4d03564c51a6933ab22a03d9e2",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:33:08.781761+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155854",
+        "invocation_id": "0d66fa03f64e4df5848d821d24e9e04c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:33:21.039165+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155869",
+        "invocation_id": "3d2b4dcf6b7f489c823eaa06e6aa5347",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:33:24.034341+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155879",
+        "invocation_id": "3ae8b5875ae946d695cab0430305dc60",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:33:36.273624+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155895",
+        "invocation_id": "5f423f5eb1534cd3b5b933f8955b8555",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:33:39.264342+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155907",
+        "invocation_id": "371a6e6ea67a4c5e934003250a84eceb",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:33:51.516367+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155922",
+        "invocation_id": "12864223004c4eddbe401a5ba0110b45",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:33:54.505560+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155935",
+        "invocation_id": "235cd6cfca294b6bbad472bf739e7037",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:34:06.772849+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155952",
+        "invocation_id": "dfc2faa9d2aa44faa8a52562b082a0ad",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:34:09.768698+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155962",
+        "invocation_id": "6cd017a3ab8c410388cb4cd6c3bfaf50",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:34:22.013177+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "155978",
+        "invocation_id": "60922f58095d4f04928b7ee9bed74f29",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:34:25.012391+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "155988",
+        "invocation_id": "12a5c1040c604b9a83fdbbb2b924816b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:34:37.284722+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156006",
+        "invocation_id": "5db3c3e8088b4469a22cfee16852b577",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:34:40.267053+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156016",
+        "invocation_id": "3ffa5989e95e4970a25c03f0d8f7c6bc",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:34:52.512542+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156033",
+        "invocation_id": "65934ad2b18f4ca88cc89e5af3a8ef4c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:34:55.509368+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156044",
+        "invocation_id": "6bcb24b117da484ba81ddfdd7a34b6f2",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:35:07.757926+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156062",
+        "invocation_id": "00795d26fd2242249121ecfb4195b036",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:35:10.769175+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156072",
+        "invocation_id": "d72a03af7561479b8a0fdfdc21c4b312",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:35:23.011105+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156088",
+        "invocation_id": "eb710452f4bb4fcf8e9812ab17b3d148",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:35:26.019299+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156098",
+        "invocation_id": "b8a037ac81c94215bacc623f2b537b39",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:35:38.264492+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156114",
+        "invocation_id": "b9621b60533e47f397935cd91bf46415",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:35:41.275275+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156125",
+        "invocation_id": "86016b67242647d3bf0c252dbc1caf3b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:35:53.510493+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156143",
+        "invocation_id": "da37e6b8ae0f4b408dc9cb766a3f0b5b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:35:56.505399+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156153",
+        "invocation_id": "7ade3b794dbc4178b824190559e224d2",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:36:08.765170+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156169",
+        "invocation_id": "2b30f5f9d7014391a2d8b7689f6ef0bb",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:36:11.758024+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156179",
+        "invocation_id": "fb2371443772433381d36c2654d8b45e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:36:24.006454+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156195",
+        "invocation_id": "204c3d6cbb9244a59c5db2b87d736b86",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:36:27.022414+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156205",
+        "invocation_id": "1ca2a451eb92440eb6045603b73265ee",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:36:39.192468+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156223",
+        "invocation_id": "acab960abe594789984e3d913eab9a9a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:36:42.267086+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156231",
+        "invocation_id": "d195f273c62e4ef2a331910568d91355",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:36:54.259162+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156251",
+        "invocation_id": "613d4d59f7fc401b83e04aad970e97d4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:36:57.506525+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156258",
+        "invocation_id": "d110cb31643746ae8ab5d974ab066344",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:37:09.510552+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156277",
+        "invocation_id": "c6956cf86cc64fe8aceca6507506151a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:37:12.759215+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156286",
+        "invocation_id": "f30fc5e75eb54ea2a3294d4379a32fe9",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:37:24.766197+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156309",
+        "invocation_id": "1a4ca9eb668747458b39f200ec44e2ba",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:37:28.024116+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156316",
+        "invocation_id": "92631210a1d3451cb2be10ed4a58bc33",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:37:40.022480+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156339",
+        "invocation_id": "326bb43d127d48749b61400b1a136dd9",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:37:43.260503+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156346",
+        "invocation_id": "849902611ddd4ac29ffe7be8e16a0332",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:37:55.258349+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156366",
+        "invocation_id": "f5067a1f4f4444ebaa24869aca28e985",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:37:58.507976+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156373",
+        "invocation_id": "141495f1f04640ada014bfd2f88e686b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:38:10.511897+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156392",
+        "invocation_id": "9fc9985e7274420d919252d6a66c1667",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:38:13.762427+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156401",
+        "invocation_id": "71cee74818f94e4bb11088efed1ca944",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:38:25.762135+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156418",
+        "invocation_id": "a888068277f441168627f77da9a37efa",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:38:29.008730+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156426",
+        "invocation_id": "fb6b983297f6446995d169a88e6a1f00",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:38:41.011155+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156446",
+        "invocation_id": "a1ac7e6f6a8d4078a5f3aa22b6401391",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:38:44.259056+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156454",
+        "invocation_id": "1abed6a8d7f841fba74fc9e33eb2d10b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:38:56.261135+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156477",
+        "invocation_id": "c575dadab8574e7f8770dd171a039b44",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:38:59.511776+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156484",
+        "invocation_id": "3bb53238d29b4bbb89ea77e7dab7e3bc",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:39:11.510651+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156507",
+        "invocation_id": "495707b0a6954f3abbbf3437b311d411",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:39:14.657050+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156517",
+        "invocation_id": "04bc53d77b084f6d9aea9f76de769c42",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:39:26.767654+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156534",
+        "invocation_id": "e874b9cf935d40748ab2dd6831160ea1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:39:29.760395+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156545",
+        "invocation_id": "7150554d175641fdb446bf76112c0750",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:39:42.008291+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156560",
+        "invocation_id": "a2938d6e5a0e49f7b3bfb09c9b6b7a28",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:39:45.009151+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156573",
+        "invocation_id": "5293c9e6facd4ed8b8790ccf3fb6e8be",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:39:57.267794+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156652",
+        "invocation_id": "309fca985dca45248d1693f9801e5585",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:40:00.268709+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156662",
+        "invocation_id": "f67f444b39194f4bb947cc529e00ab16",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:40:12.506068+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156684",
+        "invocation_id": "4f3f89793e2d4ac2883e27871e878d9b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:40:15.519022+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156697",
+        "invocation_id": "406cf7e0e5fa4dde9b1c87d8bf7d3065",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:40:27.759938+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156715",
+        "invocation_id": "1f988c68464e4150b5c0a3ff8cc63388",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:40:30.755115+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156727",
+        "invocation_id": "e6c479f583804a27a98747575d05997d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:40:43.007884+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156742",
+        "invocation_id": "1e29afc6a908436ba806abb32b164abd",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:40:46.007165+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156752",
+        "invocation_id": "5caab959d58d47149e03408c9193996a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:40:58.264935+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156770",
+        "invocation_id": "56ed51010f814b32940a516079733ba1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:41:01.261307+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156781",
+        "invocation_id": "22036ac3adb941e49af139ebe15e002c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:41:13.510479+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156822",
+        "invocation_id": "3d5eb0811eaa4bdf8de6726b1b4c875a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:41:16.508003+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156833",
+        "invocation_id": "cac352e0c6ff4bc28f170c3c4fb534c7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:41:28.762513+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156883",
+        "invocation_id": "fe6d5540f0e54f75a613a3844011f48b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:41:31.763151+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156908",
+        "invocation_id": "52c00995caed48f18bc8ca13c9fd6623",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:41:44.021045+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156923",
+        "invocation_id": "2ba90040bf764e038db88b2a011ad533",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:41:47.006652+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156933",
+        "invocation_id": "3c933e2a3a99419f91561c350e39759b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:41:59.256615+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156950",
+        "invocation_id": "b5faf0f4e36e4bf49b182aa73c17056b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:42:02.255231+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156960",
+        "invocation_id": "28389bc4f01549b799468b4f662f4132",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:42:14.509725+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "156977",
+        "invocation_id": "727fe74072894a828f956c92bcea13b8",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:42:17.517118+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "156988",
+        "invocation_id": "df7e606a2ed24dcc8ce930be35c29779",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:42:29.755674+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "157002",
+        "invocation_id": "761026ef1b3c4e0686cb733f1b903207",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:42:32.759794+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "157013",
+        "invocation_id": "b7850c52f88e490488dec4fdafbd97f4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:42:45.012981+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "157030",
+        "invocation_id": "3f1e287a2ec54f2ab385e25e4521e9ad",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:42:48.007823+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "157040",
+        "invocation_id": "88e5cacb18714b498331974072880ea0",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:43:00.264830+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "157059",
+        "invocation_id": "842d5ab8265c442593318d19aa0cc639",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:43:03.263156+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "157069",
+        "invocation_id": "5c9858c108504edb9b5b4cbba4776bf0",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:43:15.378639+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "157087",
+        "invocation_id": "a5146389afb34c5d9955e3dafa3577a4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:43:18.506938+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "157097",
+        "invocation_id": "390c28a9576e4219a27b7e3e7b717f7d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:43:30.513205+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "157114",
+        "invocation_id": "37e1e70d685846318b82006ab83c264f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:43:33.765365+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "157123",
+        "invocation_id": "f3e276fdf65444e8b9bb5f641cbe6b32",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:43:45.759111+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "157144",
+        "invocation_id": "4fbc39c77824425ebb595dc9659acc7d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T14:43:49.258554+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T14:44:01.054097+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T15:44:11.015903+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "164871",
+        "invocation_id": "93021a04a40c4207a9a1672cea57c21d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:44:18.756107+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "164883",
+        "invocation_id": "c93d1eefe59c441eb4b1d886577991be",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:44:26.260454+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "164898",
+        "invocation_id": "886fdc79debd43d7ab9eb317a79fa5d7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:44:34.015007+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "164910",
+        "invocation_id": "b7ee8444472243349e81e6c2c3ae5e33",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:44:41.519061+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "164925",
+        "invocation_id": "f73db9583f344ff2b83231165849a0b1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:44:49.273269+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "164937",
+        "invocation_id": "52e61d5d0b414f33b1a45264dc574c09",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:44:56.761339+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "164951",
+        "invocation_id": "a1f4ee7a254e4066be894fd23db9630c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:45:04.517600+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "164969",
+        "invocation_id": "75f17a79e1d64cff928c1992225f46b4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:45:12.010757+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "164985",
+        "invocation_id": "7f998f4f302c4fddb0e7e6292487f144",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:45:19.762100+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165001",
+        "invocation_id": "bb3b02ca9baf4a3e9a3d5fdf1f65e853",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:45:27.261477+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165017",
+        "invocation_id": "0bac5b2b405b40c4890f9732df007ea3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:45:34.965838+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165030",
+        "invocation_id": "6485acc8479c4d5e9d2156969f5dedd4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:45:42.512784+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165044",
+        "invocation_id": "0142c8421acb4dc386a8568054f6b8fc",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:45:50.259552+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165058",
+        "invocation_id": "429bff427f6c444d949a3ab5b23056d6",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:45:57.755849+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165071",
+        "invocation_id": "3692a1dfb76c481598f616ef01ea00fa",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:46:05.513452+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165090",
+        "invocation_id": "a298b3ea788d49d9addf5fd67a704c7d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:46:13.007629+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165102",
+        "invocation_id": "8d92705737ad4ab384b1d486a86804ee",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:46:20.758960+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165116",
+        "invocation_id": "d2fa8f4c264a4150b0471940c86b876a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:46:28.261882+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165127",
+        "invocation_id": "89c7c14bddb8426985c5bc19eafc497d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:46:36.007363+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165141",
+        "invocation_id": "1b52ebceffce432885932f0075ad7e39",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:46:43.510676+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165153",
+        "invocation_id": "be5b7b638a67455e97bdc5f887fffc63",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:46:51.255758+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165166",
+        "invocation_id": "98f63de8761641d593fc99184aaffb56",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:46:58.761471+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165179",
+        "invocation_id": "55dcf3a626044b98a0f9c8e5b8209784",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:47:06.510464+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165197",
+        "invocation_id": "146a5b6224564292ba449848e34021a9",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:47:14.020635+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165210",
+        "invocation_id": "bcd41414868b46558e9770eb1f8e121b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:47:21.767037+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165224",
+        "invocation_id": "1d213608254940b3a4f78b42c8b78066",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:47:29.262580+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165235",
+        "invocation_id": "8dec017b656f4153969009b9a0f7e330",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:47:37.007020+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165249",
+        "invocation_id": "6ba0a4827cd14b2f8da474b09e90cbc7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:47:44.513209+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165261",
+        "invocation_id": "0aea38b3d4ea48f69101fff5a4c2041f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:47:52.264077+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165275",
+        "invocation_id": "deb2cae58c86445082fe4fab293e32d7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:47:59.761342+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165290",
+        "invocation_id": "59df386849c249aa9cfb8678812bbc7f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:48:07.509860+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165310",
+        "invocation_id": "172780938f6f43808b2e189e6efae144",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:48:15.006155+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165321",
+        "invocation_id": "c504ebd84c114a3a99fcc9932c6744c6",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:48:22.761637+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165335",
+        "invocation_id": "cc554c4d9ac44ac0a6d5f25a5fa3349b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:48:30.269772+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165348",
+        "invocation_id": "673b289fbd84445b959ee41c09df99e0",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:48:38.014290+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165363",
+        "invocation_id": "c4588b2ff9de47849c3139176a669001",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:48:45.511409+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165373",
+        "invocation_id": "9d141d36c1cc40dd94044bfe480d9762",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:48:53.258215+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165387",
+        "invocation_id": "c689494cb6f049d2a3e2e94948cc067b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:49:00.577493+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165406",
+        "invocation_id": "b89ae903f3d54b38bc08ddbb6994a8d9",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:49:08.504764+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165420",
+        "invocation_id": "5ab8adb0b6084c6f8ca534aa2667095a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:49:15.767949+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165438",
+        "invocation_id": "7256a7e062df47e585755e15a14d57f9",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:49:23.767680+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165450",
+        "invocation_id": "7e402d043fa44030b9471b8d26c52912",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:49:31.014147+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165464",
+        "invocation_id": "9cf9b33ccd4e4b3b9ad684744fe05ba6",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:49:39.010177+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165475",
+        "invocation_id": "05110d4d59ef4f89acdb43d04c2d720d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:49:46.255392+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165490",
+        "invocation_id": "2c35d59ddf8e42ea8ce94820aae089f3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:49:54.261107+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165503",
+        "invocation_id": "9a9b19a3a2c4452891c96a94487040c2",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:50:01.506789+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165519",
+        "invocation_id": "0e8dcca55b334554938c61018428fbe1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:50:09.513081+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165533",
+        "invocation_id": "6be7c974b859445587bc247041552011",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:50:16.769866+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165549",
+        "invocation_id": "0d88153c6add4f4da3a91ca0bccd9a65",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:50:24.757469+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165561",
+        "invocation_id": "3b3a84b7c2144e6684162029c2ab1111",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:50:32.010888+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165576",
+        "invocation_id": "c3da10a414e34520893d46eb6c74ffe8",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:50:40.017358+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165588",
+        "invocation_id": "0450fa9a2a2d4c508139f514370658a6",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:50:47.262016+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165603",
+        "invocation_id": "cdc1e06659dd4dc883a3091778940d40",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:50:55.260045+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165616",
+        "invocation_id": "5d04d558bd514e2eb1ed704db08ea6e7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:51:02.521943+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165649",
+        "invocation_id": "a5d75b6ffef246e696d0a7685c4f367c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:51:10.514220+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165709",
+        "invocation_id": "0b44fd54822f4d2898d6cf5a3a04b0cd",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:51:17.758559+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165726",
+        "invocation_id": "e6cc1b0686504a5187c7d858549b44a6",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:51:25.760159+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165764",
+        "invocation_id": "acb5efcde60d442c9c64a1abc4ac06b1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:51:33.009951+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165782",
+        "invocation_id": "b69ef8961ba741bb88258363b399cf20",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:51:41.011089+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165793",
+        "invocation_id": "5df6456043f8416593a4176aa04cce54",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:51:48.262211+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165807",
+        "invocation_id": "cfdac9c83bc84a8ba5e2fee69992a9b3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:51:56.111305+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165881",
+        "invocation_id": "34c33b690efa4eaa9283a8194dbd71d3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:52:03.519041+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165897",
+        "invocation_id": "2bfe2a364c354e46b8437b2c1701f81a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:52:11.259471+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165913",
+        "invocation_id": "06964f2bff604ed591a1c1037d76c686",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:52:18.761660+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165924",
+        "invocation_id": "3fcdb69890104bcfb5eec80a4fc65bb0",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:52:26.515866+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165940",
+        "invocation_id": "3d89521f79074c51b1b2a29875d9339d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:52:34.014956+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "165952",
+        "invocation_id": "d1fefa9ec35544d5af2e3bb4b816a656",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:52:41.759704+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "165967",
+        "invocation_id": "845ea32ee01d4ed2b858fb0fe1461311",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:52:49.261037+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166022",
+        "invocation_id": "ed25fd2b11d54b4cb9d8211c21b8056f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:52:57.009245+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166079",
+        "invocation_id": "827b7a10705248b9979e0ac9a876387d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:53:04.517943+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166098",
+        "invocation_id": "26556d18a0b2444b965a3a566873eb79",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:53:12.265746+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166113",
+        "invocation_id": "dd8153037bdb4e3fa864c2bf3b9d8a8b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:53:19.761642+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166126",
+        "invocation_id": "8440b1454b294c108225ae11a1b3f11b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:53:27.510554+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166142",
+        "invocation_id": "2a4c56a19d394b24a81802e55799ceb1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:53:35.019559+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166167",
+        "invocation_id": "1bd56f3888c44d389ca75879980238d1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:53:42.759342+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166181",
+        "invocation_id": "5853257a94ae4dbf9e926c3eb1370884",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:53:50.262082+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166194",
+        "invocation_id": "6f3aef7bf52048bfbcc15cab5624738b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:53:58.010241+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166212",
+        "invocation_id": "fdd9619adaf344988b15dc2572cef40f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:54:05.514106+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166228",
+        "invocation_id": "a6ff545012574572bdf735a3597d6105",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:54:13.259847+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166244",
+        "invocation_id": "b17a094c50b44993a9d9a9e5d6392b20",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:54:20.765551+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166256",
+        "invocation_id": "3d7c047f742d40dfb351c1920e94a236",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:54:28.514772+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166271",
+        "invocation_id": "41adac94777949ae9775242ff62edf46",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:54:36.019176+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166282",
+        "invocation_id": "8f4c2add9d5a4f338f0f450156b7cca9",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:54:43.763395+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166300",
+        "invocation_id": "b42067436c954565a3d8fce515c40dea",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:54:51.265369+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166315",
+        "invocation_id": "e7f5e5160b9141f8beecee6fe9357d44",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:54:59.013972+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166329",
+        "invocation_id": "8e97371bb4f546dcacdc8d6e4716bcae",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:55:06.511247+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166345",
+        "invocation_id": "1bc0b2a48935478cba2b46a9870081bf",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:55:14.260635+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166359",
+        "invocation_id": "4c4196bcfdf143e0ad1cfdc95a0934c9",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:55:21.723297+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166372",
+        "invocation_id": "266c27f8311c4e0f857bc4c99d3bb4bd",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:55:29.518225+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166384",
+        "invocation_id": "90c1e704e96d4177899255a7f19d4a75",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:55:37.021310+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166399",
+        "invocation_id": "1e165e27fe084aadbbe48766133870d5",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:55:44.764353+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166412",
+        "invocation_id": "d5e3d9d7619b461abd871ee0468f308f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:55:52.262473+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166427",
+        "invocation_id": "a994b6284b5d422ab7b9d290dde11612",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:56:00.019635+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166441",
+        "invocation_id": "f2fb599da11641cea8f11d186c4f72fc",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:56:07.510065+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166461",
+        "invocation_id": "60abeeef5b3b45338c066d3f895ce29d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:56:15.256994+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166473",
+        "invocation_id": "2d3f24d9560842c08ebea61ccd20cc97",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:56:22.766078+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166487",
+        "invocation_id": "054406a2a38a407fb5d008b4b3bd724c",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:56:30.516688+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166498",
+        "invocation_id": "b21f9731a2b4458fac0a23d8d28247be",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:56:38.008610+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166515",
+        "invocation_id": "3e1a2a12cdad46fa8ef1b927b2010eaa",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:56:45.761675+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166526",
+        "invocation_id": "79037c980b914404b2f725a405eef395",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:56:53.261578+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166542",
+        "invocation_id": "84dd6602009e4298baf6ca1ce144fbe4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:57:01.020770+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166556",
+        "invocation_id": "a20190bce7dd4e7a8422aed192bb3469",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:57:08.511400+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166574",
+        "invocation_id": "14a34abc08134fa89f462c8d47323a72",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:57:16.261782+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166586",
+        "invocation_id": "e5b6ac2493b141d7b3b2a8dd36e94a38",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:57:23.765703+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166600",
+        "invocation_id": "e284d1b105e44c38910b5590b5e3daeb",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:57:31.515525+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166611",
+        "invocation_id": "b5558a78fd5141659a14658c80f4f8d2",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:57:39.008229+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166627",
+        "invocation_id": "b6d9af0bb12c4834bf360306f51e7a27",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:57:46.756131+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166637",
+        "invocation_id": "c57b7a76ce59410f9309bca4e6e5b511",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:57:54.266829+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166653",
+        "invocation_id": "4773f2e82b9344eba484e2595a91ac3e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:58:02.015780+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166668",
+        "invocation_id": "af29045617fc4a6ca52be0eae5ee16a1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:58:09.508314+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166686",
+        "invocation_id": "6845c34415d747e3a469fd8f0b96d647",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:58:17.255175+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166698",
+        "invocation_id": "f6d141c484c04276b2d3c6183bc12179",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:58:24.760559+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166713",
+        "invocation_id": "0d4a9870f9df4c83b38ca58becfe0098",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:58:32.318997+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166726",
+        "invocation_id": "591b1c19147843d98c8c43e4b74559ee",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:58:40.014079+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166740",
+        "invocation_id": "8aff57075077495bbf0cabf20bd52ed5",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:58:47.518145+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166754",
+        "invocation_id": "2578f516b4184a248cc9c1737612a9ad",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:58:55.261246+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166770",
+        "invocation_id": "2b3c69ba94154fcbbfdc4f0d6e5d0c6b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:59:02.765571+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166788",
+        "invocation_id": "919248c744e942bfa73cb4f6f0c50c31",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:59:10.513394+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166802",
+        "invocation_id": "65d49dadadba4b378df8e778b56a6dc7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:59:18.007700+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166816",
+        "invocation_id": "2e2d2594933047abbd095829068411e8",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:59:25.761311+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166828",
+        "invocation_id": "e75c0d9de55f4c37946d5ef05eb3f63a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:59:33.266131+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166841",
+        "invocation_id": "82282955303948a39b6c05a0cac8f4ef",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:59:41.011102+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166859",
+        "invocation_id": "3c846207f2954396b4c89c0bd73e5b76",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:59:48.513817+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166875",
+        "invocation_id": "4a84523c57d0415b9a88e98b4a4b071e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T15:59:56.274059+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166888",
+        "invocation_id": "b9012279e8c84d479eb67faa2ce256f9",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:00:03.759806+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166903",
+        "invocation_id": "479efbd2ab2848119a50136fd56ed54d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:00:11.517702+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166917",
+        "invocation_id": "074aba93577c4e99a6f8e467c4ab2944",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:00:19.010362+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166933",
+        "invocation_id": "5f83c2e6a34549a6b5ea66443593142b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:00:26.757643+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166945",
+        "invocation_id": "f42801c96b914524baaaa9b5f5192934",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:00:34.261029+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166959",
+        "invocation_id": "bb2a6f1c762e4d03bb5f894b32a0f66a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:00:42.016715+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "166972",
+        "invocation_id": "ee9cc7228e9c47f389d8411688239dc8",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:00:49.507558+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "166987",
+        "invocation_id": "ea8935c7894e4166a41fcbeed7ff9c90",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:00:57.261008+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "167002",
+        "invocation_id": "aff8d70aa8aa4beabb3d729d1710933e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:01:04.759905+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "167021",
+        "invocation_id": "10b11ab454c945e3b80af3397540d162",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:01:12.513191+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "167036",
+        "invocation_id": "c501d4806e364cd083489109f17824f0",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T16:01:20.169348+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T16:01:27.913023+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T17:01:38.773090+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "180475",
+        "invocation_id": "8914655a5755467987188224e005805b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:01:54.010012+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "180501",
+        "invocation_id": "adf906d65a224805a9c1a9daab4262ec",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:01:54.014789+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "180502",
+        "invocation_id": "35a74cb55b334b64beacaffe39a5a817",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:02:09.264541+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "180549",
+        "invocation_id": "c4688084415141718566ff375311ae02",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:02:09.265074+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "180550",
+        "invocation_id": "558fd2afb0424c56beebe5c2ddb9109b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:02:24.511024+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "180704",
+        "invocation_id": "5bb3b6eb5eae425895d7184870e55d5e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:02:24.518459+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "180705",
+        "invocation_id": "32895c525e9b4141b619eef56abdbf40",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:02:39.760691+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "180736",
+        "invocation_id": "9c4f230fcf954728a9b8011d696f434a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:02:39.761188+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "180737",
+        "invocation_id": "bd25790e427c47d9a7b4b264e32af320",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:02:55.013693+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "180767",
+        "invocation_id": "2749c5a3d0ac4135853aafc25bbfc144",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:02:55.015571+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "180768",
+        "invocation_id": "ac1ebcd0e01c42999e37c2f9b9084ff3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:03:10.262035+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "180884",
+        "invocation_id": "492c3756c4aa483fa8943406133bdc89",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:03:10.263555+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "180885",
+        "invocation_id": "033fb8d719e34eed83d76e0d244055be",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:03:25.447747+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "180912",
+        "invocation_id": "0c0ec5e7b6994c199f5ee4120d8e5174",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:03:25.448547+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "180910",
+        "invocation_id": "85b35ec4474245bfbcf89a13598e8c03",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:03:40.765284+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "180937",
+        "invocation_id": "810ba991c9e44b82b5069964a955b6c4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:03:40.765887+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "180938",
+        "invocation_id": "4ef24e28419b45dfa4a48d28909df9d7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:03:56.022392+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "180966",
+        "invocation_id": "9c1b2ea3416542489a5c90cd819bef16",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:03:56.024110+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "180967",
+        "invocation_id": "7582cfc35c124b36875e46d7ce668f23",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:04:11.260409+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "181001",
+        "invocation_id": "3d99be54cecb424bb62f36669c809c70",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:04:11.263366+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "181002",
+        "invocation_id": "9246a992187c4b319cea24ec90650408",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:04:26.520564+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "181054",
+        "invocation_id": "7ebe7d54c9f648a6bf13c2ba4777e845",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:04:26.520887+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "181055",
+        "invocation_id": "5df7fefe210c4807898c07f4c0689845",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:04:41.758841+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "181080",
+        "invocation_id": "8080358af9614ef6ae604f4285b266de",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:04:41.760217+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "181081",
+        "invocation_id": "17e8fadcea264912a9658fae2ba9985e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:04:57.015550+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "181188",
+        "invocation_id": "e3cba189c0f5447b8fbd9d333f6108b4",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:04:57.015860+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "181189",
+        "invocation_id": "eaf9b9da08194cbca45b593e34ec2357",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:05:12.269690+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "181216",
+        "invocation_id": "a4e90838d16e4c478a65557bdeb8bcb8",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:05:12.270170+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "181217",
+        "invocation_id": "44848098fc5b4e898aaa03a33d61cb02",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:05:27.506288+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "181246",
+        "invocation_id": "7a658e6c682344f9b4c6b6c046b84bd8",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:05:27.507147+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "181245",
+        "invocation_id": "c1fb6d8f2edc4db0bfe77aff45d1c215",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:05:42.766811+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "181269",
+        "invocation_id": "1dcb20ef97a0439eabfb4d91e7e06335",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:05:42.767404+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "181270",
+        "invocation_id": "cc789e3ea1264e2aa0373127aae39729",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T17:05:58.176474+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T17:05:58.177626+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T18:06:16.263242+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194299",
+        "invocation_id": "2c38ba85e7e94944aae33073ea2e6771",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:06:19.262634+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194308",
+        "invocation_id": "7ccd8e2f11ac4e93a3ed139a76fb6dfe",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:06:31.514698+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194352",
+        "invocation_id": "e769a2fac42549bfbdfadb0b25c8aba5",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:06:34.519020+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194397",
+        "invocation_id": "77c2130dd25948f0951d55c48794e43d",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:06:46.758943+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194452",
+        "invocation_id": "2249f1ca2681473d9a1d89485cc65028",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:06:49.760310+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194507",
+        "invocation_id": "969a05988471482eb593c0ae7870e9d5",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:07:02.010852+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194563",
+        "invocation_id": "7b9dd0d111b7493bbcf509454feead50",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:07:05.018056+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194574",
+        "invocation_id": "8b093a0975c74875b0dfc2e26079f0d1",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:07:17.271853+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194636",
+        "invocation_id": "b08ddb33a268487c927f185d4725cb5a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:07:20.263071+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194664",
+        "invocation_id": "1953b8516ff3427a9b09419f76ca700a",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:07:32.509345+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194694",
+        "invocation_id": "621fa11b21744163a9b9ce419c4da113",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:07:35.510711+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194703",
+        "invocation_id": "924ae6b4a01e40cdb94a04ef3d407b63",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:07:47.768073+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194723",
+        "invocation_id": "b66c6fcd036d47abb24bad9c6b92bd43",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:07:50.768798+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194730",
+        "invocation_id": "01cb37dc50a045cf9ac9e6cbfa92ab9b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:08:03.010243+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194751",
+        "invocation_id": "bb39eeb846da4af19b054e1b5e93234b",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:08:06.015541+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194760",
+        "invocation_id": "9bdaed535c734b7ca7922eb19a2717aa",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:08:18.267446+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194782",
+        "invocation_id": "c47a3ff6b6154884a3549f378ce96433",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:08:21.272607+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194790",
+        "invocation_id": "21b9f15449b34b7da40e96fbf6bf668f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:08:33.513022+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194813",
+        "invocation_id": "c63c5131416d40ea802b983a67d482f3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:08:36.395535+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194824",
+        "invocation_id": "18072f93e9f74d9fabf5482f7a64ada3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:08:48.759963+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194841",
+        "invocation_id": "7778df6754514600aca3bdcf4c3abbb5",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:08:51.511097+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194852",
+        "invocation_id": "1d5fd9a75e314c388c58b6e985cfd868",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:09:04.017006+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194867",
+        "invocation_id": "4c862919da0742c8a1c7b05c4a235789",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:09:06.762145+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194880",
+        "invocation_id": "971a0e5b4d5546d985048e2ac984f20e",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:09:19.265483+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194901",
+        "invocation_id": "21994106548d468d9c57029d5a502e21",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:09:22.010713+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194911",
+        "invocation_id": "63ff2a61f32146a1bc6fe46edf842cd3",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:09:34.511091+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "194926",
+        "invocation_id": "61a35b9215a74ef18cf013cb35c7fadb",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:09:37.268892+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "194964",
+        "invocation_id": "13b0ae5a797e4ffea480b67edff26b3f",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:09:49.763832+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "195021",
+        "invocation_id": "132512c1bb224d02bda0d514639bfd66",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:09:52.511326+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "195031",
+        "invocation_id": "7f7643d599374a3eaacbbb88c1fbeca5",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:10:05.013371+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "195164",
+        "invocation_id": "95b30eebc1274e5ebd77379e91046da7",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:10:07.755219+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "195200",
+        "invocation_id": "022f5adccf5f49aca07480e666e4f537",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:10:20.266617+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "195436",
+        "invocation_id": "1573bc961c08404ca48821d77ab67ac8",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:10:23.011744+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "195447",
+        "invocation_id": "125a7894e7714d85a03f0e472d35a239",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T18:10:35.665379+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T18:10:38.415838+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T19:10:54.269741+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "217993",
+        "invocation_id": "853289e88d1a4b889db5feb717eb86d5",
+        "gate_hold": "Current clock is not ready: reference_age"
+      },
+      {
+        "at": "2026-10-09T19:11:00.162733+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T19:11:09.644999+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T19:23:51.951357+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "marketdata-collector@depth.service: Main process exited, code=exited, status=130/n/a"
+      },
+      {
+        "at": "2026-10-09T19:23:51.951822+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Stopped marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T19:23:54.979314+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "marketdata-collector@aggtrade.service: Main process exited, code=exited, status=130/n/a"
+      },
+      {
+        "at": "2026-10-09T19:23:54.979936+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Stopped marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T19:33:46.813862+09:00",
+        "unit": "marketdata-collector@aggtrade.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@aggtrade.service - Market data aggtrade collector with sampled clock quality."
+      },
+      {
+        "at": "2026-10-09T19:33:46.817014+09:00",
+        "unit": "marketdata-collector@depth.service",
+        "pid": "1",
+        "invocation_id": null,
+        "message": "Started marketdata-collector@depth.service - Market data depth collector with sampled clock quality."
+      }
+    ],
+    "long_wait_releases": [],
+    "daily_results": []
+  },
+  "chrony": {
+    "raw_records": 277,
+    "manager_event_counts": [],
+    "gate_refusals": [],
+    "phase_counts": [
+      {
+        "unit": "marketdata-clock-bootstrap.service",
+        "phase": "preparing",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-clock-bootstrap.service",
+        "phase": "closed",
+        "count": 1
+      }
+    ],
+    "selected_lifecycle_and_gates": [],
+    "long_wait_releases": [],
+    "daily_results": []
+  },
+  "jobs": {
+    "raw_records": 40428,
+    "manager_event_counts": [
+      {
+        "unit": "marketdata-daily.service",
+        "message": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT",
+        "count": 5
+      },
+      {
+        "unit": "marketdata-daily.service",
+        "message": "marketdata-daily.service: Failed with result 'exit-code'.",
+        "count": 6
+      },
+      {
+        "unit": "marketdata-daily.service",
+        "message": "marketdata-daily.service: Start request repeated too quickly.",
+        "count": 1
+      }
+    ],
+    "gate_refusals": [],
+    "phase_counts": [
+      {
+        "unit": "marketdata-clock-ready.service",
+        "phase": "released",
+        "count": 4491
+      },
+      {
+        "unit": "marketdata-pack.service",
+        "phase": "capacity",
+        "count": 24
+      },
+      {
+        "unit": "marketdata-pack.service",
+        "phase": "prune_pending",
+        "count": 24
+      },
+      {
+        "unit": "marketdata-pack.service",
+        "phase": "pack",
+        "count": 24
+      },
+      {
+        "unit": "marketdata-pack.service",
+        "phase": "prune_new",
+        "count": 24
+      },
+      {
+        "unit": "marketdata-pack.service",
+        "phase": "finished",
+        "count": 24
+      },
+      {
+        "unit": "marketdata-clock-ready.service",
+        "phase": "waiting",
+        "count": 6737
+      },
+      {
+        "unit": "marketdata-pack.service",
+        "phase": "waiting_for_maintenance_lock",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-backup.service",
+        "phase": "backup_configuration",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-backup.service",
+        "phase": "capacity",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-backup.service",
+        "phase": "prune_pending",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-backup.service",
+        "phase": "pack",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-backup.service",
+        "phase": "prune_new",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-backup.service",
+        "phase": "validate",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-backup.service",
+        "phase": "backup",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-backup.service",
+        "phase": "checkpoint",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-backup.service",
+        "phase": "copy",
+        "count": 52
+      },
+      {
+        "unit": "marketdata-backup.service",
+        "phase": "finished",
+        "count": 1
+      },
+      {
+        "unit": "marketdata-restic-archive.service",
+        "phase": "verify-input",
+        "count": 1
+      }
+    ],
+    "selected_lifecycle_and_gates": [
+      {
+        "at": "2026-10-09T00:14:04.026524+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "at": "2026-10-09T00:14:11.509472+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Finished marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "at": "2026-10-09T00:14:11.509881+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Consumed 3.023s CPU time."
+      },
+      {
+        "at": "2026-10-09T12:23:15.980458+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "at": "2026-10-09T12:23:22.989799+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "at": "2026-10-09T12:23:22.990226+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "at": "2026-10-09T12:23:22.990310+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "at": "2026-10-09T12:23:22.990386+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Consumed 2.321s CPU time."
+      },
+      {
+        "at": "2026-10-09T12:24:23.199208+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Scheduled restart job, restart counter is at 1."
+      },
+      {
+        "at": "2026-10-09T12:24:23.285517+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "at": "2026-10-09T12:24:29.634532+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "at": "2026-10-09T12:24:29.634966+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "at": "2026-10-09T12:24:29.635088+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "at": "2026-10-09T12:24:29.635176+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Consumed 2.443s CPU time."
+      },
+      {
+        "at": "2026-10-09T12:25:29.699214+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Scheduled restart job, restart counter is at 2."
+      },
+      {
+        "at": "2026-10-09T12:25:29.783586+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "at": "2026-10-09T12:25:36.423422+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "at": "2026-10-09T12:25:36.423998+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "at": "2026-10-09T12:25:36.424118+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "at": "2026-10-09T12:25:36.424229+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Consumed 2.463s CPU time."
+      },
+      {
+        "at": "2026-10-09T12:26:36.449096+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Scheduled restart job, restart counter is at 3."
+      },
+      {
+        "at": "2026-10-09T12:26:36.531496+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "at": "2026-10-09T12:26:43.282582+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "at": "2026-10-09T12:26:43.282930+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "at": "2026-10-09T12:26:43.282958+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "at": "2026-10-09T12:26:43.282994+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Consumed 2.501s CPU time."
+      },
+      {
+        "at": "2026-10-09T12:27:43.449218+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Scheduled restart job, restart counter is at 4."
+      },
+      {
+        "at": "2026-10-09T12:27:43.530320+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Starting marketdata-daily.service - Daily public market data update..."
+      },
+      {
+        "at": "2026-10-09T12:27:50.041694+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Main process exited, code=exited, status=2/INVALIDARGUMENT"
+      },
+      {
+        "at": "2026-10-09T12:27:50.041923+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "at": "2026-10-09T12:27:50.042227+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "at": "2026-10-09T12:27:50.042336+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Consumed 2.513s CPU time."
+      },
+      {
+        "at": "2026-10-09T12:28:50.199138+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Scheduled restart job, restart counter is at 5."
+      },
+      {
+        "at": "2026-10-09T12:28:50.273639+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Start request repeated too quickly."
+      },
+      {
+        "at": "2026-10-09T12:28:50.273712+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Failed with result 'exit-code'."
+      },
+      {
+        "at": "2026-10-09T12:28:50.273762+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "Failed to start marketdata-daily.service - Daily public market data update."
+      },
+      {
+        "at": "2026-10-09T12:28:50.273834+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "1201",
+        "invocation_id": null,
+        "message": "marketdata-daily.service: Consumed 2.513s CPU time."
+      }
+    ],
+    "long_wait_releases": [
+      {
+        "at": "2026-10-09T00:11:18.421446+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "1257",
+        "invocation_id": "dea6a685628647288afde475af27dcb0",
+        "wait_seconds": 10.012926576000002
+      },
+      {
+        "at": "2026-10-09T05:02:11.465774+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "54156",
+        "invocation_id": "29a2790c8c604a8895b485f4f6a0ae06",
+        "wait_seconds": 175.51778529999865
+      },
+      {
+        "at": "2026-10-09T05:49:32.984423+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "59914",
+        "invocation_id": "712838c4c4d146e9afa02c251f0c76e3",
+        "wait_seconds": 692.0335451479987
+      },
+      {
+        "at": "2026-10-09T06:11:06.462116+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "63756",
+        "invocation_id": "c8619d8995fe4294b087d5dae24cf3c1",
+        "wait_seconds": 170.50446698700034
+      },
+      {
+        "at": "2026-10-09T06:32:41.470417+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "67725",
+        "invocation_id": "11ac1698f2b346aeb45c9827cd459f34",
+        "wait_seconds": 175.5237348840019
+      },
+      {
+        "at": "2026-10-09T06:49:52.189936+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "69615",
+        "invocation_id": "b97def7b1e054e2a9c9dfe8b858f917b",
+        "wait_seconds": 426.24306095299835
+      },
+      {
+        "at": "2026-10-09T07:15:47.264230+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "73004",
+        "invocation_id": "952a7216c26644f08128a8911c1a4e07",
+        "wait_seconds": 436.3181055770001
+      },
+      {
+        "at": "2026-10-09T07:33:02.231180+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "75309",
+        "invocation_id": "d3cfb20b73bc4e8f9542c40d1746ef71",
+        "wait_seconds": 436.2763878320002
+      },
+      {
+        "at": "2026-10-09T08:11:43.661163+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "79295",
+        "invocation_id": "8668eb0c6ab34c01bde98ec75eebe8a9",
+        "wait_seconds": 942.7030974289992
+      },
+      {
+        "at": "2026-10-09T08:28:57.168305+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "83576",
+        "invocation_id": "b9058d4f57644b51b91864614cec4a25",
+        "wait_seconds": 431.2112472170011
+      },
+      {
+        "at": "2026-10-09T09:16:17.230205+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "88501",
+        "invocation_id": "f18179a7cb344054a97a2c4cb6ac75e4",
+        "wait_seconds": 2236.2743554329973
+      },
+      {
+        "at": "2026-10-09T09:50:42.183464+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "101023",
+        "invocation_id": "8a14b6616ba342ac9dab33c980a53612",
+        "wait_seconds": 431.2333036609998
+      },
+      {
+        "at": "2026-10-09T10:03:41.457233+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "104313",
+        "invocation_id": "2574c6597f174f68ad71522886d71223",
+        "wait_seconds": 175.50354060799873
+      },
+      {
+        "at": "2026-10-09T10:25:12.976561+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "106595",
+        "invocation_id": "332a70d992904565a913ca289d4d5a0b",
+        "wait_seconds": 687.0158621760056
+      },
+      {
+        "at": "2026-10-09T11:29:55.238890+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "119522",
+        "invocation_id": "7f91fcc654f74cb0876c36aece31512f",
+        "wait_seconds": 1464.285027455
+      },
+      {
+        "at": "2026-10-09T12:00:11.490946+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "129487",
+        "invocation_id": "a21b0dacf25e4110a9851d6ce26d6cc4",
+        "wait_seconds": 175.5380086139994
+      },
+      {
+        "at": "2026-10-09T12:21:42.190464+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "133238",
+        "invocation_id": "f4738fb037f24cea8a2d3b51dd68228f",
+        "wait_seconds": 431.23498274699523
+      },
+      {
+        "at": "2026-10-09T12:47:28.590659+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "138252",
+        "invocation_id": "741c75a5443643cab87e1aaf9bbf0049",
+        "wait_seconds": 942.6443521260007
+      },
+      {
+        "at": "2026-10-09T13:30:31.937884+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "142900",
+        "invocation_id": "067accd9a7184c3abe39d095239af949",
+        "wait_seconds": 1980.9838608160062
+      },
+      {
+        "at": "2026-10-09T14:05:00.945758+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "150929",
+        "invocation_id": "a9d49671983d46a6b006bb5105062aeb",
+        "wait_seconds": 165.44618535600603
+      },
+      {
+        "at": "2026-10-09T14:43:50.439263+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "152944",
+        "invocation_id": "f0525753174641eeadb173a5c5ab885d",
+        "wait_seconds": 1729.9416895730028
+      },
+      {
+        "at": "2026-10-09T16:01:17.740729+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "158996",
+        "invocation_id": "6e26cf65a7824d0b9e8c1d79967e8704",
+        "wait_seconds": 4036.784754386994
+      },
+      {
+        "at": "2026-10-09T16:14:16.498424+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "169606",
+        "invocation_id": "f39d5c0d4df74ecab90024d403cb5786",
+        "wait_seconds": 180.55004336100683
+      },
+      {
+        "at": "2026-10-09T16:27:11.459400+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "172728",
+        "invocation_id": "57c588d186004a7396b8b8c3b5a5cf24",
+        "wait_seconds": 175.50670716500463
+      },
+      {
+        "at": "2026-10-09T17:06:00.850572+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "175257",
+        "invocation_id": "928f4955e3b04b1888b8c9e7b7c73aa0",
+        "wait_seconds": 1724.9006258000009
+      },
+      {
+        "at": "2026-10-09T17:23:16.752961+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "183900",
+        "invocation_id": "c654a013687545229ea2d66691369023",
+        "wait_seconds": 436.2561874220046
+      },
+      {
+        "at": "2026-10-09T18:10:31.675330+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "188145",
+        "invocation_id": "0af49a1d38814f8e9104626cfe07bcac",
+        "wait_seconds": 1980.7149754019993
+      },
+      {
+        "at": "2026-10-09T18:40:42.916129+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "206001",
+        "invocation_id": "a786be07cb8d4b87a84c3339be7b1cab",
+        "wait_seconds": 686.9547074299917
+      },
+      {
+        "at": "2026-10-09T19:10:56.469075+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "217102",
+        "invocation_id": "47e13e29aea64c24be955f4c1ce6f820",
+        "wait_seconds": 175.52107150798838
+      },
+      {
+        "at": "2026-10-09T19:23:51.441786+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "221396",
+        "invocation_id": "8ac8aeb369294cd59b27f73c207eab78",
+        "wait_seconds": 170.4834389900061
+      },
+      {
+        "at": "2026-10-09T19:33:51.115833+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "222662",
+        "invocation_id": "029c33bd887e43999cd9a18eadb90ff4",
+        "wait_seconds": 590.166189341995
+      },
+      {
+        "at": "2026-10-09T20:06:58.810873+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "230186",
+        "invocation_id": "9d9295add619485381b19566c84cb564",
+        "wait_seconds": 957.8595294359984
+      },
+      {
+        "at": "2026-10-09T21:07:24.663457+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "234421",
+        "invocation_id": "3f65cc1195ee44358e4159a1a973aa3c",
+        "wait_seconds": 3023.710478055
+      },
+      {
+        "at": "2026-10-09T21:20:21.442269+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "251580",
+        "invocation_id": "7cdeaae04c5f4dac999858bb17ff9c6a",
+        "wait_seconds": 170.4944486829918
+      },
+      {
+        "at": "2026-10-09T21:59:10.811935+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "256061",
+        "invocation_id": "ec9541724e89479584e391530e83b7b0",
+        "wait_seconds": 1729.8595208490005
+      },
+      {
+        "at": "2026-10-09T22:42:18.754044+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "276454",
+        "invocation_id": "feee3671c474405e887efc4446781fd3",
+        "wait_seconds": 947.8066202129994
+      },
+      {
+        "at": "2026-10-09T23:38:07.589949+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "283568",
+        "invocation_id": "204fc583deea496faa5880b33a873fa3",
+        "wait_seconds": 2226.6423782549973
+      },
+      {
+        "at": "2026-10-09T23:51:01.475591+09:00",
+        "unit": "marketdata-clock-ready.service",
+        "pid": "291272",
+        "invocation_id": "cdfdf89e1a4a4eb795f8f59f676a0214",
+        "wait_seconds": 165.5144851149962
+      }
+    ],
+    "daily_results": [
+      {
+        "at": "2026-10-09T00:14:11.484647+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "6701",
+        "invocation_id": "6e98a3517035411db8eb1fa74eb8904b",
+        "targets": [
+          {
+            "run_id": "0ffecf40498e403a82d99d719b21517c",
+            "key": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "08eac987fd844f7aaf3007d7db727fff",
+            "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "b531e8f1685941d4b50d2390ecb3544f",
+            "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "14ce67490289475c96e33f59e098d063",
+            "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "f00d3f89fa50499e95070d22200dc7cc",
+            "key": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "b9b33d911d7543198ef62073663ebb7e",
+            "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "fb3c6fe4856246bf9528b9fbdf1206b0",
+            "key": "binance:spot:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "ee27f0900d30420783e97070a552ea8b",
+            "key": "binance:linear_perpetual:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          }
+        ]
+      },
+      {
+        "at": "2026-10-09T12:23:22.959779+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "136170",
+        "invocation_id": "e8c06ac828c344eda9e3ca6253935e71",
+        "targets": [
+          {
+            "run_id": "6f9a3c3cc78648e09002658be588abd1",
+            "key": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "ddd62987fe494929a87cf67743fed967",
+            "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "a2c95a2f512341318522fbc700da5bf2",
+            "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "50df56b404514967875a8539ff8591dd",
+            "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "73629b6e7cde45ec9b91a45a423f2cdc",
+            "key": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "612e5990d3f84e88a4f55d97588581a2",
+            "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "846e76502cea4d6383169ef81a5e0e8d",
+            "key": "binance:spot:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "1d8005fa328248278606ee8ec0cc0b3c",
+            "key": "binance:linear_perpetual:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          }
+        ]
+      },
+      {
+        "at": "2026-10-09T12:24:29.609835+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "136429",
+        "invocation_id": "68ff251ce37a48ecad2921fe039a0e94",
+        "targets": [
+          {
+            "run_id": "650adde86b434ec2a6306d618adb9d65",
+            "key": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "f9dc8113458045c3969056ac038d6687",
+            "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "9dcadffb57e44556bd60de7604ab0972",
+            "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "6fdf7815445a40269daea24f44905671",
+            "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "4ce60579158e487b806b5314567626d3",
+            "key": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "c67f27c177384d059ebd329313e45958",
+            "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "b26b8c17bd1e4a19a62c075e2e97e3f7",
+            "key": "binance:spot:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "655c199f05b7460bb133809d670126a9",
+            "key": "binance:linear_perpetual:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          }
+        ]
+      },
+      {
+        "at": "2026-10-09T12:25:36.390408+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "136725",
+        "invocation_id": "18b423e6a0aa4ea5b8654bced021a946",
+        "targets": [
+          {
+            "run_id": "52bd831dfbd94e7c81f9f8117e066e2f",
+            "key": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "1e700bc9a58742f9beeed0d68165445d",
+            "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "7b05f28fa9434cb28d64d36e72ed9f09",
+            "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "4819228671be45e69d24018ce1f907e9",
+            "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "14a27d4f73aa45c7a540dcac502ec462",
+            "key": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "e1db1be889a04c69a3f2ef3dedfea661",
+            "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "3a295e0c0b8c440481c9c8ae985b1d40",
+            "key": "binance:spot:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "e73c5d6003e54a309ff258017d01d550",
+            "key": "binance:linear_perpetual:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          }
+        ]
+      },
+      {
+        "at": "2026-10-09T12:26:43.255562+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "137174",
+        "invocation_id": "c77a25afc6db4e08b73b6ae840e3acb4",
+        "targets": [
+          {
+            "run_id": "f44cdd95e52542c79b418f5ed72eb92f",
+            "key": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "5c34a92a58f5473b81c762bfde93f6a3",
+            "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "b4238bcfd3ea4706a94cfbde61948c3a",
+            "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "f17778cd46c74d2a8e74ac3c7c421e6c",
+            "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "835c5039126540478f00f6e1914fd728",
+            "key": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "8db606713d6c41c89c8b2b47f936d14a",
+            "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "3b3fff3070164e87b2e74acaa0ab65e2",
+            "key": "binance:spot:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "90098fcd096640abb013a4cbd63b2ea2",
+            "key": "binance:linear_perpetual:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          }
+        ]
+      },
+      {
+        "at": "2026-10-09T12:27:50.012044+09:00",
+        "unit": "marketdata-daily.service",
+        "pid": "137366",
+        "invocation_id": "489a982a1bef4666bfc1a87867747018",
+        "targets": [
+          {
+            "run_id": "aea84d3fb6d443098f7f5d069672b53a",
+            "key": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "134a0ea16d9b467da2133186fa746a10",
+            "key": "binance:linear_perpetual:BTCUSDT:trade_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "ab83f40fb2fc4010aaf1149624b38d83",
+            "key": "binance:linear_perpetual:BTCUSDT:mark_price_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "b72b5d79e009427ea93ce410bdad6ed4",
+            "key": "binance:linear_perpetual:BTCUSDT:index_price_bars:1m:primary",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/indexPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "e7d316cb416c449494d7264378df35ae",
+            "key": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "39ccf56b58ec4b05895b11d27a71caa9",
+            "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+            "complete": false,
+            "state": "partial",
+            "errors": [],
+            "waiting": [
+              {
+                "start": "2026-10-08T00:00:00+00:00",
+                "end": "2026-10-09T00:00:00+00:00",
+                "state": "waiting_source",
+                "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-08.zip"
+              }
+            ]
+          },
+          {
+            "run_id": "d040048391374a098a37c02f299f39ac",
+            "key": "binance:spot:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          },
+          {
+            "run_id": "c2dd0081836643dea27f2e6012af56ae",
+            "key": "binance:linear_perpetual:BTCUSDT:instrument_metadata:event:primary",
+            "complete": true,
+            "state": "complete",
+            "errors": [],
+            "waiting": []
+          }
+        ]
+      }
+    ]
+  }
+}
