@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "as_of": "2026-10-10T15:11:38.784611+00:00",
+  "snapshot_sha256": "806f55c7404719e274cb1e63c9ac749a417b8bbf440579b59d082d6c1a1d35e3",
+  "state_counts": {
+    "not_due": 20,
+    "verified_complete_no_acquire": 156
+  },
+  "http_requests": 0,
+  "elapsed_seconds": 101.28118059798726,
+  "non_tmp_write_capable_opens": [
+    {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/state/catalog.sqlite-wal",
+      "call": "570419 openat(AT_FDCWD, \"/home/yoonhc/projects/algoTrade/historical_data/state/catalog.sqlite-wal\", O_RDWR|O_CREAT|O_NOFOLLOW|O_CLOEXEC, 0644) = 6"
+    },
+    {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/state/catalog.sqlite-shm",
+      "call": "570419 openat(AT_FDCWD, \"/home/yoonhc/projects/algoTrade/historical_data/state/catalog.sqlite-shm\", O_RDWR|O_CREAT|O_NOFOLLOW|O_CLOEXEC, 0644) = 7"
+    }
+  ],
+  "unexpected_write_capable_opens": [],
+  "sort_temp_disk_creates": [],
+  "source_filesystem_mutations": [],
+  "network_transmissions": [],
+  "operating_daily_tables_after_preview": [],
+  "trace_sha256": "0608aaa66931f74eba8f5cb3b51e12d75b1abbb7c506d090cec224e6918cf148",
+  "scope": "%file,%network; WAL/SHM write-capable opens are SQLite read coordination, not evidence of application DML; source connection is mode=ro plus query_only=ON",
+  "source_database_bytewise_unchanged_claimed": false
+}

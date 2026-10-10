@@ -1,0 +1,13 @@
+{
+  "command": [
+    "systemd-analyze",
+    "--user",
+    "verify",
+    "/tmp/t13-unit-verification-20261010/marketdata-daily.service",
+    "/tmp/t13-unit-verification-20261010/marketdata-daily.timer"
+  ],
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "Failed to bind private socket: Operation not permitted\nFailed to connect to system bus: Operation not permitted\n",
+  "scope": "syntax/dependency verification with candidate Python path, no unit installed or started"
+}

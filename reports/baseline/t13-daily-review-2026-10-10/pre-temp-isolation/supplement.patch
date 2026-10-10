@@ -1,0 +1,1278 @@
+--- /dev/null
++++ b/packages/marketdata/src/marketdata/daily_preview.py
+@@ -0,0 +1,188 @@
++"""Plan against a consistent isolated catalog; never run the operating scheduler."""
++
++import argparse
++import fcntl
++import hashlib
++import json
++import sqlite3
++import time
++from contextlib import closing
++from pathlib import Path
++from urllib.parse import urlsplit
++
++import httpx
++
++from .binance import archive_url, rest_url
++from .daily_schedule import Scheduler, load_config
++from .domain import DAY, DataError, Key, WriterBusy, json_bytes, now, utc
++from .fileio import packed_record, read_packed, safe_file
++from .store import Store, atomic_write
++
++
++class PreviewStore(Store):
++    """Only metadata is writable. File reads use the pinned source layout.
++
++    Used exclusively inside preview()'s shared layout-lock lifetime. No symlink
++    from the writable copy to an operating write directory is created.
++    """
++
++    def __init__(self, root, source):
++        super().__init__(root)
++        self.source = source
++
++    def file_bytes(self, relative):
++        path = safe_file(self.source, relative)
++        record = packed_record(self._files_db, relative)
++        return read_packed(self.source, record) if record else path.read_bytes()
++
++    def file_exists(self, relative):
++        record = packed_record(self._files_db, relative)
++        return safe_file(self.source, record["pack_path"] if record else relative).is_file()
++
++    def file_info(self, relative):
++        record = packed_record(self._files_db, relative)
++        if record:
++            return {"bytes": record["bytes"], "pack_id": record["pack_id"], "allocated_bytes": None}
++        stat = safe_file(self.source, relative).stat()
++        return {"bytes": stat.st_size, "pack_id": None, "allocated_bytes": stat.st_blocks * 512}
++
++
++def classify(runner, tasks, current):
++    result = []
++    for task in tasks:
++        state, reason = task["state"], task["reason"]
++        if state == "complete":
++            group = "verified_complete_no_acquire" if task["purpose"] == "acquire" else "complete"
++        elif state in {"needs_review", "missed_observation"}:
++            group = "needs_review"
++        elif state == "running":
++            group = "recovery_required"
++        elif not task["next_at"] or utc(task["next_at"]) > current:
++            group = "not_due"
++        else:
++            group = "due"
++            if task["purpose"] == "refresh" and any(
++                p["key"] == task["key"]
++                and p["day"] == task["day"]
++                and p["id"] != task["id"]
++                and p["state"] != "complete"
++                and (
++                    p["purpose"] == "acquire"
++                    or p["state"] == "needs_review"
++                    or (p["purpose"] == "refresh" and p["cycle"] < task["cycle"])
++                )
++                for p in tasks
++            ):
++                group = "held_by_pending_target"
++            key = Key(**task["key"])
++            start = utc(task["day"])
++            url = (
++                rest_url(key, start, start + DAY)[0]
++                if key.dataset in {"funding_events", "instrument_metadata"}
++                else archive_url(key, start, False)
++            )
++            for cool in runner.ledger.rows("daily_cooldowns"):
++                if cool["id"] == urlsplit(url).hostname and utc(cool["until"]) > current:
++                    group, reason = "held_cooldown", cool["until"]
++        result.append({"task": task, "classification": group, "hold_or_reason": reason})
++    return result
++
++
++def preview(source, destination, keys, policy, schedule, *, current=None, fault=None):
++    source, destination = Path(source).resolve(), Path(destination).resolve()
++    if source == destination or source in destination.parents or destination in source.parents:
++        raise DataError("Preview destination must be separate from the operating root")
++    current = utc(current) if current else now()
++    fault = fault or (lambda *_: None)
++    started, began = now(), time.monotonic()
++    # Existing lock opened read-only: a preview cannot create operating state.
++    lock_path = safe_file(source, "state/file-layout.lock")
++    with lock_path.open("rb") as lock:
++        try:
++            fcntl.flock(lock, fcntl.LOCK_SH | fcntl.LOCK_NB)
++        except BlockingIOError as exc:
++            raise WriterBusy("Source layout is being changed; preview deferred") from exc
++        destination.mkdir(parents=True, exist_ok=False)
++        snapshot = destination / "catalog-snapshot.sqlite"
++        source_path = safe_file(source, "state/catalog.sqlite")
++        with closing(sqlite3.connect(source_path.as_uri() + "?mode=ro", uri=True)) as reader:
++            reader.execute("PRAGMA query_only=ON")
++            # Pin one SQLite read snapshot during copying while collectors keep
++            # appending to WAL; avoid restarting a large copy on every commit.
++            reader.execute("BEGIN")
++            reader.execute("SELECT count(*) FROM sqlite_master").fetchone()
++            with closing(sqlite3.connect(snapshot)) as target:
++                reader.backup(target, pages=1024)
++                target.execute("PRAGMA journal_mode=DELETE")
++        with snapshot.open("rb") as handle:
++            snapshot_sha = hashlib.file_digest(handle, "sha256").hexdigest()
++        captured = now()
++        fault("snapshot_created", snapshot)
++        work = destination / "store"
++        (work / "state").mkdir(parents=True)
++        with closing(sqlite3.connect(snapshot.as_uri() + "?mode=ro", uri=True)) as reader:
++            with closing(sqlite3.connect(work / "state/catalog.sqlite")) as target:
++                reader.backup(target)
++        store = PreviewStore(work, source)
++        network_calls = []
++
++        def refuse_http(request):
++            network_calls.append(str(request.url))
++            raise DataError("HTTP is forbidden in preview")
++
++        with httpx.Client(transport=httpx.MockTransport(refuse_http)) as client:
++            runner = Scheduler(store, keys, policy, schedule, client=client, clock=lambda: current)
++            try:
++                with runner.ledger.exclusive():
++                    # No recover(), execute_task(), report bridge or live Store.
++                    runner.plan(current)
++                    tasks = runner.ledger.rows("daily_tasks")
++                    classified = classify(runner, tasks, current)
++                    counts = {}
++                    for row in classified:
++                        group = row["classification"]
++                        counts[group] = counts.get(group, 0) + 1
++                    report = {
++                        "preview_only": True,
++                        "source_root": str(source),
++                        "destination": str(destination),
++                        "started_at": started,
++                        "snapshot_captured_at": captured,
++                        "snapshot_sha256": snapshot_sha,
++                        "as_of": current,
++                        "config_hash": runner.config_hash,
++                        "state_counts": counts,
++                        "tasks": classified,
++                        "http_requests": len(network_calls),
++                        "operating_catalog_connection": "mode=ro; query_only=ON",
++                        "source_layout_lock": "existing file; read-only fd; shared flock",
++                        "max_tasks_per_run": schedule.max_tasks,
++                        "semantics": "eligibility_at_snapshot_not_prediction_of_fetch_outcomes",
++                        "snapshot_is_market_data_backup": False,
++                        "elapsed_seconds": time.monotonic() - began,
++                    }
++                    fault("plan_completed", report)
++                    atomic_write(destination / "preview.json", json_bytes(report))
++                    return report
++            finally:
++                runner.close()
++                store.close()
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--source-root", type=Path, required=True)
++    parser.add_argument("--destination", type=Path, required=True)
++    parser.add_argument("--config", type=Path, required=True)
++    args = parser.parse_args()
++    try:
++        keys, policy, schedule = load_config(args.config)
++        result = preview(args.source_root, args.destination, keys, policy, schedule)
++        print(json_bytes({k: v for k, v in result.items() if k != "tasks"}).decode())
++    except (DataError, OSError, sqlite3.Error, ValueError) as exc:
++        print(json.dumps({"preview_only": True, "passed": False, "reason": str(exc)}))
++        raise SystemExit(75 if isinstance(exc, WriterBusy) else 1) from exc
++
++
++if __name__ == "__main__":
++    main()
+--- /dev/null
++++ b/packages/marketdata/src/marketdata/daily_review.py
+@@ -0,0 +1,336 @@
++"""Explicit, idempotent review of ONE daily task. No HTTP or service operations."""
++
++import argparse
++import copy
++import json
++import os
++import re
++import sqlite3
++from datetime import timedelta
++from pathlib import Path
++
++from .binance import archive_url, rest_url
++from .daily_schedule import KST, Scheduler, fingerprint, load_config
++from .domain import DAY, DataError, Key, WriterBusy, json_bytes, now, sha256, utc
++from .fileio import layout_lock
++from .normalize import normalize_archive, normalize_rest
++from .pipeline import Collector
++from .store import Store
++
++
++def task_hash(task):
++    return sha256(json_bytes(task))
++
++
++def inspect_task(root, task_id):
++    path = Path(root).resolve() / "state/catalog.sqlite"
++    with sqlite3.connect(path.as_uri() + "?mode=ro", uri=True) as db:
++        row = db.execute("SELECT record FROM daily_tasks WHERE id=?", (task_id,)).fetchone()
++        if row is None:
++            raise DataError("Unknown task")
++        task = json.loads(row[0])
++        exists = db.execute("SELECT 1 FROM sqlite_master WHERE name='daily_reviews'").fetchone()
++        reviews = (
++            [json.loads(r[0]) for r in db.execute("SELECT record FROM daily_reviews")]
++            if exists
++            else []
++        )
++    return {
++        "task": task,
++        "expected_task_sha256": task_hash(task),
++        "reviews": [r for r in reviews if r["request"]["task_id"] == task_id],
++    }
++
++
++def _fetch(store, source_id, url, earliest, latest, *, http=True):
++    for row in store.db.execute(
++        "SELECT * FROM fetches WHERE artifact_id=? AND url=? ORDER BY id DESC", (source_id, url)
++    ):
++        if earliest <= utc(row["observed_at"]) <= latest:
++            if not http or json.loads(row["metadata"]).get("status") == 200:
++                return dict(row)
++    raise DataError("No successful fetch in this task's eligible confirmation period")
++
++
++def _remote_proof(runner, task, job):
++    """Verify a legacy publication and its remote fetches, not just checked_at.
++
++    The published job must still be current. Raw payloads are re-parsed and
++    compared with active economic rows; neither old queries nor downloads alone
++    can attest a refresh. Missing evidence is deliberately refused.
++    """
++    store, key = runner.store, Key(**task["key"])
++    earliest, latest = utc(task["first_eligible_at"]), utc(job["updated_at"])
++    if not earliest <= latest <= runner.clock():
++        raise DataError("Publication is outside the confirmation period")
++    start, end = utc(task["day"]), utc(task["day"]) + DAY
++    identity = job["source_id"]
++    blob, observed = store.raw(identity)
++    fetches = []
++    if key.dataset not in {"funding_events", "instrument_metadata"}:
++        url = archive_url(key, start, False)
++        if job["id"] != sha256(json_bytes([url, key.asdict(), start, end])):
++            raise DataError("Not the exact daily remote archive publication")
++        fetches.append(_fetch(store, identity, url, earliest, latest))
++        checks = store.db.execute(
++            "SELECT * FROM fetches WHERE url=? ORDER BY id DESC", (url + ".CHECKSUM",)
++        ).fetchall()
++        pair = None
++        for check in checks:
++            if (
++                not earliest <= utc(check["observed_at"]) <= latest
++                or json.loads(check["metadata"]).get("status") != 200
++            ):
++                continue
++            body, _ = store.raw(check["artifact_id"])
++            try:
++                Collector._verify_checksum(blob, body, url.rsplit("/", 1)[1])
++            except DataError:
++                continue
++            pair = dict(check)
++            break
++        if pair is None:
++            raise DataError("No matching verified ZIP/CHECKSUM pair in this cycle")
++        fetches.append(pair)
++        batch = normalize_archive(
++            blob, key, identity, observed, url.rsplit("/", 1)[1][:-4] + ".csv"
++        )
++        if batch.quarantine or any(not start <= r["timestamp"] < end for r in batch.rows):
++            raise DataError("Archive cannot satisfy the exact task interval")
++        rows = batch.rows
++    else:
++        manifest = json.loads(blob)
++        if manifest.get("key") != key.asdict() or not manifest.get("pagination_complete"):
++            raise DataError("Invalid REST publication manifest")
++        if key.dataset == "funding_events":
++            if utc(manifest["start"]) != start or utc(manifest["end"]) != end:
++                raise DataError("REST publication range mismatch")
++            if job["id"] != sha256(json_bytes([key.asdict(), start, end, "rest"])):
++                raise DataError("Not the exact REST publication")
++        fetches.append(_fetch(store, identity, "internal:rest-query", earliest, latest, http=False))
++        cursor, rows, terminal = start, [], False
++        sources = manifest["source_ids"]
++        if not sources:
++            raise DataError("Missing REST pages")
++        for index, source_id in enumerate(sources):
++            url = rest_url(key, cursor, end)[0]
++            fetch = _fetch(store, source_id, url, earliest, latest)
++            fetches.append(fetch)
++            body, _ = store.raw(source_id)
++            observed = utc(fetch["observed_at"])
++            batch = normalize_rest(body, key, source_id, observed)
++            if batch.quarantine:
++                raise DataError("Quarantined REST input")
++            if key.dataset == "instrument_metadata":
++                if (
++                    len(sources) != 1
++                    or observed.astimezone(KST).date().isoformat() != task["cycle"]
++                ):
++                    raise DataError("Metadata is not an observation in the requested cycle")
++                start, end = utc(manifest["start"]), utc(manifest["end"])
++                rows, terminal = batch.rows, True
++                if not rows or any(not start <= r["timestamp"] < end for r in rows):
++                    raise DataError("Metadata observation is outside publication range")
++                break
++            if any(not cursor <= r["timestamp"] < end for r in batch.rows):
++                raise DataError("REST page outside requested cursor range")
++            rows.extend(batch.rows)
++            if not batch.rows:
++                terminal = index == len(sources) - 1
++                if not terminal:
++                    raise DataError("REST manifest continues after empty page")
++            else:
++                cursor = max(r["timestamp"] for r in batch.rows) + timedelta(milliseconds=1)
++                terminal = cursor >= end
++        if not terminal:
++            raise DataError("REST pagination completion cannot be established")
++    lower, upper = start, end
++    if key.dataset == "instrument_metadata":
++        lower = min(r["timestamp"] for r in rows)
++        upper = max(r["timestamp"] for r in rows) + timedelta(microseconds=1)
++    intent = {
++        "key": key.asdict(),
++        "start": start,
++        "end": end,
++        "source_id": identity,
++        "row_start": lower,
++        "row_end": upper,
++        "row_count": len(rows),
++        "economic_sha256": fingerprint(rows, key),
++    }
++    proof = runner.proof(key, task["day"], intent, writer_held=True)
++    if not proof:
++        raise DataError("Remote publication does not match active verified data")
++    proof["review_confirmation"] = {
++        "job": dict(job),
++        "fetches": fetches,
++        "eligible_since": task["first_eligible_at"],
++    }
++    return proof
++
++
++def reconcile_proof(runner, task):
++    key = Key(**task["key"])
++    if task["purpose"] == "acquire":
++        proof = runner.proof(key, task["day"], writer_held=True)
++        if proof:
++            return proof
++        raise DataError("No complete, unblocked verified acquisition evidence")
++    failures = []
++    for job in runner.store.db.execute(
++        "SELECT * FROM jobs WHERE key_id=? AND state='published' ORDER BY updated_at DESC",
++        (key.id,),
++    ).fetchall():
++        try:
++            return _remote_proof(runner, task, job)
++        except (DataError, ValueError, KeyError) as exc:
++            failures.append(str(exc))
++    raise DataError("No publication proving this confirmation cycle: " + "; ".join(failures[:3]))
++
++
++def apply_review(runner, request):
++    required = {
++        "request_id",
++        "task_id",
++        "expected_task_sha256",
++        "action",
++        "reason",
++        "extra_attempts",
++    }
++    if not isinstance(request, dict) or set(request) != required:
++        raise DataError("Review request fields must match the documented schema")
++    for field in ("task_id", "expected_task_sha256"):
++        if not isinstance(request[field], str) or not re.fullmatch(r"[a-f0-9]{64}", request[field]):
++            raise DataError(f"Invalid {field}")
++    if not isinstance(request["request_id"], str) or not re.fullmatch(
++        r"[A-Za-z0-9_.-]{1,128}", request["request_id"]
++    ):
++        raise DataError("Invalid review request ID")
++    if request["action"] not in {"reconcile", "retry"}:
++        raise DataError("Unknown review action")
++    if (
++        not isinstance(request["reason"], str)
++        or not request["reason"].strip()
++        or len(request["reason"]) > 2000
++    ):
++        raise DataError("A bounded operator reason is required")
++    extra = request["extra_attempts"]
++    if (
++        type(extra) is not int
++        or (request["action"] == "retry" and not 1 <= extra <= 3)
++        or (request["action"] == "reconcile" and extra != 0)
++    ):
++        raise DataError("Retry permits 1..3 additional task attempts; reconcile permits 0")
++    with runner.ledger.exclusive(), layout_lock(runner.store.root), runner.store.writer(timeout=5):
++        db = runner.store.db
++        previous = db.execute(
++            "SELECT record FROM daily_reviews WHERE id=?", (request["request_id"],)
++        ).fetchone()
++        if previous:
++            receipt = json.loads(previous[0])
++            if receipt["request"] != request:
++                raise DataError("Review request ID was already used with different contents")
++            return receipt
++        row = db.execute(
++            "SELECT record FROM daily_tasks WHERE id=?", (request["task_id"],)
++        ).fetchone()
++        if row is None:
++            raise DataError("Unknown task")
++        before = json.loads(row[0])
++        if task_hash(before) != request["expected_task_sha256"]:
++            raise DataError("Task changed since operator inspection")
++        if before["state"] != "needs_review":
++            raise DataError("Only needs_review tasks can be explicitly resumed")
++        if before["config_hash"] != runner.config_hash or before["key"] not in [
++            k.asdict() for k in runner.keys
++        ]:
++            raise DataError("Task/configuration scope differs")
++        after = copy.deepcopy(before)
++        current = runner.clock()
++        if request["action"] == "reconcile":
++            proof = reconcile_proof(runner, before)
++            after.update(
++                state="complete",
++                reason="operator_reconciled_verified_storage",
++                proof=proof,
++                next_at=None,
++                completed_at=current,
++                review_required=False,
++            )
++        else:
++            if (
++                before["purpose"] == "observe"
++                and before["cycle"] != current.astimezone(KST).date().isoformat()
++            ):
++                raise DataError("Cannot retry a historical metadata observation")
++            after.update(
++                state="retry_wait",
++                reason="operator_authorized_additional_attempts",
++                next_at=max(current, utc(before["first_eligible_at"])),
++                review_required=False,
++                manual_retry={
++                    "request_id": request["request_id"],
++                    "limit": extra,
++                    "remaining": extra,
++                },
++            )
++        receipt = {
++            "id": request["request_id"],
++            "version": 1,
++            "request": request,
++            "config_hash": runner.config_hash,
++            "applied_at": current,
++            "actor_uid": os.getuid(),
++            "before": before,
++            "after": after,
++            "http_requests": 0,
++        }
++        # No nested Store transaction/ledger helper: receipt, state and budget
++        # have one commit. A crash after commit is replayed from this receipt.
++        with db:
++            db.execute(
++                "UPDATE daily_tasks SET record=? WHERE id=?",
++                (json_bytes(after).decode(), after["id"]),
++            )
++            runner.fault("review_after_task_write", receipt)
++            db.execute(
++                "INSERT INTO daily_reviews VALUES(?,?)",
++                (receipt["id"], json_bytes(receipt).decode()),
++            )
++            runner.fault("review_before_commit", receipt)
++        runner.fault("review_after_commit", receipt)
++        return json.loads(json_bytes(receipt))
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("action", choices=("inspect", "apply"))
++    parser.add_argument("--root", required=True, type=Path)
++    parser.add_argument("--task-id")
++    parser.add_argument("--config", type=Path)
++    parser.add_argument("--request", type=Path)
++    args = parser.parse_args()
++    try:
++        if args.action == "inspect":
++            if not args.task_id:
++                parser.error("inspect requires --task-id")
++            result = inspect_task(args.root, args.task_id)
++        else:
++            if not args.config or not args.request:
++                parser.error("apply requires --config and --request")
++            keys, policy, schedule = load_config(args.config)
++            store = Store(args.root)
++            runner = Scheduler(store, keys, policy, schedule)
++            try:
++                result = apply_review(runner, json.loads(args.request.read_text()))
++            finally:
++                runner.close()
++                store.close()
++        print(json_bytes(result).decode())
++    except (DataError, OSError, sqlite3.Error, ValueError) as exc:
++        print(json_bytes({"applied": False, "reason": str(exc), "as_of": now()}).decode())
++        raise SystemExit(75 if isinstance(exc, WriterBusy) else 1) from exc
++
++
++if __name__ == "__main__":
++    main()
+--- a/packages/marketdata/src/marketdata/daily_schedule.py
++++ b/packages/marketdata/src/marketdata/daily_schedule.py
+@@ -8,7 +8,7 @@
+ import sqlite3
+ import tomllib
+ import uuid
+-from contextlib import contextmanager
++from contextlib import contextmanager, nullcontext
+ from dataclasses import asdict, dataclass
+ from datetime import datetime, timedelta
+ from email.utils import parsedate_to_datetime
+@@ -28,7 +28,14 @@
+ VERSION = 1
+ KST = ZoneInfo("Asia/Seoul")
+ TERMINAL = {"complete", "needs_review", "missed_observation"}
+-TABLES = {"daily_tasks", "daily_attempts", "daily_cooldowns", "daily_runs", "daily_probe_targets"}
++TABLES = {
++    "daily_tasks",
++    "daily_attempts",
++    "daily_cooldowns",
++    "daily_runs",
++    "daily_probe_targets",
++    "daily_reviews",
++}
+ 
+ 
+ @dataclass(frozen=True)
+@@ -134,6 +141,8 @@
+                         CREATE TABLE IF NOT EXISTS daily_runs (
+                             id TEXT PRIMARY KEY, record TEXT NOT NULL);
+                         CREATE TABLE IF NOT EXISTS daily_probe_targets (
++                            id TEXT PRIMARY KEY, record TEXT NOT NULL);
++                        CREATE TABLE IF NOT EXISTS daily_reviews (
+                             id TEXT PRIMARY KEY, record TEXT NOT NULL);
+                     """)
+                 yield
+@@ -322,12 +331,12 @@
+         )
+         return until
+ 
+-    def proof(self, key, day, intent=None):
++    def proof(self, key, day, intent=None, *, writer_held=False):
+         """Only this task's raw/query/canonical evidence is checked, not the whole store."""
+         start, end = utc(day), utc(day) + DAY
+         if intent:
+             start, end = utc(intent["start"]), utc(intent["end"])
+-        with self.store.writer(timeout=5):
++        with nullcontext() if writer_held else self.store.writer(timeout=5):
+             coverage = inventory(self.store, key, start, end)
+             if key.dataset != "instrument_metadata" and not coverage["complete"]:
+                 return None
+@@ -581,7 +590,12 @@
+                     if request["status"] in {429, 418}:
+                         self.cooldown(request["url"], request.get("headers", {}))
+                 task["transient_failures"] += 1
+-                exhausted = task["transient_failures"] >= self.schedule.transient_attempts
++                grant = task.get("manual_retry")
++                exhausted = (
++                    grant["remaining"] == 0
++                    if grant
++                    else task["transient_failures"] >= self.schedule.transient_attempts
++                )
+                 task.update(
+                     state="retry_wait",
+                     reason="interrupted_before_verified_storage",
+@@ -611,15 +625,23 @@
+                 state, due = "cooldown", self.cooldown(exc.url, exc.headers)
+             elif exc.status is None or exc.status in {408, 500, 502, 503, 504}:
+                 task["transient_failures"] += 1
+-                if task["transient_failures"] < self.schedule.transient_attempts:
++                if (
++                    task.get("manual_retry")
++                    or task["transient_failures"] < self.schedule.transient_attempts
++                ):
+                     state, due = (
+                         "retry_wait",
+                         current + timedelta(seconds=self.schedule.transient_delay_seconds),
+                     )
+         elif isinstance(exc, DataError) and not isinstance(exc, ConflictError):
+             task["validation_failures"] += 1
+-            if task["validation_failures"] < self.schedule.validation_attempts:
++            if (
++                task.get("manual_retry")
++                or task["validation_failures"] < self.schedule.validation_attempts
++            ):
+                 state, due = "validation_retry", self.schedule.later_slot(key, current)
++        if task.get("manual_retry", {}).get("remaining") == 0:
++            state, due = "needs_review", None
+         task.update(
+             state=state,
+             next_at=due,
+@@ -647,6 +669,36 @@
+                     reason=ready.get("reason", "clock_not_ready"),
+                     next_at=current + timedelta(seconds=60),
+                 )
++                self.ledger.save("daily_tasks", task)
++                return
++        grant = task.get("manual_retry")
++        if grant:
++            if grant["remaining"] <= 0:
++                task.update(
++                    state="needs_review",
++                    next_at=None,
++                    review_required=True,
++                    reason="approved_additional_attempts_exhausted",
++                )
++                self.ledger.save("daily_tasks", task)
++                return
++            # Approval is not a cooldown exemption. Do not consume a new grant
++            # before the very first possible request is allowed.
++            from .binance import rest_url
++
++            url = (
++                rest_url(key, utc(task["day"]), utc(task["day"]) + DAY)[0]
++                if key.dataset in {"funding_events", "instrument_metadata"}
++                else archive_url(key, utc(task["day"]), False)
++            )
++            host = urlsplit(url).hostname
++            held = [
++                utc(r["until"])
++                for r in self.ledger.rows("daily_cooldowns")
++                if r["id"] == host and utc(r["until"]) > current
++            ]
++            if held:
++                task.update(state="cooldown", next_at=max(held), reason="persisted_host_cooldown")
+                 self.ledger.save("daily_tasks", task)
+                 return
+         attempt = {
+@@ -659,6 +711,9 @@
+             "config_hash": self.config_hash,
+         }
+         task["attempts"].append(attempt["id"])
++        if grant:
++            grant["remaining"] -= 1
++            attempt["manual_request_id"] = grant["request_id"]
+         task.update(
+             state="running",
+             next_at=current + timedelta(seconds=self.schedule.transient_delay_seconds),
+--- /dev/null
++++ b/tests/test_daily_review.py
+@@ -0,0 +1,607 @@
++import json
++import signal
++import sqlite3
++import subprocess
++import sys
++from datetime import timedelta
++
++import pytest
++from marketdata import backup
++from marketdata.binance import Fetcher
++from marketdata.daily_preview import preview
++from marketdata.daily_review import apply_review, inspect_task, task_hash
++from marketdata.daily_schedule import Scheduler
++from marketdata.domain import DAY, DataError, Key, WriterBusy, json_bytes, utc
++from marketdata.fileio import layout_lock
++from marketdata.pipeline import Collector
++from marketdata.store import Store
++from test_daily_schedule import DAY0, tasks
++from test_daily_schedule import env as shared_env
++
++env = shared_env
++
++
++@pytest.fixture(autouse=True)
++def publication_clock(env, monkeypatch):
++    monkeypatch.setattr("marketdata.store.now", env[0])
++
++
++def request(task, action="retry", identity="review-1", extra=1):
++    return {
++        "request_id": identity,
++        "task_id": task["id"],
++        "expected_task_sha256": task_hash(task),
++        "action": action,
++        "reason": "Operator checked the specific failure",
++        "extra_attempts": extra if action == "retry" else 0,
++    }
++
++
++def failed(env, *, transient=False, **settings):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    url = upstream.add(key)
++    upstream.responses[url] = (503 if transient else 400, b"error", {})
++    runner = build([key], refresh=0, **settings)
++    runner.run()
++    return runner, key, url
++
++
++def fill_old(store, runner, key, day=DAY0):
++    Collector(store, Fetcher(client=runner.client, sleep=lambda _: None), cooperative=True).archive(
++        key, utc(day), utc(day) + DAY, monthly=False, refresh=True
++    )
++
++
++def seed(runner, key, *, purpose="refresh", day=DAY0, cycle="2024-01-15"):
++    task = runner.task(key, day, purpose, cycle, runner.clock())
++    task.update(state="needs_review", next_at=None, review_required=True, reason="fixture_review")
++    with runner.ledger.exclusive():
++        runner.ledger.save("daily_tasks", task)
++    return json.loads(json_bytes(task))
++
++
++def test_reconcile_legacy_acquisition_no_http_preserves_history_and_other_tasks(store, env):
++    clock, upstream, _ = env
++    runner, key, _ = failed(env)
++    before = tasks(runner)[0]
++    upstream.add(key)
++    fill_old(store, runner, key)
++    runner.run()  # existing policy deliberately leaves needs_review untouched
++    assert tasks(runner)[0]["state"] == "needs_review"
++    attempt_rows = runner.ledger.rows("daily_attempts")
++    calls = len(upstream.calls)
++    receipt = apply_review(runner, request(before, "reconcile"))
++    assert receipt["after"]["state"] == "complete"
++    assert receipt["before"] == before
++    assert receipt["after"]["attempts"] == before["attempts"]
++    assert runner.ledger.rows("daily_attempts") == attempt_rows
++    assert len(upstream.calls) == calls
++    assert inspect_task(store.root, before["id"])["reviews"] == [receipt]
++
++
++def test_retry_is_bounded_idempotent_and_keeps_failure_counters(store, env):
++    clock, upstream, _ = env
++    runner, key, url = failed(env, transient=True, transient_attempts=1)
++    before = tasks(runner)[0]
++    req = request(before, extra=2)
++    receipt = apply_review(runner, req)
++    assert apply_review(runner, req) == receipt
++    assert len(runner.ledger.rows("daily_reviews")) == 1
++    assert len(upstream.calls) == 4
++    runner.run()
++    assert tasks(runner)[0]["manual_retry"]["remaining"] == 1
++    assert tasks(runner)[0]["state"] == "retry_wait"
++    assert apply_review(runner, req) == receipt  # does not rewind state/budget
++    assert tasks(runner)[0]["manual_retry"]["remaining"] == 1
++    clock.value += timedelta(minutes=5)
++    runner.run()
++    after = tasks(runner)[0]
++    assert after["state"] == "needs_review" and after["transient_failures"] == 3
++    assert len(after["attempts"]) == 3 and len(upstream.calls) == 12
++    runner.run()
++    assert len(upstream.calls) == 12
++    assert [a["manual_request_id"] for a in runner.ledger.rows("daily_attempts")[1:]] == [
++        req["request_id"]
++    ] * 2
++
++
++@pytest.mark.parametrize(
++    "field,value", [("extra_attempts", 2), ("reason", "different"), ("task_id", "0" * 64)]
++)
++def test_request_id_reuse_with_different_content_is_refused(store, env, field, value):
++    runner, _, _ = failed(env)
++    req = request(tasks(runner)[0])
++    apply_review(runner, req)
++    with pytest.raises(DataError, match="different contents"):
++        apply_review(runner, dict(req, **{field: value}))
++    assert tasks(runner)[0]["manual_retry"]["remaining"] == 1
++
++
++@pytest.mark.parametrize("extra", [0, 4, -1, True, "1"])
++def test_retry_rejects_unbounded_or_ambiguous_budget(store, env, extra):
++    runner, _, _ = failed(env)
++    with pytest.raises(DataError, match="1..3"):
++        apply_review(runner, request(tasks(runner)[0], extra=extra))
++    assert tasks(runner)[0]["state"] == "needs_review"
++
++
++def test_stale_task_inspection_and_unconfigured_target_refused(store, env):
++    runner, _, _ = failed(env)
++    before = tasks(runner)[0]
++    req = request(before)
++    changed = dict(before, reason="new evidence")
++    runner.ledger.save("daily_tasks", changed)
++    with pytest.raises(DataError, match="changed since"):
++        apply_review(runner, req)
++    other = env[2]([Key("mark_price_bars", interval="1h")], refresh=0)
++    with pytest.raises(DataError, match="scope differs"):
++        apply_review(other, request(changed))
++
++
++def test_retry_does_not_spend_grant_or_request_during_persisted_cooldown(store, env):
++    clock, upstream, _ = env
++    runner, key, url = failed(env)
++    task = tasks(runner)[0]
++    runner.cooldown(url, {"retry-after": "3600"})
++    apply_review(runner, request(task))
++    upstream.add(key)
++    calls = len(upstream.calls)
++    runner.run()
++    after = tasks(runner)[0]
++    assert after["state"] == "cooldown" and after["manual_retry"]["remaining"] == 1
++    assert len(upstream.calls) == calls
++    clock.value += timedelta(seconds=3600)
++    runner.run()
++    assert tasks(runner)[0]["state"] == "complete"
++    assert tasks(runner)[0]["manual_retry"]["remaining"] == 0
++    assert len(upstream.calls) == calls + 2
++
++
++def test_refresh_requires_new_remote_confirmation_and_publication(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++    runner = build([key], refresh=0)
++    fill_old(store, runner, key)
++    clock.value += timedelta(hours=1)
++    task = seed(runner, key)
++    req = request(task, "reconcile")
++    calls = len(upstream.calls)
++    with pytest.raises(DataError, match="No publication"):
++        apply_review(runner, req)
++    assert len(upstream.calls) == calls
++    fill_old(store, runner, key)  # identical bytes but a NEW successful fetch/publication
++    calls = len(upstream.calls)
++    receipt = apply_review(runner, req)
++    assert receipt["after"]["state"] == "complete" and len(upstream.calls) == calls
++    proof = receipt["after"]["proof"]["review_confirmation"]
++    assert len(proof["fetches"]) == 2
++    assert all(utc(f["observed_at"]) >= utc(task["first_eligible_at"]) for f in proof["fetches"])
++
++
++def test_new_download_without_publication_cannot_settle_refresh(store, env, monkeypatch):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++    runner = build([key], refresh=0)
++    fill_old(store, runner, key)
++    clock.value += timedelta(hours=1)
++    task = seed(runner, key)
++    monkeypatch.setattr(
++        Collector, "_publish", lambda *a, **k: (_ for _ in ()).throw(KeyboardInterrupt())
++    )
++    with pytest.raises(KeyboardInterrupt):
++        fill_old(store, runner, key)
++    with pytest.raises(DataError, match="No publication"):
++        apply_review(runner, request(task, "reconcile"))
++    assert next(t for t in tasks(runner) if t["id"] == task["id"])["state"] == "needs_review"
++
++
++def test_review_never_accepts_conflicting_revision(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++    runner = build([key])
++    runner.run()
++    original = [r[0] for r in store.db.execute("SELECT revision_id FROM active")]
++    clock.value += DAY
++    upstream.add(key, price="102")
++    runner.run()
++    task = next(t for t in tasks(runner) if t["state"] == "needs_review")
++    with pytest.raises(DataError):
++        apply_review(runner, request(task, "reconcile"))
++    apply_review(runner, request(task))
++    runner.run()
++    # Existing conflict also blocks the acquisition peer. Approval cannot bypass
++    # that dependency; directly exercise the ingestion validator in isolation.
++    with runner.ledger.exclusive():
++        runner.execute_task(next(t for t in tasks(runner) if t["id"] == task["id"]))
++    assert next(t for t in tasks(runner) if t["id"] == task["id"])["state"] == "needs_review"
++    assert [r[0] for r in store.db.execute("SELECT revision_id FROM active")] == original
++
++
++@pytest.mark.parametrize(
++    "phase", ["review_after_task_write", "review_before_commit", "review_after_commit"]
++)
++def test_review_crash_boundaries_are_atomic(store, env, phase):
++    runner, _, _ = failed(env)
++    before = tasks(runner)[0]
++    req = request(before, extra=2)
++
++    def crash(where, receipt):
++        if where == phase:
++            raise KeyboardInterrupt()
++
++    runner.fault = crash
++    with pytest.raises(KeyboardInterrupt):
++        apply_review(runner, req)
++    committed = phase == "review_after_commit"
++    assert len(runner.ledger.rows("daily_reviews")) == int(committed)
++    if not committed:
++        assert tasks(runner)[0] == before
++    runner.fault = lambda *a: None
++    receipt = apply_review(runner, req)
++    assert apply_review(runner, req) == receipt
++    assert tasks(runner)[0]["manual_retry"]["remaining"] == 2
++
++
++def test_sqlite_receipt_failure_rolls_back_task_and_budget(store, env):
++    runner, _, _ = failed(env)
++    before = tasks(runner)[0]
++    with store.db:
++        store.db.execute(
++            "CREATE TRIGGER review_fail BEFORE INSERT ON daily_reviews BEGIN SELECT RAISE(ABORT, 'injected'); END"
++        )
++    with pytest.raises(sqlite3.IntegrityError):
++        apply_review(runner, request(before))
++    assert tasks(runner)[0] == before and runner.ledger.rows("daily_reviews") == []
++
++
++def test_scheduler_contention_refuses_review_without_mutation(store, env):
++    runner, _, _ = failed(env)
++    before = tasks(runner)[0]
++    with runner.ledger.exclusive(), pytest.raises(WriterBusy):
++        apply_review(runner, request(before))
++    assert tasks(runner)[0] == before
++
++
++@pytest.mark.parametrize("phase", ["review_after_task_write", "review_after_commit"])
++def test_real_sigkill_review_then_restart_has_one_grant(store, env, tmp_path, phase):
++    runner, _, _ = failed(env)
++    req = request(tasks(runner)[0], extra=2)
++    input_path = tmp_path / "request.json"
++    input_path.write_bytes(json_bytes(req))
++    code = """
++import json, os, signal, sys
++from marketdata.store import Store
++from marketdata.daily_schedule import Scheduler
++from marketdata.daily_review import apply_review
++from marketdata.domain import Key, utc
++from marketdata.operations import SyncPolicy
++store=Store(sys.argv[1])
++def crash(where, receipt):
++    if where == sys.argv[3]: os.kill(os.getpid(), signal.SIGKILL)
++runner=Scheduler(store,[Key("trade_bars", interval="1h")],SyncPolicy(start="2024-01-14",refresh_days=0),clock=lambda:utc("2024-01-15T09:00Z"),fault=crash)
++apply_review(runner,json.load(open(sys.argv[2])))
++"""
++    result = subprocess.run(
++        [sys.executable, "-B", "-I", "-c", code, str(store.root), str(input_path), phase],
++        timeout=15,
++    )
++    assert result.returncode == -signal.SIGKILL
++    apply_review(runner, req)
++    assert len(runner.ledger.rows("daily_reviews")) == 1
++    assert tasks(runner)[0]["manual_retry"]["remaining"] == 2
++
++
++def test_preview_captures_wal_writes_and_keeps_all_writes_isolated(store, env, tmp_path):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++    runner = build([key], refresh=0)
++    fill_old(store, runner, key)
++    assert store.db.execute("PRAGMA journal_mode").fetchone()[0] == "wal"
++    rows_before = store.db.execute(
++        "SELECT count(*) FROM sqlite_master WHERE name LIKE 'daily_%'"
++    ).fetchone()[0]
++    calls = len(upstream.calls)
++    destination = tmp_path / "preview"
++
++    def during(phase, value):
++        if phase == "snapshot_created":
++            with pytest.raises(WriterBusy), layout_lock(store.root, exclusive=True):
++                pass
++            # The ongoing collector can commit while preview plans its snapshot.
++            with store.writer(), store.db:
++                store.db.execute(
++                    "INSERT INTO jobs VALUES('ongoing','other','a','b','running',NULL,NULL,1,'now')"
++                )
++
++    result = preview(
++        store.root,
++        destination,
++        [key],
++        runner.policy,
++        runner.schedule,
++        current=clock(),
++        fault=during,
++    )
++    assert result["http_requests"] == 0 and len(upstream.calls) == calls
++    assert result["state_counts"] == {"verified_complete_no_acquire": 1}
++    assert (
++        store.db.execute("SELECT count(*) FROM sqlite_master WHERE name LIKE 'daily_%'").fetchone()[
++            0
++        ]
++        == rows_before
++        == 0
++    )
++    with sqlite3.connect(destination / "catalog-snapshot.sqlite") as snap:
++        assert snap.execute("SELECT count(*) FROM active").fetchone()[0] == 1
++        assert snap.execute("SELECT count(*) FROM jobs WHERE id='ongoing'").fetchone()[0] == 0
++    assert store.db.execute("SELECT count(*) FROM jobs WHERE id='ongoing'").fetchone()[0] == 1
++    assert not (store.root / "state/daily-scheduler.lock").exists()
++    assert (destination / "store/state/daily-scheduler.lock").is_file()
++    assert not any(p.is_symlink() for p in destination.rglob("*"))
++
++
++def test_preview_with_existing_review_and_cooldown_does_not_change_them(store, env, tmp_path):
++    runner, key, url = failed(env)
++    runner.cooldown(url, {"retry-after": "1800"})
++    before = tasks(runner)
++    with layout_lock(store.root):
++        pass
++    result = preview(
++        store.root, tmp_path / "view", [key], runner.policy, runner.schedule, current=env[0]()
++    )
++    assert result["state_counts"]["needs_review"] == 1
++    assert tasks(runner) == before
++
++
++def test_preview_layout_conflict_and_overlapping_destination_refused(store, env, tmp_path):
++    runner, key, _ = failed(env)
++    with pytest.raises(DataError, match="separate"):
++        preview(store.root, store.root / "preview", [key], runner.policy, runner.schedule)
++    with layout_lock(store.root, exclusive=True), pytest.raises(WriterBusy):
++        preview(store.root, tmp_path / "view", [key], runner.policy, runner.schedule)
++    assert not (tmp_path / "view").exists()
++
++
++def test_new_review_ledger_survives_legacy_backup_restore(store, env, tmp_path):
++    runner, key, _ = failed(env)
++    req = request(tasks(runner)[0], extra=2)
++    receipt = apply_review(runner, req)
++    # Existing backup requires data directory even when the only input is a failed HTTP response.
++    (store.root / "data").mkdir(exist_ok=True)
++    created = backup.create_backup(store, tmp_path / "backup", min_free_gib=0)
++    assert backup.verify_backup(tmp_path / "backup")["backup_id"] == created["backup_id"]
++    backup.restore_backup(tmp_path / "backup", tmp_path / "restored", min_free_gib=0)
++    restored = Store(tmp_path / "restored")
++    other = Scheduler(
++        restored, [key], runner.policy, runner.schedule, client=runner.client, clock=runner.clock
++    )
++    try:
++        assert apply_review(other, req) == receipt
++        assert tasks(other)[0]["manual_retry"]["remaining"] == 2
++    finally:
++        other.close()
++        restored.close()
++
++
++def test_funding_refresh_legacy_publication_and_empty_terminal_page(store, env):
++    from marketdata.binance import rest_url
++    from marketdata.domain import micros
++
++    clock, upstream, build = env
++    key = Key("funding_events", interval="event")
++    start, end = utc(DAY0), utc(DAY0) + DAY
++    events = [
++        {
++            "symbol": "BTCUSDT",
++            "fundingTime": micros(start + timedelta(hours=8 * i)) // 1000,
++            "fundingRate": "0.0001",
++        }
++        for i in range(3)
++    ]
++    upstream.responses[rest_url(key, start, end)[0]] = (200, json_bytes(events), {})
++    upstream.responses[rest_url(key, start + timedelta(hours=16, milliseconds=1), end)[0]] = (
++        200,
++        b"[]",
++        {},
++    )
++    runner = build([key], refresh=0)
++    task = seed(runner, key)
++    Collector(store, Fetcher(client=runner.client), cooperative=True).rest(key, start, end)
++    calls = len(upstream.calls)
++    receipt = apply_review(runner, request(task, "reconcile"))
++    assert receipt["after"]["state"] == "complete" and len(upstream.calls) == calls
++    assert len(receipt["after"]["proof"]["review_confirmation"]["fetches"]) == 3
++
++
++def test_metadata_actual_observation_reconciles_but_historical_retry_refused(store, env):
++    clock, upstream, build = env
++    key = Key("instrument_metadata", market="spot", interval="event")
++    url = "https://api.binance.com/api/v3/exchangeInfo"
++    upstream.responses[url] = (
++        200,
++        json_bytes({"symbols": [{"symbol": "BTCUSDT", "status": "TRADING"}]}),
++        {},
++    )
++    runner = build([key], refresh=0)
++    task = seed(runner, key, purpose="observe", day="2024-01-15")
++    Collector(store, Fetcher(client=runner.client), cooperative=True).rest(
++        key, clock() - timedelta(seconds=1), clock()
++    )
++    clock.value += DAY
++    with pytest.raises(DataError, match="historical metadata"):
++        apply_review(runner, request(task))
++    receipt = apply_review(runner, request(task, "reconcile"))
++    assert receipt["after"]["state"] == "complete"
++    assert len(upstream.calls) == 1
++
++
++def test_manual_attempt_crash_does_not_restore_consumed_budget(store, env):
++    clock, upstream, _ = env
++    runner, key, _ = failed(env)
++    upstream.add(key)
++    apply_review(runner, request(tasks(runner)[0]))
++
++    def crash(phase, attempt):
++        if phase == "after_publish":
++            raise KeyboardInterrupt()
++
++    runner.fault = crash
++    with pytest.raises(KeyboardInterrupt):
++        runner.run()
++    assert tasks(runner)[0]["manual_retry"]["remaining"] == 0
++    count = len(upstream.calls)
++    runner.fault = lambda *a: None
++    runner.run()
++    assert tasks(runner)[0]["state"] == "complete"
++    assert tasks(runner)[0]["manual_retry"]["remaining"] == 0
++    assert len(upstream.calls) == count
++
++
++def test_clock_hold_preserves_manual_budget_and_missing_evidence_does_not_complete(store, env):
++    runner, _, _ = failed(env)
++    before = tasks(runner)[0]
++    with pytest.raises(DataError, match="No complete"):
++        apply_review(runner, request(before, "reconcile"))
++    assert tasks(runner)[0] == before
++    apply_review(runner, request(before))
++    runner.readiness = lambda: {"ready": False, "reason": "strict gate"}
++    runner.run()
++    assert tasks(runner)[0]["state"] == "deferred_clock"
++    assert tasks(runner)[0]["manual_retry"]["remaining"] == 1
++
++
++def test_preview_missing_source_lock_never_creates_it(store, env, tmp_path):
++    runner, key, _ = failed(env)
++    assert not (store.root / "state/file-layout.lock").exists()
++    with pytest.raises(FileNotFoundError):
++        preview(store.root, tmp_path / "view", [key], runner.policy, runner.schedule)
++    assert not (store.root / "state/file-layout.lock").exists()
++    assert not (tmp_path / "view").exists()
++
++
++def test_preview_reads_packed_data_and_detects_corruption(store, env, tmp_path):
++    from marketdata import packing
++
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++    runner = build([key], refresh=0)
++    fill_old(store, runner, key)
++    logical = list(packing.logical_files(store.db).values())
++    # Test the existing packed/loose read contract with the same pack writer.
++    for item in logical:
++        item["bytes"] = (store.root / item["path"]).stat().st_size
++    pack = packing.build_pack(store, logical, 0)
++    with layout_lock(store.root, exclusive=True), store.writer(), store.db:
++        store.db.execute(
++            "INSERT INTO file_packs VALUES(?,?,?,?,?)",
++            (pack["id"], pack["path"], pack["bytes"], pack["members"], clock().isoformat()),
++        )
++        for item in logical:
++            store.db.execute(
++                "INSERT INTO packed_files VALUES(?,?,?,?,?)",
++                (item["path"], pack["id"], item["sha256"], item["bytes"], item["kind"]),
++            )
++    packing.prune_loose(store, apply=True)
++    result = preview(
++        store.root, tmp_path / "view", [key], runner.policy, runner.schedule, current=clock()
++    )
++    assert result["state_counts"] == {"verified_complete_no_acquire": 1}
++    (store.root / pack["path"]).write_bytes(b"damaged")
++    with pytest.raises(DataError):
++        preview(
++            store.root,
++            tmp_path / "damaged-view",
++            [key],
++            runner.policy,
++            runner.schedule,
++            current=clock(),
++        )
++
++
++def test_claim_transaction_failure_does_not_consume_review_budget(store, env):
++    runner, _, _ = failed(env)
++    apply_review(runner, request(tasks(runner)[0]))
++    with store.db:
++        store.db.execute(
++            "CREATE TRIGGER claim_fail BEFORE INSERT ON daily_attempts BEGIN SELECT RAISE(ABORT,'claim interrupted'); END"
++        )
++    with pytest.raises(sqlite3.IntegrityError):
++        runner.run()
++    assert tasks(runner)[0]["manual_retry"]["remaining"] == 1
++    assert len(tasks(runner)[0]["attempts"]) == 1
++
++
++def test_manual_download_only_crash_exhausts_one_authorized_attempt(store, env, monkeypatch):
++    runner, key, _ = failed(env)
++    env[1].add(key)
++    apply_review(runner, request(tasks(runner)[0]))
++    with monkeypatch.context() as patch:
++        patch.setattr(
++            Collector, "_publish", lambda *a, **k: (_ for _ in ()).throw(KeyboardInterrupt())
++        )
++        with pytest.raises(KeyboardInterrupt):
++            runner.run()
++    calls = len(env[1].calls)
++    runner.run()
++    task = tasks(runner)[0]
++    assert task["state"] == "needs_review" and task["manual_retry"]["remaining"] == 0
++    assert len(env[1].calls) == calls
++
++
++def test_actual_review_cli_concurrency_returns_one_receipt(store, env, tmp_path):
++    runner, _, _ = failed(env)
++    task = tasks(runner)[0]
++    cfg = tmp_path / "scheduler.toml"
++    cfg.write_text(
++        '[operations]\nstart="2024-01-14"\nrefresh_days=0\n[[datasets]]\ndataset="trade_bars"\ninterval="1h"\n'
++    )
++    reqfile = tmp_path / "request.json"
++    reqfile.write_bytes(json_bytes(request(task, extra=2)))
++    cmd = [
++        sys.executable,
++        "-B",
++        "-I",
++        "-m",
++        "marketdata.daily_review",
++        "apply",
++        "--root",
++        str(store.root),
++        "--config",
++        str(cfg),
++        "--request",
++        str(reqfile),
++    ]
++    procs = [
++        subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) for _ in range(2)
++    ]
++    for proc in procs:
++        stdout, stderr = proc.communicate(timeout=15)
++        assert proc.returncode in {0, 75}, (stdout, stderr)
++    replay = subprocess.run(cmd, capture_output=True, check=True, timeout=15)
++    receipt = json.loads(replay.stdout)
++    assert receipt["after"]["manual_retry"]["remaining"] == 2
++    assert len(runner.ledger.rows("daily_reviews")) == 1
++    inspected = subprocess.run(
++        [
++            sys.executable,
++            "-B",
++            "-I",
++            "-m",
++            "marketdata.daily_review",
++            "inspect",
++            "--root",
++            str(store.root),
++            "--task-id",
++            task["id"],
++        ],
++        capture_output=True,
++        check=True,
++        timeout=15,
++    )
++    assert json.loads(inspected.stdout)["reviews"] == [receipt]

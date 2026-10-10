@@ -1,0 +1,4667 @@
+{
+  "as_of": "2026-10-10T15:59:10.992992+00:00",
+  "daily_units": {
+    "marketdata-daily.service": {
+      "MainPID": [
+        "0"
+      ],
+      "ControlPID": [
+        "0"
+      ],
+      "Result": [
+        "success"
+      ],
+      "ExecMainStartTimestampMonotonic": [
+        "175440018158"
+      ],
+      "ExecMainExitTimestampMonotonic": [
+        "175440536376"
+      ],
+      "ExecMainCode": [
+        "1"
+      ],
+      "ExecMainStatus": [
+        "0"
+      ],
+      "ExecStartPre": [
+        "{ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Sun 2026-10-11 00:55:01 KST] ; stop_time=[Sun 2026-10-11 00:55:02 KST] ; pid=585394 ; code=exited ; status=0 }"
+      ],
+      "ExecStart": [
+        "{ path=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python ; argv[]=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json ; ignore_errors=no ; start_time=[Sun 2026-10-11 00:55:02 KST] ; stop_time=[Sun 2026-10-11 00:55:02 KST] ; pid=585398 ; code=exited ; status=0 }"
+      ],
+      "MemoryPeak": [
+        "[not set]"
+      ],
+      "CPUUsageNSec": [
+        "544752000"
+      ],
+      "IOReadBytes": [
+        "[not set]"
+      ],
+      "IOWriteBytes": [
+        "[not set]"
+      ],
+      "Id": [
+        "marketdata-daily.service"
+      ],
+      "Triggers": [
+        ""
+      ],
+      "ActiveState": [
+        "inactive"
+      ],
+      "SubState": [
+        "dead"
+      ],
+      "UnitFileState": [
+        "static"
+      ],
+      "InvocationID": [
+        "691632fc5a984ab2852daf766a599eee"
+      ]
+    },
+    "marketdata-daily.timer": {
+      "TimersMonotonic": [
+        "{ OnActiveUSec=30s ; next_elapse=2d 42min 46.304234s }"
+      ],
+      "TimersCalendar": [
+        "{ OnCalendar=*-*-* *:00/5:00 UTC ; next_elapse=Sun 2026-10-11 01:00:00 KST }"
+      ],
+      "NextElapseUSecRealtime": [
+        "Sun 2026-10-11 01:00:29 KST"
+      ],
+      "NextElapseUSecMonotonic": [
+        "0"
+      ],
+      "LastTriggerUSec": [
+        "Sun 2026-10-11 00:55:01 KST"
+      ],
+      "LastTriggerUSecMonotonic": [
+        "2d 43min 59.864623s"
+      ],
+      "Result": [
+        "success"
+      ],
+      "Id": [
+        "marketdata-daily.timer"
+      ],
+      "Triggers": [
+        "marketdata-daily.service"
+      ],
+      "ActiveState": [
+        "active"
+      ],
+      "SubState": [
+        "waiting"
+      ],
+      "UnitFileState": [
+        "enabled"
+      ],
+      "InvocationID": [
+        "201fcf64d1714226988718ef39996cad"
+      ]
+    }
+  },
+  "protected_services": {
+    "chrony.service": {
+      "MainPID": [
+        "1245"
+      ],
+      "ActiveState": [
+        "active"
+      ],
+      "InvocationID": [
+        "19420480ab3249529a075ca7cb2bd3c1"
+      ]
+    },
+    "marketdata-collector@depth.service": {
+      "MainPID": [
+        "224785"
+      ],
+      "ActiveState": [
+        "active"
+      ],
+      "InvocationID": [
+        "41b1747221894331a5e0b4fdf3f9751e"
+      ]
+    },
+    "marketdata-collector@aggtrade.service": {
+      "MainPID": [
+        "224784"
+      ],
+      "ActiveState": [
+        "active"
+      ],
+      "InvocationID": [
+        "1aa42e55ff804c1f9e5ec68b31116c6b"
+      ]
+    }
+  },
+  "protected_services_same_invocations": {
+    "chrony.service": true,
+    "marketdata-collector@depth.service": true,
+    "marketdata-collector@aggtrade.service": true
+  },
+  "source_unchanged": true,
+  "protected_hashes_unchanged": true,
+  "retirement_masks": {
+    "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": "/dev/null",
+    "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": "/dev/null"
+  },
+  "daily_runs": [
+    {
+      "as_of": "2026-10-10T15:51:40.065936+00:00",
+      "completed_tasks": 156,
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "data_complete": false,
+      "finished_at": "2026-10-10T15:51:40.066109+00:00",
+      "id": "0c6e2ce4fed747d1842bbab9cbd6d1cd",
+      "pending": [
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "19e02ec092da6c9f432cf8d5f4f10a3398c14058060c9e5929343bc073d1b277",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "818bc9d529a16e4663566e0c89cd4f1a57217afa42d72862366d736d5e4d235c",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "2d89912240363f723531ec7c6d69b6d8a7b16023c5cab7767fc038b7f56f5807",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "5499ba4192549439fa2a070bf07bb16dedb465ec0360d18dce228705fa3cf93d",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "ce792da7c776b503cb9ee3f471fb422d7025cc73adb807eed82f1f9fd242d036",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "8e648c4709825d8e7039364ef209bb7f1c6aef731ef6dfec24f77c9c95912c15",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "a742059a79422c62a79687d303c57f92f23398c80c308337c32268d8a3ce837a",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "5401bc427e406bdb99f8e7d57b1b61ae210a14091289103195ba86336787b839",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "75b6125c7661be3c4b79a610f4f2c12748dbaabaf538c87df4fcc644d9aed3c7",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "9a2f09f629d95171c4a2a27a5dc7afd89bddd81cf0452ee533263d2888f54f80",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "b601affb3cd751adddfd11acebd0b7c6cf0b3bcb35b1bc23a732f36fe7794978",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "b99d56a17d6b6c8596ed7275b8da733c33dc51d4f9f88e872192930708f12c6c",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "6beaa2716eb2b80942d8435c47b4ddafef454be27da1a436b44cac80775a4e23",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "d1fed54c14244efd5ba00a6f203393200e605516de593258c94f1c132de18045",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "8b2d3fddb948eb7b4eef2b5d9c3346f94179abd75329d728027cb1f5c7ad908b",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "e2107a5f866635da906df051c8f0e32e3ab20d5ef7695db62c2992c26dbedfed",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "e6260ae83ede5f3dfdbbbcc51b7eed95daaffd8f8e89cde846e770601b8f08dc",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "93a4b899922bf79dd71f829a6a97b9306d6bbfb1718cb78d080673fd3e19c45b",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-11",
+          "id": "1af03fd71fbbbc7bf2e1aa4cad6061260e142c1104a241df856bc7262aeeb60a",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "observe",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-11",
+          "id": "bc8bc42aeea4f0c495203bf2422a45b4172487e31c18503899b1dda73ecf55f9",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "observe",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        }
+      ],
+      "processed": [],
+      "review_required": false,
+      "run_outcome": "no_due_tasks",
+      "runner_ok": true,
+      "started_at": "2026-10-10T15:51:22.601165+00:00",
+      "state_counts": {
+        "complete": 156,
+        "planned": 20
+      },
+      "version": 1
+    },
+    {
+      "as_of": "2026-10-10T15:53:18.995759+00:00",
+      "completed_tasks": 156,
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "data_complete": false,
+      "finished_at": "2026-10-10T15:53:18.995885+00:00",
+      "id": "e9521136c2614abe8b16e3b35bbe0420",
+      "pending": [
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "19e02ec092da6c9f432cf8d5f4f10a3398c14058060c9e5929343bc073d1b277",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "818bc9d529a16e4663566e0c89cd4f1a57217afa42d72862366d736d5e4d235c",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "2d89912240363f723531ec7c6d69b6d8a7b16023c5cab7767fc038b7f56f5807",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "5499ba4192549439fa2a070bf07bb16dedb465ec0360d18dce228705fa3cf93d",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "ce792da7c776b503cb9ee3f471fb422d7025cc73adb807eed82f1f9fd242d036",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "8e648c4709825d8e7039364ef209bb7f1c6aef731ef6dfec24f77c9c95912c15",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "a742059a79422c62a79687d303c57f92f23398c80c308337c32268d8a3ce837a",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "5401bc427e406bdb99f8e7d57b1b61ae210a14091289103195ba86336787b839",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "75b6125c7661be3c4b79a610f4f2c12748dbaabaf538c87df4fcc644d9aed3c7",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "9a2f09f629d95171c4a2a27a5dc7afd89bddd81cf0452ee533263d2888f54f80",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "b601affb3cd751adddfd11acebd0b7c6cf0b3bcb35b1bc23a732f36fe7794978",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "b99d56a17d6b6c8596ed7275b8da733c33dc51d4f9f88e872192930708f12c6c",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "6beaa2716eb2b80942d8435c47b4ddafef454be27da1a436b44cac80775a4e23",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "d1fed54c14244efd5ba00a6f203393200e605516de593258c94f1c132de18045",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "8b2d3fddb948eb7b4eef2b5d9c3346f94179abd75329d728027cb1f5c7ad908b",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "e2107a5f866635da906df051c8f0e32e3ab20d5ef7695db62c2992c26dbedfed",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "e6260ae83ede5f3dfdbbbcc51b7eed95daaffd8f8e89cde846e770601b8f08dc",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "93a4b899922bf79dd71f829a6a97b9306d6bbfb1718cb78d080673fd3e19c45b",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-11",
+          "id": "1af03fd71fbbbc7bf2e1aa4cad6061260e142c1104a241df856bc7262aeeb60a",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "observe",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-11",
+          "id": "bc8bc42aeea4f0c495203bf2422a45b4172487e31c18503899b1dda73ecf55f9",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "observe",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        }
+      ],
+      "processed": [],
+      "review_required": false,
+      "run_outcome": "no_due_tasks",
+      "runner_ok": true,
+      "started_at": "2026-10-10T15:53:18.731891+00:00",
+      "state_counts": {
+        "complete": 156,
+        "planned": 20
+      },
+      "version": 1
+    },
+    {
+      "as_of": "2026-10-10T15:53:56.594770+00:00",
+      "completed_tasks": 156,
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "data_complete": false,
+      "finished_at": "2026-10-10T15:53:56.594904+00:00",
+      "id": "68c3a9dc8f13451b8cd94aa924115a2e",
+      "pending": [
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "19e02ec092da6c9f432cf8d5f4f10a3398c14058060c9e5929343bc073d1b277",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "818bc9d529a16e4663566e0c89cd4f1a57217afa42d72862366d736d5e4d235c",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "2d89912240363f723531ec7c6d69b6d8a7b16023c5cab7767fc038b7f56f5807",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "5499ba4192549439fa2a070bf07bb16dedb465ec0360d18dce228705fa3cf93d",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "ce792da7c776b503cb9ee3f471fb422d7025cc73adb807eed82f1f9fd242d036",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "8e648c4709825d8e7039364ef209bb7f1c6aef731ef6dfec24f77c9c95912c15",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "a742059a79422c62a79687d303c57f92f23398c80c308337c32268d8a3ce837a",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "5401bc427e406bdb99f8e7d57b1b61ae210a14091289103195ba86336787b839",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "75b6125c7661be3c4b79a610f4f2c12748dbaabaf538c87df4fcc644d9aed3c7",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "9a2f09f629d95171c4a2a27a5dc7afd89bddd81cf0452ee533263d2888f54f80",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "b601affb3cd751adddfd11acebd0b7c6cf0b3bcb35b1bc23a732f36fe7794978",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "b99d56a17d6b6c8596ed7275b8da733c33dc51d4f9f88e872192930708f12c6c",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "6beaa2716eb2b80942d8435c47b4ddafef454be27da1a436b44cac80775a4e23",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "d1fed54c14244efd5ba00a6f203393200e605516de593258c94f1c132de18045",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "8b2d3fddb948eb7b4eef2b5d9c3346f94179abd75329d728027cb1f5c7ad908b",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "e2107a5f866635da906df051c8f0e32e3ab20d5ef7695db62c2992c26dbedfed",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "e6260ae83ede5f3dfdbbbcc51b7eed95daaffd8f8e89cde846e770601b8f08dc",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "93a4b899922bf79dd71f829a6a97b9306d6bbfb1718cb78d080673fd3e19c45b",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-11",
+          "id": "1af03fd71fbbbc7bf2e1aa4cad6061260e142c1104a241df856bc7262aeeb60a",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "observe",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-11",
+          "id": "bc8bc42aeea4f0c495203bf2422a45b4172487e31c18503899b1dda73ecf55f9",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "observe",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        }
+      ],
+      "processed": [],
+      "review_required": false,
+      "run_outcome": "no_due_tasks",
+      "runner_ok": true,
+      "started_at": "2026-10-10T15:53:56.305811+00:00",
+      "state_counts": {
+        "complete": 156,
+        "planned": 20
+      },
+      "version": 1
+    },
+    {
+      "as_of": "2026-10-10T15:55:02.534147+00:00",
+      "completed_tasks": 156,
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "data_complete": false,
+      "finished_at": "2026-10-10T15:55:02.534314+00:00",
+      "id": "1414775f05a5417095237273272b9b16",
+      "pending": [
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "19e02ec092da6c9f432cf8d5f4f10a3398c14058060c9e5929343bc073d1b277",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "818bc9d529a16e4663566e0c89cd4f1a57217afa42d72862366d736d5e4d235c",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "2d89912240363f723531ec7c6d69b6d8a7b16023c5cab7767fc038b7f56f5807",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "5499ba4192549439fa2a070bf07bb16dedb465ec0360d18dce228705fa3cf93d",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "ce792da7c776b503cb9ee3f471fb422d7025cc73adb807eed82f1f9fd242d036",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "8e648c4709825d8e7039364ef209bb7f1c6aef731ef6dfec24f77c9c95912c15",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "a742059a79422c62a79687d303c57f92f23398c80c308337c32268d8a3ce837a",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "5401bc427e406bdb99f8e7d57b1b61ae210a14091289103195ba86336787b839",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "75b6125c7661be3c4b79a610f4f2c12748dbaabaf538c87df4fcc644d9aed3c7",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "9a2f09f629d95171c4a2a27a5dc7afd89bddd81cf0452ee533263d2888f54f80",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "b601affb3cd751adddfd11acebd0b7c6cf0b3bcb35b1bc23a732f36fe7794978",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "b99d56a17d6b6c8596ed7275b8da733c33dc51d4f9f88e872192930708f12c6c",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "6beaa2716eb2b80942d8435c47b4ddafef454be27da1a436b44cac80775a4e23",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "d1fed54c14244efd5ba00a6f203393200e605516de593258c94f1c132de18045",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "8b2d3fddb948eb7b4eef2b5d9c3346f94179abd75329d728027cb1f5c7ad908b",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-07",
+          "id": "e2107a5f866635da906df051c8f0e32e3ab20d5ef7695db62c2992c26dbedfed",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-08",
+          "id": "e6260ae83ede5f3dfdbbbcc51b7eed95daaffd8f8e89cde846e770601b8f08dc",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-09",
+          "id": "93a4b899922bf79dd71f829a6a97b9306d6bbfb1718cb78d080673fd3e19c45b",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-11",
+          "id": "1af03fd71fbbbc7bf2e1aa4cad6061260e142c1104a241df856bc7262aeeb60a",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "observe",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-11",
+          "day": "2026-10-11",
+          "id": "bc8bc42aeea4f0c495203bf2422a45b4172487e31c18503899b1dda73ecf55f9",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-11T03:20:00+00:00",
+          "purpose": "observe",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        }
+      ],
+      "processed": [],
+      "review_required": false,
+      "run_outcome": "no_due_tasks",
+      "runner_ok": true,
+      "started_at": "2026-10-10T15:55:02.272387+00:00",
+      "state_counts": {
+        "complete": 156,
+        "planned": 20
+      },
+      "version": 1
+    }
+  ],
+  "ledger_counts": {
+    "daily_runs": 4,
+    "daily_attempts": 0,
+    "daily_cooldowns": 0,
+    "daily_reviews": 0
+  },
+  "task_count": 176,
+  "task_state_counts": {
+    "complete": 156,
+    "planned": 20
+  },
+  "latest_report": {
+    "as_of": "2026-10-10T15:55:02.534147+00:00",
+    "completed_tasks": 156,
+    "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+    "data_complete": false,
+    "finished_at": "2026-10-10T15:55:02.534314+00:00",
+    "id": "1414775f05a5417095237273272b9b16",
+    "pending": [
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "19e02ec092da6c9f432cf8d5f4f10a3398c14058060c9e5929343bc073d1b277",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "818bc9d529a16e4663566e0c89cd4f1a57217afa42d72862366d736d5e4d235c",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "2d89912240363f723531ec7c6d69b6d8a7b16023c5cab7767fc038b7f56f5807",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "5499ba4192549439fa2a070bf07bb16dedb465ec0360d18dce228705fa3cf93d",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "ce792da7c776b503cb9ee3f471fb422d7025cc73adb807eed82f1f9fd242d036",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "8e648c4709825d8e7039364ef209bb7f1c6aef731ef6dfec24f77c9c95912c15",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "a742059a79422c62a79687d303c57f92f23398c80c308337c32268d8a3ce837a",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "5401bc427e406bdb99f8e7d57b1b61ae210a14091289103195ba86336787b839",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "75b6125c7661be3c4b79a610f4f2c12748dbaabaf538c87df4fcc644d9aed3c7",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "9a2f09f629d95171c4a2a27a5dc7afd89bddd81cf0452ee533263d2888f54f80",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "b601affb3cd751adddfd11acebd0b7c6cf0b3bcb35b1bc23a732f36fe7794978",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "b99d56a17d6b6c8596ed7275b8da733c33dc51d4f9f88e872192930708f12c6c",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "6beaa2716eb2b80942d8435c47b4ddafef454be27da1a436b44cac80775a4e23",
+        "key": {
+          "dataset": "funding_events",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "d1fed54c14244efd5ba00a6f203393200e605516de593258c94f1c132de18045",
+        "key": {
+          "dataset": "funding_events",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "8b2d3fddb948eb7b4eef2b5d9c3346f94179abd75329d728027cb1f5c7ad908b",
+        "key": {
+          "dataset": "funding_events",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "e2107a5f866635da906df051c8f0e32e3ab20d5ef7695db62c2992c26dbedfed",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "e6260ae83ede5f3dfdbbbcc51b7eed95daaffd8f8e89cde846e770601b8f08dc",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "93a4b899922bf79dd71f829a6a97b9306d6bbfb1718cb78d080673fd3e19c45b",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-11",
+        "id": "1af03fd71fbbbc7bf2e1aa4cad6061260e142c1104a241df856bc7262aeeb60a",
+        "key": {
+          "dataset": "instrument_metadata",
+          "interval": "event",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "observe",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-11",
+        "id": "bc8bc42aeea4f0c495203bf2422a45b4172487e31c18503899b1dda73ecf55f9",
+        "key": {
+          "dataset": "instrument_metadata",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "observe",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      }
+    ],
+    "processed": [],
+    "publication_observation": {
+      "requests": 0,
+      "state": "disabled"
+    },
+    "review_required": false,
+    "run_outcome": "no_due_tasks",
+    "runner_ok": true,
+    "started_at": "2026-10-10T15:55:02.272387+00:00",
+    "state_counts": {
+      "complete": 156,
+      "planned": 20
+    },
+    "version": 1
+  },
+  "current_collections": {
+    "depth-latest.json": {
+      "bootstrap_messages": 2,
+      "bootstrap_policy": "buffer_before_anchor_v1",
+      "bootstrap_timeout_seconds": 2,
+      "boundary_semantics": "new_snapshot_on_every_connection; no_historical_gap_repair",
+      "complete": false,
+      "connection_errors": 0,
+      "connections": 2,
+      "coverage_check_requests": 0,
+      "coverage_refresh": {
+        "extra_requests": 12,
+        "level_fraction": "0.75",
+        "min_interval_seconds": 1.0,
+        "policy": "bounded_headroom_v1",
+        "price_fraction": "0.25",
+        "scope": "extra checks within this capture; survives resync/reconnect; periodic checks and recovery anchors are separate",
+        "window_seconds": 60.0
+      },
+      "coverage_reset_policy": "same_socket_new_epoch_v1",
+      "coverage_resets": 0,
+      "coverage_top_shortfalls": 0,
+      "dataset": "book_depth",
+      "epochs": [
+        {
+          "end_reason": "rotation",
+          "ended_at": "2026-10-10T15:57:31.954143+00:00",
+          "epoch": 0,
+          "final": {
+            "anchor_history": {
+              "aligned": false,
+              "applied": 0,
+              "events": 0,
+              "first_sequence": null,
+              "last_sequence": null,
+              "levels": 0,
+              "reason": "No snapshot bridge retained in recent history",
+              "serialized_bytes": 0
+            },
+            "book": {
+              "ask_ceiling": "83081.800000000000000000",
+              "asks": [
+                [
+                  "82958.600000000000000000",
+                  "4.166000000000000000"
+                ],
+                [
+                  "82958.700000000000000000",
+                  "0.002000000000000000"
+                ],
+                [
+                  "82958.800000000000000000",
+                  "0.051000000000000000"
+                ],
+                [
+                  "82958.900000000000000000",
+                  "0.156000000000000000"
+                ],
+                [
+                  "82959.000000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82959.100000000000000000",
+                  "0.003000000000000000"
+                ],
+                [
+                  "82959.200000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82959.300000000000000000",
+                  "0.182000000000000000"
+                ],
+                [
+                  "82959.400000000000000000",
+                  "0.004000000000000000"
+                ],
+                [
+                  "82959.500000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82959.600000000000000000",
+                  "0.005000000000000000"
+                ],
+                [
+                  "82959.700000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82960.000000000000000000",
+                  "0.002000000000000000"
+                ],
+                [
+                  "82960.100000000000000000",
+                  "0.018000000000000000"
+                ],
+                [
+                  "82960.300000000000000000",
+                  "0.002000000000000000"
+                ],
+                [
+                  "82960.400000000000000000",
+                  "0.005000000000000000"
+                ],
+                [
+                  "82960.500000000000000000",
+                  "0.026000000000000000"
+                ],
+                [
+                  "82960.800000000000000000",
+                  "0.003000000000000000"
+                ],
+                [
+                  "82960.900000000000000000",
+                  "0.026000000000000000"
+                ],
+                [
+                  "82961.000000000000000000",
+                  "0.002000000000000000"
+                ]
+              ],
+              "bid_floor": "82828.000000000000000000",
+              "bids": [
+                [
+                  "82958.500000000000000000",
+                  "10.435000000000000000"
+                ],
+                [
+                  "82958.400000000000000000",
+                  "0.087000000000000000"
+                ],
+                [
+                  "82958.300000000000000000",
+                  "0.015000000000000000"
+                ],
+                [
+                  "82958.200000000000000000",
+                  "0.007000000000000000"
+                ],
+                [
+                  "82958.100000000000000000",
+                  "0.012000000000000000"
+                ],
+                [
+                  "82957.700000000000000000",
+                  "0.002000000000000000"
+                ],
+                [
+                  "82957.600000000000000000",
+                  "0.080000000000000000"
+                ],
+                [
+                  "82957.500000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82957.400000000000000000",
+                  "0.806000000000000000"
+                ],
+                [
+                  "82957.300000000000000000",
+                  "1.590000000000000000"
+                ],
+                [
+                  "82957.200000000000000000",
+                  "0.004000000000000000"
+                ],
+                [
+                  "82957.100000000000000000",
+                  "0.018000000000000000"
+                ],
+                [
+                  "82957.000000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82956.600000000000000000",
+                  "0.061000000000000000"
+                ],
+                [
+                  "82956.300000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82955.800000000000000000",
+                  "0.061000000000000000"
+                ],
+                [
+                  "82955.500000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82955.300000000000000000",
+                  "0.002000000000000000"
+                ],
+                [
+                  "82955.200000000000000000",
+                  "0.014000000000000000"
+                ],
+                [
+                  "82955.000000000000000000",
+                  "0.065000000000000000"
+                ]
+              ],
+              "book_sha256": "e32b59c8eabe83c8b77948652e8d5ecf5275c2aa425efbf0c15dbf4579f3389a",
+              "known_ask_levels": 993,
+              "known_bid_levels": 1000,
+              "last_update_id": 11783100079165,
+              "synced": true,
+              "timestamp": "2026-10-10T15:57:31.918000+00:00",
+              "top_complete": true,
+              "top_requested": 20
+            },
+            "checks": [
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783035042774,
+                "refreshed": true,
+                "snapshot_sequence": 101,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783035603128,
+                "refreshed": true,
+                "snapshot_sequence": 202,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783036149474,
+                "refreshed": true,
+                "snapshot_sequence": 303,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783036745307,
+                "refreshed": true,
+                "snapshot_sequence": 404,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783037332917,
+                "refreshed": true,
+                "snapshot_sequence": 505,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783038052851,
+                "refreshed": true,
+                "snapshot_sequence": 606,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783038554206,
+                "refreshed": true,
+                "snapshot_sequence": 707,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783039407057,
+                "refreshed": true,
+                "snapshot_sequence": 808,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783040141785,
+                "refreshed": true,
+                "snapshot_sequence": 909,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783041037297,
+                "refreshed": true,
+                "snapshot_sequence": 1011,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783041688226,
+                "refreshed": true,
+                "snapshot_sequence": 1112,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783042286514,
+                "refreshed": true,
+                "snapshot_sequence": 1213,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783042801638,
+                "refreshed": true,
+                "snapshot_sequence": 1314,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783043341761,
+                "refreshed": true,
+                "snapshot_sequence": 1415,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783044317009,
+                "refreshed": true,
+                "snapshot_sequence": 1516,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783045029349,
+                "refreshed": true,
+                "snapshot_sequence": 1617,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783045771189,
+                "refreshed": true,
+                "snapshot_sequence": 1718,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783046811709,
+                "refreshed": true,
+                "snapshot_sequence": 1819,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783047526826,
+                "refreshed": true,
+                "snapshot_sequence": 1920,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783048482883,
+                "refreshed": true,
+                "snapshot_sequence": 2021,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783049689853,
+                "refreshed": true,
+                "snapshot_sequence": 2122,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783050483271,
+                "refreshed": true,
+                "snapshot_sequence": 2223,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783051222460,
+                "refreshed": true,
+                "snapshot_sequence": 2324,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783052140714,
+                "refreshed": true,
+                "snapshot_sequence": 2425,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783052821116,
+                "refreshed": true,
+                "snapshot_sequence": 2526,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783053366154,
+                "refreshed": true,
+                "snapshot_sequence": 2627,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783054060418,
+                "refreshed": true,
+                "snapshot_sequence": 2728,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783054798057,
+                "refreshed": true,
+                "snapshot_sequence": 2829,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783055549091,
+                "refreshed": true,
+                "snapshot_sequence": 2930,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783056223042,
+                "refreshed": true,
+                "snapshot_sequence": 3031,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783056796672,
+                "refreshed": true,
+                "snapshot_sequence": 3132,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783057421443,
+                "refreshed": true,
+                "snapshot_sequence": 3233,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783058228301,
+                "refreshed": true,
+                "snapshot_sequence": 3334,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783058917463,
+                "refreshed": true,
+                "snapshot_sequence": 3435,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783059916337,
+                "refreshed": true,
+                "snapshot_sequence": 3536,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783060496242,
+                "refreshed": true,
+                "snapshot_sequence": 3637,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783061071078,
+                "refreshed": true,
+                "snapshot_sequence": 3738,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783061639827,
+                "refreshed": true,
+                "snapshot_sequence": 3839,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783062381309,
+                "refreshed": true,
+                "snapshot_sequence": 3940,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783063215774,
+                "refreshed": true,
+                "snapshot_sequence": 4041,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783063850440,
+                "refreshed": true,
+                "snapshot_sequence": 4142,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783064663352,
+                "refreshed": true,
+                "snapshot_sequence": 4243,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783065206488,
+                "refreshed": true,
+                "snapshot_sequence": 4344,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783065938652,
+                "refreshed": true,
+                "snapshot_sequence": 4445,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783066712548,
+                "refreshed": true,
+                "snapshot_sequence": 4546,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783067388901,
+                "refreshed": true,
+                "snapshot_sequence": 4647,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783068086102,
+                "refreshed": true,
+                "snapshot_sequence": 4748,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783068793761,
+                "refreshed": true,
+                "snapshot_sequence": 4849,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783069425082,
+                "refreshed": true,
+                "snapshot_sequence": 4950,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783070059609,
+                "refreshed": true,
+                "snapshot_sequence": 5051,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783070824072,
+                "refreshed": true,
+                "snapshot_sequence": 5152,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783071499646,
+                "refreshed": true,
+                "snapshot_sequence": 5253,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783072586947,
+                "refreshed": true,
+                "snapshot_sequence": 5304,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783073215388,
+                "refreshed": true,
+                "snapshot_sequence": 5526,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783073850486,
+                "refreshed": true,
+                "snapshot_sequence": 5627,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783074513241,
+                "refreshed": true,
+                "snapshot_sequence": 5728,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783075179504,
+                "refreshed": true,
+                "snapshot_sequence": 5829,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783075800761,
+                "refreshed": true,
+                "snapshot_sequence": 5930,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783076429099,
+                "refreshed": true,
+                "snapshot_sequence": 6031,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783077180217,
+                "refreshed": true,
+                "snapshot_sequence": 6132,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783077839050,
+                "refreshed": true,
+                "snapshot_sequence": 6233,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783078834922,
+                "refreshed": true,
+                "snapshot_sequence": 6334,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783079867591,
+                "refreshed": true,
+                "snapshot_sequence": 6435,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783080810713,
+                "refreshed": true,
+                "snapshot_sequence": 6536,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783081445322,
+                "refreshed": true,
+                "snapshot_sequence": 6637,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783082278236,
+                "refreshed": true,
+                "snapshot_sequence": 6738,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783083029215,
+                "refreshed": true,
+                "snapshot_sequence": 6839,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783083719564,
+                "refreshed": true,
+                "snapshot_sequence": 6940,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783084438221,
+                "refreshed": true,
+                "snapshot_sequence": 7041,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783085203149,
+                "refreshed": true,
+                "snapshot_sequence": 7142,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783086026837,
+                "refreshed": true,
+                "snapshot_sequence": 7243,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783086771640,
+                "refreshed": true,
+                "snapshot_sequence": 7344,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783087581752,
+                "refreshed": true,
+                "snapshot_sequence": 7445,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783088236371,
+                "refreshed": true,
+                "snapshot_sequence": 7546,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783088995268,
+                "refreshed": true,
+                "snapshot_sequence": 7647,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783090650859,
+                "refreshed": true,
+                "snapshot_sequence": 7748,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783091641463,
+                "refreshed": true,
+                "snapshot_sequence": 7849,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783092373831,
+                "refreshed": true,
+                "snapshot_sequence": 7950,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783093340503,
+                "refreshed": true,
+                "snapshot_sequence": 8051,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783094512914,
+                "refreshed": true,
+                "snapshot_sequence": 8152,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783095481943,
+                "refreshed": true,
+                "snapshot_sequence": 8253,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783096142355,
+                "refreshed": true,
+                "snapshot_sequence": 8354,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783096745696,
+                "refreshed": true,
+                "snapshot_sequence": 8455,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783097313639,
+                "refreshed": true,
+                "snapshot_sequence": 8556,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783098230687,
+                "refreshed": true,
+                "snapshot_sequence": 8657,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783099154038,
+                "refreshed": true,
+                "snapshot_sequence": 8758,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783099797208,
+                "refreshed": true,
+                "snapshot_sequence": 8859,
+                "top": 20
+              }
+            ],
+            "counts": {
+              "applied": 8823,
+              "duplicate": 0,
+              "stale": 1
+            },
+            "error": null,
+            "pending_check_sequence": null,
+            "refreshes": 87
+          },
+          "reason": "initial",
+          "started_at": "2026-10-10T15:42:31.899530+00:00"
+        },
+        {
+          "epoch": 1,
+          "final": {
+            "anchor_history": {
+              "aligned": false,
+              "applied": 0,
+              "events": 0,
+              "first_sequence": null,
+              "last_sequence": null,
+              "levels": 0,
+              "reason": "No snapshot bridge retained in recent history",
+              "serialized_bytes": 0
+            },
+            "book": {
+              "ask_ceiling": "83090.200000000000000000",
+              "asks": [
+                [
+                  "82992.400000000000000000",
+                  "7.039000000000000000"
+                ],
+                [
+                  "82992.500000000000000000",
+                  "0.004000000000000000"
+                ],
+                [
+                  "82992.600000000000000000",
+                  "0.004000000000000000"
+                ],
+                [
+                  "82993.400000000000000000",
+                  "0.082000000000000000"
+                ],
+                [
+                  "82993.500000000000000000",
+                  "0.041000000000000000"
+                ],
+                [
+                  "82993.600000000000000000",
+                  "0.119000000000000000"
+                ],
+                [
+                  "82993.800000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82993.900000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82994.100000000000000000",
+                  "0.021000000000000000"
+                ],
+                [
+                  "82994.200000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82994.300000000000000000",
+                  "0.013000000000000000"
+                ],
+                [
+                  "82994.500000000000000000",
+                  "0.009000000000000000"
+                ],
+                [
+                  "82994.800000000000000000",
+                  "0.003000000000000000"
+                ],
+                [
+                  "82994.900000000000000000",
+                  "0.027000000000000000"
+                ],
+                [
+                  "82995.000000000000000000",
+                  "0.002000000000000000"
+                ],
+                [
+                  "82995.200000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82995.400000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82995.500000000000000000",
+                  "0.061000000000000000"
+                ],
+                [
+                  "82995.700000000000000000",
+                  "0.002000000000000000"
+                ],
+                [
+                  "82995.900000000000000000",
+                  "0.004000000000000000"
+                ]
+              ],
+              "bid_floor": "82833.800000000000000000",
+              "bids": [
+                [
+                  "82992.300000000000000000",
+                  "20.145000000000000000"
+                ],
+                [
+                  "82992.200000000000000000",
+                  "1.420000000000000000"
+                ],
+                [
+                  "82992.100000000000000000",
+                  "0.003000000000000000"
+                ],
+                [
+                  "82991.900000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82991.200000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82991.100000000000000000",
+                  "0.065000000000000000"
+                ],
+                [
+                  "82990.900000000000000000",
+                  "0.019000000000000000"
+                ],
+                [
+                  "82990.600000000000000000",
+                  "0.199000000000000000"
+                ],
+                [
+                  "82990.000000000000000000",
+                  "0.006000000000000000"
+                ],
+                [
+                  "82989.900000000000000000",
+                  "0.026000000000000000"
+                ],
+                [
+                  "82989.500000000000000000",
+                  "0.006000000000000000"
+                ],
+                [
+                  "82989.400000000000000000",
+                  "0.002000000000000000"
+                ],
+                [
+                  "82989.200000000000000000",
+                  "0.026000000000000000"
+                ],
+                [
+                  "82989.100000000000000000",
+                  "0.061000000000000000"
+                ],
+                [
+                  "82988.800000000000000000",
+                  "0.001000000000000000"
+                ],
+                [
+                  "82988.300000000000000000",
+                  "0.006000000000000000"
+                ],
+                [
+                  "82988.200000000000000000",
+                  "0.002000000000000000"
+                ],
+                [
+                  "82988.100000000000000000",
+                  "1.002000000000000000"
+                ],
+                [
+                  "82987.900000000000000000",
+                  "0.098000000000000000"
+                ],
+                [
+                  "82987.800000000000000000",
+                  "0.428000000000000000"
+                ]
+              ],
+              "book_sha256": "1e7b9db48d2740bb35692f4e17c6449d931556843236f2f8fbe7403fe6681d5d",
+              "known_ask_levels": 807,
+              "known_bid_levels": 1145,
+              "last_update_id": 11783106677103,
+              "synced": true,
+              "timestamp": "2026-10-10T15:59:05.858000+00:00",
+              "top_complete": true,
+              "top_requested": 20
+            },
+            "checks": [
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783100846366,
+                "refreshed": true,
+                "snapshot_sequence": 9013,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783101547556,
+                "refreshed": true,
+                "snapshot_sequence": 9114,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783102279763,
+                "refreshed": true,
+                "snapshot_sequence": 9215,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783102983992,
+                "refreshed": true,
+                "snapshot_sequence": 9316,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783103581110,
+                "refreshed": true,
+                "snapshot_sequence": 9417,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783104197950,
+                "refreshed": true,
+                "snapshot_sequence": 9518,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783104884853,
+                "refreshed": true,
+                "snapshot_sequence": 9619,
+                "top": 20
+              },
+              {
+                "comparable": true,
+                "equal": true,
+                "last_update_id": 11783105465070,
+                "refreshed": true,
+                "snapshot_sequence": 9720,
+                "top": 20
+              }
+            ],
+            "counts": {
+              "applied": 899,
+              "duplicate": 0,
+              "stale": 1
+            },
+            "error": null,
+            "pending_check_sequence": null,
+            "refreshes": 8
+          },
+          "reason": "planned_rotation",
+          "started_at": "2026-10-10T15:57:34.115175+00:00"
+        }
+      ],
+      "errors": [],
+      "flush_seconds": 5,
+      "history_limits": {
+        "events": 128,
+        "levels": 50000,
+        "serialized_bytes": 8388608
+      },
+      "history_policy": "bounded_same_socket_v1",
+      "id": "93ffb96de11f468ab052dea734aed13d",
+      "kind": "websocket",
+      "lagged_retry_budget": {
+        "max_requests": 8,
+        "scope": "retry anchor calls within this capture; survives resync/reconnect",
+        "window_seconds": 60
+      },
+      "lagged_retry_delays_seconds": [
+        1,
+        2,
+        4,
+        8,
+        10
+      ],
+      "lagged_retry_policy": "same_socket_backoff_v1",
+      "lagged_retry_requests": 0,
+      "lagged_snapshot_policy": "retain_unsynchronized_updates_v1",
+      "lagged_snapshots": 0,
+      "last_received_at": "2026-10-10T15:59:05.894431+00:00",
+      "last_update_id": 11783106677103,
+      "messages": 9724,
+      "periodic_check_requests": 95,
+      "persisted_messages": 9724,
+      "recent_coverage_checks": [
+        {
+          "action": "request",
+          "age_seconds": 10.115512019983726,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1020,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "123.700000000000000000",
+                "snapshot_price_span": "123.700000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1007,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "133.200000000000000000",
+                "snapshot_price_span": "133.200000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:53:32.096628+00:00",
+          "sequence": 6536,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.096661218005465,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 999,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "121.200000000000000000",
+                "snapshot_price_span": "121.200000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1001,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "132.300000000000000000",
+                "snapshot_price_span": "132.300000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:53:42.282272+00:00",
+          "sequence": 6637,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.130126940988703,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1008,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "121.300000000000000000",
+                "snapshot_price_span": "121.300000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1003,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "132.300000000000000000",
+                "snapshot_price_span": "132.300000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:53:52.485907+00:00",
+          "sequence": 6738,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.115579805977177,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 994,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "120.300000000000000000",
+                "snapshot_price_span": "120.300000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 997,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "131.400000000000000000",
+                "snapshot_price_span": "131.400000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:54:02.680721+00:00",
+          "sequence": 6839,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.115604391001398,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1004,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "121.000000000000000000",
+                "snapshot_price_span": "121.000000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1003,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "132.100000000000000000",
+                "snapshot_price_span": "132.100000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:54:12.878100+00:00",
+          "sequence": 6940,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.1282155100198,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 996,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "120.800000000000000000",
+                "snapshot_price_span": "120.800000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 991,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "131.500000000000000000",
+                "snapshot_price_span": "131.500000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:54:23.083765+00:00",
+          "sequence": 7041,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.132710230973316,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1006,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "121.100000000000000000",
+                "snapshot_price_span": "121.100000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1003,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "133.100000000000000000",
+                "snapshot_price_span": "133.100000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:54:33.296339+00:00",
+          "sequence": 7142,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.07955131601193,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1082,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "132.900000000000000000",
+                "snapshot_price_span": "120.400000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 943,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "120.300000000000000000",
+                "snapshot_price_span": "132.800000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:54:43.493271+00:00",
+          "sequence": 7243,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.117419754009461,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1022,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "123.900000000000000000",
+                "snapshot_price_span": "122.300000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 988,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "128.400000000000000000",
+                "snapshot_price_span": "130.000000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:54:53.690171+00:00",
+          "sequence": 7344,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.128436836996116,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1031,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "125.800000000000000000",
+                "snapshot_price_span": "121.100000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 980,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "125.400000000000000000",
+                "snapshot_price_span": "130.100000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:55:03.893749+00:00",
+          "sequence": 7445,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.116705838998314,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1003,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "121.700000000000000000",
+                "snapshot_price_span": "121.700000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1000,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "128.100000000000000000",
+                "snapshot_price_span": "128.100000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:55:14.085306+00:00",
+          "sequence": 7546,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.13349605599069,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 998,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "121.600000000000000000",
+                "snapshot_price_span": "121.600000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 998,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "128.100000000000000000",
+                "snapshot_price_span": "128.100000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:55:24.298480+00:00",
+          "sequence": 7647,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.211442589003127,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 854,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "104.100000000000000000",
+                "snapshot_price_span": "121.700000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1093,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "145.700000000000000000",
+                "snapshot_price_span": "128.100000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:55:34.591078+00:00",
+          "sequence": 7748,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.051150507002603,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1080,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "137.400000000000000000",
+                "snapshot_price_span": "125.700000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 908,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "120.700000000000000000",
+                "snapshot_price_span": "132.400000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:55:44.722438+00:00",
+          "sequence": 7849,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.102158655005042,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1047,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "132.000000000000000000",
+                "snapshot_price_span": "126.900000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 988,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "125.900000000000000000",
+                "snapshot_price_span": "131.000000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:55:54.903618+00:00",
+          "sequence": 7950,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.115818784019211,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1072,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "134.200000000000000000",
+                "snapshot_price_span": "125.000000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 935,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "119.000000000000000000",
+                "snapshot_price_span": "128.200000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:56:05.106259+00:00",
+          "sequence": 8051,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.110802906012395,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1012,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "129.300000000000000000",
+                "snapshot_price_span": "123.600000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 950,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "123.100000000000000000",
+                "snapshot_price_span": "128.800000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:56:15.295236+00:00",
+          "sequence": 8152,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.107722804998048,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1008,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "127.800000000000000000",
+                "snapshot_price_span": "127.800000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 992,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "131.400000000000000000",
+                "snapshot_price_span": "131.400000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:56:25.482438+00:00",
+          "sequence": 8253,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.117560919985408,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1000,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "126.800000000000000000",
+                "snapshot_price_span": "126.800000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1007,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "132.900000000000000000",
+                "snapshot_price_span": "132.900000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:56:35.676421+00:00",
+          "sequence": 8354,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.064496150007471,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1002,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "126.300000000000000000",
+                "snapshot_price_span": "126.300000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 998,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "131.500000000000000000",
+                "snapshot_price_span": "131.500000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:56:45.892923+00:00",
+          "sequence": 8455,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.12794499399024,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 992,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "126.000000000000000000",
+                "snapshot_price_span": "126.000000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1004,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "131.900000000000000000",
+                "snapshot_price_span": "131.900000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:56:56.094343+00:00",
+          "sequence": 8556,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.131843208015198,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 996,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "126.400000000000000000",
+                "snapshot_price_span": "127.300000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1014,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "132.200000000000000000",
+                "snapshot_price_span": "131.300000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:57:06.301073+00:00",
+          "sequence": 8657,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.121656160015846,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 961,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "118.900000000000000000",
+                "snapshot_price_span": "126.500000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1049,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "137.600000000000000000",
+                "snapshot_price_span": "130.000000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:57:16.497638+00:00",
+          "sequence": 8758,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.116263000003528,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 0,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1006,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "123.900000000000000000",
+                "snapshot_price_span": "123.900000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 997,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "129.800000000000000000",
+                "snapshot_price_span": "129.800000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:57:26.689309+00:00",
+          "sequence": 8859,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.036185084987665,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 1,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1009,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "123.800000000000000000",
+                "snapshot_price_span": "123.800000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1003,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "130.700000000000000000",
+                "snapshot_price_span": "130.700000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:57:44.331220+00:00",
+          "sequence": 9013,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.112766433012439,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 1,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 989,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "122.800000000000000000",
+                "snapshot_price_span": "122.800000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 997,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "130.300000000000000000",
+                "snapshot_price_span": "130.300000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:57:54.536796+00:00",
+          "sequence": 9114,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.101423690008232,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 1,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1001,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "123.900000000000000000",
+                "snapshot_price_span": "123.900000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1003,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "130.500000000000000000",
+                "snapshot_price_span": "130.500000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:58:04.737519+00:00",
+          "sequence": 9215,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.12181745300768,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 1,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 1003,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "123.800000000000000000",
+                "snapshot_price_span": "123.800000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1002,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "130.100000000000000000",
+                "snapshot_price_span": "130.100000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:58:14.936993+00:00",
+          "sequence": 9316,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.10861965001095,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 1,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 992,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "123.500000000000000000",
+                "snapshot_price_span": "123.500000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 996,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "129.800000000000000000",
+                "snapshot_price_span": "129.800000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:58:25.122573+00:00",
+          "sequence": 9417,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.134529636008665,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 1,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 998,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "124.500000000000000000",
+                "snapshot_price_span": "124.500000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1007,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "130.300000000000000000",
+                "snapshot_price_span": "130.300000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:58:35.329977+00:00",
+          "sequence": 9518,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.119621035992168,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 1,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 997,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "124.500000000000000000",
+                "snapshot_price_span": "124.500000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 995,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "128.800000000000000000",
+                "snapshot_price_span": "128.800000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:58:45.522018+00:00",
+          "sequence": 9619,
+          "trigger": "periodic"
+        },
+        {
+          "action": "request",
+          "age_seconds": 10.100418424990494,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "budget_after_claim": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 1,
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 952,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "118.800000000000000000",
+                "snapshot_price_span": "124.700000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1027,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "135.600000000000000000",
+                "snapshot_price_span": "129.700000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "reason": "periodic",
+          "requested_at": "2026-10-10T15:58:55.750134+00:00",
+          "sequence": 9720,
+          "trigger": "periodic"
+        }
+      ],
+      "refresh_decisions": {
+        "blocker_counts": {},
+        "count_semantics": "one terminal assessment per check_coverage invocation; deferred evaluations are neither HTTP calls nor unique outage episodes",
+        "deferred_evaluations": 0,
+        "evaluations": 9723,
+        "first_by_reason": {},
+        "last": {
+          "action": "request",
+          "after_sequence": 9719,
+          "age_seconds": 10.100418424990494,
+          "blockers": [],
+          "budget": {
+            "extra_limit": 12,
+            "extra_used": 0,
+            "oldest_extra_expires_in_seconds": null
+          },
+          "epoch": 1,
+          "evaluated_at": "2026-10-10T15:58:55.750130+00:00",
+          "headroom": {
+            "low": false,
+            "sides": {
+              "asks": {
+                "level_threshold": 750,
+                "levels": 952,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "118.800000000000000000",
+                "snapshot_price_span": "124.700000000000000000"
+              },
+              "bids": {
+                "level_threshold": 750,
+                "levels": 1027,
+                "low_levels": false,
+                "low_price_room": false,
+                "price_room": "135.600000000000000000",
+                "snapshot_price_span": "129.700000000000000000"
+              }
+            },
+            "top_complete": true
+          },
+          "phase": "after_flush",
+          "reason": "periodic",
+          "trigger": "periodic"
+        },
+        "last_by_reason": {},
+        "policy": "coverage_decisions_v1",
+        "primary_reason_counts": {},
+        "recent_deferrals": []
+      },
+      "refresh_from_checks": true,
+      "rotate_seconds": 900,
+      "runtime_clock": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_id": "d99321d14f8f46a3950a76cdc0854da5",
+        "collection_start": {
+          "boottime_ns": 174689719584216,
+          "monotonic_ns": 174689719583644,
+          "sampling_span_ns": 1623,
+          "wall_ns": 1791646951761765577
+        },
+        "policy_version": "reference-freshness-v2",
+        "run_id": "9415ca491ca34ddfb75b1ec7cfeb4e8e",
+        "schema": 2,
+        "stream": "depth"
+      },
+      "scope": "BTCUSDT USD-M non-RPI depth; known snapshot price range only",
+      "seconds_requested": 3600,
+      "snapshots": 97,
+      "started_at": "2026-10-10T15:42:31.761643+00:00",
+      "state": "running",
+      "sync_losses": 0,
+      "synchronized": true,
+      "top": 20,
+      "unreconstructed_messages": 0,
+      "updated_at": "2026-10-10T15:59:05.954351+00:00",
+      "verify_seconds": 10
+    },
+    "aggtrade-latest.json": {
+      "boundary_semantics": "first_session_start_and_final_stop_are_not_complete_time_windows",
+      "complete": false,
+      "connection_errors": 0,
+      "connections": 1,
+      "detected_gaps": 1,
+      "duplicate_messages": 0,
+      "fresh_start": false,
+      "id": "90d005c55ad344f3a788a8956d6b2f79",
+      "kind": "websocket",
+      "last_id": 3481123899,
+      "last_received_at": "2026-10-10T15:59:06.792958+00:00",
+      "last_trade_time": "2026-10-10T15:59:06.609000+00:00",
+      "messages": 4051,
+      "out_of_order_messages": 0,
+      "persisted_messages": 4051,
+      "previous_persisted_id": 3481119785,
+      "recent_errors": [],
+      "recent_recoveries": [
+        {
+          "collection_id": "3228812743ed4786bcb0fb1c3ed4f1cd",
+          "complete": true,
+          "first_id": 3481119786,
+          "last_id": 3481119848
+        }
+      ],
+      "repaired_gaps": 1,
+      "resume_after_id": 3481119785,
+      "rotations": 0,
+      "runtime_clock": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_id": "25ffffe4415e4d91a9a9f9486b9e3875",
+        "collection_start": {
+          "boottime_ns": 174804081481551,
+          "monotonic_ns": 174804081480589,
+          "sampling_span_ns": 2245,
+          "wall_ns": 1791647066123662572
+        },
+        "policy_version": "reference-freshness-v2",
+        "run_id": "87dddac11b184080b5b5d75a4f167db4",
+        "schema": 2,
+        "stream": "aggtrade"
+      },
+      "seconds_requested": 3600,
+      "started_at": "2026-10-10T15:44:26.123551+00:00",
+      "state": "running",
+      "timestamp_semantics": "application_recv_return_not_wire_arrival",
+      "uncollected_before_start": null,
+      "unrepaired_gaps": 0,
+      "updated_at": "2026-10-10T15:59:07.798074+00:00"
+    }
+  }
+}

@@ -1,0 +1,1968 @@
+--- /dev/null
++++ b/packages/marketdata/src/marketdata/daily_schedule.py
+@@ -0,0 +1,940 @@
++"""Durable, per-key/day daily acquisition. This module never changes services or clocks."""
++
++import argparse
++import fcntl
++import json
++import math
++import signal
++import sqlite3
++import tomllib
++import uuid
++from contextlib import contextmanager
++from dataclasses import asdict, dataclass
++from datetime import datetime, timedelta
++from email.utils import parsedate_to_datetime
++from pathlib import Path
++from urllib.parse import urlsplit
++from zoneinfo import ZoneInfo
++
++import httpx
++
++from .binance import Fetcher, SourceError, archive_url
++from .domain import DAY, ConflictError, DataError, Key, WriterBusy, json_bytes, now, sha256, utc
++from .operations import SyncPolicy, inventory, midnight, register_target, scope_start, window_end
++from .pipeline import Collector
++from .schema import economic_row, row_key
++from .store import Store, atomic_write
++
++VERSION = 1
++KST = ZoneInfo("Asia/Seoul")
++TERMINAL = {"complete", "needs_review", "missed_observation"}
++TABLES = {"daily_tasks", "daily_attempts", "daily_cooldowns", "daily_runs", "daily_probe_targets"}
++
++
++@dataclass(frozen=True)
++class Schedule:
++    noon: str = "12:20"
++    evening: str = "18:00"
++    retry_slots: tuple = ("20:00", "22:00")
++    transient_delay_seconds: int = 300
++    transient_attempts: int = 3
++    validation_attempts: int = 2
++    cooldown_seconds: int = 900
++    old_missing_days: int = 3
++    max_tasks: int = 32
++
++    def __post_init__(self):
++        if not self.retry_slots:
++            raise DataError("At least one delayed retry slot is required")
++        for value in (self.noon, self.evening, *self.retry_slots):
++            try:
++                if datetime.strptime(value, "%H:%M").strftime("%H:%M") != value:
++                    raise ValueError()
++            except (ValueError, TypeError) as exc:
++                raise DataError("Schedule expects HH:MM KST") from exc
++        if not self.noon < self.evening < min(self.retry_slots):
++            raise DataError("Expected noon < evening < retries")
++        if tuple(sorted(set(self.retry_slots))) != tuple(self.retry_slots):
++            raise DataError("Retry slots must be distinct and ascending")
++        for name in (
++            "transient_delay_seconds",
++            "transient_attempts",
++            "validation_attempts",
++            "cooldown_seconds",
++            "old_missing_days",
++            "max_tasks",
++        ):
++            if type(getattr(self, name)) is not int or getattr(self, name) < 1:
++                raise DataError(f"Invalid schedule {name}")
++        if self.max_tasks > 256:
++            raise DataError("max_tasks exceeds bounded run limit")
++
++    def first(self, key):
++        return (
++            self.noon
++            if key.market == "spot" or key.dataset in {"funding_events", "instrument_metadata"}
++            else self.evening
++        )
++
++    def at(self, local_day, clock):
++        return utc(datetime.fromisoformat(f"{local_day}T{clock}").replace(tzinfo=KST))
++
++    def eligible(self, key, data_day):
++        return self.at((utc(data_day) + DAY).date().isoformat(), self.first(key))
++
++    def later_slot(self, key, current, *, old=False):
++        current = utc(current)
++        local_day = current.astimezone(KST).date()
++        if not old:
++            for clock in (self.first(key), *self.retry_slots):
++                value = self.at(local_day.isoformat(), clock)
++                if value > current:
++                    return value
++        return self.at((local_day + DAY).isoformat(), self.first(key))
++
++
++def load_config(path):
++    data = tomllib.loads(Path(path).read_text())
++    keys = [Key(**entry) for entry in data["datasets"]]
++    if not keys or len({k.id for k in keys}) != len(keys):
++        raise DataError("Expected distinct configured keys")
++    if any(k.dataset == "open_interest" and k.series != "archive" for k in keys):
++        raise DataError("Live REST OI is outside daily scheduler scope")
++    policy = SyncPolicy(**data.get("operations", {}))
++    schedule = Schedule(**data.get("schedule", {}))
++    return keys, policy, schedule
++
++
++def fingerprint(rows, key):
++    return sha256(
++        json_bytes([economic_row(r) for r in sorted(rows, key=lambda r: row_key(r, key))])
++    )
++
++
++class Ledger:
++    def __init__(self, store):
++        self.store = store
++
++    @contextmanager
++    def exclusive(self):
++        with (self.store.root / "state/daily-scheduler.lock").open("a") as handle:
++            try:
++                fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
++            except BlockingIOError as exc:
++                raise WriterBusy("Another daily scheduler is running") from exc
++            try:
++                with self.store.writer(timeout=5):
++                    self.store.db.executescript("""
++                        CREATE TABLE IF NOT EXISTS daily_tasks (
++                            id TEXT PRIMARY KEY, record TEXT NOT NULL);
++                        CREATE TABLE IF NOT EXISTS daily_attempts (
++                            id TEXT PRIMARY KEY, record TEXT NOT NULL);
++                        CREATE TABLE IF NOT EXISTS daily_cooldowns (
++                            id TEXT PRIMARY KEY, record TEXT NOT NULL);
++                        CREATE TABLE IF NOT EXISTS daily_runs (
++                            id TEXT PRIMARY KEY, record TEXT NOT NULL);
++                        CREATE TABLE IF NOT EXISTS daily_probe_targets (
++                            id TEXT PRIMARY KEY, record TEXT NOT NULL);
++                    """)
++                yield
++            finally:
++                fcntl.flock(handle, fcntl.LOCK_UN)
++
++    def rows(self, table):
++        if table not in TABLES:
++            raise DataError("Invalid ledger table")
++        return [json.loads(r[0]) for r in self.store.db.execute(f"SELECT record FROM {table}")]
++
++    def save(self, table, record):
++        self.save_many([(table, record)])
++
++    def save_many(self, records):
++        with self.store.writer(timeout=5), self.store.db:
++            for table, record in records:
++                if table not in TABLES:
++                    raise DataError("Invalid ledger table")
++                self.store.db.execute(
++                    f"INSERT INTO {table} VALUES(?,?) ON CONFLICT(id) DO UPDATE SET record=excluded.record",
++                    (record["id"], json_bytes(record).decode()),
++                )
++
++
++class AuditedClient:
++    """Record intent before each HTTP attempt; 429/418 never get an immediate retry."""
++
++    def __init__(self, client, scheduler, attempt):
++        self.client, self.scheduler, self.attempt = client, scheduler, attempt
++
++    @contextmanager
++    def stream(self, method, url):
++        scheduler, attempt = self.scheduler, self.attempt
++        scheduler.check_cooldown(url)
++        record = {
++            "url": str(url),
++            "started_at": scheduler.clock(),
++            "status": None,
++            "outcome": "request_outcome_unknown",
++        }
++        attempt["requests"].append(record)
++        scheduler.ledger.save("daily_attempts", attempt)
++        try:
++            with self.client.stream(method, url) as response:
++                record.update(
++                    status=response.status_code,
++                    headers=dict(response.headers),
++                    outcome="response_headers_received",
++                    received_at=scheduler.clock(),
++                )
++                scheduler.ledger.save("daily_attempts", attempt)
++                if response.status_code in {429, 418}:
++                    scheduler.cooldown(url, response.headers)
++                    body = b""
++                    for chunk in response.iter_bytes():
++                        body += chunk[: max(0, 8192 - len(body))]
++                        if len(body) >= 8192:
++                            break
++                    raise SourceError(
++                        "Server cooldown",
++                        response.status_code,
++                        body,
++                        str(url),
++                        dict(response.headers),
++                    )
++                yield response
++                record["outcome"] = "response_consumed"
++        except httpx.TransportError as exc:
++            record.update(outcome="transport_error", error=str(exc))
++            raise
++        finally:
++            scheduler.ledger.save("daily_attempts", attempt)
++
++
++class RecordingCollector(Collector):
++    def __init__(self, scheduler, attempt, fetcher):
++        super().__init__(scheduler.store, fetcher, cooperative=True)
++        self.scheduler, self.attempt = scheduler, attempt
++
++    def _save_response(self, response, kind):
++        identity = super()._save_response(response, kind)
++        self.attempt["inputs"].append(
++            {"id": identity, "url": response.url, "kind": kind, "received_at": response.received_at}
++        )
++        self.scheduler.ledger.save("daily_attempts", self.attempt)
++        return identity
++
++    def _publish(self, key, batch, start, end, source_id, **options):
++        lower, upper = start, end
++        if key.dataset == "instrument_metadata":
++            lower = min(r["timestamp"] for r in batch.rows)
++            upper = max(r["timestamp"] for r in batch.rows) + timedelta(microseconds=1)
++        self.attempt["publish_intent"] = {
++            "key": key.asdict(),
++            "start": start,
++            "end": end,
++            "source_id": source_id,
++            "row_start": lower,
++            "row_end": upper,
++            "row_count": len(batch.rows),
++            "economic_sha256": fingerprint(batch.rows, key),
++        }
++        self.scheduler.ledger.save("daily_attempts", self.attempt)
++        result = super()._publish(key, batch, start, end, source_id, **options)
++        self.scheduler.fault("after_publish", self.attempt)
++        return result
++
++
++class Scheduler:
++    def __init__(
++        self,
++        store,
++        keys,
++        policy,
++        schedule=None,
++        *,
++        client=None,
++        clock=now,
++        sleep=None,
++        fault=None,
++        readiness=None,
++    ):
++        self.store, self.keys, self.policy = store, keys, policy
++        self.schedule = schedule or Schedule()
++        self.ledger = Ledger(store)
++        self.clock = clock
++        self.client = client or httpx.Client(timeout=30, follow_redirects=False)
++        self.owns_client = client is None
++        self.sleep = sleep
++        self.fault = fault or (lambda phase, attempt: None)
++        self.readiness = readiness
++        self.request_windows = {}
++        self.config_hash = sha256(
++            json_bytes(
++                {
++                    "keys": [k.asdict() for k in keys],
++                    "policy": asdict(policy),
++                    "schedule": asdict(self.schedule),
++                    "version": VERSION,
++                }
++            )
++        )
++
++    def close(self):
++        if self.owns_client:
++            self.client.close()
++
++    def check_cooldown(self, url):
++        host = urlsplit(str(url)).hostname
++        for row in self.ledger.rows("daily_cooldowns"):
++            if row["id"] == host and utc(row["until"]) > self.clock():
++                raise SourceError(
++                    "Persisted host cooldown",
++                    status=429,
++                    url=str(url),
++                    headers={
++                        "retry-after": str((utc(row["until"]) - self.clock()).total_seconds())
++                    },
++                )
++
++    def cooldown(self, url, headers):
++        current = self.clock()
++        delay = self.schedule.cooldown_seconds
++        value = headers.get("retry-after")
++        if value:
++            try:
++                delay = max(delay, float(value))
++            except ValueError:
++                try:
++                    delay = max(
++                        delay, (utc(parsedate_to_datetime(value)) - current).total_seconds()
++                    )
++                except (ValueError, TypeError, OverflowError):
++                    pass
++        if not math.isfinite(delay) or delay > 86400 * 365:
++            raise DataError("Invalid or excessive Retry-After; operator review required")
++        until = current + timedelta(seconds=delay)
++        host = urlsplit(str(url)).hostname
++        for old in self.ledger.rows("daily_cooldowns"):
++            if old["id"] == host:
++                until = max(until, utc(old["until"]))
++        self.ledger.save(
++            "daily_cooldowns",
++            {"id": host, "until": until, "observed_at": current, "headers": dict(headers)},
++        )
++        return until
++
++    def proof(self, key, day, intent=None):
++        """Only this task's raw/query/canonical evidence is checked, not the whole store."""
++        start, end = utc(day), utc(day) + DAY
++        if intent:
++            start, end = utc(intent["start"]), utc(intent["end"])
++        with self.store.writer(timeout=5):
++            coverage = inventory(self.store, key, start, end)
++            if key.dataset != "instrument_metadata" and not coverage["complete"]:
++                return None
++            if coverage["blocked_days"]:
++                return None
++            queries = [
++                dict(r)
++                for r in self.store.db.execute(
++                    "SELECT * FROM queries WHERE key_id=? AND start<=? AND end>=?",
++                    (key.id, start.isoformat(), end.isoformat()),
++                )
++            ]
++            if intent:
++                queries = [q for q in queries if q["source_id"] == intent["source_id"]]
++            if not queries:
++                return None
++            records = self.store.revision_list(key, start, end)
++            rows = []
++            for r in records:
++                rows.extend(self.store._revision_rows(r))
++            if intent:
++                lo, hi = utc(intent["row_start"]), utc(intent["row_end"])
++                selected = [r for r in rows if lo <= r["timestamp"] < hi]
++                if (
++                    len(selected) != intent["row_count"]
++                    or fingerprint(selected, key) != intent["economic_sha256"]
++                ):
++                    return None
++            source_ids = sorted({q["source_id"] for q in queries})
++            for identity in source_ids:
++                self.store.raw(identity)
++            return {
++                "revision_ids": [r["id"] for r in records],
++                "file_sha256": [r["file_sha"] for r in records],
++                "query_ids": [q["id"] for q in queries],
++                "source_ids": source_ids,
++                "checked_at": self.clock(),
++                "publish_intent": intent,
++            }
++
++    def task(self, key, day, purpose, cycle, due):
++        identity = sha256(json_bytes([VERSION, key.asdict(), day, purpose, cycle]))
++        return {
++            "id": identity,
++            "version": VERSION,
++            "key": key.asdict(),
++            "day": day,
++            "purpose": purpose,
++            "cycle": cycle,
++            "state": "planned",
++            "next_at": due,
++            "first_eligible_at": due,
++            "reason": "scheduled",
++            "attempts": [],
++            "publication_checks": 0,
++            "transient_failures": 0,
++            "validation_failures": 0,
++            "review_required": False,
++            "proof": None,
++            "config_hash": self.config_hash,
++        }
++
++    def retained_proof(self, task):
++        """Check immutable catalogue references; full hashes were checked at completion.
++
++        Re-reading every retained ZIP/Parquet on each timer wakeup is deliberately
++        left to the existing integrity/backup path. Recovery rechecks full content.
++        """
++        proof = task.get("proof")
++        if not proof or not proof["query_ids"] or not proof["source_ids"]:
++            return False
++        key = Key(**task["key"])
++        with self.store.writer(timeout=5):
++            for identity in proof["query_ids"]:
++                row = self.store.db.execute(
++                    "SELECT key_id,source_id FROM queries WHERE id=?", (identity,)
++                ).fetchone()
++                if (
++                    row is None
++                    or row["key_id"] != key.id
++                    or row["source_id"] not in proof["source_ids"]
++                ):
++                    return False
++            for identity, digest in zip(proof["revision_ids"], proof["file_sha256"], strict=True):
++                row = self.store.db.execute(
++                    "SELECT key_id,file_sha,path FROM revisions WHERE id=?", (identity,)
++                ).fetchone()
++                if (
++                    row is None
++                    or row["key_id"] != key.id
++                    or row["file_sha"] != digest
++                    or not self.store.file_exists(row["path"])
++                ):
++                    return False
++            for identity in proof["source_ids"]:
++                row = self.store.db.execute(
++                    "SELECT path FROM artifacts WHERE id=?", (identity,)
++                ).fetchone()
++                if row is None or not self.store.file_exists(row["path"]):
++                    return False
++        return True
++
++    def plan(self, current):
++        existing = {r["id"]: r for r in self.ledger.rows("daily_tasks")}
++        cycle = current.astimezone(KST).date().isoformat()
++        for old in existing.values():
++            if old["key"] not in [k.asdict() for k in self.keys] and old["state"] not in TERMINAL:
++                old.update(
++                    state="needs_review",
++                    reason="pending_target_removed_from_configuration",
++                    next_at=None,
++                    review_required=True,
++                )
++                self.ledger.save("daily_tasks", old)
++            if old["state"] == "complete" and not self.retained_proof(old):
++                old.update(
++                    state="needs_review",
++                    reason="stored_proof_reference_missing_or_changed",
++                    next_at=None,
++                    review_required=True,
++                )
++                self.ledger.save("daily_tasks", old)
++
++        def add(task):
++            if task["id"] not in existing:
++                self.ledger.save("daily_tasks", task)
++                existing[task["id"]] = task
++            return existing[task["id"]]
++
++        for key in self.keys:
++            if key.dataset == "instrument_metadata":
++                for old in existing.values():
++                    if (
++                        old["key"] == key.asdict()
++                        and old["cycle"] < cycle
++                        and old["state"] not in TERMINAL
++                    ):
++                        old.update(
++                            state="missed_observation",
++                            reason="historical_observation_unrecoverable",
++                            next_at=None,
++                            review_required=True,
++                        )
++                        self.ledger.save("daily_tasks", old)
++                add(
++                    self.task(
++                        key, cycle, "observe", cycle, self.schedule.at(cycle, self.schedule.noon)
++                    )
++                )
++                continue
++            end = midnight(current)
++            start = scope_start(self.store, key, self.policy, end)
++            if start >= end:
++                continue
++            with self.store.writer(timeout=5):
++                register_target(self.store, key, self.policy, start, current)
++                coverage = inventory(self.store, key, start, end, cache=True)
++            for entry in coverage["days"]:
++                day = entry["day"]
++                due = self.schedule.eligible(key, day)
++                acquisition = self.task(key, day, "acquire", None, due)
++                if (
++                    acquisition["id"] not in existing
++                    and not entry["missing_ranges"]
++                    and not entry["blocked"]
++                ):
++                    proof = self.proof(key, day)
++                    if proof:
++                        acquisition.update(
++                            state="complete",
++                            proof=proof,
++                            next_at=None,
++                            reason="existing_verified_catalog",
++                        )
++                acquired = add(acquisition)
++                if (
++                    acquired["state"] not in TERMINAL
++                    and not entry["missing_ranges"]
++                    and not entry["blocked"]
++                ):
++                    # An older CLI may have filled a pending acquisition after rollback.
++                    # This settles acquisition only, not a later revision-check cycle.
++                    proof = self.proof(key, day)
++                    if proof:
++                        self.finish(acquired, proof)
++                        existing[acquired["id"]] = acquired
++                if acquired["state"] == "complete" and (
++                    entry["missing_ranges"] or entry["blocked"]
++                ):
++                    acquired.update(
++                        state="needs_review",
++                        reason="current_catalog_coverage_incomplete_or_blocked",
++                        next_at=None,
++                        review_required=True,
++                    )
++                    self.ledger.save("daily_tasks", acquired)
++                if utc(day) >= end - timedelta(days=self.policy.refresh_days):
++                    refresh_due = max(due, self.schedule.at(cycle, self.schedule.first(key)))
++                    add(self.task(key, day, "refresh", cycle, refresh_due))
++
++    def finish(self, task, proof, attempt=None):
++        if task["review_required"]:
++            task["review_history"] = {"reason": task["reason"], "resolved_at": self.clock()}
++        task.update(
++            state="complete",
++            reason="verified_storage",
++            proof=proof,
++            next_at=None,
++            completed_at=self.clock(),
++            review_required=False,
++        )
++        self.ledger.save("daily_tasks", task)
++        # A successful new fetch satisfies due refreshes of the exact same target.
++        if attempt:
++            for other in self.ledger.rows("daily_tasks"):
++                if (
++                    other["id"] != task["id"]
++                    and other["key"] == task["key"]
++                    and other["day"] == task["day"]
++                    and other["state"] not in TERMINAL
++                    and utc(other["first_eligible_at"]) <= utc(attempt["started_at"])
++                ):
++                    other.update(
++                        state="complete",
++                        reason="covered_by_same_verified_attempt",
++                        proof=proof,
++                        covered_by=attempt["id"],
++                        next_at=None,
++                        completed_at=self.clock(),
++                        review_required=False,
++                    )
++                    self.ledger.save("daily_tasks", other)
++
++    def recover(self):
++        tasks = {t["id"]: t for t in self.ledger.rows("daily_tasks")}
++        for attempt in self.ledger.rows("daily_attempts"):
++            if attempt["state"] != "running":
++                continue
++            task = tasks[attempt["task_id"]]
++            intent = attempt.get("publish_intent")
++            proof = self.proof(Key(**task["key"]), task["day"], intent) if intent else None
++            if proof:
++                for item in attempt["inputs"]:
++                    self.store.raw(item["id"])
++                attempt.update(state="recovered_complete", proof=proof, finished_at=self.clock())
++                self.finish(task, proof, attempt)
++                self.ledger.save("daily_attempts", attempt)
++            else:
++                attempt.update(state="interrupted", finished_at=self.clock())
++                for request in attempt["requests"]:
++                    if request["status"] in {429, 418}:
++                        self.cooldown(request["url"], request.get("headers", {}))
++                task["transient_failures"] += 1
++                exhausted = task["transient_failures"] >= self.schedule.transient_attempts
++                task.update(
++                    state="retry_wait",
++                    reason="interrupted_before_verified_storage",
++                    next_at=max(utc(task["next_at"] or self.clock()), self.clock()),
++                )
++                if exhausted:
++                    task.update(state="needs_review", next_at=None, review_required=True)
++                self.ledger.save_many([("daily_tasks", task), ("daily_attempts", attempt)])
++
++    def failure(self, task, attempt, exc):
++        current, key = self.clock(), Key(**task["key"])
++        reason, state, due = str(exc), "needs_review", None
++        if isinstance(exc, WriterBusy):
++            state, due = "deferred_lock", current + timedelta(seconds=60)
++        elif isinstance(exc, SourceError):
++            expected = None
++            if key.dataset not in {"funding_events", "instrument_metadata"}:
++                expected = archive_url(key, utc(task["day"]), False)
++            if exc.status == 404 and expected and exc.url in {expected, expected + ".CHECKSUM"}:
++                task["publication_checks"] += 1
++                old = current - utc(task["first_eligible_at"]) >= timedelta(
++                    days=self.schedule.old_missing_days
++                )
++                state, due = "waiting_source", self.schedule.later_slot(key, current, old=old)
++                task["review_required"] |= old
++            elif exc.status in {429, 418}:
++                state, due = "cooldown", self.cooldown(exc.url, exc.headers)
++            elif exc.status is None or exc.status in {408, 500, 502, 503, 504}:
++                task["transient_failures"] += 1
++                if task["transient_failures"] < self.schedule.transient_attempts:
++                    state, due = (
++                        "retry_wait",
++                        current + timedelta(seconds=self.schedule.transient_delay_seconds),
++                    )
++        elif isinstance(exc, DataError) and not isinstance(exc, ConflictError):
++            task["validation_failures"] += 1
++            if task["validation_failures"] < self.schedule.validation_attempts:
++                state, due = "validation_retry", self.schedule.later_slot(key, current)
++        task.update(
++            state=state,
++            next_at=due,
++            reason=reason,
++            review_required=task["review_required"] or state == "needs_review",
++        )
++        attempt.update(
++            state=state,
++            error={
++                "type": type(exc).__name__,
++                "message": str(exc),
++                "status": getattr(exc, "status", None),
++            },
++            finished_at=current,
++        )
++        self.ledger.save_many([("daily_tasks", task), ("daily_attempts", attempt)])
++
++    def execute_task(self, task):
++        key, current = Key(**task["key"]), self.clock()
++        if self.readiness:
++            ready = self.readiness()
++            if not ready["ready"]:
++                task.update(
++                    state="deferred_clock",
++                    reason=ready.get("reason", "clock_not_ready"),
++                    next_at=current + timedelta(seconds=60),
++                )
++                self.ledger.save("daily_tasks", task)
++                return
++        attempt = {
++            "id": uuid.uuid4().hex,
++            "task_id": task["id"],
++            "state": "running",
++            "started_at": current,
++            "requests": [],
++            "inputs": [],
++            "config_hash": self.config_hash,
++        }
++        task["attempts"].append(attempt["id"])
++        task.update(
++            state="running",
++            next_at=current + timedelta(seconds=self.schedule.transient_delay_seconds),
++        )
++        self.ledger.save_many([("daily_tasks", task), ("daily_attempts", attempt)])
++        options = {"sleep": self.sleep} if self.sleep else {}
++        fetcher = Fetcher(client=AuditedClient(self.client, self, attempt), **options)
++        fetcher.windows = self.request_windows
++        collector = RecordingCollector(self, attempt, fetcher)
++        try:
++            if task["purpose"] == "observe":
++                result = collector.rest(key, current - timedelta(seconds=1), current)
++            else:
++                start, end = utc(task["day"]), utc(task["day"]) + DAY
++                if key.dataset == "funding_events":
++                    result = collector.rest(key, start, end)
++                else:
++                    result = collector.archive(key, start, end, monthly=False, refresh=True)
++            if any(r["state"] == "waiting_source" for r in result):
++                responses = [r for r in attempt["requests"] if r["status"] == 404]
++                raise SourceError(
++                    "Expected archive not available",
++                    404,
++                    url=responses[-1]["url"] if responses else "",
++                )
++            intent = attempt.get("publish_intent")
++            proof = self.proof(key, task["day"], intent) if intent else None
++            if not proof:
++                raise DataError("Task has no complete verified publication proof")
++            self.fault("before_complete", attempt)
++            attempt.update(state="complete", proof=proof, result=result, finished_at=self.clock())
++            # Save task first: recovery can finish a still-running attempt from the same proof.
++            self.finish(task, proof, attempt)
++            self.ledger.save("daily_attempts", attempt)
++        except (DataError, SourceError, OSError, ValueError, KeyError) as exc:
++            self.failure(task, attempt, exc)
++
++    def sync_status(self, tasks, report):
++        """Append a truthful per-key summary for the unchanged legacy status CLI.
++
++        Preserve previous runs; a timer wakeup without a changed task state does
++        not invent another successful acquisition or refresh its completion time.
++        """
++        current = self.clock()
++        cycle = current.astimezone(KST).date().isoformat()
++        with self.store.writer(timeout=5), self.store.db:
++            for key in self.keys:
++                selected = [
++                    t
++                    for t in tasks
++                    if t["key"] == key.asdict()
++                    and (
++                        t["purpose"] == "acquire"
++                        or t["cycle"] == cycle
++                        or t["state"] not in TERMINAL
++                    )
++                ]
++                view = [
++                    {k: t[k] for k in ("id", "state", "next_at", "reason", "proof")}
++                    for t in selected
++                ]
++                fingerprint = sha256(json_bytes(view))
++                latest = self.store.db.execute(
++                    "SELECT report FROM sync_runs WHERE key_id=? ORDER BY started_at DESC,rowid DESC LIMIT 1",
++                    (key.id,),
++                ).fetchone()
++                if latest and json.loads(latest[0]).get("scheduler_fingerprint") == fingerprint:
++                    continue
++                complete = bool(selected) and all(t["state"] == "complete" for t in selected)
++                errors = [
++                    {"task_id": t["id"], "message": t["reason"]}
++                    for t in selected
++                    if t["state"] == "needs_review"
++                ]
++                state = "complete" if complete else "failed" if errors else "partial"
++                end = window_end(key, current)
++                start = scope_start(self.store, key, self.policy, end)
++                identity = uuid.uuid4().hex
++                summary = {
++                    "run_id": identity,
++                    "key": key.id,
++                    "state": state,
++                    "complete": complete,
++                    "errors": errors,
++                    "results": view,
++                    "scheduler_cycle": cycle,
++                    "scheduler_run_id": report["id"],
++                    "scheduler_fingerprint": fingerprint,
++                    "semantics": "task_state_summary_not_whole_daily_reexecution",
++                }
++                self.store.db.execute(
++                    "INSERT INTO sync_runs VALUES(?,?,?,?,?,?,?,?,?)",
++                    (
++                        identity,
++                        key.id,
++                        start.isoformat(),
++                        end.isoformat(),
++                        current.isoformat(),
++                        current.isoformat(),
++                        current.isoformat(),
++                        state,
++                        json_bytes(summary).decode(),
++                    ),
++                )
++
++    def run(self):
++        with self.ledger.exclusive():
++            current = self.clock()
++            self.recover()
++            self.plan(current)
++            processed, touched = [], set()
++            # Acquire before refresh; one acquisition can discharge both purposes.
++            tasks = sorted(
++                self.ledger.rows("daily_tasks"),
++                key=lambda t: (
++                    t["purpose"] == "refresh",
++                    t["next_at"] or "9999",
++                    t["day"],
++                    t["id"],
++                ),
++            )
++            for task in tasks:
++                if len(processed) >= self.schedule.max_tasks:
++                    break
++                task = next(t for t in self.ledger.rows("daily_tasks") if t["id"] == task["id"])
++                if (
++                    task["state"] in TERMINAL
++                    or not task["next_at"]
++                    or utc(task["next_at"]) > self.clock()
++                ):
++                    continue
++                target = (json_bytes(task["key"]), task["day"])
++                if target in touched:
++                    continue
++                peers = [
++                    p
++                    for p in self.ledger.rows("daily_tasks")
++                    if p["key"] == task["key"] and p["day"] == task["day"] and p["id"] != task["id"]
++                ]
++                if task["purpose"] == "refresh" and any(
++                    p["state"] != "complete"
++                    and (
++                        p["purpose"] == "acquire"
++                        or p["state"] == "needs_review"
++                        or (p["purpose"] == "refresh" and p["cycle"] < task["cycle"])
++                    )
++                    for p in peers
++                ):
++                    continue
++                touched.add(target)
++                self.execute_task(task)
++                processed.append(task["id"])
++            report = summarize(self.ledger.rows("daily_tasks"), self.clock())
++            report.update(
++                id=uuid.uuid4().hex,
++                started_at=current,
++                finished_at=self.clock(),
++                processed=processed,
++                run_outcome="tasks_processed" if processed else "no_due_tasks",
++                config_hash=self.config_hash,
++                runner_ok=True,
++            )
++            self.ledger.save("daily_runs", report)
++            self.sync_status(self.ledger.rows("daily_tasks"), report)
++            return report
++
++
++def summarize(tasks, current):
++    current = utc(current)
++    cycle = current.astimezone(KST).date().isoformat()
++    counts = {}
++    for task in tasks:
++        counts[task["state"]] = counts.get(task["state"], 0) + 1
++    obligations = [
++        t
++        for t in tasks
++        if t["purpose"] == "acquire" or t["cycle"] == cycle or t["state"] not in TERMINAL
++    ]
++    return {
++        "version": VERSION,
++        "as_of": current,
++        "state_counts": counts,
++        "data_complete": bool(obligations) and all(t["state"] == "complete" for t in obligations),
++        "review_required": any(t["review_required"] for t in tasks),
++        "pending": [
++            {
++                k: t[k]
++                for k in (
++                    "id",
++                    "key",
++                    "day",
++                    "purpose",
++                    "cycle",
++                    "state",
++                    "next_at",
++                    "reason",
++                    "review_required",
++                )
++            }
++            for t in tasks
++            if t["state"] != "complete"
++        ],
++        "completed_tasks": sum(t["state"] == "complete" for t in tasks),
++    }
++
++
++def read_status(root):
++    path = Path(root).resolve() / "state/catalog.sqlite"
++    with sqlite3.connect(path.as_uri() + "?mode=ro", uri=True) as db:
++        found = db.execute("SELECT 1 FROM sqlite_master WHERE name='daily_tasks'").fetchone()
++        tasks = (
++            [json.loads(r[0]) for r in db.execute("SELECT record FROM daily_tasks")]
++            if found
++            else []
++        )
++    return summarize(tasks, now())
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("action", choices=("run", "status", "probe"))
++    parser.add_argument("--root", required=True, type=Path)
++    parser.add_argument("--config", type=Path)
++    parser.add_argument("--report", type=Path)
++    parser.add_argument("--probe-config", type=Path)
++    args = parser.parse_args()
++    if args.action == "status":
++        print(json_bytes(read_status(args.root)).decode())
++        return
++    if args.config is None:
++        parser.error("run requires --config")
++    keys, policy, schedule = load_config(args.config)
++    signal.signal(signal.SIGTERM, lambda *_: (_ for _ in ()).throw(KeyboardInterrupt()))
++    store = Store(args.root)
++    runner = Scheduler(store, keys, policy, schedule)
++
++    def emit(result):
++        if args.report:
++            atomic_write(args.report, json_bytes(result))
++        print(json_bytes(result).decode())
++
++    try:
++        if args.action == "probe" and args.probe_config is None:
++            parser.error("probe requires --probe-config")
++        result = runner.run() if args.action == "run" else {}
++        if args.probe_config:
++            from .daily_probe import probe
++
++            result["publication_observation"] = probe(runner, args.probe_config)
++        emit(result)
++        # Process success does not imply data_complete. Never restart for expected 404.
++    except WriterBusy as exc:
++        emit(
++            {
++                "runner_ok": True,
++                "data_complete": None,
++                "state": "deferred_lock",
++                "as_of": now(),
++                "reason": str(exc),
++            }
++        )
++    except (DataError, SourceError, OSError, sqlite3.Error, ValueError) as exc:
++        emit(
++            {
++                "runner_ok": False,
++                "data_complete": None,
++                "state": "failed",
++                "as_of": now(),
++                "reason": f"{type(exc).__name__}: {exc}",
++            }
++        )
++        raise SystemExit(1) from exc
++    finally:
++        runner.close()
++        store.close()
++
++
++if __name__ == "__main__":
++    main()
+--- /dev/null
++++ b/packages/marketdata/src/marketdata/daily_probe.py
+@@ -0,0 +1,118 @@
++"""Finite HEAD-only availability observations; no downloading, importing or completion credit."""
++
++import tomllib
++from datetime import timedelta
++from pathlib import Path
++
++import httpx
++
++from .binance import SourceError, archive_url
++from .domain import DAY, DataError, json_bytes, sha256, utc
++
++
++def probe(scheduler, config_path):
++    config = tomllib.loads(Path(config_path).read_text())["observation"]
++    if not config.get("enabled", False):
++        return {"state": "disabled", "requests": 0}
++    start, end = utc(config["start_day"]), utc(config["end_day"])
++    if (
++        any((v.hour, v.minute, v.second, v.microsecond) != (0, 0, 0, 0) for v in (start, end))
++        or not DAY <= end - start <= 7 * DAY
++    ):
++        raise DataError("Probe requires a fixed 1..7 day UTC target window")
++    seconds = config.get("interval_seconds", 300)
++    if type(seconds) is not int or not 300 <= seconds <= 3600:
++        raise DataError("Probe interval must be 300..3600 seconds")
++    opens, closes = config.get("opens_kst", "14:30"), config.get("closes_kst", "21:30")
++    if not "00:00" <= opens < closes <= "23:59":
++        raise DataError("Invalid observation hours")
++    keys = [
++        k
++        for k in scheduler.keys
++        if k.market == "linear_perpetual"
++        and k.dataset in {"trade_bars", "mark_price_bars", "index_price_bars", "open_interest"}
++    ]
++    if len(keys) > 4:
++        raise DataError("At most four archive keys may be observed")
++    config_hash = sha256(json_bytes(config))
++    requests = 0
++    with scheduler.ledger.exclusive():
++        existing = {r["id"]: r for r in scheduler.ledger.rows("daily_probe_targets")}
++        day = start
++        while day < end:
++            local_day = (day + DAY).date().isoformat()
++            begin = scheduler.schedule.at(local_day, opens)
++            stop = scheduler.schedule.at(local_day, closes)
++            for key in keys:
++                base = archive_url(key, day, False)
++                for url in (base, base + ".CHECKSUM"):
++                    identity = sha256(json_bytes([config_hash, url]))
++                    row = existing.get(identity) or {
++                        "id": identity,
++                        "config_hash": config_hash,
++                        "url": url,
++                        "target_day": day.date().isoformat(),
++                        "window_start": begin,
++                        "window_end": stop,
++                        "next_at": begin,
++                        "state": "scheduled",
++                        "last_404": None,
++                        "first_200": None,
++                        "observations": [],
++                    }
++                    current = scheduler.clock()
++                    if row["state"] in {"available", "window_closed"}:
++                        continue
++                    if current > stop:
++                        row.update(state="window_closed", right_censored=True)
++                    elif current >= begin and current >= utc(row["next_at"]):
++                        # Persist before sending, so a restart cannot immediately repeat the probe.
++                        event = {
++                            "started_at": current,
++                            "method": "HEAD",
++                            "status": None,
++                            "outcome": "request_outcome_unknown",
++                        }
++                        row["observations"].append(event)
++                        row.update(next_at=current + timedelta(seconds=seconds), state="observing")
++                        scheduler.ledger.save("daily_probe_targets", row)
++                        try:
++                            scheduler.check_cooldown(url)
++                            with scheduler.client.stream("HEAD", url) as response:
++                                requests += 1
++                                event.update(
++                                    status=response.status_code,
++                                    headers=dict(response.headers),
++                                    received_at=scheduler.clock(),
++                                    outcome="headers_received",
++                                )
++                                if response.status_code in {429, 418}:
++                                    row["next_at"] = scheduler.cooldown(url, response.headers)
++                                elif response.status_code == 404:
++                                    row["last_404"] = event["received_at"]
++                                elif response.status_code == 200:
++                                    row.update(
++                                        first_200=event["received_at"],
++                                        state="available",
++                                        left_censored=row["last_404"] is None,
++                                    )
++                        except (httpx.HTTPError, SourceError) as exc:
++                            event.update(outcome="request_error", error=str(exc))
++                    scheduler.ledger.save("daily_probe_targets", row)
++            day += DAY
++        rows = [
++            r
++            for r in scheduler.ledger.rows("daily_probe_targets")
++            if r["config_hash"] == config_hash
++        ]
++        return {
++            "state": "finished"
++            if rows and all(r["state"] in {"available", "window_closed"} for r in rows)
++            else "observing",
++            "config_hash": config_hash,
++            "requests": requests,
++            "available_urls": sum(r["state"] == "available" for r in rows),
++            "scope_urls": len(rows),
++            "data_completion_credit": False,
++            "semantics": "observer_path_404_to_200_not_origin_publication_time",
++        }
+--- /dev/null
++++ b/tests/test_daily_schedule.py
+@@ -0,0 +1,801 @@
++import json
++import sqlite3
++import subprocess
++import sys
++from datetime import timedelta
++
++import httpx
++import pytest
++from conftest import zip_csv
++from marketdata import backup
++from marketdata.binance import archive_url
++from marketdata.daily_schedule import Schedule, Scheduler, load_config, read_status
++from marketdata.domain import DAY, DataError, Key, WriterBusy, json_bytes, micros, sha256, utc
++from marketdata.operations import SyncPolicy
++from marketdata.store import Store
++
++DAY0 = "2024-01-14"
++NOON = utc("2024-01-15T03:25:00Z")
++EVENING = utc("2024-01-15T09:00:00Z")
++
++
++class Clock:
++    def __init__(self, value=EVENING):
++        self.value = value
++
++    def __call__(self):
++        return self.value
++
++
++class Upstream:
++    def __init__(self):
++        self.responses, self.calls = {}, []
++
++    def handle(self, request):
++        url = str(request.url)
++        self.calls.append(url)
++        response = self.responses.get(url, (404, b"not found", {}))
++        if callable(response):
++            response = response(request)
++        if isinstance(response, Exception):
++            raise response
++        return httpx.Response(response[0], content=response[1], headers=response[2])
++
++    def add(self, key, day=DAY0, *, price="100", short=False):
++        url = archive_url(key, utc(day), False)
++        if key.dataset == "open_interest":
++            rows = [["create_time", "symbol", "sum_open_interest", "sum_open_interest_value"]]
++            rows += [
++                [str(utc(day) + timedelta(minutes=5 * i)), "BTCUSDT", "10", "1000"]
++                for i in range(288)
++            ]
++        else:
++            rows = []
++            for i in range(86400 // key.step - int(short)):
++                ts = utc(day) + timedelta(seconds=i * key.step)
++                stamp = micros(ts) // 1000
++                rows.append(
++                    [
++                        stamp,
++                        price,
++                        "105",
++                        "95",
++                        "101",
++                        "2",
++                        stamp + key.step * 1000 - 1,
++                        "200",
++                        3,
++                        "1",
++                        "100",
++                        "0",
++                    ]
++                )
++        blob = zip_csv(rows, url.split("/")[-1][:-4] + ".csv")
++        self.responses[url] = (200, blob, {})
++        self.responses[url + ".CHECKSUM"] = (
++            200,
++            f"{sha256(blob)}  {url.split('/')[-1]}".encode(),
++            {},
++        )
++        return url
++
++
++@pytest.fixture
++def env(store, monkeypatch):
++    clock, upstream = Clock(), Upstream()
++    monkeypatch.setattr("marketdata.binance.now", clock)
++    monkeypatch.setattr("marketdata.pipeline.now", clock)
++    client = httpx.Client(transport=httpx.MockTransport(upstream.handle))
++
++    def build(keys, *, start=DAY0, refresh=3, fault=None, readiness=None, **options):
++        return Scheduler(
++            store,
++            keys,
++            SyncPolicy(start=start, refresh_days=refresh),
++            Schedule(**options),
++            client=client,
++            clock=clock,
++            sleep=lambda _: None,
++            fault=fault,
++            readiness=readiness,
++        )
++
++    yield clock, upstream, build
++    client.close()
++
++
++def tasks(runner, purpose=None):
++    return [
++        r for r in runner.ledger.rows("daily_tasks") if purpose is None or r["purpose"] == purpose
++    ]
++
++
++def test_noon_and_evening_select_only_due_incomplete_targets(store, env):
++    clock, upstream, build = env
++    spot = Key("trade_bars", market="spot", interval="1h")
++    good = Key("trade_bars", interval="1h")
++    late = Key("mark_price_bars", interval="1h")
++    spot_url, good_url = upstream.add(spot), upstream.add(good)
++    runner = build([spot, good, late])
++    clock.value = NOON
++    report = runner.run()
++    assert not report["data_complete"]
++    assert upstream.calls == [spot_url, spot_url + ".CHECKSUM"]
++    assert len(tasks(runner, "acquire")) == 3
++    clock.value = EVENING
++    runner.run()
++    assert upstream.calls.count(spot_url) == 1
++    assert upstream.calls.count(good_url) == 1
++    waiting = next(t for t in tasks(runner, "acquire") if t["key"] == late.asdict())
++    assert waiting["state"] == "waiting_source"
++    assert utc(waiting["next_at"]) == utc("2024-01-15T11:00Z")
++    # Same wakeup, repeated process invocation: no more network traffic.
++    count = len(upstream.calls)
++    build([spot, good, late]).run()
++    assert len(upstream.calls) == count
++    late_url = upstream.add(late)
++    clock.value = utc("2024-01-15T11:00Z")
++    report = build([spot, good, late]).run()
++    assert report["data_complete"]
++    assert upstream.calls[-2:] == [late_url, late_url + ".CHECKSUM"]
++
++
++def test_old_missing_day_survives_refresh_window_and_restarts(store, env):
++    clock, upstream, build = env
++    key = Key("mark_price_bars", interval="1h")
++    runner = build([key], refresh=1)
++    runner.run()
++    first = tasks(runner, "acquire")[0]
++    for offset in range(1, 6):
++        clock.value = EVENING + offset * DAY
++        build([key], refresh=1).run()
++    old = next(t for t in tasks(runner, "acquire") if t["day"] == DAY0)
++    assert old["id"] == first["id"] and old["state"] == "waiting_source"
++    assert old["review_required"] and old["publication_checks"] == 6
++    assert utc(old["next_at"]) == EVENING + 6 * DAY
++    upstream.add(key)
++    clock.value += DAY
++    build([key], refresh=1).run()
++    assert next(t for t in tasks(runner, "acquire") if t["day"] == DAY0)["state"] == "complete"
++
++
++def test_restart_coalesces_missed_slots_instead_of_replaying_them(store, env):
++    clock, upstream, build = env
++    key = Key("mark_price_bars", interval="1h")
++    runner = build([key])
++    runner.run()
++    clock.value = utc("2024-01-15T14:59Z")  # 23:59 KST, missed 20/22h slots
++    build([key]).run()
++    assert len(upstream.calls) == 2
++    assert utc(tasks(runner, "acquire")[0]["next_at"]) == utc("2024-01-16T09:00Z")
++
++
++def test_refresh_is_once_per_cycle_and_acquisition_coalesces(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    url = upstream.add(key)
++    runner = build([key])
++    runner.run()
++    assert all(t["state"] == "complete" for t in tasks(runner))
++    assert len(upstream.calls) == 2
++    for hour in (11, 13, 14):
++        clock.value = utc(f"2024-01-15T{hour}:00Z")
++        build([key]).run()
++    assert len(upstream.calls) == 2
++    clock.value = EVENING + DAY
++    upstream.add(key, "2024-01-15")
++    runner.run()
++    assert upstream.calls.count(url) == 2  # next cycle really checks the old file once
++    runner.run()
++    assert upstream.calls.count(url) == 2
++
++
++@pytest.mark.parametrize("phase", ["after_publish", "before_complete"])
++def test_commit_before_state_recovers_without_request_or_revision_duplication(store, env, phase):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++
++    def crash(where, attempt):
++        if where == phase:
++            raise KeyboardInterrupt("simulated abrupt exit")
++
++    runner = build([key], fault=crash)
++    with pytest.raises(KeyboardInterrupt):
++        runner.run()
++    before = store.db.execute("SELECT count(*) FROM revisions").fetchone()[0]
++    assert before == 1
++    requests = len(upstream.calls)
++    restarted = build([key])
++    assert restarted.run()["data_complete"]
++    assert len(upstream.calls) == requests
++    assert store.db.execute("SELECT count(*) FROM revisions").fetchone()[0] == before
++    assert restarted.ledger.rows("daily_attempts")[0]["state"] == "recovered_complete"
++
++
++def test_download_only_crash_is_not_complete(store, env, monkeypatch):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++    original = Store.publish
++
++    def crash(*args, **kwargs):
++        raise KeyboardInterrupt("before publication")
++
++    monkeypatch.setattr(Store, "publish", crash)
++    with pytest.raises(KeyboardInterrupt):
++        build([key]).run()
++    assert store.db.execute("SELECT count(*) FROM active").fetchone()[0] == 0
++    monkeypatch.setattr(Store, "publish", original)
++    runner = build([key])
++    assert not runner.run()["data_complete"]  # persisted interruption cooldown
++    clock.value += timedelta(minutes=5)
++    assert runner.run()["data_complete"]
++    assert len(upstream.calls) == 4
++
++
++def test_429_cooldown_is_durable_and_shared_only_for_same_host(store, env):
++    clock, upstream, build = env
++    a = Key("trade_bars", interval="1h")
++    b = Key("mark_price_bars", interval="1h")
++    url = archive_url(a, utc(DAY0), False)
++    upstream.responses[url] = (429, b"slow", {"Retry-After": "3600"})
++    runner = build([a, b])
++    runner.run()
++    assert len(upstream.calls) == 1
++    build([a, b]).run()
++    assert len(upstream.calls) == 1
++    assert all(t["state"] == "cooldown" for t in tasks(runner, "acquire"))
++    assert runner.ledger.rows("daily_cooldowns")[0]["id"] == "data.binance.vision"
++    upstream.add(a)
++    upstream.add(b)
++    clock.value += timedelta(hours=1)
++    assert build([a, b]).run()["data_complete"]
++
++
++@pytest.mark.parametrize("value", [None, "bad", "Mon, 15 Jan 2024 10:00:00 GMT"])
++def test_retry_after_optional_and_http_date(store, env, value):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    url = archive_url(key, utc(DAY0), False)
++    headers = {"Retry-After": value} if value else {}
++    upstream.responses[url] = (429, b"", headers)
++    runner = build([key])
++    runner.run()
++    next_at = utc(tasks(runner, "acquire")[0]["next_at"])
++    assert next_at >= EVENING + timedelta(minutes=15)
++    assert len(upstream.calls) == 1
++
++
++def test_transport_retry_has_bounded_inner_and_outer_budgets(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.responses[archive_url(key, utc(DAY0), False)] = httpx.ConnectError("unavailable")
++    runner = build([key])
++    for index in range(3):
++        build([key]).run()
++        assert len(upstream.calls) == (index + 1) * 4
++        clock.value += timedelta(minutes=5)
++    assert tasks(runner, "acquire")[0]["state"] == "needs_review"
++    assert tasks(runner, "acquire")[0]["transient_failures"] == 3
++    build([key]).run()
++    assert len(upstream.calls) == 12
++
++
++@pytest.mark.parametrize("status", [400, 401, 403])
++def test_permanent_http_errors_do_not_spin(store, env, status):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.responses[archive_url(key, utc(DAY0), False)] = (status, b"error", {})
++    runner = build([key])
++    runner.run()
++    runner.run()
++    assert len(upstream.calls) == 1
++    assert tasks(runner, "acquire")[0]["state"] == "needs_review"
++
++
++def test_checksum_unavailable_and_bad_pair_are_separate(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    url = upstream.add(key)
++    upstream.responses.pop(url + ".CHECKSUM")
++    runner = build([key])
++    runner.run()
++    assert tasks(runner, "acquire")[0]["state"] == "waiting_source"
++    clock.value = utc("2024-01-15T11:00Z")
++    upstream.responses[url + ".CHECKSUM"] = (200, b"bad checksum", {})
++    runner.run()
++    assert tasks(runner, "acquire")[0]["state"] == "validation_retry"
++    clock.value = utc("2024-01-15T13:00Z")
++    runner.run()
++    assert tasks(runner, "acquire")[0]["state"] == "needs_review"
++    attempts = runner.ledger.rows("daily_attempts")
++    assert [r["id"] for r in attempts[-1]["inputs"]] == [r["id"] for r in attempts[-2]["inputs"]]
++    assert attempts[-1]["inputs"][0]["received_at"] != attempts[-2]["inputs"][0]["received_at"]
++
++
++def test_changed_bad_revision_never_overwrites_prior_good_data(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++    runner = build([key])
++    runner.run()
++    before = store.db.execute("SELECT revision_id FROM active WHERE day=?", (DAY0,)).fetchone()[0]
++    upstream.add(key, price="102")
++    upstream.add(key, "2024-01-15")
++    clock.value += DAY
++    runner.run()
++    assert (
++        store.db.execute("SELECT revision_id FROM active WHERE day=?", (DAY0,)).fetchone()[0]
++        == before
++    )
++    assert any(t["state"] == "needs_review" for t in tasks(runner, "refresh"))
++    assert store.db.execute("SELECT count(*) FROM issues WHERE kind='conflict'").fetchone()[0] > 0
++
++
++def test_clock_hold_and_lock_do_not_spend_network_retry_budget(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    runner = build([key], readiness=lambda: {"ready": False, "reason": "strict gate"})
++    runner.run()
++    assert not upstream.calls
++    task = tasks(runner, "acquire")[0]
++    assert task["state"] == "deferred_clock" and task["attempts"] == []
++    with runner.ledger.exclusive():
++        with pytest.raises(WriterBusy):
++            build([key]).run()
++
++
++def test_metadata_late_observation_is_not_fabricated_historical_snapshot(store, env):
++    clock, upstream, build = env
++    key = Key("instrument_metadata", market="spot", interval="event")
++    url = "https://api.binance.com/api/v3/exchangeInfo"
++    upstream.responses[url] = (503, b"wait", {})
++    clock.value = NOON
++    runner = build([key])
++    runner.run()
++    clock.value += DAY
++    upstream.responses[url] = (
++        200,
++        json_bytes({"symbols": [{"symbol": "BTCUSDT", "status": "TRADING"}]}),
++        {},
++    )
++    runner.run()
++    observations = tasks(runner)
++    assert [t["state"] for t in observations] == ["missed_observation", "complete"]
++    rows = store.read(key, "2024-01-15", "2024-01-17").to_pylist()
++    assert len(rows) == 1 and rows[0]["timestamp"] == clock.value
++
++
++def test_rest_404_is_not_archive_waiting_source(store, env):
++    clock, upstream, build = env
++    key = Key("funding_events", interval="event")
++    runner = build([key])
++    runner.run()
++    assert tasks(runner, "acquire")[0]["state"] == "needs_review"
++
++
++def test_funding_query_manifest_and_terminal_empty_page(store, env):
++    clock, upstream, build = env
++    key = Key("funding_events", interval="event")
++    from marketdata.binance import rest_url
++
++    start, end = utc(DAY0), utc(DAY0) + DAY
++    events = [
++        {
++            "symbol": "BTCUSDT",
++            "fundingTime": micros(start + i * timedelta(hours=8)) // 1000,
++            "fundingRate": "0.0001",
++        }
++        for i in range(3)
++    ]
++    upstream.responses[rest_url(key, start, end)[0]] = (200, json_bytes(events), {})
++    upstream.responses[rest_url(key, start + timedelta(hours=16, milliseconds=1), end)[0]] = (
++        200,
++        b"[]",
++        {},
++    )
++    runner = build([key])
++    report = runner.run()
++    assert report["data_complete"] and len(upstream.calls) == 2
++    assert store.read(key, start, end).num_rows == 3
++    assert tasks(runner, "acquire")[0]["proof"]["query_ids"]
++
++
++def test_new_ledger_survives_existing_backup_restore_and_data_still_pending(store, env, tmp_path):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    runner = build([key])
++    runner.run()
++    archived, restored = tmp_path / "checkpoint", tmp_path / "restored"
++    created = backup.create_backup(store, archived, min_free_gib=0)
++    assert backup.verify_backup(archived)["backup_id"] == created["backup_id"]
++    backup.restore_backup(archived, restored, min_free_gib=0)
++    reopened = Store(restored)
++    try:
++        saved = json.loads(
++            reopened.db.execute("SELECT record FROM daily_tasks LIMIT 1").fetchone()[0]
++        )
++        assert saved["state"] == "waiting_source" and saved["publication_checks"] == 1
++        assert reopened.validate()["ok"]
++        assert not read_status(restored)["data_complete"]
++    finally:
++        reopened.close()
++
++
++@pytest.mark.parametrize(
++    "settings",
++    [
++        {"noon": "25:00"},
++        {"evening": "09:00"},
++        {"max_tasks": 999},
++        {"retry_slots": ("22:00", "20:00")},
++    ],
++)
++def test_invalid_schedule_rejected(settings):
++    with pytest.raises(DataError):
++        Schedule(**settings)
++
++
++def test_repository_daily_scope_loads_unchanged():
++    keys, policy, schedule = load_config("configs/daily.toml")
++    assert len(keys) == 8 and policy.refresh_days == 3 and schedule.evening == "18:00"
++
++
++def test_actual_sigkill_after_catalog_commit_resumes_without_http(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    code = """
++import os, signal, sys, httpx
++sys.path[:0] = ["packages/marketdata/src", "tests"]
++from test_daily_schedule import Upstream, Clock, DAY0
++from marketdata.daily_schedule import Scheduler
++from marketdata.domain import Key
++from marketdata.operations import SyncPolicy
++from marketdata.store import Store
++import marketdata.binance, marketdata.pipeline
++clock=Clock(); marketdata.binance.now=clock; marketdata.pipeline.now=clock
++upstream=Upstream(); key=Key("trade_bars", interval="1h"); upstream.add(key)
++client=httpx.Client(transport=httpx.MockTransport(upstream.handle))
++def fault(phase, attempt):
++    if phase == "after_publish": os.kill(os.getpid(), signal.SIGKILL)
++s=Store(sys.argv[1])
++Scheduler(s,[key],SyncPolicy(start=DAY0),client=client,clock=clock,sleep=lambda _:None,fault=fault).run()
++"""
++    result = subprocess.run(
++        [sys.executable, "-B", "-c", code, str(store.root)], capture_output=True
++    )
++    assert result.returncode == -9, result.stderr.decode()
++    runner = build([key])
++    assert runner.run()["data_complete"]
++    assert not upstream.calls
++    assert store.db.execute("SELECT count(*) FROM revisions").fetchone()[0] == 1
++
++
++def test_existing_complete_data_is_only_refreshed_when_eligible(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++    runner = build([key])
++    runner.run()
++    clock.value += DAY - timedelta(hours=1)
++    runner.run()
++    assert len(upstream.calls) == 2
++    # Today's future obligations keep aggregate completion false.
++    assert not runner.run()["data_complete"]
++
++
++def test_content_failure_and_downloaded_short_file_do_not_become_complete(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key, short=True)
++    runner = build([key])
++    runner.run()
++    task = tasks(runner, "acquire")[0]
++    assert task["state"] == "validation_retry"
++    assert task["proof"] is None
++    assert store.read(key, DAY0, "2024-01-15").num_rows == 23
++
++
++def test_oi_uses_existing_grid_and_raw_quality_semantics(store, env):
++    clock, upstream, build = env
++    key = Key("open_interest", interval="5m", series="archive")
++    upstream.add(key)
++    runner = build([key])
++    assert runner.run()["data_complete"]
++    rows = store.read(key, DAY0, "2024-01-15").to_pylist()
++    assert len(rows) == 288 and rows[0]["time_semantics"] == "archive_label_unverified"
++
++
++def probe_config(tmp_path, **changes):
++    values = dict(
++        enabled=True,
++        start_day=DAY0,
++        end_day="2024-01-15",
++        opens_kst="14:30",
++        closes_kst="21:30",
++        interval_seconds=300,
++    )
++    values.update(changes)
++    path = tmp_path / "probe.toml"
++    path.write_text(
++        "[observation]\n" + "\n".join(f"{k} = {json.dumps(v)}" for k, v in values.items())
++    )
++    return path
++
++
++def test_probe_tracks_each_pair_without_body_download_or_collection_credit(store, env, tmp_path):
++    from marketdata.daily_probe import probe
++
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    runner = build([key])
++    cfg = probe_config(tmp_path)
++    clock.value = utc("2024-01-15T05:30Z")
++    first = probe(runner, cfg)
++    assert first["requests"] == 2 and first["available_urls"] == 0
++    assert probe(runner, cfg)["requests"] == 0
++    clock.value += timedelta(minutes=5)
++    url = archive_url(key, utc(DAY0), False)
++    upstream.responses[url] = (200, b"body must not be imported", {"Age": "42"})
++    assert probe(runner, cfg)["available_urls"] == 1
++    clock.value += timedelta(minutes=5)
++    upstream.responses[url + ".CHECKSUM"] = (200, b"not a checksum", {})
++    report = probe(runner, cfg)
++    assert report["available_urls"] == 2 and report["state"] == "finished"
++    assert not report["data_completion_credit"]
++    records = runner.ledger.rows("daily_probe_targets")
++    assert all(r["last_404"] and r["first_200"] for r in records)
++    assert all(e["method"] == "HEAD" for r in records for e in r["observations"])
++    assert store.db.execute("SELECT count(*) FROM artifacts").fetchone()[0] == 0
++    assert store.db.execute("SELECT count(*) FROM active").fetchone()[0] == 0
++
++
++def test_probe_errors_never_count_as_404_and_window_expires(store, env, tmp_path):
++    from marketdata.daily_probe import probe
++
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    runner = build([key])
++    cfg = probe_config(tmp_path)
++    clock.value = utc("2024-01-15T05:30Z")
++    url = archive_url(key, utc(DAY0), False)
++    upstream.responses[url] = httpx.ReadTimeout("timeout")
++    upstream.responses[url + ".CHECKSUM"] = (503, b"", {})
++    probe(runner, cfg)
++    assert all(r["last_404"] is None for r in runner.ledger.rows("daily_probe_targets"))
++    clock.value = utc("2024-01-15T13:00Z")
++    assert probe(runner, cfg)["state"] == "finished"
++    assert all(r["right_censored"] for r in runner.ledger.rows("daily_probe_targets"))
++
++
++@pytest.mark.parametrize("changes", [{"end_day": "2024-01-23"}, {"interval_seconds": 1}])
++def test_probe_scope_is_bounded(store, env, tmp_path, changes):
++    from marketdata.daily_probe import probe
++
++    _, _, build = env
++    with pytest.raises(DataError):
++        probe(build([Key("trade_bars")]), probe_config(tmp_path, **changes))
++
++
++def test_probe_disabled_means_no_network(store, env, tmp_path):
++    from marketdata.daily_probe import probe
++
++    _, upstream, build = env
++    assert (
++        probe(build([Key("trade_bars")]), probe_config(tmp_path, enabled=False))["state"]
++        == "disabled"
++    )
++    assert not upstream.calls
++
++
++def test_complete_flag_without_catalog_proof_is_rejected(store, env):
++    _, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++    runner = build([key])
++    assert runner.run()["data_complete"]
++    with store.writer(), store.db:
++        store.db.execute("DELETE FROM queries")
++    report = build([key]).run()
++    assert not report["data_complete"] and report["review_required"]
++    assert all(t["state"] == "needs_review" for t in tasks(runner))
++    assert len(upstream.calls) == 2
++
++
++def test_recovery_rechecks_contents_instead_of_trusting_saved_intent(store, env):
++    _, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++
++    def fault(phase, attempt):
++        if phase == "after_publish":
++            raise KeyboardInterrupt()
++
++    with pytest.raises(KeyboardInterrupt):
++        build([key], fault=fault).run()
++    path = store.db.execute("SELECT path FROM revisions").fetchone()[0]
++    (store.root / path).write_bytes(b"damaged")
++    with pytest.raises(DataError, match="Canonical hash mismatch"):
++        build([key]).run()
++    assert len(upstream.calls) == 2
++
++
++def test_new_refresh_cycle_cannot_reset_incomplete_retry_budget(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    old_url = upstream.add(key)
++    runner = build([key])
++    runner.run()
++    clock.value += DAY
++    upstream.add(key, "2024-01-15")
++    upstream.responses[old_url] = httpx.ConnectError("offline")
++    runner.run()
++    original = next(
++        t for t in tasks(runner, "refresh") if t["day"] == DAY0 and t["state"] == "retry_wait"
++    )
++    # Cross another calendar day: a new refresh must not reset the old task's budget.
++    clock.value += DAY
++    upstream.add(key, "2024-01-16")
++    runner.run()
++    clock.value += timedelta(minutes=5)
++    runner.run()
++    failed = next(t for t in tasks(runner) if t["id"] == original["id"])
++    assert failed["state"] == "needs_review" and failed["transient_failures"] == 3
++    calls = upstream.calls.count(old_url)
++    assert calls == 13  # initial successful fetch + 3 x 4 bounded requests
++    runner.run()
++    assert upstream.calls.count(old_url) == calls
++
++
++def test_refresh_does_not_jump_over_existing_future_retry_time(store, env):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    url = upstream.add(key)
++    runner = build([key])
++    runner.run()
++    clock.value += DAY
++    upstream.add(key, "2024-01-15")
++    upstream.responses[url] = (404, b"not yet", {})
++    runner.run()
++    pending = next(t for t in tasks(runner, "refresh") if t["state"] == "waiting_source")
++    pending["next_at"] = EVENING + 2 * DAY + timedelta(hours=2)
++    runner.ledger.save("daily_tasks", pending)
++    count = upstream.calls.count(url)
++    clock.value += DAY
++    upstream.add(key, "2024-01-16")
++    runner.run()
++    assert upstream.calls.count(url) == count
++    clock.value += timedelta(hours=2)
++    upstream.add(key)
++    runner.run()
++    assert upstream.calls.count(url) == count + 1
++    assert all(t["state"] == "complete" for t in tasks(runner) if t["day"] == DAY0)
++
++
++def test_http_weight_window_is_shared_across_dataset_attempts(store, env):
++    _, upstream, build = env
++    keys = [Key("trade_bars", interval="1h"), Key("mark_price_bars", interval="1h")]
++    for key in keys:
++        upstream.add(key)
++    runner = build(keys)
++    runner.run()
++    assert len(runner.request_windows["data.binance.vision"]) == 4
++
++
++def test_probe_requires_midnight_boundaries(store, env, tmp_path):
++    from marketdata.daily_probe import probe
++
++    _, _, build = env
++    cfg = probe_config(tmp_path, start_day="2024-01-14T00:01Z", end_day="2024-01-15T00:01Z")
++    with pytest.raises(DataError):
++        probe(build([Key("trade_bars")]), cfg)
++
++
++def test_config_change_never_silently_executes_removed_pending_target(store, env):
++    clock, upstream, build = env
++    old, keep = Key("trade_bars", interval="1h"), Key("mark_price_bars", interval="1h")
++    build([old, keep]).run()
++    clock.value += timedelta(hours=2)
++    upstream.add(old)
++    upstream.add(keep)
++    runner = build([keep])
++    runner.run()
++    removed = next(t for t in tasks(runner, "acquire") if t["key"] == old.asdict())
++    assert removed["state"] == "needs_review"
++    assert removed["reason"] == "pending_target_removed_from_configuration"
++    assert upstream.calls.count(archive_url(old, utc(DAY0), False)) == 1
++
++
++def test_populated_scheduler_store_survives_backup_restore_without_refetch(store, env, tmp_path):
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.add(key)
++    runner = build([key])
++    assert runner.run()["data_complete"]
++    archived, restored = tmp_path / "checkpoint-filled", tmp_path / "restored-filled"
++    backup.create_backup(store, archived, min_free_gib=0)
++    backup.verify_backup(archived)
++    backup.restore_backup(archived, restored, min_free_gib=0)
++    reopened = Store(restored)
++    try:
++
++        def reject(request):
++            pytest.fail("A verified restored task must not refetch the same cycle")
++
++        with httpx.Client(transport=httpx.MockTransport(reject)) as client:
++            replay = Scheduler(reopened, [key], runner.policy, client=client, clock=clock)
++            assert replay.run()["data_complete"]
++        assert reopened.validate()["ok"]
++    finally:
++        reopened.close()
++
++
++def test_failed_state_transaction_cannot_drop_retry_count_on_recovery(store, env):
++    _, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    upstream.responses[archive_url(key, utc(DAY0), False)] = httpx.ConnectError("offline")
++    runner = build([key])
++    with runner.ledger.exclusive(), store.db:
++        store.db.execute("""
++            CREATE TRIGGER interrupt_failure BEFORE UPDATE ON daily_attempts
++            WHEN json_extract(NEW.record, '$.state')='retry_wait'
++            BEGIN SELECT RAISE(ABORT, 'injected state commit failure'); END
++        """)
++    with pytest.raises(sqlite3.IntegrityError):
++        runner.run()
++    with store.db:
++        store.db.execute("DROP TRIGGER interrupt_failure")
++    task = tasks(runner, "acquire")[0]
++    assert task["state"] == "running" and task["transient_failures"] == 0
++    runner.run()
++    task = tasks(runner, "acquire")[0]
++    assert task["state"] == "retry_wait" and task["transient_failures"] == 1
++    assert len(upstream.calls) == 4
++
++
++def test_old_collector_can_fill_pending_day_without_deleting_new_ledger(store, env):
++    from marketdata.binance import Fetcher
++    from marketdata.pipeline import Collector
++
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    runner = build([key], refresh=0)
++    runner.run()
++    previous = tasks(runner, "acquire")[0]
++    upstream.add(key)
++    with httpx.Client(transport=httpx.MockTransport(upstream.handle)) as client:
++        old = Collector(store, Fetcher(client=client, sleep=lambda _: None), cooperative=True)
++        old.archive(key, utc(DAY0), utc(DAY0) + DAY, monthly=False)
++    count = len(upstream.calls)
++    assert runner.run()["data_complete"]
++    assert len(upstream.calls) == count
++    recovered = tasks(runner, "acquire")[0]
++    assert recovered["id"] == previous["id"] and recovered["attempts"] == previous["attempts"]
++
++
++def test_legacy_status_follows_new_tasks_and_noop_keeps_previous_run_time(store, env):
++    from marketdata.operations import status
++
++    clock, upstream, build = env
++    key = Key("trade_bars", interval="1h")
++    runner = build([key])
++    runner.run()
++    previous = dict(store.db.execute("SELECT * FROM sync_runs").fetchone())
++    assert (
++        status(store, [key], runner.policy, current=clock())["datasets"][0]["last_run"]["state"]
++        == "partial"
++    )
++    upstream.add(key)
++    clock.value += timedelta(hours=2)
++    runner.run()
++    observed = status(store, [key], runner.policy, current=clock())
++    assert observed["healthy"] and observed["datasets"][0]["last_run"]["state"] == "complete"
++    count = store.db.execute("SELECT count(*) FROM sync_runs").fetchone()[0]
++    clock.value += timedelta(minutes=5)
++    assert runner.run()["run_outcome"] == "no_due_tasks"
++    assert store.db.execute("SELECT count(*) FROM sync_runs").fetchone()[0] == count
++    assert (
++        dict(store.db.execute("SELECT * FROM sync_runs WHERE id=?", (previous["id"],)).fetchone())
++        == previous
++    )
+--- /dev/null
++++ b/configs/daily-scheduler.toml
+@@ -0,0 +1,51 @@
++[operations]
++# Monitor recent production acquisition, independently of imported research history.
++start = "2026-09-14"
++refresh_days = 3
++max_days_per_run = 32
++stale_after_seconds = 129600
++
++[[datasets]]
++dataset = "trade_bars"
++market = "spot"
++
++[[datasets]]
++dataset = "trade_bars"
++market = "linear_perpetual"
++
++[[datasets]]
++dataset = "mark_price_bars"
++
++[[datasets]]
++dataset = "index_price_bars"
++
++[[datasets]]
++dataset = "funding_events"
++interval = "event"
++
++[[datasets]]
++dataset = "open_interest"
++interval = "5m"
++series = "archive"
++
++[[datasets]]
++dataset = "instrument_metadata"
++market = "spot"
++interval = "event"
++
++[[datasets]]
++dataset = "instrument_metadata"
++market = "linear_perpetual"
++interval = "event"
++
++[schedule]
++# Local scheduling only. These are not guaranteed archive publication times.
++noon = "12:20"
++evening = "18:00"
++retry_slots = ["20:00", "22:00"]
++transient_delay_seconds = 300
++transient_attempts = 3
++validation_attempts = 2
++cooldown_seconds = 900
++old_missing_days = 3
++max_tasks = 32
+--- /dev/null
++++ b/configs/daily-publication-probe.example.toml
+@@ -0,0 +1,8 @@
++[observation]
++# Review exact UTC dates before activation. This example sends no requests.
++enabled = false
++start_day = "2026-10-10"
++end_day = "2026-10-17" # exclusive; seven fixed target days
++interval_seconds = 300
++opens_kst = "14:30"
++closes_kst = "21:30"
+--- /dev/null
++++ b/integrations/daily_scheduler/marketdata-daily.service.in
+@@ -0,0 +1,16 @@
++[Unit]
++Description=Market data due daily tasks (T13 candidate)
++Wants=network-online.target
++After=network-online.target
++StartLimitIntervalSec=600
++StartLimitBurst=5
++
++[Service]
++Type=oneshot
++WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
++# Existing /etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf
++# must remain unchanged: Requires/After waiter and strict ExecStartPre are retained.
++ExecStart=/opt/marketdata/releases/@RELEASE@/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json
++TimeoutStartSec=30min
++Restart=on-failure
++RestartSec=60s
+--- /dev/null
++++ b/integrations/daily_scheduler/marketdata-daily.timer
+@@ -0,0 +1,13 @@
++[Unit]
++Description=Wake daily task scheduler; only due incomplete targets use network
++
++[Timer]
++OnActiveSec=30s
++OnCalendar=*-*-* *:00/5:00 UTC
++RandomizedDelaySec=30s
++AccuracySec=1s
++Persistent=true
++Unit=marketdata-daily.service
++
++[Install]
++WantedBy=timers.target

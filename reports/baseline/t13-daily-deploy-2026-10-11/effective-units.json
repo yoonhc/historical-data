@@ -1,0 +1,135 @@
+{
+  "service": {
+    "Restart": [
+      "on-failure"
+    ],
+    "TimeoutStartUSec": [
+      "30min"
+    ],
+    "TimeoutStopUSec": [
+      "1min 30s"
+    ],
+    "MainPID": [
+      "0"
+    ],
+    "ControlPID": [
+      "0"
+    ],
+    "Result": [
+      "success"
+    ],
+    "ExecMainStartTimestampMonotonic": [
+      "0"
+    ],
+    "ExecMainExitTimestampMonotonic": [
+      "0"
+    ],
+    "ExecMainCode": [
+      "0"
+    ],
+    "ExecMainStatus": [
+      "0"
+    ],
+    "ExecStartPre": [
+      "{ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }"
+    ],
+    "ExecStart": [
+      "{ path=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python ; argv[]=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }"
+    ],
+    "MemoryPeak": [
+      "[not set]"
+    ],
+    "CPUUsageNSec": [
+      "[not set]"
+    ],
+    "IOReadBytes": [
+      "[not set]"
+    ],
+    "IOWriteBytes": [
+      "[not set]"
+    ],
+    "Id": [
+      "marketdata-daily.service"
+    ],
+    "Requires": [
+      "app.slice basic.target marketdata-clock-ready.service"
+    ],
+    "After": [
+      "marketdata-clock-ready.service app.slice home.mount marketdata-daily.timer basic.target -.mount network-online.target"
+    ],
+    "ActiveState": [
+      "inactive"
+    ],
+    "SubState": [
+      "dead"
+    ],
+    "FragmentPath": [
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.service"
+    ],
+    "DropInPaths": [
+      "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf"
+    ],
+    "UnitFileState": [
+      "static"
+    ],
+    "NeedDaemonReload": [
+      "no"
+    ],
+    "InvocationID": [
+      ""
+    ]
+  },
+  "timer": {
+    "Unit": [
+      "marketdata-daily.service"
+    ],
+    "TimersCalendar": [
+      "{ OnCalendar=*-*-* *:00/5:00 UTC ; next_elapse=(null) }"
+    ],
+    "NextElapseUSecRealtime": [
+      ""
+    ],
+    "Result": [
+      "resources"
+    ],
+    "AccuracyUSec": [
+      "1s"
+    ],
+    "RandomizedDelayUSec": [
+      "30s"
+    ],
+    "Persistent": [
+      "yes"
+    ],
+    "Id": [
+      "marketdata-daily.timer"
+    ],
+    "Requires": [
+      ""
+    ],
+    "After": [
+      ""
+    ],
+    "ActiveState": [
+      "failed"
+    ],
+    "SubState": [
+      "failed"
+    ],
+    "FragmentPath": [
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.timer"
+    ],
+    "DropInPaths": [
+      ""
+    ],
+    "UnitFileState": [
+      "disabled"
+    ],
+    "NeedDaemonReload": [
+      "no"
+    ],
+    "InvocationID": [
+      "e11a56633e114373b8d7182ccc400f5b"
+    ]
+  }
+}

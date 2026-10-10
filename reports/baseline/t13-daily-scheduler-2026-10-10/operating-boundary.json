@@ -1,0 +1,74 @@
+{
+  "source_changes_since_candidate_copy": [],
+  "guard_files": {
+    "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": {
+      "expected": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12",
+      "actual": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12"
+    },
+    "/etc/systemd/system/chrony.service.d/marketdata.conf": {
+      "expected": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4",
+      "actual": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4"
+    },
+    "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+      "expected": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+      "actual": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc"
+    },
+    "/etc/systemd/system/marketdata-collector@.service": {
+      "expected": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+      "actual": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4"
+    },
+    "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf": {
+      "expected": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+      "actual": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598"
+    },
+    "/etc/systemd/user/marketdata-clock-ready.service": {
+      "expected": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab",
+      "actual": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab"
+    },
+    "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": {
+      "expected": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+      "actual": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598"
+    },
+    "/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf": {
+      "expected": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+      "actual": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598"
+    },
+    "/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf": {
+      "expected": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+      "actual": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598"
+    },
+    "/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf": {
+      "expected": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+      "actual": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598"
+    },
+    "/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf": {
+      "expected": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+      "actual": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598"
+    },
+    "/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf": {
+      "expected": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+      "actual": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598"
+    },
+    "/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf": {
+      "expected": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+      "actual": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598"
+    }
+  },
+  "all_guards_match": true,
+  "settings_sha256": {
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.service": "7ba5289fc742422fd1935bfe4515c274775262a5e6195214b2533311ab8d9d5c",
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": "c67b3d1268e6b38f9ccee07d12192579708b826851e7269be5c0b7a61eee03dd",
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389",
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+    "/etc/chrony/chrony.conf": "90ed2118d622b9a0488b46405b571575a3955a65cb56a9d3d8b8c1e196ba5d68",
+    "/etc/marketdata/runtime.json": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+    "/etc/marketdata/clock-bootstrap.json": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb"
+  },
+  "automatic_retirement_masks": {
+    "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": "/dev/null",
+    "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": "/dev/null"
+  },
+  "inspection": "read-only; no service actions or clock commands"
+}

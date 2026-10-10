@@ -1,0 +1,51 @@
+[operations]
+# Monitor recent production acquisition, independently of imported research history.
+start = "2026-09-14"
+refresh_days = 3
+max_days_per_run = 32
+stale_after_seconds = 129600
+
+[[datasets]]
+dataset = "trade_bars"
+market = "spot"
+
+[[datasets]]
+dataset = "trade_bars"
+market = "linear_perpetual"
+
+[[datasets]]
+dataset = "mark_price_bars"
+
+[[datasets]]
+dataset = "index_price_bars"
+
+[[datasets]]
+dataset = "funding_events"
+interval = "event"
+
+[[datasets]]
+dataset = "open_interest"
+interval = "5m"
+series = "archive"
+
+[[datasets]]
+dataset = "instrument_metadata"
+market = "spot"
+interval = "event"
+
+[[datasets]]
+dataset = "instrument_metadata"
+market = "linear_perpetual"
+interval = "event"
+
+[schedule]
+# Local scheduling only. These are not guaranteed archive publication times.
+noon = "12:20"
+evening = "18:00"
+retry_slots = ["20:00", "22:00"]
+transient_delay_seconds = 300
+transient_attempts = 3
+validation_attempts = 2
+cooldown_seconds = 900
+old_missing_days = 3
+max_tasks = 32

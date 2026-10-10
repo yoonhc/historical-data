@@ -1,0 +1,542 @@
+{
+  "checked_at": "2026-10-10T15:53:18.173034+00:00",
+  "first_invocation": {
+    "Restart": [
+      "on-failure"
+    ],
+    "TimeoutStartUSec": [
+      "30min"
+    ],
+    "TimeoutStopUSec": [
+      "1min 30s"
+    ],
+    "MainPID": [
+      "0"
+    ],
+    "ControlPID": [
+      "0"
+    ],
+    "Result": [
+      "success"
+    ],
+    "ExecMainStartTimestampMonotonic": [
+      "175220340134"
+    ],
+    "ExecMainExitTimestampMonotonic": [
+      "175238061570"
+    ],
+    "ExecMainCode": [
+      "1"
+    ],
+    "ExecMainStatus": [
+      "0"
+    ],
+    "ExecStartPre": [
+      "{ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Sun 2026-10-11 00:51:22 KST] ; stop_time=[Sun 2026-10-11 00:51:22 KST] ; pid=583465 ; code=exited ; status=0 }"
+    ],
+    "ExecStart": [
+      "{ path=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python ; argv[]=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json ; ignore_errors=no ; start_time=[Sun 2026-10-11 00:51:22 KST] ; stop_time=[Sun 2026-10-11 00:51:40 KST] ; pid=583469 ; code=exited ; status=0 }"
+    ],
+    "MemoryPeak": [
+      "[not set]"
+    ],
+    "CPUUsageNSec": [
+      "17081082000"
+    ],
+    "IOReadBytes": [
+      "[not set]"
+    ],
+    "IOWriteBytes": [
+      "[not set]"
+    ],
+    "Id": [
+      "marketdata-daily.service"
+    ],
+    "Requires": [
+      "app.slice basic.target marketdata-clock-ready.service"
+    ],
+    "After": [
+      "marketdata-clock-ready.service app.slice home.mount marketdata-daily.timer basic.target -.mount network-online.target"
+    ],
+    "ActiveState": [
+      "inactive"
+    ],
+    "SubState": [
+      "dead"
+    ],
+    "FragmentPath": [
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.service"
+    ],
+    "DropInPaths": [
+      "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf"
+    ],
+    "UnitFileState": [
+      "static"
+    ],
+    "NeedDaemonReload": [
+      "no"
+    ],
+    "InvocationID": [
+      "026052b11c884669b9cbb692c0316763"
+    ]
+  },
+  "first_report": {
+    "as_of": "2026-10-10T15:51:40.065936+00:00",
+    "completed_tasks": 156,
+    "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+    "data_complete": false,
+    "finished_at": "2026-10-10T15:51:40.066109+00:00",
+    "id": "0c6e2ce4fed747d1842bbab9cbd6d1cd",
+    "pending": [
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "19e02ec092da6c9f432cf8d5f4f10a3398c14058060c9e5929343bc073d1b277",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "818bc9d529a16e4663566e0c89cd4f1a57217afa42d72862366d736d5e4d235c",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "2d89912240363f723531ec7c6d69b6d8a7b16023c5cab7767fc038b7f56f5807",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "5499ba4192549439fa2a070bf07bb16dedb465ec0360d18dce228705fa3cf93d",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "ce792da7c776b503cb9ee3f471fb422d7025cc73adb807eed82f1f9fd242d036",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "8e648c4709825d8e7039364ef209bb7f1c6aef731ef6dfec24f77c9c95912c15",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "a742059a79422c62a79687d303c57f92f23398c80c308337c32268d8a3ce837a",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "5401bc427e406bdb99f8e7d57b1b61ae210a14091289103195ba86336787b839",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "75b6125c7661be3c4b79a610f4f2c12748dbaabaf538c87df4fcc644d9aed3c7",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "9a2f09f629d95171c4a2a27a5dc7afd89bddd81cf0452ee533263d2888f54f80",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "b601affb3cd751adddfd11acebd0b7c6cf0b3bcb35b1bc23a732f36fe7794978",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "b99d56a17d6b6c8596ed7275b8da733c33dc51d4f9f88e872192930708f12c6c",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "6beaa2716eb2b80942d8435c47b4ddafef454be27da1a436b44cac80775a4e23",
+        "key": {
+          "dataset": "funding_events",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "d1fed54c14244efd5ba00a6f203393200e605516de593258c94f1c132de18045",
+        "key": {
+          "dataset": "funding_events",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "8b2d3fddb948eb7b4eef2b5d9c3346f94179abd75329d728027cb1f5c7ad908b",
+        "key": {
+          "dataset": "funding_events",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-07",
+        "id": "e2107a5f866635da906df051c8f0e32e3ab20d5ef7695db62c2992c26dbedfed",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-08",
+        "id": "e6260ae83ede5f3dfdbbbcc51b7eed95daaffd8f8e89cde846e770601b8f08dc",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-09",
+        "id": "93a4b899922bf79dd71f829a6a97b9306d6bbfb1718cb78d080673fd3e19c45b",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-11",
+        "id": "1af03fd71fbbbc7bf2e1aa4cad6061260e142c1104a241df856bc7262aeeb60a",
+        "key": {
+          "dataset": "instrument_metadata",
+          "interval": "event",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "observe",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-11",
+        "day": "2026-10-11",
+        "id": "bc8bc42aeea4f0c495203bf2422a45b4172487e31c18503899b1dda73ecf55f9",
+        "key": {
+          "dataset": "instrument_metadata",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-11T03:20:00+00:00",
+        "purpose": "observe",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      }
+    ],
+    "processed": [],
+    "publication_observation": {
+      "requests": 0,
+      "state": "disabled"
+    },
+    "review_required": false,
+    "run_outcome": "no_due_tasks",
+    "runner_ok": true,
+    "started_at": "2026-10-10T15:51:22.601165+00:00",
+    "state_counts": {
+      "complete": 156,
+      "planned": 20
+    },
+    "version": 1
+  },
+  "ledger_counts": {
+    "daily_tasks": 176,
+    "daily_runs": 1,
+    "daily_attempts": 0,
+    "daily_reviews": 0
+  },
+  "collector_before_enable": {
+    "chrony.service": {
+      "MainPID": [
+        "1245"
+      ],
+      "ActiveState": [
+        "active"
+      ],
+      "InvocationID": [
+        "19420480ab3249529a075ca7cb2bd3c1"
+      ]
+    },
+    "marketdata-collector@depth.service": {
+      "MainPID": [
+        "224785"
+      ],
+      "ActiveState": [
+        "active"
+      ],
+      "InvocationID": [
+        "41b1747221894331a5e0b4fdf3f9751e"
+      ]
+    },
+    "marketdata-collector@aggtrade.service": {
+      "MainPID": [
+        "224784"
+      ],
+      "ActiveState": [
+        "active"
+      ],
+      "InvocationID": [
+        "1aa42e55ff804c1f9e5ec68b31116c6b"
+      ]
+    }
+  },
+  "timer_after": {
+    "Unit": [
+      "marketdata-daily.service"
+    ],
+    "TimersCalendar": [
+      "{ OnCalendar=*-*-* *:00/5:00 UTC ; next_elapse=Sat 2026-10-10 12:25:00 KST }"
+    ],
+    "NextElapseUSecRealtime": [
+      ""
+    ],
+    "Result": [
+      "success"
+    ],
+    "AccuracyUSec": [
+      "1s"
+    ],
+    "RandomizedDelayUSec": [
+      "30s"
+    ],
+    "Persistent": [
+      "yes"
+    ],
+    "Id": [
+      "marketdata-daily.timer"
+    ],
+    "Requires": [
+      ""
+    ],
+    "After": [
+      ""
+    ],
+    "ActiveState": [
+      "active"
+    ],
+    "SubState": [
+      "running"
+    ],
+    "FragmentPath": [
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.timer"
+    ],
+    "DropInPaths": [
+      ""
+    ],
+    "UnitFileState": [
+      "enabled"
+    ],
+    "NeedDaemonReload": [
+      "no"
+    ],
+    "InvocationID": [
+      "201fcf64d1714226988718ef39996cad"
+    ]
+  },
+  "passed": true
+}

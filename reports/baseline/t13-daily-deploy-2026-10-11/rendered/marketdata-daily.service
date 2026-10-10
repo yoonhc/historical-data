@@ -1,0 +1,16 @@
+[Unit]
+Description=Market data due daily tasks (T13 candidate)
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=600
+StartLimitBurst=5
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+# Existing /etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf
+# must remain unchanged: Requires/After waiter and strict ExecStartPre are retained.
+ExecStart=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json
+TimeoutStartSec=30min
+Restart=on-failure
+RestartSec=60s
