@@ -1,0 +1,11 @@
+[Unit]
+Description=Evaluate clock-bounded checkpoints at 15:40 KST
+
+[Timer]
+OnCalendar=*-*-* 06:40:00 UTC
+Persistent=false
+AccuracySec=1s
+Unit=marketdata-checkpoint-retirement.service
+
+[Install]
+WantedBy=timers.target

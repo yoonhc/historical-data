@@ -1,0 +1,24 @@
+{
+  "release": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7",
+  "settings": "/etc/marketdata/checkpoint-clock-retirement/settings.toml",
+  "state": "/var/lib/marketdata-checkpoint-retirement",
+  "profile": {
+    "store_root": "/home/yoonhc/projects/algoTrade/historical_data",
+    "backup_dir": "/mnt/backup/marketdata-historical/automatic",
+    "backup_mount": "/mnt/backup",
+    "backup_filesystem_uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+    "restic_repository": "/mnt/backup/marketdata-restic",
+    "expected_repository_id": "b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558",
+    "restic_binary": "/home/yoonhc/projects/algoTrade/historical_data/.cache/restic/0.19.1/restic",
+    "restic_password_file": "/home/yoonhc/.config/marketdata/secrets/restic-password",
+    "archive_scope": "historical-data-original-v1",
+    "enroll_from_utc_date": "2026-09-27",
+    "state_root": "/home/yoonhc/projects/algoTrade/historical_data/archive-state",
+    "reports_root": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs",
+    "cache_root": "/home/yoonhc/projects/algoTrade/historical_data/.cache/restic-archive",
+    "restore_work_root": "/mnt/backup/marketdata-restic-restore",
+    "min_free_gib": 10,
+    "max_checkpoints_per_run": 3,
+    "restic_threads": 2
+  }
+}

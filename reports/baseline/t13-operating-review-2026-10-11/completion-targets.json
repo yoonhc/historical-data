@@ -1,0 +1,3509 @@
+{
+  "format_version": 1,
+  "created_at": "2026-10-11T10:06:55.938283+00:00",
+  "scope": "T13 2026-10-11 noon 10 attempts and evening 16 attempts; fixed operational completion target",
+  "release_id": "t13-daily-scheduler-20261011-703fb0d455523c1b",
+  "evidence_sha256": {
+    "ledger-records.json.gz": "2606cb17cfa3ad4e28def5dc4a806c224132a627151cf6aeb82412f2fdce48ae",
+    "inspection.json": "ab697cb1040e72ace7f1f8218b4d93f4e38fe392b6469a0561dd0f1d47beee44",
+    "verification.json": "d58eb5d7eabdd601e47c2ff3bb1a4d5469f2bf5789595b6d51c685be72a0fe05"
+  },
+  "baseline_total_tasks": 188,
+  "require_future_total_tasks_equal_baseline": false,
+  "attempt_groups": {
+    "noon": 10,
+    "evening": 16
+  },
+  "attempts": [
+    {
+      "group": "noon",
+      "run_id": "6a1cf0c8d15848f8b7a0a6ba336dec1a",
+      "attempt_id": "602965001fc84339b8695e21dc58a5e3",
+      "task_id": "05cf1850e49483cfd31f814484e221f28220b2f8c66c9cefd853d25b0f8f96b5",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "purpose": "acquire",
+      "cycle": null,
+      "attempt_record_sha256": "f05e4b6a519ff0ed810bcc97355e7d63e8ac410ca1ea2da27cbb52d4772d7503",
+      "task_record_sha256": "c9d024090c2b3aad45a62b70130e32aefd158e911befd6de3419d301f9800c8a",
+      "completed_proof_sha256": "0f30db41db53a5aa9bf68af15d6f05acd501998ae324059aa166675f2336d9b1",
+      "proof": {
+        "checked_at": "2026-10-11T03:21:07.556508+00:00",
+        "file_sha256": [
+          "38f23438c34227bea0f9502207893019d77d91c06e80501387b59fa01efd8c36"
+        ],
+        "publish_intent": {
+          "economic_sha256": "f2d195ae2628bbc67d012087a994d8ac396bff395a2005f707c255b997bb0a8a",
+          "end": "2026-10-11T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-11T00:00:00+00:00",
+          "row_start": "2026-10-10T00:00:00+00:00",
+          "source_id": "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad",
+          "start": "2026-10-10T00:00:00+00:00"
+        },
+        "query_ids": [
+          20895
+        ],
+        "revision_ids": [
+          "cb89a8c816e56c8e07354c6ce250d66a8f872f3121afa6c137cf39f5d5873be3"
+        ],
+        "source_ids": [
+          "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad"
+        ]
+      },
+      "input_artifact_ids": [
+        "696a0d7dc9dbd9f1898520a3e195107bbf37aa0b6c989058ab0da906bd088686",
+        "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad"
+      ]
+    },
+    {
+      "group": "noon",
+      "run_id": "6a1cf0c8d15848f8b7a0a6ba336dec1a",
+      "attempt_id": "5595e320beb04137bdda335dc5525a88",
+      "task_id": "51cec07a7c0c37f68466b6e4e07c18bf9d82f9b11482789bce6785c8882551b0",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "purpose": "acquire",
+      "cycle": null,
+      "attempt_record_sha256": "4661c3c71d5087c217e9c7c1fb51850f52897609cb3a36cd6a1c62f54e1f14aa",
+      "task_record_sha256": "ec9735ce695c0aa2988d6168ce447bc683fe2b9b72784e19fa8139efecacd297",
+      "completed_proof_sha256": "23161172b9dd257546a0d061c2264a7490ebe276015bbe3908fd5bd2388d350f",
+      "proof": {
+        "checked_at": "2026-10-11T03:21:07.765751+00:00",
+        "file_sha256": [
+          "076d38ce15853defd59e6440f6b5ce4830d5c55aef22e61c5c9c55e3ccb65dc2"
+        ],
+        "publish_intent": {
+          "economic_sha256": "ea937c0785804bebea97d9aae65db05f1f783c3bdc3e9cfa924db46f1cc4c1d2",
+          "end": "2026-10-11T00:00:00+00:00",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 3,
+          "row_end": "2026-10-11T00:00:00+00:00",
+          "row_start": "2026-10-10T00:00:00+00:00",
+          "source_id": "9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df",
+          "start": "2026-10-10T00:00:00+00:00"
+        },
+        "query_ids": [
+          20896
+        ],
+        "revision_ids": [
+          "31bdb965e3387d4991394b44340457c27db0ffc941b119e91665a3199fff0e32"
+        ],
+        "source_ids": [
+          "9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df"
+        ]
+      },
+      "input_artifact_ids": [
+        "25c551842188b0d06e93ea2b059e44c17950cb9fe4cd91a9003709d520e53e6d",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "group": "noon",
+      "run_id": "6a1cf0c8d15848f8b7a0a6ba336dec1a",
+      "attempt_id": "3be2a3c946a54a51a8c2d1ae13a5ef15",
+      "task_id": "1af03fd71fbbbc7bf2e1aa4cad6061260e142c1104a241df856bc7262aeeb60a",
+      "key": {
+        "dataset": "instrument_metadata",
+        "interval": "event",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-11",
+      "purpose": "observe",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "f524a36a321a8d00568fc14a5129acd33f89ea004fe911fa6fd1dcd55649d5c9",
+      "task_record_sha256": "c533241a01265d5a5336b64cb988b358876619f8c7029304abdf34f3481429a4",
+      "completed_proof_sha256": "cd2d41874921ea2e0c3623e8ba6d01a759a2d33ab89ec093a481c2ba9ca03202",
+      "proof": {
+        "checked_at": "2026-10-11T03:21:08.209007+00:00",
+        "file_sha256": [
+          "2f8ba120a0999ce5811b832500ea9a2eb64113e443dd1f747faa90411b0dd3d7"
+        ],
+        "publish_intent": {
+          "economic_sha256": "f3d0ef93dbf0a14ed4d339321d4b79bfcbf91d376ca62a7d1583f2a8e0fe14bb",
+          "end": "2026-10-12T00:00:00+00:00",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1,
+          "row_end": "2026-10-11T03:21:07.992140+00:00",
+          "row_start": "2026-10-11T03:21:07.992139+00:00",
+          "source_id": "92a3aa6e3e0f0d8b2828b8a7f5eaae724d47c8c5102126c046e00e0a4115debc",
+          "start": "2026-10-11T00:00:00+00:00"
+        },
+        "query_ids": [
+          20897
+        ],
+        "revision_ids": [
+          "51df8e29df91b21749d71a236b10d848d1d8a2c5aea644d2daf616468d1f4cea"
+        ],
+        "source_ids": [
+          "92a3aa6e3e0f0d8b2828b8a7f5eaae724d47c8c5102126c046e00e0a4115debc"
+        ]
+      },
+      "input_artifact_ids": [
+        "252096ee1aa35c2cf7208fef85dbf7474ff0072f181f6a9da0159303fd44bdf6"
+      ]
+    },
+    {
+      "group": "noon",
+      "run_id": "6a1cf0c8d15848f8b7a0a6ba336dec1a",
+      "attempt_id": "4d23f6ecebc0448c96e27d41ac6371c7",
+      "task_id": "bc8bc42aeea4f0c495203bf2422a45b4172487e31c18503899b1dda73ecf55f9",
+      "key": {
+        "dataset": "instrument_metadata",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-11",
+      "purpose": "observe",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "fea72b8543d5596a85da363737988597288e4de402fb69d1ceabcd4e5d717039",
+      "task_record_sha256": "7de6ab613cca68ebdde7e1aad73063c175c1b969a4013ea32b43a4bef3519312",
+      "completed_proof_sha256": "95e4f46e8aab57ca46461c9a610c93f4c3de5da7e6486e48823d2e2bd90d24e3",
+      "proof": {
+        "checked_at": "2026-10-11T03:21:08.302454+00:00",
+        "file_sha256": [
+          "32c36eca019356bb603720ae5be583918cc8fabd975df0d95b9bc152bd0f0b21"
+        ],
+        "publish_intent": {
+          "economic_sha256": "2b6ccdfb55d8031e97ada6c14daa7ac402e96be1643d4cef294da581a12d6b49",
+          "end": "2026-10-12T00:00:00+00:00",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1,
+          "row_end": "2026-10-11T03:21:08.272445+00:00",
+          "row_start": "2026-10-11T03:21:08.272444+00:00",
+          "source_id": "de11a9646718818c1c567a240a07bf30fd598e2afe0b176fab699747d647ffd5",
+          "start": "2026-10-11T00:00:00+00:00"
+        },
+        "query_ids": [
+          20898
+        ],
+        "revision_ids": [
+          "b1a80d531bdc08b66d5054ed5f28ed3c464a9d0492a0b4ac0fab776e45234663"
+        ],
+        "source_ids": [
+          "de11a9646718818c1c567a240a07bf30fd598e2afe0b176fab699747d647ffd5"
+        ]
+      },
+      "input_artifact_ids": [
+        "a7f720f5ece63fe9ab087cbdd9fecc66d18645f113896b81ec171c89636ed39f"
+      ]
+    },
+    {
+      "group": "noon",
+      "run_id": "6a1cf0c8d15848f8b7a0a6ba336dec1a",
+      "attempt_id": "dc6f96c7bd3a4342a3264bd87a648289",
+      "task_id": "19e02ec092da6c9f432cf8d5f4f10a3398c14058060c9e5929343bc073d1b277",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "a8df847866322eed6140119ba3eef7193927c6ea4de67ded7185a5b8aaf42544",
+      "task_record_sha256": "23df9dbc25365e1d6b9f4d10669cee2587510f9f75ad6716c37053c708b38aa3",
+      "completed_proof_sha256": "34b5927a43110b8bee05923dec2ea30f4fe2ee2fe1cb4e218d077a3339208467",
+      "proof": {
+        "checked_at": "2026-10-11T03:21:08.963082+00:00",
+        "file_sha256": [
+          "5295003b5861a7d186aff0e07ebd861ef39681b6e92a264f3ea0904119467a75"
+        ],
+        "publish_intent": {
+          "economic_sha256": "280f968598de6c6b60e7a7bc4fa9ccd0b2efe1bd9c8bc3de99226de69986a0b3",
+          "end": "2026-10-08T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-08T00:00:00+00:00",
+          "row_start": "2026-10-07T00:00:00+00:00",
+          "source_id": "dbf5247bf2af9890ead226015bd635cee5cccfb9171e55e322f151dc104952a7",
+          "start": "2026-10-07T00:00:00+00:00"
+        },
+        "query_ids": [
+          20148
+        ],
+        "revision_ids": [
+          "577dbafcd0b01789d5d1ad7848bf1b00c70f7d3a0cf215d5045ca27781cc1657"
+        ],
+        "source_ids": [
+          "dbf5247bf2af9890ead226015bd635cee5cccfb9171e55e322f151dc104952a7"
+        ]
+      },
+      "input_artifact_ids": [
+        "aa54fc65038fa74a966dfe68055df419ea3e908db5a88d8a459bf080a735a9b2",
+        "dbf5247bf2af9890ead226015bd635cee5cccfb9171e55e322f151dc104952a7"
+      ]
+    },
+    {
+      "group": "noon",
+      "run_id": "6a1cf0c8d15848f8b7a0a6ba336dec1a",
+      "attempt_id": "9823cae152ee4545bc86c44d6777bf89",
+      "task_id": "6beaa2716eb2b80942d8435c47b4ddafef454be27da1a436b44cac80775a4e23",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "831b8990f683ac4977a66bfd5870f6a679d26cfd69e017d90e33bd046e1f2bf4",
+      "task_record_sha256": "64cf21978a099043a0f72d3d4fd7027003f136304101140753d1863eaf3b7f9a",
+      "completed_proof_sha256": "8e6a600a125ac5da87a437d930e6b8c1e3b3701a8b520c70745abb12b41c1ecb",
+      "proof": {
+        "checked_at": "2026-10-11T03:21:09.168346+00:00",
+        "file_sha256": [
+          "46aed2dc0123e202e39ad691d75b793c40b14057a055ec391dccf623db622e80"
+        ],
+        "publish_intent": {
+          "economic_sha256": "e6736b412fbc4f263092e3abb63449aae69c4ce1b2a94f3d9fdb5d89f53fc5f8",
+          "end": "2026-10-08T00:00:00+00:00",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 3,
+          "row_end": "2026-10-08T00:00:00+00:00",
+          "row_start": "2026-10-07T00:00:00+00:00",
+          "source_id": "f1771111aa60e0695646eade5eed1c0afb360f81ed06c6635817bab24940bc0b",
+          "start": "2026-10-07T00:00:00+00:00"
+        },
+        "query_ids": [
+          20149
+        ],
+        "revision_ids": [
+          "00a99151dbb70dd01873ecfa121e1c410f409e61132a020d0c11a7e3ebd0394f"
+        ],
+        "source_ids": [
+          "f1771111aa60e0695646eade5eed1c0afb360f81ed06c6635817bab24940bc0b"
+        ]
+      },
+      "input_artifact_ids": [
+        "03bbcc4341cecddf689e7b020ed1cf2068b5ab2608cab0726bd207829b95d933",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "group": "noon",
+      "run_id": "6a1cf0c8d15848f8b7a0a6ba336dec1a",
+      "attempt_id": "f2a29633725a4b9abe3d7f1d6b2bc474",
+      "task_id": "818bc9d529a16e4663566e0c89cd4f1a57217afa42d72862366d736d5e4d235c",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "db8ff2da1b40cd3eadc696f5a478ca4dab552bfcedeb788cb7770151ae661aed",
+      "task_record_sha256": "56540624f012bfe43fce7f4450cca1bc2ae8c9ae9e3632c723b16a01830a4ce6",
+      "completed_proof_sha256": "238aff40cc061acfec0b2e7d84403c160456d9f5c8e8d014658935eec94c5915",
+      "proof": {
+        "checked_at": "2026-10-11T03:21:09.709516+00:00",
+        "file_sha256": [
+          "4f25640adf741d94a6f851cab87c91b8e20bbaafd3b570e27583c12eaf6cfda7"
+        ],
+        "publish_intent": {
+          "economic_sha256": "a381240bb95dfa16060b0ffd933a0a49a3918d80742fc086ccc8c4ef2fd25742",
+          "end": "2026-10-09T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-09T00:00:00+00:00",
+          "row_start": "2026-10-08T00:00:00+00:00",
+          "source_id": "d8766aac4db1dc64616cf4eaa481e3dcf68038695461f4f189659f169cf20326",
+          "start": "2026-10-08T00:00:00+00:00"
+        },
+        "query_ids": [
+          20421
+        ],
+        "revision_ids": [
+          "b318d84726ad6114fc0b102c034ba76d59abb9802a081f969be729c42a779907"
+        ],
+        "source_ids": [
+          "d8766aac4db1dc64616cf4eaa481e3dcf68038695461f4f189659f169cf20326"
+        ]
+      },
+      "input_artifact_ids": [
+        "1ca08fc71a1e43c6255aa7c78835797a6c0c9da5d3039ca6091e611f24b55760",
+        "d8766aac4db1dc64616cf4eaa481e3dcf68038695461f4f189659f169cf20326"
+      ]
+    },
+    {
+      "group": "noon",
+      "run_id": "6a1cf0c8d15848f8b7a0a6ba336dec1a",
+      "attempt_id": "4e8d199988404476891224b72d97b76e",
+      "task_id": "d1fed54c14244efd5ba00a6f203393200e605516de593258c94f1c132de18045",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "f42b395d6e5d6be1d3ca5c0331a088417f42210e110fa468ed1884735a49b4f8",
+      "task_record_sha256": "d2125774dee7fa99a6ad05aac1e359a0ab7d72ed9a56334a81da9b1b701b7c53",
+      "completed_proof_sha256": "dac35a36b9bf235cf3c8dbc607f9301a0e01190a4bf0d47146b0d638b51f4acc",
+      "proof": {
+        "checked_at": "2026-10-11T03:21:09.914414+00:00",
+        "file_sha256": [
+          "d6588eb2f54e8c7980d55af0d4e01f1b0cdcb50da7df725132bff4202adef821"
+        ],
+        "publish_intent": {
+          "economic_sha256": "83086b21585e4b067a84c55405dfe2bf1943e9b82c19e0f0abc5e2512fff4078",
+          "end": "2026-10-09T00:00:00+00:00",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 3,
+          "row_end": "2026-10-09T00:00:00+00:00",
+          "row_start": "2026-10-08T00:00:00+00:00",
+          "source_id": "624d270b591965cae50f8ea81f98c7e4c024d6cad285b78e6f5862b673da9ae7",
+          "start": "2026-10-08T00:00:00+00:00"
+        },
+        "query_ids": [
+          20422
+        ],
+        "revision_ids": [
+          "b60c1e2d7084e979b4c75c5d975adc5da16b454e4e83c84790ac9603252372b1"
+        ],
+        "source_ids": [
+          "624d270b591965cae50f8ea81f98c7e4c024d6cad285b78e6f5862b673da9ae7"
+        ]
+      },
+      "input_artifact_ids": [
+        "4e7e84cd380eed775b6fbeb949bd6e384faf1301b4b91c3307d7f526eb939120",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "group": "noon",
+      "run_id": "6a1cf0c8d15848f8b7a0a6ba336dec1a",
+      "attempt_id": "1b3d9005b820435b8cfc068fc5fba558",
+      "task_id": "2d89912240363f723531ec7c6d69b6d8a7b16023c5cab7767fc038b7f56f5807",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "c2042cf562530ef8c4ad594819d9c64d24f60f1c8fa3eafbdea3a87ab0a023ad",
+      "task_record_sha256": "390fcb0e889c1c3ee62f9b0ccac9372329112e4605a445645217bdd9de2d6bd3",
+      "completed_proof_sha256": "5e521c9b336d2db2b6d8043b83927b19edae6d557a32deaa7e37e137c3afb363",
+      "proof": {
+        "checked_at": "2026-10-11T03:21:10.386746+00:00",
+        "file_sha256": [
+          "d87320b3b55d0d546d6f340ee45ae63ed6ce9fe74c29a3d0754af101ec0096de"
+        ],
+        "publish_intent": {
+          "economic_sha256": "16f5fa4ae06cf1ffb1521295a42a0fbcff59173027aacb6b58d2ddad037f3e6e",
+          "end": "2026-10-10T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-10T00:00:00+00:00",
+          "row_start": "2026-10-09T00:00:00+00:00",
+          "source_id": "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48",
+          "start": "2026-10-09T00:00:00+00:00"
+        },
+        "query_ids": [
+          20648
+        ],
+        "revision_ids": [
+          "7bea98e86cc65f77b1e7a3efe1386c26720c169160d8108edc4e2c786eaf6f29"
+        ],
+        "source_ids": [
+          "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48"
+        ]
+      },
+      "input_artifact_ids": [
+        "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48",
+        "69a9d156bd0f25933130de3953c5b964463f2abe75ddda0fcbe876b44fd3298d"
+      ]
+    },
+    {
+      "group": "noon",
+      "run_id": "6a1cf0c8d15848f8b7a0a6ba336dec1a",
+      "attempt_id": "24fac32adb2844e9ac1f2c2f1d7ffff3",
+      "task_id": "8b2d3fddb948eb7b4eef2b5d9c3346f94179abd75329d728027cb1f5c7ad908b",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "2a8c04d4e2e92796627cc71c8e534b40629a07a2eecfb6901b033b21d44a25b7",
+      "task_record_sha256": "db16e265ddac4a363a81f11980af28966fc12ac7623e82e4bc1aff0d89848f4c",
+      "completed_proof_sha256": "84d3ce71f3f119dee8eb1cc665aa7c2c160ccecd3e5cab53c6f2d6efd4ef4fe1",
+      "proof": {
+        "checked_at": "2026-10-11T03:21:10.592893+00:00",
+        "file_sha256": [
+          "04ba7ddd735da196137de666d6c67b47222827358a14d559965b82a5799d412b"
+        ],
+        "publish_intent": {
+          "economic_sha256": "d698cd1e1cd91f9e707c8504444457e0777096c743bff58ebb8c3561283c0935",
+          "end": "2026-10-10T00:00:00+00:00",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 3,
+          "row_end": "2026-10-10T00:00:00+00:00",
+          "row_start": "2026-10-09T00:00:00+00:00",
+          "source_id": "20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372",
+          "start": "2026-10-09T00:00:00+00:00"
+        },
+        "query_ids": [
+          20652
+        ],
+        "revision_ids": [
+          "a81cc7ca0bfcc2731c5d49415ffcc0e25472196c24e6f4bfff64b33a012e6487"
+        ],
+        "source_ids": [
+          "20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372"
+        ]
+      },
+      "input_artifact_ids": [
+        "330ea5d3dcc6fc4bf60cad387557a61d353070bec7aa0bc3be6439c3bb4cdfdd",
+        "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "373fd194bb8048c4be90f4b2c2349285",
+      "task_id": "1f32b2c7a5f79c8e4447260b818dc5cf50a976ca06a051653e80b186c7f7651c",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "purpose": "acquire",
+      "cycle": null,
+      "attempt_record_sha256": "50ee34d11d5bc705598a82dcb113e4c7c705078ead9b4928b01c69333bcbc3f1",
+      "task_record_sha256": "6d7a0843561f0c0f9a891186bf0bd57b024bc2fd5aaa5072eefb254708841eac",
+      "completed_proof_sha256": "076bb761c05f302706b119e3c6ad07eddf5847542bb0032cb4edb99d1fe33eae",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:06.767916+00:00",
+        "file_sha256": [
+          "8a5d8e3e30258d535d0d7828605cdb78bfbf2a2e61a8205240eb421a6e3bf29a"
+        ],
+        "publish_intent": {
+          "economic_sha256": "14a592ca02f10494f0f7ce39caa7039c57554e31450b783bc51f93481178c618",
+          "end": "2026-10-11T00:00:00+00:00",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-11T00:00:00+00:00",
+          "row_start": "2026-10-10T00:00:00+00:00",
+          "source_id": "5e3ec69e3845e61b32d75d8d0d12dc74ca554212a5416d7db75c252476eeb7db",
+          "start": "2026-10-10T00:00:00+00:00"
+        },
+        "query_ids": [
+          20928
+        ],
+        "revision_ids": [
+          "0005d259ebe0f1ca8152098035b56391f772ee5e69d9ba4a7559318ff1db19d6"
+        ],
+        "source_ids": [
+          "5e3ec69e3845e61b32d75d8d0d12dc74ca554212a5416d7db75c252476eeb7db"
+        ]
+      },
+      "input_artifact_ids": [
+        "5e3ec69e3845e61b32d75d8d0d12dc74ca554212a5416d7db75c252476eeb7db",
+        "8930a09a56501ddf6e65924131289740ef5878b68f8f6399f13cfb595e4c4275"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "7454bf0f7df0441ebb3108780635ab6d",
+      "task_id": "95dff86b605e68d1b07bcca5efec4a0e6c015fcc484ab1ac9b68098e60ab6274",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "purpose": "acquire",
+      "cycle": null,
+      "attempt_record_sha256": "3eaf7965f62c9dd8ecfad1edb0ab4a403b3263da80e8e4759b924ff190f4880d",
+      "task_record_sha256": "d2785348217bfab4704be57a5e914e7f7f301ca4c9b117cb6c2ef429591fcb72",
+      "completed_proof_sha256": "965f6ab740ca2a54dfe28d290e41241af7fe0d24b23adca7af2ce8c54965b13e",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:07.125897+00:00",
+        "file_sha256": [
+          "f9bdca46b6dd8f14bd9799ec24733faea65071563a4959b47cf63f9b34806ee7"
+        ],
+        "publish_intent": {
+          "economic_sha256": "15c837c1502de322f49a45cc3cc44001f15022495c14a6c55fd4ff2da972e2ce",
+          "end": "2026-10-11T00:00:00+00:00",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-11T00:00:00+00:00",
+          "row_start": "2026-10-10T00:00:00+00:00",
+          "source_id": "4de0953a908b75ee3a4ae01634e4009501419d3444059cfae84c346b3d414925",
+          "start": "2026-10-10T00:00:00+00:00"
+        },
+        "query_ids": [
+          20929
+        ],
+        "revision_ids": [
+          "1d0a8422457a41307e14c935e58c6280f6f72a67d8bb28abe7aa24942d270553"
+        ],
+        "source_ids": [
+          "4de0953a908b75ee3a4ae01634e4009501419d3444059cfae84c346b3d414925"
+        ]
+      },
+      "input_artifact_ids": [
+        "3b8fe40b9947e2072a3bda990d961be834de7af5e2520dd06447c1a4a967d4ee",
+        "4de0953a908b75ee3a4ae01634e4009501419d3444059cfae84c346b3d414925"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "188f2a94195f4af09a85e403808e9d95",
+      "task_id": "aaf66b45fe759b626bc49502a4374b0adabcb7474c855ef5c93b9344fda097f4",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "purpose": "acquire",
+      "cycle": null,
+      "attempt_record_sha256": "f438a039a0cc8114faad9f9dbb74e414506e8e050a82277416a2491d7c76544a",
+      "task_record_sha256": "f0707fa49ea5d208ff3fb4e6f07d3e5c882f459d21acdbfb14f7ec95535bc670",
+      "completed_proof_sha256": "1d4de8ac6b761e4c28c65fc9ea076965b30abe02a87a471dd412e913b48af812",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:07.523596+00:00",
+        "file_sha256": [
+          "8bdac813baac767ab25091a3531e3e1de48d4f6aa2527ac534dc1eaf0dbb05ed"
+        ],
+        "publish_intent": {
+          "economic_sha256": "043d614feee26ee681af6b80d2c2061d6491ad33d853a75433300b77b125a2d9",
+          "end": "2026-10-11T00:00:00+00:00",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 288,
+          "row_end": "2026-10-11T00:00:00+00:00",
+          "row_start": "2026-10-10T00:00:00+00:00",
+          "source_id": "e82c3ec86e0fb48e3416ae973724ea9e237e174258b554742e8f427f4776a76e",
+          "start": "2026-10-10T00:00:00+00:00"
+        },
+        "query_ids": [
+          20930
+        ],
+        "revision_ids": [
+          "bee14c553e5e52b02f5226c83d6e76a1257056ac277870f5867714aff398920e"
+        ],
+        "source_ids": [
+          "e82c3ec86e0fb48e3416ae973724ea9e237e174258b554742e8f427f4776a76e"
+        ]
+      },
+      "input_artifact_ids": [
+        "111fe6b53b1b4bb6bbfa200e800c0627603e30c0c329e4b28497b5445a2f29d1",
+        "e82c3ec86e0fb48e3416ae973724ea9e237e174258b554742e8f427f4776a76e"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "72af8c1a4cb44e93a17a93a2b9752ca1",
+      "task_id": "f3a7ae4752c85786fc9c871e9ebc1b4c0d3bc139c636dc6d64ed6105ea312f09",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "purpose": "acquire",
+      "cycle": null,
+      "attempt_record_sha256": "68cd9fbf630dc000d66e968f81a38c27b485e68da1d0d7d01b27054e95fe35cd",
+      "task_record_sha256": "e128cbecbbd2c15e1f714b090b8aef153c47b7ed370831ee1d627c3a02845b90",
+      "completed_proof_sha256": "754d1e639471e56449d8c02a53f194f70c03bbfdac0767811459dc89e6a3e9dc",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:07.973638+00:00",
+        "file_sha256": [
+          "78114361160996c638adc51c5ba6f68ddf322fd62677e27dabb965a9631ff380"
+        ],
+        "publish_intent": {
+          "economic_sha256": "e3dcd31fc61ca4640dd3dd08fe6bab0cca4e8bbd90df7c4d074bdac7de8ce984",
+          "end": "2026-10-11T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-11T00:00:00+00:00",
+          "row_start": "2026-10-10T00:00:00+00:00",
+          "source_id": "7c4054a74e61d797fb461dcac78e78bccacc7be9d39ee2eadf2c8beb81cceda1",
+          "start": "2026-10-10T00:00:00+00:00"
+        },
+        "query_ids": [
+          20931
+        ],
+        "revision_ids": [
+          "da3f8259d1b3cecb5a4cccb0d6f96e6786f48d7f79509286f20c803c3f8b6b80"
+        ],
+        "source_ids": [
+          "7c4054a74e61d797fb461dcac78e78bccacc7be9d39ee2eadf2c8beb81cceda1"
+        ]
+      },
+      "input_artifact_ids": [
+        "20ec55365f24f59d8d2c01033048af73f3ab0c9955f1124f00fcd708dbf8bf86",
+        "7c4054a74e61d797fb461dcac78e78bccacc7be9d39ee2eadf2c8beb81cceda1"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "c64830159c5a465e9f9a51ce457c6b88",
+      "task_id": "5499ba4192549439fa2a070bf07bb16dedb465ec0360d18dce228705fa3cf93d",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "9af4b13175f3a054684074d0d30cdb2a0aae64e6e25c41366c32d1e57c0435b0",
+      "task_record_sha256": "1d63e0492c6a59458e50223a4a4deeb3ad18aa6408fd84033b8834db33d19fd9",
+      "completed_proof_sha256": "5ee6655e75797558143a1b2c548c46b2beda804b9b5c459cd2d6cb5eb1af210a",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:08.657749+00:00",
+        "file_sha256": [
+          "a609e58662b61c68eb964c7a617dc8747144a31a06a5a092dc26d92a6a98f422"
+        ],
+        "publish_intent": {
+          "economic_sha256": "f9f0b2d6e6da8931be9376f76d7f5ed955760cad19535e415930af510ba4140f",
+          "end": "2026-10-08T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-08T00:00:00+00:00",
+          "row_start": "2026-10-07T00:00:00+00:00",
+          "source_id": "00baed8ea40d8ce1845049e69e1a3cf205de1c29ad1b508bb09b1210efcacbf5",
+          "start": "2026-10-07T00:00:00+00:00"
+        },
+        "query_ids": [
+          20270
+        ],
+        "revision_ids": [
+          "e27311eb1799be2e4889a1e0e845feec8dc2e2226b2a875d6f9b0c3a61538580"
+        ],
+        "source_ids": [
+          "00baed8ea40d8ce1845049e69e1a3cf205de1c29ad1b508bb09b1210efcacbf5"
+        ]
+      },
+      "input_artifact_ids": [
+        "00baed8ea40d8ce1845049e69e1a3cf205de1c29ad1b508bb09b1210efcacbf5",
+        "8206b36cc780793a1611169784b91c1f77f36652adf4f9bb0b61574e0d9433ab"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "bf5f5c3f29b440759c9507cc9950a06f",
+      "task_id": "9a2f09f629d95171c4a2a27a5dc7afd89bddd81cf0452ee533263d2888f54f80",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "ecc7210c8d07fb03497d4804cf56a43ae8ad17e1d679635c39367914e5953610",
+      "task_record_sha256": "2554c881a025798fcf549e48fe99c1db90f24acf8c8e8a4e82f151100e639ad3",
+      "completed_proof_sha256": "d913263ad740dab06cba214ceee7cfbc18137ce35c09e936c5b615035d903dc4",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:09.171858+00:00",
+        "file_sha256": [
+          "b8bc78ae1cb3b9470b35843162b3a66371e06d05d1074da86dea242b163be79b"
+        ],
+        "publish_intent": {
+          "economic_sha256": "c989326cb6a223d69f0f79266878c5a086413b9c39dab81c983468c4a2af9fb4",
+          "end": "2026-10-08T00:00:00+00:00",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-08T00:00:00+00:00",
+          "row_start": "2026-10-07T00:00:00+00:00",
+          "source_id": "66f6fa938ab146801146fd23203b2ad164b9bce547854c692db7400359f0557e",
+          "start": "2026-10-07T00:00:00+00:00"
+        },
+        "query_ids": [
+          20272
+        ],
+        "revision_ids": [
+          "d06b53cadc6c1f36a88515aeabb8b4661660bd3353ae17249b01a9ba3e703703"
+        ],
+        "source_ids": [
+          "66f6fa938ab146801146fd23203b2ad164b9bce547854c692db7400359f0557e"
+        ]
+      },
+      "input_artifact_ids": [
+        "66f6fa938ab146801146fd23203b2ad164b9bce547854c692db7400359f0557e",
+        "edbd99c9b0e1b06160a609b35b0ae62386967f65797df505486fe32e4bb57771"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "ea354aa1f286448b963fb9a3806961ba",
+      "task_id": "a742059a79422c62a79687d303c57f92f23398c80c308337c32268d8a3ce837a",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "ee6bdf9b58a6768a40deeaf0ddf7842a4f3c44037f6be2c74965318f17d03c38",
+      "task_record_sha256": "4602512c7d0aad991edfe7bff8e13afa0296ae8154e26eb6208797d2fc3cfcac",
+      "completed_proof_sha256": "8c01ebbf05e24cc94efb2f5f232861dff7b8aafa8f5693d98db5800f78d4a4eb",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:09.752646+00:00",
+        "file_sha256": [
+          "2cfc7332311479b5f1fbfe452e34a865025f620fa7c387966bce91aa429b8c30"
+        ],
+        "publish_intent": {
+          "economic_sha256": "5772dc6a43ba49c9685bc7227c65a0fd023f1f61580b4035c999aab778b87668",
+          "end": "2026-10-08T00:00:00+00:00",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-08T00:00:00+00:00",
+          "row_start": "2026-10-07T00:00:00+00:00",
+          "source_id": "3b8c18af18b910c7c2f1341171a805198bad8be35666cad8f20efca9f9ccf6b4",
+          "start": "2026-10-07T00:00:00+00:00"
+        },
+        "query_ids": [
+          20271
+        ],
+        "revision_ids": [
+          "d81e8d3a07a3134fff2e7d351087995279b99cf3b4ec72eba65de4bf6aec74fc"
+        ],
+        "source_ids": [
+          "3b8c18af18b910c7c2f1341171a805198bad8be35666cad8f20efca9f9ccf6b4"
+        ]
+      },
+      "input_artifact_ids": [
+        "3b8c18af18b910c7c2f1341171a805198bad8be35666cad8f20efca9f9ccf6b4",
+        "4e12b71c0b99a42a8dbe003bec906277804c3c21c625a4ea8fa0e7f12e9120dd"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "40cab1eb8a97404186a4b9d8116a529d",
+      "task_id": "e2107a5f866635da906df051c8f0e32e3ab20d5ef7695db62c2992c26dbedfed",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "4dec9a4a046828408fdf107eab352206b0450f96cafc7edac9379f6bf212192a",
+      "task_record_sha256": "37c6ade732c07e1f30f2569e8bec9e3669ebfb8a9e91b132841905c990dcf997",
+      "completed_proof_sha256": "331223fba08ee12604665a47ec17b00938384543807d34c533d001457bcc3f0c",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:10.161988+00:00",
+        "file_sha256": [
+          "0dc7b0b395780ff42704cb1682a51a474726ac5f3888c8a7eff242995eac721b"
+        ],
+        "publish_intent": {
+          "economic_sha256": "a6b98c9832ec5f3e7a05efcb0bf464f7c639e4eb9f01d0917fbcb8adf322bfdd",
+          "end": "2026-10-08T00:00:00+00:00",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 288,
+          "row_end": "2026-10-08T00:00:00+00:00",
+          "row_start": "2026-10-07T00:00:00+00:00",
+          "source_id": "04fc32b2d3746a13335609cd9159d75d28794ce3cbdc836498460a2cd7d46216",
+          "start": "2026-10-07T00:00:00+00:00"
+        },
+        "query_ids": [
+          20273
+        ],
+        "revision_ids": [
+          "98c482dd1f3699b7db64f6aa475aee53aad237771726d3a11976ab4a80061487"
+        ],
+        "source_ids": [
+          "04fc32b2d3746a13335609cd9159d75d28794ce3cbdc836498460a2cd7d46216"
+        ]
+      },
+      "input_artifact_ids": [
+        "04fc32b2d3746a13335609cd9159d75d28794ce3cbdc836498460a2cd7d46216",
+        "f3ef99349dde56f9d6c1cdfcc277ba2f185ae8d79b81bbd3ab48df95653d2417"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "279bd48b85194dd685a0757ce44bcadf",
+      "task_id": "5401bc427e406bdb99f8e7d57b1b61ae210a14091289103195ba86336787b839",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "2e4652f8dda8c231084c435020fd4c28c9a32bcce40ee54e835fe7f847f0d2e9",
+      "task_record_sha256": "822e92bcefc7d6d2a17a39010a6392ebbdd2774ed4031c5731b4c6891357d969",
+      "completed_proof_sha256": "9152312abedbd6e096fbde06e830cbbad6a189f4b1d95b37ee5392cc9e237473",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:10.683922+00:00",
+        "file_sha256": [
+          "0f3c527a3cf4a3f60d8089c32679575cfc91cd95d67e826c20e9ad45243d8d0f"
+        ],
+        "publish_intent": {
+          "economic_sha256": "181800a2714d704218dca98352f008bee862c6f4b930706376809b9b1a8c8f37",
+          "end": "2026-10-09T00:00:00+00:00",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-09T00:00:00+00:00",
+          "row_start": "2026-10-08T00:00:00+00:00",
+          "source_id": "66757018ca6a98e8fefcae9472eff657d2a2ce147563bbb5331100b9a24e43e2",
+          "start": "2026-10-08T00:00:00+00:00"
+        },
+        "query_ids": [
+          20650
+        ],
+        "revision_ids": [
+          "89ed9bb4b5fdc6a744640568467b76fc993a465b295a99e9e5c17ecb434254ac"
+        ],
+        "source_ids": [
+          "66757018ca6a98e8fefcae9472eff657d2a2ce147563bbb5331100b9a24e43e2"
+        ]
+      },
+      "input_artifact_ids": [
+        "66757018ca6a98e8fefcae9472eff657d2a2ce147563bbb5331100b9a24e43e2",
+        "9da239a82ba5601a3426fad941f25013fb65c7c99b0df47c3753f1d8a5395af2"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "0df3963f45dc4470ab8eb859dc2da9ba",
+      "task_id": "b601affb3cd751adddfd11acebd0b7c6cf0b3bcb35b1bc23a732f36fe7794978",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "1d3bac2c4978a40aae8740684bd279f7d46985df6dbcad39cb199315d8dca8ad",
+      "task_record_sha256": "dcaa8ec1bafead25d653f6115a4c5684fdeab680f7caa8e9e296aab2472b8315",
+      "completed_proof_sha256": "2cfb66e77dcab93a49776b07fb51815f443f11f77211fe8334089d96fff839fe",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:11.267929+00:00",
+        "file_sha256": [
+          "7d2a8fb6d5982b624a84a78dc3517c19680a32fc6ae03bcc8bd2ce72bb1a0225"
+        ],
+        "publish_intent": {
+          "economic_sha256": "9b79cdd26dff827219a65b6f3f919cd245d614204b319f3d7bb3ab2c1377759c",
+          "end": "2026-10-09T00:00:00+00:00",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-09T00:00:00+00:00",
+          "row_start": "2026-10-08T00:00:00+00:00",
+          "source_id": "b96314d370c6559f14ed4fd53ca8f57d9fec994bb57156ee2f14bca4217405de",
+          "start": "2026-10-08T00:00:00+00:00"
+        },
+        "query_ids": [
+          20651
+        ],
+        "revision_ids": [
+          "4fa5c7bf4f69a439c89aaefa625be637a8bb6994b8a540acf5acfdafabcb66a1"
+        ],
+        "source_ids": [
+          "b96314d370c6559f14ed4fd53ca8f57d9fec994bb57156ee2f14bca4217405de"
+        ]
+      },
+      "input_artifact_ids": [
+        "2e9120777002325ef33ad6b7f7a774897e3ae3ae2c6c4340957d6451627b02e5",
+        "b96314d370c6559f14ed4fd53ca8f57d9fec994bb57156ee2f14bca4217405de"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "5b801b96a9204df8bded8221b2436ced",
+      "task_id": "ce792da7c776b503cb9ee3f471fb422d7025cc73adb807eed82f1f9fd242d036",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "cb818de4f6d732a2260a11b6c375969f4f98cf783d166d1c488735742b4c64a4",
+      "task_record_sha256": "483f7556d65c1f3910ddb8176bae08caf282d87c07e6da97c0646800595607c6",
+      "completed_proof_sha256": "c97c282d0098d912def0a179f3fbcf362343fc38163ae7f61b69974a3bd77b3b",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:11.889420+00:00",
+        "file_sha256": [
+          "d46f55cd972c6ff73cf348fe1f371a76c7b318aac13c187e472c225258b74bbc"
+        ],
+        "publish_intent": {
+          "economic_sha256": "f787fa69bcc977a94abb198236e94df3adf621ca9883cdde0547ad0009ccbbc1",
+          "end": "2026-10-09T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-09T00:00:00+00:00",
+          "row_start": "2026-10-08T00:00:00+00:00",
+          "source_id": "a06c5e6043fc6fec0bfac62e15953c4f615b2508a83eaf30b11c008034ea4644",
+          "start": "2026-10-08T00:00:00+00:00"
+        },
+        "query_ids": [
+          20649
+        ],
+        "revision_ids": [
+          "ff79b21028aa9e531c43543dd6b7dc6b208cbd4025ceba64ea475b1e79a27c99"
+        ],
+        "source_ids": [
+          "a06c5e6043fc6fec0bfac62e15953c4f615b2508a83eaf30b11c008034ea4644"
+        ]
+      },
+      "input_artifact_ids": [
+        "53e47d093d5400e946a10e083409e9ec7fae04e7a95025a7a5ba0d89989f1cd1",
+        "a06c5e6043fc6fec0bfac62e15953c4f615b2508a83eaf30b11c008034ea4644"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "2307b1beeff04f589b7952a8541e097e",
+      "task_id": "e6260ae83ede5f3dfdbbbcc51b7eed95daaffd8f8e89cde846e770601b8f08dc",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "2fd014b296f995d464eec8dcc658fcb7abb7fabd732badb2baa7c42809fdc832",
+      "task_record_sha256": "45aa4d2eacb8125f2167d193b1091cb4d7d19e1d3958594a8e39a58b14fdc646",
+      "completed_proof_sha256": "164916e6c4ad83bcefc63618334247883744eb59a53be9e4b3013e3751e34366",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:12.217230+00:00",
+        "file_sha256": [
+          "9e471c80bf623e945f5cd69b6ba7efd6ac4ec00263401b3c0209ca7dc62478a2"
+        ],
+        "publish_intent": {
+          "economic_sha256": "2704071afa5d62589bd2eb956ceae6247c65c7edfc95e4b7db97fc8f0443110b",
+          "end": "2026-10-09T00:00:00+00:00",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 288,
+          "row_end": "2026-10-09T00:00:00+00:00",
+          "row_start": "2026-10-08T00:00:00+00:00",
+          "source_id": "f91237d81ac5817885ae7caefe9e971db60ab231c48c717b24c3852d43f04518",
+          "start": "2026-10-08T00:00:00+00:00"
+        },
+        "query_ids": [
+          20653
+        ],
+        "revision_ids": [
+          "27227cedbe609609433f5f46f68511b84122548482353862e3bc4078f4a21dee"
+        ],
+        "source_ids": [
+          "f91237d81ac5817885ae7caefe9e971db60ab231c48c717b24c3852d43f04518"
+        ]
+      },
+      "input_artifact_ids": [
+        "b735d9684f1ceee8e6e1c4e6bbc8a5958e34265c0dd8174712c932f1937450ad",
+        "f91237d81ac5817885ae7caefe9e971db60ab231c48c717b24c3852d43f04518"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "b1640590ad6d442b910cea4b475bcfd9",
+      "task_id": "75b6125c7661be3c4b79a610f4f2c12748dbaabaf538c87df4fcc644d9aed3c7",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "d9112fc310eda6cff5a08894bcf7edd783e4e13e3592fc2ea8a57a45246ca7e2",
+      "task_record_sha256": "1c7276ebd4da19bf535f2a836e59d60651557d8f0b03518ee8e33c9d1a9b78f1",
+      "completed_proof_sha256": "3d1cdc3e8d47c38274d448fa29001f40e6557900db2abb4a5a6c264f618f07f9",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:12.727061+00:00",
+        "file_sha256": [
+          "e079ad9c0d59ac1fa4c8c3db91d01539f2079a09d19b5a6b4961ea28e04f1367"
+        ],
+        "publish_intent": {
+          "economic_sha256": "e2ec7f136fa0a84ca186441032681da780c07328a54b7d1799e4f00ab41dc6b7",
+          "end": "2026-10-10T00:00:00+00:00",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-10T00:00:00+00:00",
+          "row_start": "2026-10-09T00:00:00+00:00",
+          "source_id": "283d8ce52afebbe671b03d6bd4cee2ac7c930002196b5efc42b236b8ee232733",
+          "start": "2026-10-09T00:00:00+00:00"
+        },
+        "query_ids": [
+          20722
+        ],
+        "revision_ids": [
+          "ab6811423d46fb3fb351bb9ece2b0fa3fc9018211c0984bbd03641ac5a7b4dd4"
+        ],
+        "source_ids": [
+          "283d8ce52afebbe671b03d6bd4cee2ac7c930002196b5efc42b236b8ee232733"
+        ]
+      },
+      "input_artifact_ids": [
+        "283d8ce52afebbe671b03d6bd4cee2ac7c930002196b5efc42b236b8ee232733",
+        "cc5d3c5258222aaa878865d07523c6bdc8d993ab048d4d5797ee03fb40a4f090"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "cac54dac40a54ee98b02c1cb0cc645c3",
+      "task_id": "8e648c4709825d8e7039364ef209bb7f1c6aef731ef6dfec24f77c9c95912c15",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "881196bdd55d786571b8f80438f3712141ce961d697c6e9cbe5b8a6e172a5c00",
+      "task_record_sha256": "804d95202152b0f3724dfd1027e7e3356c55cf37a2b63557caf3cf90da04b691",
+      "completed_proof_sha256": "4ed2d685975c7a785e31ff8b03ddd22de991bbce9a85ef2bd24046396beb2a55",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:13.346816+00:00",
+        "file_sha256": [
+          "332ebec83f6bde551e76a0c792b620b079d3c7ad456b3a725df6cf81a2700b37"
+        ],
+        "publish_intent": {
+          "economic_sha256": "c9a8727647042dd0b7e490a433000e00f97741d5c72d10c9e333cc49fd0e339e",
+          "end": "2026-10-10T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-10T00:00:00+00:00",
+          "row_start": "2026-10-09T00:00:00+00:00",
+          "source_id": "14d1413b133c94b3f7cda4a720e361d6168ddcb444b7fc7dc14fe24a680eaa1c",
+          "start": "2026-10-09T00:00:00+00:00"
+        },
+        "query_ids": [
+          20721
+        ],
+        "revision_ids": [
+          "0f52e5c1e48f255ecc4c39c88a502171213d26613b3bafe7c12308b603f8bde0"
+        ],
+        "source_ids": [
+          "14d1413b133c94b3f7cda4a720e361d6168ddcb444b7fc7dc14fe24a680eaa1c"
+        ]
+      },
+      "input_artifact_ids": [
+        "14d1413b133c94b3f7cda4a720e361d6168ddcb444b7fc7dc14fe24a680eaa1c",
+        "383ea7c0062c7b3f1a11f9859f8ed77b4a64fa189150228d440046ef25f2ca98"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "b47ac4110f8e4fcca55a91b7c836ef27",
+      "task_id": "93a4b899922bf79dd71f829a6a97b9306d6bbfb1718cb78d080673fd3e19c45b",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "ad2657cad2a974d2cbfd2f4fe09ece327bb0970ba9eea36303fcca1615cac44d",
+      "task_record_sha256": "1900cfb6f37d371375fd21fdbeb2d5f246ea2d5c1b0812c4d1ded8e6984de90b",
+      "completed_proof_sha256": "1f3c04071939809b8014a68273caefed917cde9cf20b839dfa5edd8ad52062ed",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:13.749854+00:00",
+        "file_sha256": [
+          "d1b67228211bebaf212ffebfedf77417397fdcbaccc6cef2387e02e2476bc5ce"
+        ],
+        "publish_intent": {
+          "economic_sha256": "8146c6010d5545e8ea7efd120ddf880b5d9c82dd473fbd34698a768811099dbb",
+          "end": "2026-10-10T00:00:00+00:00",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 288,
+          "row_end": "2026-10-10T00:00:00+00:00",
+          "row_start": "2026-10-09T00:00:00+00:00",
+          "source_id": "45038153ee7bab744db71d7b81cf537789dbfa898bd9e2f2373ac7f645658fe0",
+          "start": "2026-10-09T00:00:00+00:00"
+        },
+        "query_ids": [
+          20724
+        ],
+        "revision_ids": [
+          "40c25cf9a8cc77578c3f06598290388bbf2821b7825ab340e67ff1378c20da23"
+        ],
+        "source_ids": [
+          "45038153ee7bab744db71d7b81cf537789dbfa898bd9e2f2373ac7f645658fe0"
+        ]
+      },
+      "input_artifact_ids": [
+        "45038153ee7bab744db71d7b81cf537789dbfa898bd9e2f2373ac7f645658fe0",
+        "a5afc0bd41af4e24f742004149a74e71e3fff6e3b830c5fdee1f4931305ed9a4"
+      ]
+    },
+    {
+      "group": "evening",
+      "run_id": "0d70176a798241e8887418a1d65fee1c",
+      "attempt_id": "d80fcc55754d46e488d4fb8d0608d880",
+      "task_id": "b99d56a17d6b6c8596ed7275b8da733c33dc51d4f9f88e872192930708f12c6c",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "purpose": "refresh",
+      "cycle": "2026-10-11",
+      "attempt_record_sha256": "5d53502aacb92c8b77bb6880050fb1a4746cfca2a9e3988cb9b2ec63e3f4f8b4",
+      "task_record_sha256": "0a4b55b6288642624c070e4b03794c18c1fe96f35bffe9c1491ddc7896ee4add",
+      "completed_proof_sha256": "3555f08446fc00a9228a61b7be9439474da356ca966cb047f62886a411c40cd0",
+      "proof": {
+        "checked_at": "2026-10-11T09:00:14.313841+00:00",
+        "file_sha256": [
+          "f666445e36faf4e2bbe51361f73720032bc8a2cea53b1c06cc8de751f43c76ce"
+        ],
+        "publish_intent": {
+          "economic_sha256": "aeec98529aa2ee641f115cbe7519d0290e2584d33e2e2858f4fa248801b0f3ca",
+          "end": "2026-10-10T00:00:00+00:00",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-10T00:00:00+00:00",
+          "row_start": "2026-10-09T00:00:00+00:00",
+          "source_id": "51d0e882412b291644a77ed4a02c2ae07da65418df3dd9b410c17a76d901a548",
+          "start": "2026-10-09T00:00:00+00:00"
+        },
+        "query_ids": [
+          20723
+        ],
+        "revision_ids": [
+          "08c2b2c9e6b3891a933f3ff21293c376d9a5464ba967ce6adefe25f95c328505"
+        ],
+        "source_ids": [
+          "51d0e882412b291644a77ed4a02c2ae07da65418df3dd9b410c17a76d901a548"
+        ]
+      },
+      "input_artifact_ids": [
+        "51d0e882412b291644a77ed4a02c2ae07da65418df3dd9b410c17a76d901a548",
+        "8b625a93621028e4e8dd958a66571bd8adde35dafc601c107bfbe4aca8d2363b"
+      ]
+    }
+  ],
+  "selected_task_ids": [
+    "05cf1850e49483cfd31f814484e221f28220b2f8c66c9cefd853d25b0f8f96b5",
+    "19e02ec092da6c9f432cf8d5f4f10a3398c14058060c9e5929343bc073d1b277",
+    "1af03fd71fbbbc7bf2e1aa4cad6061260e142c1104a241df856bc7262aeeb60a",
+    "1f32b2c7a5f79c8e4447260b818dc5cf50a976ca06a051653e80b186c7f7651c",
+    "2d89912240363f723531ec7c6d69b6d8a7b16023c5cab7767fc038b7f56f5807",
+    "368bef444f04322965f0bdf1b7975e69d46231d7f407ccac7d96798a1b993ebe",
+    "3bdd6d6977e5ca8645d14f2628acdd00a984db6ac2d4ba43a24cfc3292f9d4da",
+    "51cec07a7c0c37f68466b6e4e07c18bf9d82f9b11482789bce6785c8882551b0",
+    "5401bc427e406bdb99f8e7d57b1b61ae210a14091289103195ba86336787b839",
+    "5499ba4192549439fa2a070bf07bb16dedb465ec0360d18dce228705fa3cf93d",
+    "6085d4583fa2a6a3dbc6981ce899d3d7c49bfedccf1563d2ad62ab3f96731b04",
+    "6beaa2716eb2b80942d8435c47b4ddafef454be27da1a436b44cac80775a4e23",
+    "75b6125c7661be3c4b79a610f4f2c12748dbaabaf538c87df4fcc644d9aed3c7",
+    "818bc9d529a16e4663566e0c89cd4f1a57217afa42d72862366d736d5e4d235c",
+    "891ac89ef683582714759658fc85cbd7e7b5ddc8c285ae2d305f0249d3db1296",
+    "8b2d3fddb948eb7b4eef2b5d9c3346f94179abd75329d728027cb1f5c7ad908b",
+    "8e648c4709825d8e7039364ef209bb7f1c6aef731ef6dfec24f77c9c95912c15",
+    "93a4b899922bf79dd71f829a6a97b9306d6bbfb1718cb78d080673fd3e19c45b",
+    "95dff86b605e68d1b07bcca5efec4a0e6c015fcc484ab1ac9b68098e60ab6274",
+    "9a2f09f629d95171c4a2a27a5dc7afd89bddd81cf0452ee533263d2888f54f80",
+    "9cd438162644fb622627e54ea15dcc5551238e3bd0652a2c6458ed07795b8679",
+    "a742059a79422c62a79687d303c57f92f23398c80c308337c32268d8a3ce837a",
+    "aaf66b45fe759b626bc49502a4374b0adabcb7474c855ef5c93b9344fda097f4",
+    "b601affb3cd751adddfd11acebd0b7c6cf0b3bcb35b1bc23a732f36fe7794978",
+    "b99d56a17d6b6c8596ed7275b8da733c33dc51d4f9f88e872192930708f12c6c",
+    "bc8bc42aeea4f0c495203bf2422a45b4172487e31c18503899b1dda73ecf55f9",
+    "ce792da7c776b503cb9ee3f471fb422d7025cc73adb807eed82f1f9fd242d036",
+    "d1fed54c14244efd5ba00a6f203393200e605516de593258c94f1c132de18045",
+    "e2107a5f866635da906df051c8f0e32e3ab20d5ef7695db62c2992c26dbedfed",
+    "e6260ae83ede5f3dfdbbbcc51b7eed95daaffd8f8e89cde846e770601b8f08dc",
+    "f3a7ae4752c85786fc9c871e9ebc1b4c0d3bc139c636dc6d64ed6105ea312f09",
+    "f9e2a8fd090783bc3e723abea8d8ec1f504b02ae8cce8a3567e42a3ec3ac7ac7"
+  ],
+  "shared_success_refreshes": [
+    {
+      "task_id": "9cd438162644fb622627e54ea15dcc5551238e3bd0652a2c6458ed07795b8679",
+      "covered_by": "602965001fc84339b8695e21dc58a5e3",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "cycle": "2026-10-11",
+      "task_record_sha256": "cf95ffba9c6b89b978b7da459c3e2e0877f89f9145c6dadb98f3f883d51a15a2",
+      "proof_sha256": "0f30db41db53a5aa9bf68af15d6f05acd501998ae324059aa166675f2336d9b1"
+    },
+    {
+      "task_id": "f9e2a8fd090783bc3e723abea8d8ec1f504b02ae8cce8a3567e42a3ec3ac7ac7",
+      "covered_by": "72af8c1a4cb44e93a17a93a2b9752ca1",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "cycle": "2026-10-11",
+      "task_record_sha256": "2c4e30b136b2e9a76411531678061bf69aa6b5d57617eb21e2a47ecc8faa2947",
+      "proof_sha256": "754d1e639471e56449d8c02a53f194f70c03bbfdac0767811459dc89e6a3e9dc"
+    },
+    {
+      "task_id": "6085d4583fa2a6a3dbc6981ce899d3d7c49bfedccf1563d2ad62ab3f96731b04",
+      "covered_by": "373fd194bb8048c4be90f4b2c2349285",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "cycle": "2026-10-11",
+      "task_record_sha256": "cc024b84bc872019dbe59d062709931ff5b3d9666d7a020e720aff8e8a872718",
+      "proof_sha256": "076bb761c05f302706b119e3c6ad07eddf5847542bb0032cb4edb99d1fe33eae"
+    },
+    {
+      "task_id": "891ac89ef683582714759658fc85cbd7e7b5ddc8c285ae2d305f0249d3db1296",
+      "covered_by": "7454bf0f7df0441ebb3108780635ab6d",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "cycle": "2026-10-11",
+      "task_record_sha256": "e13b5d7d9b3fe4dc0be957b740add3a823f872ddc568ed23aea02efb30ddbd44",
+      "proof_sha256": "965f6ab740ca2a54dfe28d290e41241af7fe0d24b23adca7af2ce8c54965b13e"
+    },
+    {
+      "task_id": "3bdd6d6977e5ca8645d14f2628acdd00a984db6ac2d4ba43a24cfc3292f9d4da",
+      "covered_by": "5595e320beb04137bdda335dc5525a88",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "cycle": "2026-10-11",
+      "task_record_sha256": "5e80186bd816882db2daaa008f43325581a68e31744648ffef5407f871c30cb4",
+      "proof_sha256": "23161172b9dd257546a0d061c2264a7490ebe276015bbe3908fd5bd2388d350f"
+    },
+    {
+      "task_id": "368bef444f04322965f0bdf1b7975e69d46231d7f407ccac7d96798a1b993ebe",
+      "covered_by": "188f2a94195f4af09a85e403808e9d95",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "cycle": "2026-10-11",
+      "task_record_sha256": "97fb2c87b2d1e78389218ca688b39098e0c3663ef2ae4a8902eddf0fcb6602f6",
+      "proof_sha256": "1d4de8ac6b761e4c28c65fc9ea076965b30abe02a87a471dd412e913b48af812"
+    }
+  ],
+  "existing_complete_acquisitions": [
+    {
+      "task_id": "24036cd4ae356da2e324987adb753be38257e4d47a87a9715358c1f4311acc84",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-14",
+      "proof_sha256": "ce117b01b2b4ddc08e55ffbe811defdcee8645207e2f0b34fd11217113493e68"
+    },
+    {
+      "task_id": "8c2c3c4a57cf53f1cfff6453d2dbae59aa8589220725d6847beb71c546c6a83b",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-15",
+      "proof_sha256": "2a3daf4819ba2229d71183db9a08e1bf8fc76d41a71b4af7d44c313f19b4bb5e"
+    },
+    {
+      "task_id": "28474623c547d4cccba157b619f8d1f5b2f091757158aab89a2660838fdfc58f",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-16",
+      "proof_sha256": "7ea6ab2a754bac54214c58894c15528c6b63d6533b1829242fda44a970d5a3d7"
+    },
+    {
+      "task_id": "3115da2f8814a5bedc30cfa246cc870a4971850eed09a4016c020a6bcc4b0b8e",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-17",
+      "proof_sha256": "af22ce8e14aa7eb047e8e89b318571d358d3a027deec054bff2d8a8dc3204345"
+    },
+    {
+      "task_id": "d2abee12ce83c1a7ba752b6ae557fb42525a6da67902918f76094ac7b02570b1",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-18",
+      "proof_sha256": "c71b3e0d3954d7b8555f0f17524f3cacd33eaa38af8b6febe55b8df5281a28d8"
+    },
+    {
+      "task_id": "b42c87f77761b48e5bebc3df6e3936768cac5183c7108e74f1c3629473c5ef9c",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-19",
+      "proof_sha256": "7f1372e91d1201df88cee416b57e0b106224749141bbbaeee2f4f5cbdced2676"
+    },
+    {
+      "task_id": "21bd52012bcbbd554bacaa7c9b777fab2a8b8e1e9d2d3f6556e107828a205031",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-20",
+      "proof_sha256": "85942e79b1554052a5680c3470c26080a96f307470c21ee3be9dcf361983dcb3"
+    },
+    {
+      "task_id": "21ef90740fbd9fc1cf2448df98328db7ac3bafee6960a1e89622490d040b141e",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-21",
+      "proof_sha256": "15415c39b24c5691d5af3b037ffb0e26f835ad2b291c40ba11f752f1a1fcb8aa"
+    },
+    {
+      "task_id": "5b46f912cbf7371da5d7a13717e2b10dece1c715e6922b4d6bb6225d1e7de129",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-22",
+      "proof_sha256": "04c8aaa56aa3e2f1e507cb0bcedc77ec347f7989d048333989382e6dca042143"
+    },
+    {
+      "task_id": "5a085768a3e8c48a761f2775300df6dd6169af7408110911a3061a88b786f823",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-23",
+      "proof_sha256": "87e0ffea2ef0a0ee4d4781f60ae10fc81b8ef5881aa4d109965a6ec2b55fe4f2"
+    },
+    {
+      "task_id": "7e14b10f85e0cd220edaaff59c384b69fbe8738180b5b135791b594a14eb9f7b",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-24",
+      "proof_sha256": "51e11df9f40d850da82f89829aac8f7ea858a5a3be8595812172a9b39a9917b9"
+    },
+    {
+      "task_id": "48f89c8f15ecbaffdcf648a845c429359e8c06de5126c56c6ca0b7c38d6032bc",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-25",
+      "proof_sha256": "1c71a25072e340b9f96d257a285328a116964d465b6b20b6abb356e34ec3db67"
+    },
+    {
+      "task_id": "fd6909291ebe06a6723fa27a25ba7acbb12fbf83f8ed50c1d9db1a1c9020c996",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-26",
+      "proof_sha256": "56833c5dd41c71f635510de5f792feab25735073e2adbda09f46f5f8b42a51d3"
+    },
+    {
+      "task_id": "7e049548662e0b03f18ce14af797eed09c53255e3f7414f82f3b76eb36a3e3fe",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-27",
+      "proof_sha256": "498058dea54b7a7666d3999b454fbb9957c313ed8fe2cccdabdfd64195716536"
+    },
+    {
+      "task_id": "b6f1639078563c78a1ed3e5533b28925863414598154278aa9fc98af87a4973d",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-28",
+      "proof_sha256": "afa23627a5ca4fb400935a0d8c5b6987a16ede95d3c385cc10fc66e61c6372d6"
+    },
+    {
+      "task_id": "d80ed965ec54419e9c8c25ca00260362feb196a0a6f5543d392e1407f6fd11fb",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-29",
+      "proof_sha256": "fe79873998a04991c2b691b147a72117f2c4dd92679a90efd86361850d4aa3c8"
+    },
+    {
+      "task_id": "5b66940d540cc327550086a23f1b1af74e0537a60a54d0f2d1e17fd35382f56a",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-30",
+      "proof_sha256": "342321d0451e7546d53a9929c7a201549398a02c943e4e36d060d6c8b0150ebc"
+    },
+    {
+      "task_id": "23f5375a51b54cd3bf697ad5e2167005f57b1cf5fa51119268664901f454cac3",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-01",
+      "proof_sha256": "2982850c89e80cc1d360be17871e00cf7a3715f9d64ab08cfeed1d00432ad73d"
+    },
+    {
+      "task_id": "af83b551040dfd429ec74c6a8c56a8374a95ecd7724105e52f185addcf93ad71",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-02",
+      "proof_sha256": "76449e25e093c101b1f9c3296f8ac064fbb03cd83d892bdeffc3005719aba289"
+    },
+    {
+      "task_id": "8830f3bafe6adce4a53eeef4be2f5e82ec104591b4975a418d3d401061264a70",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-03",
+      "proof_sha256": "80416be8128099e18a93e63bda9954e5d3f82bb94e74b920cbe369d1e1e0de50"
+    },
+    {
+      "task_id": "f86c90b4b5f78698e0e91475db2180c70ee7242d99290bc2d14154d6e35017c6",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-04",
+      "proof_sha256": "05db73c40cd5783d15901dc0c656557ac6309af01363e39d944364f6726550ee"
+    },
+    {
+      "task_id": "198198e99648ead80c8c5067fcec8f75d3152acfad9e7d84fce2fa28136a2be4",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-05",
+      "proof_sha256": "3de17ae1270b8d7b38722118163c5ae7229ab534d7e48b164cf94ce254a1cb92"
+    },
+    {
+      "task_id": "0d86d42f150522e57f017f1460464e05a78770464b85119e681b358a04eb2fa9",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-06",
+      "proof_sha256": "7b3ce901a26ffd270baa52bcc68e3a520aa9ae60de2741eb4ee092e464a842ed"
+    },
+    {
+      "task_id": "1ddd4a55d285a3c4276c5ad10e00d605974d752a9f801843b4811a6389ed54b9",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "proof_sha256": "a8f814eb760fbcf781b3c38bdddf5faeef5b262e93dfbd8cf4a3cdeb45d0148b"
+    },
+    {
+      "task_id": "a230d867e736c6d7182f31ba6c72cad36395a10479f95408d03429a7dc3a7304",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "proof_sha256": "7ad0a5a3e5337f6e7009e092e3c9c371d54a0c8fb3111ad366049bbd82c08c4d"
+    },
+    {
+      "task_id": "17734870211fe540ea15d253fdb212ea0b7769176162ce44370155987b59455c",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "proof_sha256": "2863c6f5dfd161f2ee175a9b92f5a90fb71fcfbb680d7eca21cce411b1539881"
+    },
+    {
+      "task_id": "6ff855b03c88cec5fe1088d56cac45315f8328d9cca48c92ffcf472bcf52b3c0",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-14",
+      "proof_sha256": "609f70efd9fcc25ed2b364d6d1abfcf926f42f8f2ed1c3b76b32e98015709c4a"
+    },
+    {
+      "task_id": "aa3baa14030aff57c88b350c7e48234528fb910f438a7c088f96c8ad1610cd1b",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-15",
+      "proof_sha256": "9ca60f53afe698e64cd4a6cadcec21f2d0b2f4f9f1bba6022818fdd13a85bdf3"
+    },
+    {
+      "task_id": "c22551cdb6fce358e3e4019b6e42c2b7d28cd87f9501c497e85c118c71f35fd5",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-16",
+      "proof_sha256": "ee6b84388f975e60256acb2dafc68d0126ba75bf7cd5ac36f142ce9f294da2ac"
+    },
+    {
+      "task_id": "6d69b5b6936543dd5a4afc087bcddddbd78f4887749bb5e5b000810f15dda017",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-17",
+      "proof_sha256": "d90f889b6ec97dc32a4dd939b1065452307411030c41418fdcb7dfa7ccdb6a2a"
+    },
+    {
+      "task_id": "c4fe4973b4e9cce4c15faf5faff1d26f00d3c919a6488f00cfffc7a97827cdd1",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-18",
+      "proof_sha256": "dc33e7f9656f0fcf602c09643594aa3d166ceb6aecc8cdc8f681a5b706ec4200"
+    },
+    {
+      "task_id": "65acc1545a2032e270d9831375901561c6973d5ad09fa15352031f38d5911f04",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-19",
+      "proof_sha256": "195b9301a0971a480c6040454c813c5a5771fe01197e8875892148fbc387a657"
+    },
+    {
+      "task_id": "368a3ff9470ece3eccc0786404c73a3a3ec7a6cdcddbd9a062cd57b97ea30437",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-20",
+      "proof_sha256": "f32c6662a0a0c7690986105f875f3085f365b33997953d4edef41ad909f7b8c6"
+    },
+    {
+      "task_id": "a60a2ec25b002be16899887069aff2ce954a3e70e5e5b4a4f01deaa65e4e999c",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-21",
+      "proof_sha256": "cf5fd6c924d3ba14ca6398401ca566b39e6cd09fa1ab9cab856414693239ed66"
+    },
+    {
+      "task_id": "35469433c3f03ac5c2e70f5cd869b76d46cfd53d94122d16db6ae030123039b9",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-22",
+      "proof_sha256": "a24e96fe08a7e8035c7580a486b85612b002f9bf738a64b81f00a2a5c0cb21df"
+    },
+    {
+      "task_id": "8277e4ee63bffe4a86f5882e94f756d210dadc0a533b4b97206977c46fed0718",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-23",
+      "proof_sha256": "69efcce08b2809af22b7c4f77d900bd49d6f071fa6ada2e56795a11ca24d1515"
+    },
+    {
+      "task_id": "b588f061ea26f71633e6e6e888ab678a471352e361121d20481cb182a62da6d0",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-24",
+      "proof_sha256": "fd9751f5ef64019c2cde231bbad4eceb14f407bcc57a1bf3ab3b36ec8058156c"
+    },
+    {
+      "task_id": "f812ca752b420607b3d92773515f0f91807dbbf400b63a0b080c21abb88bfe13",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-25",
+      "proof_sha256": "1ad082533c95d8d9dfcff8df93b5ab228a6594d9ef2101c823f8df4ef728a09f"
+    },
+    {
+      "task_id": "6bdc6d9e41b18d215f040c3b25509eecb743417967ff59167bb494b5f65e2093",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-26",
+      "proof_sha256": "c3e86da612d3eb593f3cfdc6847540a4c619cc659a269cbcf95fb80033b062a7"
+    },
+    {
+      "task_id": "766efdc41a60aa37a6faf4b0432052e6cb660c059023762716da02c736d981ef",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-27",
+      "proof_sha256": "8d037475f18a3487010af0428dbce559f6e5a90f2ec48dd36cb4734440a885d4"
+    },
+    {
+      "task_id": "6b69483c5ea71140c00105f9bf771f958ae095dab5cba953ed441b2279718339",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-28",
+      "proof_sha256": "a578b7dc439b09ab715e9c21fa5ca7ea893075951a1cef9fe0df93539beb7620"
+    },
+    {
+      "task_id": "c10f2bb3f653dec82d2ae5f2f740b3fb43f8a7e536b100126974db760870cd36",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-29",
+      "proof_sha256": "7ab75cf46348b42e786be9b3293e5b86c4af4c499936b587f426eca785cc969a"
+    },
+    {
+      "task_id": "a68e71ed51e9efcce2f104c94a7bbb0ba80d254a45662a1f40975b48e4bdaf8b",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-30",
+      "proof_sha256": "8c30341bc97505b3922c5e3715fc538b9a5a2f56d2d00d19a3de7b6e729599ee"
+    },
+    {
+      "task_id": "4879cbab8c0a0db09554b7a2c6835b9b0fb4ca66e030221f55692c7cfbbbba61",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-01",
+      "proof_sha256": "1dbe368fcbd9687feff849ff58cf07240181ff310d6e866d51753d6d3a7114dd"
+    },
+    {
+      "task_id": "fdcfa51fc237ce0a523bcfaad135a614c30e8fb868759281edb6033292de9077",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-02",
+      "proof_sha256": "d9f193fc18d36c2312dfade50fdc75d7a8caa21e798ab3b49cf2df1a0ac4281f"
+    },
+    {
+      "task_id": "474f45ff58e39d60440eb90944437661d25ae5c3f7543427b5929a7a09037ecc",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-03",
+      "proof_sha256": "54548f51f971fd785c94888d75a3d9ab307d813028fbbdaac97637f0b42c8b49"
+    },
+    {
+      "task_id": "8e774fc63b6247090c5c187776e0c677fb7242ff3fdeb23ac7e9f46ff37057a3",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-04",
+      "proof_sha256": "c410fe096f61d4745aec6cf0c1be1eab19da1f4dcbd89eb5d9855a01eb3e5f45"
+    },
+    {
+      "task_id": "e03b77b5e3ee3d0a459e9cbc5d214f920ee798ad3eb90e04671d6b0222efd887",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-05",
+      "proof_sha256": "1d95b5e865ded29ab1dfca325a454a65a9a55e2222ec52f3926fd7c13cb62fad"
+    },
+    {
+      "task_id": "ba5ca6284e8833b5a3a767471f605e233746a3b953f232a2c3ee63c28632c6de",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-06",
+      "proof_sha256": "1c27ea99c86a6186e8e6c2cdbcfbfc777cf81226fc6d04e5c1a24b9afa46c727"
+    },
+    {
+      "task_id": "7d1d1e46cbf975f43e7f60206e696deeb4dfd7c335530189d1cd332c43e836bb",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "proof_sha256": "07638217e8d2094ac9447967bf255ec64c258aa7d61b0551949410467a3d6b3b"
+    },
+    {
+      "task_id": "8ddb19070a9e1134e0fb3897256e4617824339b83741e16c7e541e670a94a6c5",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "proof_sha256": "8642d8fd766e224de0deb1111a1cb43a075f317edc6966ec42199c25c4456589"
+    },
+    {
+      "task_id": "3afb456e3361de2d08f4a2bc17352dabff5201201357857f820eb6de438c7745",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "proof_sha256": "3c9e43fb35b8f3ea84fdd7d20bc10c5f2ace8f97ac5ea7f89f368671f94a29cc"
+    },
+    {
+      "task_id": "cd5f38676d7202ed32a8a19d7eff88fae6b52975d3b0cfc669e4af0394b3eb1e",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-14",
+      "proof_sha256": "68d59ce063e48072799e05cc49fddf1c50483fcab9635d1046c44af9d2ce8b62"
+    },
+    {
+      "task_id": "d9e8b54f236165562608286e1487693e41b777d67194d8408a5974604a3b8d80",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-15",
+      "proof_sha256": "0c7b16634dc430402bc3f7d2462d040c9b2b9bb04b0decdceb1505339a8354b9"
+    },
+    {
+      "task_id": "0f58e54fae5a6cb746ee5560dbcd31cbea2a5ff0b3e991807cc6b448e96aa5c8",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-16",
+      "proof_sha256": "8d1ffd57f007dbf0316b990a375a173ea6e5afe6ad043fb145aea8275d8975ec"
+    },
+    {
+      "task_id": "572912af3d5ef6026e4281169560e8c9f90ceddd31ced1be8fe0a0b27759e2a9",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-17",
+      "proof_sha256": "2a5287f5ba512319a9ec3230137b7b13ed6d584b1017f81e7b378007ad40d0ec"
+    },
+    {
+      "task_id": "2e92e56ad1fec9265f60d5cc4bfc07f2dc108015a0a2e37e9ee5cf060b6e816f",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-18",
+      "proof_sha256": "9f5c9fb97e4d0134e0a59f915915d331e85f93c67b1c0f263024d437f3549d43"
+    },
+    {
+      "task_id": "8f77403c99aa72d2d2ac7f2e7ea95bcfa0443a64eeefcbab4b8d70755768c1d7",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-19",
+      "proof_sha256": "be3ccf6b3ecbe8a904cefb6b73469878ff237219190ac6f74b297010d003c6d8"
+    },
+    {
+      "task_id": "617fe27916bdd4ba6032b58d1e07f51281d14913c7eeffffb13d60e49c145fbd",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-20",
+      "proof_sha256": "c4ef30e2b3232b9287b22910701bef23d570f609d76f02ab826b033d3dcdcb48"
+    },
+    {
+      "task_id": "d7ca314e858c5ec6553946bc01c24615e36676ac0206ad69812fab4b3753707b",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-21",
+      "proof_sha256": "e670992e678f528ec696d3eea895091d3f99e0a6f41b7b32888c1555118d8c2d"
+    },
+    {
+      "task_id": "6a74bfa53cf0b8bc0e83ee3b3312086bf2e3079a2a0ab4f9e5ea22e5631b7ad1",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-22",
+      "proof_sha256": "2889e4ef0890591199db509d84ec7fa0906a1ce0a1c7b51d4bd372f651c81b9b"
+    },
+    {
+      "task_id": "c1a42dc651523af7d7b4e52cc5ed8d1cc486ce224f1339cd830210c800bba70e",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-23",
+      "proof_sha256": "5f008b59e608d21c390acf833add77437efc03b6943184b0d55f47c8c9b81520"
+    },
+    {
+      "task_id": "f6d819ecd9e1606e2754d57c5ae4232b9f53cf55515e2b8da7e9af4e28c87ca6",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-24",
+      "proof_sha256": "03e344dc834f1c8ab4980d8e630c39f9c2c3c7b04bb0697aea5ca79d993b7b42"
+    },
+    {
+      "task_id": "9847e0035c80e82233491911364c85ccec613540af879fda176aabc640213268",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-25",
+      "proof_sha256": "1e4b6e5732280bb88eb9adac09836b964a3b17955617615b67d3113d5e9421f2"
+    },
+    {
+      "task_id": "a0b3f5a23ead32c08d8ea1b94211e5256c9b4ae4ce7341130f5a60543ce07794",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-26",
+      "proof_sha256": "8c8bcb51ba170ccd957d82073b0c660f646adae18a2030853d9f91b487767444"
+    },
+    {
+      "task_id": "aa34da89c795a32855bb891df8ec21ede15b47a44e16ba82de84db01671938d5",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-27",
+      "proof_sha256": "26226dade92710f092ebcdbc2a0ee4f59b78e1e5c1abc38b3546ca8346d5cb3d"
+    },
+    {
+      "task_id": "a9fedf7b018099fd11b2da5aa3010c92743f167c6179d7864d3c11d1e18a8a15",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-28",
+      "proof_sha256": "90d247ec296924446e8794abe69927c7e74007bfd514c544a2f1e2f4b795cdae"
+    },
+    {
+      "task_id": "be70e124ec3b6f8e19112ded20d7febe7c8d81a690a014925b5e1c43bdf5699f",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-29",
+      "proof_sha256": "90939e341ad46c6f0d5bbc90feb309095984b4618ac747b3c7c08df792e21afa"
+    },
+    {
+      "task_id": "577a24511babb3a711e130028d50f9cf9a939797a3e129496619a6eb41bd6142",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-30",
+      "proof_sha256": "2d413aef30386e61081267c409ab299be1f0a126cc7a0341a8591e6886d17637"
+    },
+    {
+      "task_id": "2a37c8081b0166f430ba21372bae58f3464c8f82c7ac8026c6c56afbe3cd8695",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-01",
+      "proof_sha256": "a8239ebc072103af083d11ba62d26ba03e3d345802154068f77945f133a56d91"
+    },
+    {
+      "task_id": "4c62014680c65d70d62e52efb3cc1e95f891562e2574cf455dcd24a419e9ec08",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-02",
+      "proof_sha256": "ae23f394787ea596a02868384024bbdb05c454f78465a334ccb1b8e5b4f31873"
+    },
+    {
+      "task_id": "95eb54804cfd3a3935f8421745a71fe4ce00283fa960a6e504a3f2f32ce81200",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-03",
+      "proof_sha256": "c2a05ffbe0374a67a3d9b92131f43386141e12f1fdc638f55ba5e4ff432dd8cb"
+    },
+    {
+      "task_id": "8304eec6942b6b60f8284c86d888c5b0d684c293480c479133a917e41d6a83ca",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-04",
+      "proof_sha256": "6040b278a606dd5fbd5037bbebbdc29bf9fd2b0570d6812fb22027b9ca60173d"
+    },
+    {
+      "task_id": "3fd5310a7aea0038abcdb137d1fce3b192d805d2042d549b6a477e4f3fdc9c95",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-05",
+      "proof_sha256": "f1e49aad0d057c8ac9453b5f7828410da8e7e9cf35218c39d76e03c029ff9c56"
+    },
+    {
+      "task_id": "e511c5e5cf98e628d1a87345bcbbb3a129c680832b63763a3d6d7c74ace58652",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-06",
+      "proof_sha256": "21194afbf8083d69faf5368f14c3e495405d4bb1e8a217f97460fa8905a4689a"
+    },
+    {
+      "task_id": "3ba9d85075d88e29e3535421e5ef3b173ec009fc467fc078241f185a376ecf3f",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "proof_sha256": "d36dee50d7715fd8d182a52c59688c486931893a307a6d7ecf2beca7eff7ef93"
+    },
+    {
+      "task_id": "1892860e9fb5044a9871954675b143203f8776905436ad246b8b3df5a05fd421",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "proof_sha256": "26d96d2e3c968bb91bfdbb9b65a19dd714b13d140dccba7c9e1402ed383e9088"
+    },
+    {
+      "task_id": "838a5bdbe6b11dd79301bc554aac65904471bb07a18359aafc022f384bc4b00d",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "proof_sha256": "6c00b97695725cc75a5586b9bda47b3cae39603a087f75fd7b8abb6c556a5e6d"
+    },
+    {
+      "task_id": "bfcad5d6d875fd6bd5b2cdbc0e3659fe0d9be92ee85a746973fa0669da091370",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-14",
+      "proof_sha256": "8ff8a3aa6aa7355e792470857ad9bd65b21b0191b177fee4069fdf0740f8aec2"
+    },
+    {
+      "task_id": "2647cdf2de02e6b4a7d6a3067b1a23564528cbf7933071846c71438b844b3fb8",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-15",
+      "proof_sha256": "7236e0ae369bb7795ce31147c5b208dd853e3d6218d9ea23b7f795318c3000d4"
+    },
+    {
+      "task_id": "66cefb104f78a758be18d03c87eb0c7adda7e4e9cbf96d1f647079fca0cc4fb0",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-16",
+      "proof_sha256": "811de6bbfe15053806307d8b5eed0c595e912576facdb687fd81d9dd50ff75c9"
+    },
+    {
+      "task_id": "509be2ef28bab9d7f3299d2982d80f39e5537172c8b433f0b1be8981c1e8766e",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-17",
+      "proof_sha256": "391a7745646a1404d5d9b0862f8cf0869e708228af2e79cbdc9e9b8a9fe9641e"
+    },
+    {
+      "task_id": "996b41e3648c59a8c7cf7ae58cf9b4ff2857c385da10ce7dcaee00207b423c29",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-18",
+      "proof_sha256": "ed0046369273a3ef9766a67067ec50b774c73c21a89844d77290acb40f987b1f"
+    },
+    {
+      "task_id": "61c765308936d0140aa41654205d7646b528433be4e8ba6fa39c874604cd022f",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-19",
+      "proof_sha256": "c600e25a93b99b3c44c7f930bfd48b61ef3dd69c027ec6a6431bc17775b0ad89"
+    },
+    {
+      "task_id": "6026dfc46871ac740dd6d6cfacd8d8616ea4df8f263d2d72132692dd608e6d0d",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-20",
+      "proof_sha256": "a91f658e856d27b31810cc2cbed80999258ed69181832530d21a60ace27a437a"
+    },
+    {
+      "task_id": "2d889aef5a878e6a4099183680fef043ce32c35b8398de22065f2fd2bc4c384d",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-21",
+      "proof_sha256": "ec4e157507acff31ca7f91f5da378a059d9ca914d912e404d698c064a566027e"
+    },
+    {
+      "task_id": "0101b6cef8d23aba1590da72418b278ebd9f53585fb7389badba2828f9ddfe9f",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-22",
+      "proof_sha256": "8a0300ade3b6489b19da3b04413e70a412b6a8d1abafffd866e34d68c4d11cef"
+    },
+    {
+      "task_id": "c094f3fdec8d6867aea2b874823e9afdafa69a915e1dec82a52c1e5dc9ba9a0b",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-23",
+      "proof_sha256": "081e3f3d9c4d26b5e02cc7cbcc6d87ec1ff6e1d0c62fd7477ebca3263cc9b829"
+    },
+    {
+      "task_id": "8f44195119ce1b852038dabd0ce58b7f1d5a67d50fb4dc1343d060a926cb1c45",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-24",
+      "proof_sha256": "4def261ed314446d583a8d9eacf6ca473ef1bd0f16a995de034dcf5264d215ca"
+    },
+    {
+      "task_id": "89ce482bd2fcdafed1a5410b1ffa400a8a351b7e84d9a1d1a3220d9f1d4d44c4",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-25",
+      "proof_sha256": "8cbc77cdb1a19c0a5a090148a7553992c6cc06255673372f0da91cb7c23b2273"
+    },
+    {
+      "task_id": "e810f125072242b4688afc19a71d34ae71d807dbaeb0b71d97491cdeb81914ea",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-26",
+      "proof_sha256": "f0cc058e8ca9777dee6ef69706bc7bd41e946d3fe2ba6d3ff8c5e757017d02f0"
+    },
+    {
+      "task_id": "0725d270c893187130f51bd31eae9b8cbe33d6de5198588a79888cce28fb217b",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-27",
+      "proof_sha256": "0718fd7ff82637069bfedf0b89cdaa0645a8f9c92ccb14b61b4accd5aa3cda07"
+    },
+    {
+      "task_id": "43097bbd9b8ababe1a25cb64c5bf851608595b9c09d8f13f54c8044323261f46",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-28",
+      "proof_sha256": "8083949dd255b17499057cad924eb6cc1622ce9b23a6cd70ff7dcf100f6c209b"
+    },
+    {
+      "task_id": "3318128544b45bea3596cb6d534e26d0c4d1491a5607008c14b5b03f1947ccfe",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-29",
+      "proof_sha256": "e802c9568d8902dec16e212b62ca39df236f12c3d61d6288cf2eba8ee05026bf"
+    },
+    {
+      "task_id": "9f969a2fbc8d5c860fffe6d8bf0e5ed3bffa158471af7b00fda4c7a0927624b3",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-30",
+      "proof_sha256": "c880a52cbe38bd166d3703d1a8a3f7551e032375095d2f8d3c395ff580f420ec"
+    },
+    {
+      "task_id": "a3330fdaef5c7bc73033bfd51623745c042dff62338adc36a49ab5a36a6bdabf",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-01",
+      "proof_sha256": "8dae56ec0ff7661544aaed57747b925ed709cb7bc455d9c882a40a1e6e5cd10b"
+    },
+    {
+      "task_id": "15a2f7ce019d433afdfee292f2215251e80b08801763b8dd14bad9f6092548be",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-02",
+      "proof_sha256": "69f1a6b06eccf1e4294fe145ed86db0383dd177d688f7d5ec756e9c4756a27a6"
+    },
+    {
+      "task_id": "1c70d932a8832d69b719273794889c4c806b1d1f6e65426b8a7646b0fc3d1679",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-03",
+      "proof_sha256": "28462bc7db53c31ed1a833b3d4e16b65cbdd220caa5238a7d2ba94fc70165997"
+    },
+    {
+      "task_id": "fb84c8c41644bb2cf68b4ae237383dfb47de5eef83c83c525ba5f989d4198336",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-04",
+      "proof_sha256": "9bd540aa5b6c14b6e8924916248a75378c01dd0623188e8cfd483b344061cfd4"
+    },
+    {
+      "task_id": "21ac7f096e60000eca20929fba15558ee73a25bf0ae22ce55681976e43ad07ab",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-05",
+      "proof_sha256": "e433ef3bb866aef863d9aec087842230164b86dedc35d090bd3a803a47324984"
+    },
+    {
+      "task_id": "e663e7b7b8426b97b47d76378d672ba379f9d89cc973425fa5cf5ab30c174b28",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-06",
+      "proof_sha256": "4063120ca97d43ad89da79b05f3c4380b460ab9ac4dcae8ee90c54444ec09fc9"
+    },
+    {
+      "task_id": "d16557eae39ff86307a85ea27ff8228848cf5060df6f64cd96fc9e5b27e1bb4f",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "proof_sha256": "9ba7295e69496bbd0371f1f1a393322d400d76a22032596fa3969cae2dd81ce0"
+    },
+    {
+      "task_id": "543444634d1fd0b1870f0a8ba9e40f549fc399f6d66af508a2fa047b493693da",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "proof_sha256": "af995977c09fa4cc65f5f2ecc23c5dbf8e66a788b71615c4bc82842fc28d6808"
+    },
+    {
+      "task_id": "520d3a3c8f36c4d674287bd904b878d27c22051840672cca4b86c24c2c2b1579",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "proof_sha256": "c92657d4413cafee779f07f0d1a7819f0d1439828c76e97732ff4ed5d2ed41d1"
+    },
+    {
+      "task_id": "62e11958d6a450b8a53e60b97469269f2414c900fb78e31b5734ab13e219d42d",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-14",
+      "proof_sha256": "860db7d048f1356fe40981f9097bb60dbb2cf9e21623ad4b8e30412561b64e55"
+    },
+    {
+      "task_id": "13e44c44491c8945dd6fbe1fa42952adbbf9c1264df3dcf2729ce0a94a589931",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-15",
+      "proof_sha256": "b309a5e972dfabb2ebe73ef55a0ae0d649f00094e128e249c5581d4474fdce1e"
+    },
+    {
+      "task_id": "c35b753b87c47457caa1ad3cd805a5e66df02d8234a52e259b3292280125bfda",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-16",
+      "proof_sha256": "86ccd140de90c433f9263f63986d364efe725c5b44ea08e96e2c365ddc0e7d13"
+    },
+    {
+      "task_id": "ee835264f6211469584c852b60ca1fc6fcae6f91e951051fe1cb4d4226c19402",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-17",
+      "proof_sha256": "aa0849d0c227e1b099f0fbb25578ef4c78c79aa59a05d881c2bb127049ff40b2"
+    },
+    {
+      "task_id": "977c46391e587b614958b448807fcf13f403c32920d114bf414343815205def1",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-18",
+      "proof_sha256": "6a78218123d9a68e67d5aae76bc956c3c3aff36bda43139abef998f4253f52bd"
+    },
+    {
+      "task_id": "d6e3dbde4940557a782aa8dcfbca93e70b2358b80880e7ad579ed29df0a1c14c",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-19",
+      "proof_sha256": "df88eb024e8cd8ae010e7b98afbe1e5b78730df65d5c9fcef7004558d7b2f1f6"
+    },
+    {
+      "task_id": "dc07c69644bdd87a3c3d0ad22a1c449109d729e6a8253465f855f22bfa2dec35",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-20",
+      "proof_sha256": "7e2e43a0bb5fb7f27b901bfc98fa705b3062e48e12cfd46f8aabf09077ce5dd0"
+    },
+    {
+      "task_id": "e0a7262fd8bd59e0a593d08bebcf5d91d030593349a68423b9a87e18b4546fe7",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-21",
+      "proof_sha256": "27fc897962d7e91d9427a2399090d21fd3de8e508684de41cd9160de00374f0f"
+    },
+    {
+      "task_id": "0914b698b93c7788ccd5e571d03a60736caa9039228abe1e946c70d9322c9c19",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-22",
+      "proof_sha256": "02cc9a2d74572863297da460f9765d923f4e7150d235696f78718c1ce7a97d09"
+    },
+    {
+      "task_id": "83759ef3b91c188d674c8e05fd27980078eaf446ca4c87664e2d6f87523694b4",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-23",
+      "proof_sha256": "6edf498a33c7a0657ad047781d698cb98cfcab976bea101afcf60a9935c0897c"
+    },
+    {
+      "task_id": "5f411e79380c16479ded3a6baecfc97577e0f94d9f1be2f793cdeb46dc71ae7b",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-24",
+      "proof_sha256": "0b40e1be51c8230261020b7b025bb786632dca3656b7e17aa80d1b30bd13bce4"
+    },
+    {
+      "task_id": "f3963eb67ffc57cee2a38d36c6e6febc381b12159eb595de9fd395ad401ee4b2",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-25",
+      "proof_sha256": "f49ae4b1db0d679f8b6803d3134a784db54a2a4e58e6701668c15448574a78c0"
+    },
+    {
+      "task_id": "15bed95b53f2f3a5c7bc0121292fcdbc719e7374f2b03716cacc4329ec391e1b",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-26",
+      "proof_sha256": "11ddb1c96c2ad6a4746abf4dd01dfb48c83cf3e517aebd4de7cd4ee0b69ce850"
+    },
+    {
+      "task_id": "bc2b19c35df869b54ccb23d75da84200ef336314118e9e6544e93b4ea5959f36",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-27",
+      "proof_sha256": "4bc47f95a3137cf9e33314cc0fccd5388adba5cda03028bc0f6eabf8531f09e7"
+    },
+    {
+      "task_id": "04eb1ead5b3df88b1298a3df0bce7e9a6ba4b6df42b3b18e618b95960d391d65",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-28",
+      "proof_sha256": "c9f1d3192cf1559b81690c3cda3b73a1de8881169f3b20b1d6588de40f90ed46"
+    },
+    {
+      "task_id": "0684408361d2cd2a898408ab6eef463aa36ee5bba9a8dea07b16aba17b55c228",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-29",
+      "proof_sha256": "5a88b2584bc609fdc417489205954e47c5566d7b91cbd602dfc51f9e45ced929"
+    },
+    {
+      "task_id": "d1e2bb6ab051c868d962c8e0c670ecc1b4d072d900e0a2780f01bc155ff8f103",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-30",
+      "proof_sha256": "8485f94875915f190c30248a430b5e7943c1933fbf0af5f8ad81801afcae4f88"
+    },
+    {
+      "task_id": "8eeca132e7cbc587f167a7504d3f4b7cb37683f2c8f11b328f44023f4e5c92ff",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-01",
+      "proof_sha256": "eaa5d060a9467101329e168a1ea6325a701c4d50580dcdfe7c5257b45f83aa2b"
+    },
+    {
+      "task_id": "da16ee2641a56b975eef61987154effbb963a71f014947ea502cd9e5a2e87888",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-02",
+      "proof_sha256": "e9bc7e8041f9724b42c274b7350c067a72c232bf1db75fc8ca032c6f17396a08"
+    },
+    {
+      "task_id": "7f7298c2ccb77024b1782c13c328ef25f4137c4301017a0ceb3110b3acc25f73",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-03",
+      "proof_sha256": "defce5ba6487613148f2b61df0f4f86b2990d4d5aa3a8f296916d68c0f0a7b95"
+    },
+    {
+      "task_id": "269272a8dff49d860230599a0418d65e49a3e1ebf34def5a6e3005354258a076",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-04",
+      "proof_sha256": "53c25c2916e10d56e0a1bb772c97bcdecc4ac27c2f8f60d4409c91cfd3bcf8dd"
+    },
+    {
+      "task_id": "fcbd58975379871c55167be241063b67892792b2c1e15438b40eac122c3d9714",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-05",
+      "proof_sha256": "3ec1cebfdeea8362c8986a916cd6b9ed7ab8aabbdce8e4614270d7c1c5d415cf"
+    },
+    {
+      "task_id": "e05265f2ac809825564786e8fa77a45413be50675ae3472690d5873cd9c0edd7",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-06",
+      "proof_sha256": "c1d95340a05f18071181690c3b0382f628ab7a928b130e56210356ca8dd77ba6"
+    },
+    {
+      "task_id": "56709d4286104dd19205fe009148348d4c9f78a8f63882a787eb72e23ceef990",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "proof_sha256": "9357c7103ee2588eb6bde83d95db4e5d31ad6ef03df535b183c0a16e4aab72c8"
+    },
+    {
+      "task_id": "3384748d20da78cb8157d5b3922ec8f2322bc0e6bc5398057e5a6796d10079d3",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "proof_sha256": "40a6686e5793517b26f2326f735226847d3aa798d478cab27bb63f6cbaa993cb"
+    },
+    {
+      "task_id": "2e5167aedf68c8012cdd502febfe1405cb80a193c95619bf636dd3f65c8e3bbe",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "proof_sha256": "b2a98eb57efb41fafab9e1b9e9d100fc9dbac01f2b18cb1bb14b587699fc35cd"
+    },
+    {
+      "task_id": "cbe5983f917568574fe277ed03636e4261866bd58ca55c6df9fa7d26ab07a188",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-14",
+      "proof_sha256": "c0a1aef1c41638ae0e02439f6e80fdf7e1836d4c241104febbf3d6616b1e1587"
+    },
+    {
+      "task_id": "c5c4c6d30672222a4eae2810acd0dad6af5247aebc0c8e2c1a14acff52c25417",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-15",
+      "proof_sha256": "ece730d1e71885798529200f392852ee1f9ea3e7caebef53e6f29d5aef0804b8"
+    },
+    {
+      "task_id": "f11c88f0fe7f26b73a6dabcdbd000b0de0dd02b06ef129c8f20bb6c1f22527e8",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-16",
+      "proof_sha256": "862d29c93fbd83b46a0119ee22456802d954dbbcc571114858c5d486549ed63f"
+    },
+    {
+      "task_id": "727c1b50b873d4ac2579bc0f40b1a84ace59c2369329f296185ae6f1bfe471fe",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-17",
+      "proof_sha256": "889dd85fd45a8a01b6e870201eb6d3f058d107cdc81b7ae45b08207ff43b0acb"
+    },
+    {
+      "task_id": "77cc38662f6806a16dc4b2902741bca997e601d44e57a80fa08a49e482465a5e",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-18",
+      "proof_sha256": "225835412f495d1b8322b8b9734bb48ccda1c8693829cc113a8423ab96ad6832"
+    },
+    {
+      "task_id": "48d0a5ed725898505a7dcb6970ec0577d40085d4ba9e4203f23fc83378a04277",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-19",
+      "proof_sha256": "44cf03f3fce8b8bb67af5596d7b6e8120fc366ffb999b2458203c1df3d1b1bf0"
+    },
+    {
+      "task_id": "231bf910970ecc5ad7d786cb15f7ec8e3e8ab909aafdf8ba6dd0e6eaee8a66bb",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-20",
+      "proof_sha256": "082b231743940b468ae3b36fb6443ee12b6ac121bfdb13621087b46cad6d7e34"
+    },
+    {
+      "task_id": "207e19f0a1d7864487a17cb553398d4518bbb106bf6053c3a8059184a52fe2a0",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-21",
+      "proof_sha256": "df03baa406438c86632e4ee39d7ef7b2715a9ce1187d5e42f7f431158f210201"
+    },
+    {
+      "task_id": "d8889d91f9ba38ac6c9d2d22c27fe0a3a5c26f882654187993810abd4e76bf13",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-22",
+      "proof_sha256": "63685969614a06efa3c1c986aa65b2342abeb0c0208f19fe126d9d265b525a55"
+    },
+    {
+      "task_id": "7c7c784d4a517506f905493794d924e4839f3f3c5b101b65e089a96064ffcc0a",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-23",
+      "proof_sha256": "0dc97ef42b10aee71e02fc5b8061550929da0f826b00a5495e49617ee8cf5d40"
+    },
+    {
+      "task_id": "74a75e0b25b03fb087e9f406cbbe42fbedd7f04ce60961cd7cba335ed82e29a8",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-24",
+      "proof_sha256": "958b9d1bd109a74dadb7263940790b84cd4e56362a14f0f8aea22fd91f2591c4"
+    },
+    {
+      "task_id": "867092df785ced60343688eba35234b55e0ef6c4a670ca616a0c7dbd086d8aa0",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-25",
+      "proof_sha256": "21c8eae3b126ba4b97c43607a54be38270354576b1c8d124ed6808459b539ef7"
+    },
+    {
+      "task_id": "a354395ceb7c83308d346f6354d60188c461f2bf421394e728881e23e12c1c38",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-26",
+      "proof_sha256": "3949ab9901151695771f6567526e9737297dae064926a006f22dd2aa5bad4a1b"
+    },
+    {
+      "task_id": "a28330bb45ab8f239d10db534e08529b6585dc5a8338a1394632ce9360505c89",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-27",
+      "proof_sha256": "f312f71d00a86b85e67a1c43e222cabf5767fd39bb61eb8c2afa1c380a94cea5"
+    },
+    {
+      "task_id": "a8e23d97b88d21c5ea0f884eb26fb81035eee7dd0fc5b4593b30211562de7003",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-28",
+      "proof_sha256": "5a7b27a2154af3ae38cb68051389bd10baf59053e25360b0519cc231809baa11"
+    },
+    {
+      "task_id": "f536014e704ec546b5c8dbada8a726a2e06d0ae7a4a2a811eaf947b33cfa8dc1",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-29",
+      "proof_sha256": "587daa161cb0aea93818c200d39766fc7808ddb235de7bc45c8a952b5f706c21"
+    },
+    {
+      "task_id": "35288d517df4711fc502531d079d9e7089dcd73b5de5ba01a216eb97e1b1b8a7",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-09-30",
+      "proof_sha256": "7764a5d96ab1a0c17b1546105583f8ab4c2df1bbceaf7833d0d688d17d0c3ccb"
+    },
+    {
+      "task_id": "8e74141f81a4278e8f9c2775dea107f4dc395082ad7cb944aee5573587ca5fa3",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-01",
+      "proof_sha256": "8fb7b78db40f2fac7a34960fe9397d723c5ad06e2307effcdbe9a4f37d2ea9fe"
+    },
+    {
+      "task_id": "a0bbc759020e54d66073dc8af89de89de24d2200871452d3625ec628f6f88b2e",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-02",
+      "proof_sha256": "d70d303cffde03b143c8b256f3275f6ef16a116fc642202aa92bb484ab2805f6"
+    },
+    {
+      "task_id": "18ea843de581ba00df38b6c42749ddd16b73dc451c073fec3571187e6bf20f42",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-03",
+      "proof_sha256": "0e2de2fdbe798625a3e533558b296e857ab6a26e6696c7a3dd18b88ef679fc98"
+    },
+    {
+      "task_id": "7996fe5473d62a59e253f43a240f59ef7f3aa4ef1174b37369198ec45a71156d",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-04",
+      "proof_sha256": "086bf516470c41253267e0c79f135e401e35ad984e626b38b7a8a3f223b68b31"
+    },
+    {
+      "task_id": "b6e8d7a9f3e7896143905b874c1ac2ec1d04dcf2a89a2e49c9ea1478315fd2cd",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-05",
+      "proof_sha256": "5494003e7d6008eea3ee911d04eb106e1daa29fabe97481aacbe183eb26fab67"
+    },
+    {
+      "task_id": "cbeb09e2c6bf3bd6dc3ad84abdf1053295c745c6070192f84cc2344e0c2cb0d2",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-06",
+      "proof_sha256": "e4ca44f6cc7493d4346c69a607d5456a12d277771be562e33e0cf9d5cfe468f6"
+    },
+    {
+      "task_id": "7840fd869c00b1b82796dcdb4bf739c7a8eee97cf3ffc2dbe98390e9ff6719ff",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-07",
+      "proof_sha256": "76d72b55db4fa18170bdbb014f0b2080ff12b91890a1475242a50fe1d66d4f69"
+    },
+    {
+      "task_id": "2e73c27e5254a21878802caf6c90ed64e420095ea8b647e8e253b4687919af9b",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-08",
+      "proof_sha256": "b5d880af1bcc8d9748a387974418a6912ab5ba440681e6fcf5df1763d3c455f7"
+    },
+    {
+      "task_id": "784ecc4cc9eea20b78847e0542a211aa9c989cad237831601f80d03dfd9e8b13",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-09",
+      "proof_sha256": "7099b6b28ccd8730c4bcc3766b7d95b3fa50ca133a2222d0ea88428b25da1d58"
+    },
+    {
+      "task_id": "05cf1850e49483cfd31f814484e221f28220b2f8c66c9cefd853d25b0f8f96b5",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "proof_sha256": "0f30db41db53a5aa9bf68af15d6f05acd501998ae324059aa166675f2336d9b1"
+    },
+    {
+      "task_id": "f3a7ae4752c85786fc9c871e9ebc1b4c0d3bc139c636dc6d64ed6105ea312f09",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "proof_sha256": "754d1e639471e56449d8c02a53f194f70c03bbfdac0767811459dc89e6a3e9dc"
+    },
+    {
+      "task_id": "1f32b2c7a5f79c8e4447260b818dc5cf50a976ca06a051653e80b186c7f7651c",
+      "key": {
+        "dataset": "mark_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "proof_sha256": "076bb761c05f302706b119e3c6ad07eddf5847542bb0032cb4edb99d1fe33eae"
+    },
+    {
+      "task_id": "95dff86b605e68d1b07bcca5efec4a0e6c015fcc484ab1ac9b68098e60ab6274",
+      "key": {
+        "dataset": "index_price_bars",
+        "interval": "1m",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "proof_sha256": "965f6ab740ca2a54dfe28d290e41241af7fe0d24b23adca7af2ce8c54965b13e"
+    },
+    {
+      "task_id": "51cec07a7c0c37f68466b6e4e07c18bf9d82f9b11482789bce6785c8882551b0",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "proof_sha256": "23161172b9dd257546a0d061c2264a7490ebe276015bbe3908fd5bd2388d350f"
+    },
+    {
+      "task_id": "aaf66b45fe759b626bc49502a4374b0adabcb7474c855ef5c93b9344fda097f4",
+      "key": {
+        "dataset": "open_interest",
+        "interval": "5m",
+        "market": "linear_perpetual",
+        "series": "archive",
+        "symbol": "BTCUSDT"
+      },
+      "day": "2026-10-10",
+      "proof_sha256": "1d4de8ac6b761e4c28c65fc9ea076965b30abe02a87a471dd412e913b48af812"
+    }
+  ],
+  "next_cycle_kst": "2026-10-12",
+  "next_utc_boundary": "2026-10-12T00:00:00+00:00",
+  "new_acquisition_utc_day_at_boundary": "2026-10-11",
+  "backup_selection": {
+    "expected_regular_run_kst_day": "2026-10-12",
+    "backup_id": null,
+    "snapshot_id": null,
+    "status": "pending_actual_completion",
+    "requires_same_snapshot_full_read_check": true,
+    "do_not_wait_for_2026_10_12_evening_data": true
+  },
+  "restore_comparison": "Compare restored ledger rows with the selected checkpoint by table and ID; fixed attempts/proofs/data must be included. Additional tasks are allowed.",
+  "t05_is_prerequisite": false,
+  "publication_observer_enabled": false,
+  "automatic_retirement": "masked",
+  "target_id": "300941a16686697c683a16f39e325cd34b52a5d2fcf77addef7ed8e5eb584ef0"
+}

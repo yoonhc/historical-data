@@ -1,0 +1,1422 @@
+{
+  "passed": true,
+  "plan_id": "a6544cd5b0f8034d4babfdeb88d6a28fd700e222501c1d413d5524bc24f825b2",
+  "scope": "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10",
+  "phase": "complete",
+  "started_at": "2026-10-11T08:58:52.050945+00:00",
+  "original_plan_preserved": true,
+  "original_result_sha256": "98d19bb82ef361ff8cf2b6ea7d2d2e13902de2e7e90635a0cf33e20945ed686e",
+  "continuation_sha256": "488b5f98314f680a789a865f37f6a96b9d20aec1d7c0747fafe727e27e8258b4",
+  "clock_control": false,
+  "backup_requested": false,
+  "automatic_retirement": "masked",
+  "mount": {
+    "filesystems": [
+      {
+        "target": "/mnt/backup",
+        "source": "/dev/nvme1n1p1",
+        "fstype": "ext4",
+        "uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+        "options": "rw,relatime"
+      }
+    ]
+  },
+  "usage_before": {
+    "same_uid_examined": 184,
+    "matches": [],
+    "permission_denied": [
+      {
+        "pid": 1201,
+        "uid": 1000,
+        "comm": "systemd"
+      },
+      {
+        "pid": 1216,
+        "uid": 1000,
+        "comm": "(sd-pam)"
+      },
+      {
+        "pid": 207240,
+        "uid": 1000,
+        "comm": "sd_espeak-ng-mb"
+      }
+    ],
+    "scope": "Visible argv for all UIDs; cwd/fd/maps for current UID. This is not a guarantee against all noncooperating processes."
+  },
+  "protected_before": {
+    "snapshot_metadata": [
+      {
+        "time": "2026-09-27T04:23:59.463214Z",
+        "tree": "e9bb582d141e1d5be2675d40453c19086ca07757ff6adabd6bcb8e5901886f8f",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-09-27/0650d76dddf94cbeb7ff1d998f9065e5"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=e26edc7c42e840419552705e50ccc2c7",
+          "backup_id=07af2f97fe8471c91f409bb7ac81c16b34add0ec8c549f2415b92f22122aefe3",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-09-27T12:34:31.287269261Z",
+          "backup_end": "2026-09-27T12:35:17.302158594Z",
+          "files_new": 34506,
+          "files_changed": 0,
+          "files_unmodified": 0,
+          "dirs_new": 30520,
+          "dirs_changed": 0,
+          "dirs_unmodified": 0,
+          "data_blobs": 40089,
+          "tree_blobs": 30521,
+          "data_added": 10319092991,
+          "data_added_packed": 6981417597,
+          "total_files_processed": 34506,
+          "total_bytes_processed": 10553369290
+        },
+        "id": "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1",
+        "short_id": "726fe603"
+      },
+      {
+        "time": "2026-09-28T04:27:09.053633Z",
+        "parent": "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1",
+        "tree": "457ef74e95da514ca12335cdcaf23f1f72eacb3ee3ffa7c17d7818d28998ea37",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-09-28/0c547ccdd29647d2a76f7083d786f140"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=03ac9cfb8bc847399c4a637b281bf6e1",
+          "backup_id=44261aaa58545c21e0a83f243beffb5579d31281c32a7339b5219cd7a9df2e5d",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-09-28T04:36:15.453821885Z",
+          "backup_end": "2026-09-28T04:36:38.003814268Z",
+          "files_new": 7390,
+          "files_changed": 28406,
+          "files_unmodified": 0,
+          "dirs_new": 4024,
+          "dirs_changed": 27466,
+          "dirs_unmodified": 0,
+          "data_blobs": 9675,
+          "tree_blobs": 31491,
+          "data_added": 2702742964,
+          "data_added_packed": 1474373406,
+          "total_files_processed": 35796,
+          "total_bytes_processed": 12606978341
+        },
+        "id": "7ddea5243f9262eb058b15e97df1976eb5c369de386010c736b449a10a250713",
+        "short_id": "7ddea524"
+      },
+      {
+        "time": "2026-09-29T04:31:34.99403Z",
+        "parent": "7ddea5243f9262eb058b15e97df1976eb5c369de386010c736b449a10a250713",
+        "tree": "6ec5c710c9c5ffc1ebdae0352d1cd49339355e35ecbd85a6ce9381fce888799e",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-09-29/0d84de71d71643a38d0250e061cc68e8"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=6f2f373d379a487aa73872ac76615e0b",
+          "backup_id=12156f6dd0a71fba1181c1e201f6c02163220bcae90d290993127c0b5c689af5",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-09-29T04:36:37.344444609Z",
+          "backup_end": "2026-09-29T04:37:11.851723447Z",
+          "files_new": 7167,
+          "files_changed": 29866,
+          "files_unmodified": 0,
+          "dirs_new": 3907,
+          "dirs_changed": 28520,
+          "dirs_unmodified": 0,
+          "data_blobs": 10001,
+          "tree_blobs": 32428,
+          "data_added": 3270130047,
+          "data_added_packed": 1939807704,
+          "total_files_processed": 37033,
+          "total_bytes_processed": 15049730417
+        },
+        "id": "bbb553b48c9ea943e64dbf1e2f2d021b46d7c2c78313c505029d7c842c9d8df2",
+        "short_id": "bbb553b4"
+      },
+      {
+        "time": "2026-09-30T04:33:35.779067Z",
+        "parent": "bbb553b48c9ea943e64dbf1e2f2d021b46d7c2c78313c505029d7c842c9d8df2",
+        "tree": "a01e7c97475da3bc0b72ba49d4f140ae9c7a35bff98ee14c87ae0b57c920c000",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-09-30/294884c6224e4e60a18522d8446e9892"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=123f0685f637420bbb6dc1f270d58af0",
+          "backup_id=11b8326f40d3c00e3526fad36e7377b5ae211e7375baa76745ec644fd01186cf",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-09-30T05:06:50.538432879Z",
+          "backup_end": "2026-09-30T05:07:26.500061548Z",
+          "files_new": 6837,
+          "files_changed": 31325,
+          "files_unmodified": 0,
+          "dirs_new": 3743,
+          "dirs_changed": 29567,
+          "dirs_unmodified": 0,
+          "data_blobs": 9858,
+          "tree_blobs": 33311,
+          "data_added": 3224629510,
+          "data_added_packed": 1790986423,
+          "total_files_processed": 38162,
+          "total_bytes_processed": 17335199277
+        },
+        "id": "648d7c93eadab36b79295808bfa54b0e6f45b22e4e38e5ed363b540572361f9e",
+        "short_id": "648d7c93"
+      },
+      {
+        "time": "2026-10-01T04:37:11.944342Z",
+        "parent": "648d7c93eadab36b79295808bfa54b0e6f45b22e4e38e5ed363b540572361f9e",
+        "tree": "ef26766a1b174e94b2faa1391dc619e3dca6508e5036541f003ad119fa2b8ffc",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-01/4f6a16890e6146e788e13e1af117490c"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=ebd20c1269f446f2af6bd426d1c8d078",
+          "backup_id=d3455e94e474ff5356c63fb86af6b80e016c23aea0ade8c617cf70d992ffa509",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-01T05:07:06.831945758Z",
+          "backup_end": "2026-10-01T05:07:46.931806474Z",
+          "files_new": 8007,
+          "files_changed": 32782,
+          "files_unmodified": 0,
+          "dirs_new": 4332,
+          "dirs_changed": 30618,
+          "dirs_unmodified": 0,
+          "data_blobs": 11333,
+          "tree_blobs": 34951,
+          "data_added": 3450045299,
+          "data_added_packed": 1909710925,
+          "total_files_processed": 40789,
+          "total_bytes_processed": 19729286210
+        },
+        "id": "711137213f16926f19d58e4a07e1a8a28c10e6b1dd5446c0d26561d142692e94",
+        "short_id": "71113721"
+      },
+      {
+        "time": "2026-10-02T04:40:34.273336Z",
+        "parent": "711137213f16926f19d58e4a07e1a8a28c10e6b1dd5446c0d26561d142692e94",
+        "tree": "2534afe4aa170e8f2ab5b68775c83f1d9d1b5d69f33bb5abac6e146849dafcc1",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-02/7b570c997da346f28e0708d04289e9af"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=d3301f6672a44e8d8f3ac50ac35a7d9e",
+          "backup_id=801cfce84d4a4b862c8578f8358ac1ff29c104d8ce25b9f98629cf43b7c96263",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-02T05:07:25.691774305Z",
+          "backup_end": "2026-10-02T05:08:11.841469551Z",
+          "files_new": 10363,
+          "files_changed": 34241,
+          "files_unmodified": 0,
+          "dirs_new": 5503,
+          "dirs_changed": 31674,
+          "dirs_unmodified": 0,
+          "data_blobs": 13853,
+          "tree_blobs": 37178,
+          "data_added": 3623533091,
+          "data_added_packed": 1978061549,
+          "total_files_processed": 44604,
+          "total_bytes_processed": 22156030227
+        },
+        "id": "0c9f8bc23d1125cbfd7e0d3c442af4376298e22c8116f5526170797f0d9b9135",
+        "short_id": "0c9f8bc2"
+      },
+      {
+        "time": "2026-10-03T04:47:03.758567Z",
+        "parent": "0c9f8bc23d1125cbfd7e0d3c442af4376298e22c8116f5526170797f0d9b9135",
+        "tree": "6b9ab91a4970f5b94aaddf94b9462c5577bdba13b04e996856acd13987e99670",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-03/7e178c962a2d4869903423e3d62fe93d"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=b907f43a3d4c4973b543bb69233b70da",
+          "backup_id=e971e8b4b008fd5144f0ee6e8125ace882d2bdf1c6bf9f1fba23f0f5a1ac2e30",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-03T05:07:42.014929242Z",
+          "backup_end": "2026-10-03T05:08:31.549918578Z",
+          "files_new": 9990,
+          "files_changed": 35694,
+          "files_unmodified": 0,
+          "dirs_new": 5311,
+          "dirs_changed": 32720,
+          "dirs_unmodified": 0,
+          "data_blobs": 13902,
+          "tree_blobs": 38032,
+          "data_added": 3869365823,
+          "data_added_packed": 2076101232,
+          "total_files_processed": 45684,
+          "total_bytes_processed": 24571698695
+        },
+        "id": "d27a0a557e1795a4651132016491f1b2c6735e8181b71303f3adccd414f0f8ad",
+        "short_id": "d27a0a55"
+      },
+      {
+        "time": "2026-10-04T04:47:56.871489Z",
+        "parent": "d27a0a557e1795a4651132016491f1b2c6735e8181b71303f3adccd414f0f8ad",
+        "tree": "b9f87d93fd2957391cbdb1a47531b745bb3daf53ed257e8611d45c13a80cc967",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-04/a28359289b804f4e82d900878a820f23"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=b2e14160c371421c904081a471ba9f3d",
+          "backup_id=70fc23fed2fdba282d5a1adfbd168df8666077f4b4f99984ce56831b74c48b9f",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-04T05:07:56.089734966Z",
+          "backup_end": "2026-10-04T05:08:47.645147134Z",
+          "files_new": 9563,
+          "files_changed": 37158,
+          "files_unmodified": 0,
+          "dirs_new": 5096,
+          "dirs_changed": 33766,
+          "dirs_unmodified": 0,
+          "data_blobs": 13145,
+          "tree_blobs": 38863,
+          "data_added": 3229183634,
+          "data_added_packed": 1332471426,
+          "total_files_processed": 46721,
+          "total_bytes_processed": 26309923295
+        },
+        "id": "057cd08adc8e07dda2a93eb97f4ecfacce76a60971beb5c0d795566d1202f57b",
+        "short_id": "057cd08a"
+      },
+      {
+        "time": "2026-10-05T04:53:47.247287Z",
+        "parent": "057cd08adc8e07dda2a93eb97f4ecfacce76a60971beb5c0d795566d1202f57b",
+        "tree": "ac3ee9664cfee6d2fbac5d7db6616e0c3340e9c468fd1eed51371e14918f8c83",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-05/8a0395aeb9084eddb0a97f97b9c0a0a5"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=7727a01508674440a1ea812c39a1d725",
+          "backup_id=46f4734b48f7e81c4ef805479c8d2c7b605215c6881b3d6b38a0a3a80d19bc1b",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-05T05:08:27.458981Z",
+          "backup_end": "2026-10-05T05:09:27.338025467Z",
+          "files_new": 9676,
+          "files_changed": 38613,
+          "files_unmodified": 0,
+          "dirs_new": 5152,
+          "dirs_changed": 34804,
+          "dirs_unmodified": 0,
+          "data_blobs": 13778,
+          "tree_blobs": 39957,
+          "data_added": 3646697726,
+          "data_added_packed": 1637880520,
+          "total_files_processed": 48289,
+          "total_bytes_processed": 28340021013
+        },
+        "id": "19bde5fb81b7dde7d45e2bba3504a9bd7969c7b2d1414803a528a0b4f1f6d462",
+        "short_id": "19bde5fb"
+      },
+      {
+        "time": "2026-10-06T04:54:55.67006Z",
+        "parent": "19bde5fb81b7dde7d45e2bba3504a9bd7969c7b2d1414803a528a0b4f1f6d462",
+        "tree": "e7d14d03091afeee76a550ad547194f174f159e226417eabf647735ca7dcb7ec",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-06/a28d8d6a370145b48a01331749af6d1f"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=a824b873a436456fbfa412f2b2c0b986",
+          "backup_id=7dd4228ffb476e1333c0890922f413234b7598ecd0bc482d7d0a3ba49f4a6b44",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-06T05:08:31.044157259Z",
+          "backup_end": "2026-10-06T05:09:31.769229665Z",
+          "files_new": 7796,
+          "files_changed": 40071,
+          "files_unmodified": 0,
+          "dirs_new": 4217,
+          "dirs_changed": 35841,
+          "dirs_unmodified": 0,
+          "data_blobs": 12373,
+          "tree_blobs": 40059,
+          "data_added": 4129712660,
+          "data_added_packed": 1985828118,
+          "total_files_processed": 47867,
+          "total_bytes_processed": 30636935716
+        },
+        "id": "1dd34456b08a6a7da4d3f55685852bed44233ee7cad304ef9910ea03dad1c024",
+        "short_id": "1dd34456"
+      },
+      {
+        "time": "2026-10-07T04:58:24.506151Z",
+        "parent": "1dd34456b08a6a7da4d3f55685852bed44233ee7cad304ef9910ea03dad1c024",
+        "tree": "f9ff650805a72d37f56e2061b5f32d7b5200185f88b42aa4fc85bc89d8ad5334",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-07/358aedceb5a54aee9bea0bf5f59ca92d"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=39bc550919594f7f8b1e4c1f06e61319",
+          "backup_id=1ac0768ac6f55ebbc5fc5daccae5e531b267210daef752683bb7601a690ecab2",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-07T05:08:52.330724621Z",
+          "backup_end": "2026-10-07T05:09:59.10488906Z",
+          "files_new": 11201,
+          "files_changed": 41537,
+          "files_unmodified": 0,
+          "dirs_new": 5924,
+          "dirs_changed": 36892,
+          "dirs_unmodified": 0,
+          "data_blobs": 15901,
+          "tree_blobs": 42817,
+          "data_added": 4138948248,
+          "data_added_packed": 1909279905,
+          "total_files_processed": 52738,
+          "total_bytes_processed": 32882244552
+        },
+        "id": "12ee905237a76788c93a9963c2c0425739042c57e49effe73135b90d2eee377f",
+        "short_id": "12ee9052"
+      },
+      {
+        "time": "2026-10-08T05:03:03.975956Z",
+        "parent": "12ee905237a76788c93a9963c2c0425739042c57e49effe73135b90d2eee377f",
+        "tree": "728f7f2400c8414000ae5e4eba30826913d017b4830837302f9bb2906e52baaf",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-08/ce63ff231fb440b68972ea702382c1e5"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=d488209256ff449c95d56c2dfabaff6a",
+          "backup_id=ccf70014d48549bd22e801b135680ef4b6e5040e236688ed78374aa987745935",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-08T05:39:13.916429847Z",
+          "backup_end": "2026-10-08T05:40:27.523018148Z",
+          "files_new": 11106,
+          "files_changed": 42994,
+          "files_unmodified": 0,
+          "dirs_new": 5872,
+          "dirs_changed": 37942,
+          "dirs_unmodified": 0,
+          "data_blobs": 16167,
+          "tree_blobs": 43815,
+          "data_added": 4482511192,
+          "data_added_packed": 2095301492,
+          "total_files_processed": 54100,
+          "total_bytes_processed": 35216959113
+        },
+        "id": "c17a01a46e723b87f0c3c48403bf76e742c014b4682d02644416e50924324fd5",
+        "short_id": "c17a01a4"
+      },
+      {
+        "time": "2026-10-08T12:43:04.729937Z",
+        "parent": "c17a01a46e723b87f0c3c48403bf76e742c014b4682d02644416e50924324fd5",
+        "tree": "520c61340bb4ca90e52dcc1f55cf05b59b6ffb05153ae0b8564f1f31096a0611",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-08/56a530cf83164a83aefd30653138904a"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=873adbf64b0f41e8b4470d020a16f3a7",
+          "backup_id=be6f6e493aa13931b3d0cddd03581f5b009c540b7560b7a9a7faf7006d5174a8",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-08T12:54:23.129585645Z",
+          "backup_end": "2026-10-08T12:55:35.097520635Z",
+          "files_new": 8580,
+          "files_changed": 44462,
+          "files_unmodified": 0,
+          "dirs_new": 4385,
+          "dirs_changed": 38991,
+          "dirs_unmodified": 0,
+          "data_blobs": 12975,
+          "tree_blobs": 43377,
+          "data_added": 3095121540,
+          "data_added_packed": 1124429602,
+          "total_files_processed": 53042,
+          "total_bytes_processed": 35964134698
+        },
+        "id": "da1af66eeece550548f2b6daf549ffa22b662a9d32155bf4485c20c6cae51ae2",
+        "short_id": "da1af66e"
+      },
+      {
+        "time": "2026-10-09T05:28:08.608307Z",
+        "parent": "da1af66eeece550548f2b6daf549ffa22b662a9d32155bf4485c20c6cae51ae2",
+        "tree": "ed95bc79c094bf75feb80f0457cc8195716437ad48447ecd70c4f37f05281f9b",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-09/d7d2be14890140e8ae11be2943f1730e"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=0a7bc392ad2f4767a07421894047a101",
+          "backup_id=6ba0fadd2ede16951c0448f6a7174c53e4cf22d9e19ee26c92e0be44b125b145",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-09T05:48:30.791054068Z",
+          "backup_end": "2026-10-09T05:49:46.954789127Z",
+          "files_new": 7643,
+          "files_changed": 44914,
+          "files_unmodified": 0,
+          "dirs_new": 3993,
+          "dirs_changed": 39307,
+          "dirs_unmodified": 0,
+          "data_blobs": 12664,
+          "tree_blobs": 43301,
+          "data_added": 3920761909,
+          "data_added_packed": 1641584767,
+          "total_files_processed": 52557,
+          "total_bytes_processed": 37569929422
+        },
+        "id": "be8d132a6f36336b131849eb15b9952e418bf5ef0fecc1794c2adc5b14fbb09a",
+        "short_id": "be8d132a"
+      },
+      {
+        "time": "2026-10-10T05:36:03.067349Z",
+        "parent": "be8d132a6f36336b131849eb15b9952e418bf5ef0fecc1794c2adc5b14fbb09a",
+        "tree": "b8db51a04b23c0202bf700c46f00998e55a2ed1b3af80d64ff3a286bd6236d77",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-10/cc5773d4224b45c1963479adb41ab705"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=88cd2c5478cf4dfc889080ec0d94b586",
+          "backup_id=4381041be823394454ef9135162399d1540fa548025bfde05d791b250068a0de",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-10T06:10:07.002743758Z",
+          "backup_end": "2026-10-10T06:11:34.005592369Z",
+          "files_new": 11723,
+          "files_changed": 45701,
+          "files_unmodified": 0,
+          "dirs_new": 6343,
+          "dirs_changed": 39871,
+          "dirs_unmodified": 0,
+          "data_blobs": 17170,
+          "tree_blobs": 46215,
+          "data_added": 4413982719,
+          "data_added_packed": 1811614160,
+          "total_files_processed": 57424,
+          "total_bytes_processed": 39658450087
+        },
+        "id": "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099",
+        "short_id": "764f183c"
+      },
+      {
+        "time": "2026-10-11T05:31:56.748998Z",
+        "parent": "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099",
+        "tree": "8b38b2ba322742e74b282b501e5ab20178fa5da1dcbe718f7c6e44ca5f255621",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-11/3d4530d9a00a48ca8717ee4bd5d5bb60"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=4f7c1c1a74954ab88b9e17777f7db728",
+          "backup_id=9849b0ef7e523cbc79546c233f409ecd93cdcc8e1b5bc4f48fe8163229968a77",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-11T06:27:32.30817065Z",
+          "backup_end": "2026-10-11T06:28:59.224062276Z",
+          "files_new": 11190,
+          "files_changed": 47262,
+          "files_unmodified": 0,
+          "dirs_new": 6126,
+          "dirs_changed": 41131,
+          "dirs_unmodified": 0,
+          "data_blobs": 16710,
+          "tree_blobs": 47258,
+          "data_added": 4199609280,
+          "data_added_packed": 1509490075,
+          "total_files_processed": 58452,
+          "total_bytes_processed": 41317941298
+        },
+        "id": "fd78b31add535359af3e2e6f77d13fede7db632308bf0bad2688d4a78b14324a",
+        "short_id": "fd78b31a"
+      }
+    ],
+    "archive_state_sha256": "92641b0cf33d911398ca98efdc757b2e7115feb670ff494d96a5cfe2cf20a1b2",
+    "checkpoint_manifest_sha256": "04b2958bd92efe2cc6df2a5c548e85944e38c6e756868a68b31a8c61b87d538b",
+    "masks": {
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": "/dev/null",
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": "/dev/null",
+      "/etc/systemd/system/marketdata-checkpoint-retirement.service": "/dev/null",
+      "/etc/systemd/system/marketdata-checkpoint-retirement.timer": "/dev/null"
+    },
+    "t05_state_sha256": {
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/005130b2c471011df4a52e9a22f194e9db0d7bcfbc672f6c37b3527df3982e6a.json": "005130b2c471011df4a52e9a22f194e9db0d7bcfbc672f6c37b3527df3982e6a",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/12095846cd1530cf05a91e66642b1410d44c3a406cde4ffeadacda98ff4ba194.json": "12095846cd1530cf05a91e66642b1410d44c3a406cde4ffeadacda98ff4ba194",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/16254cd2fb4b5c04763fc1e6fe7fd0c34576cf2eecc909bab337479dfd03f04f.json": "16254cd2fb4b5c04763fc1e6fe7fd0c34576cf2eecc909bab337479dfd03f04f",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/5ec056db51157f58a4537cabf374eee65148dfd901007c1138c1cba481b6cf0b.json": "5ec056db51157f58a4537cabf374eee65148dfd901007c1138c1cba481b6cf0b",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/7d6a9251590e0a4b74632488147f318482e75930bb2e341b816d3eea26ae7fb7.json": "7d6a9251590e0a4b74632488147f318482e75930bb2e341b816d3eea26ae7fb7",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/969c89172180fd24235e4d790c4795dfede39605826c2d15065aecf245fd644a.json": "969c89172180fd24235e4d790c4795dfede39605826c2d15065aecf245fd644a",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/b833b6e3b9d5c2f6f63954a21ec23f0d1772acb894f4c51fef29ee8c53db6da0.json": "b833b6e3b9d5c2f6f63954a21ec23f0d1772acb894f4c51fef29ee8c53db6da0",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/c94e71e9eb84e6b627438ebbea57dd98f0c49faa8c44eff00ded723879f4278d.json": "c94e71e9eb84e6b627438ebbea57dd98f0c49faa8c44eff00ded723879f4278d",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/registration-receipts/0404b2e43594055456c5e9aae6cd1219b2199e2eccb1e82f4f2d9e9536d91ee3-95a9da373208424c8f62891666e25d0b.json": "3e5149a15685e4684e598db37bbb2fe2857ce8042a80ecbc792c6b1c4ea91a09",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/68fb21d66dc74e6385fe439028ca04aa.jsonl": "cb141ddf85383fe4640af84b6bb57f75b8b0ab327d45d60bbcc4cbd0e1d311df",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/72d6d8fb26444d1aa2a1b8377528301d.jsonl": "ed788c5182582a634f21acb9f6fe869d3519f346601d2c02d40f3fc28bca165d",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/85d3a0fb16aa4ccb91922d0156ff72d9.jsonl": "0fc1a62e5804f001dd4f70ce2c9031aedd0e74ade499b47994dfbca1277495db",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/8cab011b17754a49b2ed4f0642718e37.jsonl": "35e24420f1072c0e880282dccd4ba5684768827dd08117b8ce0dc1eeecf14e21",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/9e6c89975c174aaaa4cecaa5ab7d9a7d.jsonl": "010d1d7c0a58fbbc0f6e14a08d76fd6c4b7d5f544f5a38d11ce15de2136d2f9f",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/ac57b07c55204fb0aa5e691f401235a3.jsonl": "25e4ddaffe71cac4e5266aee7464cb64b96f424f03b453b251656693910d7183",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/fa9c2c536241436abb4bf5f6097acf3b.jsonl": "cd9bc39e05aa36075d4de2dee2b0dddf3b296cda1460dc8e6c3b087c2a0caa72"
+    },
+    "configuration_sha256": {
+      "/etc/marketdata/daily-publication-probe.toml": "347596dfcabe6e48a3e4084887e6930860593a83d6313aa392f4223e9f7f120b",
+      "/etc/marketdata/runtime.json": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+      "/etc/marketdata/daily-scheduler.toml": "1410f51a83b5ed95f0c2258835540c3bf2946975285041d298a9608638aff887",
+      "/etc/marketdata/rtc-utc-confirmation.json": "3b962031eace9ee1770513a8afcc09b1cb6b1de93936ed73cbc0e2452ac7100b",
+      "/etc/marketdata/clock-bootstrap.json": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+      "/etc/marketdata/checkpoint-clock-retirement/settings.toml": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b",
+      "/etc/marketdata/checkpoint-clock-retirement/render-input.json": "722adfcf36831241f7735f2014ed34bf72ca7b70d801b1dd36c885ef41dbecc2",
+      "/etc/marketdata/checkpoint-clock-retirement/registration-approval.template.json": "bb0864bcb5ef772866bea5a9b0f43950ce3f89e2d35e580b1ffc1faf16d5be23",
+      "/etc/marketdata/checkpoint-clock-retirement/recurring.json": "946c2c35aa5476f3de2780e113eee2131fe0a52ebbf3409dcaedf79cf3c4560e",
+      "/etc/marketdata/checkpoint-clock-retirement/policy.toml": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d",
+      "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": "cdff5dc077ea83c451d9273ba394eb3f5b0d075b6ca85fb8a07f28192c766f2c",
+      "/etc/marketdata/checkpoint-clock-retirement/manual.json": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service": "14410ec16303633a995d9b623930e8ba0a42fe19ef72a58439a0d7987c7606b2",
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.timer": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa",
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service": "9932a3c4a8bc5acc74d5ba9c98d6348e2e367524999e15181b246fd0ac3addd0",
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-preview.service": "66d535599731c0bb656dbcbba75dc67382742f35115da89f92aba42395674d66",
+      "/etc/marketdata/checkpoint-clock-retirement/user-dropins/marketdata-backup.service.d/80-checkpoint-evidence.conf": "3ab1e66c6ab15a3e9ded81c903192360b4fa3266bca1cee05639fbd346af445f",
+      "/etc/marketdata/checkpoint-clock-retirement/user-dropins/marketdata-restic-archive.service.d/80-checkpoint-evidence.conf": "36120a311a55b6fa836b695c74c769bc6d63703ba8dc6bfcb42236eec716f39b",
+      "/home/yoonhc/.config/marketdata/checkpoint-retirement-service.env": "908a8bcd3b6445aa553866db8425fd2bd31439706aa8314d4797447a67ac716e",
+      "/home/yoonhc/.config/marketdata/restic-archive.toml": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+      "/home/yoonhc/.config/marketdata/checkpoint-retention-automatic.toml": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d",
+      "/home/yoonhc/.config/marketdata/checkpoint-retention-authorization.json": "6b630689fcf4bb11294711299d63f09238a6a3de2a5704a13599b913fe3f9be0",
+      "/home/yoonhc/.config/marketdata/restic-service.env": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9",
+      "/home/yoonhc/.config/marketdata/network-observer.toml": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12",
+      "/home/yoonhc/.config/marketdata/network-observer.env": "ebdf2cb3264d8152b0fadcc22932e2809a6d122d487215c942b70282b3e8eb13",
+      "/home/yoonhc/.config/marketdata/checkpoint-schedule.toml": "d9c8e7822bb36ebd86eb82514d54d03564f0133574e903308889d79a84067963",
+      "/etc/chrony/marketdata.conf": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "/etc/adjtime": "1a4f01af447bd4d7448979a43750d91c4d6df4250e2ce7eb2df88dfb6c4e2319"
+    },
+    "services": "MainPID=224785\nId=marketdata-collector@depth.service\nActiveState=active\nInvocationID=41b1747221894331a5e0b4fdf3f9751e\n\nMainPID=224784\nId=marketdata-collector@aggtrade.service\nActiveState=active\nInvocationID=1aa42e55ff804c1f9e5ec68b31116c6b\n\nMainPID=1245\nId=chrony.service\nActiveState=active\nInvocationID=19420480ab3249529a075ca7cb2bd3c1\n",
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "recovery_kit_identity": {
+      "dev": 66314,
+      "ino": 9043969,
+      "mode": 16832,
+      "uid": 1000,
+      "gid": 1000
+    }
+  },
+  "refreshed_fields": [
+    "archive_state_sha256"
+  ],
+  "completed_archive_operation": {
+    "action": "run",
+    "binary_sha256": "20d4142678d0d95ec11a4759def1b73fd9190abc9ca19e4b62d067c0b387e639",
+    "finished_at": "2026-10-11T08:53:58.855165+00:00",
+    "ok": true,
+    "profile_sha256": "3dff81754b14edef5b03c1827a9d1654ae5d694433caa34550c9195c0bf138be",
+    "restic_version": "restic 0.19.1 compiled with go1.26.4 on linux/amd64",
+    "result": {
+      "ok": true,
+      "processed": 0,
+      "stored_snapshots": [
+        "057cd08adc8e07dda2a93eb97f4ecfacce76a60971beb5c0d795566d1202f57b",
+        "0c9f8bc23d1125cbfd7e0d3c442af4376298e22c8116f5526170797f0d9b9135",
+        "12ee905237a76788c93a9963c2c0425739042c57e49effe73135b90d2eee377f",
+        "19bde5fb81b7dde7d45e2bba3504a9bd7969c7b2d1414803a528a0b4f1f6d462",
+        "1dd34456b08a6a7da4d3f55685852bed44233ee7cad304ef9910ea03dad1c024",
+        "648d7c93eadab36b79295808bfa54b0e6f45b22e4e38e5ed363b540572361f9e",
+        "711137213f16926f19d58e4a07e1a8a28c10e6b1dd5446c0d26561d142692e94",
+        "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1",
+        "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099",
+        "7ddea5243f9262eb058b15e97df1976eb5c369de386010c736b449a10a250713",
+        "bbb553b48c9ea943e64dbf1e2f2d021b46d7c2c78313c505029d7c842c9d8df2",
+        "be8d132a6f36336b131849eb15b9952e418bf5ef0fecc1794c2adc5b14fbb09a",
+        "c17a01a46e723b87f0c3c48403bf76e742c014b4682d02644416e50924324fd5",
+        "d27a0a557e1795a4651132016491f1b2c6735e8181b71303f3adccd414f0f8ad",
+        "da1af66eeece550548f2b6daf549ffa22b662a9d32155bf4485c20c6cae51ae2",
+        "fd78b31add535359af3e2e6f77d13fede7db632308bf0bad2688d4a78b14324a"
+      ]
+    },
+    "run_id": "e4471f23f75243ce983ae85e82723eaf",
+    "started_at": "2026-10-11T08:53:33.407692+00:00"
+  },
+  "reconciliation_sha256": "736f6c2ce096a2aaa25f4ecaf38f915577ac1b0d84fe89481ebf1d6cfbe9e588",
+  "space_before": {
+    "at": "2026-10-11T08:59:03.778504+00:00",
+    "available_bytes": 783338373120,
+    "free_bytes": 834565554176,
+    "total_bytes": 1006979411968
+  },
+  "protected_after": {
+    "snapshot_metadata": [
+      {
+        "time": "2026-09-27T04:23:59.463214Z",
+        "tree": "e9bb582d141e1d5be2675d40453c19086ca07757ff6adabd6bcb8e5901886f8f",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-09-27/0650d76dddf94cbeb7ff1d998f9065e5"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=e26edc7c42e840419552705e50ccc2c7",
+          "backup_id=07af2f97fe8471c91f409bb7ac81c16b34add0ec8c549f2415b92f22122aefe3",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-09-27T12:34:31.287269261Z",
+          "backup_end": "2026-09-27T12:35:17.302158594Z",
+          "files_new": 34506,
+          "files_changed": 0,
+          "files_unmodified": 0,
+          "dirs_new": 30520,
+          "dirs_changed": 0,
+          "dirs_unmodified": 0,
+          "data_blobs": 40089,
+          "tree_blobs": 30521,
+          "data_added": 10319092991,
+          "data_added_packed": 6981417597,
+          "total_files_processed": 34506,
+          "total_bytes_processed": 10553369290
+        },
+        "id": "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1",
+        "short_id": "726fe603"
+      },
+      {
+        "time": "2026-09-28T04:27:09.053633Z",
+        "parent": "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1",
+        "tree": "457ef74e95da514ca12335cdcaf23f1f72eacb3ee3ffa7c17d7818d28998ea37",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-09-28/0c547ccdd29647d2a76f7083d786f140"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=03ac9cfb8bc847399c4a637b281bf6e1",
+          "backup_id=44261aaa58545c21e0a83f243beffb5579d31281c32a7339b5219cd7a9df2e5d",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-09-28T04:36:15.453821885Z",
+          "backup_end": "2026-09-28T04:36:38.003814268Z",
+          "files_new": 7390,
+          "files_changed": 28406,
+          "files_unmodified": 0,
+          "dirs_new": 4024,
+          "dirs_changed": 27466,
+          "dirs_unmodified": 0,
+          "data_blobs": 9675,
+          "tree_blobs": 31491,
+          "data_added": 2702742964,
+          "data_added_packed": 1474373406,
+          "total_files_processed": 35796,
+          "total_bytes_processed": 12606978341
+        },
+        "id": "7ddea5243f9262eb058b15e97df1976eb5c369de386010c736b449a10a250713",
+        "short_id": "7ddea524"
+      },
+      {
+        "time": "2026-09-29T04:31:34.99403Z",
+        "parent": "7ddea5243f9262eb058b15e97df1976eb5c369de386010c736b449a10a250713",
+        "tree": "6ec5c710c9c5ffc1ebdae0352d1cd49339355e35ecbd85a6ce9381fce888799e",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-09-29/0d84de71d71643a38d0250e061cc68e8"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=6f2f373d379a487aa73872ac76615e0b",
+          "backup_id=12156f6dd0a71fba1181c1e201f6c02163220bcae90d290993127c0b5c689af5",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-09-29T04:36:37.344444609Z",
+          "backup_end": "2026-09-29T04:37:11.851723447Z",
+          "files_new": 7167,
+          "files_changed": 29866,
+          "files_unmodified": 0,
+          "dirs_new": 3907,
+          "dirs_changed": 28520,
+          "dirs_unmodified": 0,
+          "data_blobs": 10001,
+          "tree_blobs": 32428,
+          "data_added": 3270130047,
+          "data_added_packed": 1939807704,
+          "total_files_processed": 37033,
+          "total_bytes_processed": 15049730417
+        },
+        "id": "bbb553b48c9ea943e64dbf1e2f2d021b46d7c2c78313c505029d7c842c9d8df2",
+        "short_id": "bbb553b4"
+      },
+      {
+        "time": "2026-09-30T04:33:35.779067Z",
+        "parent": "bbb553b48c9ea943e64dbf1e2f2d021b46d7c2c78313c505029d7c842c9d8df2",
+        "tree": "a01e7c97475da3bc0b72ba49d4f140ae9c7a35bff98ee14c87ae0b57c920c000",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-09-30/294884c6224e4e60a18522d8446e9892"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=123f0685f637420bbb6dc1f270d58af0",
+          "backup_id=11b8326f40d3c00e3526fad36e7377b5ae211e7375baa76745ec644fd01186cf",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-09-30T05:06:50.538432879Z",
+          "backup_end": "2026-09-30T05:07:26.500061548Z",
+          "files_new": 6837,
+          "files_changed": 31325,
+          "files_unmodified": 0,
+          "dirs_new": 3743,
+          "dirs_changed": 29567,
+          "dirs_unmodified": 0,
+          "data_blobs": 9858,
+          "tree_blobs": 33311,
+          "data_added": 3224629510,
+          "data_added_packed": 1790986423,
+          "total_files_processed": 38162,
+          "total_bytes_processed": 17335199277
+        },
+        "id": "648d7c93eadab36b79295808bfa54b0e6f45b22e4e38e5ed363b540572361f9e",
+        "short_id": "648d7c93"
+      },
+      {
+        "time": "2026-10-01T04:37:11.944342Z",
+        "parent": "648d7c93eadab36b79295808bfa54b0e6f45b22e4e38e5ed363b540572361f9e",
+        "tree": "ef26766a1b174e94b2faa1391dc619e3dca6508e5036541f003ad119fa2b8ffc",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-01/4f6a16890e6146e788e13e1af117490c"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=ebd20c1269f446f2af6bd426d1c8d078",
+          "backup_id=d3455e94e474ff5356c63fb86af6b80e016c23aea0ade8c617cf70d992ffa509",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-01T05:07:06.831945758Z",
+          "backup_end": "2026-10-01T05:07:46.931806474Z",
+          "files_new": 8007,
+          "files_changed": 32782,
+          "files_unmodified": 0,
+          "dirs_new": 4332,
+          "dirs_changed": 30618,
+          "dirs_unmodified": 0,
+          "data_blobs": 11333,
+          "tree_blobs": 34951,
+          "data_added": 3450045299,
+          "data_added_packed": 1909710925,
+          "total_files_processed": 40789,
+          "total_bytes_processed": 19729286210
+        },
+        "id": "711137213f16926f19d58e4a07e1a8a28c10e6b1dd5446c0d26561d142692e94",
+        "short_id": "71113721"
+      },
+      {
+        "time": "2026-10-02T04:40:34.273336Z",
+        "parent": "711137213f16926f19d58e4a07e1a8a28c10e6b1dd5446c0d26561d142692e94",
+        "tree": "2534afe4aa170e8f2ab5b68775c83f1d9d1b5d69f33bb5abac6e146849dafcc1",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-02/7b570c997da346f28e0708d04289e9af"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=d3301f6672a44e8d8f3ac50ac35a7d9e",
+          "backup_id=801cfce84d4a4b862c8578f8358ac1ff29c104d8ce25b9f98629cf43b7c96263",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-02T05:07:25.691774305Z",
+          "backup_end": "2026-10-02T05:08:11.841469551Z",
+          "files_new": 10363,
+          "files_changed": 34241,
+          "files_unmodified": 0,
+          "dirs_new": 5503,
+          "dirs_changed": 31674,
+          "dirs_unmodified": 0,
+          "data_blobs": 13853,
+          "tree_blobs": 37178,
+          "data_added": 3623533091,
+          "data_added_packed": 1978061549,
+          "total_files_processed": 44604,
+          "total_bytes_processed": 22156030227
+        },
+        "id": "0c9f8bc23d1125cbfd7e0d3c442af4376298e22c8116f5526170797f0d9b9135",
+        "short_id": "0c9f8bc2"
+      },
+      {
+        "time": "2026-10-03T04:47:03.758567Z",
+        "parent": "0c9f8bc23d1125cbfd7e0d3c442af4376298e22c8116f5526170797f0d9b9135",
+        "tree": "6b9ab91a4970f5b94aaddf94b9462c5577bdba13b04e996856acd13987e99670",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-03/7e178c962a2d4869903423e3d62fe93d"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=b907f43a3d4c4973b543bb69233b70da",
+          "backup_id=e971e8b4b008fd5144f0ee6e8125ace882d2bdf1c6bf9f1fba23f0f5a1ac2e30",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-03T05:07:42.014929242Z",
+          "backup_end": "2026-10-03T05:08:31.549918578Z",
+          "files_new": 9990,
+          "files_changed": 35694,
+          "files_unmodified": 0,
+          "dirs_new": 5311,
+          "dirs_changed": 32720,
+          "dirs_unmodified": 0,
+          "data_blobs": 13902,
+          "tree_blobs": 38032,
+          "data_added": 3869365823,
+          "data_added_packed": 2076101232,
+          "total_files_processed": 45684,
+          "total_bytes_processed": 24571698695
+        },
+        "id": "d27a0a557e1795a4651132016491f1b2c6735e8181b71303f3adccd414f0f8ad",
+        "short_id": "d27a0a55"
+      },
+      {
+        "time": "2026-10-04T04:47:56.871489Z",
+        "parent": "d27a0a557e1795a4651132016491f1b2c6735e8181b71303f3adccd414f0f8ad",
+        "tree": "b9f87d93fd2957391cbdb1a47531b745bb3daf53ed257e8611d45c13a80cc967",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-04/a28359289b804f4e82d900878a820f23"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=b2e14160c371421c904081a471ba9f3d",
+          "backup_id=70fc23fed2fdba282d5a1adfbd168df8666077f4b4f99984ce56831b74c48b9f",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-04T05:07:56.089734966Z",
+          "backup_end": "2026-10-04T05:08:47.645147134Z",
+          "files_new": 9563,
+          "files_changed": 37158,
+          "files_unmodified": 0,
+          "dirs_new": 5096,
+          "dirs_changed": 33766,
+          "dirs_unmodified": 0,
+          "data_blobs": 13145,
+          "tree_blobs": 38863,
+          "data_added": 3229183634,
+          "data_added_packed": 1332471426,
+          "total_files_processed": 46721,
+          "total_bytes_processed": 26309923295
+        },
+        "id": "057cd08adc8e07dda2a93eb97f4ecfacce76a60971beb5c0d795566d1202f57b",
+        "short_id": "057cd08a"
+      },
+      {
+        "time": "2026-10-05T04:53:47.247287Z",
+        "parent": "057cd08adc8e07dda2a93eb97f4ecfacce76a60971beb5c0d795566d1202f57b",
+        "tree": "ac3ee9664cfee6d2fbac5d7db6616e0c3340e9c468fd1eed51371e14918f8c83",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-05/8a0395aeb9084eddb0a97f97b9c0a0a5"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=7727a01508674440a1ea812c39a1d725",
+          "backup_id=46f4734b48f7e81c4ef805479c8d2c7b605215c6881b3d6b38a0a3a80d19bc1b",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-05T05:08:27.458981Z",
+          "backup_end": "2026-10-05T05:09:27.338025467Z",
+          "files_new": 9676,
+          "files_changed": 38613,
+          "files_unmodified": 0,
+          "dirs_new": 5152,
+          "dirs_changed": 34804,
+          "dirs_unmodified": 0,
+          "data_blobs": 13778,
+          "tree_blobs": 39957,
+          "data_added": 3646697726,
+          "data_added_packed": 1637880520,
+          "total_files_processed": 48289,
+          "total_bytes_processed": 28340021013
+        },
+        "id": "19bde5fb81b7dde7d45e2bba3504a9bd7969c7b2d1414803a528a0b4f1f6d462",
+        "short_id": "19bde5fb"
+      },
+      {
+        "time": "2026-10-06T04:54:55.67006Z",
+        "parent": "19bde5fb81b7dde7d45e2bba3504a9bd7969c7b2d1414803a528a0b4f1f6d462",
+        "tree": "e7d14d03091afeee76a550ad547194f174f159e226417eabf647735ca7dcb7ec",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-06/a28d8d6a370145b48a01331749af6d1f"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=a824b873a436456fbfa412f2b2c0b986",
+          "backup_id=7dd4228ffb476e1333c0890922f413234b7598ecd0bc482d7d0a3ba49f4a6b44",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-06T05:08:31.044157259Z",
+          "backup_end": "2026-10-06T05:09:31.769229665Z",
+          "files_new": 7796,
+          "files_changed": 40071,
+          "files_unmodified": 0,
+          "dirs_new": 4217,
+          "dirs_changed": 35841,
+          "dirs_unmodified": 0,
+          "data_blobs": 12373,
+          "tree_blobs": 40059,
+          "data_added": 4129712660,
+          "data_added_packed": 1985828118,
+          "total_files_processed": 47867,
+          "total_bytes_processed": 30636935716
+        },
+        "id": "1dd34456b08a6a7da4d3f55685852bed44233ee7cad304ef9910ea03dad1c024",
+        "short_id": "1dd34456"
+      },
+      {
+        "time": "2026-10-07T04:58:24.506151Z",
+        "parent": "1dd34456b08a6a7da4d3f55685852bed44233ee7cad304ef9910ea03dad1c024",
+        "tree": "f9ff650805a72d37f56e2061b5f32d7b5200185f88b42aa4fc85bc89d8ad5334",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-07/358aedceb5a54aee9bea0bf5f59ca92d"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=39bc550919594f7f8b1e4c1f06e61319",
+          "backup_id=1ac0768ac6f55ebbc5fc5daccae5e531b267210daef752683bb7601a690ecab2",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-07T05:08:52.330724621Z",
+          "backup_end": "2026-10-07T05:09:59.10488906Z",
+          "files_new": 11201,
+          "files_changed": 41537,
+          "files_unmodified": 0,
+          "dirs_new": 5924,
+          "dirs_changed": 36892,
+          "dirs_unmodified": 0,
+          "data_blobs": 15901,
+          "tree_blobs": 42817,
+          "data_added": 4138948248,
+          "data_added_packed": 1909279905,
+          "total_files_processed": 52738,
+          "total_bytes_processed": 32882244552
+        },
+        "id": "12ee905237a76788c93a9963c2c0425739042c57e49effe73135b90d2eee377f",
+        "short_id": "12ee9052"
+      },
+      {
+        "time": "2026-10-08T05:03:03.975956Z",
+        "parent": "12ee905237a76788c93a9963c2c0425739042c57e49effe73135b90d2eee377f",
+        "tree": "728f7f2400c8414000ae5e4eba30826913d017b4830837302f9bb2906e52baaf",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-08/ce63ff231fb440b68972ea702382c1e5"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=d488209256ff449c95d56c2dfabaff6a",
+          "backup_id=ccf70014d48549bd22e801b135680ef4b6e5040e236688ed78374aa987745935",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-08T05:39:13.916429847Z",
+          "backup_end": "2026-10-08T05:40:27.523018148Z",
+          "files_new": 11106,
+          "files_changed": 42994,
+          "files_unmodified": 0,
+          "dirs_new": 5872,
+          "dirs_changed": 37942,
+          "dirs_unmodified": 0,
+          "data_blobs": 16167,
+          "tree_blobs": 43815,
+          "data_added": 4482511192,
+          "data_added_packed": 2095301492,
+          "total_files_processed": 54100,
+          "total_bytes_processed": 35216959113
+        },
+        "id": "c17a01a46e723b87f0c3c48403bf76e742c014b4682d02644416e50924324fd5",
+        "short_id": "c17a01a4"
+      },
+      {
+        "time": "2026-10-08T12:43:04.729937Z",
+        "parent": "c17a01a46e723b87f0c3c48403bf76e742c014b4682d02644416e50924324fd5",
+        "tree": "520c61340bb4ca90e52dcc1f55cf05b59b6ffb05153ae0b8564f1f31096a0611",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-08/56a530cf83164a83aefd30653138904a"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=873adbf64b0f41e8b4470d020a16f3a7",
+          "backup_id=be6f6e493aa13931b3d0cddd03581f5b009c540b7560b7a9a7faf7006d5174a8",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-08T12:54:23.129585645Z",
+          "backup_end": "2026-10-08T12:55:35.097520635Z",
+          "files_new": 8580,
+          "files_changed": 44462,
+          "files_unmodified": 0,
+          "dirs_new": 4385,
+          "dirs_changed": 38991,
+          "dirs_unmodified": 0,
+          "data_blobs": 12975,
+          "tree_blobs": 43377,
+          "data_added": 3095121540,
+          "data_added_packed": 1124429602,
+          "total_files_processed": 53042,
+          "total_bytes_processed": 35964134698
+        },
+        "id": "da1af66eeece550548f2b6daf549ffa22b662a9d32155bf4485c20c6cae51ae2",
+        "short_id": "da1af66e"
+      },
+      {
+        "time": "2026-10-09T05:28:08.608307Z",
+        "parent": "da1af66eeece550548f2b6daf549ffa22b662a9d32155bf4485c20c6cae51ae2",
+        "tree": "ed95bc79c094bf75feb80f0457cc8195716437ad48447ecd70c4f37f05281f9b",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-09/d7d2be14890140e8ae11be2943f1730e"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=0a7bc392ad2f4767a07421894047a101",
+          "backup_id=6ba0fadd2ede16951c0448f6a7174c53e4cf22d9e19ee26c92e0be44b125b145",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-09T05:48:30.791054068Z",
+          "backup_end": "2026-10-09T05:49:46.954789127Z",
+          "files_new": 7643,
+          "files_changed": 44914,
+          "files_unmodified": 0,
+          "dirs_new": 3993,
+          "dirs_changed": 39307,
+          "dirs_unmodified": 0,
+          "data_blobs": 12664,
+          "tree_blobs": 43301,
+          "data_added": 3920761909,
+          "data_added_packed": 1641584767,
+          "total_files_processed": 52557,
+          "total_bytes_processed": 37569929422
+        },
+        "id": "be8d132a6f36336b131849eb15b9952e418bf5ef0fecc1794c2adc5b14fbb09a",
+        "short_id": "be8d132a"
+      },
+      {
+        "time": "2026-10-10T05:36:03.067349Z",
+        "parent": "be8d132a6f36336b131849eb15b9952e418bf5ef0fecc1794c2adc5b14fbb09a",
+        "tree": "b8db51a04b23c0202bf700c46f00998e55a2ed1b3af80d64ff3a286bd6236d77",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-10/cc5773d4224b45c1963479adb41ab705"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=88cd2c5478cf4dfc889080ec0d94b586",
+          "backup_id=4381041be823394454ef9135162399d1540fa548025bfde05d791b250068a0de",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-10T06:10:07.002743758Z",
+          "backup_end": "2026-10-10T06:11:34.005592369Z",
+          "files_new": 11723,
+          "files_changed": 45701,
+          "files_unmodified": 0,
+          "dirs_new": 6343,
+          "dirs_changed": 39871,
+          "dirs_unmodified": 0,
+          "data_blobs": 17170,
+          "tree_blobs": 46215,
+          "data_added": 4413982719,
+          "data_added_packed": 1811614160,
+          "total_files_processed": 57424,
+          "total_bytes_processed": 39658450087
+        },
+        "id": "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099",
+        "short_id": "764f183c"
+      },
+      {
+        "time": "2026-10-11T05:31:56.748998Z",
+        "parent": "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099",
+        "tree": "8b38b2ba322742e74b282b501e5ab20178fa5da1dcbe718f7c6e44ca5f255621",
+        "paths": [
+          "/mnt/backup/marketdata-historical/automatic/2026-10-11/3d4530d9a00a48ca8717ee4bd5d5bb60"
+        ],
+        "hostname": "hclm",
+        "username": "yoonhc",
+        "uid": 1000,
+        "gid": 1000,
+        "tags": [
+          "archive_scope=historical-data-original-v1",
+          "attempt_id=4f7c1c1a74954ab88b9e17777f7db728",
+          "backup_id=9849b0ef7e523cbc79546c233f409ecd93cdcc8e1b5bc4f48fe8163229968a77",
+          "marketdata-archive-v1"
+        ],
+        "program_version": "restic 0.19.1",
+        "summary": {
+          "backup_start": "2026-10-11T06:27:32.30817065Z",
+          "backup_end": "2026-10-11T06:28:59.224062276Z",
+          "files_new": 11190,
+          "files_changed": 47262,
+          "files_unmodified": 0,
+          "dirs_new": 6126,
+          "dirs_changed": 41131,
+          "dirs_unmodified": 0,
+          "data_blobs": 16710,
+          "tree_blobs": 47258,
+          "data_added": 4199609280,
+          "data_added_packed": 1509490075,
+          "total_files_processed": 58452,
+          "total_bytes_processed": 41317941298
+        },
+        "id": "fd78b31add535359af3e2e6f77d13fede7db632308bf0bad2688d4a78b14324a",
+        "short_id": "fd78b31a"
+      }
+    ],
+    "archive_state_sha256": "92641b0cf33d911398ca98efdc757b2e7115feb670ff494d96a5cfe2cf20a1b2",
+    "checkpoint_manifest_sha256": "04b2958bd92efe2cc6df2a5c548e85944e38c6e756868a68b31a8c61b87d538b",
+    "masks": {
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": "/dev/null",
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": "/dev/null",
+      "/etc/systemd/system/marketdata-checkpoint-retirement.service": "/dev/null",
+      "/etc/systemd/system/marketdata-checkpoint-retirement.timer": "/dev/null"
+    },
+    "t05_state_sha256": {
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/005130b2c471011df4a52e9a22f194e9db0d7bcfbc672f6c37b3527df3982e6a.json": "005130b2c471011df4a52e9a22f194e9db0d7bcfbc672f6c37b3527df3982e6a",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/12095846cd1530cf05a91e66642b1410d44c3a406cde4ffeadacda98ff4ba194.json": "12095846cd1530cf05a91e66642b1410d44c3a406cde4ffeadacda98ff4ba194",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/16254cd2fb4b5c04763fc1e6fe7fd0c34576cf2eecc909bab337479dfd03f04f.json": "16254cd2fb4b5c04763fc1e6fe7fd0c34576cf2eecc909bab337479dfd03f04f",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/5ec056db51157f58a4537cabf374eee65148dfd901007c1138c1cba481b6cf0b.json": "5ec056db51157f58a4537cabf374eee65148dfd901007c1138c1cba481b6cf0b",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/7d6a9251590e0a4b74632488147f318482e75930bb2e341b816d3eea26ae7fb7.json": "7d6a9251590e0a4b74632488147f318482e75930bb2e341b816d3eea26ae7fb7",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/969c89172180fd24235e4d790c4795dfede39605826c2d15065aecf245fd644a.json": "969c89172180fd24235e4d790c4795dfede39605826c2d15065aecf245fd644a",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/b833b6e3b9d5c2f6f63954a21ec23f0d1772acb894f4c51fef29ee8c53db6da0.json": "b833b6e3b9d5c2f6f63954a21ec23f0d1772acb894f4c51fef29ee8c53db6da0",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/objects/c94e71e9eb84e6b627438ebbea57dd98f0c49faa8c44eff00ded723879f4278d.json": "c94e71e9eb84e6b627438ebbea57dd98f0c49faa8c44eff00ded723879f4278d",
+      "/var/lib/marketdata-checkpoint-retirement/evidence/registration-receipts/0404b2e43594055456c5e9aae6cd1219b2199e2eccb1e82f4f2d9e9536d91ee3-95a9da373208424c8f62891666e25d0b.json": "3e5149a15685e4684e598db37bbb2fe2857ce8042a80ecbc792c6b1c4ea91a09",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/68fb21d66dc74e6385fe439028ca04aa.jsonl": "cb141ddf85383fe4640af84b6bb57f75b8b0ab327d45d60bbcc4cbd0e1d311df",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/72d6d8fb26444d1aa2a1b8377528301d.jsonl": "ed788c5182582a634f21acb9f6fe869d3519f346601d2c02d40f3fc28bca165d",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/85d3a0fb16aa4ccb91922d0156ff72d9.jsonl": "0fc1a62e5804f001dd4f70ce2c9031aedd0e74ade499b47994dfbca1277495db",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/8cab011b17754a49b2ed4f0642718e37.jsonl": "35e24420f1072c0e880282dccd4ba5684768827dd08117b8ce0dc1eeecf14e21",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/9e6c89975c174aaaa4cecaa5ab7d9a7d.jsonl": "010d1d7c0a58fbbc0f6e14a08d76fd6c4b7d5f544f5a38d11ce15de2136d2f9f",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/ac57b07c55204fb0aa5e691f401235a3.jsonl": "25e4ddaffe71cac4e5266aee7464cb64b96f424f03b453b251656693910d7183",
+      "/var/lib/marketdata-checkpoint-retirement/evidence-observations/fa9c2c536241436abb4bf5f6097acf3b.jsonl": "cd9bc39e05aa36075d4de2dee2b0dddf3b296cda1460dc8e6c3b087c2a0caa72"
+    },
+    "configuration_sha256": {
+      "/etc/marketdata/daily-publication-probe.toml": "347596dfcabe6e48a3e4084887e6930860593a83d6313aa392f4223e9f7f120b",
+      "/etc/marketdata/runtime.json": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+      "/etc/marketdata/daily-scheduler.toml": "1410f51a83b5ed95f0c2258835540c3bf2946975285041d298a9608638aff887",
+      "/etc/marketdata/rtc-utc-confirmation.json": "3b962031eace9ee1770513a8afcc09b1cb6b1de93936ed73cbc0e2452ac7100b",
+      "/etc/marketdata/clock-bootstrap.json": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+      "/etc/marketdata/checkpoint-clock-retirement/settings.toml": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b",
+      "/etc/marketdata/checkpoint-clock-retirement/render-input.json": "722adfcf36831241f7735f2014ed34bf72ca7b70d801b1dd36c885ef41dbecc2",
+      "/etc/marketdata/checkpoint-clock-retirement/registration-approval.template.json": "bb0864bcb5ef772866bea5a9b0f43950ce3f89e2d35e580b1ffc1faf16d5be23",
+      "/etc/marketdata/checkpoint-clock-retirement/recurring.json": "946c2c35aa5476f3de2780e113eee2131fe0a52ebbf3409dcaedf79cf3c4560e",
+      "/etc/marketdata/checkpoint-clock-retirement/policy.toml": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d",
+      "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": "cdff5dc077ea83c451d9273ba394eb3f5b0d075b6ca85fb8a07f28192c766f2c",
+      "/etc/marketdata/checkpoint-clock-retirement/manual.json": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service": "14410ec16303633a995d9b623930e8ba0a42fe19ef72a58439a0d7987c7606b2",
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.timer": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa",
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service": "9932a3c4a8bc5acc74d5ba9c98d6348e2e367524999e15181b246fd0ac3addd0",
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-preview.service": "66d535599731c0bb656dbcbba75dc67382742f35115da89f92aba42395674d66",
+      "/etc/marketdata/checkpoint-clock-retirement/user-dropins/marketdata-backup.service.d/80-checkpoint-evidence.conf": "3ab1e66c6ab15a3e9ded81c903192360b4fa3266bca1cee05639fbd346af445f",
+      "/etc/marketdata/checkpoint-clock-retirement/user-dropins/marketdata-restic-archive.service.d/80-checkpoint-evidence.conf": "36120a311a55b6fa836b695c74c769bc6d63703ba8dc6bfcb42236eec716f39b",
+      "/home/yoonhc/.config/marketdata/checkpoint-retirement-service.env": "908a8bcd3b6445aa553866db8425fd2bd31439706aa8314d4797447a67ac716e",
+      "/home/yoonhc/.config/marketdata/restic-archive.toml": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+      "/home/yoonhc/.config/marketdata/checkpoint-retention-automatic.toml": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d",
+      "/home/yoonhc/.config/marketdata/checkpoint-retention-authorization.json": "6b630689fcf4bb11294711299d63f09238a6a3de2a5704a13599b913fe3f9be0",
+      "/home/yoonhc/.config/marketdata/restic-service.env": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9",
+      "/home/yoonhc/.config/marketdata/network-observer.toml": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12",
+      "/home/yoonhc/.config/marketdata/network-observer.env": "ebdf2cb3264d8152b0fadcc22932e2809a6d122d487215c942b70282b3e8eb13",
+      "/home/yoonhc/.config/marketdata/checkpoint-schedule.toml": "d9c8e7822bb36ebd86eb82514d54d03564f0133574e903308889d79a84067963",
+      "/etc/chrony/marketdata.conf": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "/etc/adjtime": "1a4f01af447bd4d7448979a43750d91c4d6df4250e2ce7eb2df88dfb6c4e2319"
+    },
+    "services": "MainPID=224785\nId=marketdata-collector@depth.service\nActiveState=active\nInvocationID=41b1747221894331a5e0b4fdf3f9751e\n\nMainPID=224784\nId=marketdata-collector@aggtrade.service\nActiveState=active\nInvocationID=1aa42e55ff804c1f9e5ec68b31116c6b\n\nMainPID=1245\nId=chrony.service\nActiveState=active\nInvocationID=19420480ab3249529a075ca7cb2bd3c1\n",
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "recovery_kit_identity": {
+      "dev": 66314,
+      "ino": 9043969,
+      "mode": 16832,
+      "uid": 1000,
+      "gid": 1000
+    }
+  },
+  "space_after": {
+    "at": "2026-10-11T08:59:19.282808+00:00",
+    "available_bytes": 863308574720,
+    "free_bytes": 914535755776,
+    "total_bytes": 1006979411968
+  },
+  "observed_available_change_bytes": 79970201600,
+  "exact_reclaimed_bytes": null,
+  "target_absent": true,
+  "permanent_restore_parent_preserved": true,
+  "files_deleted": 114849,
+  "directories_deleted": 92431,
+  "journal_sha256": "4b50112a21d0fe10307dc307038d1987d18b57636b54795a4f24c5922157e5bb",
+  "finished_at": "2026-10-11T08:59:19.283620+00:00"
+}

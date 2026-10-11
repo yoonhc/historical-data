@@ -1,0 +1,682 @@
+{
+  "observed_at": "2026-10-11T06:46:22.014473+00:00",
+  "capture_environment": {
+    "scope": "host user namespace outside tool sandbox",
+    "uid_map": "         0          0 4294967295\n",
+    "process_uid": 1000,
+    "comparison": "host-metadata-comparison.json",
+    "original_baseline": "host-before.sandbox-uid.json"
+  },
+  "files": {
+    "/etc/chrony/marketdata.conf": {
+      "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/marketdata/checkpoint-clock-retirement": {
+      "absent": true
+    },
+    "/etc/marketdata/clock-bootstrap.json": {
+      "sha256": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/marketdata/daily-publication-probe.toml": {
+      "sha256": "347596dfcabe6e48a3e4084887e6930860593a83d6313aa392f4223e9f7f120b",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/marketdata/daily-scheduler.toml": {
+      "sha256": "1410f51a83b5ed95f0c2258835540c3bf2946975285041d298a9608638aff887",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/marketdata/runtime.json": {
+      "sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": {
+      "sha256": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/systemd/system/chrony.service.d/marketdata.conf": {
+      "sha256": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service": {
+      "absent": true
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement-preview.service": {
+      "absent": true
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement.service": {
+      "absent": true
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement.timer": {
+      "absent": true
+    },
+    "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+      "sha256": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/systemd/system/marketdata-collector@.service": {
+      "sha256": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-retention-authorization.json": {
+      "sha256": "6b630689fcf4bb11294711299d63f09238a6a3de2a5704a13599b913fe3f9be0",
+      "mode": "0o600",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-retention-automatic.toml": {
+      "sha256": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d",
+      "mode": "0o600",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-retirement-service.env": {
+      "sha256": "908a8bcd3b6445aa553866db8425fd2bd31439706aa8314d4797447a67ac716e",
+      "mode": "0o600",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-schedule.toml": {
+      "sha256": "d9c8e7822bb36ebd86eb82514d54d03564f0133574e903308889d79a84067963",
+      "mode": "0o600",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/marketdata/restic-archive.toml": {
+      "sha256": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+      "mode": "0o600",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-aggtrade.service": {
+      "link": "/dev/null"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": {
+      "link": "/dev/null"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": {
+      "link": "/dev/null"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.service": {
+      "sha256": "d9121ababca9ed23cf6bc84df1b3b9a1832494f6385eb324379064d7067a4f3b",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": {
+      "sha256": "55326bb195734a6ea5afea99b1916390fc839e2fbb37ccd8dc145fb8c12318a1",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-depth.service": {
+      "link": "/dev/null"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+      "sha256": "2ffe783c9341d78fc93526d3f401126932951e6e69788fdc3d69ce18c619bca8",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+      "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.service": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.service": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": {
+      "sha256": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": {
+      "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/backup-host.example.toml": {
+      "sha256": "ed77be03877e48858c23b10b481ae60c53b17beac048e71a03ed0490d9427287",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/bootstrap.toml": {
+      "sha256": "c92362393db80e6b4a77f7f8454a038ddefe1683df7286f2345a3a4df42f8c1a",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/checkpoint-retention.example.toml": {
+      "sha256": "b2cbc8f63c59a68eae9f30ce61fb8bff828292c8cba0f29086bac2e56d012423",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/core.toml": {
+      "sha256": "97d2872bb9324b92fbe9066ffb113a15270bd9b6a9ba01f4d54497720d7a0b0c",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/daily.toml": {
+      "sha256": "148196109805269fb339dd504d019e2a7243956d16c698b655fc3e766bd25ba3",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/futures.toml": {
+      "sha256": "899e7c05fccd264fb1460a25f9083fcb25dd73d01c7dd0b1691c113562f0712a",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/history-core.toml": {
+      "sha256": "085831f1d029723ec9b95428e4ddc351b44ede95cdac8b25c73ced60b29e0167",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/history-funding.toml": {
+      "sha256": "edd3fad24f8d55c7213abf42ec4a13dc6f7026bdf1aab9933f0aa7456a4d0625",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/history-futures.toml": {
+      "sha256": "70477ca6ee6b3e2d2afa7b569aa4151eff4e12e53f6799021e09878d3872cdc7",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/history-oi.toml": {
+      "sha256": "10852328d5732ba2d0e8f2339d3f3ff18bb6242d4e9bca6a4314375957774f0c",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/history-reference-prices.toml": {
+      "sha256": "e0b82c9cd352125dde5b6248847d9d3d598f2d36116918d6ea4a97cd1a134302",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/history-spot.toml": {
+      "sha256": "b4477ff8dce8eae67fb0b601078c1c24564ec010fdc40ebec0ed3c39020401d0",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/metadata.toml": {
+      "sha256": "3de31bf2e722cb100dd55548254b734c917106eeaabb0d57a96a07efd3c19d22",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/network-observer.example.toml": {
+      "sha256": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/oi-live.toml": {
+      "sha256": "9aa395f34094b9f8473ee1bb3c3a3f368e2748e8250168cdec30eee0db05ba81",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/oi.toml": {
+      "sha256": "3b6814205dd597bb656eb339d71659bc61f53b20e216b6cbd8810e3f0073fd6d",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/research-archive.toml": {
+      "sha256": "d1c7c217482137edac7204e6aa6f2e9eb7f23fa7677786b331650009eeebd79a",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/restic-archive.example.toml": {
+      "sha256": "0cfc6e702a0e4e5a4961141915700a08b08ef1364337c8fa515674c7fd5123ba",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/restic-service.example.env": {
+      "sha256": "dc1a34bec579520988ef9f0392abeccb6b8b680f6c52db9cd57aacd686b84419",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/restic-trial-2026-09-27.toml": {
+      "sha256": "ce6ef10820b51f264f9a516adcb8d88defecbfc337bd46f92c7abc03562d81ba",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/configs/spot.toml": {
+      "sha256": "8c923d0419da7fcad93785447448e0eb81cff47bca22c0e9860428c16bb28740",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/freqtrade/README.md": {
+      "sha256": "c45f24796498e36df0849973a18896cee0d251ad76dda7c278e1de642ba067b7",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/freqtrade/check_export.py": {
+      "sha256": "527060970d80353c7b6123748bcfb3f7dc2829e45f426fcf0cfc79320eddfca8",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/freqtrade/compose.yaml": {
+      "sha256": "bb56d55bfcc637ee3a1a07fe6ec2fa82bba7e23a6a3afc61bbfb2fb523f9806d",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/freqtrade/config.futures.json": {
+      "sha256": "5f47602d500e3e7c3a732e484246d0e4c05b3098e050fe68cc663da54317b877",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/freqtrade/config.lookahead.json": {
+      "sha256": "dae42bf2b8ff5e30de6cd05b51fc6be38ce63ea3019151d66e5e6da4341192b7",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/freqtrade/config.spot.json": {
+      "sha256": "f360cd8f0f5c0891a0d10d1627f2d8f682497b0c76a518e71191bccdf0def855",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/freqtrade/datasets.json": {
+      "sha256": "80d5405955f62b5899f9132c7474726fc9aa943507ca1baeb133ef09c5f608f4",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/freqtrade/ft_userdata.compose.yaml": {
+      "sha256": "b7cf877a5fb7a74aaf477c242b2041ca08448731c9aa44feb1576e32cb189971",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/freqtrade/strategies/DataSmokeStrategy.py": {
+      "sha256": "03c382b8bf8c27a134747e9f4ad5fb4b73ef6bde87cb121fae3dc705710c479c",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/README.md": {
+      "sha256": "d1acea92129b914a05bacd93501109d6bf0a5b62dd2265b7bf94d64171cc3d11",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-aggtrade.service": {
+      "sha256": "5a1b6b51c1a5669db24d08b8b5d66e8c84fe541e23c6863dc9e67cf0eb29099d",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service": {
+      "sha256": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer": {
+      "sha256": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-daily.service": {
+      "sha256": "7ba5289fc742422fd1935bfe4515c274775262a5e6195214b2533311ab8d9d5c",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-daily.timer": {
+      "sha256": "c67b3d1268e6b38f9ccee07d12192579708b826851e7269be5c0b7a61eee03dd",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-depth.service": {
+      "sha256": "ae49746c2c248f9b57d427c434215bda356a321c30c65d4f98d1de8620d4e833",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-network-observer.service": {
+      "sha256": "447c9f1c1688b2d6a23e4c087e7d59d80d3ec3004f28f70678b59cb33e64b8ff",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-network-observer.timer": {
+      "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service": {
+      "sha256": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer": {
+      "sha256": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service": {
+      "sha256": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer": {
+      "sha256": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service": {
+      "sha256": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer": {
+      "sha256": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service": {
+      "sha256": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer": {
+      "sha256": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-restic-archive.service": {
+      "sha256": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-restic-archive.timer": {
+      "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/pyproject.toml": {
+      "sha256": "1f5eb8648d80dd7d1a72e823db20fb673d3943ac8c4dde8f54d47cfa008cc3c4",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/__init__.py": {
+      "sha256": "44a5fa1cce21a83e01fd81a9f2c34b7606177eb5dfd807d226b06a0e70c70e30",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/aggtrade_stream.py": {
+      "sha256": "f76c985b721e1b233b16f2543a4ad6e4c2c6eff022741e7b4b7de4cccc50ee15",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/aggtrades.py": {
+      "sha256": "02539d60382afa3333f068399777395ca170a579f8fb33be7209fb14b7a365fe",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/backfill.py": {
+      "sha256": "1f3ecc28b403623b8800281c82c7c4302db7c338e408e52e0642e4a9c4bcc984",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/backup.py": {
+      "sha256": "e522ec6e7246c6109ddc09ab605839c90a240e66736ce0c353af682878c1963f",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/binance.py": {
+      "sha256": "3250e4d20809801ff48e64955a955789a25bb294eeebe548f6f94323f054990f",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/checkpoint_locks.py": {
+      "sha256": "e9acb68256a6400543a049fa37ee9e46965427a98001ff428d4d30d73a24bafe",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/cli.py": {
+      "sha256": "dd189b97460afcafdefd434e7597a8f50c3b817afa09e809ae4cacb7da9b3402",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth.py": {
+      "sha256": "c76d56fb7478e9deca4e577aeaf97fe09d03108aeeb84e70b8f1b3530a0d0703",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_refresh.py": {
+      "sha256": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/depth_stream.py": {
+      "sha256": "10b613d2ba1a33b5b73cbbf0d16fbf62b811a34b1c18d29ae808cd63cb4a8c42",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/domain.py": {
+      "sha256": "0ce94e0067033ca33ec70cf590cbbba9ba1d384bdf87ddd55d2de369bd0fce2a",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/fileio.py": {
+      "sha256": "fc98610e4f0aab1fc4d0e5b7b10403a841b1661414a5a589769e2add20a10ec9",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/maintenance.py": {
+      "sha256": "d284e83dca37971fd3ff7423a01a831222e6bdb71e824c1a55f3e7495e81546a",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/normalize.py": {
+      "sha256": "227037c0763e4b0e4d3f851dd247bbd84cc4e929197c33485171ee66a1b256e6",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/oi_probe.py": {
+      "sha256": "dadae21a8228622c54555f68379eee946cc21cb8b68e3e74178004bc31acebae",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/oi_quality.py": {
+      "sha256": "0bf1ebee69811c9d32dcdabcb773ba785355ac037f95771b8f1c7c664cd07f27",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/operations.py": {
+      "sha256": "d7668cb005905ca10afdc019477f200594f969339f17b543fb1cdbc988bcf3cd",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/packing.py": {
+      "sha256": "cc4ebc9811385ad1702a4c10d9a4944529ea9e67c884c46101cc3c573f577f4f",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/pipeline.py": {
+      "sha256": "7b39872944b724dd1c5c3ba4ac47676e0ecb2db61667279e2045bb0e06dff361",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/research.py": {
+      "sha256": "b0a2d224bafc5d2969574fa1c3b71e10a758b7a3bbf5e762d20b8e9357786939",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/schema.py": {
+      "sha256": "ac440454f1353979c2ae38ca5335a93a4ce2d96e7dc34db4cdd4bbdc8d30212d",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/store.py": {
+      "sha256": "a2ff36df17a3289f9855e29b12d9ad4f930b5c094cafe7fa327c51ad2e0f4d52",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/stream_guard.py": {
+      "sha256": "51cc375f61092624276ca635bf56d722913b844b5b341f2b645868a0cab97617",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata/src/marketdata/transforms.py": {
+      "sha256": "775d9fa8b01e6b30cfaadfc1a413c0f4a9d162f339c4342d3baf2d505e1e408d",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/pyproject.toml": {
+      "sha256": "3d57baca33aef35f3983daf67467557f61a47e711cdded8cb42ef6926410cced",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src/marketdata_freqtrade/__init__.py": {
+      "sha256": "d39fa9d53c3ae690e95e80bb9d75e5be0b20a3a7f0e239261b6c69f39d91eeb1",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src/marketdata_freqtrade/cli.py": {
+      "sha256": "7556897b5a124ad24143afc6b9abde576372e8f9b47370d1f7971f7411bbfb13",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src/marketdata_freqtrade/export.py": {
+      "sha256": "697e9633f67b663f39e9053cd70e5eae5664cb3ca467ce8ddf1f157717ca0021",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src/marketdata_freqtrade/features.py": {
+      "sha256": "ea8f54f9993cd03dd43d6a125777a6ce6d9b74ec09b67d2cec33e647b575c2e7",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/packages/marketdata_freqtrade/src/marketdata_freqtrade/window.py": {
+      "sha256": "5365aa8c7c6e07303c80260df4c36054b07bf2c06a33e9a736441ac65c2c84c8",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/archive_backups.py": {
+      "sha256": "91fb91bc0615f4ab59a2bedd2c51accd5481d3d98ff9843e06a3678f14e73d0a",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/audit_legacy_oi.py": {
+      "sha256": "6f2e3eec4cb9806a953323938c5bf932d0a475a12e849e9416d2ceca0f695f3a",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/build_freqtrade_exports.py": {
+      "sha256": "8552af6131ed290834824cdb19b7e5ca8ee77376ed4bb8f6810e907b5ef11368",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/build_history_ledger.py": {
+      "sha256": "69237ea5fb8b8d5ea76b8bff7487dab1928b6b843aba1b8cc0a933061ca3448a",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/build_research_dataset.py": {
+      "sha256": "3a411d53cbfc6623901cea5b3281314074e77cb1a1b5bea79c6d3cb6c70e6fe9",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/build_smoke_export.py": {
+      "sha256": "5f6f02a7104c0bbc0162533326bb82a03623d70072ac95e1398696ee42727d58",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/checkpoint_code.py": {
+      "sha256": "e9998faddc970838ed1bdf3845145a58027847a874d716a9d3bbf7f70433fd21",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/compare_depth_decisions.py": {
+      "sha256": "267793f94fdb5fa950d184fce1dd4d0b0069be5291f6d221c674c1067f06ffaf",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/freqtrade_run.py": {
+      "sha256": "4272af8dc13ea4e7c50034696c10e77d99ec394eed2a94f58a3105f0f9cb7396",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/install_restic.py": {
+      "sha256": "c41476b3ee2fdd40b191db0684be54d2b2c460789940c86f2c2d656cd45f1327",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/network_observer.py": {
+      "sha256": "e09165fd1f5934bce1249ca1a70819dc043297a6707ce69cd191a4a13a99476d",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/restic_schedule.py": {
+      "sha256": "6a1deb90bca139f60cae3505fb522a2a4d7017887edf9fa0d9c7961de252d855",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/restic_trial.py": {
+      "sha256": "e9e99549873d91d879aa5f45944daf6f8e711d6a5bdd726a2f97e5cda7663168",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/retire_checkpoints.py": {
+      "sha256": "9d1a6ef6ad633cb15c153fb8067c1297db47f869ef56f8c3378d877e18605917",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/run_depth_decision_matrix.py": {
+      "sha256": "abef603690bbcf57811dcec11aa4d8b5f02674351265aab140df07e91bd18f57",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/run_stream_soak.py": {
+      "sha256": "9fd40eee00d736eeeebc926d34b0d9128ee8a5e04c5a8c2bd05eef150b461985",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/summarize_backtests.py": {
+      "sha256": "29bb6b2c79b5926ddee6b6ce09b2188e8640e9b7dd89e7ffd9733c2db671090a",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/summarize_restic_trial.py": {
+      "sha256": "e4142e110b9405e06bf51b3908ef367b5cfd2c4839f5eac6f222fe081c1a2c06",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/summarize_stream_soak.py": {
+      "sha256": "401887e33cc20e26d9ce61c20d39dc04e2f83b569b197f418b92ef406179fdc5",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/scripts/verify_depth_capture.py": {
+      "sha256": "221da25e62886c6c06d4336b7a88a9fbf6479dde5ceb3f2c94b5955d90760256",
+      "mode": "0o664",
+      "uid": 1000
+    },
+    "/var/lib/marketdata-checkpoint-retirement": {
+      "absent": true
+    },
+    "/var/lib/marketdata-clock/boot-state.json": {
+      "sha256": "eae06031a81a0a94567d96babad6fd89a1aad91bf10ea75b7cc93095b7720c99",
+      "mode": "0o644",
+      "uid": 0
+    }
+  }
+}

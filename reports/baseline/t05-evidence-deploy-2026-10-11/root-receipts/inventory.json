@@ -1,0 +1,125 @@
+{
+  "code": {
+    "code_id": "53bdfd234fa861bbd014cd002fa52c6d2ccb666de5ce74e14da89676ba8d65b2",
+    "code_root": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7",
+    "format": 1,
+    "git_commit": null,
+    "python_executable": "/usr/bin/python3.12",
+    "python_version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "source_dirty": null,
+    "source_files": {
+      "integrations/systemd/marketdata-checkpoint-retirement.service": "b6805cc87f9db7fce045eaeac271708bf6dc1a32ebcd3b09615cbad265afd377",
+      "integrations/systemd/marketdata-checkpoint-retirement.timer": "3233f2f0115bf5668e52170bfa87f46310e8da062d152cc72dda8b41dc5fefd8",
+      "packages/marketdata/pyproject.toml": "1f5eb8648d80dd7d1a72e823db20fb673d3943ac8c4dde8f54d47cfa008cc3c4",
+      "packages/marketdata/src/marketdata/__init__.py": "44a5fa1cce21a83e01fd81a9f2c34b7606177eb5dfd807d226b06a0e70c70e30",
+      "packages/marketdata/src/marketdata/aggtrade_stream.py": "f76c985b721e1b233b16f2543a4ad6e4c2c6eff022741e7b4b7de4cccc50ee15",
+      "packages/marketdata/src/marketdata/aggtrades.py": "02539d60382afa3333f068399777395ca170a579f8fb33be7209fb14b7a365fe",
+      "packages/marketdata/src/marketdata/backfill.py": "1f3ecc28b403623b8800281c82c7c4302db7c338e408e52e0642e4a9c4bcc984",
+      "packages/marketdata/src/marketdata/backup.py": "52829e92a82a1bf42f8c342f278701694664caf4d94fddae34c7b28ef063ef96",
+      "packages/marketdata/src/marketdata/binance.py": "3250e4d20809801ff48e64955a955789a25bb294eeebe548f6f94323f054990f",
+      "packages/marketdata/src/marketdata/checkpoint_clock.py": "97d7e8e4e698175dc326db7a069880ca5827fc84f1c1a7cc2120878e18a460ed",
+      "packages/marketdata/src/marketdata/checkpoint_evidence.py": "a406b2a8e0050db3cbdfe71607220d6eb73ad6914238211059a4bc9d729fc339",
+      "packages/marketdata/src/marketdata/checkpoint_locks.py": "e9acb68256a6400543a049fa37ee9e46965427a98001ff428d4d30d73a24bafe",
+      "packages/marketdata/src/marketdata/cli.py": "dd189b97460afcafdefd434e7597a8f50c3b817afa09e809ae4cacb7da9b3402",
+      "packages/marketdata/src/marketdata/depth.py": "c76d56fb7478e9deca4e577aeaf97fe09d03108aeeb84e70b8f1b3530a0d0703",
+      "packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+      "packages/marketdata/src/marketdata/depth_stream.py": "10b613d2ba1a33b5b73cbbf0d16fbf62b811a34b1c18d29ae808cd63cb4a8c42",
+      "packages/marketdata/src/marketdata/domain.py": "0ce94e0067033ca33ec70cf590cbbba9ba1d384bdf87ddd55d2de369bd0fce2a",
+      "packages/marketdata/src/marketdata/fileio.py": "fc98610e4f0aab1fc4d0e5b7b10403a841b1661414a5a589769e2add20a10ec9",
+      "packages/marketdata/src/marketdata/maintenance.py": "75cfbc4eaf079038cfdc0ebc50fb48acd7c13b13d4df69ac9c3ad52bb7b380dc",
+      "packages/marketdata/src/marketdata/normalize.py": "227037c0763e4b0e4d3f851dd247bbd84cc4e929197c33485171ee66a1b256e6",
+      "packages/marketdata/src/marketdata/oi_probe.py": "dadae21a8228622c54555f68379eee946cc21cb8b68e3e74178004bc31acebae",
+      "packages/marketdata/src/marketdata/oi_quality.py": "0bf1ebee69811c9d32dcdabcb773ba785355ac037f95771b8f1c7c664cd07f27",
+      "packages/marketdata/src/marketdata/operations.py": "d7668cb005905ca10afdc019477f200594f969339f17b543fb1cdbc988bcf3cd",
+      "packages/marketdata/src/marketdata/packing.py": "cc4ebc9811385ad1702a4c10d9a4944529ea9e67c884c46101cc3c573f577f4f",
+      "packages/marketdata/src/marketdata/pipeline.py": "7b39872944b724dd1c5c3ba4ac47676e0ecb2db61667279e2045bb0e06dff361",
+      "packages/marketdata/src/marketdata/research.py": "b0a2d224bafc5d2969574fa1c3b71e10a758b7a3bbf5e762d20b8e9357786939",
+      "packages/marketdata/src/marketdata/schema.py": "ac440454f1353979c2ae38ca5335a93a4ce2d96e7dc34db4cdd4bbdc8d30212d",
+      "packages/marketdata/src/marketdata/store.py": "a2ff36df17a3289f9855e29b12d9ad4f930b5c094cafe7fa327c51ad2e0f4d52",
+      "packages/marketdata/src/marketdata/stream_guard.py": "51cc375f61092624276ca635bf56d722913b844b5b341f2b645868a0cab97617",
+      "packages/marketdata/src/marketdata/transforms.py": "775d9fa8b01e6b30cfaadfc1a413c0f4a9d162f339c4342d3baf2d505e1e408d",
+      "pyproject.toml": "89ecc2fa9b147295a59bdb5fdb9f4424140d3a9c100e02111ba3ea52e0269015",
+      "scripts/archive_backups.py": "69455f8e2e29387acfc2ab416550d8c656ada8f4d1f93dc833731d5adac4c045",
+      "scripts/checkpoint_code.py": "ee6e2dd6bc9860021848d873843416180265548b4c9881f74cd5c20961a144a9",
+      "scripts/checkpoint_evidence.py": "d40a93991bee87f1ca374d69244cbb40a8dac9fd76ee05a23106560848f19009",
+      "scripts/checkpoint_schedule.py": "1bf02147d224367dbe6d61ca661f87c29e172608ed9a631380f67ad58efde28e",
+      "scripts/clock_retirement.py": "32b8a29706c85150bef3b2d9cba1b95cb184d2c88e6479a81e96246ab49bb7b2",
+      "scripts/render_retirement_units.py": "3f85bc0218a2d22a40b7ec0c79cfd2bffffca56340c9c23c4b8a1e06a103ba00",
+      "scripts/restic_schedule.py": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+      "scripts/restic_trial.py": "e9e99549873d91d879aa5f45944daf6f8e711d6a5bdd726a2f97e5cda7663168",
+      "scripts/retire_checkpoints.py": "4c92a18c2aa17dbfa981305f88816ad1c910266a2750bcbee8267177238f84f9",
+      "scripts/retirement_clock.py": "5bee696dcfc6c0da82a240690b991a47a591bf6dbf35a6467f21b6e15a3bb734",
+      "scripts/run_checkpoint_schedule.py": "b6725d976ce2e92078102f9a8219c51f266e70e6a8cf3a5d39f764e47a7afa84",
+      "scripts/run_clock_retirement.py": "704914a060d2adaa2976c4ce16950f0d9cec098ee4c36e1382ee1db9e962dde6",
+      "scripts/run_evidenced_archive.py": "ebbd651a42eec10d4f9efcb876fcb8ea657b816ac1720c5a4d878efd93be5388",
+      "scripts/run_evidenced_backup.py": "5c54eab72afd19ef020e02dc5d766d9eb97dc639d4bb074ba65185b52a20413a",
+      "uv.lock": "3212f957822f52344deccae221f57891c1296747bda6d17594e26069f4100e40"
+    },
+    "source_sha256": "c686409f9b1494cc92250b8c4834e7edc13f6c2fd45473ce42dbdf69005077a7"
+  },
+  "entries": [
+    {
+      "backup_id": "1ac0768ac6f55ebbc5fc5daccae5e531b267210daef752683bb7601a690ecab2",
+      "manifest_sha256": "c30105ac5130f4f35ec24a4e5e64b3e83fa6d103a4044da7e45d54596643bdcd",
+      "scope": "catalog_and_all_referenced_raw_revisions_snapshots",
+      "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "backup_id": "4381041be823394454ef9135162399d1540fa548025bfde05d791b250068a0de",
+      "manifest_sha256": "04b2958bd92efe2cc6df2a5c548e85944e38c6e756868a68b31a8c61b87d538b",
+      "scope": "catalog_and_all_referenced_raw_revisions_snapshots",
+      "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "backup_id": "6ba0fadd2ede16951c0448f6a7174c53e4cf22d9e19ee26c92e0be44b125b145",
+      "manifest_sha256": "9c79faa87b1abde9346862ee646328fa784821f898c2e0e2249780e45de86b7f",
+      "scope": "catalog_and_all_referenced_raw_revisions_snapshots",
+      "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "backup_id": "7dd4228ffb476e1333c0890922f413234b7598ecd0bc482d7d0a3ba49f4a6b44",
+      "manifest_sha256": "61469d2de875f6a2e0b6be7c341f0ca76567f94b01e5f09c255d54fbe197aca4",
+      "scope": "catalog_and_all_referenced_raw_revisions_snapshots",
+      "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "backup_id": "9849b0ef7e523cbc79546c233f409ecd93cdcc8e1b5bc4f48fe8163229968a77",
+      "manifest_sha256": "538e489ce9d47143a209cd23c0144b738ef0e484169e1a200c105f76d1d7eb52",
+      "scope": "catalog_and_all_referenced_raw_revisions_snapshots",
+      "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "backup_id": "be6f6e493aa13931b3d0cddd03581f5b009c540b7560b7a9a7faf7006d5174a8",
+      "manifest_sha256": "15d0f249ea76bd604005af7693d7a12ab1689ed2a538101b5b8cd6ab07ea3d10",
+      "scope": "catalog_and_all_referenced_raw_revisions_snapshots",
+      "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    {
+      "backup_id": "ccf70014d48549bd22e801b135680ef4b6e5040e236688ed78374aa987745935",
+      "manifest_sha256": "70941188298499a536efe9a93541fcbadec682ddd6659e4082731b6269164d75",
+      "scope": "catalog_and_all_referenced_raw_revisions_snapshots",
+      "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+    }
+  ],
+  "plan_id": "0404b2e43594055456c5e9aae6cd1219b2199e2eccb1e82f4f2d9e9536d91ee3",
+  "policy": {
+    "max_observation_age_seconds": 15.0,
+    "max_query_seconds": 3.0,
+    "max_sample_gap_seconds": 5.0,
+    "max_uncertainty_seconds": 5.0,
+    "provider_seconds": 10.0,
+    "retention_margin_seconds": 60,
+    "sample_seconds": 1.0,
+    "step_threshold_seconds": 0.25,
+    "version": "checkpoint-time-bounds-v2"
+  },
+  "profile_sha256": "3dff81754b14edef5b03c1827a9d1654ae5d694433caa34550c9195c0bf138be",
+  "purpose": "checkpoint-evidence-registration-v1",
+  "schema": 1,
+  "scope": {
+    "archive_scope": "historical-data-original-v1",
+    "repository_id": "b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558",
+    "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+  },
+  "settings_sha256": "796aa4804c8b55284696c7e4ac1e27195233671ef71107439cb3d1f461b9b730"
+}

@@ -1,0 +1,197 @@
+{
+  "prepared_at": "2026-10-11T08:38:45.531799+00:00",
+  "passed": true,
+  "approval_required": true,
+  "deletion_authority": false,
+  "deleted_files": 0,
+  "mount": {
+    "filesystems": [
+      {
+        "target": "/mnt/backup",
+        "source": "/dev/nvme1n1p1",
+        "fstype": "ext4",
+        "uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+        "options": "rw,relatime"
+      }
+    ]
+  },
+  "filesystem_uuid": "d90aaf81-2358-411f-8022-4e1a3f7b0973",
+  "scope": [
+    "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10/extracted",
+    "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10/store"
+  ],
+  "parent_preserved": "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10",
+  "inventory_library_sha256": "3d6549f866fec81a168d58d71a46b66f7ec070523891416f634b58d68f34c947",
+  "repository_id": "b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558",
+  "snapshot_id": "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099",
+  "existing_full_check": {
+    "finished_at": "2026-10-11T06:30:19.732518+00:00",
+    "ok": true,
+    "read_data": true,
+    "receipt": {
+      "arguments": [
+        "check",
+        "--read-data"
+      ],
+      "cwd": null,
+      "finished_at": "2026-10-11T06:30:19.732518+00:00",
+      "operation": "check",
+      "returncode": 0,
+      "started_at": "2026-10-11T06:29:01.594118+00:00",
+      "stderr": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/cd338f64cf6e4e7b8cc5dcc020d8876f/9b14702c13cb4e8f982760f90d842bc4.stderr",
+      "stdout": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/cd338f64cf6e4e7b8cc5dcc020d8876f/9b14702c13cb4e8f982760f90d842bc4.stdout",
+      "wall_seconds": 78.1382969399856
+    },
+    "snapshot_ids": [
+      "057cd08adc8e07dda2a93eb97f4ecfacce76a60971beb5c0d795566d1202f57b",
+      "0c9f8bc23d1125cbfd7e0d3c442af4376298e22c8116f5526170797f0d9b9135",
+      "12ee905237a76788c93a9963c2c0425739042c57e49effe73135b90d2eee377f",
+      "19bde5fb81b7dde7d45e2bba3504a9bd7969c7b2d1414803a528a0b4f1f6d462",
+      "1dd34456b08a6a7da4d3f55685852bed44233ee7cad304ef9910ea03dad1c024",
+      "648d7c93eadab36b79295808bfa54b0e6f45b22e4e38e5ed363b540572361f9e",
+      "711137213f16926f19d58e4a07e1a8a28c10e6b1dd5446c0d26561d142692e94",
+      "726fe6039418d328006f11146c44e188560b3a4f4aff39ef9b87620abeedb8a1",
+      "764f183c18d02a5c4d37ff13afa9fa08aed6d986cdd34c16158e7035497ea099",
+      "7ddea5243f9262eb058b15e97df1976eb5c369de386010c736b449a10a250713",
+      "bbb553b48c9ea943e64dbf1e2f2d021b46d7c2c78313c505029d7c842c9d8df2",
+      "be8d132a6f36336b131849eb15b9952e418bf5ef0fecc1794c2adc5b14fbb09a",
+      "c17a01a46e723b87f0c3c48403bf76e742c014b4682d02644416e50924324fd5",
+      "d27a0a557e1795a4651132016491f1b2c6735e8181b71303f3adccd414f0f8ad",
+      "da1af66eeece550548f2b6daf549ffa22b662a9d32155bf4485c20c6cae51ae2",
+      "fd78b31add535359af3e2e6f77d13fede7db632308bf0bad2688d4a78b14324a"
+    ],
+    "started_at": "2026-10-11T06:29:01.585173+00:00",
+    "status": "complete"
+  },
+  "retained_checkpoint": {
+    "path": "/mnt/backup/marketdata-historical/automatic/2026-10-10/cc5773d4224b45c1963479adb41ab705",
+    "backup_id": "4381041be823394454ef9135162399d1540fa548025bfde05d791b250068a0de",
+    "manifest_sha256": "04b2958bd92efe2cc6df2a5c548e85944e38c6e756868a68b31a8c61b87d538b"
+  },
+  "preserved_evidence_sha256": {
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-operating-clock-restore-2026-10-10/depth-checkpoint.json.gz": "8ac2415ce90dacc9cf080e5b63da1908189c8b15e195bf61458e2a408483aaf5",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-operating-clock-restore-2026-10-10/aggtrade-checkpoint.json.gz": "fd6aa62996badc96673d751d5a368d3a3904bf00e9a47f9daa5cf78ce09a968a",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-operating-clock-restore-2026-10-10/depth-restored.json.gz": "8ac2415ce90dacc9cf080e5b63da1908189c8b15e195bf61458e2a408483aaf5",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-operating-clock-restore-2026-10-10/aggtrade-restored.json.gz": "fd6aa62996badc96673d751d5a368d3a3904bf00e9a47f9daa5cf78ce09a968a",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/application-restore.json": "04d28f5423f2c0c3fcbe8b9075bd6015b44d353cb94ab1f1daa2802089abfc35",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/capture_host.py": "d444e009fa7e9fd224646a36dedfcc6d22d6ca5ab3a75a32430a67fe11a43226",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/checkpoint-contents.json": "e03f5fb88d75f5f482862097a69b33962b5449699f04b898f102ea8cf674c42e",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/1a2ad3628b2a4461959b8aae9b01bf81.json": "029705a1d130aa22a6bdf9a4f2707074300cb4b49f675c3b6cd70ba7cf4e5a2b",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/1a2ad3628b2a4461959b8aae9b01bf81.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/1a2ad3628b2a4461959b8aae9b01bf81.stdout": "662caade8767fd0fcdd2ebfb0131819de833f670bba4a361dfb00aa27fa91df8",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/8d7683e261a94cf48f102ab0e38fa331.json": "0cef5feed0c2778285797df748e30355a7fc972dc5afc08aa61290db4984d45c",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/8d7683e261a94cf48f102ab0e38fa331.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/8d7683e261a94cf48f102ab0e38fa331.stdout": "c4cf4697341d6c6f732a1143eb476728efbb7fef9ecf2549c6e46b8fc9ee7308",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/cf37b1c0a1634a7fa8bf1ec3004bf318.json": "899bcd9b24445a43fe82ff70ee1e06b2c0bda76cec50ace2592a365c7487cbb9",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/cf37b1c0a1634a7fa8bf1ec3004bf318.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/cf37b1c0a1634a7fa8bf1ec3004bf318.stdout": "04b2958bd92efe2cc6df2a5c548e85944e38c6e756868a68b31a8c61b87d538b",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/d518aae5655241e595cf0dfc7a8682ec.json": "6a6456dd133979b1ce6d25d76aaf9fa3aeb18032cb33f1358ac23836a6685ce4",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/d518aae5655241e595cf0dfc7a8682ec.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/d518aae5655241e595cf0dfc7a8682ec.stdout": "0f28b28ce8e52cc58179f08402bb2b63d2a2c1444f852105d3add26df80a4042",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/d53c5241bd7949ed82861a18eb0f802a.json": "27b2191b973365d3830532c7801ef752951463da2b8a6ec777d2e98b5a47a002",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/d53c5241bd7949ed82861a18eb0f802a.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/commands/f71c5b20490248b4b229a66f3378ab10/d53c5241bd7949ed82861a18eb0f802a.stdout": "662caade8767fd0fcdd2ebfb0131819de833f670bba4a361dfb00aa27fa91df8",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/execution.json": "22fc4ac8ca3935f0ae273a875c2851f67cc0861ce540cdf398cb1111b4310ec5",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/host-after.json": "162d66b84a2f35f0283e357466e0ff99a186381c0e89d032e1cf90426e0dc522",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/host-before.json": "8a5245babbff7cbf8840963365c98b4b050300f0fce1d8b0516df86b2be8da5b",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/latest-observation.json": "8038b52c3a17211acdb50d507fbb42941e3ec8d7020de1d984f0a2426f498e04",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/observations.jsonl": "88b680587f505760b1df47e8a4954e7ded81d026193afcf354f2b6b0e7ad5eb9",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/preparation.json": "1be5e1e41db647b797f7d8b08d9047a264debe3c24f30098efe1350f7fd273c1",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/restored-contents.json": "e03f5fb88d75f5f482862097a69b33962b5449699f04b898f102ea8cf674c42e",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/scheduled-archive.json": "82045dec2b1f0c1a428e79c68067051e619ec2dfeaab7966e4eb97fe34a844c8",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/scheduled-daily.json": "7d375f647649f21b695cba690462eb47a735574138d7f6a7eca1b1efeb343521",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/scheduled-full-check.json": "8777ebb3762535edd4f3d41d6ced73ede0c38a868f616095f66edeac6060114e",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/snapshot-inventory.json": "4874d5566e0ae365982dc54531d0e7cec01907e4e4ec64a900a69e5f628d446a",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/summary.md": "181920c91beb50b21552d774cb56defaf6f1ca8e03046dc7bd8cc20842d6b3d2",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t04-operating-clock-restore-2026-10-10/verify.py": "a88eb306a886936cbdb87eccfb36e5f7fecdccf031207390d2cff0ac3d40aab3",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-restore-cleanup-2026-10-11/backup.json.gz": "8de66a819c36f973a22c0031c7574cb0164ecff653c2be54bb3750534d2c824c",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-restore-cleanup-2026-10-11/restore.json.gz": "ebf113f90a3d79329fbcf8e197962e9272c52a2c65d4294f63bb6e985656729f"
+  },
+  "trees": [
+    {
+      "path": "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10/extracted",
+      "root": {
+        "dev": 66314,
+        "ino": 23724035,
+        "mode": 16832,
+        "uid": 1000,
+        "gid": 1000,
+        "size": 4096,
+        "mtime_ns": 1791612812057720236,
+        "ctime_ns": 1791612812057720236,
+        "nlink": 4,
+        "blocks": 8
+      },
+      "inventory": "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-restore-cleanup-2026-10-11/extracted-inventory.jsonl.gz",
+      "inventory_sha256": "6ffddbf5ebb7bb493b3da8ec6cbd0a719181cb3c062a480af39212ced2d0f0d8",
+      "files": 57424,
+      "directories": 46215,
+      "logical_file_bytes": 39658450087,
+      "allocated_bytes": 39991382016,
+      "hardlinked_files": 0
+    },
+    {
+      "path": "/mnt/backup/marketdata-restic-restore/t04-clock-evidence-20261010-f71c5b20490248b4b229a66f3378ab10/store",
+      "root": {
+        "dev": 66314,
+        "ino": 23751659,
+        "mode": 16893,
+        "uid": 1000,
+        "gid": 1000,
+        "size": 4096,
+        "mtime_ns": 1791613456811827063,
+        "ctime_ns": 1791613456811827063,
+        "nlink": 4,
+        "blocks": 8
+      },
+      "inventory": "/home/yoonhc/projects/algoTrade/historical_data/reports/t04-restore-cleanup-2026-10-11/store-inventory.jsonl.gz",
+      "inventory_sha256": "99fa0f33fe4a5f2fdaac5c86bb875c5b4b405ae0d14b38df144bd0b2e5a81bc9",
+      "files": 57425,
+      "directories": 46215,
+      "logical_file_bytes": 39645876838,
+      "allocated_bytes": 39978819584,
+      "hardlinked_files": 0
+    }
+  ],
+  "usage": {
+    "same_uid_examined": 182,
+    "matches": [],
+    "permission_denied": [
+      {
+        "pid": 1201,
+        "uid": 1000,
+        "comm": "systemd"
+      },
+      {
+        "pid": 1216,
+        "uid": 1000,
+        "comm": "(sd-pam)"
+      },
+      {
+        "pid": 207240,
+        "uid": 1000,
+        "comm": "sd_espeak-ng-mb"
+      }
+    ],
+    "scope": "Visible argv for all UIDs; cwd/fd/maps for current UID. This is not a guarantee against all noncooperating processes."
+  },
+  "available_bytes": 783338373120,
+  "estimated_reclaimable_allocated_bytes": 79970201600,
+  "logical_file_bytes": 79304326925,
+  "file_count": 114849,
+  "directory_count": 92430,
+  "exact_reclaimed_bytes": null,
+  "exclusions": [
+    "production data/catalog",
+    "all checkpoints",
+    "restic repository/snapshots",
+    "recovery kit",
+    "T05 registry and masks",
+    "T13 previews",
+    "parent/sibling paths",
+    "report evidence",
+    "service/clock changes"
+  ],
+  "finished_at": "2026-10-11T08:39:03.734557+00:00",
+  "plan_id": "236f066a5bf0185962d59e9af08ce9541b295dedbb9f297ff7cae966d8385075"
+}

@@ -9,7 +9,12 @@
 기존 v1 로그 편입은 별도 잔여 범위이며, 과거 후보의 미적용 표시는 당시 상태다.
 **10/11 00:51 KST에는 T13 daily를 별도 고정 배포본으로 전환했고 00:53 타이머를 활성화했다.**
 [설치·전환 중단과 재개, 첫 실행/처리 0건 확인](../reports/baseline/t13-daily-deploy-2026-10-11/summary.md)을 남겼다.
-정오·저녁·날짜 경계의 실제 자료 처리와 새 원장 운영 백업·복원은 아직 관찰 대기다.
+**10/11 18:20 점검**에서 첫 UTC 경계·정오 10건·저녁 16건의 실제 처리와 정오분의 checkpoint/restic 편입을 확인했다.
+[운영 결과](../reports/baseline/t13-operating-review-2026-10-11/summary.md)와
+[남은 고정 범위](../reports/baseline/t13-operating-review-2026-10-11/completion-plan.md)를 따른다.
+다음 주기 구분·저녁분 후속 백업·독립 복원은 대기다.
+**T05는 10/11 16:21 설치·기존 7개 사후 근거 등록, 17:22 backup/restic 실행 명령 전환을 마쳤다.**
+[실제 적용·잔여 검증](../reports/baseline/t05-evidence-deploy-2026-10-11/status.md)을 구분하며 자동 정리는 계속 masked다.
 
 ## 실행 코드와 관리 주체
 
@@ -18,6 +23,7 @@
 | 수집 고정 배포본 | `/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325` |
 | 부팅 준비·기존 업무 시각 검사 배포본 | `/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee` 유지 |
 | daily 고정 배포본 | `/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b` |
+| backup/restic 근거 생성 배포본 | `/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7` |
 | 설치 방식 | root 소유 코드·비 editable venv, `python -I`, 수집 프로세스는 `yoonhc` |
 | 시스템 수집 유닛 | `marketdata-collector@depth.service`, `marketdata-collector@aggtrade.service` |
 | 수집 수명 | 지속 supervisor 아래 3,600초 child, child 사이 15초도 시각 감시 유지 |
@@ -26,9 +32,9 @@
 | 호스트 설정 | `/etc/marketdata/runtime.json`, `/etc/marketdata/clock-bootstrap.json`, `/etc/chrony/marketdata.conf` |
 | 기존 사용자 업무 | OI·daily·pack·backup·restic·관측 등 8개 업무는 사용자 manager 유지, 공통 시각 대기와 시작 검사 연결 |
 | 이전 사용자 수집 유닛 | `marketdata-depth.service`, `marketdata-aggtrade.service`는 masked·비활성 |
-| 자동 checkpoint 정리 | service/timer 모두 persistent masked. 상시 시각 검사 검증·승인 전까지 보류 |
+| 자동 checkpoint 정리 | 사용자·시스템 service/timer 네 곳 모두 persistent masked. 근거 생성 기능만 설치·전환했고 삭제/반복 승인은 별도 |
 
-개발 폴더 변경은 고정된 수집·daily 배포본에 자동 반영되지 않는다. 새 배포는 별도 경로에서 후보를 검증·고정하고
+개발 폴더 변경은 고정된 수집·daily·backup/restic 배포본에 자동 반영되지 않는다. 새 배포는 별도 경로에서 후보를 검증·고정하고
 검토한 종료/기동 경계에서 적용한다. 설치된 venv나 고정 후보의 파일을 직접 덮어쓰지 않는다.
 새 수집본의 [소스·해시](../reports/baseline/clock-runtime-transition-2026-10-09/collector-correction/release.json)와
 [재현 절차](../reports/baseline/clock-runtime-transition-2026-10-09/reproduce.md)를 보존한다.
@@ -36,7 +42,8 @@
 기존 workspace의 pack·backup·restic과 새 수집본의 호환은 격리 저장소에서 검증했다.
 workspace의 패키지와 설치된 collector가 항상 같은 버전이라고 가정하지 않는다.
 daily도 별도 [고정 소스·검증 환경](../reports/baseline/t13-daily-review-2026-10-10/manifest.json)을 사용한다.
-pack·backup·restic 등 나머지 업무의 실행 경로는 이번 daily 전환에서 바꾸지 않았다.
+daily 전환에서는 다른 업무 경로를 유지했다. 이후 T05에서 backup/restic 두 `ExecStart`만 고정 근거 생성 wrapper로 전환했다.
+두 업무는 계속 사용자 manager에서 실행하며 기존 시작 검사·예약·잠금·보존 계약을 유지한다. pack 등은 기존 경로다.
 
 T11은 supervisor 감시를 이어 다음 child의 reference 지연 대기를 줄였다.
 WebSocket의 연속 수신은 아직 별도 과제다. Depth는 한 시간 child 경계 외에도 15분마다 기존 소켓을 닫고
@@ -122,6 +129,9 @@ marketdata_daily_release=/opt/marketdata/releases/t13-daily-scheduler-20261011-7
 `runner_ok`는 실행기 정상 종료, `data_complete`는 계획된 자료의 완료이며 서로 다르다.
 처리 0건과 oneshot의 `inactive/dead`는 직전 `Result=success`·종료 코드·원장과 함께 판단한다.
 00:59 초기 관측은 실행 4회·기존 확보 156개·예정 전 20개·시도 0개였다. 이는 정오/저녁 자료 완료 근거가 아니다.
+18:20 후속 확인에서는 실제 정오 10건·저녁 16건이 성공했고 188개 작업이 완료였다.
+다음 KST 주기의 refresh/metadata와 UTC 날짜 변경의 신규 작업 때문에 `data_complete=false`가 될 수 있다.
+기존 완료 acquisition의 취소와 구분하고, 작업·시도 ID와 해당 시점의 상태로 판단한다.
 
 `needs_review` 재개는 [정확한 작업의 inspect → 요청 검토 → apply 절차](../reports/baseline/t13-daily-review-2026-10-10/deployment-review.md#실제-사용-절차)를 따른다.
 이미 저장된 유효 근거와의 완료 연결 또는 추가 1–3회 시도 허용을 구분하며 과거 실패·냉각·검증 기준을 유지한다.
@@ -184,3 +194,15 @@ collection·supervisor run·boot·child와 연결한다. 등록된 근거는 기
 staging은 정상 상태에서 약 6MiB 수준으로 제한하지만 등록 artifact는 계속 누적된다.
 기록·등록 실패나 한도 초과 때는 수집을 종료하고 spool을 보존한다. 5분 회전은 최대 유실 시간 보장이 아니다.
 자동 checkpoint 정리는 상시 시각 검사 T05의 별도 검증·승인 전까지 masked 상태로 유지한다.
+
+T05 근거 생성은 **실제 checkpoint 완료 표시 확정 뒤** 새 시각 관측으로 완료 상한을 기록하고,
+backup ID·manifest·실제 생성 선후관계를 `checkpoint-evidence.json`과 연결한다.
+유효한 데이터 백업 성공과 시각 근거 미확보는 별개이며, 근거가 없으면 삭제 판단에서 추가 보호한다.
+기존 7개 사본은 원래 completed_at을 바꾸지 않고 10/11의 첫 유효 사후 상한을 등록했다.
+새 정기 사본의 근거 생성과 같은 restic snapshot의 보존·복원은 다음 실제 완료 뒤 확인한다.
+
+삭제 판단은 T05의 U 5초 상한과 `관측 하한−완료 상한 ≥ 72시간+60초`, 확실히 후행인 검증 사본 3개,
+같은 사본의 restic 보존·검사·기존 잠금/승인 조건을 함께 따른다. reference age 600초는 T05 판단에 사용하지 않는다.
+그러나 backup/restic **기동 전 공통 waiter**는 기존 엄격한 기준을 유지하므로 실행이 지연될 수 있다.
+근거 생성 기능 설치를 자동 삭제 승인이나 다른 8개 업무의 시각 정책 변경으로 해석하지 않는다.
+[최종 설계](t05-checkpoint-clock-safety-design.md)·[실제 중단/재개 및 원복](../reports/baseline/t05-evidence-deploy-2026-10-11/recovery.md)을 따른다.

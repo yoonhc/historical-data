@@ -7,16 +7,32 @@
 후보의 미설치·미검증 표시는 각 시험 당시 상태이며,
 현재 적용 상태는 [시스템 서비스 운영 안내](../docs/system-runtime-operations.md), 남은 일은 [TODO](../TODO.md)를 따릅니다.
 
-최신 [10/11 마일스톤](../docs/milestones/2026-10-11-daily-scheduler-and-operating-verification.md)은
+이전 [10/11 새벽 마일스톤](../docs/milestones/2026-10-11-daily-scheduler-and-operating-verification.md)은
 10/9 20:17 이후의 운영 검증·시험 정리·시각 근거 복원·T13 구현과 실제 배포를 다룹니다.
 이번 Git 보존 범위와 고정 입력·기존 검사·문서 대조는 [10/11 작업 정리](baseline/work-summary-2026-10-11/summary.md),
 이전 커밋 묶음의 근거는 [10/9 작업 정리](baseline/work-summary-2026-10-09/summary.md)에 기록했습니다.
+
+최신 [10/11 후속 마일스톤](../docs/milestones/2026-10-11-checkpoint-evidence-and-daily-processing.md)은
+그 기준 01:04 KST 이후 T05 구현·설치·기존 근거 등록, T04 시험 공간 정리, T13 실제 자료 처리와 정오 백업을 다룹니다.
+이번 [Git 보존·검사 범위](baseline/work-summary-2026-10-11-evening/summary.md)는 마지막 커밋 이후 변경과 구분해 기록합니다.
+
+`baseline/t05-clock-retirement-2026-10-11/`는 이전 T05 후보와 당일 백업 미완료로 보류된 최초 시스템 미리보기입니다.
+`baseline/t05-completion-evidence-2026-10-11/`는 [완료 상한·순서·독립 복원 보완](baseline/t05-completion-evidence-2026-10-11/summary.md)의 고정 후보·215개 최종 검사·58개 재현 및 15:50 시스템 미리보기입니다.
+`baseline/t05-evidence-deploy-2026-10-11/`는 [실제 설치·중단/재개·현재 원복](baseline/t05-evidence-deploy-2026-10-11/status.md)입니다.
+17:24까지 설치·기존 7개 사후 근거 등록·backup/restic 두 명령 전환을 확인했으며, 새 정기 근거의 보존/복원과 실제 정리는 미완료입니다.
+
+`baseline/t04-restore-cleanup-2026-10-11/`는 [승인한 T04 시험 폴더의 부모 포함 정리](baseline/t04-restore-cleanup-2026-10-11/summary.md)입니다.
+17:59 완료·관측 여유 공간 약 79.97GB 증가와 원본·checkpoint/restic·복구 키트·기존 검증 근거 보존을 기록했습니다.
+
+`baseline/t13-operating-review-2026-10-11/`는 [첫 UTC 경계·정오 10건·저녁 16건·실제 저장과 정오 백업 확인](baseline/t13-operating-review-2026-10-11/summary.md)입니다.
+다음 주기와 10/12 실제 완료 지점의 복원은 [고정 작업·시도별 완료 범위](baseline/t13-operating-review-2026-10-11/completion-plan.md)를 따릅니다.
+공통 waiter 대기는 별도 후속 근거이며 T05 축적이나 10/12 저녁 자료를 기다리며 T13 범위를 늘리지 않습니다.
 
 `baseline/t13-daily-deploy-2026-10-11/`는 승인한 최종 T13 daily의 **운영 적용 기록**입니다.
 [실제 결과](baseline/t13-daily-deploy-2026-10-11/summary.md)에 설치 권한 검사와 timer 링크 검사 중단·재개,
 00:51 새 고정 실행본 시작·00:53 timer 활성화와 첫 실행/자동 재평가 4회 성공을 기록했습니다.
 기존 확보 156개·예정 전 20개·수집 시도 0개를 구분했으며, 기존 수집기·Chrony·guard·백업·정리 mask는 유지했습니다.
-정오·저녁·날짜 경계의 실제 자료 처리와 새 원장의 운영 checkpoint/restic·복원은 아직 남았습니다.
+배포 당시 남아 있던 실제 처리는 위 18:20 점검에서 확인했으며, 다음 주기·저녁분 후속 백업·독립 복원은 아직 남았습니다.
 
 `baseline/t13-daily-review-2026-10-10/`는 needs_review 재개·사본 미리보기를 보완한 **최종 후보의 검증 기록**입니다.
 [보완 결과](baseline/t13-daily-review-2026-10-10/summary.md)에 정확한 작업의 저장 근거 연결/추가 1–3회 승인,
@@ -24,7 +40,7 @@
 10/11 00:11 KST 운영 사본 미리보기는 기존 확보 156건 제외·예정 전 20건·HTTP 0건입니다.
 [새 후보의 적용·재개·원복안](baseline/t13-daily-review-2026-10-10/deployment-review.md)을 고정했으며,
 검증 당시 운영 미적용이었으며 이후 daily 적용·첫 처리 0건 확인은 위 10/11 기록을 따릅니다.
-실제 자료 예약 처리·새 원장 운영 백업/복원은 아직 남았습니다. 공개 관측기는 비활성이고 자동 정리 mask를 유지했습니다.
+실제 처리와 정오 원장 백업은 위 후속 운영 점검에서 확인했으며 최종 독립 복원은 대기입니다. 공개 관측기는 비활성이고 자동 정리 mask를 유지했습니다.
 
 `baseline/t13-daily-scheduler-2026-10-10/`는 승인한 daily 예약·재시도 설계의 **이전 미적용 고정 후보**입니다.
 [후보 결과](baseline/t13-daily-scheduler-2026-10-10/summary.md)에 UTC 날짜별 영속 작업·정오/저녁 분리·미완료 이월·수정 확인,
@@ -48,7 +64,7 @@
 `baseline/t13-daily-rerun-2026-10-10/`는 승인한 기존 daily의 실제 재실행 결과입니다.
 [완료 결과](baseline/t13-daily-rerun-2026-10-10/summary.md)에 18:52:54 KST 성공 종료·약 7초 실행,
 10/9 UTC 네 종류 4,608행의 편입·파일 해시·날짜 격자 대조와 8개 target complete를 기록했습니다.
-T13의 현재 날짜 보강은 완료했고 예약·재시도 정책은 이후 승인에 따라 후보 구현·위 10/11 운영 적용까지 진행했습니다. 신규 보강분의 백업 편입은 아직 확인하지 않았습니다.
+T13의 해당 날짜 보강은 완료했고 예약·재시도 정책은 이후 승인에 따라 후보 구현·위 10/11 운영 적용까지 진행했습니다. 보강분의 10/11 checkpoint/restic 편입도 위 후속 운영 점검에서 확인했습니다.
 
 `baseline/t13-daily-followup-2026-10-10/`는 공개 아카이브 daily의 읽기 전용 후속 확인입니다.
 [결과](baseline/t13-daily-followup-2026-10-10/summary.md)에 기존 10/8 UTC 네 종류의 실제 편입·4,608행 파일 검증,

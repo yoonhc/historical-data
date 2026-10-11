@@ -1,0 +1,143 @@
+{
+  "at": "2026-10-11T02:29:52.241179+00:00",
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "files": {
+    "/etc/chrony/marketdata.conf": {
+      "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/marketdata/clock-bootstrap.json": {
+      "sha256": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/marketdata/daily-publication-probe.toml": {
+      "sha256": "347596dfcabe6e48a3e4084887e6930860593a83d6313aa392f4223e9f7f120b",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/marketdata/daily-scheduler.toml": {
+      "sha256": "1410f51a83b5ed95f0c2258835540c3bf2946975285041d298a9608638aff887",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/marketdata/runtime.json": {
+      "sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+      "sha256": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/etc/systemd/system/marketdata-collector@.service": {
+      "sha256": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+      "mode": "0o644",
+      "uid": 0
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-retention-authorization.json": {
+      "sha256": "6b630689fcf4bb11294711299d63f09238a6a3de2a5704a13599b913fe3f9be0",
+      "mode": "0o600",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-retention-automatic.toml": {
+      "sha256": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d",
+      "mode": "0o600",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-retirement-service.env": {
+      "sha256": "908a8bcd3b6445aa553866db8425fd2bd31439706aa8314d4797447a67ac716e",
+      "mode": "0o600",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/marketdata/checkpoint-schedule.toml": {
+      "sha256": "d9c8e7822bb36ebd86eb82514d54d03564f0133574e903308889d79a84067963",
+      "mode": "0o600",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-aggtrade.service": {
+      "link": "/dev/null"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": {
+      "link": "/dev/null"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": {
+      "link": "/dev/null"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.service": {
+      "sha256": "d9121ababca9ed23cf6bc84df1b3b9a1832494f6385eb324379064d7067a4f3b",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": {
+      "sha256": "55326bb195734a6ea5afea99b1916390fc839e2fbb37ccd8dc145fb8c12318a1",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-depth.service": {
+      "link": "/dev/null"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+      "sha256": "2ffe783c9341d78fc93526d3f401126932951e6e69788fdc3d69ce18c619bca8",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+      "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.service": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.service": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": {
+      "link": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": {
+      "sha256": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": {
+      "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+      "mode": "0o644",
+      "uid": 1000
+    },
+    "/var/lib/marketdata-clock/boot-state.json": {
+      "sha256": "eae06031a81a0a94567d96babad6fd89a1aad91bf10ea75b7cc93095b7720c99",
+      "mode": "0o644",
+      "uid": 0
+    }
+  },
+  "system_units": {
+    "code": 0,
+    "stdout": "MainPID=224785\nId=marketdata-collector@depth.service\nActiveState=active\nInvocationID=41b1747221894331a5e0b4fdf3f9751e\n\nMainPID=224784\nId=marketdata-collector@aggtrade.service\nActiveState=active\nInvocationID=1aa42e55ff804c1f9e5ec68b31116c6b\n\nMainPID=1245\nId=chrony.service\nActiveState=active\nInvocationID=19420480ab3249529a075ca7cb2bd3c1\n",
+    "stderr": ""
+  }
+}

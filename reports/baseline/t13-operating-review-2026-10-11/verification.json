@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "verified_at": "2026-10-11T09:19:59.501288+00:00",
+  "release_id": "t13-daily-scheduler-20261011-703fb0d455523c1b",
+  "source_files_unchanged": 149,
+  "installed_modules_unchanged": 4,
+  "daily_configuration_units_guard_unchanged": true,
+  "all_attempts_after_eligibility": true,
+  "http_requests": 50,
+  "all_recorded_responses_200": true,
+  "canonical_revisions_verified": 26,
+  "canonical_rows_verified": 24206,
+  "same_attempt_satisfied_refreshes": 6,
+  "wait_reason_counts": {
+    "Current clock is not ready: reference_age": 7152
+  },
+  "last_wait": {
+    "at": "2026-10-11T09:17:18.477208+00:00",
+    "long_wait": true,
+    "phase": "waiting",
+    "ready": false,
+    "reason": "Current clock is not ready: reference_age",
+    "wait_seconds": 842.5172070139961
+  },
+  "noon_release": [
+    {
+      "at": "2026-10-11T03:21:06.449308+00:00",
+      "phase": "released",
+      "ready": true,
+      "wait_seconds": 170.4981293140154
+    },
+    {
+      "at": "2026-10-11T03:21:06.796247+00:00",
+      "phase": "released",
+      "ready": true,
+      "wait_seconds": 0.013436670007649809
+    },
+    {
+      "at": "2026-10-11T03:21:06.938937+00:00",
+      "phase": "released",
+      "ready": true,
+      "wait_seconds": 0.011999490991001949
+    }
+  ],
+  "full_check_receipts_sha256": {
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/cd338f64cf6e4e7b8cc5dcc020d8876f/9b14702c13cb4e8f982760f90d842bc4.stdout": "390183f57f5965367604ccbb914ce144ee4e7a11a769bf987db639f71c003be6",
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/cd338f64cf6e4e7b8cc5dcc020d8876f/9b14702c13cb4e8f982760f90d842bc4.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "independent_restore_performed": false,
+  "remaining": [
+    "next regular checkpoint/restic includes evening data and corresponding ledger",
+    "explicit snapshot restore and ledger/data comparison",
+    "next KST cycle observation together with next backup review"
+  ],
+  "evidence_sha256": {
+    "journal.jsonl.gz": "a29c7ed2d8237d040bbfe80ebe9a1abe826916e955cb0e54ce271349dbc9565e",
+    "ledger-records.json.gz": "2606cb17cfa3ad4e28def5dc4a806c224132a627151cf6aeb82412f2fdce48ae",
+    "review.py": "e1d7f666eb9ee517ca4db5fd0f39a7038e5128d4d522d9010d939d89623f97ae",
+    "host.json": "21deb142834a14a1397f5543ace51e468440889d4645a48c78b4cb2a733e340d",
+    "inspection.json": "ab697cb1040e72ace7f1f8218b4d93f4e38fe392b6469a0561dd0f1d47beee44"
+  }
+}

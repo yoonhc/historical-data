@@ -1,0 +1,895 @@
+{
+  "base_commit": "bf630cc",
+  "files": [
+    {
+      "path": "TODO.md",
+      "bytes": 42771,
+      "sha256": "6a8e15a76ead4048e1427324301b3ed08f963956c889ef76fd9044be5e635845"
+    },
+    {
+      "path": "docs/milestones/2026-10-11-checkpoint-evidence-and-daily-processing.md",
+      "bytes": 10213,
+      "sha256": "38918d132808fd8fb9ca78c1d90d489b01d7a0c0f8d6cdfe4b7cea66ed440987"
+    },
+    {
+      "path": "docs/system-runtime-operations.md",
+      "bytes": 19073,
+      "sha256": "124c11febf94a4d157ff96cc4adb0c15fced300c9a41c9b48b49b0fbcb767add"
+    },
+    {
+      "path": "docs/t05-checkpoint-clock-safety-design.md",
+      "bytes": 33232,
+      "sha256": "855276ffe56659cbbf6b3197398004cb8f99e5489c75e5a8cda8b413ebaac0ba"
+    },
+    {
+      "path": "reports/README.md",
+      "bytes": 54521,
+      "sha256": "4cab8a528e3d3d22ae70bb71a7129a64f303a9d6fc594548fa2d50f3859ff502"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/continue_parent_cleanup.py",
+      "bytes": 7335,
+      "sha256": "488b5f98314f680a789a865f37f6a96b9d20aec1d7c0747fafe727e27e8258b4"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/evidence/backup.json.gz",
+      "bytes": 3470321,
+      "sha256": "8de66a819c36f973a22c0031c7574cb0164ecff653c2be54bb3750534d2c824c"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/evidence/parent-deletion-journal.jsonl.gz",
+      "bytes": 101157,
+      "sha256": "4fa5910d43130e742df11a6bf266a3ab987a737d70997d8270ae40cc582193c1"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/evidence/restore.json.gz",
+      "bytes": 423,
+      "sha256": "ebf113f90a3d79329fbcf8e197962e9272c52a2c65d4294f63bb6e985656729f"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/evidence/whole-t04-inventory.jsonl.gz",
+      "bytes": 9071156,
+      "sha256": "6f92fcf0a4a25d13d6e7ceba798b57b18df0c6da0a298cde4275ab0fa2d7478b"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/parent-adapter-tests.json",
+      "bytes": 495,
+      "sha256": "459346655933859cda04bedfd0f64e93fd75d7ea814dc7f8e448c4e6caa6bce4"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/parent-plan.json",
+      "bytes": 33831,
+      "sha256": "24eb389abab03496e4cbe99e51481670fc917d0de9c0c9e527726286d6835e64"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/parent-reconciliation.json",
+      "bytes": 2418,
+      "sha256": "d932b424f218176676f392516a77d7b0e8cac3ae5f65c2fe2fab8f9c4c229e3f"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/parent-recovery-result.json",
+      "bytes": 66984,
+      "sha256": "d74939e442b5d0da40b8fd47b47a02c9681ff226f1df22a3f29eabbe8f1af98c"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/parent-result.json",
+      "bytes": 839,
+      "sha256": "98d19bb82ef361ff8cf2b6ea7d2d2e13902de2e7e90635a0cf33e20945ed686e"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/parent_cleanup.py",
+      "bytes": 13831,
+      "sha256": "81c1982fa76f1b7d1430ae43d3682374c833b40e03e7aa3aae541f704958c99c"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/plan.json",
+      "bytes": 14468,
+      "sha256": "01185eb67ed6c783e9e59e1986dd66ff776e541894280db7769c8046480c73af"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/post-verification.json",
+      "bytes": 580,
+      "sha256": "002ab0e5374e741d207f55f0697a7734195e9396550df1f342a8887ae29f56f8"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/prepare.py",
+      "bytes": 11491,
+      "sha256": "e36d3f6fc4a7a3ff4e4badf0933346bcc35ec290326f923d8a5daff1ff016e25"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/preserved-evidence.json",
+      "bytes": 1908,
+      "sha256": "d6757492dc12b69502990cd3097ac72ba36758eba1e67152c98f202960058b9d"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/snapshot-current.json",
+      "bytes": 1231,
+      "sha256": "4d34e5b48ea4cc05c23cfc13c5cf5aaf90f22df805ea8caa9311591c93445e74"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/summary.md",
+      "bytes": 8240,
+      "sha256": "fe8133373186f2d35584da58a4f5fd5e6314586fa401bd6febe7410510e680f3"
+    },
+    {
+      "path": "reports/baseline/t04-restore-cleanup-2026-10-11/test_parent_adapter.py",
+      "bytes": 3450,
+      "sha256": "18657d5079c73e9ddb8434258c400a2458a79241f5f89170185ff99a0f2ab466"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/.gitignore",
+      "bytes": 66,
+      "sha256": "96eee9c8bc8b15da57170c76fd55f5810b3a8100fd9c834778ca0fe5f81f56dc"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/base-inputs.json",
+      "bytes": 15583,
+      "sha256": "282da1c1746e84c5b9700959f1f560d33fe28dbaaffaf2b31075c20485c9724d"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/candidate-final-tests.log.gz",
+      "bytes": 366,
+      "sha256": "2cfcd3b2c3ddef2d8a3507498d19fe476b69009a3356fd102e8930fb37d6382d"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/candidate-final-tests.xml",
+      "bytes": 14381,
+      "sha256": "668468a03347a614228f2adfc0a70414033c7287bf515186eafff61281826ab5"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/candidate.patch",
+      "bytes": 76519,
+      "sha256": "c4bcf12c65f80120a1340db789221c76c28197a8c53ec9aafee39e30e5a68c01"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/clock-candidate-tests.xml",
+      "bytes": 4044,
+      "sha256": "23383326ead0f0608211672293ef3f5ecd3f0c9a7d35beb141be9497e329222e"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/deployment/clock-binding.json",
+      "bytes": 164,
+      "sha256": "cdff5dc077ea83c451d9273ba394eb3f5b0d075b6ca85fb8a07f28192c766f2c"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/deployment/policy.toml",
+      "bytes": 449,
+      "sha256": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/deployment/render-input.json",
+      "bytes": 1339,
+      "sha256": "dd4cf2887ecbbf22e2c90a342ef4cf02e179c43c612ff170c90f235a8fc0606a"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/deployment/settings.toml",
+      "bytes": 457,
+      "sha256": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/deployment/units/marketdata-checkpoint-retirement-apply@.service",
+      "bytes": 1791,
+      "sha256": "0728247eb2f5981cc6bdc4b24fea895a22846e0d599c7ba46d99ad6af883a028"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/deployment/units/marketdata-checkpoint-retirement-preview.service",
+      "bytes": 1662,
+      "sha256": "22d46317bfb6c7d3ac686f2898c1af7fb007b4a995722e7d06671bfbf9debcbe"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/deployment/units/marketdata-checkpoint-retirement.service",
+      "bytes": 1771,
+      "sha256": "ce2ffc4cb5af4c4940f67bead38f803b2045672576eb5030a2a9b19586400781"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/deployment/units/marketdata-checkpoint-retirement.timer",
+      "bytes": 218,
+      "sha256": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/deployment-review.md",
+      "bytes": 7899,
+      "sha256": "5c12af801fa3a68e9d74f37273b3d28e3cde875ca3be6a5e2b7b4bda00465eb3"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/design.md",
+      "bytes": 7189,
+      "sha256": "d490879b3b478cc8c4b165dff4925c967a56dd3d03f172bbf4dc2743e6661089"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/environment-files.json",
+      "bytes": 252205,
+      "sha256": "a7842b604a636d0eac0c18ab7d0603e3adbd34ee6080c434549212b994f395ee"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/host-after.json",
+      "bytes": 549,
+      "sha256": "9e9f28b3f0c295ed1fee942d8633c27266952501a08ca2acdde7992a6cd06c90"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/host-before.json",
+      "bytes": 6318,
+      "sha256": "a0a5cf51be93811593ad363456576d02d68e68c43c1ac05b8b96de940d23b629"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/host-clock-probe.json",
+      "bytes": 4244,
+      "sha256": "c439db1bb71e622584e3c652295f1dbb78e1cf6201e4555d215c65c1e3195154"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/host-clock-probe.jsonl",
+      "bytes": 3067,
+      "sha256": "11fe00b0b6f15447934addd586ff761859dcafd5f3adacdfc84d04a26d0e599b"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/integration-clock-initial.xml",
+      "bytes": 804,
+      "sha256": "1aebbd7d8e0b3e140fd91db19b132c759fa0b0b25fef59ecdb60f2fa0f887546"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/manifest.json",
+      "bytes": 16522,
+      "sha256": "d3663fd31a55880b3fc1f9bc7104f8c76ee20bc2664fd0f3baaf15849c235623"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/patch-application.log.gz",
+      "bytes": 133,
+      "sha256": "0ec12d35265f5f6d084b8ea35744d6487ea71df3e0c57b73ac2120a235bca1e0"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/preflight-check.json",
+      "bytes": 495,
+      "sha256": "75ab66adaa978e3f4fbb9626fe8c5a7984421fa4b54c033db738a497a4d59e7a"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/preflight-inputs.json",
+      "bytes": 12932,
+      "sha256": "f17856f8effb04de60113e88cf273657b1a10e05e5e8152159b08a1768550479"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/probe.py",
+      "bytes": 2964,
+      "sha256": "8de0a892d4996cddfd68cee74f2bd35e334f8e94d3a5658dcf2544ee11562e9a"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/reproduced-clock-tests.log.gz",
+      "bytes": 64,
+      "sha256": "8424c975e0e83d4d789c4f48891fe4f19ce216103f325501bcd8b37f2baa0533"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/reproduced-clock-tests.xml",
+      "bytes": 5153,
+      "sha256": "f22f2a627fa9e6b18cfc7e35054e75d31313d421e79178b01ed4f3254453dd34"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/reproduced-environment.json",
+      "bytes": 322,
+      "sha256": "f0ae2589d749dce0e2dd5638db630a9436afca4ca5713d252197c150f8c7a4b7"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/source.tar.gz",
+      "bytes": 263726,
+      "sha256": "f4552e286dd2e6012db48c9e9e2512cf41446fccf6de60a14379cb65c553d6cf"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/summary.md",
+      "bytes": 5340,
+      "sha256": "dd514232b84697d95eb5a237ecfc4900b113cc6deb99c0691c15f518d2d011cf"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/system-preflight-result-ae5d62d13d034b72.json",
+      "bytes": 249610,
+      "sha256": "4765608564e210888af83a4895fe565bf2980736169f7ab591eb194f28674221"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/system_preflight.py",
+      "bytes": 15665,
+      "sha256": "6e5296bb37ef4919366666b62d5ebe6b859686f7fa3428e446445d2ae13b7468"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/unit-clock.xml",
+      "bytes": 3480,
+      "sha256": "5a024a4819003aaac21b2438fe2ead34b52181f0c1c6790cc29e6b9536481a5d"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/user-preview-clock.jsonl",
+      "bytes": 3073,
+      "sha256": "3c6790c512796b360a9bf4393995226d00c790ba80c80cd47ae0869088b5ed3b"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/user-preview-result.json",
+      "bytes": 2718,
+      "sha256": "b5071b9c5b1ac1feb2be2c9fa619e105e971c0e558e08a8c88016ca4b1640cd7"
+    },
+    {
+      "path": "reports/baseline/t05-clock-retirement-2026-10-11/validation.md",
+      "bytes": 6622,
+      "sha256": "81a090ee2eb20c0d9012d9afcef2fb90d1f1c86ff12e28708af503beea7cf0b6"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/.gitignore",
+      "bytes": 109,
+      "sha256": "1fcc5b5bbeb233dbc045be5ee47127c1d61541ce27277d50ce5b602ae98cab94"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/base.json",
+      "bytes": 274,
+      "sha256": "37882fc6c0adc924e5104346c7e324ffd34c4ec80d6e49d38311a9f4ad316d4a"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/candidate-tests.log.gz",
+      "bytes": 759,
+      "sha256": "ca8232d2853fffbbc76e9ffd71d154ca3a3ac379f1ae6e0f6c94ea3cdac7d5e8"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/candidate-tests.xml",
+      "bytes": 28476,
+      "sha256": "50185ca4c43fe9eec80f942d03e8a3cf40762eba82e6d443cc1a43873d32838a"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/candidate.patch",
+      "bytes": 118857,
+      "sha256": "3868eb2b5c283aea8211b5a2fa4f90a3ef3d142debc49352563e0663f6b94a5b"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/clock-binding.json",
+      "bytes": 164,
+      "sha256": "cdff5dc077ea83c451d9273ba394eb3f5b0d075b6ca85fb8a07f28192c766f2c"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/manual.json",
+      "bytes": 179,
+      "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/policy.toml",
+      "bytes": 449,
+      "sha256": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/recurring.json",
+      "bytes": 179,
+      "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/registration-approval.template.json",
+      "bytes": 179,
+      "sha256": "bb0864bcb5ef772866bea5a9b0f43950ce3f89e2d35e580b1ffc1faf16d5be23"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/render-input.json",
+      "bytes": 1342,
+      "sha256": "722adfcf36831241f7735f2014ed34bf72ca7b70d801b1dd36c885ef41dbecc2"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/settings.toml",
+      "bytes": 457,
+      "sha256": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/units/marketdata-checkpoint-retirement-apply@.service",
+      "bytes": 1797,
+      "sha256": "9932a3c4a8bc5acc74d5ba9c98d6348e2e367524999e15181b246fd0ac3addd0"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/units/marketdata-checkpoint-retirement-preview.service",
+      "bytes": 1668,
+      "sha256": "66d535599731c0bb656dbcbba75dc67382742f35115da89f92aba42395674d66"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/units/marketdata-checkpoint-retirement.service",
+      "bytes": 1777,
+      "sha256": "14410ec16303633a995d9b623930e8ba0a42fe19ef72a58439a0d7987c7606b2"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/units/marketdata-checkpoint-retirement.timer",
+      "bytes": 218,
+      "sha256": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/user-dropins/marketdata-backup.service.d/80-checkpoint-evidence.conf",
+      "bytes": 348,
+      "sha256": "3ab1e66c6ab15a3e9ded81c903192360b4fa3266bca1cee05639fbd346af445f"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment/user-dropins/marketdata-restic-archive.service.d/80-checkpoint-evidence.conf",
+      "bytes": 303,
+      "sha256": "36120a311a55b6fa836b695c74c769bc6d63703ba8dc6bfcb42236eec716f39b"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment-files.json",
+      "bytes": 1560,
+      "sha256": "9aea4fa5f50c1fbfed5b0b44e8284b4e87eff9f064c776810b0e2b84edeb7bd1"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/deployment-review.md",
+      "bytes": 11388,
+      "sha256": "01e6cedf7f29b3ce0239148392c0ed34d90764c59cb2c4b58aade9f6033b3ec2"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/environment-files.json",
+      "bytes": 252514,
+      "sha256": "7bbd1bfb459539abc424d9b7e128723f08d9e47239762db63bb1d22ab793e0e4"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/exported-regression.log.gz",
+      "bytes": 60,
+      "sha256": "55065a9ae101e2cc41f51f59ab00298ef0897c4ede42927b8161cc858863cc43"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/exported-regression.xml",
+      "bytes": 391,
+      "sha256": "4f296525ef49c071d66a6ba18375fcb69017e517ce46c0bb344ce0f50330057b"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/freeze_candidate.py",
+      "bytes": 2870,
+      "sha256": "94c6c5e8c38045fcc97dd4ce88bd071a373b2fe91745a60894e79dcf2e6f0a4c"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/host-before.json",
+      "bytes": 30409,
+      "sha256": "5052827c9a1087db8cba3a3874253140c7dccbe03c482dfca01885271832498c"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/host-before.sandbox-uid.json",
+      "bytes": 30175,
+      "sha256": "f1a84835a8631d1d63e570c49649ea12d54331121503dc7bb1c0c296914a793a"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/host-metadata-comparison.json",
+      "bytes": 34606,
+      "sha256": "6b767fa3067d5cea169e6ac0b783b381ef3fb34dfab40b7efd2e96827d67899c"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/integration-current.log.gz",
+      "bytes": 64,
+      "sha256": "a54b6bed13b837e75d6a2ea62e355cf5599826053c155c97fddaecddd5668585"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/integration-current.xml",
+      "bytes": 804,
+      "sha256": "a5c3cb2a4afff2bf59e9c4cfbb86b47d56c88a7892be593a866bf4349c74ac1c"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/integration-initial.log.gz",
+      "bytes": 717,
+      "sha256": "90a885cf8d1e478dfd3bb9e1d10894582a7800a6eba7a2bafce651b1a4103b2a"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/integration-initial.xml",
+      "bytes": 3532,
+      "sha256": "c07ae64d3fe2ba1ea9914df57065fb62aa5781cacbf21711c1a2d33b1b105438"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/integration-manual.log.gz",
+      "bytes": 74,
+      "sha256": "51c58d0cdb074e1bf05f929916bfe0f1dfa3286c17b983fc96f1cfcfbfc854cb"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/integration-manual.xml",
+      "bytes": 387,
+      "sha256": "124173ea7c47ea89f63abe508995827cb3662f17902a7b61d2970faf0cde3b1a"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/isolated-restore-result.json",
+      "bytes": 4987,
+      "sha256": "c94af18f5283aca85a920847d4a23051c8ca8b95c291eb5ef8c3a36458f44d05"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/isolated-restored-evidence.json",
+      "bytes": 16296,
+      "sha256": "247754ca887c9501a60a46cb4626ae4d4c054e269adf8ed86279f0c27020d486"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/lint-result.txt",
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/log-archives.json",
+      "bytes": 1579,
+      "sha256": "77418e17eec9a782bed387ccd498664ff637cc6368886567dd46d59e91691270"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/manifest.json",
+      "bytes": 18329,
+      "sha256": "1e19a7b0d6c13c3a8049c44bd0350cb873177b0a2b0bf623f6024b4ffdb9d9b3"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/operating-preview.md",
+      "bytes": 10129,
+      "sha256": "6dc22c82b69b04a816754aa3bc37782a58b8b70925b08a6b87d1a1c8890fca7f"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/operating-source-before.json",
+      "bytes": 11598,
+      "sha256": "88056b761aeadecb9ca8bd2d1fde7858f673c4e6194b9611f7ed5ea0316c33a8"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/operating-source-check.json",
+      "bytes": 511,
+      "sha256": "3564f7dcc0436d420b51650a45bc644ca84e56bb09ee4010bc3e030e6e39b220"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/preflight-host-check.json",
+      "bytes": 1306,
+      "sha256": "3276ae34e79094f815c0d524c47f63200ed09096c7df8eafbe0c42be02321ab1"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/preflight-inputs.json",
+      "bytes": 14386,
+      "sha256": "555179295ac49282689797740ac7ba15baff256777567bf90cb1ae01180d1a71"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/preflight-inputs.sandbox-uid.json",
+      "bytes": 13848,
+      "sha256": "2b2eb6c61322a73d0d32fc39188ebb41f8d1bce2b018e488af18f0e8b8e8f0c4"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/preflight-validation-failure.json",
+      "bytes": 780,
+      "sha256": "075233b0f02ef1675e497118da59938a6ccc1b9fe37e5a929692d6f03cef9b97"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/preview-prerequisites.json",
+      "bytes": 4213,
+      "sha256": "2fc9a9232b34c24609d23299b2b1733054eb4c67fe6fa95d11c638e003088402"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/probe.py",
+      "bytes": 4890,
+      "sha256": "02b86e9ae3926d86a6fda8d2b2ff47f80794f62bce87a1a93297deb4c3f32da8"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/render_deployment.py",
+      "bytes": 2428,
+      "sha256": "fbf2b25cb5c8698e4b7059aed69a4a284461d0c48a393abc8a196d6cdefb3b3e"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/reproduce.py",
+      "bytes": 3467,
+      "sha256": "1c82f55d404aa760507b65290861daf3959258ec1691c6927da6addb3ba8bdc3"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/reproduced-environment.json",
+      "bytes": 1067,
+      "sha256": "4258d9e49bb51cc802badf2412cd04ecabc6a32c8cf2d8ad8067976a60e82559"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/reproduced-install.log.gz",
+      "bytes": 465,
+      "sha256": "2cba00a146cbdabddef95910cafb01e15e552d56c84452db616c9b811a6f0a21"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/reproduced-tests.log.gz",
+      "bytes": 63,
+      "sha256": "5a0d82dd685e121c89e88974f2124cd073c3832eadefb2becf1a319b3b20d4b0"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/reproduced-tests.xml",
+      "bytes": 7801,
+      "sha256": "fbe123415cb02773d41ff99cf6891c34cac29cdedd99ca3461dda74aaf6eb2c9"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/reproduction-result.json",
+      "bytes": 150,
+      "sha256": "d71ba30ffa93a622680b5c2744cc7bca8e900f3d138f30d453a9ba0a5a1e8219"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/source.tar.gz",
+      "bytes": 276943,
+      "sha256": "6cadbeb788133619f8a5e35a76e8b003182a052c2b8f669fda6adcaf30d2246e"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/summary.md",
+      "bytes": 7612,
+      "sha256": "4dacecf22116012dca831786b47daa0ead639fca4232c9eb89e39bab9be32c59"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/system-preflight-result-5dde262e40b34192.json",
+      "bytes": 669589,
+      "sha256": "0c9716a1c72ad96a5510170030c7a4a512df369d3d58405954d40e994d121ee1"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/system-preflight-review.json",
+      "bytes": 8185,
+      "sha256": "fba210cd88fb470cce0f0c565aa40837c41e9e6b002fe445df56f4d2f01babb7"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/system_preflight.py",
+      "bytes": 17552,
+      "sha256": "469d43b6e51a76fddedc50502677e62069bf9f598b75dea0e67e239e8e86576f"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/test-collection.txt",
+      "bytes": 19365,
+      "sha256": "1e5c8d9506ab293d6504f88f876f437ddd66c1ba538a309ef46b087b0800f2b2"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/unit-comparison.json",
+      "bytes": 825,
+      "sha256": "23b197a1274a4dff6621057476a775c066ad4e2f3b114804d4a45856dcacd8c6"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/unit-current.log.gz",
+      "bytes": 61,
+      "sha256": "afbd163751e5b16f1b110a4f096ed814db56dec9655bbd5ad1c815d57acc26ac"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/unit-current.xml",
+      "bytes": 11394,
+      "sha256": "ab47ced5fce60569ca64884422663396fa4575f54d87cc6f933e655deae46698"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/unit-final.log.gz",
+      "bytes": 52,
+      "sha256": "2706106ee8d9433b1ab750f76fd2e3c706113d0b157e2d5e4a41f80db65e6c12"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/unit-final.xml",
+      "bytes": 7654,
+      "sha256": "86cc4ad154011cb435bec22dc581da7d300818d9bc3bea07c1f66944f456b8c3"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/unit-initial.log.gz",
+      "bytes": 610,
+      "sha256": "711a81b0d3faec077e75ead1e3637a75a1c1c2310d80aa67851cecb839a60504"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/unit-initial.xml",
+      "bytes": 11181,
+      "sha256": "4b099b02ec07b46cb3fa78730bf8fb5036e2e1f6be0b2dc13cc05cd931ab1767"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/unit-v2.log.gz",
+      "bytes": 61,
+      "sha256": "dd6e07be2c20acfd986f23eaef3c3f88ac22e20fbd582bbfc98bd81a0ee55626"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/unit-v2.xml",
+      "bytes": 11241,
+      "sha256": "faf75aa47926420a4f527ac6e4a8ec29cadff2ace8e80a3d28043ea726675766"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/validation-result.json",
+      "bytes": 23385,
+      "sha256": "72db79a2e16de25e313737c332d138079ed5c2d750609aed796a76d0705072d1"
+    },
+    {
+      "path": "reports/baseline/t05-completion-evidence-2026-10-11/validation.md",
+      "bytes": 8220,
+      "sha256": "b858745ccf506cb1cd14f30c725ccaf3c9d7daaf6d5d30a5aa5bca658bdb6c38"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/activate_evidence.py",
+      "bytes": 7139,
+      "sha256": "1f3ea007845740c6be61e77479a917ad8fcc1465b65005bd7f2b7354bbbab2a0"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/activation-events.jsonl",
+      "bytes": 12704,
+      "sha256": "e4602e4ebc461e28b9ac55f8060529b7830a577d4de85da12bbfe5cac8e7a94f"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/activation-recovery-events.jsonl",
+      "bytes": 26139,
+      "sha256": "2a34f2fd7ecf03b8103c36a1f1f78481aa678371fdbdfb250dd9fced5160de20"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/activation-recovery-result.json",
+      "bytes": 17487,
+      "sha256": "0f59933ea322be55a1cd44e68bd86c867d75e040b3a03cb9d02ce0e08219cbb3"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/activation-result.json",
+      "bytes": 7449,
+      "sha256": "851008044a51d3597fbaad967fdafaee13411fe6f9088408a612389bf556dd09"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/activation_recovery.py",
+      "bytes": 7853,
+      "sha256": "4019db79e0c6adc32ba533e839fc68b1d4e3bdeb3d432ac6456fc8feab63f1cf"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/application.md",
+      "bytes": 6683,
+      "sha256": "e0814981805130517a82c92d426235451ea9da11da86a5159f6441b4d04c21b1"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/authorization.md",
+      "bytes": 1862,
+      "sha256": "7d292e26d9d38dfde2f8b96f75d105ecd775eeb7d53a19ced3c82cbca78471c3"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/dependency_reader.py",
+      "bytes": 741,
+      "sha256": "9c25096f07e55b30ecd430f4d433a841e5fd89c81dd5f9e0395826cc0e26f8cf"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/deploy_common.py",
+      "bytes": 6892,
+      "sha256": "37895f44b00d4ccb5bc130f5e1fc71bc5f5b3d7229697255676438fbf1c06661"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/deployment-receipt.json",
+      "bytes": 2260,
+      "sha256": "6e3975d91765ad82d23f05f36cae25e42ef2d237244b58c026d1213c939055db"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/deployment-validation.json",
+      "bytes": 163,
+      "sha256": "2a87b1b82d3ea5865550c170288a6ef8ca1e9dee152865377734ea7b2c7e3afd"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/failed-activation-readback.json",
+      "bytes": 9095,
+      "sha256": "5b05fefddc85253aea4c4fc9c302abdd5de775151407543884ff237134aa4cc0"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/host-before.json",
+      "bytes": 39867,
+      "sha256": "6db4bde7ee16c40be20a53756bc1bc3038345d2c7e5d707cb3234d0068ba1f36"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/inspect_installed.py",
+      "bytes": 1999,
+      "sha256": "ed9dc2b209323211a675ced5879c1b518f65e5445c5ebef3203d9c6a7f41cca2"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/install-inputs.json",
+      "bytes": 6182,
+      "sha256": "43a8c8380b82953f1ec6775cef9323036d02efe611dea9e49641ce97dd64d271"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/install_evidence.py",
+      "bytes": 14811,
+      "sha256": "e3b4f5ae4fc6ddef8758d5b8fe32990cadc226bb41ba5e5aa85ca921622ad4b6"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/postactivation-readback.json",
+      "bytes": 12310,
+      "sha256": "c7901ade8d9e079a842878e3d62383c08308527b6881725944e5be9ed457fedf"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/postactivation-registry.json",
+      "bytes": 6237,
+      "sha256": "4a2559c765d02da5353b2b85b0d86b72fc844d5eea2a550f26193b47ed31f4d1"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/preinstall-validation.json",
+      "bytes": 910,
+      "sha256": "2e4131a4ee21d45ccd23aca0e2d53344dca5053f6684ce981d37538d7bbe825a"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/recovery-validation.json",
+      "bytes": 499,
+      "sha256": "e7ffc7d9bbaa40e7c520d413b26b57c3409ea2ef04d291049a9da976dfa1fee7"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/recovery.md",
+      "bytes": 4564,
+      "sha256": "2f161436777b1e4e74371ef1b63ee0b675cfb2a4ea6a8718ac45ddaebbc81e38"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/rollback-readiness.json",
+      "bytes": 687,
+      "sha256": "acf48669f2273815d95863d7f220496570395ef02490f3d3edd09433c5c3737e"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/rollback_evidence.py",
+      "bytes": 2817,
+      "sha256": "271ddd34cc4a11d99e80eec539e6e1739a6d3b3542105dacfc752f2d8ee2a04e"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/root-receipts/commands.jsonl",
+      "bytes": 59100,
+      "sha256": "b7e204abf27f328a7a799092b96a248a306afcd223b4ccf50c47bf2836a08625"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/root-receipts/installed-imports.json",
+      "bytes": 927,
+      "sha256": "b4c17b89eda66e36fc853ac9cffb100dcfa9fb3160bc2788660b47ac7d42f0a5"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/root-receipts/inventory.json",
+      "bytes": 9188,
+      "sha256": "035453361514c4d46202917c2f033dd6acaf2e94809201c55c351033bc060630"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/root-receipts/registered-readback.json",
+      "bytes": 6237,
+      "sha256": "4a2559c765d02da5353b2b85b0d86b72fc844d5eea2a550f26193b47ed31f4d1"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/root-receipts/registration-approval.json",
+      "bytes": 2799,
+      "sha256": "bc2bd55a2fb3f33e3a61ef00d3c48c28486dbc9423088ccbcc7932cf5da66bab"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/root-receipts/registration-result.json",
+      "bytes": 1440,
+      "sha256": "5d53a4346b79696d719b7ea50a7b24b818317a0c3d9f3971aea17b467cb19a5c"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/root-receipts/result.json",
+      "bytes": 3827,
+      "sha256": "ac90cb009df0f990a749249796dad813c525b06af456bf90547d4c9385cf0638"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/root-receipts/sha256.json",
+      "bytes": 749,
+      "sha256": "2b29e2c90b45e296bf6442a9d67ea33fcf33f5f8bce13d2f74b4ef2b40ef8da3"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/root-receipts/source-imports.json",
+      "bytes": 894,
+      "sha256": "b06ec8a1ef389807611e67163ee201c0afccccd6044b3735b2db97a45d7b892e"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/status.md",
+      "bytes": 6132,
+      "sha256": "debc16b5b13116eac386e552fc50b8814d8ece2bae5eb1d6929ad501a62764dd"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/test_deployment.py",
+      "bytes": 5367,
+      "sha256": "bac5a763caeff246a2dcdfe229aa6fd479754fcf324a762e56a7a41cde6ed5ff"
+    },
+    {
+      "path": "reports/baseline/t05-evidence-deploy-2026-10-11/test_recovery.py",
+      "bytes": 3715,
+      "sha256": "e9c5baba41ee8a9a2ce0f8551bbc11b682a4fceb7bde144de472c1935efd8ca5"
+    },
+    {
+      "path": "reports/baseline/t13-operating-review-2026-10-11/completion-plan.md",
+      "bytes": 6416,
+      "sha256": "666be644451c2c2656754c30648f80cbfcb5b05e0cc294d64812ac63b036f3a2"
+    },
+    {
+      "path": "reports/baseline/t13-operating-review-2026-10-11/completion-targets.json",
+      "bytes": 125768,
+      "sha256": "1a70b7735a6ac43e773ce044b6657c4c0145d8c9b7edcd4c130c50ddd652f31b"
+    },
+    {
+      "path": "reports/baseline/t13-operating-review-2026-10-11/host.json",
+      "bytes": 12398,
+      "sha256": "21deb142834a14a1397f5543ace51e468440889d4645a48c78b4cb2a733e340d"
+    },
+    {
+      "path": "reports/baseline/t13-operating-review-2026-10-11/inspection.json",
+      "bytes": 153980,
+      "sha256": "ab697cb1040e72ace7f1f8218b4d93f4e38fe392b6469a0561dd0f1d47beee44"
+    },
+    {
+      "path": "reports/baseline/t13-operating-review-2026-10-11/journal.jsonl.gz",
+      "bytes": 2071664,
+      "sha256": "a29c7ed2d8237d040bbfe80ebe9a1abe826916e955cb0e54ce271349dbc9565e"
+    },
+    {
+      "path": "reports/baseline/t13-operating-review-2026-10-11/ledger-records.json.gz",
+      "bytes": 123819,
+      "sha256": "2606cb17cfa3ad4e28def5dc4a806c224132a627151cf6aeb82412f2fdce48ae"
+    },
+    {
+      "path": "reports/baseline/t13-operating-review-2026-10-11/preservation.json",
+      "bytes": 976,
+      "sha256": "f8acc87f907b33c68bd51eb1defdb487e32d880c071c5215ce37410267266e8b"
+    },
+    {
+      "path": "reports/baseline/t13-operating-review-2026-10-11/review.py",
+      "bytes": 14265,
+      "sha256": "e1d7f666eb9ee517ca4db5fd0f39a7038e5128d4d522d9010d939d89623f97ae"
+    },
+    {
+      "path": "reports/baseline/t13-operating-review-2026-10-11/summary.md",
+      "bytes": 8953,
+      "sha256": "515bee080395dfdb9da81f2056158833b882a2eb073824c99997234c2b8804d9"
+    },
+    {
+      "path": "reports/baseline/t13-operating-review-2026-10-11/verification.json",
+      "bytes": 2511,
+      "sha256": "d58eb5d7eabdd601e47c2ff3bb1a4d5469f2bf5789595b6d51c685be72a0fe05"
+    }
+  ]
+}

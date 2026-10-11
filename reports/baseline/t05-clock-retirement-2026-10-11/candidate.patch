@@ -1,0 +1,1854 @@
+--- a/scripts/checkpoint_code.py
++++ b/scripts/checkpoint_code.py
+@@ -21,6 +21,10 @@
+     "scripts/checkpoint_schedule.py",
+     "scripts/run_checkpoint_schedule.py",
+     "scripts/restic_schedule.py",
++    "scripts/clock_retirement.py",
++    "scripts/retirement_clock.py",
++    "scripts/run_clock_retirement.py",
++    "scripts/render_retirement_units.py",
+     "integrations/systemd/marketdata-checkpoint-retirement.service",
+     "integrations/systemd/marketdata-checkpoint-retirement.timer",
+ )
+--- /dev/null
++++ b/scripts/clock_retirement.py
+@@ -0,0 +1,703 @@
++"""T05: clock-bounded checkpoint retirement in a system service.
++
++preview cannot delete; apply-plan needs a separate exact-plan approval; run
++needs a new recurring system-timer grant. Old grants never authorize this code.
++"""
++
++import argparse
++import json
++import os
++import re
++import sys
++import tomllib
++import uuid
++from contextlib import contextmanager
++from dataclasses import dataclass
++from pathlib import Path
++
++from marketdata.checkpoint_locks import CheckpointBusy, checkpoint_locks, plain_path
++from marketdata.domain import WriterBusy, json_bytes, now, sha256
++
++from scripts import archive_backups as archive
++from scripts import checkpoint_schedule as legacy
++from scripts import restic_schedule
++from scripts import retire_checkpoints as retirement
++from scripts import retirement_clock as clock
++from scripts.restic_trial import require
++
++PURPOSE = "system-clock-bounded-checkpoint-retirement-v1"
++UNITS = (
++    "marketdata-checkpoint-retirement.service",
++    "marketdata-checkpoint-retirement.timer",
++    "marketdata-checkpoint-retirement-preview.service",
++    "marketdata-checkpoint-retirement-apply@.service",
++)
++
++
++@dataclass(frozen=True)
++class Settings:
++    retention_policy: Path
++    authorization_file: Path
++    manual_authorization_file: Path
++    clock_binding_file: Path
++    state_root: Path
++    unit_directory: Path
++
++    @classmethod
++    def load(cls, path):
++        values = tomllib.loads(plain_path(path).read_text())
++        require(set(values) == set(cls.__annotations__), "Explicit T05 settings required")
++        for key, value in values.items():
++            require(isinstance(value, str) and Path(value).is_absolute(), f"Absolute {key}")
++            require(
++                not any(c in value for c in "\n\r%") and ".." not in Path(value).parts,
++                "Unsafe path",
++            )
++            values[key] = plain_path(value)
++        require(len(set(values.values())) == len(values), "Separate T05 paths required")
++        return cls(**values)
++
++
++def scope(settings, policy, profile):
++    value = legacy.scope(settings, policy, profile)
++    binding = json.loads(plain_path(settings.clock_binding_file).read_bytes())
++    require(
++        set(binding) == {"bootstrap_profile", "bootstrap_profile_sha256"}, "Clock binding fields"
++    )
++    require(re.fullmatch(archive.HEX, binding["bootstrap_profile_sha256"]), "Clock binding hash")
++    require(Path(binding["bootstrap_profile"]).is_absolute(), "Absolute bootstrap profile")
++    value.update(
++        purpose=PURPOSE,
++        clock_policy=clock.POLICY,
++        clock_binding=binding,
++        system_units={
++            name: sha256(plain_path(settings.unit_directory / name).read_bytes()) for name in UNITS
++        },
++    )
++    value["schedule"]["manager"] = "system"
++    value["schedule"]["manual_service"] = "marketdata-checkpoint-retirement-apply@PLAN_ID.service"
++    value["allowed_action"] = "clock_bounded_existing_retirement_only"
++    for protected in (profile.backup_dir, profile.restic_repository, profile.restore_work_root):
++        require(
++            not retirement.overlap(settings.state_root, protected),
++            "T05 state overlaps protected data",
++        )
++    require(settings.state_root != profile.state_root, "Separate T05 control state")
++    return value
++
++
++def proposal(settings):
++    policy = retirement.Policy.load(settings.retention_policy)
++    p = archive.Profile.load(policy.archive_profile)
++    boundary = scope(settings, policy, p)
++    return {
++        "schema": 1,
++        "purpose": PURPOSE,
++        "grant_kind": "recurring",
++        "action": "run",
++        "enabled": False,
++        "approval_reference": None,
++        "approved_at": None,
++        "scope": boundary,
++        "scope_id": sha256(json_bytes(boundary)),
++    }
++
++
++def manual_proposal(settings, plan_id, *, resume=False):
++    """Produce a disabled, exact-plan request; never write or grant authority."""
++    require(re.fullmatch(archive.HEX, plan_id or ""), "Full plan ID required")
++    policy = retirement.Policy.load(settings.retention_policy)
++    agent = retirement.Retirement(policy, settings.state_root / "proposal-commands")
++    agent.root = settings.state_root / "retention"
++    plan = agent.load_plan(plan_id)
++    agent.check_code(plan)
++    require(plan.get("clock_safety", {}).get("policy") == clock.POLICY, "T05 plan required")
++    result = proposal(settings)
++    require(plan.get("automation", {}).get("scope_id") == result["scope_id"], "Plan scope differs")
++    result.update(
++        grant_kind="exact_plan",
++        action="apply-plan",
++        plan_id=plan_id,
++        approved_boot_id=clock.boot_id(),
++        resume_interrupted=resume,
++    )
++    return result
++
++
++def authorize(settings, policy, profile, action, plan_id=None):
++    expected = scope(settings, policy, profile)
++    if (
++        retirement.Policy.load(settings.retention_policy) != policy
++        or archive.Profile.load(policy.archive_profile) != profile
++    ):
++        raise legacy.Deferred("configuration_changed", "Configuration changed", attention=True)
++    path = (
++        settings.manual_authorization_file
++        if action == "apply-plan"
++        else settings.authorization_file
++    )
++    if not plain_path(path).is_file():
++        raise legacy.Deferred("authorization_missing", "New T05 approval required", attention=True)
++    if action != "preview":
++        # Operator approvals are root-owned, read-only to the service account.
++        clock.trusted(path)
++        for config in (
++            settings.retention_policy,
++            policy.archive_profile,
++            settings.clock_binding_file,
++        ):
++            # Archive profile contains only paths and IDs, never the password.
++            # Its existing user ownership is preserved and bound by fingerprint.
++            if config != policy.archive_profile:
++                clock.trusted(config)
++        clock.trusted(settings.unit_directory)
++        clock.trusted(legacy.checkpoint_code.CODE_ROOT)
++    grant = json.loads(path.read_bytes())
++    expected_kind = "exact_plan" if action == "apply-plan" else "recurring"
++    expected_action = "apply-plan" if action == "apply-plan" else "run"
++    if (
++        grant.get("schema") != 1
++        or grant.get("purpose") != PURPOSE
++        or grant.get("grant_kind") != expected_kind
++        or grant.get("action") != expected_action
++        or grant.get("scope") != expected
++        or grant.get("scope_id") != sha256(json_bytes(expected))
++    ):
++        raise legacy.Deferred(
++            "authorization_scope_changed", "Review code/clock/system-unit scope", attention=True
++        )
++    require(type(grant.get("enabled")) is bool, "Explicit approval enabled flag")
++    if action != "preview" and not grant["enabled"]:
++        raise legacy.Deferred(
++            "authorization_pending", "Deletion has not been approved", attention=True
++        )
++    if grant["enabled"]:
++        require(bool(grant.get("approval_reference")), "Approval reference required")
++        require(archive.timestamp(grant["approved_at"]) <= now(), "Future approval")
++    if action == "apply-plan":
++        require(
++            grant.get("plan_id") == plan_id and grant.get("action") == "apply-plan",
++            "Exact manual plan approval required",
++        )
++        require(
++            grant.get("approved_boot_id") == clock.boot_id(), "Manual approval is for another boot"
++        )
++        require(type(grant.get("resume_interrupted")) is bool, "Explicit manual recovery decision")
++    return {
++        "scope_id": grant["scope_id"],
++        "enabled": grant["enabled"],
++        "approval_reference": grant.get("approval_reference"),
++        "approved_at": grant.get("approved_at"),
++        "plan_id": grant.get("plan_id"),
++        "grant_sha256": sha256(path.read_bytes()),
++        "resume_interrupted": grant.get("resume_interrupted", False),
++    }
++
++
++def immutable(path, value):
++    retirement.durable_directory(path.parent)
++    with plain_path(path).open("xb") as out:
++        out.write(json_bytes(value))
++        out.flush()
++        os.fsync(out.fileno())
++    retirement.sync_parent(path)
++
++
++def protected_by_time(lower_utc_ns, completion_upper_utc_ns, hours):
++    return lower_utc_ns - completion_upper_utc_ns < hours * 3600 * 10**9
++
++
++class Witnesses:
++    def __init__(self, root, identity):
++        self.root, self.identity = Path(root), identity
++
++    def inspect(self, entry, snapshot_id):
++        results = []
++        for path in sorted((self.root / entry["backup_id"]).glob("*.json")):
++            raw = plain_path(path).read_bytes()
++            value = json.loads(raw)
++            require(sha256(raw) == path.stem, "Completion witness file hash differs")
++            require(
++                value["schema"] == 1 and value["kind"] == "verified_completion_observed",
++                "Witness kind differs",
++            )
++            require(
++                value["identity"] == self.identity and value["entry"] == entry,
++                "Witness checkpoint binding differs",
++            )
++            require(value["snapshot_id"] == snapshot_id, "Witness snapshot differs")
++            clock.validate_observation(value["observation"])
++            require(
++                value["completion_upper_utc_ns"] == value["observation"]["upper_utc_ns"],
++                "Completion upper bound differs",
++            )
++            results.append({"file": str(path), "sha256": path.stem, **value})
++        return min(results, key=lambda r: r["completion_upper_utc_ns"]) if results else None
++
++    def observe(self, entry, snapshot_id, observation, code_id):
++        clock.validate_observation(observation)
++        value = {
++            "schema": 1,
++            "kind": "verified_completion_observed",
++            "identity": self.identity,
++            "entry": entry,
++            "snapshot_id": snapshot_id,
++            "code_id": code_id,
++            "original_completed_at": entry["completed_at"],
++            "completion_upper_utc_ns": observation["upper_utc_ns"],
++            "observation": observation,
++            "meaning": "completion occurred no later than this post-verification observation; original timestamp accuracy unknown",
++        }
++        digest = sha256(json_bytes(value))
++        path = self.root / entry["backup_id"] / f"{digest}.json"
++        immutable(path, value)
++        return {"file": str(path), "sha256": digest, **value}
++
++
++class ClockRetirement(retirement.Retirement):
++    def __init__(self, policy, reports, settings, action, day, report, guard, manual_plan=None):
++        super().__init__(policy, reports)
++        self.history_root = self.root
++        self.root = settings.state_root / "retention"
++        require(
++            not retirement.overlap(self.root, self.history_root), "Separate old and new journals"
++        )
++        self.settings, self.action, self.day, self.report = settings, action, day, report
++        self.guard, self.manual_plan = guard, manual_plan
++        self.witnesses = Witnesses(settings.state_root / "completion-witnesses", self.p.identity)
++        self.decision = None
++
++    def load_plan(self, pid, *, current_config=True):
++        if not current_config and not (self.root / "plans" / f"{pid}.json").exists():
++            original = self.root
++            try:
++                self.root = self.history_root
++                return super().load_plan(pid, current_config=False)
++            finally:
++                self.root = original
++        return super().load_plan(pid, current_config=current_config)
++
++    def journals(self):
++        new = super().journals()
++        original = self.root
++        try:
++            self.root = self.history_root
++            old = super().journals()
++        finally:
++            self.root = original
++        require(
++            not ({j["plan_id"] for j in new} & {j["plan_id"] for j in old}),
++            "Duplicate journal identity",
++        )
++        return old + new
++
++    @contextmanager
++    def locks(self):
++        with super().locks():
++            self.report["authorization"] = authorize(
++                self.settings, self.policy, self.p, self.action, self.manual_plan
++            )
++            self.guard.check(fresh=True)
++            if now().astimezone(legacy.ZONE).date().isoformat() != self.day:
++                raise legacy.Deferred("date_changed", "Re-evaluate on a new day")
++            pending = [j["plan_id"] for j in self.journals() if j["status"] != "complete"]
++            # Interrupted execution is never automatically resumed, including
++            # an invocation which died before creating the original journal.
++            recovery = (
++                self.action == "apply-plan" and self.report["authorization"]["resume_interrupted"]
++            )
++            if pending and not (recovery and pending == [self.manual_plan]):
++                raise legacy.Deferred(
++                    "unfinished_retirement",
++                    "Inspect prior plan; explicit recovery required",
++                    attention=True,
++                )
++            complete = {j["plan_id"] for j in self.journals() if j["status"] == "complete"}
++            for path in sorted((self.settings.state_root / "runs").glob("*/run.json")):
++                prior = json.loads(plain_path(path).read_bytes())
++                if (
++                    prior["run_id"] != self.report["run_id"]
++                    and prior.get("action") in {"run", "apply-plan"}
++                    and prior.get("deletion_attempted")
++                    and prior.get("plan_id") not in complete
++                    and not (recovery and prior.get("plan_id") == self.manual_plan)
++                ):
++                    raise legacy.Deferred(
++                        "unfinished_retirement", "Prior deletion needs review", attention=True
++                    )
++            # Preserve the old pre-journal unresolved-run guard as well.
++            for path in sorted((self.p.reports_root / "checkpoint-scheduled").glob("*/run.json")):
++                prior = json.loads(plain_path(path).read_bytes())
++                if (
++                    prior.get("action") == "run"
++                    and prior.get("state") == "running"
++                    and prior.get("plan_id")
++                    and prior["plan_id"] not in complete
++                ):
++                    raise legacy.Deferred(
++                        "unfinished_retirement", "Prior automatic run needs review", attention=True
++                    )
++            state = self.a.state
++            if state.get("active_operation") or not (
++                state.get("last_operation") or {"ok": True}
++            ).get("ok"):
++                raise legacy.Deferred(
++                    "archive_unfinished_or_failed", "Archive operation needs review", attention=True
++                )
++            entries, incomplete = archive.discover(self.p)
++            if incomplete:
++                raise legacy.Deferred(
++                    "checkpoint_incomplete", "Incomplete checkpoint", attention=True
++                )
++            records = state["checkpoints"]
++            if any(r.get("error") for r in records.values()):
++                raise legacy.Deferred(
++                    "checkpoint_error", "Unresolved archive error", attention=True
++                )
++            if any(
++                not records.get(e["backup_id"], {}).get("stored")
++                or not records[e["backup_id"]].get("input_verified_at")
++                for e in entries
++            ):
++                raise legacy.Deferred("unarchived_checkpoint", "Verified archive pending")
++            self.report["daily_evidence"] = legacy.daily_evidence(self.p, state, self.day)
++            yield
++
++    def audit(self, *, resume=None):
++        result = super().audit(resume=resume)
++        original_keep = {e["backup_id"]: e for e in result["keep"]}
++        entries = result["keep"] + result["candidates"]
++        proofs = {}
++        with checkpoint_locks([e["path"] for e in entries]):
++            for e in entries:
++                entry = retirement.source_entry(e)
++                sid = self.a.state["checkpoints"][e["backup_id"]]["stored"]["snapshot_id"]
++                witness = self.witnesses.inspect(entry, sid)
++                if witness is None:
++                    # Existing manifest/archive/full-check/recovery binding was
++                    # audited above; confirm the same completed manifest under
++                    # its reader lock BEFORE obtaining an upper clock bound.
++                    require(
++                        archive.checkpoint(Path(e["path"]), self.p) == entry,
++                        "Completion manifest changed",
++                    )
++                    observation = self.guard.check(fresh=True)
++                    witness = self.witnesses.observe(
++                        entry, sid, observation, legacy.checkpoint_code.current_code()["code_id"]
++                    )
++                proofs[e["backup_id"]] = {
++                    "file": witness["file"],
++                    "sha256": witness["sha256"],
++                    "completion_upper_utc_ns": witness["completion_upper_utc_ns"],
++                    "basis": witness["kind"],
++                }
++        current = self.guard.check(fresh=True)
++        keep, candidates = [], []
++        for e in entries:
++            bid = e["backup_id"]
++            elapsed_ns = current["lower_utc_ns"] - proofs[bid]["completion_upper_utc_ns"]
++            seconds = elapsed_ns / 1e9
++            proofs[bid]["minimum_elapsed_seconds"] = seconds
++            reasons = list(e.get("protection", []))
++            if protected_by_time(
++                current["lower_utc_ns"],
++                proofs[bid]["completion_upper_utc_ns"],
++                self.policy.min_age_hours,
++            ):
++                reasons.append("completion_upper_bound_less_than_72h")
++            if bid in original_keep or reasons:
++                keep.append(
++                    {
++                        **e,
++                        "protection": reasons,
++                        "snapshot_id": self.a.state["checkpoints"][bid]["stored"]["snapshot_id"],
++                    }
++                )
++            else:
++                candidates.append(e)
++        # Match original deterministic descending checkpoint/ID ordering.
++        keep.sort(key=lambda e: (e["checkpoint_at"], e["backup_id"]), reverse=True)
++        result.update(keep=keep, candidates=candidates)
++        self.decision = {
++            "policy": clock.POLICY,
++            "observation": current,
++            "completion_bounds": proofs,
++        }
++        return result
++
++    def plan_details(self, audit):
++        self.guard.check()
++        return {"clock_safety": self.decision, "run_id": self.report["run_id"]}
++
++    def check_code(self, plan):
++        super().check_code(plan)
++        require(
++            plan.get("clock_safety", {}).get("policy") == clock.POLICY,
++            "T05 clock evidence required",
++        )
++        self.report["authorization"] = authorize(
++            self.settings, self.policy, self.p, self.action, self.manual_plan
++        )
++        recovery = (
++            self.action == "apply-plan" and self.report["authorization"]["resume_interrupted"]
++        )
++        self.guard.check(anchor=None if recovery else plan["clock_safety"]["observation"])
++        if self.action == "apply-plan":
++            require(plan["plan_id"] == self.manual_plan, "Manual plan changed")
++        else:
++            require(plan.get("run_id") == self.report["run_id"], "Plan belongs to another run")
++        for bid, proof in plan["clock_safety"]["completion_bounds"].items():
++            raw = plain_path(proof["file"]).read_bytes()
++            require(sha256(raw) == proof["sha256"], "Approved completion evidence changed")
++            value = json.loads(raw)
++            require(value["entry"]["backup_id"] == bid, "Completion identity changed")
++            require(
++                value["completion_upper_utc_ns"] == proof["completion_upper_utc_ns"],
++                "Completion bound changed",
++            )
++
++    def plan(self):
++        return super().plan(
++            automation={
++                "run_id": self.report["run_id"],
++                "scope_id": self.report["authorization"]["scope_id"],
++            }
++        )
++
++    def apply(self, pid, *, hook=lambda phase, item: None):
++        plan = self.load_plan(pid)
++
++        def guarded(phase, item):
++            recovery = (
++                self.action == "apply-plan" and self.report["authorization"]["resume_interrupted"]
++            )
++            current = self.guard.check(
++                anchor=None if recovery else plan["clock_safety"]["observation"]
++            )
++            proof = plan["clock_safety"]["completion_bounds"][item["entry"]["backup_id"]]
++            if protected_by_time(
++                current["lower_utc_ns"], proof["completion_upper_utc_ns"], self.policy.min_age_hours
++            ):
++                raise clock.ClockHold("Protection period is not proven at mutation")
++            hook(phase, item)
++
++        return super().apply(pid, hook=guarded)
++
++
++def system_context(service, timer):
++    return restic_schedule.service_context(service, timer, manager="system")
++
++
++def installed_service(settings, service, action):
++    """Bind the running system unit to the reviewed root-owned fragment."""
++    raw = clock.command(
++        [
++            "systemctl",
++            "--system",
++            "show",
++            service,
++            "--property=FragmentPath,DropInPaths,NeedDaemonReload",
++        ]
++    )
++    fields = {}
++    for line in raw.splitlines():
++        key, value = line.split("=", 1)
++        require(key not in fields, "Duplicate unit property")
++        fields[key] = value
++    require(
++        fields.get("NeedDaemonReload") == "no" and fields.get("DropInPaths") == "",
++        "Unreviewed effective system unit",
++    )
++    actual = clock.trusted(fields["FragmentPath"])
++    name = UNITS[3] if action == "apply-plan" else UNITS[0]
++    require(
++        actual.read_bytes() == (settings.unit_directory / name).read_bytes(),
++        "Installed system unit differs from approved unit",
++    )
++
++
++def execute(settings, action, plan_id=None, *, host_factory=clock.Host):
++    require(action in {"preview", "run", "apply-plan"}, "Unknown T05 action")
++    require(
++        (action == "apply-plan") == (plan_id is not None), "Only manual application takes a plan"
++    )
++    if plan_id is not None:
++        require(re.fullmatch(archive.HEX, plan_id), "Full plan ID required")
++    rid = uuid.uuid4().hex
++    out = settings.state_root / "runs" / rid
++    retirement.durable_directory(out)
++    path = out / "run.json"
++    report = {
++        "schema": 1,
++        "run_id": rid,
++        "action": action,
++        "started_at": now(),
++        "state": "running",
++        "phase": "preflight",
++        "ok": False,
++        "plan_id": plan_id,
++        "selection_assessed": False,
++        "deletion_attempted": False,
++        "deleted_checkpoints": 0,
++        "completed_before_run": 0,
++        "deleted_this_run": 0,
++        "already_complete": False,
++        "needs_attention": False,
++        "report": str(path),
++        "next_evaluation": "next calendar day; no automatic resume",
++    }
++    retirement.persist(path, report)
++    guard, agent = None, None
++    try:
++        policy = retirement.Policy.load(settings.retention_policy)
++        profile = archive.Profile.load(policy.archive_profile)
++        with legacy.runner_lock(settings.state_root / "runner"):
++            report["authorization"] = authorize(settings, policy, profile, action, plan_id)
++            if action != "preview":
++                service = (
++                    legacy.SERVICE
++                    if action == "run"
++                    else f"marketdata-checkpoint-retirement-apply@{plan_id}.service"
++                )
++                context = system_context(service, legacy.TIMER)
++                report["context"] = context
++                if not context.get("service_verified"):
++                    raise legacy.Deferred(
++                        "unconfirmed_service", "Verified system service required", attention=True
++                    )
++                installed_service(settings, service, action)
++                if action == "run" and not context.get("scheduled"):
++                    raise legacy.Deferred(
++                        "unconfirmed_timer", "New grant requires system timer", attention=True
++                    )
++                if action == "apply-plan" and context.get("scheduled"):
++                    raise legacy.Deferred(
++                        "manual_trigger_required",
++                        "Manual approval is not recurring authority",
++                        attention=True,
++                    )
++                if action == "apply-plan" and (
++                    context.get("classification") != "manual_service_or_unknown"
++                    or context.get("start_job", {}).get("activation_details") != {}
++                    or context.get("provenance_error")
++                ):
++                    raise legacy.Deferred(
++                        "manual_trigger_unconfirmed",
++                        "Cannot prove manual start job",
++                        attention=True,
++                    )
++            binding = json.loads(settings.clock_binding_file.read_bytes())
++            with host_factory(binding).lock() as host:
++                guard = clock.Guard(host.query, out / "clock.jsonl").start()
++                current = guard.check()
++                day = now().astimezone(legacy.ZONE).date().isoformat()
++                report.update(date_kst=day, initial_clock=current)
++                if action == "run":
++                    trigger = archive.timestamp(context["trigger_at"]).astimezone(legacy.ZONE)
++                    require(
++                        trigger.date().isoformat() == day
++                        and (trigger.hour, trigger.minute) == (15, 40),
++                        "Expected today's 15:40 trigger",
++                    )
++                    require(archive.timestamp(context["trigger_at"]) <= now(), "Future trigger")
++                agent = ClockRetirement(
++                    policy, out / "commands", settings, action, day, report, guard, plan_id
++                )
++                plan = agent.load_plan(plan_id) if action == "apply-plan" else agent.plan()
++                report.update(
++                    plan_id=plan["plan_id"], plan=plan, selection_assessed=True, phase="planned"
++                )
++                retirement.persist(path, report)
++                if not plan["candidates"]:
++                    report.update(state="no_candidates", ok=True)
++                elif action == "preview":
++                    report.update(state="preview_ready", ok=True)
++                else:
++                    previous = agent.root / "journals" / f"{plan['plan_id']}.json"
++                    if previous.exists():
++                        report["completed_before_run"] = sum(
++                            item["phase"] == "complete"
++                            for item in json.loads(previous.read_bytes())["items"].values()
++                        )
++                    report.update(phase="applying", deletion_attempted=True)
++                    retirement.persist(path, report)
++                    result = agent.apply(plan["plan_id"])
++                    report.update(
++                        state="complete",
++                        ok=True,
++                        result=result,
++                        already_complete=result.get("already_complete", False),
++                        deleted_checkpoints=len(result["journal"]["items"]),
++                    )
++                guard.check()
++    except (clock.ClockHold, legacy.Deferred, WriterBusy, archive.Busy, CheckpointBusy) as exc:
++        report.update(
++            state="deferred",
++            ok=False,
++            reason=getattr(exc, "reason", type(exc).__name__),
++            detail=str(exc),
++            needs_attention=getattr(exc, "attention", False),
++        )
++    except BaseException as exc:
++        report.update(
++            state="failed", ok=False, needs_attention=True, error=f"{type(exc).__name__}: {exc}"
++        )
++    finally:
++        if guard:
++            try:
++                guard.close()
++            except Exception as exc:
++                report.update(state="failed", ok=False, needs_attention=True, error=str(exc))
++        if agent and report["plan_id"]:
++            journal = agent.root / "journals" / f"{report['plan_id']}.json"
++            if journal.exists():
++                value = json.loads(journal.read_bytes())
++                report["retirement_journal"] = str(journal)
++                report["deleted_checkpoints"] = sum(
++                    i["phase"] == "complete" for i in value["items"].values()
++                )
++                report["unfinished_retirement"] = value["status"] != "complete"
++                report["deleted_this_run"] = max(
++                    0, report["deleted_checkpoints"] - report["completed_before_run"]
++                )
++                if report["unfinished_retirement"]:
++                    report.update(state="failed", ok=False, needs_attention=True)
++        report.update(
++            finished_at=now(), phase="finished", exit_code=legacy.EXIT_CODES[report["state"]]
++        )
++        retirement.persist(path, report)
++    return report
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--settings", type=Path, required=True)
++    parser.add_argument(
++        "action", choices=("propose", "propose-manual", "preview", "apply-plan", "run")
++    )
++    parser.add_argument("--plan-id")
++    parser.add_argument("--resume-interrupted", action="store_true")
++    args = parser.parse_args()
++    try:
++        settings = Settings.load(args.settings)
++        require(
++            not args.resume_interrupted or args.action == "propose-manual",
++            "Recovery is proposed and separately approved, never enabled by a run flag",
++        )
++        if args.action in {"apply-plan", "run"}:
++            clock.trusted(args.settings)
++        if args.action == "propose":
++            result = proposal(settings)
++        elif args.action == "propose-manual":
++            result = manual_proposal(settings, args.plan_id, resume=args.resume_interrupted)
++        else:
++            result = execute(settings, args.action, args.plan_id)
++        print(json_bytes(result).decode())
++        return result.get("exit_code", 0)
++    except Exception as exc:
++        print(json_bytes({"state": "failed", "error": f"{type(exc).__name__}: {exc}"}).decode())
++        return 1
++
++
++if __name__ == "__main__":
++    sys.exit(main())
+--- /dev/null
++++ b/scripts/render_retirement_units.py
+@@ -0,0 +1,101 @@
++"""Render only; never install, enable, unmask, start or stop a unit."""
++
++import argparse
++import json
++from pathlib import Path
++
++
++def render(release, settings, state, profile):
++    source = profile["store_root"]
++    archive_lock = f"{profile['state_root']}/{profile['expected_repository_id']}/archive.lock"
++    rw = [
++        str(state),
++        archive_lock,
++        f"{source}/state/maintenance.lock",
++        profile["cache_root"],
++        f"{profile['restic_repository']}/locks",
++    ]
++    base = f"""[Unit]
++Description=Clock-bounded working checkpoint retirement
++After=chrony.service marketdata-clock-bootstrap.service
++RequiresMountsFor={source} {profile["backup_mount"]}
++
++[Service]
++Type=oneshot
++User=yoonhc
++Group=yoonhc
++WorkingDirectory={state}
++Environment=LC_ALL=C
++Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
++UMask=0077
++Nice=10
++IOSchedulingClass=best-effort
++IOSchedulingPriority=7
++TimeoutStartSec=2h
++TimeoutStopSec=120s
++KillSignal=SIGINT
++KillMode=mixed
++Restart=no
++SuccessExitStatus=75
++NoNewPrivileges=yes
++CapabilityBoundingSet=
++AmbientCapabilities=
++ProtectSystem=strict
++ProtectHome=read-only
++ProtectClock=yes
++ProtectKernelTunables=yes
++ProtectKernelModules=yes
++ProtectControlGroups=yes
++PrivateDevices=yes
++PrivateTmp=yes
++RestrictSUIDSGID=yes
++LockPersonality=yes
++RestrictRealtime=yes
++RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
++IPAddressDeny=any
++IPAddressAllow=localhost
++ReadWritePaths={" ".join(rw)}
++StandardOutput=journal
++StandardError=journal
++"""
++    for path in [release, settings, state, *rw, source, profile["backup_dir"]]:
++        if not Path(path).is_absolute() or any(c in str(path) for c in "\n\r %"):
++            raise ValueError("Explicit safe absolute unit paths required")
++    execute = f"ExecStart={release}/.venv/bin/python -B -I {release}/scripts/run_clock_retirement.py --settings {settings} "
++    writable = f"ReadWritePaths={profile['backup_dir']} {Path(profile['backup_dir']).parent}/.{Path(profile['backup_dir']).name}.retiring\n"
++    return {
++        "marketdata-checkpoint-retirement.service": base + writable + execute + "run\n",
++        "marketdata-checkpoint-retirement-preview.service": base + execute + "preview\n",
++        "marketdata-checkpoint-retirement-apply@.service": base
++        + writable
++        + execute
++        + "apply-plan --plan-id %i\n",
++        "marketdata-checkpoint-retirement.timer": """[Unit]
++Description=Evaluate clock-bounded checkpoints at 15:40 KST
++
++[Timer]
++OnCalendar=*-*-* 06:40:00 UTC
++Persistent=false
++AccuracySec=1s
++Unit=marketdata-checkpoint-retirement.service
++
++[Install]
++WantedBy=timers.target
++""",
++    }
++
++
++def main():
++    p = argparse.ArgumentParser(description=__doc__)
++    p.add_argument("--input", type=Path, required=True)
++    p.add_argument("--output", type=Path, required=True)
++    args = p.parse_args()
++    value = json.loads(args.input.read_text())
++    units = render(value["release"], value["settings"], value["state"], value["profile"])
++    args.output.mkdir(parents=True, exist_ok=False)
++    for name, content in units.items():
++        (args.output / name).write_text(content)
++
++
++if __name__ == "__main__":
++    main()
+--- a/scripts/restic_schedule.py
++++ b/scripts/restic_schedule.py
+@@ -105,9 +105,12 @@
+     )
+ 
+ 
+-def service_context(service=SERVICE, timer=TIMER):
++def service_context(service=SERVICE, timer=TIMER, *, manager="user"):
+     """Positive, cross-checked timer evidence; ambiguous/missing information only undercounts."""
++    require(manager in {"user", "system"}, "Explicit systemd manager")
++    manager_arg = "--" + manager
+     context = {
++        "manager": manager,
+         "uid": os.getuid(),
+         "user": pwd.getpwuid(os.getuid()).pw_name,
+         "pid": os.getpid(),
+@@ -127,7 +130,7 @@
+         return context
+     try:
+         output = subprocess.check_output(
+-            ["systemctl", "--user", "show", service, "--property=InvocationID,MainPID,Id,Type"],
++            ["systemctl", manager_arg, "show", service, "--property=InvocationID,MainPID,Id,Type"],
+             text=True,
+             timeout=10,
+         )
+@@ -146,7 +149,7 @@
+             raw = subprocess.check_output(
+                 [
+                     "busctl",
+-                    "--user",
++                    manager_arg,
+                     "--json=short",
+                     "get-property",
+                     "org.freedesktop.systemd1",
+--- a/scripts/retire_checkpoints.py
++++ b/scripts/retire_checkpoints.py
+@@ -446,6 +446,9 @@
+             "checked_snapshot_ids": checked["snapshot_ids"],
+             "repository_check_finished_at": checked["finished_at"],
+         }
++
++    def plan_details(self, audit):
++        return {}
+ 
+     def plan(self, *, automation=None):
+         if automation is not None:
+@@ -512,6 +515,9 @@
+                 }
+                 if automation is not None:
+                     result["automation"] = dict(automation)
++                details = self.plan_details(audit)
++                require(not set(details).intersection(result), "Plan extension overrides base fields")
++                result.update(details)
+                 result["plan_id"] = sha256(json_bytes(result))
+                 self.check_code(result)
+                 persist(self.root / "plans" / f"{result['plan_id']}.json", result)
+@@ -694,6 +700,7 @@
+                         stat.S_ISREG(info.st_mode) and signature(info) == records.get(path),
+                         "Unexpected file during retirement",
+                     )
++                    hook("before_unlink", item)
+                     os.unlink(name, dir_fd=fd)
+                     item["unlinked_files"] += 1
+                     hook("after_unlink", item)
+@@ -704,6 +711,7 @@
+                         and signature(info) == records.get((relative / name).as_posix()),
+                         "Unexpected directory during retirement",
+                     )
++                    hook("before_rmdir", item)
+                     os.rmdir(name, dir_fd=fd)
+                 os.fsync(fd)
+             item["phase"] = "removing_root"
+--- /dev/null
++++ b/scripts/retirement_clock.py
+@@ -0,0 +1,431 @@
++"""Read-only clock evidence for checkpoint retirement, never a clock controller.
++
++Bounds are conditional on Chrony's source/model assumptions. A completion
++witness is an upper bound obtained AFTER verifying a finished checkpoint; it
++does not certify or rewrite the checkpoint's original wall-clock timestamp.
++"""
++
++import csv
++import fcntl
++import ipaddress
++import json
++import math
++import os
++import re
++import stat
++import subprocess
++import threading
++import time
++from contextlib import contextmanager
++from datetime import UTC, datetime
++from pathlib import Path
++
++from marketdata.checkpoint_locks import plain_path
++from marketdata.domain import json_bytes, sha256
++
++from scripts.restic_trial import require
++
++POLICY = {
++    "version": "checkpoint-time-bounds-v1",
++    "max_correction_seconds": 0.1,
++    "max_error_seconds": 0.5,
++    "max_skew_ppm": 100.0,
++    "max_observation_age_seconds": 15.0,
++    "max_query_seconds": 3.0,
++    "max_sample_gap_seconds": 5.0,
++    "step_threshold_seconds": 0.25,
++    "sample_seconds": 1.0,
++    "provider_seconds": 10.0,
++}
++
++
++class ClockHold(RuntimeError):
++    pass
++
++
++def trusted(path, *, owner=0):
++    path = Path(path)
++    for part in (path, *path.parents):
++        s = part.lstat()
++        if stat.S_ISLNK(s.st_mode) or s.st_uid != owner or s.st_mode & 0o022:
++            raise ClockHold(f"Untrusted clock/approval path: {part}")
++    return path
++
++
++def command(argv):
++    result = subprocess.run(
++        argv,
++        capture_output=True,
++        text=True,
++        timeout=2,
++        env={**os.environ, "LC_ALL": "C"},
++        check=False,
++    )
++    if result.returncode:
++        raise ClockHold(f"Read-only query failed: {argv[0]} ({result.returncode})")
++    return result.stdout
++
++
++def stamp():
++    before = time.monotonic_ns()
++    wall = time.time_ns()
++    boot = time.clock_gettime_ns(time.CLOCK_BOOTTIME)
++    after = time.monotonic_ns()
++    return {
++        "wall_ns": wall,
++        "monotonic_ns": (before + after) // 2,
++        "boottime_ns": boot,
++        "span_ns": after - before,
++    }
++
++
++def boot_id():
++    return Path("/proc/sys/kernel/random/boot_id").read_text().strip()
++
++
++def tracking(raw):
++    rows = list(csv.reader(raw.strip().splitlines()))
++    if len(rows) != 1 or len(rows[0]) != 14:
++        raise ClockHold("Malformed Chrony 4.5 tracking CSV")
++    r = rows[0]
++    try:
++        n = [float(v) for v in r[3:13]]
++        if not all(math.isfinite(v) for v in n):
++            raise ValueError("nonfinite")
++        return {
++            "reference_id": r[0],
++            "reference_address": r[1],
++            "stratum": int(r[2]),
++            "reference_time": n[0],
++            "correction": n[1],
++            "skew_ppm": n[6],
++            "root_delay": n[7],
++            "root_dispersion": n[8],
++            "leap": r[13],
++            "raw_csv": raw.strip(),
++        }
++    except (ValueError, IndexError) as exc:
++        raise ClockHold("Invalid Chrony fields") from exc
++
++
++def assess(t, sample):
++    try:
++        address = ipaddress.ip_address(t["reference_address"])
++        external = not (address.is_loopback or address.is_unspecified)
++    except ValueError:
++        external = False
++    reasons = []
++    if not external or t["reference_id"] in {"00000000", "7F7F0101"}:
++        reasons.append("no_external_reference")
++    if not 1 <= t["stratum"] <= 15 or t["leap"] != "Normal":
++        reasons.append("not_synchronized_or_leap_pending")
++    age = sample["wall_ns"] / 1e9 - t["reference_time"]
++    if t["reference_time"] <= 0 or age < -POLICY["max_correction_seconds"]:
++        reasons.append("future_or_invalid_reference")
++    error = abs(t["correction"]) + t["root_dispersion"] + max(0, t["root_delay"]) / 2
++    if abs(t["correction"]) > POLICY["max_correction_seconds"]:
++        reasons.append("remaining_correction")
++    if t["root_dispersion"] < 0 or error > POLICY["max_error_seconds"]:
++        reasons.append("clock_error_bound")
++    if not 0 <= t["skew_ppm"] <= POLICY["max_skew_ppm"]:
++        reasons.append("frequency_uncertainty")
++    return {
++        "ready": not reasons,
++        "reasons": reasons,
++        "tracking": t,
++        "reference_age_seconds": age,
++        "conditional_error_bound_seconds": error,
++    }
++
++
++def continuous(previous, current, *, maximum_gap=True):
++    dm = (current["monotonic_ns"] - previous["monotonic_ns"]) / 1e9
++    dw = (current["wall_ns"] - previous["wall_ns"]) / 1e9
++    db = (current["boottime_ns"] - previous["boottime_ns"]) / 1e9
++    margin = (current["span_ns"] + previous["span_ns"]) / 1e9
++    if dm < 0 or db < 0 or dw < 0:
++        raise ClockHold("Clock moved backwards")
++    if maximum_gap and dm > POLICY["max_sample_gap_seconds"]:
++        raise ClockHold("Clock observation gap")
++    if max(current["span_ns"], previous["span_ns"]) / 1e9 > 0.05:
++        raise ClockHold("Clock sampling uncertainty")
++    if abs(dw - dm) > POLICY["step_threshold_seconds"] + margin:
++        raise ClockHold("Wall-clock discontinuity")
++    if abs(db - dm) > POLICY["step_threshold_seconds"] + margin:
++        raise ClockHold("Suspend/resume or boottime discontinuity")
++
++
++def provider_identity(runner=command):
++    raw = runner(
++        [
++            "/usr/bin/systemctl",
++            "show",
++            "chrony.service",
++            "--no-pager",
++            "--property=ActiveState,MainPID,InvocationID",
++        ]
++    )
++    fields = {}
++    for line in raw.splitlines():
++        key, sep, value = line.partition("=")
++        if sep:
++            if key in fields:
++                raise ClockHold("Duplicate Chrony manager property")
++            fields[key] = value
++    if fields.get("ActiveState") != "active" or not re.fullmatch(
++        r"[0-9a-f]{32}", fields.get("InvocationID", "")
++    ):
++        raise ClockHold("Chrony has no active invocation")
++    pid = int(fields["MainPID"])
++    if pid <= 0:
++        raise ClockHold("Chrony has no PID")
++    argv = Path(f"/proc/{pid}/cmdline").read_bytes().decode().rstrip("\0").split("\0")
++    for arg in argv:
++        if arg.startswith("-") and not arg.startswith("--") and set(arg[1:]) & set("xqQs"):
++            raise ClockHold("Clock-disabled/one-shot/RTC Chrony mode")
++    return {"pid": pid, "invocation_id": fields["InvocationID"], "argv": argv}
++
++
++class Host:
++    """Pin a reviewed bootstrap profile and hold its existing read-only shared lock."""
++
++    def __init__(self, binding):
++        self.binding = binding
++
++    @contextmanager
++    def lock(self):
++        b = self.binding
++        profile_path = trusted(b["bootstrap_profile"])
++        raw = profile_path.read_bytes()
++        if sha256(raw) != b["bootstrap_profile_sha256"]:
++            raise ClockHold("Bootstrap profile differs from the reviewed T05 binding")
++        p = json.loads(raw)
++        runtime_path = trusted(p["runtime_profile"])
++        self.runtime_path = runtime_path
++        if sha256(runtime_path.read_bytes()) != p["runtime_profile_sha256"]:
++            raise ClockHold("Runtime profile differs")
++        runtime = json.loads(runtime_path.read_bytes())
++        if os.getuid() != runtime["uid"] or os.getuid() == 0:
++            raise ClockHold("Expected non-root retirement account")
++        self.config = runtime["chrony_config"]
++        self.config_sha256 = runtime["chrony_config_sha256"]
++        self.chronyc = runtime["chronyc"]
++        trusted(self.chronyc)
++        trusted(self.config)
++        if sha256(Path(self.config).read_bytes()) != self.config_sha256:
++            raise ClockHold("Chrony configuration differs")
++        self.profile = p
++        self.ledger_path = trusted(Path(p["state_dir"]) / "boot-state.json")
++        lock_path = trusted(Path(p["state_dir"]) / "coordinator.lock")
++        with lock_path.open("rb") as handle:
++            try:
++                fcntl.flock(handle, fcntl.LOCK_SH | fcntl.LOCK_NB)
++            except BlockingIOError as exc:
++                raise ClockHold("Clock bootstrap/configuration transition in progress") from exc
++            self.ledger_raw = self.ledger_path.read_bytes()
++            state = json.loads(self.ledger_raw)
++            if (
++                state.get("schema") != 1
++                or state.get("phase") != "closed"
++                or state.get("boot_id") != boot_id()
++                or state.get("profile_sha256") != sha256(json.dumps(p, sort_keys=True).encode())
++                or state.get("closed_observation", {}).get("ready") is not True
++                or state.get("step_attempts") not in (0, 1)
++            ):
++                raise ClockHold("Current boot preparation is not proven closed")
++            self.boot = state["boot_id"]
++            yield self
++
++    def query(self):
++        first = provider_identity()
++        if sha256(self.runtime_path.read_bytes()) != self.profile["runtime_profile_sha256"]:
++            raise ClockHold("Runtime profile changed during observation")
++        if (
++            sha256(Path(self.binding["bootstrap_profile"]).read_bytes())
++            != self.binding["bootstrap_profile_sha256"]
++        ):
++            raise ClockHold("Bootstrap profile changed during observation")
++        argv = first["argv"]
++        if argv.count("-f") != 1 or argv[argv.index("-f") + 1] != self.config:
++            raise ClockHold("Chrony is not using the reviewed configuration")
++        if sha256(Path(self.config).read_bytes()) != self.config_sha256:
++            raise ClockHold("Chrony configuration changed")
++        if self.ledger_path.read_bytes() != self.ledger_raw or boot_id() != self.boot:
++            raise ClockHold("Boot preparation changed")
++        raw = command([self.chronyc, "-n", "-c", "-h", "127.0.0.1", "tracking"])
++        if provider_identity() != first:
++            raise ClockHold("Chrony restarted during observation")
++        return {
++            "tracking": tracking(raw),
++            "provider": first,
++            "boot_id": self.boot,
++            "config_sha256": self.config_sha256,
++            "bootstrap_sha256": self.binding["bootstrap_profile_sha256"],
++            "ledger_sha256": sha256(self.ledger_raw),
++        }
++
++
++class Guard:
++    """Bounded live monitor. A fault latches for this run and cannot be cleared."""
++
++    def __init__(self, query, log_path, *, sampler=stamp):
++        self.query, self.sampler = query, sampler
++        self.log_path = plain_path(log_path)
++        self.mutex = threading.RLock()
++        self.stop_event = threading.Event()
++        self.last = None
++        self.observation = None
++        self.fault = None
++        self.thread = None
++        self.sequence = 0
++
++    def log(self, kind, **fields):
++        record = {"sequence": self.sequence, "kind": kind, **fields}
++        self.sequence += 1
++        with self.log_path.open("ab") as handle:
++            handle.write(json_bytes(record) + b"\n")
++            handle.flush()
++            os.fsync(handle.fileno())
++
++    def sample(self):
++        # Called with mutex held, including after slow provider queries: do not
++        # evaluate a newer observation against an earlier sampled wall clock.
++        current = self.sampler()
++        if self.last:
++            continuous(self.last, current)
++        self.last = current
++        return current
++
++    def refresh(self):
++        with self.mutex:
++            before = self.sample()
++            value = self.query()
++            after = self.sample()
++            elapsed = (after["monotonic_ns"] - before["monotonic_ns"]) / 1e9
++            if elapsed < 0 or elapsed > POLICY["max_query_seconds"]:
++                raise ClockHold("Provider query expired")
++            assessment = assess(value["tracking"], after)
++            if not assessment["ready"]:
++                raise ClockHold(", ".join(assessment["reasons"]))
++            if self.observation and any(
++                value[k] != self.observation[k]
++                for k in (
++                    "boot_id",
++                    "provider",
++                    "config_sha256",
++                    "bootstrap_sha256",
++                    "ledger_sha256",
++                )
++            ):
++                raise ClockHold("Provider or bootstrap identity changed")
++            padding = elapsed + (before["span_ns"] + after["span_ns"]) / 1e9
++            radius = assessment["conditional_error_bound_seconds"] + padding
++            observation = {
++                **value,
++                **assessment,
++                "sample": after,
++                "query_seconds": elapsed,
++                "uncertainty_seconds": radius,
++                "lower_utc_ns": after["wall_ns"] - math.ceil(radius * 1e9),
++                "upper_utc_ns": after["wall_ns"] + math.ceil(radius * 1e9),
++                "policy": POLICY,
++            }
++            self.log("provider", observation=observation)
++            self.observation = observation
++            return observation
++
++    def check(self, *, fresh=False, anchor=None):
++        with self.mutex:
++            if self.fault:
++                raise ClockHold(self.fault)
++            try:
++                if fresh or self.observation is None:
++                    self.refresh()
++                current = self.sample()
++                age = (current["monotonic_ns"] - self.observation["sample"]["monotonic_ns"]) / 1e9
++                if not 0 <= age <= POLICY["max_observation_age_seconds"]:
++                    raise ClockHold("Current Chrony observation expired")
++                if anchor:
++                    if any(
++                        anchor[k] != self.observation[k]
++                        for k in (
++                            "boot_id",
++                            "provider",
++                            "config_sha256",
++                            "bootstrap_sha256",
++                            "ledger_sha256",
++                        )
++                    ):
++                        raise ClockHold("Plan boot/provider/configuration changed")
++                    continuous(anchor["sample"], current, maximum_gap=False)
++                # Deliberately do not advance the lower bound with elapsed wall
++                # or monotonic time. The fresh observation's lower bound is
++                # conservative for this later decision, with a <=15s lifetime.
++                return {
++                    **self.observation,
++                    "decision_sample": current,
++                    "observation_age_seconds": age,
++                }
++            except Exception as exc:
++                self.fault = f"{type(exc).__name__}: {exc}"
++                try:
++                    self.log("hold", reason=self.fault)
++                except OSError:
++                    pass
++                raise ClockHold(self.fault) from exc
++
++    def start(self):
++        self.check(fresh=True)
++
++        def monitor():
++            while not self.stop_event.wait(POLICY["sample_seconds"]):
++                try:
++                    with self.mutex:
++                        age = (
++                            self.sampler()["monotonic_ns"]
++                            - self.observation["sample"]["monotonic_ns"]
++                        ) / 1e9
++                        self.check(fresh=age >= POLICY["provider_seconds"])
++                except Exception:
++                    return
++
++        self.thread = threading.Thread(target=monitor, name="retirement-clock", daemon=True)
++        self.thread.start()
++        return self
++
++    def close(self):
++        self.stop_event.set()
++        if self.thread:
++            self.thread.join(timeout=8)
++            if self.thread.is_alive():
++                raise ClockHold("Clock observer did not stop")
++
++
++def validate_observation(value):
++    require(value["policy"] == POLICY, "Completion witness clock policy differs")
++    parsed = tracking(value["tracking"]["raw_csv"])
++    require(parsed == value["tracking"], "Witness tracking fields differ")
++    assessment = assess(parsed, value["sample"])
++    require(assessment["ready"], "Witness was not a usable clock observation")
++    require(0 <= value["query_seconds"] <= POLICY["max_query_seconds"], "Invalid witness query")
++    error = assessment["conditional_error_bound_seconds"]
++    radius = value["uncertainty_seconds"]
++    require(
++        math.isfinite(radius) and radius >= error + value["query_seconds"], "Witness bound narrowed"
++    )
++    require(
++        value["upper_utc_ns"] == value["sample"]["wall_ns"] + math.ceil(radius * 1e9)
++        and value["lower_utc_ns"] == value["sample"]["wall_ns"] - math.ceil(radius * 1e9),
++        "Witness UTC bounds differ",
++    )
++    require(re.fullmatch(r"[0-9a-f-]{36}", value["boot_id"]), "Witness boot missing")
++    for name in ("config_sha256", "bootstrap_sha256", "ledger_sha256"):
++        require(re.fullmatch(r"[0-9a-f]{64}", value[name]), "Witness identity missing")
++    require(
++        re.fullmatch(r"[0-9a-f]{32}", value["provider"]["invocation_id"]),
++        "Witness provider missing",
++    )
++
++
++def utc_string(ns):
++    return datetime.fromtimestamp(ns / 1e9, UTC).isoformat()
+--- /dev/null
++++ b/scripts/run_clock_retirement.py
+@@ -0,0 +1,12 @@
++"""Pinned release entrypoint; -I ignores editable/user import overrides."""
++
++import sys
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path[:0] = [str(ROOT), str(ROOT / "packages/marketdata/src")]
++
++from scripts.clock_retirement import main  # noqa: E402
++
++if __name__ == "__main__":
++    sys.exit(main())
+--- /dev/null
++++ b/tests/test_clock_retirement.py
+@@ -0,0 +1,248 @@
++import json
++from contextlib import contextmanager
++from datetime import UTC, datetime
++from pathlib import Path
++
++import pytest
++from marketdata import backup
++from marketdata.domain import json_bytes, sha256
++from test_checkpoint_schedule import prepared as prepared  # noqa: F401
++from test_checkpoint_schedule import ready as ready  # noqa: F401
++from test_checkpoint_schedule import setup_archive as setup_archive  # noqa: F401
++from test_restic_archive import write_profile
++from test_retirement_clock import Samples, provider
++
++from scripts import archive_backups as archive
++from scripts import clock_retirement as safe
++from scripts import render_retirement_units
++from scripts import retire_checkpoints as retention
++from scripts import retirement_clock as clock
++
++
++@pytest.fixture
++def case(prepared, tmp_path, monkeypatch):
++    p, policy, _, _, wall, daily = prepared
++    monkeypatch.setattr(safe, "now", lambda: wall[0])
++    s = Samples(wall[0].timestamp(), mono=1000000)
++    real_guard = clock.Guard
++    guards = []
++
++    def guard(query, path):
++        value = real_guard(query, path, sampler=s)
++        guards.append(value)
++        return value
++
++    monkeypatch.setattr(clock, "Guard", guard)
++    units = tmp_path / "units"
++    units.mkdir()
++    for name, content in render_retirement_units.render(
++        "/opt/test",
++        "/etc/test/settings.toml",
++        "/var/lib/test",
++        {k: str(v) for k, v in vars(p).items()},
++    ).items():
++        (units / name).write_text(content)
++    binding = tmp_path / "binding.json"
++    binding.write_bytes(
++        json_bytes(
++            {"bootstrap_profile": "/etc/test/bootstrap.json", "bootstrap_profile_sha256": "c" * 64}
++        )
++    )
++    settings = safe.Settings(
++        tmp_path / "policy.toml",
++        tmp_path / "recurring.json",
++        tmp_path / "manual.json",
++        binding,
++        tmp_path / "t05-state",
++        units,
++    )
++    write_profile(settings.retention_policy, policy)
++    settings.authorization_file.write_bytes(json_bytes(safe.proposal(settings)))
++
++    class FakeHost:
++        def __init__(self, binding):
++            self.binding = binding
++
++        @contextmanager
++        def lock(self):
++            yield self
++
++        def query(self):
++            return provider(s, age=900)
++
++    return p, policy, settings, wall, s, real_guard, guards, FakeHost
++
++
++def cold(case):
++    p, _, settings, _, _, _, _, host = case
++    return safe.execute(settings, "preview", host_factory=host)
++
++
++def seed_old_verified_observations(case):
++    p, _, settings, _, _, real_guard, _, _ = case
++    s = Samples(datetime(2024, 1, 3, 5, tzinfo=UTC).timestamp(), mono=1000)
++    guard = real_guard(lambda: provider(s), settings.state_root / "seed-clock.jsonl", sampler=s)
++    settings.state_root.mkdir(parents=True, exist_ok=True)
++    observation = guard.check(fresh=True)
++    witnesses = safe.Witnesses(settings.state_root / "completion-witnesses", p.identity)
++    for record in archive.load_state(p)["checkpoints"].values():
++        e = record["entry"]
++        if e["checkpoint_at"][:10] in {"2024-01-01", "2024-01-02"}:
++            assert archive.timestamp(e["completed_at"]).timestamp() < s.wall
++            witnesses.observe(e, record["stored"]["snapshot_id"], observation, "d" * 64)
++
++
++def approve_manual(settings, plan, *, resume=False):
++    value = safe.manual_proposal(settings, plan["plan_id"], resume=resume)
++    value.update(
++        enabled=True,
++        approved_at=safe.now(),
++        approval_reference="isolated exact-plan approval",
++        action="apply-plan",
++        grant_kind="exact_plan",
++        approved_boot_id=clock.boot_id(),
++        resume_interrupted=resume,
++        plan_id=plan["plan_id"],
++    )
++    settings.manual_authorization_file.write_bytes(json_bytes(value))
++
++
++def allow_test_system_context(monkeypatch):
++    # These injected ownership/manager providers belong only to isolated
++    # temporary repositories. Real manager provenance is a separate root probe.
++    monkeypatch.setattr(clock, "trusted", lambda p, **k: Path(p))
++    monkeypatch.setattr(safe, "installed_service", lambda *a: None)
++    monkeypatch.setattr(
++        safe,
++        "system_context",
++        lambda s, t: {
++            "manager": "system",
++            "service_verified": True,
++            "scheduled": False,
++            "classification": "manual_service_or_unknown",
++            "start_job": {"activation_details": {}},
++        },
++    )
++
++
++def test_cold_and_warm_preview_preserve_operating_inputs_and_old_grants(case, monkeypatch):
++    p, _, settings, _, _, _, _, host = case
++    before = {str(f): sha256(f.read_bytes()) for f in p.backup_dir.glob("*/*/backup.json")}
++    archived = p.state_file.read_bytes()
++    first, second = cold(case), cold(case)
++    assert first["state"] == second["state"] == "no_candidates", first
++    assert first["plan_id"] != second["plan_id"]
++    assert (
++        len(first["plan"]["keep"]) == 5
++        and len(first["plan"]["clock_safety"]["completion_bounds"]) == 5
++    )
++    assert first["plan"]["clock_safety"]["observation"]["reference_age_seconds"] == 900
++    assert all(
++        "completion_upper_bound_less_than_72h" in e["protection"] for e in first["plan"]["keep"]
++    )
++    assert p.state_file.read_bytes() == archived
++    assert before == {str(f): sha256(f.read_bytes()) for f in p.backup_dir.glob("*/*/backup.json")}
++    assert not first["deletion_attempted"]
++    old = safe.proposal(settings)
++    old["purpose"] = safe.legacy.PURPOSE
++    settings.authorization_file.write_bytes(json_bytes(old))
++    allow_test_system_context(monkeypatch)
++    denied = safe.execute(settings, "run", host_factory=host)
++    assert denied["reason"] == "authorization_scope_changed" and not denied["deletion_attempted"]
++
++
++def test_manual_approval_deletes_only_proven_candidates_and_preserves_restic(case, monkeypatch):
++    p, _, settings, _, _, _, _, host = case
++    seed_old_verified_observations(case)
++    preview = cold(case)
++    assert preview["state"] == "preview_ready", preview
++    plan = preview["plan"]
++    assert len(plan["candidates"]) == 2 and len(plan["keep"]) == 3
++    archived = p.state_file.read_bytes()
++    raw = {
++        str(f): sha256(f.read_bytes()) for f in (p.store_root / "data").rglob("*") if f.is_file()
++    }
++    allow_test_system_context(monkeypatch)
++    no_approval = safe.execute(settings, "apply-plan", plan["plan_id"], host_factory=host)
++    assert no_approval["state"] == "deferred" and not no_approval["deletion_attempted"]
++    approve_manual(settings, plan)
++    # A one-plan approval cannot become a recurring grant by copying its file.
++    recurring = settings.authorization_file.read_bytes()
++    settings.authorization_file.write_bytes(settings.manual_authorization_file.read_bytes())
++    denied = safe.execute(settings, "run", host_factory=host)
++    assert denied["reason"] == "authorization_scope_changed" and not denied["deletion_attempted"]
++    settings.authorization_file.write_bytes(recurring)
++    result = safe.execute(settings, "apply-plan", plan["plan_id"], host_factory=host)
++    assert result["state"] == "complete" and result["deleted_checkpoints"] == 2, result
++    assert all(not Path(c["entry"]["path"]).exists() for c in plan["candidates"])
++    assert all(backup.verify_backup(e["path"])["ok"] for e in plan["keep"])
++    assert raw == {
++        str(f): sha256(f.read_bytes()) for f in (p.store_root / "data").rglob("*") if f.is_file()
++    }
++    assert archived == p.state_file.read_bytes()
++    later = cold(case)
++    assert later["state"] == "no_candidates", later
++    # The new state namespace still reconciles previously deleted checkpoints
++    # with the unchanged archive state and the durable new journals.
++    assert len(later["plan"]["keep"]) == 3
++    repeated = safe.execute(settings, "apply-plan", plan["plan_id"], host_factory=host)
++    assert repeated["state"] == "complete" and repeated["result"]["already_complete"], repeated
++    assert repeated["already_complete"] and repeated["deleted_this_run"] == 0
++    assert result["deleted_this_run"] == 2
++
++
++def test_mid_deletion_clock_fault_leaves_journal_and_blocks_new_plan(case, monkeypatch):
++    p, _, settings, _, samples, _, _, host = case
++    seed_old_verified_observations(case)
++    plan = cold(case)["plan"]
++    approve_manual(settings, plan)
++    allow_test_system_context(monkeypatch)
++    original = retention.Retirement.retire_item
++
++    def inject(self, journal, item, hook):
++        def fault(phase, target):
++            hook(phase, target)
++            if phase == "after_move":
++                samples.wall += 41
++
++        return original(self, journal, item, fault)
++
++    monkeypatch.setattr(retention.Retirement, "retire_item", inject)
++    result = safe.execute(settings, "apply-plan", plan["plan_id"], host_factory=host)
++    assert result["state"] == "failed" and result["unfinished_retirement"], result
++    journal = json.loads(Path(result["retirement_journal"]).read_bytes())
++    assert sum(i["unlinked_files"] for i in journal["items"].values()) == 0
++    next_run = cold(case)
++    assert next_run["state"] == "deferred" and next_run["reason"] == "unfinished_retirement", (
++        next_run
++    )
++    assert next_run["needs_attention"]
++    # Reviewing the existing plan and issuing an explicit recovery approval
++    # permits only that plan's remainder; old records are never reset/deleted.
++    monkeypatch.setattr(retention.Retirement, "retire_item", original)
++    approve_manual(settings, plan, resume=True)
++    resumed = safe.execute(settings, "apply-plan", plan["plan_id"], host_factory=host)
++    assert resumed["state"] == "complete", resumed
++    new_journal = json.loads(Path(resumed["retirement_journal"]).read_bytes())
++    assert len(new_journal["attempts"]) == 2
++    assert not new_journal["attempts"][0]["ok"] and new_journal["attempts"][1]["ok"]
++
++
++def test_changed_completion_evidence_and_targets_refuse_application(case, monkeypatch):
++    _, _, settings, _, _, _, _, host = case
++    seed_old_verified_observations(case)
++    plan = cold(case)["plan"]
++    approve_manual(settings, plan)
++    allow_test_system_context(monkeypatch)
++    proof = next(iter(plan["clock_safety"]["completion_bounds"].values()))
++    path = Path(proof["file"])
++    original = path.read_bytes()
++    path.write_bytes(original + b" ")
++    result = safe.execute(settings, "apply-plan", plan["plan_id"], host_factory=host)
++    assert result["state"] == "failed" and not result["deletion_attempted"], result
++    path.write_bytes(original)
++    value = json.loads(settings.manual_authorization_file.read_bytes())
++    value["plan_id"] = "f" * 64
++    settings.manual_authorization_file.write_bytes(json_bytes(value))
++    result = safe.execute(settings, "apply-plan", plan["plan_id"], host_factory=host)
++    assert result["state"] == "failed" and not result["deletion_attempted"], result
+--- /dev/null
++++ b/tests/test_retirement_clock.py
+@@ -0,0 +1,256 @@
++import copy
++import json
++from pathlib import Path
++from types import SimpleNamespace
++
++import pytest
++
++from scripts import clock_retirement as safe
++from scripts import render_retirement_units
++from scripts import retirement_clock as clock
++
++
++class Samples:
++    def __init__(self, wall=1791676800, mono=100):
++        self.wall, self.mono, self.boot = wall, mono, mono
++
++    def __call__(self):
++        return {
++            "wall_ns": round(self.wall * 1e9),
++            "monotonic_ns": round(self.mono * 1e9),
++            "boottime_ns": round(self.boot * 1e9),
++            "span_ns": 1000,
++        }
++
++    def advance(self, seconds):
++        self.wall += seconds
++        self.mono += seconds
++        self.boot += seconds
++
++
++def provider(
++    samples, *, age=900, correction=0.001, delay=0.1, dispersion=0.01, skew=0.2, leap="Normal"
++):
++    csv = f"5BBD5B9D,91.189.91.157,3,{samples.wall - age},{correction},0.001,0.001,20,0.01,{skew},{delay},{dispersion},256,{leap}"
++    return {
++        "tracking": clock.tracking(csv),
++        "provider": {
++            "pid": 123,
++            "invocation_id": "a" * 32,
++            "argv": ["/usr/sbin/chronyd", "-f", "/etc/chrony/test.conf"],
++        },
++        "boot_id": "12345678-1234-1234-1234-123456789abc",
++        "config_sha256": "b" * 64,
++        "bootstrap_sha256": "c" * 64,
++        "ledger_sha256": "d" * 64,
++    }
++
++
++def test_stale_reference_is_not_stale_observation(tmp_path):
++    s = Samples()
++    g = clock.Guard(lambda: provider(s, age=3600), tmp_path / "clock.jsonl", sampler=s)
++    first = g.check(fresh=True)
++    assert first["ready"] and first["reference_age_seconds"] == 3600
++    assert "reference_stale" not in first
++    s.advance(1)
++    value = g.check()
++    assert value["observation_age_seconds"] == 1
++    assert value["lower_utc_ns"] == first["lower_utc_ns"]
++    for _ in range(15):
++        s.advance(1)
++        if s.mono < 116:
++            g.check()
++    with pytest.raises(clock.ClockHold, match="expired"):
++        g.check()
++    with pytest.raises(clock.ClockHold):
++        g.check(fresh=True)  # fault remains latched, even if query would recover
++
++
++@pytest.mark.parametrize(
++    "change,reason",
++    [
++        ({"age": -1}, "future"),
++        ({"correction": 0.11}, "correction"),
++        ({"dispersion": 0.6}, "error_bound"),
++        ({"dispersion": -0.1}, "error_bound"),
++        ({"skew": 101}, "uncertainty"),
++        ({"leap": "Not synchronised"}, "synchronized"),
++        ({"leap": "Insert second"}, "leap"),
++    ],
++)
++def test_other_clock_faults_remain_rejected(tmp_path, change, reason):
++    s = Samples()
++    g = clock.Guard(lambda: provider(s, **change), tmp_path / "clock.jsonl", sampler=s)
++    with pytest.raises(clock.ClockHold, match=reason):
++        g.check(fresh=True)
++
++
++@pytest.mark.parametrize("raw", ["", "x,y", "a,b,3,nan,1,2,3,4,5,6,7,8,9,Normal", "x\nx"])
++def test_bad_csv_rejected(raw):
++    with pytest.raises(clock.ClockHold):
++        clock.tracking(raw)
++
++
++@pytest.mark.parametrize(
++    "kind", ["forward", "backward", "suspend", "gap", "provider", "boot", "config", "query", "log"]
++)
++def test_guard_faults_before_mutation(tmp_path, kind):
++    s = Samples()
++    q = [provider(s)]
++    g = clock.Guard(lambda: q[0], tmp_path / "clock.jsonl", sampler=s)
++    g.check(fresh=True)
++    s.advance(1)
++    if kind == "forward":
++        s.wall += 41
++    elif kind == "backward":
++        s.wall -= 41
++    elif kind == "suspend":
++        s.boot += 20
++    elif kind == "gap":
++        s.advance(10)
++    elif kind == "provider":
++        q[0]["provider"]["invocation_id"] = "f" * 32
++        # Query fixtures must not alias the saved observation.
++        g.observation["provider"] = {**q[0]["provider"], "invocation_id": "a" * 32}
++    elif kind == "boot":
++        q[0]["boot_id"] = "f" * 36
++    elif kind == "config":
++        q[0]["config_sha256"] = "f" * 64
++    elif kind == "query":
++        g.query = lambda: (_ for _ in ()).throw(OSError("query unavailable"))
++    elif kind == "log":
++        g.log = lambda *a, **k: (_ for _ in ()).throw(OSError("disk full"))
++    with pytest.raises(clock.ClockHold):
++        g.check(fresh=True)
++
++
++def test_provider_query_order_and_duration(tmp_path):
++    s = Samples()
++
++    def delayed():
++        s.advance(0.01)
++        return provider(s, age=0)
++
++    g = clock.Guard(delayed, tmp_path / "clock.jsonl", sampler=s)
++    result = g.check(fresh=True)
++    assert result["ready"] and result["reference_age_seconds"] == 0
++    assert result["uncertainty_seconds"] >= result["conditional_error_bound_seconds"] + 0.01
++    clock.validate_observation(result)
++    g.query = lambda: (s.advance(3.1), provider(s))[1]
++    with pytest.raises(clock.ClockHold, match="expired"):
++        g.check(fresh=True)
++
++
++def test_plan_anchor_rejects_boot_and_jump_without_erasing_history(tmp_path):
++    s = Samples()
++    g = clock.Guard(lambda: provider(s), tmp_path / "clock.jsonl", sampler=s)
++    anchor = g.check(fresh=True)
++    bad = copy.deepcopy(anchor)
++    bad["boot_id"] = "f" * 36
++    with pytest.raises(clock.ClockHold, match="Plan boot"):
++        g.check(anchor=bad)
++    rows = [json.loads(line) for line in g.log_path.read_text().splitlines()]
++    assert rows[0]["kind"] == "provider" and rows[-1]["kind"] == "hold"
++
++
++def test_completion_witness_is_immutable_upper_bound_not_timestamp_rewrite(tmp_path):
++    s = Samples()
++    g = clock.Guard(lambda: provider(s), tmp_path / "clock.jsonl", sampler=s)
++    o = g.check(fresh=True)
++    entry = {
++        "backup_id": "1" * 64,
++        "completed_at": "2000-01-01T00:00:00Z",
++        "manifest_sha256": "2" * 64,
++    }
++    w = safe.Witnesses(tmp_path / "witnesses", {"scope": "test"})
++    proof = w.observe(entry, "3" * 64, o, "4" * 64)
++    assert proof["original_completed_at"] == entry["completed_at"]
++    assert proof["completion_upper_utc_ns"] == o["upper_utc_ns"]
++    assert w.inspect(entry, "3" * 64)["sha256"] == proof["sha256"]
++    with pytest.raises(FileExistsError):
++        w.observe(entry, "3" * 64, o, "4" * 64)
++    with pytest.raises(ValueError, match="binding"):
++        w.inspect({**entry, "manifest_sha256": "5" * 64}, "3" * 64)
++    path = Path(proof["file"])
++    path.write_text(path.read_text() + " ")
++    with pytest.raises(ValueError, match="hash"):
++        w.inspect(entry, "3" * 64)
++
++
++def test_fabricated_tighter_witness_rejected(tmp_path):
++    s = Samples()
++    g = clock.Guard(lambda: provider(s), tmp_path / "clock.jsonl", sampler=s)
++    o = g.check(fresh=True)
++    for field, value in (
++        ("uncertainty_seconds", 0),
++        ("upper_utc_ns", o["upper_utc_ns"] - 1),
++        ("policy", {}),
++    ):
++        forged = {**o, field: value}
++        with pytest.raises(ValueError):
++            clock.validate_observation(forged)
++
++
++def test_new_system_units_keep_preview_readonly_and_no_catchup():
++    p = {
++        "store_root": "/srv/store",
++        "backup_mount": "/mnt/backup",
++        "backup_dir": "/mnt/backup/checkpoints",
++        "state_root": "/srv/archive-state",
++        "expected_repository_id": "a" * 64,
++        "cache_root": "/srv/cache",
++        "restic_repository": "/mnt/backup/restic",
++    }
++    units = render_retirement_units.render(
++        "/opt/test", "/etc/test/settings.toml", "/var/lib/test", p
++    )
++    preview = units["marketdata-checkpoint-retirement-preview.service"]
++    actual = units["marketdata-checkpoint-retirement.service"]
++    for text in (preview, actual):
++        for required in (
++            "User=yoonhc",
++            "ProtectClock=yes",
++            "CapabilityBoundingSet=\n",
++            "ProtectSystem=strict",
++            "Restart=no",
++        ):
++            assert required in text
++        assert "--user" not in text
++    assert "ReadWritePaths=/mnt/backup/checkpoints" not in preview
++    assert "ReadWritePaths=/mnt/backup/checkpoints" in actual
++    timer = units["marketdata-checkpoint-retirement.timer"]
++    assert "Persistent=false" in timer and "OnActiveSec" not in timer
++
++
++def test_service_user_cannot_self_approve_root_files(tmp_path):
++    p = tmp_path / "approval.json"
++    p.write_text("{}")
++    with pytest.raises(clock.ClockHold, match="Untrusted"):
++        clock.trusted(p)
++
++
++@pytest.mark.parametrize("delta,protected", [(-1, True), (0, False), (1, False)])
++def test_72h_boundary_uses_conservative_bounds_at_nanosecond_precision(delta, protected):
++    # Epoch-sized integers would lose the one-nanosecond boundary as floats.
++    upper = 1791676800000000000
++    lower = upper + 72 * 3600 * 10**9 + delta
++    assert safe.protected_by_time(lower, upper, 72) is protected
++
++
++@pytest.mark.parametrize("change", ["none", "dropin", "reload", "bytes", "duplicate"])
++def test_actual_system_fragment_must_match_reviewed_unit(tmp_path, monkeypatch, change):
++    units = tmp_path / "units"
++    units.mkdir()
++    (units / safe.UNITS[3]).write_text("reviewed unit")
++    installed = tmp_path / "installed.service"
++    installed.write_text("changed" if change == "bytes" else "reviewed unit")
++    raw = f"FragmentPath={installed}\nDropInPaths={'/etc/unknown.conf' if change == 'dropin' else ''}\nNeedDaemonReload={'yes' if change == 'reload' else 'no'}\n"
++    if change == "duplicate":
++        raw += "DropInPaths=\n"
++    monkeypatch.setattr(clock, "command", lambda args: raw)
++    monkeypatch.setattr(clock, "trusted", lambda path: Path(path))
++    if change == "none":
++        safe.installed_service(SimpleNamespace(unit_directory=units), "unit", "apply-plan")
++    else:
++        with pytest.raises(ValueError):
++            safe.installed_service(SimpleNamespace(unit_directory=units), "unit", "apply-plan")

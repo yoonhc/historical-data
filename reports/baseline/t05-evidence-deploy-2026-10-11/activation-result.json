@@ -1,0 +1,228 @@
+{
+  "passed": false,
+  "release_id": "t05-completion-evidence-20261011-c9d413cfe11ec0e7",
+  "started_at": "2026-10-11T07:22:01.496498+00:00",
+  "before": {
+    "marketdata-backup.service": {
+      "Restart": [
+        "on-failure"
+      ],
+      "RestartUSec": [
+        "2min"
+      ],
+      "TimeoutStartUSec": [
+        "6h"
+      ],
+      "TimeoutStopUSec": [
+        "2min"
+      ],
+      "MainPID": [
+        "0"
+      ],
+      "ControlPID": [
+        "0"
+      ],
+      "ExecStartPre": [
+        "{ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Sun 2026-10-11 13:25:35 KST] ; stop_time=[Sun 2026-10-11 13:25:35 KST] ; pid=750592 ; code=exited ; status=0 }"
+      ],
+      "ExecStart": [
+        "{ path=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata ; argv[]=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup --wait-for-lock ; ignore_errors=no ; start_time=[Sun 2026-10-11 13:25:35 KST] ; stop_time=[Sun 2026-10-11 14:38:09 KST] ; pid=750630 ; code=exited ; status=0 }"
+      ],
+      "WorkingDirectory": [
+        "/home/yoonhc/projects/algoTrade/historical_data"
+      ],
+      "CapabilityBoundingSet": [
+        "cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon cap_bpf cap_checkpoint_restore"
+      ],
+      "AmbientCapabilities": [
+        ""
+      ],
+      "User": [
+        ""
+      ],
+      "Group": [
+        ""
+      ],
+      "ReadWritePaths": [
+        ""
+      ],
+      "PrivateTmp": [
+        "no"
+      ],
+      "ProtectClock": [
+        "no"
+      ],
+      "ProtectHome": [
+        "no"
+      ],
+      "ProtectSystem": [
+        "no"
+      ],
+      "NoNewPrivileges": [
+        "no"
+      ],
+      "RestrictAddressFamilies": [
+        "~"
+      ],
+      "KillMode": [
+        "control-group"
+      ],
+      "KillSignal": [
+        "2"
+      ],
+      "Id": [
+        "marketdata-backup.service"
+      ],
+      "Requires": [
+        "app.slice basic.target marketdata-clock-ready.service"
+      ],
+      "After": [
+        "marketdata-clock-ready.service app.slice marketdata-backup.timer basic.target home.mount -.mount"
+      ],
+      "LoadState": [
+        "loaded"
+      ],
+      "ActiveState": [
+        "inactive"
+      ],
+      "SubState": [
+        "dead"
+      ],
+      "FragmentPath": [
+        "/home/yoonhc/.config/systemd/user/marketdata-backup.service"
+      ],
+      "DropInPaths": [
+        "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf"
+      ],
+      "UnitFileState": [
+        "linked"
+      ],
+      "Job": [
+        ""
+      ],
+      "NeedDaemonReload": [
+        "no"
+      ],
+      "InvocationID": [
+        "aa646f4b39594d0ab75cda68bcf3cf58"
+      ]
+    },
+    "marketdata-restic-archive.service": {
+      "Restart": [
+        "no"
+      ],
+      "RestartUSec": [
+        "100ms"
+      ],
+      "TimeoutStartUSec": [
+        "6h"
+      ],
+      "TimeoutStopUSec": [
+        "2min"
+      ],
+      "MainPID": [
+        "0"
+      ],
+      "ControlPID": [
+        "0"
+      ],
+      "ExecStartPre": [
+        "{ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[Sun 2026-10-11 16:09:58 KST] ; stop_time=[Sun 2026-10-11 16:09:58 KST] ; pid=815155 ; code=exited ; status=0 }"
+      ],
+      "ExecStart": [
+        "{ path=/usr/bin/env ; argv[]=/usr/bin/env ${MARKETDATA_PYTHON} -m scripts.restic_schedule --profile ${MARKETDATA_RESTIC_PROFILE} run ; ignore_errors=no ; start_time=[Sun 2026-10-11 16:09:58 KST] ; stop_time=[Sun 2026-10-11 16:10:23 KST] ; pid=815160 ; code=exited ; status=0 }"
+      ],
+      "WorkingDirectory": [
+        "/home/yoonhc"
+      ],
+      "CapabilityBoundingSet": [
+        "cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon cap_bpf cap_checkpoint_restore"
+      ],
+      "AmbientCapabilities": [
+        ""
+      ],
+      "User": [
+        ""
+      ],
+      "Group": [
+        ""
+      ],
+      "ReadWritePaths": [
+        ""
+      ],
+      "PrivateTmp": [
+        "no"
+      ],
+      "ProtectClock": [
+        "no"
+      ],
+      "ProtectHome": [
+        "no"
+      ],
+      "ProtectSystem": [
+        "no"
+      ],
+      "NoNewPrivileges": [
+        "no"
+      ],
+      "RestrictAddressFamilies": [
+        "~"
+      ],
+      "KillMode": [
+        "control-group"
+      ],
+      "KillSignal": [
+        "2"
+      ],
+      "Id": [
+        "marketdata-restic-archive.service"
+      ],
+      "Requires": [
+        "basic.target marketdata-clock-ready.service app.slice"
+      ],
+      "After": [
+        "home.mount basic.target app.slice -.mount marketdata-clock-ready.service marketdata-restic-archive.timer"
+      ],
+      "LoadState": [
+        "loaded"
+      ],
+      "ActiveState": [
+        "inactive"
+      ],
+      "SubState": [
+        "dead"
+      ],
+      "FragmentPath": [
+        "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service"
+      ],
+      "DropInPaths": [
+        "/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf"
+      ],
+      "UnitFileState": [
+        "static"
+      ],
+      "Job": [
+        ""
+      ],
+      "NeedDaemonReload": [
+        "no"
+      ],
+      "InvocationID": [
+        "b9a4242e59d84e9aa409b6d3e1993245"
+      ]
+    }
+  },
+  "queued_jobs_before": {
+    "marketdata-backup.service": "",
+    "marketdata-restic-archive.service": ""
+  },
+  "scope": "two user ExecStart drop-ins only",
+  "clock_control": false,
+  "automatic_retirement": "masked",
+  "backup_run_requested": false,
+  "after": {},
+  "error": "RuntimeError: Service property differs: After",
+  "phase": "activation_failed",
+  "rollback_error": "RuntimeError: Service property differs: After",
+  "finished_at": "2026-10-11T07:22:01.869389+00:00"
+}

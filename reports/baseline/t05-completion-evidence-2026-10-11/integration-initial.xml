@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="4" failures="0" skipped="0" tests="4" time="101.580" timestamp="2026-10-11T14:47:27.309920+09:00" hostname="hclm"><testcase classname="tests.test_clock_retirement" name="test_cold_and_warm_preview_preserve_operating_inputs_and_old_grants" time="25.235"><error message="failed on setup with &quot;ValueError: Mixed release imports&quot;">tests/test_checkpoint_schedule.py:93: in prepared
+    grant(settings)
+tests/test_checkpoint_schedule.py:47: in grant
+    value = schedule.proposal(settings)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts/checkpoint_schedule.py:109: in proposal
+    boundary = scope(settings, policy, profile)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts/checkpoint_schedule.py:75: in scope
+    require(Path(file).resolve().is_relative_to(roots[package]), "Mixed release imports")
+scripts/restic_trial.py:31: in require
+    raise ValueError(message)
+E   ValueError: Mixed release imports</error></testcase><testcase classname="tests.test_clock_retirement" name="test_manual_approval_deletes_only_proven_candidates_and_preserves_restic" time="25.267"><error message="failed on setup with &quot;ValueError: Mixed release imports&quot;">tests/test_checkpoint_schedule.py:93: in prepared
+    grant(settings)
+tests/test_checkpoint_schedule.py:47: in grant
+    value = schedule.proposal(settings)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts/checkpoint_schedule.py:109: in proposal
+    boundary = scope(settings, policy, profile)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts/checkpoint_schedule.py:75: in scope
+    require(Path(file).resolve().is_relative_to(roots[package]), "Mixed release imports")
+scripts/restic_trial.py:31: in require
+    raise ValueError(message)
+E   ValueError: Mixed release imports</error></testcase><testcase classname="tests.test_clock_retirement" name="test_mid_deletion_clock_fault_leaves_journal_and_blocks_new_plan" time="25.404"><error message="failed on setup with &quot;ValueError: Mixed release imports&quot;">tests/test_checkpoint_schedule.py:93: in prepared
+    grant(settings)
+tests/test_checkpoint_schedule.py:47: in grant
+    value = schedule.proposal(settings)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts/checkpoint_schedule.py:109: in proposal
+    boundary = scope(settings, policy, profile)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts/checkpoint_schedule.py:75: in scope
+    require(Path(file).resolve().is_relative_to(roots[package]), "Mixed release imports")
+scripts/restic_trial.py:31: in require
+    raise ValueError(message)
+E   ValueError: Mixed release imports</error></testcase><testcase classname="tests.test_clock_retirement" name="test_changed_completion_evidence_and_targets_refuse_application" time="25.356"><error message="failed on setup with &quot;ValueError: Mixed release imports&quot;">tests/test_checkpoint_schedule.py:93: in prepared
+    grant(settings)
+tests/test_checkpoint_schedule.py:47: in grant
+    value = schedule.proposal(settings)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts/checkpoint_schedule.py:109: in proposal
+    boundary = scope(settings, policy, profile)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts/checkpoint_schedule.py:75: in scope
+    require(Path(file).resolve().is_relative_to(roots[package]), "Mixed release imports")
+scripts/restic_trial.py:31: in require
+    raise ValueError(message)
+E   ValueError: Mixed release imports</error></testcase></testsuite></testsuites>
