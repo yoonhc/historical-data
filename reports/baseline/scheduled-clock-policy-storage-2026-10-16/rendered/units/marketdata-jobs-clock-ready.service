@@ -1,0 +1,11 @@
+[Unit]
+Description=Scheduled job clock observation and same-boot preparation
+After=network-online.target
+[Service]
+Type=oneshot
+User=yoonhc
+ExecStart=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job oi --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --wait
+TimeoutStartSec=infinity
+RemainAfterExit=no
+ProtectClock=yes
+Environment=PYTHONDONTWRITEBYTECODE=1

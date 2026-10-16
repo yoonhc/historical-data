@@ -1,0 +1,20 @@
+[Unit]
+Description=BTCUSDT futures aggtrade hourly collection sessions
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+Environment=SESSION_SECONDS=3600
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . aggtrade-stream --seconds ${SESSION_SECONDS} --flush-seconds 5 --rotate-seconds 3600 --min-free-gib 10
+Restart=always
+RestartSec=15s
+KillSignal=SIGINT
+TimeoutStopSec=120s
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

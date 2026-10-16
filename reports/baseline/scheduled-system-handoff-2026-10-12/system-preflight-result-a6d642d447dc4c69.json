@@ -1,0 +1,4112 @@
+{
+  "after": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "identities": {
+      "chrony.service": {
+        "ActiveState": "active",
+        "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+        "MainPID": "1245"
+      },
+      "marketdata-collector@aggtrade.service": {
+        "ActiveState": "active",
+        "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+        "MainPID": "224784"
+      },
+      "marketdata-collector@depth.service": {
+        "ActiveState": "active",
+        "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+        "MainPID": "224785"
+      }
+    },
+    "inventory": {
+      "system": "marketdata-checkpoint-retirement-apply@.service  linked   enabled\nmarketdata-checkpoint-retirement-preview.service linked   enabled\nmarketdata-checkpoint-retirement.service         masked   enabled\nmarketdata-clock-bootstrap.service               enabled  enabled\nmarketdata-collector@.service                    indirect enabled\nmarketdata-checkpoint-retirement.timer           masked   enabled\n",
+      "user": "marketdata-aggtrade.service              masked  enabled\nmarketdata-backup.service                linked  enabled\nmarketdata-checkpoint-retirement.service masked  enabled\nmarketdata-clock-ready.service           static  -\nmarketdata-daily.service                 static  -\nmarketdata-depth.service                 masked  enabled\nmarketdata-network-observer.service      static  -\nmarketdata-oi-probe.service              linked  enabled\nmarketdata-oi-quality.service            linked  enabled\nmarketdata-oi.service                    linked  enabled\nmarketdata-pack.service                  linked  enabled\nmarketdata-restic-archive.service        static  -\nmarketdata-backup.timer                  enabled enabled\nmarketdata-checkpoint-retirement.timer   masked  enabled\nmarketdata-daily.timer                   enabled enabled\nmarketdata-network-observer.timer        enabled enabled\nmarketdata-oi-probe.timer                enabled enabled\nmarketdata-oi-quality.timer              enabled enabled\nmarketdata-oi.timer                      enabled enabled\nmarketdata-pack.timer                    enabled enabled\nmarketdata-restic-archive.timer          enabled enabled\n"
+    },
+    "nodes": {
+      "/etc/chrony/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "cdff5dc077ea83c451d9273ba394eb3f5b0d075b6ca85fb8a07f28192c766f2c",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/manual.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "946c2c35aa5476f3de2780e113eee2131fe0a52ebbf3409dcaedf79cf3c4560e",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/settings.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b",
+        "uid": 0
+      },
+      "/etc/marketdata/clock-bootstrap.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+        "uid": 0
+      },
+      "/etc/marketdata/daily-publication-probe.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "347596dfcabe6e48a3e4084887e6930860593a83d6313aa392f4223e9f7f120b",
+        "uid": 0
+      },
+      "/etc/marketdata/daily-scheduler.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "1410f51a83b5ed95f0c2258835540c3bf2946975285041d298a9608638aff887",
+        "uid": 0
+      },
+      "/etc/marketdata/runtime.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+        "uid": 0
+      },
+      "/etc/marketdata/scheduled-system/oi-live.toml": {
+        "kind": "absent"
+      },
+      "/etc/marketdata/scheduled-system/topology.json": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12",
+        "uid": 0
+      },
+      "/etc/systemd/system/chrony.service.d/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-backup.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-backup.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-checkpoint-retirement.service": {
+        "gid": 0,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-checkpoint-retirement.timer": {
+        "gid": 0,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-clock-ready.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-collector@.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-daily.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-daily.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-network-observer.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-network-observer.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-probe.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-probe.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-quality.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-quality.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-pack.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-pack.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-restic-archive.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-restic-archive.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-backup.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-daily.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-network-observer.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi-probe.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi-quality.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-pack.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-restic-archive.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-clock-ready.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/home/yoonhc/.config/marketdata/network-observer.env": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "ebdf2cb3264d8152b0fadcc22932e2809a6d122d487215c942b70282b3e8eb13",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/network-observer.toml": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/restic-archive.toml": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/restic-service.env": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.service.d/80-checkpoint-evidence.conf": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "3ab1e66c6ab15a3e9ded81c903192360b4fa3266bca1cee05639fbd346af445f",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "d9121ababca9ed23cf6bc84df1b3b9a1832494f6385eb324379064d7067a4f3b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "55326bb195734a6ea5afea99b1916390fc839e2fbb37ccd8dc145fb8c12318a1",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "2ffe783c9341d78fc93526d3f401126932951e6e69788fdc3d69ce18c619bca8",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service.d/80-checkpoint-evidence.conf": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "36120a311a55b6fa836b695c74c769bc6d63703ba8dc6bfcb42236eec716f39b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-daily.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-daily.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-network-observer.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-restic-archive.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676",
+        "uid": 1000
+      },
+      "/var/lib/marketdata-clock/boot-state.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "eae06031a81a0a94567d96babad6fd89a1aad91bf10ea75b7cc93095b7720c99",
+        "uid": 0
+      }
+    }
+  },
+  "before": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "identities": {
+      "chrony.service": {
+        "ActiveState": "active",
+        "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+        "MainPID": "1245"
+      },
+      "marketdata-collector@aggtrade.service": {
+        "ActiveState": "active",
+        "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+        "MainPID": "224784"
+      },
+      "marketdata-collector@depth.service": {
+        "ActiveState": "active",
+        "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+        "MainPID": "224785"
+      }
+    },
+    "inventory": {
+      "system": "marketdata-checkpoint-retirement-apply@.service  linked   enabled\nmarketdata-checkpoint-retirement-preview.service linked   enabled\nmarketdata-checkpoint-retirement.service         masked   enabled\nmarketdata-clock-bootstrap.service               enabled  enabled\nmarketdata-collector@.service                    indirect enabled\nmarketdata-checkpoint-retirement.timer           masked   enabled\n",
+      "user": "marketdata-aggtrade.service              masked  enabled\nmarketdata-backup.service                linked  enabled\nmarketdata-checkpoint-retirement.service masked  enabled\nmarketdata-clock-ready.service           static  -\nmarketdata-daily.service                 static  -\nmarketdata-depth.service                 masked  enabled\nmarketdata-network-observer.service      static  -\nmarketdata-oi-probe.service              linked  enabled\nmarketdata-oi-quality.service            linked  enabled\nmarketdata-oi.service                    linked  enabled\nmarketdata-pack.service                  linked  enabled\nmarketdata-restic-archive.service        static  -\nmarketdata-backup.timer                  enabled enabled\nmarketdata-checkpoint-retirement.timer   masked  enabled\nmarketdata-daily.timer                   enabled enabled\nmarketdata-network-observer.timer        enabled enabled\nmarketdata-oi-probe.timer                enabled enabled\nmarketdata-oi-quality.timer              enabled enabled\nmarketdata-oi.timer                      enabled enabled\nmarketdata-pack.timer                    enabled enabled\nmarketdata-restic-archive.timer          enabled enabled\n"
+    },
+    "nodes": {
+      "/etc/chrony/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "cdff5dc077ea83c451d9273ba394eb3f5b0d075b6ca85fb8a07f28192c766f2c",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/manual.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "946c2c35aa5476f3de2780e113eee2131fe0a52ebbf3409dcaedf79cf3c4560e",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/settings.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b",
+        "uid": 0
+      },
+      "/etc/marketdata/clock-bootstrap.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+        "uid": 0
+      },
+      "/etc/marketdata/daily-publication-probe.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "347596dfcabe6e48a3e4084887e6930860593a83d6313aa392f4223e9f7f120b",
+        "uid": 0
+      },
+      "/etc/marketdata/daily-scheduler.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "1410f51a83b5ed95f0c2258835540c3bf2946975285041d298a9608638aff887",
+        "uid": 0
+      },
+      "/etc/marketdata/runtime.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+        "uid": 0
+      },
+      "/etc/marketdata/scheduled-system/oi-live.toml": {
+        "kind": "absent"
+      },
+      "/etc/marketdata/scheduled-system/topology.json": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12",
+        "uid": 0
+      },
+      "/etc/systemd/system/chrony.service.d/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-backup.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-backup.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-checkpoint-retirement.service": {
+        "gid": 0,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-checkpoint-retirement.timer": {
+        "gid": 0,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-clock-ready.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-collector@.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-daily.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-daily.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-network-observer.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-network-observer.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-probe.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-probe.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-quality.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-quality.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-pack.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-pack.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-restic-archive.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-restic-archive.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-backup.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-daily.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-network-observer.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi-probe.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi-quality.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-pack.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-restic-archive.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-clock-ready.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/home/yoonhc/.config/marketdata/network-observer.env": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "ebdf2cb3264d8152b0fadcc22932e2809a6d122d487215c942b70282b3e8eb13",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/network-observer.toml": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/restic-archive.toml": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/restic-service.env": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.service.d/80-checkpoint-evidence.conf": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "3ab1e66c6ab15a3e9ded81c903192360b4fa3266bca1cee05639fbd346af445f",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "d9121ababca9ed23cf6bc84df1b3b9a1832494f6385eb324379064d7067a4f3b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "55326bb195734a6ea5afea99b1916390fc839e2fbb37ccd8dc145fb8c12318a1",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "2ffe783c9341d78fc93526d3f401126932951e6e69788fdc3d69ce18c619bca8",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service.d/80-checkpoint-evidence.conf": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "36120a311a55b6fa836b695c74c769bc6d63703ba8dc6bfcb42236eec716f39b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-daily.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-daily.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-network-observer.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-restic-archive.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676",
+        "uid": 1000
+      },
+      "/var/lib/marketdata-clock/boot-state.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "eae06031a81a0a94567d96babad6fd89a1aad91bf10ea75b7cc93095b7720c99",
+        "uid": 0
+      }
+    }
+  },
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "cleanup": {
+    "errors": [],
+    "paths_absent": true,
+    "unit_load_states": {
+      "system:md-t15-a6d642d447dc4c69-system-busy.service": "not-found",
+      "system:md-t15-a6d642d447dc4c69-system-queued.service": "not-found",
+      "system:md-t15-a6d642d447dc4c69-system-retry.service": "not-found",
+      "system:md-t15-a6d642d447dc4c69-system-wait.service": "not-found",
+      "system:md-t15-a6d642d447dc4c69-user-lock.service": "not-found",
+      "user:md-t15-a6d642d447dc4c69-system-lock.service": "not-found",
+      "user:md-t15-a6d642d447dc4c69-user-busy.service": "not-found",
+      "user:md-t15-a6d642d447dc4c69-user-queued.service": "not-found",
+      "user:md-t15-a6d642d447dc4c69-user-retry.service": "not-found",
+      "user:md-t15-a6d642d447dc4c69-user-wait.service": "not-found"
+    }
+  },
+  "events": [
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "start",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-system-busy.service",
+        "md-t15-a6d642d447dc4c69-system-queued.service",
+        "md-t15-a6d642d447dc4c69-system-retry.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "start",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-system-busy.service",
+        "md-t15-a6d642d447dc4c69-system-queued.service",
+        "md-t15-a6d642d447dc4c69-system-retry.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-system-lock.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-system-lock.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-system-wait.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-system-wait.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-user-busy.service",
+        "md-t15-a6d642d447dc4c69-user-queued.service",
+        "md-t15-a6d642d447dc4c69-user-retry.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-user-busy.service",
+        "md-t15-a6d642d447dc4c69-user-queued.service",
+        "md-t15-a6d642d447dc4c69-user-retry.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "start",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-user-lock.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "start",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-user-lock.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-user-wait.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "--no-block",
+        "md-t15-a6d642d447dc4c69-user-wait.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-a6d642d447dc4c69-user-lock.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-a6d642d447dc4c69-user-lock.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-user-lock.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-user-lock.service"
+      ],
+      "code": 1,
+      "event": "command_result",
+      "stderr": "Failed to reset failed state of unit md-t15-a6d642d447dc4c69-user-lock.service: Unit md-t15-a6d642d447dc4c69-user-lock.service not loaded.\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "md-t15-a6d642d447dc4c69-user-retry.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "md-t15-a6d642d447dc4c69-user-retry.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-user-retry.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-user-retry.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "md-t15-a6d642d447dc4c69-user-queued.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "md-t15-a6d642d447dc4c69-user-queued.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-user-queued.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-user-queued.service"
+      ],
+      "code": 1,
+      "event": "command_result",
+      "stderr": "Failed to reset failed state of unit md-t15-a6d642d447dc4c69-user-queued.service: Unit md-t15-a6d642d447dc4c69-user-queued.service not loaded.\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "md-t15-a6d642d447dc4c69-user-wait.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "md-t15-a6d642d447dc4c69-user-wait.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-user-wait.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-user-wait.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "md-t15-a6d642d447dc4c69-user-busy.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "md-t15-a6d642d447dc4c69-user-busy.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-user-busy.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-user-busy.service"
+      ],
+      "code": 1,
+      "event": "command_result",
+      "stderr": "Failed to reset failed state of unit md-t15-a6d642d447dc4c69-user-busy.service: Unit md-t15-a6d642d447dc4c69-user-busy.service not loaded.\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "md-t15-a6d642d447dc4c69-system-lock.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "stop",
+        "md-t15-a6d642d447dc4c69-system-lock.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-system-lock.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-system-lock.service"
+      ],
+      "code": 1,
+      "event": "command_result",
+      "stderr": "Failed to reset failed state of unit md-t15-a6d642d447dc4c69-system-lock.service: Unit md-t15-a6d642d447dc4c69-system-lock.service not loaded.\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-a6d642d447dc4c69-system-retry.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-a6d642d447dc4c69-system-retry.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-system-retry.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-system-retry.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-a6d642d447dc4c69-system-queued.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-a6d642d447dc4c69-system-queued.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-system-queued.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-system-queued.service"
+      ],
+      "code": 1,
+      "event": "command_result",
+      "stderr": "Failed to reset failed state of unit md-t15-a6d642d447dc4c69-system-queued.service: Unit md-t15-a6d642d447dc4c69-system-queued.service not loaded.\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-a6d642d447dc4c69-system-wait.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-a6d642d447dc4c69-system-wait.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-system-wait.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-system-wait.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-a6d642d447dc4c69-system-busy.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-a6d642d447dc4c69-system-busy.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-system-busy.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-a6d642d447dc4c69-system-busy.service"
+      ],
+      "code": 1,
+      "event": "command_result",
+      "stderr": "Failed to reset failed state of unit md-t15-a6d642d447dc4c69-system-busy.service: Unit md-t15-a6d642d447dc4c69-system-busy.service not loaded.\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "finished_at": "2026-10-12T14:24:53.314873+00:00",
+  "nonce": "a6d642d447dc4c69",
+  "operating_changes_requested": false,
+  "operating_unchanged": true,
+  "ownership_before": {
+    "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": {
+      "gid": 0,
+      "kind": "file",
+      "mode": 420,
+      "uid": 0
+    },
+    "/etc/marketdata/clock-bootstrap.json": {
+      "gid": 0,
+      "kind": "file",
+      "mode": 420,
+      "uid": 0
+    },
+    "/etc/marketdata/scheduled-system/oi-live.toml": {
+      "kind": "absent"
+    },
+    "/etc/marketdata/scheduled-system/topology.json": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-backup.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-backup.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+      "gid": 0,
+      "kind": "file",
+      "mode": 420,
+      "uid": 0
+    },
+    "/etc/systemd/system/marketdata-clock-ready.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-daily.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-daily.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-network-observer.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-network-observer.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi-probe.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi-probe.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi-quality.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi-quality.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-pack.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-pack.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-restic-archive.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-restic-archive.timer": {
+      "kind": "absent"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.service": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.service": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.service": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-backup.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-daily.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-network-observer.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-probe.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-quality.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-pack.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-restic-archive.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    }
+  },
+  "passed": true,
+  "reused_preflight": {
+    "failed_lifecycle_not_counted": true,
+    "groups": [
+      "environments",
+      "links",
+      "provenance"
+    ],
+    "repeated": false,
+    "report": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-system-handoff-2026-10-12/system-preflight-result-97f22b03bbf940c3.json",
+    "sha256": "d1eee4235541062185ea19575c56da1410486be51003927466e9e6785732493b",
+    "tool_id": "scheduled-handoff-20261012-781fc35b9032628c"
+  },
+  "scenario": "lifecycle",
+  "tool_id": "scheduled-handoff-20261012-b48b6beb0b9b72b9",
+  "trials": {
+    "backup": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "systemd-journald.socket system.slice home.mount -.mount sysinit.target md-t15-97f22b03bbf940c3-ready.service basic.target",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python ; argv[]=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_backup.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000 --help ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\n{ path=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python ; argv[]=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/trial_worker.py access --state /var/lib/md-t15-97f22b03bbf940c3 --name backup ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-backup.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "4",
+        "Id": "md-t15-97f22b03bbf940c3-backup.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "2",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "no",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "-.mount system.slice home.mount md-t15-97f22b03bbf940c3-ready.service sysinit.target",
+        "Restart": "on-failure",
+        "RestartUSec": "2min",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "6h",
+        "TimeoutStopUSec": "2min",
+        "Type": "oneshot",
+        "UMask": "0022",
+        "UnitFileState": "static",
+        "User": "yoonhc",
+        "Wants": "",
+        "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "worker": {
+        "configurations_read": [
+          "/etc/marketdata/runtime.json",
+          "/etc/marketdata/clock-bootstrap.json",
+          "/etc/marketdata/daily-scheduler.toml",
+          "/etc/marketdata/daily-publication-probe.toml",
+          "/etc/marketdata/checkpoint-clock-retirement/settings.toml",
+          "/home/yoonhc/.config/marketdata/restic-archive.toml",
+          "/home/yoonhc/.config/marketdata/network-observer.toml"
+        ],
+        "coordinator_shared_read_lock": true,
+        "invocation": "555903eafa494b9d9694332abc511894",
+        "marketdata": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "mode": "access",
+        "password_readable": true,
+        "pid": 1169040,
+        "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+        "uid": 1000
+      }
+    },
+    "daily": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "systemd-journald.socket sysinit.target system.slice basic.target -.mount home.mount md-t15-97f22b03bbf940c3-ready.service network-online.target",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python ; argv[]=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json --help ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\n{ path=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python ; argv[]=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/trial_worker.py access --state /var/lib/md-t15-97f22b03bbf940c3 --name daily ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-daily.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "4",
+        "Id": "md-t15-97f22b03bbf940c3-daily.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "15",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "no",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "sysinit.target -.mount system.slice md-t15-97f22b03bbf940c3-ready.service home.mount",
+        "Restart": "on-failure",
+        "RestartUSec": "1min",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "30min",
+        "TimeoutStopUSec": "10s",
+        "Type": "oneshot",
+        "UMask": "0022",
+        "UnitFileState": "static",
+        "User": "yoonhc",
+        "Wants": "network-online.target",
+        "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "worker": {
+        "configurations_read": [
+          "/etc/marketdata/runtime.json",
+          "/etc/marketdata/clock-bootstrap.json",
+          "/etc/marketdata/daily-scheduler.toml",
+          "/etc/marketdata/daily-publication-probe.toml",
+          "/etc/marketdata/checkpoint-clock-retirement/settings.toml",
+          "/home/yoonhc/.config/marketdata/restic-archive.toml",
+          "/home/yoonhc/.config/marketdata/network-observer.toml"
+        ],
+        "coordinator_shared_read_lock": true,
+        "invocation": "b5e7db18fb3c4f01bb76819692a0d7cb",
+        "marketdata": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "mode": "access",
+        "password_readable": true,
+        "pid": 1168841,
+        "python": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python",
+        "uid": 1000
+      }
+    },
+    "manual": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "systemd-journald.socket basic.target system.slice sysinit.target",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python ; argv[]=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/trial_worker.py context --state /var/lib/md-t15-97f22b03bbf940c3 --name manual --release /opt/md-t15-97f22b03bbf940c3 --service md-t15-97f22b03bbf940c3-context.service --timer md-t15-97f22b03bbf940c3-context.timer ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-context.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "4",
+        "Id": "md-t15-97f22b03bbf940c3-context.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "15",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "yes",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "system.slice sysinit.target",
+        "Restart": "no",
+        "RestartUSec": "100ms",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "2min 30s",
+        "TimeoutStopUSec": "10s",
+        "Type": "oneshot",
+        "UMask": "0022",
+        "UnitFileState": "static",
+        "User": "yoonhc",
+        "Wants": "",
+        "WorkingDirectory": ""
+      },
+      "worker": {
+        "context": {
+          "classification": "manual_service_or_unknown",
+          "cwd": "/",
+          "environment": {
+            "INVOCATION_ID": "a64c733ee68f4f219afdf3af7123110c",
+            "TRIGGER_TIMER_MONOTONIC_USEC": null,
+            "TRIGGER_TIMER_REALTIME_USEC": null,
+            "TRIGGER_UNIT": null
+          },
+          "manager": "system",
+          "manager_adapter": {
+            "parent": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+            "path": "/opt/md-t15-97f22b03bbf940c3/migration/run_system_archive.py",
+            "purpose": "system-manager-provenance-only-v1",
+            "sha256": "16a0e6e2a80f4e02934b7e1b92eacde02ef922b03f7c6d30cdc8ba29806408e5"
+          },
+          "manager_evidence": {
+            "/org/freedesktop/systemd1/job/117693:Job.ActivationDetails": {
+              "data": [],
+              "type": "a(ss)"
+            },
+            "/org/freedesktop/systemd1/job/117693:Job.JobType": {
+              "data": "start",
+              "type": "s"
+            },
+            "/org/freedesktop/systemd1/job/117693:Job.State": {
+              "data": "running",
+              "type": "s"
+            },
+            "/org/freedesktop/systemd1/job/117693:Job.Unit": {
+              "data": [
+                "md-t15-97f22b03bbf940c3-context.service",
+                "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice"
+              ],
+              "type": "(so)"
+            },
+            "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice:Unit.Job": {
+              "data": [
+                117693,
+                "/org/freedesktop/systemd1/job/117693"
+              ],
+              "type": "(uo)"
+            }
+          },
+          "module": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+          "module_sha256": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+          "pid": 1169638,
+          "provenance_method": "current_start_job_activation_details",
+          "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+          "scheduled": false,
+          "service_properties": {
+            "Id": "md-t15-97f22b03bbf940c3-context.service",
+            "InvocationID": "a64c733ee68f4f219afdf3af7123110c",
+            "MainPID": "1169638",
+            "Type": "oneshot"
+          },
+          "service_verified": true,
+          "start_job": {
+            "activation_details": {},
+            "id": 117693,
+            "path": "/org/freedesktop/systemd1/job/117693"
+          },
+          "uid": 1000,
+          "user": "yoonhc"
+        },
+        "invocation": "a64c733ee68f4f219afdf3af7123110c",
+        "mode": "context",
+        "pid": 1169638,
+        "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+        "uid": 1000,
+        "wrong_timer": {
+          "classification": "manual_service_or_unknown",
+          "cwd": "/",
+          "environment": {
+            "INVOCATION_ID": "a64c733ee68f4f219afdf3af7123110c",
+            "TRIGGER_TIMER_MONOTONIC_USEC": null,
+            "TRIGGER_TIMER_REALTIME_USEC": null,
+            "TRIGGER_UNIT": null
+          },
+          "manager": "system",
+          "manager_adapter": {
+            "parent": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+            "path": "/opt/md-t15-97f22b03bbf940c3/migration/run_system_archive.py",
+            "purpose": "system-manager-provenance-only-v1",
+            "sha256": "16a0e6e2a80f4e02934b7e1b92eacde02ef922b03f7c6d30cdc8ba29806408e5"
+          },
+          "manager_evidence": {
+            "/org/freedesktop/systemd1/job/117693:Job.ActivationDetails": {
+              "data": [],
+              "type": "a(ss)"
+            },
+            "/org/freedesktop/systemd1/job/117693:Job.JobType": {
+              "data": "start",
+              "type": "s"
+            },
+            "/org/freedesktop/systemd1/job/117693:Job.State": {
+              "data": "running",
+              "type": "s"
+            },
+            "/org/freedesktop/systemd1/job/117693:Job.Unit": {
+              "data": [
+                "md-t15-97f22b03bbf940c3-context.service",
+                "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice"
+              ],
+              "type": "(so)"
+            },
+            "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice:Unit.Job": {
+              "data": [
+                117693,
+                "/org/freedesktop/systemd1/job/117693"
+              ],
+              "type": "(uo)"
+            }
+          },
+          "module": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+          "module_sha256": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+          "pid": 1169638,
+          "provenance_method": "current_start_job_activation_details",
+          "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+          "scheduled": false,
+          "service_properties": {
+            "Id": "md-t15-97f22b03bbf940c3-context.service",
+            "InvocationID": "a64c733ee68f4f219afdf3af7123110c",
+            "MainPID": "1169638",
+            "Type": "oneshot"
+          },
+          "service_verified": true,
+          "start_job": {
+            "activation_details": {},
+            "id": 117693,
+            "path": "/org/freedesktop/systemd1/job/117693"
+          },
+          "uid": 1000,
+          "user": "yoonhc"
+        },
+        "wrong_unit": {
+          "classification": "unconfirmed_service",
+          "cwd": "/",
+          "environment": {
+            "INVOCATION_ID": "a64c733ee68f4f219afdf3af7123110c",
+            "TRIGGER_TIMER_MONOTONIC_USEC": null,
+            "TRIGGER_TIMER_REALTIME_USEC": null,
+            "TRIGGER_UNIT": null
+          },
+          "manager": "system",
+          "manager_adapter": {
+            "parent": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+            "path": "/opt/md-t15-97f22b03bbf940c3/migration/run_system_archive.py",
+            "purpose": "system-manager-provenance-only-v1",
+            "sha256": "16a0e6e2a80f4e02934b7e1b92eacde02ef922b03f7c6d30cdc8ba29806408e5"
+          },
+          "manager_evidence": {},
+          "module": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+          "module_sha256": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+          "pid": 1169638,
+          "provenance_error": "Invocation/PID does not belong to the archive service",
+          "provenance_method": "current_start_job_activation_details",
+          "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+          "scheduled": false,
+          "service_properties": {
+            "Id": "md-t15-97f22b03bbf940c3-other.service",
+            "InvocationID": "",
+            "MainPID": "0",
+            "Type": ""
+          },
+          "service_verified": false,
+          "uid": 1000,
+          "user": "yoonhc"
+        }
+      }
+    },
+    "network-observer": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "sysinit.target md-t15-97f22b03bbf940c3-ready.service -.mount home.mount system.slice basic.target systemd-journald.socket",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "EnvironmentFiles": "/home/yoonhc/.config/marketdata/network-observer.env (ignore_errors=no)",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python ; argv[]=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/scripts/network_observer.py --profile /home/yoonhc/.config/marketdata/network-observer.toml --help ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\n{ path=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python ; argv[]=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/trial_worker.py access --state /var/lib/md-t15-97f22b03bbf940c3 --name network-observer ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-network-observer.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "7",
+        "Id": "md-t15-97f22b03bbf940c3-network-observer.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "15",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "10",
+        "NoNewPrivileges": "no",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "-.mount sysinit.target system.slice home.mount md-t15-97f22b03bbf940c3-ready.service",
+        "Restart": "no",
+        "RestartUSec": "100ms",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "20s",
+        "TimeoutStopUSec": "10s",
+        "Type": "oneshot",
+        "UMask": "0077",
+        "UnitFileState": "static",
+        "User": "yoonhc",
+        "Wants": "",
+        "WorkingDirectory": "/home/yoonhc"
+      },
+      "worker": {
+        "configurations_read": [
+          "/etc/marketdata/runtime.json",
+          "/etc/marketdata/clock-bootstrap.json",
+          "/etc/marketdata/daily-scheduler.toml",
+          "/etc/marketdata/daily-publication-probe.toml",
+          "/etc/marketdata/checkpoint-clock-retirement/settings.toml",
+          "/home/yoonhc/.config/marketdata/restic-archive.toml",
+          "/home/yoonhc/.config/marketdata/network-observer.toml"
+        ],
+        "coordinator_shared_read_lock": true,
+        "invocation": "f555bc8ff08346cbadb6b2e105a9ea60",
+        "marketdata": "/opt/md-t15-97f22b03bbf940c3/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "mode": "access",
+        "password_readable": true,
+        "pid": 1169231,
+        "python": "/opt/md-t15-97f22b03bbf940c3/.venv/bin/python",
+        "uid": 1000
+      }
+    },
+    "oi": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "home.mount -.mount md-t15-97f22b03bbf940c3-ready.service network-online.target basic.target sysinit.target system.slice systemd-journald.socket",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python ; argv[]=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data update --config /etc/marketdata/scheduled-system/oi-live.toml --report state/oi-latest.json --help ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\n{ path=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python ; argv[]=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/trial_worker.py access --state /var/lib/md-t15-97f22b03bbf940c3 --name oi ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-oi.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "4",
+        "Id": "md-t15-97f22b03bbf940c3-oi.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "15",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "no",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "-.mount home.mount sysinit.target system.slice md-t15-97f22b03bbf940c3-ready.service",
+        "Restart": "on-failure",
+        "RestartUSec": "30s",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "4min",
+        "TimeoutStopUSec": "10s",
+        "Type": "oneshot",
+        "UMask": "0022",
+        "UnitFileState": "static",
+        "User": "yoonhc",
+        "Wants": "network-online.target",
+        "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "worker": {
+        "configurations_read": [
+          "/etc/marketdata/runtime.json",
+          "/etc/marketdata/clock-bootstrap.json",
+          "/etc/marketdata/daily-scheduler.toml",
+          "/etc/marketdata/daily-publication-probe.toml",
+          "/etc/marketdata/checkpoint-clock-retirement/settings.toml",
+          "/home/yoonhc/.config/marketdata/restic-archive.toml",
+          "/home/yoonhc/.config/marketdata/network-observer.toml"
+        ],
+        "coordinator_shared_read_lock": true,
+        "invocation": "8b6f4051c93f46d38434ac7f1126638f",
+        "marketdata": "/opt/md-t15-97f22b03bbf940c3/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "mode": "access",
+        "password_readable": true,
+        "pid": 1168547,
+        "python": "/opt/md-t15-97f22b03bbf940c3/.venv/bin/python",
+        "uid": 1000
+      }
+    },
+    "oi-probe": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "basic.target sysinit.target -.mount system.slice network-online.target md-t15-97f22b03bbf940c3-ready.service home.mount systemd-journald.socket",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python ; argv[]=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data oi-probe --help ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\n{ path=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python ; argv[]=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/trial_worker.py access --state /var/lib/md-t15-97f22b03bbf940c3 --name oi-probe ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-oi-probe.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "4",
+        "Id": "md-t15-97f22b03bbf940c3-oi-probe.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "15",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "no",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "sysinit.target system.slice home.mount md-t15-97f22b03bbf940c3-ready.service -.mount",
+        "Restart": "no",
+        "RestartUSec": "100ms",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "1min 20s",
+        "TimeoutStopUSec": "10s",
+        "Type": "oneshot",
+        "UMask": "0022",
+        "UnitFileState": "static",
+        "User": "yoonhc",
+        "Wants": "network-online.target",
+        "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "worker": {
+        "configurations_read": [
+          "/etc/marketdata/runtime.json",
+          "/etc/marketdata/clock-bootstrap.json",
+          "/etc/marketdata/daily-scheduler.toml",
+          "/etc/marketdata/daily-publication-probe.toml",
+          "/etc/marketdata/checkpoint-clock-retirement/settings.toml",
+          "/home/yoonhc/.config/marketdata/restic-archive.toml",
+          "/home/yoonhc/.config/marketdata/network-observer.toml"
+        ],
+        "coordinator_shared_read_lock": true,
+        "invocation": "283eda5e16864c41b4173f834d71549e",
+        "marketdata": "/opt/md-t15-97f22b03bbf940c3/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "mode": "access",
+        "password_readable": true,
+        "pid": 1168643,
+        "python": "/opt/md-t15-97f22b03bbf940c3/.venv/bin/python",
+        "uid": 1000
+      }
+    },
+    "oi-quality": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "system.slice basic.target sysinit.target md-t15-97f22b03bbf940c3-ready.service -.mount home.mount systemd-journald.socket",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python ; argv[]=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data oi-quality --days 7 --help ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\n{ path=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python ; argv[]=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/trial_worker.py access --state /var/lib/md-t15-97f22b03bbf940c3 --name oi-quality ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-oi-quality.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "4",
+        "Id": "md-t15-97f22b03bbf940c3-oi-quality.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "15",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "no",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "system.slice -.mount home.mount sysinit.target md-t15-97f22b03bbf940c3-ready.service",
+        "Restart": "no",
+        "RestartUSec": "100ms",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "5min",
+        "TimeoutStopUSec": "10s",
+        "Type": "oneshot",
+        "UMask": "0022",
+        "UnitFileState": "static",
+        "User": "yoonhc",
+        "Wants": "",
+        "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "worker": {
+        "configurations_read": [
+          "/etc/marketdata/runtime.json",
+          "/etc/marketdata/clock-bootstrap.json",
+          "/etc/marketdata/daily-scheduler.toml",
+          "/etc/marketdata/daily-publication-probe.toml",
+          "/etc/marketdata/checkpoint-clock-retirement/settings.toml",
+          "/home/yoonhc/.config/marketdata/restic-archive.toml",
+          "/home/yoonhc/.config/marketdata/network-observer.toml"
+        ],
+        "coordinator_shared_read_lock": true,
+        "invocation": "44e5f1cf83c24d60830620877b9c2fc9",
+        "marketdata": "/opt/md-t15-97f22b03bbf940c3/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "mode": "access",
+        "password_readable": true,
+        "pid": 1168740,
+        "python": "/opt/md-t15-97f22b03bbf940c3/.venv/bin/python",
+        "uid": 1000
+      }
+    },
+    "pack": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "md-t15-97f22b03bbf940c3-ready.service -.mount systemd-journald.socket basic.target sysinit.target home.mount system.slice",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python ; argv[]=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data maintenance --mode hourly --min-free-gib 10 --wait-for-lock --help ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\n{ path=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python ; argv[]=/opt/md-t15-97f22b03bbf940c3/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/trial_worker.py access --state /var/lib/md-t15-97f22b03bbf940c3 --name pack ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-pack.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "4",
+        "Id": "md-t15-97f22b03bbf940c3-pack.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "2",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "no",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "system.slice sysinit.target md-t15-97f22b03bbf940c3-ready.service home.mount -.mount",
+        "Restart": "on-failure",
+        "RestartUSec": "2min",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "6h",
+        "TimeoutStopUSec": "2min",
+        "Type": "oneshot",
+        "UMask": "0022",
+        "UnitFileState": "static",
+        "User": "yoonhc",
+        "Wants": "",
+        "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+      },
+      "worker": {
+        "configurations_read": [
+          "/etc/marketdata/runtime.json",
+          "/etc/marketdata/clock-bootstrap.json",
+          "/etc/marketdata/daily-scheduler.toml",
+          "/etc/marketdata/daily-publication-probe.toml",
+          "/etc/marketdata/checkpoint-clock-retirement/settings.toml",
+          "/home/yoonhc/.config/marketdata/restic-archive.toml",
+          "/home/yoonhc/.config/marketdata/network-observer.toml"
+        ],
+        "coordinator_shared_read_lock": true,
+        "invocation": "bc2c851cecdb4f14afbeb9e2e143eec0",
+        "marketdata": "/opt/md-t15-97f22b03bbf940c3/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "mode": "access",
+        "password_readable": true,
+        "pid": 1168941,
+        "python": "/opt/md-t15-97f22b03bbf940c3/.venv/bin/python",
+        "uid": 1000
+      }
+    },
+    "persistent_catchup": {
+      "context": {
+        "classification": "verified_timer",
+        "cwd": "/",
+        "environment": {
+          "INVOCATION_ID": "424317561d6f40f7a13ea69cc47d131b",
+          "TRIGGER_TIMER_MONOTONIC_USEC": "342404931384",
+          "TRIGGER_TIMER_REALTIME_USEC": "1791814666973567",
+          "TRIGGER_UNIT": "md-t15-97f22b03bbf940c3-persistent.timer"
+        },
+        "environment_matches_job": true,
+        "manager": "system",
+        "manager_adapter": {
+          "parent": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+          "path": "/opt/md-t15-97f22b03bbf940c3/migration/run_system_archive.py",
+          "purpose": "system-manager-provenance-only-v1",
+          "sha256": "16a0e6e2a80f4e02934b7e1b92eacde02ef922b03f7c6d30cdc8ba29806408e5"
+        },
+        "manager_evidence": {
+          "/org/freedesktop/systemd1/job/117971:Job.ActivationDetails": {
+            "data": [
+              [
+                "trigger_unit",
+                "md-t15-97f22b03bbf940c3-persistent.timer"
+              ],
+              [
+                "trigger_timer_realtime_usec",
+                "1791814666973567"
+              ],
+              [
+                "trigger_timer_monotonic_usec",
+                "342404931384"
+              ]
+            ],
+            "type": "a(ss)"
+          },
+          "/org/freedesktop/systemd1/job/117971:Job.JobType": {
+            "data": "start",
+            "type": "s"
+          },
+          "/org/freedesktop/systemd1/job/117971:Job.State": {
+            "data": "running",
+            "type": "s"
+          },
+          "/org/freedesktop/systemd1/job/117971:Job.Unit": {
+            "data": [
+              "md-t15-97f22b03bbf940c3-context.service",
+              "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice"
+            ],
+            "type": "(so)"
+          },
+          "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice:Unit.Job": {
+            "data": [
+              117971,
+              "/org/freedesktop/systemd1/job/117971"
+            ],
+            "type": "(uo)"
+          },
+          "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dpersistent_2etimer:Timer.LastTriggerUSec": {
+            "data": 1791814666973567,
+            "type": "t"
+          },
+          "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dpersistent_2etimer:Timer.LastTriggerUSecMonotonic": {
+            "data": 342404931384,
+            "type": "t"
+          }
+        },
+        "module": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+        "module_sha256": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+        "pid": 1169748,
+        "provenance_method": "current_start_job_activation_details",
+        "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+        "scheduled": true,
+        "service_properties": {
+          "Id": "md-t15-97f22b03bbf940c3-context.service",
+          "InvocationID": "424317561d6f40f7a13ea69cc47d131b",
+          "MainPID": "1169748",
+          "Type": "oneshot"
+        },
+        "service_verified": true,
+        "start_job": {
+          "activation_details": {
+            "trigger_timer_monotonic_usec": "342404931384",
+            "trigger_timer_realtime_usec": "1791814666973567",
+            "trigger_unit": "md-t15-97f22b03bbf940c3-persistent.timer"
+          },
+          "id": 117971,
+          "path": "/org/freedesktop/systemd1/job/117971"
+        },
+        "trigger_at": "2026-10-12T14:17:46.973567+00:00",
+        "uid": 1000,
+        "user": "yoonhc"
+      },
+      "invocation": "424317561d6f40f7a13ea69cc47d131b",
+      "mode": "context",
+      "pid": 1169748,
+      "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+      "timer": {
+        "AccuracyUSec": "1ms",
+        "ActiveEnterTimestampMonotonic": "342404930930",
+        "ActiveState": "active",
+        "After": "time-sync.target sysinit.target -.mount time-set.target",
+        "DropInPaths": "",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-persistent.timer",
+        "Id": "md-t15-97f22b03bbf940c3-persistent.timer",
+        "InvocationID": "e4fb58c3d64b44418e4d44001e683167",
+        "Job": "",
+        "LoadState": "loaded",
+        "NeedDaemonReload": "no",
+        "Persistent": "yes",
+        "RandomizedDelayUSec": "0",
+        "Requires": "-.mount sysinit.target",
+        "SubState": "elapsed",
+        "TimersCalendar": "{ OnCalendar=2026-10-11 00:00:00 UTC ; next_elapse=Sun 2026-10-11 09:00:00 KST }",
+        "Unit": "md-t15-97f22b03bbf940c3-context.service",
+        "UnitFileState": "static",
+        "Wants": ""
+      },
+      "uid": 1000,
+      "wrong_timer": {
+        "classification": "unconfirmed_service",
+        "cwd": "/",
+        "environment": {
+          "INVOCATION_ID": "424317561d6f40f7a13ea69cc47d131b",
+          "TRIGGER_TIMER_MONOTONIC_USEC": "342404931384",
+          "TRIGGER_TIMER_REALTIME_USEC": "1791814666973567",
+          "TRIGGER_UNIT": "md-t15-97f22b03bbf940c3-persistent.timer"
+        },
+        "manager": "system",
+        "manager_adapter": {
+          "parent": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+          "path": "/opt/md-t15-97f22b03bbf940c3/migration/run_system_archive.py",
+          "purpose": "system-manager-provenance-only-v1",
+          "sha256": "16a0e6e2a80f4e02934b7e1b92eacde02ef922b03f7c6d30cdc8ba29806408e5"
+        },
+        "manager_evidence": {
+          "/org/freedesktop/systemd1/job/117971:Job.ActivationDetails": {
+            "data": [
+              [
+                "trigger_unit",
+                "md-t15-97f22b03bbf940c3-persistent.timer"
+              ],
+              [
+                "trigger_timer_realtime_usec",
+                "1791814666973567"
+              ],
+              [
+                "trigger_timer_monotonic_usec",
+                "342404931384"
+              ]
+            ],
+            "type": "a(ss)"
+          },
+          "/org/freedesktop/systemd1/job/117971:Job.JobType": {
+            "data": "start",
+            "type": "s"
+          },
+          "/org/freedesktop/systemd1/job/117971:Job.State": {
+            "data": "running",
+            "type": "s"
+          },
+          "/org/freedesktop/systemd1/job/117971:Job.Unit": {
+            "data": [
+              "md-t15-97f22b03bbf940c3-context.service",
+              "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice"
+            ],
+            "type": "(so)"
+          },
+          "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice:Unit.Job": {
+            "data": [
+              117971,
+              "/org/freedesktop/systemd1/job/117971"
+            ],
+            "type": "(uo)"
+          }
+        },
+        "module": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+        "module_sha256": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+        "pid": 1169748,
+        "provenance_error": "Start job was not triggered by this timer",
+        "provenance_method": "current_start_job_activation_details",
+        "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+        "scheduled": false,
+        "service_properties": {
+          "Id": "md-t15-97f22b03bbf940c3-context.service",
+          "InvocationID": "424317561d6f40f7a13ea69cc47d131b",
+          "MainPID": "1169748",
+          "Type": "oneshot"
+        },
+        "service_verified": true,
+        "start_job": {
+          "activation_details": {
+            "trigger_timer_monotonic_usec": "342404931384",
+            "trigger_timer_realtime_usec": "1791814666973567",
+            "trigger_unit": "md-t15-97f22b03bbf940c3-persistent.timer"
+          },
+          "id": 117971,
+          "path": "/org/freedesktop/systemd1/job/117971"
+        },
+        "uid": 1000,
+        "user": "yoonhc"
+      },
+      "wrong_unit": {
+        "classification": "unconfirmed_service",
+        "cwd": "/",
+        "environment": {
+          "INVOCATION_ID": "424317561d6f40f7a13ea69cc47d131b",
+          "TRIGGER_TIMER_MONOTONIC_USEC": "342404931384",
+          "TRIGGER_TIMER_REALTIME_USEC": "1791814666973567",
+          "TRIGGER_UNIT": "md-t15-97f22b03bbf940c3-persistent.timer"
+        },
+        "manager": "system",
+        "manager_adapter": {
+          "parent": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+          "path": "/opt/md-t15-97f22b03bbf940c3/migration/run_system_archive.py",
+          "purpose": "system-manager-provenance-only-v1",
+          "sha256": "16a0e6e2a80f4e02934b7e1b92eacde02ef922b03f7c6d30cdc8ba29806408e5"
+        },
+        "manager_evidence": {},
+        "module": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+        "module_sha256": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+        "pid": 1169748,
+        "provenance_error": "Invocation/PID does not belong to the archive service",
+        "provenance_method": "current_start_job_activation_details",
+        "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+        "scheduled": false,
+        "service_properties": {
+          "Id": "md-t15-97f22b03bbf940c3-other.service",
+          "InvocationID": "",
+          "MainPID": "0",
+          "Type": ""
+        },
+        "service_verified": false,
+        "uid": 1000,
+        "user": "yoonhc"
+      }
+    },
+    "restic-archive": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "-.mount sysinit.target system.slice basic.target systemd-journald.socket md-t15-97f22b03bbf940c3-ready.service home.mount",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "EnvironmentFiles": "/home/yoonhc/.config/marketdata/restic-service.env (ignore_errors=no)",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python ; argv[]=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/migration/run_system_archive.py --profile /home/yoonhc/.config/marketdata/restic-archive.toml run --help ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }\n{ path=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python ; argv[]=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/md-t15-97f22b03bbf940c3/trial_worker.py access --state /var/lib/md-t15-97f22b03bbf940c3 --name restic-archive ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-restic-archive.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "7",
+        "Id": "md-t15-97f22b03bbf940c3-restic-archive.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "2",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "10",
+        "NoNewPrivileges": "no",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "home.mount -.mount system.slice sysinit.target md-t15-97f22b03bbf940c3-ready.service",
+        "Restart": "no",
+        "RestartUSec": "100ms",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "6h",
+        "TimeoutStopUSec": "2min",
+        "Type": "oneshot",
+        "UMask": "0077",
+        "UnitFileState": "static",
+        "User": "yoonhc",
+        "Wants": "",
+        "WorkingDirectory": "/home/yoonhc"
+      },
+      "worker": {
+        "configurations_read": [
+          "/etc/marketdata/runtime.json",
+          "/etc/marketdata/clock-bootstrap.json",
+          "/etc/marketdata/daily-scheduler.toml",
+          "/etc/marketdata/daily-publication-probe.toml",
+          "/etc/marketdata/checkpoint-clock-retirement/settings.toml",
+          "/home/yoonhc/.config/marketdata/restic-archive.toml",
+          "/home/yoonhc/.config/marketdata/network-observer.toml"
+        ],
+        "coordinator_shared_read_lock": true,
+        "invocation": "894e6e517d134e77876b4e2647b89069",
+        "marketdata": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "mode": "access",
+        "password_readable": true,
+        "pid": 1169137,
+        "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+        "uid": 1000
+      }
+    },
+    "system-lock": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "basic.target app.slice",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python ; argv[]=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python -B -I /opt/md-t15-a6d642d447dc4c69/trial_worker.py lock-try --state /var/lib/md-t15-a6d642d447dc4c69 --name system-lock ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/home/yoonhc/.config/systemd/user/md-t15-a6d642d447dc4c69-system-lock.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "4",
+        "Id": "md-t15-a6d642d447dc4c69-system-lock.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "15",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "yes",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "basic.target app.slice",
+        "Restart": "no",
+        "RestartUSec": "100ms",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "2min 30s",
+        "TimeoutStopUSec": "10s",
+        "Type": "oneshot",
+        "UMask": "0002",
+        "UnitFileState": "static",
+        "User": "",
+        "Wants": "",
+        "WorkingDirectory": "!/home/yoonhc"
+      },
+      "worker": {
+        "invocation": "488f5ef126a14c6599facc9506606974",
+        "lock_conflict": true,
+        "mode": "lock-try",
+        "pid": 1173186,
+        "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+        "uid": 1000
+      }
+    },
+    "system_drain": {
+      "before": {
+        "md-t15-a6d642d447dc4c69-system-busy.service": {
+          "classification": "running",
+          "jobs": [
+            {
+              "job": 118549,
+              "state": "running",
+              "type": "start",
+              "unit": "md-t15-a6d642d447dc4c69-system-busy.service"
+            }
+          ],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "0",
+            "ActiveState": "activating",
+            "After": "sysinit.target systemd-journald.socket basic.target system.slice",
+            "ControlPID": "0",
+            "DropInPaths": "",
+            "ExecMainStartTimestampMonotonic": "342828077116",
+            "ExecStart": "{ path=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python ; argv[]=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python -B -I /opt/md-t15-a6d642d447dc4c69/trial_worker.py hold --state /var/lib/md-t15-a6d642d447dc4c69 --name system-busy ; ignore_errors=no ; start_time=[Mon 2026-10-12 23:24:50 KST] ; stop_time=[n/a] ; pid=1173169 ; code=(null) ; status=0/0 }",
+            "FragmentPath": "/run/systemd/system/md-t15-a6d642d447dc4c69-system-busy.service",
+            "Group": "",
+            "IOSchedulingClass": "2",
+            "IOSchedulingPriority": "4",
+            "Id": "md-t15-a6d642d447dc4c69-system-busy.service",
+            "InvocationID": "0de574317d81449a996738e24592a05c",
+            "Job": "118549",
+            "KillMode": "control-group",
+            "KillSignal": "15",
+            "LoadState": "loaded",
+            "MainPID": "1173169",
+            "NeedDaemonReload": "no",
+            "Nice": "0",
+            "NoNewPrivileges": "yes",
+            "PrivateTmp": "no",
+            "ProtectClock": "yes",
+            "ProtectHome": "no",
+            "ProtectSystem": "no",
+            "Requires": "system.slice sysinit.target",
+            "Restart": "no",
+            "RestartUSec": "100ms",
+            "RuntimeMaxUSec": "infinity",
+            "SubState": "start",
+            "TimeoutStartUSec": "2min 30s",
+            "TimeoutStopUSec": "10s",
+            "Type": "oneshot",
+            "UMask": "0022",
+            "UnitFileState": "static",
+            "User": "yoonhc",
+            "Wants": "",
+            "WorkingDirectory": ""
+          }
+        },
+        "md-t15-a6d642d447dc4c69-system-queued.service": {
+          "classification": "pending",
+          "jobs": [
+            {
+              "job": 118688,
+              "state": "waiting",
+              "type": "start",
+              "unit": "md-t15-a6d642d447dc4c69-system-queued.service"
+            }
+          ],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "0",
+            "ActiveState": "inactive",
+            "After": "basic.target system.slice systemd-journald.socket sysinit.target md-t15-a6d642d447dc4c69-system-wait.service",
+            "ControlPID": "0",
+            "DropInPaths": "",
+            "ExecMainStartTimestampMonotonic": "0",
+            "ExecStart": "{ path=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python ; argv[]=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python -B -I /opt/md-t15-a6d642d447dc4c69/trial_worker.py touch --state /var/lib/md-t15-a6d642d447dc4c69 --name system-queued ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+            "FragmentPath": "/run/systemd/system/md-t15-a6d642d447dc4c69-system-queued.service",
+            "Group": "",
+            "IOSchedulingClass": "2",
+            "IOSchedulingPriority": "4",
+            "Id": "md-t15-a6d642d447dc4c69-system-queued.service",
+            "InvocationID": "",
+            "Job": "118688",
+            "KillMode": "control-group",
+            "KillSignal": "15",
+            "LoadState": "loaded",
+            "MainPID": "0",
+            "NeedDaemonReload": "no",
+            "Nice": "0",
+            "NoNewPrivileges": "yes",
+            "PrivateTmp": "no",
+            "ProtectClock": "yes",
+            "ProtectHome": "no",
+            "ProtectSystem": "no",
+            "Requires": "system.slice sysinit.target md-t15-a6d642d447dc4c69-system-wait.service",
+            "Restart": "no",
+            "RestartUSec": "100ms",
+            "RuntimeMaxUSec": "infinity",
+            "SubState": "dead",
+            "TimeoutStartUSec": "2min 30s",
+            "TimeoutStopUSec": "10s",
+            "Type": "oneshot",
+            "UMask": "0022",
+            "UnitFileState": "static",
+            "User": "yoonhc",
+            "Wants": "",
+            "WorkingDirectory": ""
+          }
+        },
+        "md-t15-a6d642d447dc4c69-system-retry.service": {
+          "classification": "pending",
+          "jobs": [],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "0",
+            "ActiveState": "activating",
+            "After": "sysinit.target systemd-journald.socket basic.target system.slice",
+            "ControlPID": "0",
+            "DropInPaths": "",
+            "ExecMainStartTimestampMonotonic": "342828081827",
+            "ExecStart": "{ path=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python ; argv[]=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python -B -I /opt/md-t15-a6d642d447dc4c69/trial_worker.py fail --state /var/lib/md-t15-a6d642d447dc4c69 --name system-retry ; ignore_errors=no ; start_time=[Mon 2026-10-12 23:24:50 KST] ; stop_time=[Mon 2026-10-12 23:24:50 KST] ; pid=1173171 ; code=exited ; status=1 }",
+            "FragmentPath": "/run/systemd/system/md-t15-a6d642d447dc4c69-system-retry.service",
+            "Group": "",
+            "IOSchedulingClass": "2",
+            "IOSchedulingPriority": "4",
+            "Id": "md-t15-a6d642d447dc4c69-system-retry.service",
+            "InvocationID": "64b9905d8d224c59a850423bb2329237",
+            "Job": "",
+            "KillMode": "control-group",
+            "KillSignal": "15",
+            "LoadState": "loaded",
+            "MainPID": "0",
+            "NeedDaemonReload": "no",
+            "Nice": "0",
+            "NoNewPrivileges": "yes",
+            "PrivateTmp": "no",
+            "ProtectClock": "yes",
+            "ProtectHome": "no",
+            "ProtectSystem": "no",
+            "Requires": "system.slice sysinit.target",
+            "Restart": "on-failure",
+            "RestartUSec": "1min 40s",
+            "RuntimeMaxUSec": "infinity",
+            "SubState": "auto-restart",
+            "TimeoutStartUSec": "2min 30s",
+            "TimeoutStopUSec": "10s",
+            "Type": "oneshot",
+            "UMask": "0022",
+            "UnitFileState": "static",
+            "User": "yoonhc",
+            "Wants": "",
+            "WorkingDirectory": ""
+          }
+        }
+      },
+      "normal_completion": {
+        "invocation": "0de574317d81449a996738e24592a05c",
+        "mode": "hold",
+        "normal_completion": true,
+        "pid": 1173169,
+        "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+        "uid": 1000
+      },
+      "queued_body_absent": true
+    },
+    "system_enable_link": {
+      "base_preserved": true,
+      "enabled": {
+        "AccuracyUSec": "1min",
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "sysinit.target time-set.target time-sync.target",
+        "DropInPaths": "",
+        "FragmentPath": "/run/systemd/system/md-t15-97f22b03bbf940c3-system-links.timer",
+        "Id": "md-t15-97f22b03bbf940c3-system-links.timer",
+        "InvocationID": "",
+        "Job": "",
+        "LoadState": "loaded",
+        "NeedDaemonReload": "no",
+        "Persistent": "no",
+        "RandomizedDelayUSec": "0",
+        "Requires": "sysinit.target",
+        "SubState": "dead",
+        "TimersCalendar": "{ OnCalendar=2099-01-01 00:00:00 UTC ; next_elapse=(null) }",
+        "Unit": "md-t15-97f22b03bbf940c3-oi.service",
+        "UnitFileState": "enabled",
+        "Wants": ""
+      },
+      "link_removed": true
+    },
+    "timer_provenance": {
+      "context": {
+        "classification": "verified_timer",
+        "cwd": "/",
+        "environment": {
+          "INVOCATION_ID": "55d0606bdbae478db9cbaa6e6d8379be",
+          "TRIGGER_TIMER_MONOTONIC_USEC": "342403815558",
+          "TRIGGER_TIMER_REALTIME_USEC": "1791814665857740",
+          "TRIGGER_UNIT": "md-t15-97f22b03bbf940c3-context.timer"
+        },
+        "environment_matches_job": true,
+        "manager": "system",
+        "manager_adapter": {
+          "parent": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+          "path": "/opt/md-t15-97f22b03bbf940c3/migration/run_system_archive.py",
+          "purpose": "system-manager-provenance-only-v1",
+          "sha256": "16a0e6e2a80f4e02934b7e1b92eacde02ef922b03f7c6d30cdc8ba29806408e5"
+        },
+        "manager_evidence": {
+          "/org/freedesktop/systemd1/job/117553:Job.ActivationDetails": {
+            "data": [
+              [
+                "trigger_unit",
+                "md-t15-97f22b03bbf940c3-context.timer"
+              ],
+              [
+                "trigger_timer_realtime_usec",
+                "1791814665857740"
+              ],
+              [
+                "trigger_timer_monotonic_usec",
+                "342403815558"
+              ]
+            ],
+            "type": "a(ss)"
+          },
+          "/org/freedesktop/systemd1/job/117553:Job.JobType": {
+            "data": "start",
+            "type": "s"
+          },
+          "/org/freedesktop/systemd1/job/117553:Job.State": {
+            "data": "running",
+            "type": "s"
+          },
+          "/org/freedesktop/systemd1/job/117553:Job.Unit": {
+            "data": [
+              "md-t15-97f22b03bbf940c3-context.service",
+              "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice"
+            ],
+            "type": "(so)"
+          },
+          "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice:Unit.Job": {
+            "data": [
+              117553,
+              "/org/freedesktop/systemd1/job/117553"
+            ],
+            "type": "(uo)"
+          },
+          "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2etimer:Timer.LastTriggerUSec": {
+            "data": 1791814665857740,
+            "type": "t"
+          },
+          "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2etimer:Timer.LastTriggerUSecMonotonic": {
+            "data": 342403815558,
+            "type": "t"
+          }
+        },
+        "module": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+        "module_sha256": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+        "pid": 1169526,
+        "provenance_method": "current_start_job_activation_details",
+        "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+        "scheduled": true,
+        "service_properties": {
+          "Id": "md-t15-97f22b03bbf940c3-context.service",
+          "InvocationID": "55d0606bdbae478db9cbaa6e6d8379be",
+          "MainPID": "1169526",
+          "Type": "oneshot"
+        },
+        "service_verified": true,
+        "start_job": {
+          "activation_details": {
+            "trigger_timer_monotonic_usec": "342403815558",
+            "trigger_timer_realtime_usec": "1791814665857740",
+            "trigger_unit": "md-t15-97f22b03bbf940c3-context.timer"
+          },
+          "id": 117553,
+          "path": "/org/freedesktop/systemd1/job/117553"
+        },
+        "trigger_at": "2026-10-12T14:17:45.857740+00:00",
+        "uid": 1000,
+        "user": "yoonhc"
+      },
+      "invocation": "55d0606bdbae478db9cbaa6e6d8379be",
+      "mode": "context",
+      "pid": 1169526,
+      "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+      "uid": 1000,
+      "wrong_timer": {
+        "classification": "unconfirmed_service",
+        "cwd": "/",
+        "environment": {
+          "INVOCATION_ID": "55d0606bdbae478db9cbaa6e6d8379be",
+          "TRIGGER_TIMER_MONOTONIC_USEC": "342403815558",
+          "TRIGGER_TIMER_REALTIME_USEC": "1791814665857740",
+          "TRIGGER_UNIT": "md-t15-97f22b03bbf940c3-context.timer"
+        },
+        "manager": "system",
+        "manager_adapter": {
+          "parent": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+          "path": "/opt/md-t15-97f22b03bbf940c3/migration/run_system_archive.py",
+          "purpose": "system-manager-provenance-only-v1",
+          "sha256": "16a0e6e2a80f4e02934b7e1b92eacde02ef922b03f7c6d30cdc8ba29806408e5"
+        },
+        "manager_evidence": {
+          "/org/freedesktop/systemd1/job/117553:Job.ActivationDetails": {
+            "data": [
+              [
+                "trigger_unit",
+                "md-t15-97f22b03bbf940c3-context.timer"
+              ],
+              [
+                "trigger_timer_realtime_usec",
+                "1791814665857740"
+              ],
+              [
+                "trigger_timer_monotonic_usec",
+                "342403815558"
+              ]
+            ],
+            "type": "a(ss)"
+          },
+          "/org/freedesktop/systemd1/job/117553:Job.JobType": {
+            "data": "start",
+            "type": "s"
+          },
+          "/org/freedesktop/systemd1/job/117553:Job.State": {
+            "data": "running",
+            "type": "s"
+          },
+          "/org/freedesktop/systemd1/job/117553:Job.Unit": {
+            "data": [
+              "md-t15-97f22b03bbf940c3-context.service",
+              "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice"
+            ],
+            "type": "(so)"
+          },
+          "/org/freedesktop/systemd1/unit/md_2dt15_2d97f22b03bbf940c3_2dcontext_2eservice:Unit.Job": {
+            "data": [
+              117553,
+              "/org/freedesktop/systemd1/job/117553"
+            ],
+            "type": "(uo)"
+          }
+        },
+        "module": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+        "module_sha256": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+        "pid": 1169526,
+        "provenance_error": "Start job was not triggered by this timer",
+        "provenance_method": "current_start_job_activation_details",
+        "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+        "scheduled": false,
+        "service_properties": {
+          "Id": "md-t15-97f22b03bbf940c3-context.service",
+          "InvocationID": "55d0606bdbae478db9cbaa6e6d8379be",
+          "MainPID": "1169526",
+          "Type": "oneshot"
+        },
+        "service_verified": true,
+        "start_job": {
+          "activation_details": {
+            "trigger_timer_monotonic_usec": "342403815558",
+            "trigger_timer_realtime_usec": "1791814665857740",
+            "trigger_unit": "md-t15-97f22b03bbf940c3-context.timer"
+          },
+          "id": 117553,
+          "path": "/org/freedesktop/systemd1/job/117553"
+        },
+        "uid": 1000,
+        "user": "yoonhc"
+      },
+      "wrong_unit": {
+        "classification": "unconfirmed_service",
+        "cwd": "/",
+        "environment": {
+          "INVOCATION_ID": "55d0606bdbae478db9cbaa6e6d8379be",
+          "TRIGGER_TIMER_MONOTONIC_USEC": "342403815558",
+          "TRIGGER_TIMER_REALTIME_USEC": "1791814665857740",
+          "TRIGGER_UNIT": "md-t15-97f22b03bbf940c3-context.timer"
+        },
+        "manager": "system",
+        "manager_adapter": {
+          "parent": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+          "path": "/opt/md-t15-97f22b03bbf940c3/migration/run_system_archive.py",
+          "purpose": "system-manager-provenance-only-v1",
+          "sha256": "16a0e6e2a80f4e02934b7e1b92eacde02ef922b03f7c6d30cdc8ba29806408e5"
+        },
+        "manager_evidence": {},
+        "module": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/restic_schedule.py",
+        "module_sha256": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+        "pid": 1169526,
+        "provenance_error": "Invocation/PID does not belong to the archive service",
+        "provenance_method": "current_start_job_activation_details",
+        "python": "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python",
+        "scheduled": false,
+        "service_properties": {
+          "Id": "md-t15-97f22b03bbf940c3-other.service",
+          "InvocationID": "",
+          "MainPID": "0",
+          "Type": ""
+        },
+        "service_verified": false,
+        "uid": 1000,
+        "user": "yoonhc"
+      }
+    },
+    "user-lock": {
+      "effective": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "sysinit.target systemd-journald.socket basic.target system.slice",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "ExecMainStartTimestampMonotonic": "0",
+        "ExecStart": "{ path=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python ; argv[]=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python -B -I /opt/md-t15-a6d642d447dc4c69/trial_worker.py lock-try --state /var/lib/md-t15-a6d642d447dc4c69 --name user-lock ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "FragmentPath": "/run/systemd/system/md-t15-a6d642d447dc4c69-user-lock.service",
+        "Group": "",
+        "IOSchedulingClass": "2",
+        "IOSchedulingPriority": "4",
+        "Id": "md-t15-a6d642d447dc4c69-user-lock.service",
+        "InvocationID": "",
+        "Job": "",
+        "KillMode": "control-group",
+        "KillSignal": "15",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NeedDaemonReload": "no",
+        "Nice": "0",
+        "NoNewPrivileges": "yes",
+        "PrivateTmp": "no",
+        "ProtectClock": "yes",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "Requires": "sysinit.target system.slice",
+        "Restart": "no",
+        "RestartUSec": "100ms",
+        "RuntimeMaxUSec": "infinity",
+        "SubState": "dead",
+        "TimeoutStartUSec": "2min 30s",
+        "TimeoutStopUSec": "10s",
+        "Type": "oneshot",
+        "UMask": "0022",
+        "UnitFileState": "static",
+        "User": "yoonhc",
+        "Wants": "",
+        "WorkingDirectory": ""
+      },
+      "worker": {
+        "invocation": "2fb7aab6bf4c471cab2af58c12dd51e1",
+        "lock_conflict": true,
+        "mode": "lock-try",
+        "pid": 1173498,
+        "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+        "uid": 1000
+      }
+    },
+    "user_drain": {
+      "before": {
+        "md-t15-a6d642d447dc4c69-user-busy.service": {
+          "classification": "running",
+          "jobs": [
+            {
+              "job": 537314,
+              "state": "running",
+              "type": "start",
+              "unit": "md-t15-a6d642d447dc4c69-user-busy.service"
+            }
+          ],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "0",
+            "ActiveState": "activating",
+            "After": "basic.target app.slice",
+            "ControlPID": "0",
+            "DropInPaths": "",
+            "ExecMainStartTimestampMonotonic": "342829460129",
+            "ExecStart": "{ path=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python ; argv[]=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python -B -I /opt/md-t15-a6d642d447dc4c69/trial_worker.py hold --state /var/lib/md-t15-a6d642d447dc4c69 --name user-busy ; ignore_errors=no ; start_time=[Mon 2026-10-12 23:24:51 KST] ; stop_time=[n/a] ; pid=1173479 ; code=(null) ; status=0/0 }",
+            "FragmentPath": "/home/yoonhc/.config/systemd/user/md-t15-a6d642d447dc4c69-user-busy.service",
+            "Group": "",
+            "IOSchedulingClass": "2",
+            "IOSchedulingPriority": "4",
+            "Id": "md-t15-a6d642d447dc4c69-user-busy.service",
+            "InvocationID": "bba37857d96348c1be46921f439bb76a",
+            "Job": "537314",
+            "KillMode": "control-group",
+            "KillSignal": "15",
+            "LoadState": "loaded",
+            "MainPID": "1173479",
+            "NeedDaemonReload": "no",
+            "Nice": "0",
+            "NoNewPrivileges": "yes",
+            "PrivateTmp": "no",
+            "ProtectClock": "yes",
+            "ProtectHome": "no",
+            "ProtectSystem": "no",
+            "Requires": "basic.target app.slice",
+            "Restart": "no",
+            "RestartUSec": "100ms",
+            "RuntimeMaxUSec": "infinity",
+            "SubState": "start",
+            "TimeoutStartUSec": "2min 30s",
+            "TimeoutStopUSec": "10s",
+            "Type": "oneshot",
+            "UMask": "0002",
+            "UnitFileState": "static",
+            "User": "",
+            "Wants": "",
+            "WorkingDirectory": "!/home/yoonhc"
+          }
+        },
+        "md-t15-a6d642d447dc4c69-user-queued.service": {
+          "classification": "pending",
+          "jobs": [
+            {
+              "job": 537345,
+              "state": "waiting",
+              "type": "start",
+              "unit": "md-t15-a6d642d447dc4c69-user-queued.service"
+            }
+          ],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "0",
+            "ActiveState": "inactive",
+            "After": "md-t15-a6d642d447dc4c69-user-wait.service basic.target app.slice",
+            "ControlPID": "0",
+            "DropInPaths": "",
+            "ExecMainStartTimestampMonotonic": "0",
+            "ExecStart": "{ path=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python ; argv[]=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python -B -I /opt/md-t15-a6d642d447dc4c69/trial_worker.py touch --state /var/lib/md-t15-a6d642d447dc4c69 --name user-queued ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+            "FragmentPath": "/home/yoonhc/.config/systemd/user/md-t15-a6d642d447dc4c69-user-queued.service",
+            "Group": "",
+            "IOSchedulingClass": "2",
+            "IOSchedulingPriority": "4",
+            "Id": "md-t15-a6d642d447dc4c69-user-queued.service",
+            "InvocationID": "",
+            "Job": "537345",
+            "KillMode": "control-group",
+            "KillSignal": "15",
+            "LoadState": "loaded",
+            "MainPID": "0",
+            "NeedDaemonReload": "no",
+            "Nice": "0",
+            "NoNewPrivileges": "yes",
+            "PrivateTmp": "no",
+            "ProtectClock": "yes",
+            "ProtectHome": "no",
+            "ProtectSystem": "no",
+            "Requires": "md-t15-a6d642d447dc4c69-user-wait.service basic.target app.slice",
+            "Restart": "no",
+            "RestartUSec": "100ms",
+            "RuntimeMaxUSec": "infinity",
+            "SubState": "dead",
+            "TimeoutStartUSec": "2min 30s",
+            "TimeoutStopUSec": "10s",
+            "Type": "oneshot",
+            "UMask": "0002",
+            "UnitFileState": "static",
+            "User": "",
+            "Wants": "",
+            "WorkingDirectory": "!/home/yoonhc"
+          }
+        },
+        "md-t15-a6d642d447dc4c69-user-retry.service": {
+          "classification": "pending",
+          "jobs": [],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "0",
+            "ActiveState": "activating",
+            "After": "basic.target app.slice",
+            "ControlPID": "0",
+            "DropInPaths": "",
+            "ExecMainStartTimestampMonotonic": "342829464198",
+            "ExecStart": "{ path=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python ; argv[]=/opt/md-t15-a6d642d447dc4c69/.venv/bin/python -B -I /opt/md-t15-a6d642d447dc4c69/trial_worker.py fail --state /var/lib/md-t15-a6d642d447dc4c69 --name user-retry ; ignore_errors=no ; start_time=[Mon 2026-10-12 23:24:51 KST] ; stop_time=[Mon 2026-10-12 23:24:51 KST] ; pid=1173482 ; code=exited ; status=1 }",
+            "FragmentPath": "/home/yoonhc/.config/systemd/user/md-t15-a6d642d447dc4c69-user-retry.service",
+            "Group": "",
+            "IOSchedulingClass": "2",
+            "IOSchedulingPriority": "4",
+            "Id": "md-t15-a6d642d447dc4c69-user-retry.service",
+            "InvocationID": "8110aeff2a1f4ebd9bec9d5afa3abd94",
+            "Job": "",
+            "KillMode": "control-group",
+            "KillSignal": "15",
+            "LoadState": "loaded",
+            "MainPID": "0",
+            "NeedDaemonReload": "no",
+            "Nice": "0",
+            "NoNewPrivileges": "yes",
+            "PrivateTmp": "no",
+            "ProtectClock": "yes",
+            "ProtectHome": "no",
+            "ProtectSystem": "no",
+            "Requires": "basic.target app.slice",
+            "Restart": "on-failure",
+            "RestartUSec": "1min 40s",
+            "RuntimeMaxUSec": "infinity",
+            "SubState": "auto-restart",
+            "TimeoutStartUSec": "2min 30s",
+            "TimeoutStopUSec": "10s",
+            "Type": "oneshot",
+            "UMask": "0002",
+            "UnitFileState": "static",
+            "User": "",
+            "Wants": "",
+            "WorkingDirectory": "!/home/yoonhc"
+          }
+        }
+      },
+      "normal_completion": {
+        "invocation": "bba37857d96348c1be46921f439bb76a",
+        "mode": "hold",
+        "normal_completion": true,
+        "pid": 1173479,
+        "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+        "uid": 1000
+      },
+      "queued_body_absent": true
+    },
+    "user_enable_link": {
+      "base_preserved": true,
+      "enabled": {
+        "AccuracyUSec": "1min",
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "After": "",
+        "DropInPaths": "",
+        "FragmentPath": "/home/yoonhc/.config/systemd/user/md-t15-97f22b03bbf940c3-user-links.timer",
+        "Id": "md-t15-97f22b03bbf940c3-user-links.timer",
+        "InvocationID": "",
+        "Job": "",
+        "LoadState": "loaded",
+        "NeedDaemonReload": "no",
+        "Persistent": "no",
+        "RandomizedDelayUSec": "0",
+        "Requires": "",
+        "SubState": "dead",
+        "TimersCalendar": "{ OnCalendar=2099-01-01 00:00:00 UTC ; next_elapse=(null) }",
+        "Unit": "md-t15-97f22b03bbf940c3-oi.service",
+        "UnitFileState": "enabled",
+        "Wants": ""
+      },
+      "link_removed": true
+    }
+  },
+  "worker_outputs": {
+    ".owner.json": {
+      "nonce": "a6d642d447dc4c69"
+    },
+    "system-busy-started.json": {
+      "invocation": "0de574317d81449a996738e24592a05c",
+      "mode": "hold",
+      "pid": 1173169,
+      "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+      "uid": 1000
+    },
+    "system-busy.json": {
+      "invocation": "0de574317d81449a996738e24592a05c",
+      "mode": "hold",
+      "normal_completion": true,
+      "pid": 1173169,
+      "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+      "uid": 1000
+    },
+    "system-lock.json": {
+      "invocation": "488f5ef126a14c6599facc9506606974",
+      "lock_conflict": true,
+      "mode": "lock-try",
+      "pid": 1173186,
+      "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+      "uid": 1000
+    },
+    "system-retry.json": {
+      "invocation": "64b9905d8d224c59a850423bb2329237",
+      "mode": "fail",
+      "pid": 1173171,
+      "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+      "uid": 1000
+    },
+    "user-busy-started.json": {
+      "invocation": "bba37857d96348c1be46921f439bb76a",
+      "mode": "hold",
+      "pid": 1173479,
+      "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+      "uid": 1000
+    },
+    "user-busy.json": {
+      "invocation": "bba37857d96348c1be46921f439bb76a",
+      "mode": "hold",
+      "normal_completion": true,
+      "pid": 1173479,
+      "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+      "uid": 1000
+    },
+    "user-lock.json": {
+      "invocation": "2fb7aab6bf4c471cab2af58c12dd51e1",
+      "lock_conflict": true,
+      "mode": "lock-try",
+      "pid": 1173498,
+      "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+      "uid": 1000
+    },
+    "user-retry.json": {
+      "invocation": "8110aeff2a1f4ebd9bec9d5afa3abd94",
+      "mode": "fail",
+      "pid": 1173482,
+      "python": "/opt/md-t15-a6d642d447dc4c69/.venv/bin/python",
+      "uid": 1000
+    }
+  }
+}

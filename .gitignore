@@ -12,6 +12,8 @@ restore-checks/
 build/
 dist/
 integrations/freqtrade/user_data/
+# Copied backtest archives are outside the sealed scheduled-job source manifests.
+/reports/baseline/scheduled-clock-*/candidate/base/integrations/freqtrade/user_data/backtest_results/*.zip
 *.log
 
 # Keep reviewed release evidence; ordinary runs remain local.

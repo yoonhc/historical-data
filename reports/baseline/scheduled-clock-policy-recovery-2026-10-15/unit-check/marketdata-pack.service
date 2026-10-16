@@ -1,0 +1,25 @@
+[Unit]
+Description=Market data hourly verified maintenance
+StartLimitIntervalSec=3600
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+TimeoutStartSec=6h
+KillSignal=SIGINT
+TimeoutStopSec=120s
+Restart=on-failure
+RestartSec=120s
+
+[Unit]
+Requires=marketdata-jobs-clock-ready.service
+After=marketdata-jobs-clock-ready.service
+[Service]
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+[Service]
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/base/.venv/bin/python -B -I /home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/policy/run_job.py --job pack --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data maintenance --mode hourly --min-free-gib 10 --wait-for-lock

@@ -1,0 +1,32 @@
+[Unit]
+Description=Prepare this boot's clock before releasing marketdata jobs
+Wants=network-online.target chrony.service user@1000.service
+After=network-online.target chrony.service user@1000.service
+Before=chrony-wait.service time-sync.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+ExecStart=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-system-migration-2026-10-12/candidate/migration/bootstrap_system.py bootstrap --profile /etc/marketdata/clock-bootstrap.json
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=15s
+TimeoutStartSec=150s
+TimeoutStopSec=10s
+StateDirectory=marketdata-clock
+StateDirectoryMode=0755
+UMask=0022
+NoNewPrivileges=yes
+CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_SETUID CAP_SETGID
+ProtectClock=yes
+ProtectSystem=strict
+ReadWritePaths=/run/chrony
+ProtectHome=read-only
+PrivateTmp=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+StandardOutput=journal
+StandardError=journal
+SyslogLevelPrefix=yes
+
+[Install]
+WantedBy=multi-user.target

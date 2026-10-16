@@ -1,0 +1,77 @@
+{
+  "release_id": "scheduled-clock-policy-20261015-90f97df305c662c2",
+  "source_sha256": "90f97df305c662c2e00acdb6e93cde953db4d1b62e6a1acf0e950e25faced0ae",
+  "reviewed_at": "2026-10-14T16:55:48.269789+00:00",
+  "passed": true,
+  "new_policy_tests": 52,
+  "regression_tests_per_variant": {
+    "base": 119,
+    "daily": 82,
+    "preserve": 146
+  },
+  "runs": [
+    {
+      "variant": "base",
+      "report": "base-regression.xml",
+      "sha256": "c1edc14405abe89f934a8b0c42a0f142742491c372b79d91faf0c04af93cee50",
+      "passed": 95,
+      "new_in_variant": 95
+    },
+    {
+      "variant": "base",
+      "report": "pipeline-regression.xml",
+      "sha256": "e764377680ee19bbff8b50488b3ce8fbe0838c742a9cee05ea3be62a73347591",
+      "passed": 72,
+      "new_in_variant": 24
+    },
+    {
+      "variant": "daily",
+      "report": "daily-regression.xml",
+      "sha256": "dd04b774d654a7c105322bcab262a372eb1238133d92ca1c69bee1c2f77926ae",
+      "passed": 82,
+      "new_in_variant": 82
+    },
+    {
+      "variant": "preserve",
+      "report": "preserve-validation.xml",
+      "sha256": "4d9bf623a2e71b0b2852679861e95f1fe379f24ae2091c4b5edcceca2054f495",
+      "passed": 146,
+      "new_in_variant": 146
+    },
+    {
+      "variant": "new-base",
+      "report": "base-policy.xml",
+      "sha256": "1b37e110628ef0f2b7e532ca6ae02aeea1c58dac00d5e9920b188d3ee41d724d",
+      "passed": 29,
+      "new_in_variant": 29
+    },
+    {
+      "variant": "new-daily",
+      "report": "daily-policy.xml",
+      "sha256": "0dce7e3eff8db44483888d40718a5133d88db14958f9ca91edba054ae54efc20",
+      "passed": 9,
+      "new_in_variant": 9
+    },
+    {
+      "variant": "new-preserve",
+      "report": "preserve-policy.xml",
+      "sha256": "d6c2759c575f69e1f703fe9d88ad477a195dd5655ba3d9f4055302cc133d884f",
+      "passed": 14,
+      "new_in_variant": 14
+    }
+  ],
+  "unit_syntax_and_order": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "",
+    "units": 17,
+    "uninstalled_path_substitution": {
+      "/opt/marketdata/releases/scheduled-clock-policy-20261015-90f97df305c662c2": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-2026-10-15/candidate"
+    },
+    "actual_system_execution": false
+  },
+  "actual_system_manager_execution": false,
+  "operating_deployed": false,
+  "parents_preserved": true,
+  "T05_deletion_authority": false
+}

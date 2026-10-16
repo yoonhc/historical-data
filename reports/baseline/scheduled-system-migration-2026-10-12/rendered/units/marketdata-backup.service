@@ -1,0 +1,31 @@
+[Unit]
+Description=Market data daily verified maintenance
+StartLimitIntervalSec=3600
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup --wait-for-lock
+TimeoutStartSec=6h
+KillSignal=SIGINT
+TimeoutStopSec=120s
+Restart=on-failure
+RestartSec=120s
+
+[Unit]
+Requires=marketdata-clock-ready.service
+After=marketdata-clock-ready.service
+[Service]
+ExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json
+
+[Service]
+ExecStart=
+ExecStart=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_backup.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=
+ExecStart=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_backup.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000
+ProtectClock=yes

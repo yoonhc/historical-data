@@ -1,0 +1,12 @@
+# Copy outside Git and use absolute paths as seen inside the collecting Linux host/VM.
+# store_root contains both data/ and state/; it is not just the raw-data directory.
+store_root = "/srv/marketdata/store"
+backup_dir = "/mnt/backup/marketdata-historical/automatic"
+backup_mount = "/mnt/backup"
+restic_binary = "/opt/marketdata-tools/restic-0.19.1"
+restic_repository = "/mnt/backup/marketdata-restic-pilot"
+restic_password_file = "/home/collector/.config/marketdata/secrets/restic-password"
+work_root = "/mnt/backup/marketdata-restic-pilot-work"
+reports_root = "/srv/marketdata/restic-reports"
+min_free_gib = 10
+restic_threads = 2

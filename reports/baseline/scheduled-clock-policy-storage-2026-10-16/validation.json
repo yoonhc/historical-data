@@ -1,0 +1,77 @@
+{
+  "release_id": "scheduled-clock-policy-20261016-544c61aca49f1355",
+  "source_sha256": "544c61aca49f13559861902bcd49bc28a503b18b7d2718c48c2139c152f56c65",
+  "reviewed_at": "2026-10-15T15:27:38.613328+00:00",
+  "passed": true,
+  "policy_and_recovery_tests": 119,
+  "regression_tests_per_variant": {
+    "base": 15,
+    "daily": 82
+  },
+  "regression_scope": {
+    "base": "changed network_observer module",
+    "daily": "daily scheduler and review"
+  },
+  "runs": [
+    {
+      "variant": "base",
+      "report": "base-regression.xml",
+      "sha256": "0cf22cadbdcae590fbe5413cf07401bbfa87be422cda8f1b69f4cfe9bb638599",
+      "passed": 15
+    },
+    {
+      "variant": "daily",
+      "report": "daily-regression.xml",
+      "sha256": "5dbf63ec86c3c1a536ce414a4cff22331a8be09803ee1ae11abdd810a65096b8",
+      "passed": 82
+    },
+    {
+      "variant": "policy-base",
+      "report": "base-policy.xml",
+      "sha256": "84a08db74a7a0fe9247836cefd08c0ce844f2cd5141dc41b60c0eb2110596d2c",
+      "passed": 78
+    },
+    {
+      "variant": "policy-daily",
+      "report": "daily-policy.xml",
+      "sha256": "8ca60ba195686f93b33f24644b9cfc9deeb1fbd5525c1a4fccc6b00c4015dc80",
+      "passed": 28
+    },
+    {
+      "variant": "policy-preserve",
+      "report": "preserve-policy.xml",
+      "sha256": "f5ede8dc7842498265bd2f28470a69f38fc9b959691cb6dff91147d7b66fee23",
+      "passed": 13
+    }
+  ],
+  "unit_syntax_and_order": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "",
+    "units": 17,
+    "uninstalled_path_substitution": {
+      "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-storage-2026-10-16/candidate"
+    },
+    "actual_system_execution": false
+  },
+  "actual_system_manager_execution": false,
+  "operating_deployed": false,
+  "prior_candidate_preserved": true,
+  "T05_deletion_authority": false,
+  "limits": [
+    "Provider/network/systemd provenance are isolated doubles in wrapper connection tests",
+    "Real restic used only with temporary repositories by existing preservation regressions",
+    "Two observation jobs ran the actual previous runtime on temporary data, then resumed the new wrapper",
+    "Manager/configuration/ledger handoff, rollback and protected system service execution remain pending",
+    "Auxiliary request/attempt/JSONL backup and restore remain a separate follow-up"
+  ],
+  "reused_prior_regression": {
+    "variant": "preserve",
+    "report": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/preserve-regression.xml",
+    "sha256": "cf0d6c1aab2753d2436e06b6c62860d0e12b1e14170083396e31e1c215a6a8d5",
+    "passed": 146,
+    "release_id": "scheduled-clock-policy-20261015-5b02fc74867e5bab",
+    "run_again": false,
+    "basis": "All preserve runtime files unchanged; common contract revalidated in 13 current policy tests"
+  }
+}

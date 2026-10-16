@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marketdata-freqtrade"
+version = "0.1.0"
+description = "Freqtrade consumer adapter for marketdata snapshots"
+requires-python = ">=3.12"
+dependencies = ["marketdata==0.1.0"]
+
+[project.scripts]
+marketdata-freqtrade = "marketdata_freqtrade.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,324 @@
+{
+  "captured_at": "2026-10-16T22:39:31.191163+09:00",
+  "jobs": {
+    "oi": {
+      "state": "complete",
+      "request_id": "abef9b0ebf964804ac96a136de07838a",
+      "exit_code": 2,
+      "disposition": {
+        "data_complete": false,
+        "reason": "coverage_replan_retains_missing_ranges",
+        "returncode": 2,
+        "state": "complete",
+        "work_exit_code": 2
+      },
+      "request_sha256": "0138cd2984e50dcbf62afe05619080f9aafb96db295a52576af06a780cc06d88",
+      "attempt": {
+        "errors": [],
+        "id": "934a43eb862d4b048f9862eb7c7db756",
+        "invocation_id": "cdefb85ae54c4104ada3b13ab6b4508a",
+        "monitor": {
+          "last_time_fault": null,
+          "required": true,
+          "stopped": true
+        },
+        "work": {
+          "observed_exit_code": 2,
+          "recovered_committed_result": false
+        }
+      },
+      "committed_references_verified": true,
+      "observations": {
+        "count": 50,
+        "min_age": 524.0607194900513,
+        "max_age": 768.5048670768738,
+        "max_uncertainty": 0.1369565005,
+        "over600": 35
+      },
+      "finished_counts": {
+        "complete": 10
+      },
+      "failed_finishes": []
+    },
+    "oi-probe": {
+      "state": "pending",
+      "request_id": "1ed92c9e6587460b9eee32cc8dd555bb",
+      "exit_code": null,
+      "disposition": null,
+      "request_sha256": "59c18643aad3fb4f4e674e7f4cb97c15627a554fc9b947c2fd7eafb5e9f9d51b",
+      "attempt": {
+        "errors": [],
+        "id": "957382b747984cc5a59bcf51a6bdf91f",
+        "invocation_id": "d76b6189f4a74755bceabf33c9e4b0ee",
+        "monitor": null,
+        "work": null
+      },
+      "observations": {
+        "count": 317,
+        "min_age": 14.064908027648926,
+        "max_age": 772.6354784965515,
+        "max_uncertainty": 0.1401144035,
+        "over600": 107
+      },
+      "finished_counts": {
+        "complete": 63
+      },
+      "failed_finishes": []
+    },
+    "oi-quality": {
+      "state": "pending",
+      "request_id": "a702240f54774dacab107dc28fa2a776",
+      "exit_code": null,
+      "disposition": null,
+      "request_sha256": "c69363e7038590756e2461b26079f9a7789ca5abe98da365cb8423c3bf199e11",
+      "attempt": {
+        "errors": [],
+        "id": "96c32c8fb0eb4a6ca96bee82b21de38b",
+        "invocation_id": "8623ef805cac477faacc3c72a50e5e21",
+        "monitor": null,
+        "work": null
+      },
+      "observations": {
+        "count": 4,
+        "min_age": 588.7471969127655,
+        "max_age": 589.0201547145844,
+        "max_uncertainty": 0.1357195465,
+        "over600": 0
+      },
+      "finished_counts": {
+        "finalization_failed": 1
+      },
+      "failed_finishes": [
+        {
+          "request_id": "a702240f54774dacab107dc28fa2a776",
+          "state": "finalization_failed",
+          "exit_code": 1,
+          "errors": [
+            {
+              "cause": "'decimal.Decimal' object has no attribute 'isoformat'",
+              "cause_type": "AttributeError",
+              "message": "work_result_write_failed: AttributeError: 'decimal.Decimal' object has no attribute 'isoformat'",
+              "phase": "work",
+              "type": "ClockFailure"
+            },
+            {
+              "cause": "'decimal.Decimal' object has no attribute 'isoformat'",
+              "cause_type": "AttributeError",
+              "message": "work_result_write_failed: AttributeError: 'decimal.Decimal' object has no attribute 'isoformat'",
+              "phase": "monitor_close",
+              "type": "ClockFailure"
+            }
+          ]
+        }
+      ]
+    },
+    "daily": {
+      "state": "complete",
+      "request_id": "45830ff591de4c3285b0a97fddbf340a",
+      "exit_code": 0,
+      "disposition": {
+        "data_complete": false,
+        "reason": "remaining_tasks_owned_by_daily_ledger",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "request_sha256": "225b587d6b1411e4fe309e3e796855ca2843b450711fd4c585e504536c3b5c18",
+      "attempt": {
+        "errors": [],
+        "id": "158709fefdc346c9bd34c38ea0a45c4c",
+        "invocation_id": "2cbbf517469440f98c11bec9df798335",
+        "monitor": {
+          "last_time_fault": null,
+          "required": true,
+          "stopped": true
+        },
+        "work": {
+          "observed_exit_code": 0,
+          "recovered_committed_result": false
+        }
+      },
+      "committed_references_verified": true,
+      "observations": {
+        "count": 12,
+        "min_age": 204.04903507232666,
+        "max_age": 665.8896851539612,
+        "max_uncertainty": 0.1364581185,
+        "over600": 6
+      },
+      "finished_counts": {
+        "complete": 4
+      },
+      "failed_finishes": []
+    },
+    "pack": {
+      "state": "complete",
+      "request_id": "008b8470b1964b8b95b03b0289f10058",
+      "exit_code": 0,
+      "disposition": {
+        "data_complete": true,
+        "reason": "finished",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "request_sha256": "a14caf67f36b76fb8034df443e9cb18f51a9ad6d801810ab92bc925c1aa370af",
+      "attempt": {
+        "errors": [],
+        "id": "f4d50e83e21046209591eda4bf2c02d9",
+        "invocation_id": "b401f3f113b54e95bcfad27b5f97057c",
+        "monitor": {
+          "last_time_fault": null,
+          "required": true,
+          "stopped": true
+        },
+        "work": {
+          "observed_exit_code": 0,
+          "recovered_committed_result": false
+        }
+      },
+      "committed_references_verified": true,
+      "observations": {
+        "count": 4,
+        "min_age": 110.01932430267334,
+        "max_age": 186.9752655029297,
+        "max_uncertainty": 0.13735706150000002,
+        "over600": 0
+      },
+      "finished_counts": {
+        "complete": 1
+      },
+      "failed_finishes": []
+    },
+    "backup": {
+      "state": "not_executed"
+    },
+    "restic-archive": {
+      "state": "complete",
+      "request_id": "fa0debfdea5d43e69c97fe286b8a0c17",
+      "exit_code": 0,
+      "disposition": {
+        "data_complete": null,
+        "reason": "archive_preserved",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "request_sha256": "110cffb5b17c9321dbfc3e52e3713b279020abafe06e9d32457776c44509fb31",
+      "attempt": {
+        "errors": [],
+        "id": "912610adedd240369f72331e752886c6",
+        "invocation_id": "32bda96c76df44718e35d53c7e86066d",
+        "monitor": {
+          "last_time_fault": null,
+          "required": true,
+          "stopped": true
+        },
+        "work": {
+          "observed_exit_code": 0,
+          "recovered_committed_result": false
+        }
+      },
+      "committed_references_verified": true,
+      "observations": {
+        "count": 8,
+        "min_age": 479.0538966655731,
+        "max_age": 627.0411186218262,
+        "max_uncertainty": 0.1358390825,
+        "over600": 1
+      },
+      "finished_counts": {
+        "complete": 2
+      },
+      "failed_finishes": []
+    },
+    "network-observer": {
+      "state": "complete",
+      "request_id": "ae797fc078eb45e09aa3e418efff5c5c",
+      "exit_code": 0,
+      "disposition": {
+        "data_complete": null,
+        "reason": "network_observation_recorded",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "request_sha256": "1248d8ff9726ca3c66d06793cb83dfd6419f1fbf6024287a20885e9440309db9",
+      "attempt": {
+        "errors": [],
+        "id": "f51c48f63bda4e5995ad165a02f49945",
+        "invocation_id": "bfa128518fba4503826653c34dc632da",
+        "monitor": {
+          "last_time_fault": null,
+          "required": true,
+          "stopped": true
+        },
+        "work": {
+          "observed_exit_code": 0,
+          "recovered_committed_result": false
+        }
+      },
+      "committed_references_verified": true,
+      "observations": {
+        "count": 68,
+        "min_age": 18.896913290023804,
+        "max_age": 739.2373297214508,
+        "max_uncertainty": 0.1379255445,
+        "over600": 24
+      },
+      "finished_counts": {
+        "complete": 17
+      },
+      "failed_finishes": []
+    },
+    "preexisting_daily": {
+      "id": "5b525ced83c647a0a315d107e19bf739",
+      "started_at": "2026-10-16T13:20:12.282285+00:00",
+      "runner_ok": true,
+      "data_complete": false,
+      "review_required": true,
+      "pending": [
+        {
+          "cycle": null,
+          "day": "2026-10-15",
+          "id": "c24159c0b9f2893037ac67c41e52d5bbdfd0a9ed2c3f62ecdae43d6c7b32b6e9",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": null,
+          "purpose": "acquire",
+          "reason": "Task has no complete verified publication proof",
+          "review_required": true,
+          "state": "needs_review"
+        },
+        {
+          "cycle": "2026-10-16",
+          "day": "2026-10-15",
+          "id": "ea6bfafa9817d9a278119979a80c24f4d166b466d98c43cdd2a4ec0f17338f57",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-16T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        }
+      ],
+      "state_counts": {
+        "complete": 346,
+        "needs_review": 1,
+        "planned": 1
+      }
+    }
+  },
+  "operating_writes": false
+}

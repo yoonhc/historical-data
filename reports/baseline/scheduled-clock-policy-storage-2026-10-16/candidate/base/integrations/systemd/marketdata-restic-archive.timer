@@ -1,0 +1,12 @@
+[Unit]
+Description=Look for completed marketdata checkpoints every 30 minutes
+
+[Timer]
+OnActiveSec=5s
+OnCalendar=*-*-* *:05,35:00 UTC
+Persistent=true
+AccuracySec=1s
+Unit=marketdata-restic-archive.service
+
+[Install]
+WantedBy=timers.target

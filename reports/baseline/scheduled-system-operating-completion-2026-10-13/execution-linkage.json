@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "observed_at": "2026-10-13T13:12:31.365783+00:00",
+  "system_invocations": {
+    "noon": [
+      "marketdata-daily.service",
+      "29da05b7ced34a12a98de652f09bfad7"
+    ],
+    "noon_followup": [
+      "marketdata-daily.service",
+      "a5c495a11ac04de6a5d1833813df7ce7"
+    ],
+    "backup": [
+      "marketdata-backup.service",
+      "462ef57f62e342f0909a698839176e8a"
+    ],
+    "archive": [
+      "marketdata-restic-archive.service",
+      "8f08dc1a9b884110ab14d47a941544c7"
+    ]
+  },
+  "uid": 1000,
+  "strict_guard_ready_and_closed": true,
+  "noon_journal_equals_saved_run": true,
+  "noon_followup": {
+    "id": "3089cd6b367246188f74ba9fa83d2934",
+    "started_at": "2026-10-13T03:25:12.240165+00:00",
+    "finished_at": "2026-10-13T03:25:12.655105+00:00",
+    "processed": [],
+    "state_counts": {
+      "complete": 232,
+      "planned": 20
+    },
+    "run_outcome": "no_due_tasks",
+    "runner_ok": true,
+    "data_complete": false,
+    "publication_observation": {
+      "requests": 0,
+      "state": "disabled"
+    }
+  },
+  "maintenance_journal_equals_report": true,
+  "archive_journal_equals_report": true,
+  "full_journal_capture": "target-invocations-full.jsonl.gz",
+  "full_journal_sha256": "854c900a57e4bedcc912ae63dd0ac7d297c63311346a72693f9351d7914118ac"
+}

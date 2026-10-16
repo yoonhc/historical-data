@@ -1,0 +1,1999 @@
+{
+  "approval_required": true,
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "effective_user_before": {
+    "marketdata-backup.service": {
+      "DropInPaths": "/home/yoonhc/.config/systemd/user/marketdata-backup.service.d/80-checkpoint-evidence.conf /etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [
+        "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_backup.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000"
+      ],
+      "ExecStartPost": [],
+      "ExecStartPre": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+      ],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-backup.service",
+      "KillMode": "control-group",
+      "KillSignal": "2",
+      "LoadState": "loaded",
+      "Restart": "on-failure",
+      "RestartUSec": "2min",
+      "RuntimeMaxUSec": "infinity",
+      "TimeoutStartUSec": "6h",
+      "TimeoutStopUSec": "2min",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    "marketdata-backup.timer": {
+      "AccuracyUSec": "1s",
+      "DropInPaths": "",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [],
+      "ExecStartPost": [],
+      "ExecStartPre": [],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-backup.timer",
+      "LoadState": "loaded",
+      "Persistent": "yes",
+      "RandomizedDelayUSec": "0",
+      "Unit": "marketdata-backup.service"
+    },
+    "marketdata-daily.service": {
+      "DropInPaths": "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [
+        "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json"
+      ],
+      "ExecStartPost": [],
+      "ExecStartPre": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+      ],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-daily.service",
+      "KillMode": "control-group",
+      "KillSignal": "15",
+      "LoadState": "loaded",
+      "Restart": "on-failure",
+      "RestartUSec": "1min",
+      "RuntimeMaxUSec": "infinity",
+      "TimeoutStartUSec": "30min",
+      "TimeoutStopUSec": "1min 30s",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    "marketdata-daily.timer": {
+      "AccuracyUSec": "1s",
+      "DropInPaths": "",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [],
+      "ExecStartPost": [],
+      "ExecStartPre": [],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-daily.timer",
+      "LoadState": "loaded",
+      "Persistent": "yes",
+      "RandomizedDelayUSec": "30s",
+      "Unit": "marketdata-daily.service"
+    },
+    "marketdata-network-observer.service": {
+      "DropInPaths": "/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [
+        "/usr/bin/env ${MARKETDATA_NETWORK_PYTHON} ${MARKETDATA_NETWORK_SCRIPT} --profile ${MARKETDATA_NETWORK_PROFILE}"
+      ],
+      "ExecStartPost": [],
+      "ExecStartPre": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+      ],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service",
+      "KillMode": "control-group",
+      "KillSignal": "15",
+      "LoadState": "loaded",
+      "Restart": "no",
+      "RestartUSec": "100ms",
+      "RuntimeMaxUSec": "infinity",
+      "TimeoutStartUSec": "20s",
+      "TimeoutStopUSec": "1min 30s",
+      "WorkingDirectory": "/home/yoonhc"
+    },
+    "marketdata-network-observer.timer": {
+      "AccuracyUSec": "1s",
+      "DropInPaths": "",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [],
+      "ExecStartPost": [],
+      "ExecStartPre": [],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer",
+      "LoadState": "loaded",
+      "Persistent": "yes",
+      "RandomizedDelayUSec": "0",
+      "Unit": "marketdata-network-observer.service"
+    },
+    "marketdata-oi-probe.service": {
+      "DropInPaths": "/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . oi-probe"
+      ],
+      "ExecStartPost": [],
+      "ExecStartPre": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+      ],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service",
+      "KillMode": "control-group",
+      "KillSignal": "15",
+      "LoadState": "loaded",
+      "Restart": "no",
+      "RestartUSec": "100ms",
+      "RuntimeMaxUSec": "infinity",
+      "TimeoutStartUSec": "1min 20s",
+      "TimeoutStopUSec": "1min 30s",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    "marketdata-oi-probe.timer": {
+      "AccuracyUSec": "1s",
+      "DropInPaths": "",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [],
+      "ExecStartPost": [],
+      "ExecStartPre": [],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer",
+      "LoadState": "loaded",
+      "Persistent": "no",
+      "RandomizedDelayUSec": "0",
+      "Unit": "marketdata-oi-probe.service"
+    },
+    "marketdata-oi-quality.service": {
+      "DropInPaths": "/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . oi-quality --days 7"
+      ],
+      "ExecStartPost": [],
+      "ExecStartPre": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+      ],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service",
+      "KillMode": "control-group",
+      "KillSignal": "15",
+      "LoadState": "loaded",
+      "Restart": "no",
+      "RestartUSec": "100ms",
+      "RuntimeMaxUSec": "infinity",
+      "TimeoutStartUSec": "5min",
+      "TimeoutStopUSec": "1min 30s",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    "marketdata-oi-quality.timer": {
+      "AccuracyUSec": "1s",
+      "DropInPaths": "",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [],
+      "ExecStartPost": [],
+      "ExecStartPre": [],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer",
+      "LoadState": "loaded",
+      "Persistent": "yes",
+      "RandomizedDelayUSec": "0",
+      "Unit": "marketdata-oi-quality.service"
+    },
+    "marketdata-oi.service": {
+      "DropInPaths": "/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . update --config configs/oi-live.toml --report state/oi-latest.json"
+      ],
+      "ExecStartPost": [],
+      "ExecStartPre": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+      ],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-oi.service",
+      "KillMode": "control-group",
+      "KillSignal": "15",
+      "LoadState": "loaded",
+      "Restart": "on-failure",
+      "RestartUSec": "30s",
+      "RuntimeMaxUSec": "infinity",
+      "TimeoutStartUSec": "4min",
+      "TimeoutStopUSec": "1min 30s",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    "marketdata-oi.timer": {
+      "AccuracyUSec": "1min",
+      "DropInPaths": "",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [],
+      "ExecStartPost": [],
+      "ExecStartPre": [],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-oi.timer",
+      "LoadState": "loaded",
+      "Persistent": "yes",
+      "RandomizedDelayUSec": "0",
+      "Unit": "marketdata-oi.service"
+    },
+    "marketdata-pack.service": {
+      "DropInPaths": "/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [
+        "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode hourly --min-free-gib 10 --wait-for-lock"
+      ],
+      "ExecStartPost": [],
+      "ExecStartPre": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+      ],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-pack.service",
+      "KillMode": "control-group",
+      "KillSignal": "2",
+      "LoadState": "loaded",
+      "Restart": "on-failure",
+      "RestartUSec": "2min",
+      "RuntimeMaxUSec": "infinity",
+      "TimeoutStartUSec": "6h",
+      "TimeoutStopUSec": "2min",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    "marketdata-pack.timer": {
+      "AccuracyUSec": "1s",
+      "DropInPaths": "",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [],
+      "ExecStartPost": [],
+      "ExecStartPre": [],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-pack.timer",
+      "LoadState": "loaded",
+      "Persistent": "yes",
+      "RandomizedDelayUSec": "0",
+      "Unit": "marketdata-pack.service"
+    },
+    "marketdata-restic-archive.service": {
+      "DropInPaths": "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service.d/80-checkpoint-evidence.conf /etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [
+        "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_archive.py --profile /home/yoonhc/.config/marketdata/restic-archive.toml run"
+      ],
+      "ExecStartPost": [],
+      "ExecStartPre": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+      ],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service",
+      "KillMode": "control-group",
+      "KillSignal": "2",
+      "LoadState": "loaded",
+      "Restart": "no",
+      "RestartUSec": "100ms",
+      "RuntimeMaxUSec": "infinity",
+      "TimeoutStartUSec": "6h",
+      "TimeoutStopUSec": "2min",
+      "WorkingDirectory": "/home/yoonhc"
+    },
+    "marketdata-restic-archive.timer": {
+      "AccuracyUSec": "1s",
+      "DropInPaths": "",
+      "ExecCondition": [],
+      "ExecReload": [],
+      "ExecStart": [],
+      "ExecStartPost": [],
+      "ExecStartPre": [],
+      "ExecStop": [],
+      "ExecStopPost": [],
+      "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer",
+      "LoadState": "loaded",
+      "Persistent": "yes",
+      "RandomizedDelayUSec": "0",
+      "Unit": "marketdata-restic-archive.service"
+    }
+  },
+  "enable_links": {
+    "/etc/systemd/system/timers.target.wants/marketdata-backup.timer": {
+      "after": {
+        "kind": "symlink",
+        "target": "/etc/systemd/system/marketdata-backup.timer"
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/timers.target.wants/marketdata-daily.timer": {
+      "after": {
+        "kind": "symlink",
+        "target": "/etc/systemd/system/marketdata-daily.timer"
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/timers.target.wants/marketdata-network-observer.timer": {
+      "after": {
+        "kind": "symlink",
+        "target": "/etc/systemd/system/marketdata-network-observer.timer"
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/timers.target.wants/marketdata-oi-probe.timer": {
+      "after": {
+        "kind": "symlink",
+        "target": "/etc/systemd/system/marketdata-oi-probe.timer"
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/timers.target.wants/marketdata-oi-quality.timer": {
+      "after": {
+        "kind": "symlink",
+        "target": "/etc/systemd/system/marketdata-oi-quality.timer"
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/timers.target.wants/marketdata-oi.timer": {
+      "after": {
+        "kind": "symlink",
+        "target": "/etc/systemd/system/marketdata-oi.timer"
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/timers.target.wants/marketdata-pack.timer": {
+      "after": {
+        "kind": "symlink",
+        "target": "/etc/systemd/system/marketdata-pack.timer"
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/timers.target.wants/marketdata-restic-archive.timer": {
+      "after": {
+        "kind": "symlink",
+        "target": "/etc/systemd/system/marketdata-restic-archive.timer"
+      },
+      "before": {
+        "kind": "absent"
+      }
+    }
+  },
+  "excluded": [
+    "collector/Chrony restart",
+    "clock/RTC control",
+    "deletion",
+    "retirement enable",
+    "T05 registration",
+    "task policy change",
+    "data/catalog rollback"
+  ],
+  "extra_protected": {
+    "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12",
+    "/etc/systemd/system/chrony.service.d/marketdata.conf": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4",
+    "/etc/systemd/system/marketdata-collector@.service": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+    "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-clock-ready.service": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab",
+    "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service.d/80-checkpoint-evidence.conf": "3ab1e66c6ab15a3e9ded81c903192360b4fa3266bca1cee05639fbd346af445f",
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service.d/80-checkpoint-evidence.conf": "36120a311a55b6fa836b695c74c769bc6d63703ba8dc6bfcb42236eec716f39b",
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389",
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2",
+    "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676"
+  },
+  "inner": {
+    "approval_required": "new exact-plan apply and rollback authorization",
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "bootstrap_path": "/etc/marketdata/clock-bootstrap.json",
+    "ledger_before": {
+      "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+      "closed_boottime": 15.635695814,
+      "closed_observation": {
+        "conditional_error_bound_seconds": 0.1957006285,
+        "provider": {
+          "argv": [
+            "/usr/sbin/chronyd",
+            "-F",
+            "1",
+            "-f",
+            "/etc/chrony/marketdata.conf",
+            ""
+          ],
+          "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+          "pid": 1245
+        },
+        "ready": true,
+        "reasons": [],
+        "reference_age_seconds": 2.038670778274536,
+        "sample": {
+          "boottime_ns": 15873612363,
+          "monotonic_ns": 15873611848,
+          "sampling_span_ns": 1579,
+          "wall_ns": 1791472277915793853
+        },
+        "tracking": {
+          "correction": -0.066962399,
+          "leap": "Normal",
+          "raw_csv": "B97DBE39,185.125.190.57,3,1791472275.877091736,-0.066962399,0.198808655,0.198808655,24.944,7.388,24.314,0.253650129,0.001913165,0.0,Normal",
+          "reference_address": "185.125.190.57",
+          "reference_id": "B97DBE39",
+          "reference_time": 1791472275.8770916,
+          "root_delay": 0.253650129,
+          "root_dispersion": 0.001913165,
+          "skew_ppm": 24.314,
+          "stratum": 3
+        }
+      },
+      "configuration_history": [
+        {
+          "approval_sha256": "cfa1c9a10da9d4eff6601cb69d484505ae8cb6849ddcffe11a32cad3c75b98f0",
+          "direction": "apply",
+          "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+          "receipt": "/var/lib/marketdata-clock/runtime-transitions/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/apply-receipt.json"
+        }
+      ],
+      "first_boottime": 10.33559517,
+      "last_wait": {
+        "long_wait": false,
+        "needs_review": false,
+        "phase": "preparing",
+        "ready": false,
+        "reasons": [
+          "no_external_reference",
+          "not_synchronized_or_leap_pending",
+          "reference_age",
+          "clock_error_bound"
+        ],
+        "step_attempts": 0,
+        "wait_seconds": 0
+      },
+      "phase": "closed",
+      "profile_sha256": "7e10950ef3cced4ac226aadbc5a92e26a7e81cfce26ea3145ca1545f32aea888",
+      "schema": 1,
+      "step_attempts": 0
+    },
+    "ledger_path": "/var/lib/marketdata-clock/boot-state.json",
+    "operations": {
+      "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "c5a8f7d0b9430339a74dd12123aa9a73829889cd6578bd0250c53f7fcb7b2e79",
+          "text": "{\n  \"bootstrap_profile\": \"/etc/marketdata/clock-bootstrap.json\",\n  \"bootstrap_profile_sha256\": \"c5b769510242692ac8081837b02372c40e5681c60b30a1c06cb6ab6338a2df6d\"\n}\n"
+        },
+        "before": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "cdff5dc077ea83c451d9273ba394eb3f5b0d075b6ca85fb8a07f28192c766f2c",
+          "text": "{\n  \"bootstrap_profile\": \"/etc/marketdata/clock-bootstrap.json\",\n  \"bootstrap_profile_sha256\": \"343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb\"\n}\n"
+        }
+      },
+      "/etc/marketdata/clock-bootstrap.json": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "c5b769510242692ac8081837b02372c40e5681c60b30a1c06cb6ab6338a2df6d",
+          "text": "{\n  \"chrony_socket\": \"/run/chrony/chronyd.sock\",\n  \"guard_command\": \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\",\n  \"guard_files\": {\n    \"/etc/marketdata/scheduled-system/topology.json\": \"e29e142b3f447849a3abdbc04784cca8bfa9a308d3d58d5a55030467aebf1705\",\n    \"/etc/systemd/system/chrony-wait.service.d/marketdata.conf\": \"bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12\",\n    \"/etc/systemd/system/chrony.service.d/marketdata.conf\": \"624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4\",\n    \"/etc/systemd/system/marketdata-backup.service\": \"62bb1565a6bc56a6c3b7b9b9caf5841f981c8688c44289d9bc9628dc2cb04162\",\n    \"/etc/systemd/system/marketdata-backup.timer\": \"4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141\",\n    \"/etc/systemd/system/marketdata-clock-bootstrap.service\": \"04bde12188bdc937d5c763a98aa1bba24c15c2c1c768387b24069bd044c1ec77\",\n    \"/etc/systemd/system/marketdata-clock-ready.service\": \"32c9f55063690af1349cdb013aab948b8e3520838f947e00678a7eb208bdc6c6\",\n    \"/etc/systemd/system/marketdata-collector@.service\": \"2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4\",\n    \"/etc/systemd/system/marketdata-daily.service\": \"cb130360b97ee0ea4c98d77058aad5a623be796e69d48005b15e567ec8cc2cbf\",\n    \"/etc/systemd/system/marketdata-daily.timer\": \"55326bb195734a6ea5afea99b1916390fc839e2fbb37ccd8dc145fb8c12318a1\",\n    \"/etc/systemd/system/marketdata-network-observer.service\": \"a9e1c91f79a442e86bc6f3b4514d5121facbcea5917ae07a395fb06006b8b701\",\n    \"/etc/systemd/system/marketdata-network-observer.timer\": \"539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599\",\n    \"/etc/systemd/system/marketdata-oi-probe.service\": \"a1096f275460f8da2fa3bde53948b54d32b1b6d0c732f3349fba54cca4627458\",\n    \"/etc/systemd/system/marketdata-oi-probe.timer\": \"faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754\",\n    \"/etc/systemd/system/marketdata-oi-quality.service\": \"8c5822eae116199556d11b78a7b8a0aead9f21b4a71dbe4e9948b98d825804a8\",\n    \"/etc/systemd/system/marketdata-oi-quality.timer\": \"6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75\",\n    \"/etc/systemd/system/marketdata-oi.service\": \"f2b3b405d708f014c86a580befbc8c3dd68833e706ea8f96470a4424578c87b5\",\n    \"/etc/systemd/system/marketdata-oi.timer\": \"661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11\",\n    \"/etc/systemd/system/marketdata-pack.service\": \"ab24f67df8b5f34300ffc74b54ef1ae79aa0373bc78264fc9ea1be14b1aa1e44\",\n    \"/etc/systemd/system/marketdata-pack.timer\": \"551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676\",\n    \"/etc/systemd/system/marketdata-restic-archive.service\": \"618c8692a5b65e80057fb46ce87a15625f30c603ac87da8b6db098993b5aaf71\",\n    \"/etc/systemd/system/marketdata-restic-archive.timer\": \"7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b\",\n    \"/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-clock-ready.service\": \"e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab\",\n    \"/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\"\n  },\n  \"policy\": {\n    \"attempt_seconds\": 120.0,\n    \"long_wait_seconds\": 600.0,\n    \"max_initial_correction_seconds\": 300.0,\n    \"poll_seconds\": 5.0,\n    \"source_age_seconds\": 30.0,\n    \"step_above_seconds\": 0.1\n  },\n  \"rtc_confirmation\": \"/etc/marketdata/rtc-utc-confirmation.json\",\n  \"runtime_profile\": \"/etc/marketdata/runtime.json\",\n  \"runtime_profile_sha256\": \"98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581\",\n  \"schema\": 2,\n  \"state_dir\": \"/var/lib/marketdata-clock\",\n  \"system_collectors\": [\n    \"marketdata-collector@depth.service\",\n    \"marketdata-collector@aggtrade.service\"\n  ],\n  \"uid\": 1000,\n  \"user\": \"yoonhc\",\n  \"user_units\": {\n    \"marketdata-aggtrade.service\": \"masked\",\n    \"marketdata-backup.service\": \"masked\",\n    \"marketdata-backup.timer\": \"masked\",\n    \"marketdata-checkpoint-retirement.service\": \"masked\",\n    \"marketdata-checkpoint-retirement.timer\": \"masked\",\n    \"marketdata-clock-ready.service\": \"waiter\",\n    \"marketdata-daily.service\": \"masked\",\n    \"marketdata-daily.timer\": \"masked\",\n    \"marketdata-depth.service\": \"masked\",\n    \"marketdata-network-observer.service\": \"masked\",\n    \"marketdata-network-observer.timer\": \"masked\",\n    \"marketdata-oi-probe.service\": \"masked\",\n    \"marketdata-oi-probe.timer\": \"masked\",\n    \"marketdata-oi-quality.service\": \"masked\",\n    \"marketdata-oi-quality.timer\": \"masked\",\n    \"marketdata-oi.service\": \"masked\",\n    \"marketdata-oi.timer\": \"masked\",\n    \"marketdata-pack.service\": \"masked\",\n    \"marketdata-pack.timer\": \"masked\",\n    \"marketdata-restic-archive.service\": \"masked\",\n    \"marketdata-restic-archive.timer\": \"masked\"\n  },\n  \"wait_command\": \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py wait --profile /etc/marketdata/clock-bootstrap.json\",\n  \"wait_unit\": \"marketdata-clock-ready.service\"\n}\n"
+        },
+        "before": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+          "text": "{\n  \"chrony_socket\": \"/run/chrony/chronyd.sock\",\n  \"guard_command\": \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\",\n  \"guard_files\": {\n    \"/etc/systemd/system/chrony-wait.service.d/marketdata.conf\": \"bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12\",\n    \"/etc/systemd/system/chrony.service.d/marketdata.conf\": \"624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4\",\n    \"/etc/systemd/system/marketdata-clock-bootstrap.service\": \"fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc\",\n    \"/etc/systemd/system/marketdata-collector@.service\": \"2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4\",\n    \"/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-clock-ready.service\": \"e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab\",\n    \"/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\",\n    \"/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf\": \"a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598\"\n  },\n  \"policy\": {\n    \"attempt_seconds\": 120.0,\n    \"long_wait_seconds\": 600.0,\n    \"max_initial_correction_seconds\": 300.0,\n    \"poll_seconds\": 5.0,\n    \"source_age_seconds\": 30.0,\n    \"step_above_seconds\": 0.1\n  },\n  \"rtc_confirmation\": \"/etc/marketdata/rtc-utc-confirmation.json\",\n  \"runtime_profile\": \"/etc/marketdata/runtime.json\",\n  \"runtime_profile_sha256\": \"98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581\",\n  \"schema\": 2,\n  \"state_dir\": \"/var/lib/marketdata-clock\",\n  \"system_collectors\": [\n    \"marketdata-collector@depth.service\",\n    \"marketdata-collector@aggtrade.service\"\n  ],\n  \"uid\": 1000,\n  \"user\": \"yoonhc\",\n  \"user_units\": {\n    \"marketdata-aggtrade.service\": \"masked\",\n    \"marketdata-backup.service\": \"guarded\",\n    \"marketdata-backup.timer\": \"timer\",\n    \"marketdata-checkpoint-retirement.service\": \"masked\",\n    \"marketdata-checkpoint-retirement.timer\": \"masked\",\n    \"marketdata-clock-ready.service\": \"waiter\",\n    \"marketdata-daily.service\": \"guarded\",\n    \"marketdata-daily.timer\": \"timer\",\n    \"marketdata-depth.service\": \"masked\",\n    \"marketdata-network-observer.service\": \"guarded\",\n    \"marketdata-network-observer.timer\": \"timer\",\n    \"marketdata-oi-probe.service\": \"guarded\",\n    \"marketdata-oi-probe.timer\": \"timer\",\n    \"marketdata-oi-quality.service\": \"guarded\",\n    \"marketdata-oi-quality.timer\": \"timer\",\n    \"marketdata-oi.service\": \"guarded\",\n    \"marketdata-oi.timer\": \"timer\",\n    \"marketdata-pack.service\": \"guarded\",\n    \"marketdata-pack.timer\": \"timer\",\n    \"marketdata-restic-archive.service\": \"guarded\",\n    \"marketdata-restic-archive.timer\": \"timer\"\n  },\n  \"wait_command\": \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py wait --profile /etc/marketdata/clock-bootstrap.json\",\n  \"wait_unit\": \"marketdata-clock-ready.service\"\n}\n"
+        }
+      },
+      "/etc/marketdata/scheduled-system/oi-live.toml": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "9aa395f34094b9f8473ee1bb3c3a3f368e2748e8250168cdec30eee0db05ba81",
+          "text": "[operations]\n# Persist this initial scope; later runs recover holes as well as the newest hour.\nbootstrap_days = 28\noverlap_minutes = 60\nmax_days_per_run = 32\nstale_after_seconds = 900\n\n[[datasets]]\ndataset = \"open_interest\"\ninterval = \"5m\"\nseries = \"rest\"\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/marketdata/scheduled-system/topology.json": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "e29e142b3f447849a3abdbc04784cca8bfa9a308d3d58d5a55030467aebf1705",
+          "text": "{\n  \"policy_changes\": [],\n  \"purpose\": \"scheduled-manager-only-v1\",\n  \"retirement\": \"both managers remain masked\",\n  \"schema\": 1,\n  \"system_inventory\": [\n    \"marketdata-backup.service\",\n    \"marketdata-backup.timer\",\n    \"marketdata-checkpoint-retirement-apply@.service\",\n    \"marketdata-checkpoint-retirement-preview.service\",\n    \"marketdata-checkpoint-retirement.service\",\n    \"marketdata-checkpoint-retirement.timer\",\n    \"marketdata-clock-bootstrap.service\",\n    \"marketdata-clock-ready.service\",\n    \"marketdata-collector@.service\",\n    \"marketdata-daily.service\",\n    \"marketdata-daily.timer\",\n    \"marketdata-network-observer.service\",\n    \"marketdata-network-observer.timer\",\n    \"marketdata-oi-probe.service\",\n    \"marketdata-oi-probe.timer\",\n    \"marketdata-oi-quality.service\",\n    \"marketdata-oi-quality.timer\",\n    \"marketdata-oi.service\",\n    \"marketdata-oi.timer\",\n    \"marketdata-pack.service\",\n    \"marketdata-pack.timer\",\n    \"marketdata-restic-archive.service\",\n    \"marketdata-restic-archive.timer\"\n  ],\n  \"units\": {\n    \"marketdata-backup.service\": {\n      \"After\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"ExecStart\": [\n        \"/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_backup.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000\"\n      ],\n      \"ExecStartPre\": [\n        \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\"\n      ],\n      \"Requires\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"User\": \"yoonhc\",\n      \"WorkingDirectory\": \"/home/yoonhc/projects/algoTrade/historical_data\",\n      \"fragment\": \"/etc/systemd/system/marketdata-backup.service\",\n      \"kind\": \"work\"\n    },\n    \"marketdata-backup.timer\": {\n      \"Unit\": \"marketdata-backup.service\",\n      \"fragment\": \"/etc/systemd/system/marketdata-backup.timer\",\n      \"kind\": \"timer\"\n    },\n    \"marketdata-clock-ready.service\": {\n      \"ExecStart\": [\n        \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py wait --profile /etc/marketdata/clock-bootstrap.json\"\n      ],\n      \"User\": \"yoonhc\",\n      \"fragment\": \"/etc/systemd/system/marketdata-clock-ready.service\",\n      \"kind\": \"waiter\"\n    },\n    \"marketdata-daily.service\": {\n      \"After\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"ExecStart\": [\n        \"/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json\"\n      ],\n      \"ExecStartPre\": [\n        \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\"\n      ],\n      \"Requires\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"User\": \"yoonhc\",\n      \"WorkingDirectory\": \"/home/yoonhc/projects/algoTrade/historical_data\",\n      \"fragment\": \"/etc/systemd/system/marketdata-daily.service\",\n      \"kind\": \"work\"\n    },\n    \"marketdata-daily.timer\": {\n      \"Unit\": \"marketdata-daily.service\",\n      \"fragment\": \"/etc/systemd/system/marketdata-daily.timer\",\n      \"kind\": \"timer\"\n    },\n    \"marketdata-network-observer.service\": {\n      \"After\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"ExecStart\": [\n        \"/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/scripts/network_observer.py --profile /home/yoonhc/.config/marketdata/network-observer.toml\"\n      ],\n      \"ExecStartPre\": [\n        \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\"\n      ],\n      \"Requires\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"User\": \"yoonhc\",\n      \"WorkingDirectory\": \"/home/yoonhc\",\n      \"fragment\": \"/etc/systemd/system/marketdata-network-observer.service\",\n      \"kind\": \"work\"\n    },\n    \"marketdata-network-observer.timer\": {\n      \"Unit\": \"marketdata-network-observer.service\",\n      \"fragment\": \"/etc/systemd/system/marketdata-network-observer.timer\",\n      \"kind\": \"timer\"\n    },\n    \"marketdata-oi-probe.service\": {\n      \"After\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"ExecStart\": [\n        \"/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data oi-probe\"\n      ],\n      \"ExecStartPre\": [\n        \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\"\n      ],\n      \"Requires\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"User\": \"yoonhc\",\n      \"WorkingDirectory\": \"/home/yoonhc/projects/algoTrade/historical_data\",\n      \"fragment\": \"/etc/systemd/system/marketdata-oi-probe.service\",\n      \"kind\": \"work\"\n    },\n    \"marketdata-oi-probe.timer\": {\n      \"Unit\": \"marketdata-oi-probe.service\",\n      \"fragment\": \"/etc/systemd/system/marketdata-oi-probe.timer\",\n      \"kind\": \"timer\"\n    },\n    \"marketdata-oi-quality.service\": {\n      \"After\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"ExecStart\": [\n        \"/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data oi-quality --days 7\"\n      ],\n      \"ExecStartPre\": [\n        \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\"\n      ],\n      \"Requires\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"User\": \"yoonhc\",\n      \"WorkingDirectory\": \"/home/yoonhc/projects/algoTrade/historical_data\",\n      \"fragment\": \"/etc/systemd/system/marketdata-oi-quality.service\",\n      \"kind\": \"work\"\n    },\n    \"marketdata-oi-quality.timer\": {\n      \"Unit\": \"marketdata-oi-quality.service\",\n      \"fragment\": \"/etc/systemd/system/marketdata-oi-quality.timer\",\n      \"kind\": \"timer\"\n    },\n    \"marketdata-oi.service\": {\n      \"After\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"ExecStart\": [\n        \"/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data update --config /etc/marketdata/scheduled-system/oi-live.toml --report state/oi-latest.json\"\n      ],\n      \"ExecStartPre\": [\n        \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\"\n      ],\n      \"Requires\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"User\": \"yoonhc\",\n      \"WorkingDirectory\": \"/home/yoonhc/projects/algoTrade/historical_data\",\n      \"fragment\": \"/etc/systemd/system/marketdata-oi.service\",\n      \"kind\": \"work\"\n    },\n    \"marketdata-oi.timer\": {\n      \"Unit\": \"marketdata-oi.service\",\n      \"fragment\": \"/etc/systemd/system/marketdata-oi.timer\",\n      \"kind\": \"timer\"\n    },\n    \"marketdata-pack.service\": {\n      \"After\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"ExecStart\": [\n        \"/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data maintenance --mode hourly --min-free-gib 10 --wait-for-lock\"\n      ],\n      \"ExecStartPre\": [\n        \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\"\n      ],\n      \"Requires\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"User\": \"yoonhc\",\n      \"WorkingDirectory\": \"/home/yoonhc/projects/algoTrade/historical_data\",\n      \"fragment\": \"/etc/systemd/system/marketdata-pack.service\",\n      \"kind\": \"work\"\n    },\n    \"marketdata-pack.timer\": {\n      \"Unit\": \"marketdata-pack.service\",\n      \"fragment\": \"/etc/systemd/system/marketdata-pack.timer\",\n      \"kind\": \"timer\"\n    },\n    \"marketdata-restic-archive.service\": {\n      \"After\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"ExecStart\": [\n        \"/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/migration/run_system_archive.py --profile /home/yoonhc/.config/marketdata/restic-archive.toml run\"\n      ],\n      \"ExecStartPre\": [\n        \"/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\"\n      ],\n      \"Requires\": [\n        \"marketdata-clock-ready.service\"\n      ],\n      \"User\": \"yoonhc\",\n      \"WorkingDirectory\": \"/home/yoonhc\",\n      \"fragment\": \"/etc/systemd/system/marketdata-restic-archive.service\",\n      \"kind\": \"work\"\n    },\n    \"marketdata-restic-archive.timer\": {\n      \"Unit\": \"marketdata-restic-archive.service\",\n      \"fragment\": \"/etc/systemd/system/marketdata-restic-archive.timer\",\n      \"kind\": \"timer\"\n    }\n  }\n}\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-backup.service": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "62bb1565a6bc56a6c3b7b9b9caf5841f981c8688c44289d9bc9628dc2cb04162",
+          "text": "[Unit]\nDescription=Market data daily verified maintenance\nStartLimitIntervalSec=3600\nStartLimitBurst=4\n\n[Service]\nType=oneshot\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode daily --min-free-gib 10 --incremental --backup-dir /mnt/backup/marketdata-historical/automatic --backup-mount /mnt/backup --wait-for-lock\nTimeoutStartSec=6h\nKillSignal=SIGINT\nTimeoutStopSec=120s\nRestart=on-failure\nRestartSec=120s\n\n[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n\n[Service]\nExecStart=\nExecStart=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_backup.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000\n\n[Service]\nUser=yoonhc\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nExecStart=\nExecStart=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_backup.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000\nProtectClock=yes\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-backup.timer": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+          "text": "[Unit]\nDescription=Validate market data and create a daily verified backup\n\n[Timer]\nOnCalendar=*-*-* 04:10:00 UTC\nPersistent=true\nAccuracySec=1s\n\n[Install]\nWantedBy=timers.target\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "04bde12188bdc937d5c763a98aa1bba24c15c2c1c768387b24069bd044c1ec77",
+          "text": "[Unit]\nDescription=Prepare this boot's clock before releasing marketdata jobs\nWants=network-online.target chrony.service user@1000.service\nAfter=network-online.target chrony.service user@1000.service\nBefore=chrony-wait.service time-sync.target\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/migration/bootstrap_system.py bootstrap --profile /etc/marketdata/clock-bootstrap.json\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=15s\nTimeoutStartSec=150s\nTimeoutStopSec=10s\nStateDirectory=marketdata-clock\nStateDirectoryMode=0755\nUMask=0022\nNoNewPrivileges=yes\nCapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_SETUID CAP_SETGID\nProtectClock=yes\nProtectSystem=strict\nReadWritePaths=/run/chrony\nProtectHome=read-only\nPrivateTmp=yes\nRestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK\nStandardOutput=journal\nStandardError=journal\nSyslogLevelPrefix=yes\n\n[Install]\nWantedBy=multi-user.target\n"
+        },
+        "before": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+          "text": "[Unit]\nDescription=Prepare this boot's clock before releasing marketdata jobs\nWants=network-online.target chrony.service user@1000.service\nAfter=network-online.target chrony.service user@1000.service\nBefore=chrony-wait.service time-sync.target\nStartLimitIntervalSec=0\n\n[Service]\nType=oneshot\nExecStart=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py bootstrap --profile /etc/marketdata/clock-bootstrap.json\nRemainAfterExit=yes\nRestart=on-failure\nRestartSec=15s\nTimeoutStartSec=150s\nTimeoutStopSec=10s\nStateDirectory=marketdata-clock\nStateDirectoryMode=0755\nUMask=0022\nNoNewPrivileges=yes\nCapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_SETUID CAP_SETGID\nProtectClock=yes\nProtectSystem=strict\nReadWritePaths=/run/chrony\nProtectHome=read-only\nPrivateTmp=yes\nRestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK\nStandardOutput=journal\nStandardError=journal\nSyslogLevelPrefix=yes\n\n[Install]\nWantedBy=multi-user.target\n"
+        }
+      },
+      "/etc/systemd/system/marketdata-clock-ready.service": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "32c9f55063690af1349cdb013aab948b8e3520838f947e00678a7eb208bdc6c6",
+          "text": "[Unit]\nDescription=Wait for current clock readiness before scheduled marketdata work\n\n[Service]\nType=oneshot\nExecStart=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py wait --profile /etc/marketdata/clock-bootstrap.json\nTimeoutStartSec=infinity\nTimeoutStopSec=10s\nRemainAfterExit=no\nNoNewPrivileges=yes\nStandardOutput=journal\nStandardError=journal\n\n[Service]\nUser=yoonhc\nProtectClock=yes\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-daily.service": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "cb130360b97ee0ea4c98d77058aad5a623be796e69d48005b15e567ec8cc2cbf",
+          "text": "[Unit]\nDescription=Market data due daily tasks (T13 candidate)\nWants=network-online.target\nAfter=network-online.target\nStartLimitIntervalSec=600\nStartLimitBurst=5\n\n[Service]\nType=oneshot\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\n# Existing /etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf\n# must remain unchanged: Requires/After waiter and strict ExecStartPre are retained.\nExecStart=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json\nTimeoutStartSec=30min\nRestart=on-failure\nRestartSec=60s\n\n[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n\n[Service]\nUser=yoonhc\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nExecStart=\nExecStart=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json\nProtectClock=yes\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-daily.timer": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "55326bb195734a6ea5afea99b1916390fc839e2fbb37ccd8dc145fb8c12318a1",
+          "text": "[Unit]\nDescription=Wake daily task scheduler; only due incomplete targets use network\n\n[Timer]\nOnActiveSec=30s\nOnCalendar=*-*-* *:00/5:00 UTC\nRandomizedDelaySec=30s\nAccuracySec=1s\nPersistent=true\nUnit=marketdata-daily.service\n\n[Install]\nWantedBy=timers.target\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-network-observer.service": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "a9e1c91f79a442e86bc6f3b4514d5121facbcea5917ae07a395fb06006b8b701",
+          "text": "[Unit]\nDescription=Local network evidence for marketdata collectors\n\n[Service]\nType=oneshot\nWorkingDirectory=/home/yoonhc\nEnvironmentFile=/home/yoonhc/.config/marketdata/network-observer.env\nEnvironment=PYTHONNOUSERSITE=1\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nEnvironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin\nExecStart=/usr/bin/env ${MARKETDATA_NETWORK_PYTHON} ${MARKETDATA_NETWORK_SCRIPT} --profile ${MARKETDATA_NETWORK_PROFILE}\nUMask=0077\nNice=10\nIOSchedulingClass=best-effort\nIOSchedulingPriority=7\nTimeoutStartSec=20s\nRestart=no\nStandardOutput=journal\nStandardError=journal\n\n\n[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n\n[Service]\nUser=yoonhc\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nExecStart=\nExecStart=/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/scripts/network_observer.py --profile /home/yoonhc/.config/marketdata/network-observer.toml\nProtectClock=yes\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-network-observer.timer": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+          "text": "[Unit]\nDescription=Record marketdata network reachability once a minute\n\n[Timer]\nOnActiveSec=5s\nOnCalendar=*-*-* *:*:20 UTC\nPersistent=true\nAccuracySec=1s\nUnit=marketdata-network-observer.service\n\n[Install]\nWantedBy=timers.target\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-oi-probe.service": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "a1096f275460f8da2fa3bde53948b54d32b1b6d0c732f3349fba54cca4627458",
+          "text": "[Unit]\nDescription=Observe OI endpoint availability without publishing values\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=oneshot\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . oi-probe\nTimeoutStartSec=80s\n# Partial HTTP/quality observations are recorded, then retried by the timer.\nSuccessExitStatus=2\n\n[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n\n[Service]\nUser=yoonhc\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nExecStart=\nExecStart=/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data oi-probe\nProtectClock=yes\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-oi-probe.timer": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+          "text": "[Unit]\nDescription=Observe recent OI every fifteen seconds\n\n[Timer]\nOnActiveSec=2s\nOnCalendar=*-*-* *:*:00/15 UTC\nAccuracySec=1s\n# Missed historical observation times cannot be reconstructed.\nPersistent=false\n\n[Install]\nWantedBy=timers.target\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-oi-quality.service": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "8c5822eae116199556d11b78a7b8a0aead9f21b4a71dbe4e9948b98d825804a8",
+          "text": "[Unit]\nDescription=Generate daily OI parity and availability evidence\n\n[Service]\nType=oneshot\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . oi-quality --days 7\nTimeoutStartSec=5min\n# A completed report can contain findings requiring review.\nSuccessExitStatus=2\n\n[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n\n[Service]\nUser=yoonhc\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nExecStart=\nExecStart=/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data oi-quality --days 7\nProtectClock=yes\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-oi-quality.timer": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+          "text": "[Unit]\nDescription=Audit OI after the daily archive refresh\n\n[Timer]\nOnActiveSec=5s\nOnCalendar=*-*-* 03:40:00 UTC\nAccuracySec=1s\nPersistent=true\n\n[Install]\nWantedBy=timers.target\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-oi.service": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "f2b3b405d708f014c86a580befbc8c3dd68833e706ea8f96470a4424578c87b5",
+          "text": "[Unit]\nDescription=Capture recent public five-minute open interest\nWants=network-online.target\nAfter=network-online.target\nStartLimitIntervalSec=300\nStartLimitBurst=4\n\n[Service]\nType=oneshot\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . update --config configs/oi-live.toml --report state/oi-latest.json\nTimeoutStartSec=4min\nRestart=on-failure\nRestartSec=30s\n\n[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n\n[Service]\nUser=yoonhc\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nExecStart=\nExecStart=/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data update --config /etc/marketdata/scheduled-system/oi-live.toml --report state/oi-latest.json\nProtectClock=yes\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-oi.timer": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+          "text": "[Unit]\nDescription=Capture OI every five minutes with publication slack\n\n[Timer]\nOnActiveSec=30s\nOnCalendar=*-*-* *:00/5:45 UTC\nPersistent=true\n\n[Install]\nWantedBy=timers.target\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-pack.service": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "ab24f67df8b5f34300ffc74b54ef1ae79aa0373bc78264fc9ea1be14b1aa1e44",
+          "text": "[Unit]\nDescription=Market data hourly verified maintenance\nStartLimitIntervalSec=3600\nStartLimitBurst=4\n\n[Service]\nType=oneshot\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\nExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode hourly --min-free-gib 10 --wait-for-lock\nTimeoutStartSec=6h\nKillSignal=SIGINT\nTimeoutStopSec=120s\nRestart=on-failure\nRestartSec=120s\n\n[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n\n[Service]\nUser=yoonhc\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nExecStart=\nExecStart=/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data maintenance --mode hourly --min-free-gib 10 --wait-for-lock\nProtectClock=yes\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-pack.timer": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676",
+          "text": "[Unit]\nDescription=Pack closed market data sessions hourly\n\n[Timer]\nOnActiveSec=5min\nOnCalendar=*-*-* *:15:00 UTC\nPersistent=true\nAccuracySec=1s\n\n[Install]\nWantedBy=timers.target\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-restic-archive.service": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "618c8692a5b65e80057fb46ce87a15625f30c603ac87da8b6db098993b5aaf71",
+          "text": "[Unit]\nDescription=Parallel restic archive of completed marketdata checkpoints\n\n[Service]\nType=oneshot\nWorkingDirectory=/home/yoonhc\nEnvironmentFile=/home/yoonhc/.config/marketdata/restic-service.env\nEnvironment=PYTHONNOUSERSITE=1\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nEnvironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin\nExecStart=/usr/bin/env ${MARKETDATA_PYTHON} -m scripts.restic_schedule --profile ${MARKETDATA_RESTIC_PROFILE} run\nUMask=0077\nNice=10\nIOSchedulingClass=best-effort\nIOSchedulingPriority=7\nTimeoutStartSec=6h\nKillSignal=SIGINT\nTimeoutStopSec=120s\nRestart=no\nStandardOutput=journal\nStandardError=journal\n\n[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n\n[Service]\nExecStart=\nExecStart=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_archive.py --profile /home/yoonhc/.config/marketdata/restic-archive.toml run\n\n[Service]\nUser=yoonhc\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nExecStart=\nExecStart=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/migration/run_system_archive.py --profile /home/yoonhc/.config/marketdata/restic-archive.toml run\nProtectClock=yes\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/etc/systemd/system/marketdata-restic-archive.timer": {
+        "after": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+          "text": "[Unit]\nDescription=Look for completed marketdata checkpoints every 30 minutes\n\n[Timer]\nOnActiveSec=5s\nOnCalendar=*-*-* *:05,35:00 UTC\nPersistent=true\nAccuracySec=1s\nUnit=marketdata-restic-archive.service\n\n[Install]\nWantedBy=timers.target\n"
+        },
+        "before": {
+          "kind": "absent"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.service": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.service": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "d9121ababca9ed23cf6bc84df1b3b9a1832494f6385eb324379064d7067a4f3b",
+          "text": "[Unit]\nDescription=Market data due daily tasks (T13 candidate)\nWants=network-online.target\nAfter=network-online.target\nStartLimitIntervalSec=600\nStartLimitBurst=5\n\n[Service]\nType=oneshot\nWorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data\n# Existing /etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf\n# must remain unchanged: Requires/After waiter and strict ExecStartPre are retained.\nExecStart=/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json\nTimeoutStartSec=30min\nRestart=on-failure\nRestartSec=60s\n"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "55326bb195734a6ea5afea99b1916390fc839e2fbb37ccd8dc145fb8c12318a1",
+          "text": "[Unit]\nDescription=Wake daily task scheduler; only due incomplete targets use network\n\n[Timer]\nOnActiveSec=30s\nOnCalendar=*-*-* *:00/5:00 UTC\nRandomizedDelaySec=30s\nAccuracySec=1s\nPersistent=true\nUnit=marketdata-daily.service\n\n[Install]\nWantedBy=timers.target\n"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "2ffe783c9341d78fc93526d3f401126932951e6e69788fdc3d69ce18c619bca8",
+          "text": "[Unit]\nDescription=Local network evidence for marketdata collectors\n\n[Service]\nType=oneshot\nWorkingDirectory=%h\nEnvironmentFile=%h/.config/marketdata/network-observer.env\nEnvironment=PYTHONNOUSERSITE=1\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nEnvironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin\nExecStart=/usr/bin/env ${MARKETDATA_NETWORK_PYTHON} ${MARKETDATA_NETWORK_SCRIPT} --profile ${MARKETDATA_NETWORK_PROFILE}\nUMask=0077\nNice=10\nIOSchedulingClass=best-effort\nIOSchedulingPriority=7\nTimeoutStartSec=20s\nRestart=no\nStandardOutput=journal\nStandardError=journal\n\n"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+          "text": "[Unit]\nDescription=Record marketdata network reachability once a minute\n\n[Timer]\nOnActiveSec=5s\nOnCalendar=*-*-* *:*:20 UTC\nPersistent=true\nAccuracySec=1s\nUnit=marketdata-network-observer.service\n\n[Install]\nWantedBy=timers.target\n"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.service": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.service": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+          "text": "[Unit]\nDescription=Parallel restic archive of completed marketdata checkpoints\n\n[Service]\nType=oneshot\nWorkingDirectory=%h\nEnvironmentFile=%h/.config/marketdata/restic-service.env\nEnvironment=PYTHONNOUSERSITE=1\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nEnvironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin\nExecStart=/usr/bin/env ${MARKETDATA_PYTHON} -m scripts.restic_schedule --profile ${MARKETDATA_RESTIC_PROFILE} run\nUMask=0077\nNice=10\nIOSchedulingClass=best-effort\nIOSchedulingPriority=7\nTimeoutStartSec=6h\nKillSignal=SIGINT\nTimeoutStopSec=120s\nRestart=no\nStandardOutput=journal\nStandardError=journal\n"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": {
+        "after": {
+          "kind": "symlink",
+          "target": "/dev/null"
+        },
+        "before": {
+          "kind": "file",
+          "mode": 420,
+          "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+          "text": "[Unit]\nDescription=Look for completed marketdata checkpoints every 30 minutes\n\n[Timer]\nOnActiveSec=5s\nOnCalendar=*-*-* *:05,35:00 UTC\nPersistent=true\nAccuracySec=1s\nUnit=marketdata-restic-archive.service\n\n[Install]\nWantedBy=timers.target\n"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-backup.timer": {
+        "after": {
+          "kind": "absent"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-daily.timer": {
+        "after": {
+          "kind": "absent"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/.config/systemd/user/marketdata-daily.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-network-observer.timer": {
+        "after": {
+          "kind": "absent"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-probe.timer": {
+        "after": {
+          "kind": "absent"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-quality.timer": {
+        "after": {
+          "kind": "absent"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi.timer": {
+        "after": {
+          "kind": "absent"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-pack.timer": {
+        "after": {
+          "kind": "absent"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer"
+        }
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-restic-archive.timer": {
+        "after": {
+          "kind": "absent"
+        },
+        "before": {
+          "kind": "symlink",
+          "target": "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer"
+        }
+      }
+    },
+    "plan_id": "0c9b85223c2ad851434857b4eaa86f11e94595b4663134f98881ede02fefd8fe",
+    "policy_changes": [],
+    "protected": {
+      "/etc/chrony/marketdata.conf": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "text": "# Candidate only. Install under /etc/chrony/marketdata.conf after a separately approved cutover.\n# RTC UTC confirmation is required by the chrony unit's ExecStartPre.\n# Steady daemon has no automatic step; the separate boot coordinator owns it.\npool ntp.ubuntu.com iburst maxsources 4 minpoll 6 maxpoll 8\nrtcsync\ndriftfile /var/lib/chrony/chrony.drift\nlogdir /var/log/chrony\nmaxupdateskew 100.0\nleapsectz right/UTC\nleapsecmode slew\nport 0\nbindcmdaddress 127.0.0.1\ncmdport 323\n"
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/manual.json": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+        "text": "{\n  \"enabled\": false,\n  \"purpose\": \"system-clock-bounded-checkpoint-retirement-v2\",\n  \"note\": \"Disabled template only. Derive a fresh installed scope before separate approval.\"\n}\n"
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "946c2c35aa5476f3de2780e113eee2131fe0a52ebbf3409dcaedf79cf3c4560e",
+        "text": "{\n  \"action\": \"run\",\n  \"approval_reference\": null,\n  \"approved_at\": null,\n  \"enabled\": false,\n  \"grant_kind\": \"recurring\",\n  \"purpose\": \"system-clock-bounded-checkpoint-retirement-v2\",\n  \"schema\": 1,\n  \"scope\": {\n    \"allowed_action\": \"clock_bounded_existing_retirement_only\",\n    \"clock_binding\": {\n      \"bootstrap_profile\": \"/etc/marketdata/clock-bootstrap.json\",\n      \"bootstrap_profile_sha256\": \"343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb\"\n    },\n    \"clock_policy\": {\n      \"max_observation_age_seconds\": 15.0,\n      \"max_query_seconds\": 3.0,\n      \"max_sample_gap_seconds\": 5.0,\n      \"max_uncertainty_seconds\": 5.0,\n      \"provider_seconds\": 10.0,\n      \"retention_margin_seconds\": 60,\n      \"sample_seconds\": 1.0,\n      \"step_threshold_seconds\": 0.25,\n      \"version\": \"checkpoint-time-bounds-v2\"\n    },\n    \"code\": {\n      \"code_id\": \"53bdfd234fa861bbd014cd002fa52c6d2ccb666de5ce74e14da89676ba8d65b2\",\n      \"code_root\": \"/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7\",\n      \"format\": 1,\n      \"git_commit\": null,\n      \"python_executable\": \"/usr/bin/python3.12\",\n      \"python_version\": \"3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]\",\n      \"source_dirty\": null,\n      \"source_files\": {\n        \"integrations/systemd/marketdata-checkpoint-retirement.service\": \"b6805cc87f9db7fce045eaeac271708bf6dc1a32ebcd3b09615cbad265afd377\",\n        \"integrations/systemd/marketdata-checkpoint-retirement.timer\": \"3233f2f0115bf5668e52170bfa87f46310e8da062d152cc72dda8b41dc5fefd8\",\n        \"packages/marketdata/pyproject.toml\": \"1f5eb8648d80dd7d1a72e823db20fb673d3943ac8c4dde8f54d47cfa008cc3c4\",\n        \"packages/marketdata/src/marketdata/__init__.py\": \"44a5fa1cce21a83e01fd81a9f2c34b7606177eb5dfd807d226b06a0e70c70e30\",\n        \"packages/marketdata/src/marketdata/aggtrade_stream.py\": \"f76c985b721e1b233b16f2543a4ad6e4c2c6eff022741e7b4b7de4cccc50ee15\",\n        \"packages/marketdata/src/marketdata/aggtrades.py\": \"02539d60382afa3333f068399777395ca170a579f8fb33be7209fb14b7a365fe\",\n        \"packages/marketdata/src/marketdata/backfill.py\": \"1f3ecc28b403623b8800281c82c7c4302db7c338e408e52e0642e4a9c4bcc984\",\n        \"packages/marketdata/src/marketdata/backup.py\": \"52829e92a82a1bf42f8c342f278701694664caf4d94fddae34c7b28ef063ef96\",\n        \"packages/marketdata/src/marketdata/binance.py\": \"3250e4d20809801ff48e64955a955789a25bb294eeebe548f6f94323f054990f\",\n        \"packages/marketdata/src/marketdata/checkpoint_clock.py\": \"97d7e8e4e698175dc326db7a069880ca5827fc84f1c1a7cc2120878e18a460ed\",\n        \"packages/marketdata/src/marketdata/checkpoint_evidence.py\": \"a406b2a8e0050db3cbdfe71607220d6eb73ad6914238211059a4bc9d729fc339\",\n        \"packages/marketdata/src/marketdata/checkpoint_locks.py\": \"e9acb68256a6400543a049fa37ee9e46965427a98001ff428d4d30d73a24bafe\",\n        \"packages/marketdata/src/marketdata/cli.py\": \"dd189b97460afcafdefd434e7597a8f50c3b817afa09e809ae4cacb7da9b3402\",\n        \"packages/marketdata/src/marketdata/depth.py\": \"c76d56fb7478e9deca4e577aeaf97fe09d03108aeeb84e70b8f1b3530a0d0703\",\n        \"packages/marketdata/src/marketdata/depth_refresh.py\": \"9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36\",\n        \"packages/marketdata/src/marketdata/depth_stream.py\": \"10b613d2ba1a33b5b73cbbf0d16fbf62b811a34b1c18d29ae808cd63cb4a8c42\",\n        \"packages/marketdata/src/marketdata/domain.py\": \"0ce94e0067033ca33ec70cf590cbbba9ba1d384bdf87ddd55d2de369bd0fce2a\",\n        \"packages/marketdata/src/marketdata/fileio.py\": \"fc98610e4f0aab1fc4d0e5b7b10403a841b1661414a5a589769e2add20a10ec9\",\n        \"packages/marketdata/src/marketdata/maintenance.py\": \"75cfbc4eaf079038cfdc0ebc50fb48acd7c13b13d4df69ac9c3ad52bb7b380dc\",\n        \"packages/marketdata/src/marketdata/normalize.py\": \"227037c0763e4b0e4d3f851dd247bbd84cc4e929197c33485171ee66a1b256e6\",\n        \"packages/marketdata/src/marketdata/oi_probe.py\": \"dadae21a8228622c54555f68379eee946cc21cb8b68e3e74178004bc31acebae\",\n        \"packages/marketdata/src/marketdata/oi_quality.py\": \"0bf1ebee69811c9d32dcdabcb773ba785355ac037f95771b8f1c7c664cd07f27\",\n        \"packages/marketdata/src/marketdata/operations.py\": \"d7668cb005905ca10afdc019477f200594f969339f17b543fb1cdbc988bcf3cd\",\n        \"packages/marketdata/src/marketdata/packing.py\": \"cc4ebc9811385ad1702a4c10d9a4944529ea9e67c884c46101cc3c573f577f4f\",\n        \"packages/marketdata/src/marketdata/pipeline.py\": \"7b39872944b724dd1c5c3ba4ac47676e0ecb2db61667279e2045bb0e06dff361\",\n        \"packages/marketdata/src/marketdata/research.py\": \"b0a2d224bafc5d2969574fa1c3b71e10a758b7a3bbf5e762d20b8e9357786939\",\n        \"packages/marketdata/src/marketdata/schema.py\": \"ac440454f1353979c2ae38ca5335a93a4ce2d96e7dc34db4cdd4bbdc8d30212d\",\n        \"packages/marketdata/src/marketdata/store.py\": \"a2ff36df17a3289f9855e29b12d9ad4f930b5c094cafe7fa327c51ad2e0f4d52\",\n        \"packages/marketdata/src/marketdata/stream_guard.py\": \"51cc375f61092624276ca635bf56d722913b844b5b341f2b645868a0cab97617\",\n        \"packages/marketdata/src/marketdata/transforms.py\": \"775d9fa8b01e6b30cfaadfc1a413c0f4a9d162f339c4342d3baf2d505e1e408d\",\n        \"pyproject.toml\": \"89ecc2fa9b147295a59bdb5fdb9f4424140d3a9c100e02111ba3ea52e0269015\",\n        \"scripts/archive_backups.py\": \"69455f8e2e29387acfc2ab416550d8c656ada8f4d1f93dc833731d5adac4c045\",\n        \"scripts/checkpoint_code.py\": \"ee6e2dd6bc9860021848d873843416180265548b4c9881f74cd5c20961a144a9\",\n        \"scripts/checkpoint_evidence.py\": \"d40a93991bee87f1ca374d69244cbb40a8dac9fd76ee05a23106560848f19009\",\n        \"scripts/checkpoint_schedule.py\": \"1bf02147d224367dbe6d61ca661f87c29e172608ed9a631380f67ad58efde28e\",\n        \"scripts/clock_retirement.py\": \"32b8a29706c85150bef3b2d9cba1b95cb184d2c88e6479a81e96246ab49bb7b2\",\n        \"scripts/render_retirement_units.py\": \"3f85bc0218a2d22a40b7ec0c79cfd2bffffca56340c9c23c4b8a1e06a103ba00\",\n        \"scripts/restic_schedule.py\": \"b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77\",\n        \"scripts/restic_trial.py\": \"e9e99549873d91d879aa5f45944daf6f8e711d6a5bdd726a2f97e5cda7663168\",\n        \"scripts/retire_checkpoints.py\": \"4c92a18c2aa17dbfa981305f88816ad1c910266a2750bcbee8267177238f84f9\",\n        \"scripts/retirement_clock.py\": \"5bee696dcfc6c0da82a240690b991a47a591bf6dbf35a6467f21b6e15a3bb734\",\n        \"scripts/run_checkpoint_schedule.py\": \"b6725d976ce2e92078102f9a8219c51f266e70e6a8cf3a5d39f764e47a7afa84\",\n        \"scripts/run_clock_retirement.py\": \"704914a060d2adaa2976c4ce16950f0d9cec098ee4c36e1382ee1db9e962dde6\",\n        \"scripts/run_evidenced_archive.py\": \"ebbd651a42eec10d4f9efcb876fcb8ea657b816ac1720c5a4d878efd93be5388\",\n        \"scripts/run_evidenced_backup.py\": \"5c54eab72afd19ef020e02dc5d766d9eb97dc639d4bb074ba65185b52a20413a\",\n        \"uv.lock\": \"3212f957822f52344deccae221f57891c1296747bda6d17594e26069f4100e40\"\n      },\n      \"source_sha256\": \"c686409f9b1494cc92250b8c4834e7edc13f6c2fd45473ce42dbdf69005077a7\"\n    },\n    \"identity\": {\n      \"archive_scope\": \"historical-data-original-v1\",\n      \"repository_id\": \"b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558\",\n      \"source_root\": \"/home/yoonhc/projects/algoTrade/historical_data\"\n    },\n    \"keep_latest\": 3,\n    \"min_age_hours\": 72,\n    \"paths\": {\n      \"backup_dir\": \"/mnt/backup/marketdata-historical/automatic\",\n      \"backup_mount\": \"/mnt/backup\",\n      \"cache_root\": \"/home/yoonhc/projects/algoTrade/historical_data/.cache/restic-archive\",\n      \"reports_root\": \"/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs\",\n      \"restic_binary\": \"/home/yoonhc/projects/algoTrade/historical_data/.cache/restic/0.19.1/restic\",\n      \"restic_password_file\": \"/home/yoonhc/.config/marketdata/secrets/restic-password\",\n      \"restic_repository\": \"/mnt/backup/marketdata-restic\",\n      \"restore_work_root\": \"/mnt/backup/marketdata-restic-restore\",\n      \"state_root\": \"/home/yoonhc/projects/algoTrade/historical_data/archive-state\",\n      \"store_root\": \"/home/yoonhc/projects/algoTrade/historical_data\"\n    },\n    \"policy_sha256\": \"005ccc904a8f3cde5e8180812a3b1740f30d1f3ea9dedbdc49620cf0f5eccd88\",\n    \"profile_sha256\": \"3dff81754b14edef5b03c1827a9d1654ae5d694433caa34550c9195c0bf138be\",\n    \"purpose\": \"system-clock-bounded-checkpoint-retirement-v2\",\n    \"restic_binary_sha256\": \"20d4142678d0d95ec11a4759def1b73fd9190abc9ca19e4b62d067c0b387e639\",\n    \"schedule\": {\n      \"automatic_resume\": false,\n      \"local_time\": \"15:40:00\",\n      \"manager\": \"system\",\n      \"manual_service\": \"marketdata-checkpoint-retirement-apply@PLAN_ID.service\",\n      \"on_calendar\": \"*-*-* 06:40:00 UTC\",\n      \"persistent\": false,\n      \"retry\": \"next_calendar_day\",\n      \"service\": \"marketdata-checkpoint-retirement.service\",\n      \"timer\": \"marketdata-checkpoint-retirement.timer\",\n      \"timezone\": \"Asia/Seoul\"\n    },\n    \"settings\": {\n      \"authorization_file\": \"/etc/marketdata/checkpoint-clock-retirement/recurring.json\",\n      \"clock_binding_file\": \"/etc/marketdata/checkpoint-clock-retirement/clock-binding.json\",\n      \"manual_authorization_file\": \"/etc/marketdata/checkpoint-clock-retirement/manual.json\",\n      \"retention_policy\": \"/etc/marketdata/checkpoint-clock-retirement/policy.toml\",\n      \"state_root\": \"/var/lib/marketdata-checkpoint-retirement\",\n      \"unit_directory\": \"/etc/marketdata/checkpoint-clock-retirement/units\"\n    },\n    \"system_units\": {\n      \"marketdata-checkpoint-retirement-apply@.service\": \"9932a3c4a8bc5acc74d5ba9c98d6348e2e367524999e15181b246fd0ac3addd0\",\n      \"marketdata-checkpoint-retirement-preview.service\": \"66d535599731c0bb656dbcbba75dc67382742f35115da89f92aba42395674d66\",\n      \"marketdata-checkpoint-retirement.service\": \"14410ec16303633a995d9b623930e8ba0a42fe19ef72a58439a0d7987c7606b2\",\n      \"marketdata-checkpoint-retirement.timer\": \"5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa\"\n    },\n    \"uid\": 1000\n  },\n  \"scope_id\": \"529cb1c08746e19c5d1ca8841cb80d8b3439c1040ffcfe021412d3e17b42a53c\"\n}\n"
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/settings.toml": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b",
+        "text": "retention_policy = \"/etc/marketdata/checkpoint-clock-retirement/policy.toml\"\nauthorization_file = \"/etc/marketdata/checkpoint-clock-retirement/recurring.json\"\nmanual_authorization_file = \"/etc/marketdata/checkpoint-clock-retirement/manual.json\"\nclock_binding_file = \"/etc/marketdata/checkpoint-clock-retirement/clock-binding.json\"\nstate_root = \"/var/lib/marketdata-checkpoint-retirement\"\nunit_directory = \"/etc/marketdata/checkpoint-clock-retirement/units\"\n"
+      },
+      "/etc/marketdata/daily-publication-probe.toml": {
+        "kind": "digest",
+        "sha256": "347596dfcabe6e48a3e4084887e6930860593a83d6313aa392f4223e9f7f120b"
+      },
+      "/etc/marketdata/daily-scheduler.toml": {
+        "kind": "digest",
+        "sha256": "1410f51a83b5ed95f0c2258835540c3bf2946975285041d298a9608638aff887"
+      },
+      "/etc/marketdata/runtime.json": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+        "text": "{\n  \"chrony_config\": \"/etc/chrony/marketdata.conf\",\n  \"chrony_config_sha256\": \"7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86\",\n  \"chronyc\": \"/usr/bin/chronyc\",\n  \"data_root\": \"/home/yoonhc/projects/algoTrade/historical_data\",\n  \"dns_hosts\": [\n    \"fstream.binance.com\",\n    \"fapi.binance.com\"\n  ],\n  \"evidence_root\": \"/home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock\",\n  \"mount_uuid\": \"d8020c0b-a5df-4e47-99d9-2378b12ab2ea\",\n  \"policy\": {\n    \"heartbeat_seconds\": 10.0,\n    \"max_correction_seconds\": 0.1,\n    \"max_error_seconds\": 0.5,\n    \"max_reference_age_seconds\": 600.0,\n    \"max_sample_gap_seconds\": 5.0,\n    \"max_skew_ppm\": 100.0,\n    \"provider_seconds\": 10.0,\n    \"ready_poll_seconds\": 5.0,\n    \"ready_timeout_seconds\": 120.0,\n    \"sample_seconds\": 1.0,\n    \"status_max_age_seconds\": 25.0,\n    \"step_threshold_seconds\": 0.25,\n    \"stop_timeout_seconds\": 120.0\n  },\n  \"release_root\": \"/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325\",\n  \"schema\": 1,\n  \"uid\": 1000\n}\n"
+      },
+      "/etc/systemd/system/marketdata-collector@.service": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+        "text": "[Unit]\nDescription=Market data %i collector with sampled clock quality\nWants=network-online.target chrony.service chrony-wait.service marketdata-clock-bootstrap.service\nAfter=network-online.target chrony.service marketdata-clock-bootstrap.service chrony-wait.service time-sync.target\nRequiresMountsFor=/home/yoonhc/projects/algoTrade/historical_data /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325 /home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock\nStartLimitIntervalSec=0\n\n[Service]\nType=exec\nUser=yoonhc\nWorkingDirectory=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325\nEnvironment=PYTHONNOUSERSITE=1\nEnvironment=PYTHONDONTWRITEBYTECODE=1\nExecStartPre=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\nExecStartPre=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream %i\nExecStart=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py --profile /etc/marketdata/runtime.json --stream %i --bootstrap-profile /etc/marketdata/clock-bootstrap.json\nRestart=always\nRestartSec=15s\nTimeoutStartSec=150s\nTimeoutStopSec=330s\nKillSignal=SIGINT\nKillMode=mixed\nSendSIGKILL=yes\nUMask=0077\nNoNewPrivileges=yes\nCapabilityBoundingSet=\nProtectClock=yes\nProtectSystem=strict\nProtectHome=read-only\nReadWritePaths=/home/yoonhc/projects/algoTrade/historical_data /home/yoonhc/projects/algoTrade/historical_data/state/runtime-clock\nPrivateTmp=yes\nRestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK\nStandardOutput=journal\nStandardError=journal\n\n[Install]\nWantedBy=multi-user.target\n"
+      },
+      "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "text": "[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n"
+      },
+      "/etc/systemd/user/marketdata-clock-ready.service": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab",
+        "text": "[Unit]\nDescription=Wait for current clock readiness before scheduled marketdata work\n\n[Service]\nType=oneshot\nExecStart=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py wait --profile /etc/marketdata/clock-bootstrap.json\nTimeoutStartSec=infinity\nTimeoutStopSec=10s\nRemainAfterExit=no\nNoNewPrivileges=yes\nStandardOutput=journal\nStandardError=journal\n"
+      },
+      "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "text": "[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n"
+      },
+      "/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "text": "[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n"
+      },
+      "/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "text": "[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n"
+      },
+      "/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "text": "[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n"
+      },
+      "/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "text": "[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n"
+      },
+      "/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "text": "[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n"
+      },
+      "/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "text": "[Unit]\nRequires=marketdata-clock-ready.service\nAfter=marketdata-clock-ready.service\n[Service]\nExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json\n"
+      },
+      "/home/yoonhc/.config/marketdata/network-observer.env": {
+        "kind": "digest",
+        "sha256": "ebdf2cb3264d8152b0fadcc22932e2809a6d122d487215c942b70282b3e8eb13"
+      },
+      "/home/yoonhc/.config/marketdata/network-observer.toml": {
+        "kind": "digest",
+        "sha256": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12"
+      },
+      "/home/yoonhc/.config/marketdata/restic-archive.toml": {
+        "kind": "digest",
+        "sha256": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba"
+      },
+      "/home/yoonhc/.config/marketdata/restic-service.env": {
+        "kind": "digest",
+        "sha256": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9"
+      }
+    },
+    "purpose": "scheduled-manager-only-v1",
+    "release_id": "scheduled-manager-20261012-255d64b78ffa8328",
+    "retirement_masks": {
+      "system:marketdata-checkpoint-retirement.service": {
+        "kind": "symlink",
+        "target": "/dev/null"
+      },
+      "system:marketdata-checkpoint-retirement.timer": {
+        "kind": "symlink",
+        "target": "/dev/null"
+      },
+      "user:marketdata-checkpoint-retirement.service": {
+        "kind": "symlink",
+        "target": "/dev/null"
+      },
+      "user:marketdata-checkpoint-retirement.timer": {
+        "kind": "symlink",
+        "target": "/dev/null"
+      }
+    },
+    "schema": 1,
+    "service_control": "external reviewed handoff; transaction never starts or stops services",
+    "source_sha256": {
+      "migration/bootstrap_system.py": "6315cc9a35f291272c21eb32652bad8d580ca9c52a9cdef466ce951da19768a1",
+      "migration/parents.json": "c2bf25e7351490611f1b9268f5450c0a85f2590b9a43c5a47ae2f484280e0b64",
+      "migration/pinned.py": "96e21d0392caab07bee7bc16811b6f16ebdce4263272b8deb5ae564c1a80c2ca",
+      "migration/run_system_archive.py": "16a0e6e2a80f4e02934b7e1b92eacde02ef922b03f7c6d30cdc8ba29806408e5",
+      "migration/systemd_read.py": "be111c8cae8977cf6d5af9c4edb2dfc5da091466373a181e882d7663ccac6df4",
+      "migration/transaction.py": "53014d97594c60d45c1a1ae3e47f7c42797f85c3e0357242af0c4124a5414ceb",
+      "packages/marketdata/pyproject.toml": "1f5eb8648d80dd7d1a72e823db20fb673d3943ac8c4dde8f54d47cfa008cc3c4",
+      "packages/marketdata/src/marketdata/__init__.py": "44a5fa1cce21a83e01fd81a9f2c34b7606177eb5dfd807d226b06a0e70c70e30",
+      "packages/marketdata/src/marketdata/aggtrade_stream.py": "f76c985b721e1b233b16f2543a4ad6e4c2c6eff022741e7b4b7de4cccc50ee15",
+      "packages/marketdata/src/marketdata/aggtrades.py": "02539d60382afa3333f068399777395ca170a579f8fb33be7209fb14b7a365fe",
+      "packages/marketdata/src/marketdata/backfill.py": "1f3ecc28b403623b8800281c82c7c4302db7c338e408e52e0642e4a9c4bcc984",
+      "packages/marketdata/src/marketdata/backup.py": "e522ec6e7246c6109ddc09ab605839c90a240e66736ce0c353af682878c1963f",
+      "packages/marketdata/src/marketdata/binance.py": "3250e4d20809801ff48e64955a955789a25bb294eeebe548f6f94323f054990f",
+      "packages/marketdata/src/marketdata/checkpoint_locks.py": "e9acb68256a6400543a049fa37ee9e46965427a98001ff428d4d30d73a24bafe",
+      "packages/marketdata/src/marketdata/cli.py": "dd189b97460afcafdefd434e7597a8f50c3b817afa09e809ae4cacb7da9b3402",
+      "packages/marketdata/src/marketdata/depth.py": "c76d56fb7478e9deca4e577aeaf97fe09d03108aeeb84e70b8f1b3530a0d0703",
+      "packages/marketdata/src/marketdata/depth_refresh.py": "9c9ab82ceb5d09713d9d2c8689d67f3441c2fa9383d5fe6cc6df658ce9f96a36",
+      "packages/marketdata/src/marketdata/depth_stream.py": "10b613d2ba1a33b5b73cbbf0d16fbf62b811a34b1c18d29ae808cd63cb4a8c42",
+      "packages/marketdata/src/marketdata/domain.py": "0ce94e0067033ca33ec70cf590cbbba9ba1d384bdf87ddd55d2de369bd0fce2a",
+      "packages/marketdata/src/marketdata/fileio.py": "fc98610e4f0aab1fc4d0e5b7b10403a841b1661414a5a589769e2add20a10ec9",
+      "packages/marketdata/src/marketdata/maintenance.py": "d284e83dca37971fd3ff7423a01a831222e6bdb71e824c1a55f3e7495e81546a",
+      "packages/marketdata/src/marketdata/normalize.py": "227037c0763e4b0e4d3f851dd247bbd84cc4e929197c33485171ee66a1b256e6",
+      "packages/marketdata/src/marketdata/oi_probe.py": "dadae21a8228622c54555f68379eee946cc21cb8b68e3e74178004bc31acebae",
+      "packages/marketdata/src/marketdata/oi_quality.py": "0bf1ebee69811c9d32dcdabcb773ba785355ac037f95771b8f1c7c664cd07f27",
+      "packages/marketdata/src/marketdata/operations.py": "d7668cb005905ca10afdc019477f200594f969339f17b543fb1cdbc988bcf3cd",
+      "packages/marketdata/src/marketdata/packing.py": "cc4ebc9811385ad1702a4c10d9a4944529ea9e67c884c46101cc3c573f577f4f",
+      "packages/marketdata/src/marketdata/pipeline.py": "7b39872944b724dd1c5c3ba4ac47676e0ecb2db61667279e2045bb0e06dff361",
+      "packages/marketdata/src/marketdata/research.py": "b0a2d224bafc5d2969574fa1c3b71e10a758b7a3bbf5e762d20b8e9357786939",
+      "packages/marketdata/src/marketdata/schema.py": "ac440454f1353979c2ae38ca5335a93a4ce2d96e7dc34db4cdd4bbdc8d30212d",
+      "packages/marketdata/src/marketdata/store.py": "a2ff36df17a3289f9855e29b12d9ad4f930b5c094cafe7fa327c51ad2e0f4d52",
+      "packages/marketdata/src/marketdata/stream_guard.py": "51cc375f61092624276ca635bf56d722913b844b5b341f2b645868a0cab97617",
+      "packages/marketdata/src/marketdata/transforms.py": "775d9fa8b01e6b30cfaadfc1a413c0f4a9d162f339c4342d3baf2d505e1e408d",
+      "packages/marketdata_freqtrade/pyproject.toml": "3d57baca33aef35f3983daf67467557f61a47e711cdded8cb42ef6926410cced",
+      "packages/marketdata_freqtrade/src/marketdata_freqtrade/__init__.py": "d39fa9d53c3ae690e95e80bb9d75e5be0b20a3a7f0e239261b6c69f39d91eeb1",
+      "packages/marketdata_freqtrade/src/marketdata_freqtrade/cli.py": "7556897b5a124ad24143afc6b9abde576372e8f9b47370d1f7971f7411bbfb13",
+      "packages/marketdata_freqtrade/src/marketdata_freqtrade/export.py": "697e9633f67b663f39e9053cd70e5eae5664cb3ca467ce8ddf1f157717ca0021",
+      "packages/marketdata_freqtrade/src/marketdata_freqtrade/features.py": "ea8f54f9993cd03dd43d6a125777a6ce6d9b74ec09b67d2cec33e647b575c2e7",
+      "packages/marketdata_freqtrade/src/marketdata_freqtrade/window.py": "5365aa8c7c6e07303c80260df4c36054b07bf2c06a33e9a736441ac65c2c84c8",
+      "pyproject.toml": "89ecc2fa9b147295a59bdb5fdb9f4424140d3a9c100e02111ba3ea52e0269015",
+      "scripts/network_observer.py": "e09165fd1f5934bce1249ca1a70819dc043297a6707ce69cd191a4a13a99476d",
+      "uv.lock": "3212f957822f52344deccae221f57891c1296747bda6d17594e26069f4100e40"
+    },
+    "topology": {
+      "policy_changes": [],
+      "purpose": "scheduled-manager-only-v1",
+      "retirement": "both managers remain masked",
+      "schema": 1,
+      "system_inventory": [
+        "marketdata-backup.service",
+        "marketdata-backup.timer",
+        "marketdata-checkpoint-retirement-apply@.service",
+        "marketdata-checkpoint-retirement-preview.service",
+        "marketdata-checkpoint-retirement.service",
+        "marketdata-checkpoint-retirement.timer",
+        "marketdata-clock-bootstrap.service",
+        "marketdata-clock-ready.service",
+        "marketdata-collector@.service",
+        "marketdata-daily.service",
+        "marketdata-daily.timer",
+        "marketdata-network-observer.service",
+        "marketdata-network-observer.timer",
+        "marketdata-oi-probe.service",
+        "marketdata-oi-probe.timer",
+        "marketdata-oi-quality.service",
+        "marketdata-oi-quality.timer",
+        "marketdata-oi.service",
+        "marketdata-oi.timer",
+        "marketdata-pack.service",
+        "marketdata-pack.timer",
+        "marketdata-restic-archive.service",
+        "marketdata-restic-archive.timer"
+      ],
+      "units": {
+        "marketdata-backup.service": {
+          "After": [
+            "marketdata-clock-ready.service"
+          ],
+          "ExecStart": [
+            "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_backup.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000"
+          ],
+          "ExecStartPre": [
+            "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+          ],
+          "Requires": [
+            "marketdata-clock-ready.service"
+          ],
+          "User": "yoonhc",
+          "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+          "fragment": "/etc/systemd/system/marketdata-backup.service",
+          "kind": "work"
+        },
+        "marketdata-backup.timer": {
+          "Unit": "marketdata-backup.service",
+          "fragment": "/etc/systemd/system/marketdata-backup.timer",
+          "kind": "timer"
+        },
+        "marketdata-clock-ready.service": {
+          "ExecStart": [
+            "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py wait --profile /etc/marketdata/clock-bootstrap.json"
+          ],
+          "User": "yoonhc",
+          "fragment": "/etc/systemd/system/marketdata-clock-ready.service",
+          "kind": "waiter"
+        },
+        "marketdata-daily.service": {
+          "After": [
+            "marketdata-clock-ready.service"
+          ],
+          "ExecStart": [
+            "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python -I -m marketdata.daily_schedule run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json"
+          ],
+          "ExecStartPre": [
+            "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+          ],
+          "Requires": [
+            "marketdata-clock-ready.service"
+          ],
+          "User": "yoonhc",
+          "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+          "fragment": "/etc/systemd/system/marketdata-daily.service",
+          "kind": "work"
+        },
+        "marketdata-daily.timer": {
+          "Unit": "marketdata-daily.service",
+          "fragment": "/etc/systemd/system/marketdata-daily.timer",
+          "kind": "timer"
+        },
+        "marketdata-network-observer.service": {
+          "After": [
+            "marketdata-clock-ready.service"
+          ],
+          "ExecStart": [
+            "/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/scripts/network_observer.py --profile /home/yoonhc/.config/marketdata/network-observer.toml"
+          ],
+          "ExecStartPre": [
+            "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+          ],
+          "Requires": [
+            "marketdata-clock-ready.service"
+          ],
+          "User": "yoonhc",
+          "WorkingDirectory": "/home/yoonhc",
+          "fragment": "/etc/systemd/system/marketdata-network-observer.service",
+          "kind": "work"
+        },
+        "marketdata-network-observer.timer": {
+          "Unit": "marketdata-network-observer.service",
+          "fragment": "/etc/systemd/system/marketdata-network-observer.timer",
+          "kind": "timer"
+        },
+        "marketdata-oi-probe.service": {
+          "After": [
+            "marketdata-clock-ready.service"
+          ],
+          "ExecStart": [
+            "/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data oi-probe"
+          ],
+          "ExecStartPre": [
+            "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+          ],
+          "Requires": [
+            "marketdata-clock-ready.service"
+          ],
+          "User": "yoonhc",
+          "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+          "fragment": "/etc/systemd/system/marketdata-oi-probe.service",
+          "kind": "work"
+        },
+        "marketdata-oi-probe.timer": {
+          "Unit": "marketdata-oi-probe.service",
+          "fragment": "/etc/systemd/system/marketdata-oi-probe.timer",
+          "kind": "timer"
+        },
+        "marketdata-oi-quality.service": {
+          "After": [
+            "marketdata-clock-ready.service"
+          ],
+          "ExecStart": [
+            "/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data oi-quality --days 7"
+          ],
+          "ExecStartPre": [
+            "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+          ],
+          "Requires": [
+            "marketdata-clock-ready.service"
+          ],
+          "User": "yoonhc",
+          "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+          "fragment": "/etc/systemd/system/marketdata-oi-quality.service",
+          "kind": "work"
+        },
+        "marketdata-oi-quality.timer": {
+          "Unit": "marketdata-oi-quality.service",
+          "fragment": "/etc/systemd/system/marketdata-oi-quality.timer",
+          "kind": "timer"
+        },
+        "marketdata-oi.service": {
+          "After": [
+            "marketdata-clock-ready.service"
+          ],
+          "ExecStart": [
+            "/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data update --config /etc/marketdata/scheduled-system/oi-live.toml --report state/oi-latest.json"
+          ],
+          "ExecStartPre": [
+            "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+          ],
+          "Requires": [
+            "marketdata-clock-ready.service"
+          ],
+          "User": "yoonhc",
+          "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+          "fragment": "/etc/systemd/system/marketdata-oi.service",
+          "kind": "work"
+        },
+        "marketdata-oi.timer": {
+          "Unit": "marketdata-oi.service",
+          "fragment": "/etc/systemd/system/marketdata-oi.timer",
+          "kind": "timer"
+        },
+        "marketdata-pack.service": {
+          "After": [
+            "marketdata-clock-ready.service"
+          ],
+          "ExecStart": [
+            "/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata.cli --root /home/yoonhc/projects/algoTrade/historical_data maintenance --mode hourly --min-free-gib 10 --wait-for-lock"
+          ],
+          "ExecStartPre": [
+            "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+          ],
+          "Requires": [
+            "marketdata-clock-ready.service"
+          ],
+          "User": "yoonhc",
+          "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+          "fragment": "/etc/systemd/system/marketdata-pack.service",
+          "kind": "work"
+        },
+        "marketdata-pack.timer": {
+          "Unit": "marketdata-pack.service",
+          "fragment": "/etc/systemd/system/marketdata-pack.timer",
+          "kind": "timer"
+        },
+        "marketdata-restic-archive.service": {
+          "After": [
+            "marketdata-clock-ready.service"
+          ],
+          "ExecStart": [
+            "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/migration/run_system_archive.py --profile /home/yoonhc/.config/marketdata/restic-archive.toml run"
+          ],
+          "ExecStartPre": [
+            "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json"
+          ],
+          "Requires": [
+            "marketdata-clock-ready.service"
+          ],
+          "User": "yoonhc",
+          "WorkingDirectory": "/home/yoonhc",
+          "fragment": "/etc/systemd/system/marketdata-restic-archive.service",
+          "kind": "work"
+        },
+        "marketdata-restic-archive.timer": {
+          "Unit": "marketdata-restic-archive.service",
+          "fragment": "/etc/systemd/system/marketdata-restic-archive.timer",
+          "kind": "timer"
+        }
+      }
+    }
+  },
+  "inventory_before": {
+    "system": "marketdata-checkpoint-retirement-apply@.service  linked   enabled\nmarketdata-checkpoint-retirement-preview.service linked   enabled\nmarketdata-checkpoint-retirement.service         masked   enabled\nmarketdata-clock-bootstrap.service               enabled  enabled\nmarketdata-collector@.service                    indirect enabled\nmarketdata-checkpoint-retirement.timer           masked   enabled\n",
+    "user": "marketdata-aggtrade.service              masked  enabled\nmarketdata-backup.service                linked  enabled\nmarketdata-checkpoint-retirement.service masked  enabled\nmarketdata-clock-ready.service           static  -\nmarketdata-daily.service                 static  -\nmarketdata-depth.service                 masked  enabled\nmarketdata-network-observer.service      static  -\nmarketdata-oi-probe.service              linked  enabled\nmarketdata-oi-quality.service            linked  enabled\nmarketdata-oi.service                    linked  enabled\nmarketdata-pack.service                  linked  enabled\nmarketdata-restic-archive.service        static  -\nmarketdata-backup.timer                  enabled enabled\nmarketdata-checkpoint-retirement.timer   masked  enabled\nmarketdata-daily.timer                   enabled enabled\nmarketdata-network-observer.timer        enabled enabled\nmarketdata-oi-probe.timer                enabled enabled\nmarketdata-oi-quality.timer              enabled enabled\nmarketdata-oi.timer                      enabled enabled\nmarketdata-pack.timer                    enabled enabled\nmarketdata-restic-archive.timer          enabled enabled\n"
+  },
+  "ownership": {
+    "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      }
+    },
+    "/etc/marketdata/clock-bootstrap.json": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      }
+    },
+    "/etc/marketdata/scheduled-system/oi-live.toml": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/marketdata/scheduled-system/topology.json": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-backup.service": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-backup.timer": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      }
+    },
+    "/etc/systemd/system/marketdata-clock-ready.service": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-daily.service": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-daily.timer": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-network-observer.service": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-network-observer.timer": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-oi-probe.service": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-oi-probe.timer": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-oi-quality.service": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-oi-quality.timer": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-oi.service": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-oi.timer": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-pack.service": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-pack.timer": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-restic-archive.service": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/etc/systemd/system/marketdata-restic-archive.timer": {
+      "after": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "uid": 0
+      },
+      "before": {
+        "kind": "absent"
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.service": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.service": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.service": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": {
+      "after": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-backup.timer": {
+      "after": {
+        "kind": "absent"
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-daily.timer": {
+      "after": {
+        "kind": "absent"
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-network-observer.timer": {
+      "after": {
+        "kind": "absent"
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-probe.timer": {
+      "after": {
+        "kind": "absent"
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-quality.timer": {
+      "after": {
+        "kind": "absent"
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi.timer": {
+      "after": {
+        "kind": "absent"
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-pack.timer": {
+      "after": {
+        "kind": "absent"
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-restic-archive.timer": {
+      "after": {
+        "kind": "absent"
+      },
+      "before": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "uid": 1000
+      }
+    }
+  },
+  "plan_id": "6a71f295ec760f442edf0f88b04c6cf9378d9383fb9c45c0dc7c8c140eac3f2b",
+  "policy_changes": [],
+  "preflight": {
+    "report": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-system-handoff-2026-10-12/system-preflight-result-a6d642d447dc4c69.json",
+    "sha256": "5f228a7cc3b2b1e1478c8f7e321c9c1c0a24b5be128eae736a1eaebde5fc470f"
+  },
+  "purpose": "scheduled-manager-host-handoff-v1",
+  "scope": [
+    "sealed /opt release",
+    "46 configuration operations",
+    "8 system timer enable links",
+    "source persistent masks",
+    "normal drain; cancel recorded no-PID requests",
+    "both manager reloads",
+    "target timers and cancelled-request reevaluation"
+  ],
+  "tool_id": "scheduled-handoff-20261012-b48b6beb0b9b72b9"
+}

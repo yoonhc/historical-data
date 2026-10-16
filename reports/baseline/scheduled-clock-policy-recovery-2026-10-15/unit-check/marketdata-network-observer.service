@@ -1,0 +1,31 @@
+[Unit]
+Description=Local network evidence for marketdata collectors
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc
+EnvironmentFile=/home/yoonhc/.config/marketdata/network-observer.env
+Environment=PYTHONNOUSERSITE=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=20s
+Restart=no
+StandardOutput=journal
+StandardError=journal
+
+
+[Unit]
+Requires=marketdata-jobs-clock-ready.service
+After=marketdata-jobs-clock-ready.service
+[Service]
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+[Service]
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/base/.venv/bin/python -B -I /home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/policy/run_job.py --job network-observer --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --profile /home/yoonhc/.config/marketdata/network-observer.toml

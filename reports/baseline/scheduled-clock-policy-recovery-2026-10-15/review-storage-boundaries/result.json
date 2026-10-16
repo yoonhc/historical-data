@@ -1,0 +1,20 @@
+{
+  "candidate": "scheduled-clock-policy-20261015-5b02fc74867e5bab",
+  "candidate_runtime_unchanged": true,
+  "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "sqlite": "3.45.1",
+  "checks": 7,
+  "purpose": "characterization: includes expected current deficiencies, not acceptance of corrected behavior",
+  "operating_changes": false,
+  "files": {
+    "review-storage-boundaries/test_review.py": "b89fba34692b5b883be8258ff757cfed4c90b13f322b66a04b9bc963d3a708f6",
+    "review-storage-boundaries/results.xml": "b8badad9df12fca7b967d464fc7a3d8d6a7d51c47d288d452c0be361ea90d9e0"
+  },
+  "findings": {
+    "sqlite_connection": "open after record_bytes with retained reference; no explicit close",
+    "latest_overwritten": "old sealed observation rejected for both OI and network",
+    "pending_source_failure_transaction": "task update and attempt finalization rollback together; recovery counts once",
+    "completion_recovery": "after_task and before_attempt interruptions recover with unchanged proof, attempts, revision count and HTTP count",
+    "pending_oserror": "direct needs_review with validation_failures 0; recovered validation_retry with validation_failures 1"
+  }
+}

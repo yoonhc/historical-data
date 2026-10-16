@@ -1,0 +1,56 @@
+{
+  "automatic_retirement": "masked",
+  "checkpoint_deletion": false,
+  "clock_control": false,
+  "direction": "apply",
+  "finished_at": "2026-10-16T13:23:51.922505+00:00",
+  "passed": true,
+  "phase": "configuration_committed_operating_observation_pending",
+  "plan_id": "7eccd61f65c66fd5f3d70f8893e23aa01abe246caa719256e96e004d59753a7a",
+  "protected_processes_after": {
+    "chrony.service": {
+      "ActiveState": "active",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+      "MainPID": "1245"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "ActiveState": "active",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+      "MainPID": "224784"
+    },
+    "marketdata-collector@depth.service": {
+      "ActiveState": "active",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+      "MainPID": "224785"
+    }
+  },
+  "protected_processes_before": {
+    "chrony.service": {
+      "ActiveState": "active",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+      "MainPID": "1245"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "ActiveState": "active",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+      "MainPID": "224784"
+    },
+    "marketdata-collector@depth.service": {
+      "ActiveState": "active",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+      "MainPID": "224785"
+    }
+  },
+  "protected_processes_unchanged": true,
+  "release_id": "scheduled-clock-policy-20261016-544c61aca49f1355",
+  "result": {
+    "automatic_retirement": "masked",
+    "checkpoint_deletion": false,
+    "clock_control": false,
+    "configuration": "apply_committed",
+    "operating_observation_pending": true,
+    "request_reconciliation_required": false
+  },
+  "started_at": "2026-10-16T13:23:43.709821+00:00",
+  "tool_id": "scheduled-clock-handoff-20261016-778dca2b72c6e867"
+}

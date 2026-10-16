@@ -1,0 +1,189 @@
+{
+  "passed": true,
+  "observed_at": "2026-10-13T13:03:58.145494+00:00",
+  "backup_id": "10dd21822fcc0371772f3cbd3dc5b0ec0a8d086829fb78e1e0a1cab023685665",
+  "snapshot_id": "a2dbcdd442459fbde79cb29a7244e3acf95f40c5ac69e37d5b3337a16adba378",
+  "noon_run_id": "3e9b9c059eaf4624902a3c4286efb168",
+  "noon_attempts": 10,
+  "related_tasks": 12,
+  "purpose_counts": {
+    "acquire": 2,
+    "observe": 2,
+    "refresh": 6
+  },
+  "same_attempt_refreshes": 2,
+  "canonical_rows_checked": 5774,
+  "http_requests_recorded": 18,
+  "input_artifacts_checked": 15,
+  "ledger_evidence": {
+    "path": "noon-ledger.json.gz",
+    "sha256": "5b5758367ca13660cf2ebe99d13611715ffb7a348faac48d3ff80dae2b3e5233",
+    "bytes": 10358
+  },
+  "manifest_sha256": "d8395deaa2b4a10ceb2e2771df01d2b6bde4025312c55e3f647b9b4ccb13eb5b",
+  "manifest_summary": {
+    "backup_id": "10dd21822fcc0371772f3cbd3dc5b0ec0a8d086829fb78e1e0a1cab023685665",
+    "catalog_counts": {
+      "active": 15297,
+      "artifacts": 857546,
+      "event_collections": 1475,
+      "event_segments": 828723,
+      "fetches": 962312,
+      "file_packs": 2346,
+      "issues": 24,
+      "jobs": 11609,
+      "packed_files": 1649396,
+      "queries": 21357,
+      "revisions": 21008,
+      "snapshots": 20,
+      "sync_coverage": 5702,
+      "sync_runs": 6602,
+      "sync_targets": 9
+    },
+    "checkpoint_finished_at": "2026-10-13T05:19:33.460918+00:00",
+    "checkpoint_started_at": "2026-10-13T05:19:28.288349+00:00",
+    "completed_at": "2026-10-13T05:26:26.153199+00:00",
+    "excluded": [
+      "unregistered/orphan files",
+      "derived exports",
+      "reports and backtest results",
+      "code/configuration/environment",
+      "runtime locks, state JSON and prior backups"
+    ],
+    "format_version": 2,
+    "same_filesystem_as_source": false,
+    "scope": "catalog_and_all_referenced_raw_revisions_snapshots",
+    "source_root": "/home/yoonhc/projects/algoTrade/historical_data",
+    "started_at": "2026-10-13T05:19:28.288293+00:00",
+    "storage": {
+      "mode": "linked_snapshot",
+      "new_bytes": 5152112114,
+      "new_files": 9809,
+      "reuse_backup_id": "fd4bf8417a5203f4dfbd467118740ecc2441d642096471737727fcbcdad00fdf",
+      "reuse_from": "/mnt/backup/marketdata-historical/automatic/2026-10-12/ea0b6b077d354a9290f2d919522771a9",
+      "reused_bytes": 40299544690,
+      "reused_files": 50439,
+      "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata"
+    },
+    "writer_lock_seconds": 5.172573581978213
+  },
+  "t05_completion_id": "6fb5fa7aab402f81ebed8c9db1f4648a3ac2ffa78422cfb932425fb2cfdb1b39",
+  "t05_completion": {
+    "clock_error": null,
+    "code_id": "53bdfd234fa861bbd014cd002fa52c6d2ccb666de5ce74e14da89676ba8d65b2",
+    "identity": {
+      "backup_id": "10dd21822fcc0371772f3cbd3dc5b0ec0a8d086829fb78e1e0a1cab023685665",
+      "manifest_sha256": "d8395deaa2b4a10ceb2e2771df01d2b6bde4025312c55e3f647b9b4ccb13eb5b",
+      "scope": "catalog_and_all_referenced_raw_revisions_snapshots",
+      "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+    },
+    "kind": "checkpoint",
+    "mode": "after_completion",
+    "observation": {
+      "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+      "bootstrap_sha256": "c5b769510242692ac8081837b02372c40e5681c60b30a1c06cb6ab6338a2df6d",
+      "chrony_error_estimate": 0.1244135415,
+      "conditional_error_bound_seconds": 0.1244135415,
+      "config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "decision_sample": {
+        "boottime_ns": 396927545288228,
+        "monotonic_ns": 396927545287706,
+        "span_ns": 1403,
+        "wall_ns": 1791869189587469930
+      },
+      "ledger_sha256": "3fdea1a3d6bcdaa1b53af1f7f7bedd594e36746e53c902c954596660ad2c9fbe",
+      "lower_utc_ns": 1791869189448202662,
+      "observation_age_seconds": 0.001011546,
+      "policy": {
+        "max_observation_age_seconds": 15.0,
+        "max_query_seconds": 3.0,
+        "max_sample_gap_seconds": 5.0,
+        "max_uncertainty_seconds": 5.0,
+        "provider_seconds": 10.0,
+        "retention_margin_seconds": 60,
+        "sample_seconds": 1.0,
+        "step_threshold_seconds": 0.25,
+        "version": "checkpoint-time-bounds-v2"
+      },
+      "provider": {
+        "argv": [
+          "/usr/sbin/chronyd",
+          "-F",
+          "1",
+          "-f",
+          "/etc/chrony/marketdata.conf"
+        ],
+        "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+        "pid": 1245
+      },
+      "query_after": {
+        "boottime_ns": 396927544276446,
+        "monotonic_ns": 396927544276160,
+        "span_ns": 831,
+        "wall_ns": 1791869189586458398
+      },
+      "query_alignment_margin": 0.01383979,
+      "query_before": {
+        "boottime_ns": 396927530437026,
+        "monotonic_ns": 396927530436370,
+        "span_ns": 1573,
+        "wall_ns": 1791869189572618438
+      },
+      "query_seconds": 0.01383979,
+      "ready": true,
+      "reasons": [],
+      "reference_age_seconds": 150.5986692905426,
+      "runtime_profile_sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+      "sample": {
+        "boottime_ns": 396927544276446,
+        "monotonic_ns": 396927544276160,
+        "span_ns": 831,
+        "wall_ns": 1791869189586458398
+      },
+      "sampling_margin": 2.404e-06,
+      "total_uncertainty": 0.1382557355,
+      "tracking": {
+        "correction": 0.001299028,
+        "leap": "Normal",
+        "raw_csv": "5BBD5B9D,91.189.91.157,3,1791869038.987789085,0.001299028,-0.000085681,0.000447235,26.602,-0.005,0.272,0.236046627,0.005091200,257.3,Normal",
+        "reference_address": "91.189.91.157",
+        "reference_id": "5BBD5B9D",
+        "reference_time": 1791869038.9877892,
+        "root_delay": 0.236046627,
+        "root_dispersion": 0.0050912,
+        "skew_ppm": 0.272,
+        "stratum": 3
+      },
+      "uncertainty_seconds": 0.1382557355,
+      "upper_utc_ns": 1791869189724714134
+    },
+    "order": {
+      "baseline": "5ec056db51157f58a4537cabf374eee65148dfd901007c1138c1cba481b6cf0b",
+      "predecessors": [
+        "b976e8b04f2bfccbf68a2bc988faac2ed95c1e5dc9172a512396fa9f70dc9192"
+      ],
+      "run_id": "7aa3bcdaba484f9c99d33c56c9a1d9f7",
+      "started_sample": {
+        "boottime_ns": 396420301567768,
+        "monotonic_ns": 396420301566987,
+        "span_ns": 1864,
+        "wall_ns": 1791868682343749060
+      }
+    },
+    "schema": 1,
+    "scope": {
+      "archive_scope": "historical-data-original-v1",
+      "repository_id": "b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558",
+      "source_root": "/home/yoonhc/projects/algoTrade/historical_data"
+    }
+  },
+  "t05_objects": 10,
+  "existing_objects_preserved": true,
+  "full_check_finished_at": "2026-10-13T05:44:14.979397+00:00",
+  "archive_finished_at": "2026-10-13T05:44:15.700610+00:00",
+  "local_checks_passed": true,
+  "explicit_snapshot_bundle_read_pending": true,
+  "new_backup": false,
+  "repository_check_repeated": false,
+  "live_market_files_read": false
+}

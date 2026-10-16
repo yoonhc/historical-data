@@ -1,0 +1,12 @@
+[Unit]
+Description=Record marketdata network reachability once a minute
+
+[Timer]
+OnActiveSec=5s
+OnCalendar=*-*-* *:*:20 UTC
+Persistent=true
+AccuracySec=1s
+Unit=marketdata-network-observer.service
+
+[Install]
+WantedBy=timers.target

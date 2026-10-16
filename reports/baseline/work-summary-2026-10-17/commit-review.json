@@ -1,0 +1,536 @@
+{
+  "checked_at": "2026-10-16T15:50:05.977299+00:00",
+  "base_commit": "51a997c",
+  "preserved_files": 2388,
+  "preserved_bytes": 60155129,
+  "content_checks": {
+    "json": 311,
+    "unique_python_syntax": 243,
+    "xml": 61,
+    "jsonl_files": 42,
+    "jsonl_rows": 23397,
+    "gzip": 19,
+    "tar_archives": 5,
+    "tar_files": 87
+  },
+  "releases": [
+    {
+      "release_id": "scheduled-manager-20261012-255d64b78ffa8328",
+      "source_files": 41,
+      "archive_matches": true
+    },
+    {
+      "release_id": "scheduled-clock-policy-20261015-90f97df305c662c2",
+      "source_files": 290
+    },
+    {
+      "release_id": "scheduled-clock-policy-20261015-5b02fc74867e5bab",
+      "source_files": 291
+    },
+    {
+      "release_id": "scheduled-clock-policy-20261016-544c61aca49f1355",
+      "source_files": 291
+    },
+    {
+      "release_id": "scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+      "source_files": 291
+    }
+  ],
+  "seals": [
+    {
+      "path": "reports/baseline/scheduled-system-migration-2026-10-12/seal.json",
+      "hash_links": 33
+    },
+    {
+      "path": "reports/baseline/scheduled-system-handoff-2026-10-12/tool-seal.json",
+      "hash_links": 13
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-handoff-2026-10-16/tool-seal.json",
+      "hash_links": 13
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-deploy-2026-10-16/tool-seal.json",
+      "hash_links": 18
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-repair-deploy-2026-10-16/tool-seal.json",
+      "hash_links": 30
+    }
+  ],
+  "report_hash_links": 29,
+  "decimal_repair_reviews_passed": [
+    "post-apply-native.json",
+    "recovery-review.json",
+    "initial-jobs-review.json",
+    "initial-runtime-journal-review.json",
+    "pack-and-prior-state-review.json"
+  ],
+  "documents_checked": 34,
+  "existing_test_results": [
+    {
+      "path": "reports/baseline/scheduled-clock-deploy-2026-10-16/host-tests.xml",
+      "tests": "76",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-handoff-2026-10-16/preflight-tests.xml",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-handoff-2026-10-16/record-transition-tests.xml",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-handoff-2026-10-16/transition-tests.xml",
+      "tests": "48",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/base-policy.xml",
+      "tests": "29",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/base-regression.xml",
+      "tests": "95",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/binding-unit-validation.xml",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/daily-clock-validation.xml",
+      "tests": "7",
+      "failures": "1",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/daily-policy.xml",
+      "tests": "9",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/daily-regression-initial.xml",
+      "tests": "82",
+      "failures": "4",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/daily-regression.xml",
+      "tests": "82",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/decisions-validation.xml",
+      "tests": "26",
+      "failures": "1",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/pipeline-regression.xml",
+      "tests": "72",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/preservation-clock.xml",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/preserve-policy.xml",
+      "tests": "14",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/preserve-regression-initial.xml",
+      "tests": "4",
+      "failures": "0",
+      "errors": "4",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/preserve-regression.xml",
+      "tests": "165",
+      "failures": "1",
+      "errors": "0",
+      "skipped": "26"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/preserve-validation.xml",
+      "tests": "146",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/base-policy-initial.xml",
+      "tests": "29",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/base-policy.xml",
+      "tests": "66",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/base-regression.xml",
+      "tests": "119",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/daily-policy.xml",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/daily-regression-initial-cwd.xml",
+      "tests": "82",
+      "failures": "2",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/daily-regression.xml",
+      "tests": "82",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/preserve-policy.xml",
+      "tests": "13",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/preserve-regression.xml",
+      "tests": "146",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/recovery-base-check.xml",
+      "tests": "32",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/recovery-daily-check.xml",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/result-base-initial.xml",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/result-daily-initial.xml",
+      "tests": "11",
+      "failures": "2",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/result-preserve-initial.xml",
+      "tests": "13",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/review-storage-boundaries/results.xml",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/wrapper-initial.xml",
+      "tests": "21",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-storage-2026-10-16/base-policy.xml",
+      "tests": "78",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-storage-2026-10-16/base-regression.xml",
+      "tests": "15",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-storage-2026-10-16/daily-policy.xml",
+      "tests": "28",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-storage-2026-10-16/daily-regression.xml",
+      "tests": "82",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-storage-2026-10-16/preserve-policy.xml",
+      "tests": "13",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-storage-2026-10-16/storage-base-initial.xml",
+      "tests": "21",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-storage-2026-10-16/storage-daily-initial.xml",
+      "tests": "26",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-repair-deploy-2026-10-16/connections-results.xml",
+      "tests": "15",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-repair-deploy-2026-10-16/final-results.xml",
+      "tests": "113",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-repair-deploy-2026-10-16/handoff-results.xml",
+      "tests": "76",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-repair-deploy-2026-10-16/recovery-results.xml",
+      "tests": "22",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-result-fix-2026-10-16/base-results.xml",
+      "tests": "82",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-result-fix-2026-10-16/daily-results.xml",
+      "tests": "28",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-result-fix-2026-10-16/numeric-results.xml",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-result-fix-2026-10-16/preserve-results.xml",
+      "tests": "13",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-deploy-2026-10-13/entrypoint-tests.xml",
+      "tests": "9",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-handoff-2026-10-12/collector-connection-tests.xml",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-handoff-2026-10-12/corrected-transaction-tests.xml",
+      "tests": "152",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-handoff-2026-10-12/handoff-preflight-tests.xml",
+      "tests": "63",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-handoff-2026-10-12/handoff-tests.xml",
+      "tests": "61",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-handoff-2026-10-12/preflight-units-tests.xml",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-handoff-2026-10-12/record-rollback-tests.xml",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-handoff-2026-10-12/rollback-runbook-tests.xml",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-migration-2026-10-12/parent-bridge-tests.xml",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-migration-2026-10-12/reproduction-tests.xml",
+      "tests": "152",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-migration-2026-10-12/transition-tests-final.xml",
+      "tests": "152",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-migration-2026-10-12/transition-tests-initial.xml",
+      "tests": "147",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "path": "reports/baseline/scheduled-system-migration-2026-10-12/unchanged-workload-tests.xml",
+      "tests": "80",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "test_suites_rerun": false,
+  "operating_changes": false,
+  "excluded_local_archives": [
+    {
+      "path": "reports/baseline/scheduled-clock-policy-storage-2026-10-16/candidate/base/integrations/freqtrade/user_data/backtest_results/backtest-result-2026-09-21_20-59-08.zip",
+      "bytes": 63795,
+      "reason": "Copied backtest archive outside sealed runtime manifest; kept locally."
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-storage-2026-10-16/candidate/base/integrations/freqtrade/user_data/backtest_results/backtest-result-2026-09-22_08-26-54.zip",
+      "bytes": 47129,
+      "reason": "Copied backtest archive outside sealed runtime manifest; kept locally."
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/candidate/base/integrations/freqtrade/user_data/backtest_results/backtest-result-2026-09-21_20-59-08.zip",
+      "bytes": 63795,
+      "reason": "Copied backtest archive outside sealed runtime manifest; kept locally."
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-2026-10-15/candidate/base/integrations/freqtrade/user_data/backtest_results/backtest-result-2026-09-22_08-26-54.zip",
+      "bytes": 47129,
+      "reason": "Copied backtest archive outside sealed runtime manifest; kept locally."
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/base/integrations/freqtrade/user_data/backtest_results/backtest-result-2026-09-21_20-59-08.zip",
+      "bytes": 63795,
+      "reason": "Copied backtest archive outside sealed runtime manifest; kept locally."
+    },
+    {
+      "path": "reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/base/integrations/freqtrade/user_data/backtest_results/backtest-result-2026-09-22_08-26-54.zip",
+      "bytes": 47129,
+      "reason": "Copied backtest archive outside sealed runtime manifest; kept locally."
+    }
+  ],
+  "credential_pattern_matches": [],
+  "issues": [],
+  "passed": true
+}

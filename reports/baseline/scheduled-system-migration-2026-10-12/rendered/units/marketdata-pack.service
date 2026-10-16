@@ -1,0 +1,27 @@
+[Unit]
+Description=Market data hourly verified maintenance
+StartLimitIntervalSec=3600
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . maintenance --mode hourly --min-free-gib 10 --wait-for-lock
+TimeoutStartSec=6h
+KillSignal=SIGINT
+TimeoutStopSec=120s
+Restart=on-failure
+RestartSec=120s
+
+[Unit]
+Requires=marketdata-clock-ready.service
+After=marketdata-clock-ready.service
+[Service]
+ExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=
+ExecStart=/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I -m marketdata --root /home/yoonhc/projects/algoTrade/historical_data maintenance --mode hourly --min-free-gib 10 --wait-for-lock
+ProtectClock=yes

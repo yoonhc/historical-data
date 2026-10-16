@@ -1,0 +1,25 @@
+{
+  "new_release_id": "scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+  "new_runtime_system_preflight_performed": false,
+  "previous_configuration_plan_id": "5e7473d9d5c349c5ae31a0da1f1589391ef3507000e358d3ba74ccbc3be5f0cb",
+  "previous_host_plan_id": "7eccd61f65c66fd5f3d70f8893e23aa01abe246caa719256e96e004d59753a7a",
+  "previous_preflight": {
+    "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-handoff-2026-10-16/system-preflight-result-48167a9e9eb24fdd.json",
+    "sha256": "8206c0462c2d4049f4007e7d06b20b82ee471c609a2c6b8d11c0caa7c9580b28",
+    "tool_id": "scheduled-clock-preflight-20261016-09c76b2964a76970"
+  },
+  "previous_release_id": "scheduled-clock-policy-20261016-544c61aca49f1355",
+  "previous_source_sha256": "544c61aca49f13559861902bcd49bc28a503b18b7d2718c48c2139c152f56c65",
+  "purpose": "two-encoder-fix-only",
+  "runtime_changes": {
+    "policy/request_contract.py": {
+      "after": "bff0d83ace0b372e3d7aabd23821fb0cd57aed4b0be265364cdc330c7dbefe2c",
+      "before": "283935e619ac051d42d1a81df6757070e2b809122e3dbf1927d9f12dd24cd141"
+    },
+    "policy/run_job.py": {
+      "after": "55a965a3c9894b89d5d45b9d26b6a71f71fc76f9cb048e48589d8958f83e4e7c",
+      "before": "c8aef88babd3736a872fbfda1eae6ad350a2690249b0f1e83dfabfc842910664"
+    }
+  },
+  "scope": "Reuse prior real systemd access/protection/timer/monitor tests for unchanged paths and code. New repair and host transition tested separately; final /opt imports checked before timer hold."
+}

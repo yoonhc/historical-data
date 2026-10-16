@@ -1,0 +1,98 @@
+{
+  "run_id": "7da2da64c1c4445cac09809d9ff80ad5",
+  "context": {
+    "classification": "verified_timer",
+    "cwd": "/home/yoonhc",
+    "environment": {
+      "INVOCATION_ID": "32bda96c76df44718e35d53c7e86066d",
+      "TRIGGER_TIMER_MONOTONIC_USEC": "684774908731",
+      "TRIGGER_TIMER_REALTIME_USEC": "1792157036950912",
+      "TRIGGER_UNIT": "marketdata-restic-archive.timer"
+    },
+    "environment_matches_job": false,
+    "manager": "system",
+    "manager_adapter": {
+      "parent": "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/preserve/scripts/restic_schedule.py",
+      "path": "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py",
+      "purpose": "scheduled-policy-system-provenance-v1",
+      "sha256": "c8aef88babd3736a872fbfda1eae6ad350a2690249b0f1e83dfabfc842910664"
+    },
+    "manager_evidence": {
+      "/org/freedesktop/systemd1/job/3194077:Job.ActivationDetails": {
+        "data": [
+          [
+            "trigger_unit",
+            "marketdata-restic-archive.timer"
+          ],
+          [
+            "trigger_timer_realtime_usec",
+            "1792157700907812"
+          ],
+          [
+            "trigger_timer_monotonic_usec",
+            "685438865630"
+          ]
+        ],
+        "type": "a(ss)"
+      },
+      "/org/freedesktop/systemd1/job/3194077:Job.JobType": {
+        "data": "start",
+        "type": "s"
+      },
+      "/org/freedesktop/systemd1/job/3194077:Job.State": {
+        "data": "running",
+        "type": "s"
+      },
+      "/org/freedesktop/systemd1/job/3194077:Job.Unit": {
+        "data": [
+          "marketdata-restic-archive.service",
+          "/org/freedesktop/systemd1/unit/marketdata_2drestic_2darchive_2eservice"
+        ],
+        "type": "(so)"
+      },
+      "/org/freedesktop/systemd1/unit/marketdata_2drestic_2darchive_2eservice:Unit.Job": {
+        "data": [
+          3194077,
+          "/org/freedesktop/systemd1/job/3194077"
+        ],
+        "type": "(uo)"
+      },
+      "/org/freedesktop/systemd1/unit/marketdata_2drestic_2darchive_2etimer:Timer.LastTriggerUSec": {
+        "data": 1792157700907812,
+        "type": "t"
+      },
+      "/org/freedesktop/systemd1/unit/marketdata_2drestic_2darchive_2etimer:Timer.LastTriggerUSecMonotonic": {
+        "data": 685438865630,
+        "type": "t"
+      }
+    },
+    "module": "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/preserve/scripts/restic_schedule.py",
+    "module_sha256": "ec6a929dcd0f963d10f0ea17c759dc71f84a78bf001a5b5ddd1690ebf13dbad1",
+    "pid": 2175464,
+    "provenance_method": "current_start_job_activation_details",
+    "python": "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/preserve/.venv/bin/python",
+    "scheduled": true,
+    "service_properties": {
+      "Id": "marketdata-restic-archive.service",
+      "InvocationID": "32bda96c76df44718e35d53c7e86066d",
+      "MainPID": "2175464",
+      "Type": "oneshot"
+    },
+    "service_verified": true,
+    "start_job": {
+      "activation_details": {
+        "trigger_timer_monotonic_usec": "685438865630",
+        "trigger_timer_realtime_usec": "1792157700907812",
+        "trigger_unit": "marketdata-restic-archive.timer"
+      },
+      "id": 3194077,
+      "path": "/org/freedesktop/systemd1/job/3194077"
+    },
+    "trigger_at": "2026-10-16T13:35:00.907812+00:00",
+    "uid": 1000,
+    "user": "yoonhc"
+  },
+  "processed": 0,
+  "archive_ok": true,
+  "finished_at": "2026-10-16T13:35:37.373493+00:00"
+}

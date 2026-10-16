@@ -1,0 +1,25 @@
+[Unit]
+Description=Observe OI endpoint availability without publishing values
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . oi-probe
+TimeoutStartSec=80s
+# Partial HTTP/quality observations are recorded, then retried by the timer.
+SuccessExitStatus=2
+
+[Unit]
+Requires=marketdata-clock-ready.service
+After=marketdata-clock-ready.service
+[Service]
+ExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-system-migration-2026-10-12/candidate/.venv/bin/python -B -I -m marketdata --root /home/yoonhc/projects/algoTrade/historical_data oi-probe
+ProtectClock=yes

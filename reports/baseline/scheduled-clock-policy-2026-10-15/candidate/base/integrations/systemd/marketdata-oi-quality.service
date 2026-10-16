@@ -1,0 +1,10 @@
+[Unit]
+Description=Generate daily OI parity and availability evidence
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . oi-quality --days 7
+TimeoutStartSec=5min
+# A completed report can contain findings requiring review.
+SuccessExitStatus=2

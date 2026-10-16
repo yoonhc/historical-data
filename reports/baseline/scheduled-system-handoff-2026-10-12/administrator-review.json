@@ -1,0 +1,85 @@
+{
+  "final_plan_id": "6a71f295ec760f442edf0f88b04c6cf9378d9383fb9c45c0dc7c8c140eac3f2b",
+  "source_release": "scheduled-manager-20261012-255d64b78ffa8328",
+  "tool_id": "scheduled-handoff-20261012-b48b6beb0b9b72b9",
+  "configuration_plan_id": "0c9b85223c2ad851434857b4eaa86f11e94595b4663134f98881ede02fefd8fe",
+  "reports": {
+    "system-preflight-result-e4b453a62d8342d7.json": {
+      "sha256": "aa84e953b65b1dc45c4db248313444d2cc7446e48a246ca6e21c876e10f46b7f",
+      "passed": false,
+      "tool_id": "scheduled-handoff-20261012-1d0b7392d86b5168",
+      "finished_at": "2026-10-12T14:07:40.861296+00:00",
+      "error": "Hold: systemctl failed: ['/usr/bin/systemctl', '--system', 'start', '--no-block', 'md-t15-e4b453a62d8342d7-oi.service']\nFailed to start md-t15-e4b453a62d8342d7-oi.service: Unit marketdata-clock-ready.service not found.\n",
+      "operating_unchanged": true,
+      "cleanup": {
+        "errors": [],
+        "paths_absent": true,
+        "unit_load_states": {
+          "system:md-t15-e4b453a62d8342d7-oi.service": "not-found"
+        }
+      }
+    },
+    "system-preflight-result-97f22b03bbf940c3.json": {
+      "sha256": "d1eee4235541062185ea19575c56da1410486be51003927466e9e6785732493b",
+      "passed": false,
+      "tool_id": "scheduled-handoff-20261012-781fc35b9032628c",
+      "finished_at": "2026-10-12T14:18:20.366554+00:00",
+      "error": "Hold: Trial timeout: system-lock",
+      "operating_unchanged": true,
+      "cleanup": {
+        "errors": [],
+        "paths_absent": true,
+        "unit_load_states": {
+          "system:md-t15-97f22b03bbf940c3-backup.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-context.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-context.timer": "not-found",
+          "system:md-t15-97f22b03bbf940c3-daily.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-network-observer.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-oi-probe.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-oi-quality.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-oi.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-pack.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-persistent.timer": "not-found",
+          "system:md-t15-97f22b03bbf940c3-ready.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-restic-archive.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-system-busy.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-system-links.timer": "not-found",
+          "system:md-t15-97f22b03bbf940c3-system-queued.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-system-retry.service": "not-found",
+          "system:md-t15-97f22b03bbf940c3-system-wait.service": "not-found",
+          "user:md-t15-97f22b03bbf940c3-system-lock.service": "not-found",
+          "user:md-t15-97f22b03bbf940c3-user-links.timer": "not-found"
+        }
+      }
+    },
+    "system-preflight-result-a6d642d447dc4c69.json": {
+      "sha256": "5f228a7cc3b2b1e1478c8f7e321c9c1c0a24b5be128eae736a1eaebde5fc470f",
+      "passed": true,
+      "tool_id": "scheduled-handoff-20261012-b48b6beb0b9b72b9",
+      "finished_at": "2026-10-12T14:24:53.314873+00:00",
+      "error": null,
+      "operating_unchanged": true,
+      "cleanup": {
+        "errors": [],
+        "paths_absent": true,
+        "unit_load_states": {
+          "system:md-t15-a6d642d447dc4c69-system-busy.service": "not-found",
+          "system:md-t15-a6d642d447dc4c69-system-queued.service": "not-found",
+          "system:md-t15-a6d642d447dc4c69-system-retry.service": "not-found",
+          "system:md-t15-a6d642d447dc4c69-system-wait.service": "not-found",
+          "system:md-t15-a6d642d447dc4c69-user-lock.service": "not-found",
+          "user:md-t15-a6d642d447dc4c69-system-lock.service": "not-found",
+          "user:md-t15-a6d642d447dc4c69-user-busy.service": "not-found",
+          "user:md-t15-a6d642d447dc4c69-user-queued.service": "not-found",
+          "user:md-t15-a6d642d447dc4c69-user-retry.service": "not-found",
+          "user:md-t15-a6d642d447dc4c69-user-wait.service": "not-found"
+        }
+      }
+    }
+  },
+  "additional_unique_tests": 72,
+  "rechecked_existing_transaction_tests": 152,
+  "operating_migration": false,
+  "approval_enabled": false,
+  "rollback_partial_requests": "compare both directions; explicit operator reissue only when unissued and still needed"
+}

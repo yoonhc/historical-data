@@ -1,0 +1,244 @@
+{
+  "observed_at": "2026-10-16T14:24:38.202853+00:00",
+  "operating_writes": false,
+  "method": "Read files without acquiring task locks; per-file snapshots, not an atomic cross-job view. An executing job can have a pending request.",
+  "jobs": {
+    "oi": {
+      "request_exists": true,
+      "attempt_files": 34,
+      "attempt_states": {
+        "complete": 34
+      },
+      "serialization_matches": [],
+      "journal_finish_states": {
+        "complete": 34
+      },
+      "other_failed_finishes": [],
+      "request": {
+        "sha256": "353977e320c17125b0fc4f5361e95ab7a217bfdeddc76c88c1102d13fa40109b",
+        "request_id": "8c5211ed843f4471b35548c42fce6d1f",
+        "state": "complete",
+        "identity": "6503ebae376f7f9e2c4f8ebe7efa3a6034de8db38a814b931c5c3bcddc0c011c",
+        "has_work_result": true,
+        "has_unsealed_result": false,
+        "attempt_id": "edd4be863ba749138dbd7d615c3f2a54"
+      },
+      "journal": {
+        "bytes": 356062,
+        "sha256": "4ce8fca0513bb24280bf41e11147e3361f7445daf24fb38c1c310cf5338dda60",
+        "trailing_partial_lines_skipped": 0
+      }
+    },
+    "oi-probe": {
+      "request_exists": true,
+      "attempt_files": 244,
+      "attempt_states": {
+        "complete": 244
+      },
+      "serialization_matches": [],
+      "journal_finish_states": {
+        "complete": 244
+      },
+      "other_failed_finishes": [],
+      "request": {
+        "sha256": "9d2b929a7566afc3b2a0da9e78c3d719be603248e3be5237fe1b8e77af5c9542",
+        "request_id": "2ccf0ced6a91465683de1b9c5c9bdd25",
+        "state": "complete",
+        "identity": "a0363d938ad535937414755caa082171fb2f6c22ee599eff082d284b06f2086c",
+        "has_work_result": true,
+        "has_unsealed_result": false,
+        "attempt_id": "e5aa154340d447c4ad9fa2916a9681dc"
+      },
+      "journal": {
+        "bytes": 2453892,
+        "sha256": "ed1236eb936fa08e6bfb0345af045c73e2b70e75431e0badc18f7db089d86fbf",
+        "trailing_partial_lines_skipped": 0
+      }
+    },
+    "oi-quality": {
+      "request_exists": true,
+      "attempt_files": 0,
+      "attempt_states": {},
+      "serialization_matches": [
+        {
+          "source": "state/scheduled-clock-policy/oi-quality/decisions.jsonl",
+          "line": 5,
+          "kind": "request_finished",
+          "request_id": "a702240f54774dacab107dc28fa2a776",
+          "attempt_id": "96c32c8fb0eb4a6ca96bee82b21de38b",
+          "invocation_id": "8623ef805cac477faacc3c72a50e5e21"
+        }
+      ],
+      "journal_finish_states": {
+        "finalization_failed": 1
+      },
+      "other_failed_finishes": [
+        {
+          "request_id": "a702240f54774dacab107dc28fa2a776",
+          "attempt_id": "96c32c8fb0eb4a6ca96bee82b21de38b",
+          "invocation_id": "8623ef805cac477faacc3c72a50e5e21",
+          "state": "finalization_failed",
+          "exit_code": 1,
+          "errors": [
+            {
+              "cause": "'decimal.Decimal' object has no attribute 'isoformat'",
+              "cause_type": "AttributeError",
+              "message": "work_result_write_failed: AttributeError: 'decimal.Decimal' object has no attribute 'isoformat'",
+              "phase": "work",
+              "type": "ClockFailure"
+            },
+            {
+              "cause": "'decimal.Decimal' object has no attribute 'isoformat'",
+              "cause_type": "AttributeError",
+              "message": "work_result_write_failed: AttributeError: 'decimal.Decimal' object has no attribute 'isoformat'",
+              "phase": "monitor_close",
+              "type": "ClockFailure"
+            }
+          ]
+        }
+      ],
+      "request": {
+        "sha256": "c69363e7038590756e2461b26079f9a7789ca5abe98da365cb8423c3bf199e11",
+        "request_id": "a702240f54774dacab107dc28fa2a776",
+        "state": "pending",
+        "identity": "592568d5186099ae636454f0ea6933bc7c47a95f4d54ed7c39df72ea3f5992ce",
+        "has_work_result": false,
+        "has_unsealed_result": false,
+        "attempt_id": "96c32c8fb0eb4a6ca96bee82b21de38b"
+      },
+      "journal": {
+        "bytes": 8562,
+        "sha256": "b0a1b2267f178c83c3931e13a19069df0938c525efb82e7d74f509c0dfa7ad40",
+        "trailing_partial_lines_skipped": 0
+      }
+    },
+    "daily": {
+      "request_exists": true,
+      "attempt_files": 13,
+      "attempt_states": {
+        "complete": 13
+      },
+      "serialization_matches": [],
+      "journal_finish_states": {
+        "complete": 13
+      },
+      "other_failed_finishes": [],
+      "request": {
+        "sha256": "9132238ca775de13b71865633b99005c317fd8c24617a1fd84e5c711c89162be",
+        "request_id": "39b81ad9bcea47179f572c90efe9f8ee",
+        "state": "complete",
+        "identity": "e4f35936ba650c65ceb32c7ccd2e91808f21955e4e392cc62f187299a8edee27",
+        "has_work_result": true,
+        "has_unsealed_result": false,
+        "attempt_id": "cd309c449d63478fa933b8d02bc42d00"
+      },
+      "journal": {
+        "bytes": 80369,
+        "sha256": "fd3a34f9749eee5bac8883d619f05acb062e482eafa0e4ed4fbabd407cf58192",
+        "trailing_partial_lines_skipped": 0
+      }
+    },
+    "pack": {
+      "request_exists": true,
+      "attempt_files": 2,
+      "attempt_states": {
+        "complete": 2
+      },
+      "serialization_matches": [],
+      "journal_finish_states": {
+        "complete": 2
+      },
+      "other_failed_finishes": [],
+      "request": {
+        "sha256": "19425b3772cf6bb428aca9059103777bb819b6913a852a9901b562dd37720350",
+        "request_id": "87a3ec2c08954b6f97110249ab7a0449",
+        "state": "complete",
+        "identity": "2ea1eb28d7d45c16bad1430005dbeca882ce76e51b7c7fb29a2082db4ce58451",
+        "has_work_result": true,
+        "has_unsealed_result": false,
+        "attempt_id": "89a0a1abbb0c48edb52f9e1a0f43300b"
+      },
+      "journal": {
+        "bytes": 16242,
+        "sha256": "ee1e68036638a08d58e03ec015d8cd677f59bdc94334dd6bfffef27e96ba1303",
+        "trailing_partial_lines_skipped": 0
+      }
+    },
+    "backup": {
+      "request_exists": false,
+      "attempt_files": 0,
+      "attempt_states": {},
+      "serialization_matches": [],
+      "journal_finish_states": {},
+      "other_failed_finishes": []
+    },
+    "restic-archive": {
+      "request_exists": true,
+      "attempt_files": 3,
+      "attempt_states": {
+        "complete": 3
+      },
+      "serialization_matches": [],
+      "journal_finish_states": {
+        "complete": 3
+      },
+      "other_failed_finishes": [],
+      "request": {
+        "sha256": "0ae6851c79b58fdd0c53294aa0f108f763c6494f71914fa46dabc03d428102c9",
+        "request_id": "4dfb20933e394c899e811349bc76ab00",
+        "state": "complete",
+        "identity": "bdbdb7b97c44e044e711b24b591e7a5e132378646f99d0536f03cef5185c73b3",
+        "has_work_result": true,
+        "has_unsealed_result": false,
+        "attempt_id": "2f930e6475b4400188206433360604a9"
+      },
+      "journal": {
+        "bytes": 24496,
+        "sha256": "3aad167532a0bf7ec2fe2e6d95a1cd59f3fef390682465e0ddcb93b84537be36",
+        "trailing_partial_lines_skipped": 0
+      }
+    },
+    "network-observer": {
+      "request_exists": true,
+      "attempt_files": 62,
+      "attempt_states": {
+        "complete": 62
+      },
+      "serialization_matches": [],
+      "journal_finish_states": {
+        "complete": 62
+      },
+      "other_failed_finishes": [],
+      "request": {
+        "sha256": "0d0e74cab52d824322ccaf562fab35da4adb2377e235cf19abd325d15517c30a",
+        "request_id": "ee3f8804da36469da2c0a49be24189b9",
+        "state": "complete",
+        "identity": "c606ff4f8fcd17ab50cc8b0d88fe84d877936e0ef9408f3a5c5c737c11bcf3fe",
+        "has_work_result": true,
+        "has_unsealed_result": false,
+        "attempt_id": "ce629f6e6c834648870b4cffdd9e8895"
+      },
+      "journal": {
+        "bytes": 507352,
+        "sha256": "69123d052b65592cf7b3d47c2b7aed257f9040126b03780ca47bfe358a26651e",
+        "trailing_partial_lines_skipped": 0
+      }
+    }
+  },
+  "original_request_and_report": {
+    "request_sha256": "c69363e7038590756e2461b26079f9a7789ca5abe98da365cb8423c3bf199e11",
+    "report_sha256": "52058f8c256a26d34fbfc8d2b05f61d7857c2e352613cbeeb11c82a8cd90de1e",
+    "request_matches_review": true,
+    "report_matches_review": true,
+    "request_state": "pending",
+    "result_fields_present": []
+  },
+  "serialization_affected_jobs": [
+    "oi-quality"
+  ],
+  "limitations": [
+    "No service or journalctl query in this audit.",
+    "No completed request proof revalidation, source policy change, request repair or runtime installation.",
+    "Backup has no new-wrapper request if it has not run; absence of an error there is not successful execution coverage."
+  ]
+}

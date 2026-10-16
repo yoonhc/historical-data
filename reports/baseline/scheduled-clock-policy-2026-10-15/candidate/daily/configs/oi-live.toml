@@ -1,0 +1,11 @@
+[operations]
+# Persist this initial scope; later runs recover holes as well as the newest hour.
+bootstrap_days = 28
+overlap_minutes = 60
+max_days_per_run = 32
+stale_after_seconds = 900
+
+[[datasets]]
+dataset = "open_interest"
+interval = "5m"
+series = "rest"

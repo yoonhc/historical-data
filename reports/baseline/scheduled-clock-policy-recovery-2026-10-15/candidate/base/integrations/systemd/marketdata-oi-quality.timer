@@ -1,0 +1,11 @@
+[Unit]
+Description=Audit OI after the daily archive refresh
+
+[Timer]
+OnActiveSec=5s
+OnCalendar=*-*-* 03:40:00 UTC
+AccuracySec=1s
+Persistent=true
+
+[Install]
+WantedBy=timers.target

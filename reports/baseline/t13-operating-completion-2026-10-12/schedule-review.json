@@ -1,0 +1,3546 @@
+{
+  "as_of": "2026-10-12T08:14:25.715491+00:00",
+  "target_id": "300941a16686697c683a16f39e325cd34b52a5d2fcf77addef7ed8e5eb584ef0",
+  "checks": {
+    "live": {
+      "fixed_attempts": 26,
+      "related_tasks": 32,
+      "old_complete_acquisitions": 162,
+      "unchanged": true
+    },
+    "checkpoint": {
+      "fixed_attempts": 26,
+      "related_tasks": 32,
+      "old_complete_acquisitions": 162,
+      "unchanged": true
+    }
+  },
+  "ledger_sha256": "4d025314c9db30012604cd523b32efc6dbdc1df5b159a6bc78380b72f69f170d",
+  "boundaries": {
+    "kst_cycle": {
+      "boundary_utc": "2026-10-11T15:00:00",
+      "before": {
+        "as_of": "2026-10-11T13:25:30.555891+00:00",
+        "completed_tasks": 188,
+        "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+        "data_complete": true,
+        "finished_at": "2026-10-11T13:25:30.556029+00:00",
+        "id": "99d1b69f6a4b44438f894e37e4abdafd",
+        "pending": [],
+        "processed": [],
+        "review_required": false,
+        "run_outcome": "no_due_tasks",
+        "runner_ok": true,
+        "started_at": "2026-10-11T13:25:30.261985+00:00",
+        "state_counts": {
+          "complete": 188
+        },
+        "version": 1
+      },
+      "after": {
+        "as_of": "2026-10-11T15:24:52.463049+00:00",
+        "completed_tasks": 188,
+        "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+        "data_complete": false,
+        "finished_at": "2026-10-11T15:24:52.463235+00:00",
+        "id": "b1aca753061e4a74ac41ca99c865760e",
+        "pending": [
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "723d96781fa659a93de2d776d3e0075437d9565e97670dc11b71f65bb2bd0355",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "47681745d727cfd4e013633f24953b3325e81c0bac0639c2b4a2afbc5f6153e3",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "a0f2c5729d837024a22d39f1b75e2c7ccaec67b9a1b2e9916bdf80f90ce86cb1",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "cd3f9a2d48650d6da5888c6f1468d9a06533d94acbda5347b9272a2aca820d97",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "feca918414bcae836b2a4da1165215b036b2ec67d34b1650edcd510795e6833f",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "066c103c020d9fd2383fcdd729109ee25d6742a8d0049f43e7787b5dd91bdbb5",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "57f602bc86f2dd9f5becd7988ebd44e195bf79b554e66cc84ecaee236cc9d407",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "59732a9ebd3df0b7bc745c15e943616bffcc530823711566b3d991d0e27fdd68",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "66f96dad0fb428ece09118e058826c457a230177d38fc5817d2f33427ffeed75",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "fddcecd5828b32739869c4448846421a9983c929415c2adc17ede23e8117d5c6",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "d84eaf380e192180d5a25804d3602cc4cb1e707d3683c77088e79a9601c361d5",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "ceb009b2373d6c7a889e2729e4dd18b2b0260ed1f9927d95a42e2a7eac077f8e",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "7fc4d5d44340fb76e6068ab3f206bf37aa7803f6bfb6a4fbdc293d5a56f2c684",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "61873266153126330b078956ec2ad85d58e2176bede50972dfe4dbed51e4b0d7",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "9e84e92b265afced75f359b007be8bfcf8f1a50e771a309dbb48ffce75a42214",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "d8d5be2a2f5c41f31e0353b9a7de907ce97714489d74f7c78e890ecd345de636",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "9dac515eb7f43345ea3b18bf59207b74d5c8fd9ce05d2927e03c7baf78cdf80e",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "a5dd2d848f38f1a75db99e9f10c7837f101666cdd06414898baadb7e59c019f1",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-12",
+            "id": "156067a6e4a59524fb5f12a69779523ac737e84cd439f635b3da55ca82fc5966",
+            "key": {
+              "dataset": "instrument_metadata",
+              "interval": "event",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "observe",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-12",
+            "id": "d0043511c8be76f6360451e1eeb929be268d75beeb10e5b848a4b8be1428104c",
+            "key": {
+              "dataset": "instrument_metadata",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "observe",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          }
+        ],
+        "processed": [],
+        "review_required": false,
+        "run_outcome": "no_due_tasks",
+        "runner_ok": true,
+        "started_at": "2026-10-11T15:24:52.028209+00:00",
+        "state_counts": {
+          "complete": 188,
+          "planned": 20
+        },
+        "version": 1
+      },
+      "added": [
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-08",
+          "id": "723d96781fa659a93de2d776d3e0075437d9565e97670dc11b71f65bb2bd0355",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-09",
+          "id": "47681745d727cfd4e013633f24953b3325e81c0bac0639c2b4a2afbc5f6153e3",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-10",
+          "id": "a0f2c5729d837024a22d39f1b75e2c7ccaec67b9a1b2e9916bdf80f90ce86cb1",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-08",
+          "id": "cd3f9a2d48650d6da5888c6f1468d9a06533d94acbda5347b9272a2aca820d97",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-09",
+          "id": "feca918414bcae836b2a4da1165215b036b2ec67d34b1650edcd510795e6833f",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-10",
+          "id": "066c103c020d9fd2383fcdd729109ee25d6742a8d0049f43e7787b5dd91bdbb5",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-08",
+          "id": "57f602bc86f2dd9f5becd7988ebd44e195bf79b554e66cc84ecaee236cc9d407",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-09",
+          "id": "59732a9ebd3df0b7bc745c15e943616bffcc530823711566b3d991d0e27fdd68",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-10",
+          "id": "66f96dad0fb428ece09118e058826c457a230177d38fc5817d2f33427ffeed75",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-08",
+          "id": "fddcecd5828b32739869c4448846421a9983c929415c2adc17ede23e8117d5c6",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-09",
+          "id": "d84eaf380e192180d5a25804d3602cc4cb1e707d3683c77088e79a9601c361d5",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-10",
+          "id": "ceb009b2373d6c7a889e2729e4dd18b2b0260ed1f9927d95a42e2a7eac077f8e",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-08",
+          "id": "7fc4d5d44340fb76e6068ab3f206bf37aa7803f6bfb6a4fbdc293d5a56f2c684",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-09",
+          "id": "61873266153126330b078956ec2ad85d58e2176bede50972dfe4dbed51e4b0d7",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-10",
+          "id": "9e84e92b265afced75f359b007be8bfcf8f1a50e771a309dbb48ffce75a42214",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-08",
+          "id": "d8d5be2a2f5c41f31e0353b9a7de907ce97714489d74f7c78e890ecd345de636",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-09",
+          "id": "9dac515eb7f43345ea3b18bf59207b74d5c8fd9ce05d2927e03c7baf78cdf80e",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-10",
+          "id": "a5dd2d848f38f1a75db99e9f10c7837f101666cdd06414898baadb7e59c019f1",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-12",
+          "id": "156067a6e4a59524fb5f12a69779523ac737e84cd439f635b3da55ca82fc5966",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "observe",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-12",
+          "id": "d0043511c8be76f6360451e1eeb929be268d75beeb10e5b848a4b8be1428104c",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "observe",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        }
+      ],
+      "added_by_purpose": {
+        "refresh": 18,
+        "observe": 2
+      },
+      "previous_pending_preserved": true
+    },
+    "utc_day": {
+      "boundary_utc": "2026-10-12T00:00:00",
+      "before": {
+        "as_of": "2026-10-11T23:55:28.535010+00:00",
+        "completed_tasks": 188,
+        "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+        "data_complete": false,
+        "finished_at": "2026-10-11T23:55:28.535157+00:00",
+        "id": "74171501152b453c97fd5596ebb7ec4e",
+        "pending": [
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "723d96781fa659a93de2d776d3e0075437d9565e97670dc11b71f65bb2bd0355",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "47681745d727cfd4e013633f24953b3325e81c0bac0639c2b4a2afbc5f6153e3",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "a0f2c5729d837024a22d39f1b75e2c7ccaec67b9a1b2e9916bdf80f90ce86cb1",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "cd3f9a2d48650d6da5888c6f1468d9a06533d94acbda5347b9272a2aca820d97",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "feca918414bcae836b2a4da1165215b036b2ec67d34b1650edcd510795e6833f",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "066c103c020d9fd2383fcdd729109ee25d6742a8d0049f43e7787b5dd91bdbb5",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "57f602bc86f2dd9f5becd7988ebd44e195bf79b554e66cc84ecaee236cc9d407",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "59732a9ebd3df0b7bc745c15e943616bffcc530823711566b3d991d0e27fdd68",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "66f96dad0fb428ece09118e058826c457a230177d38fc5817d2f33427ffeed75",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "fddcecd5828b32739869c4448846421a9983c929415c2adc17ede23e8117d5c6",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "d84eaf380e192180d5a25804d3602cc4cb1e707d3683c77088e79a9601c361d5",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "ceb009b2373d6c7a889e2729e4dd18b2b0260ed1f9927d95a42e2a7eac077f8e",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "7fc4d5d44340fb76e6068ab3f206bf37aa7803f6bfb6a4fbdc293d5a56f2c684",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "61873266153126330b078956ec2ad85d58e2176bede50972dfe4dbed51e4b0d7",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "9e84e92b265afced75f359b007be8bfcf8f1a50e771a309dbb48ffce75a42214",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "d8d5be2a2f5c41f31e0353b9a7de907ce97714489d74f7c78e890ecd345de636",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "9dac515eb7f43345ea3b18bf59207b74d5c8fd9ce05d2927e03c7baf78cdf80e",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "a5dd2d848f38f1a75db99e9f10c7837f101666cdd06414898baadb7e59c019f1",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-12",
+            "id": "156067a6e4a59524fb5f12a69779523ac737e84cd439f635b3da55ca82fc5966",
+            "key": {
+              "dataset": "instrument_metadata",
+              "interval": "event",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "observe",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-12",
+            "id": "d0043511c8be76f6360451e1eeb929be268d75beeb10e5b848a4b8be1428104c",
+            "key": {
+              "dataset": "instrument_metadata",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "observe",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          }
+        ],
+        "processed": [],
+        "review_required": false,
+        "run_outcome": "no_due_tasks",
+        "runner_ok": true,
+        "started_at": "2026-10-11T23:55:28.236620+00:00",
+        "state_counts": {
+          "complete": 188,
+          "planned": 20
+        },
+        "version": 1
+      },
+      "after": {
+        "as_of": "2026-10-12T00:00:12.559002+00:00",
+        "completed_tasks": 188,
+        "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+        "data_complete": false,
+        "finished_at": "2026-10-12T00:00:12.559176+00:00",
+        "id": "1010ef72e68b4afd84fb328f73fe5ab1",
+        "pending": [
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "723d96781fa659a93de2d776d3e0075437d9565e97670dc11b71f65bb2bd0355",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "47681745d727cfd4e013633f24953b3325e81c0bac0639c2b4a2afbc5f6153e3",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "a0f2c5729d837024a22d39f1b75e2c7ccaec67b9a1b2e9916bdf80f90ce86cb1",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "cd3f9a2d48650d6da5888c6f1468d9a06533d94acbda5347b9272a2aca820d97",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "feca918414bcae836b2a4da1165215b036b2ec67d34b1650edcd510795e6833f",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "066c103c020d9fd2383fcdd729109ee25d6742a8d0049f43e7787b5dd91bdbb5",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "57f602bc86f2dd9f5becd7988ebd44e195bf79b554e66cc84ecaee236cc9d407",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "59732a9ebd3df0b7bc745c15e943616bffcc530823711566b3d991d0e27fdd68",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "66f96dad0fb428ece09118e058826c457a230177d38fc5817d2f33427ffeed75",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "fddcecd5828b32739869c4448846421a9983c929415c2adc17ede23e8117d5c6",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "d84eaf380e192180d5a25804d3602cc4cb1e707d3683c77088e79a9601c361d5",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "ceb009b2373d6c7a889e2729e4dd18b2b0260ed1f9927d95a42e2a7eac077f8e",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "7fc4d5d44340fb76e6068ab3f206bf37aa7803f6bfb6a4fbdc293d5a56f2c684",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "61873266153126330b078956ec2ad85d58e2176bede50972dfe4dbed51e4b0d7",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "9e84e92b265afced75f359b007be8bfcf8f1a50e771a309dbb48ffce75a42214",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-08",
+            "id": "d8d5be2a2f5c41f31e0353b9a7de907ce97714489d74f7c78e890ecd345de636",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-09",
+            "id": "9dac515eb7f43345ea3b18bf59207b74d5c8fd9ce05d2927e03c7baf78cdf80e",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-10",
+            "id": "a5dd2d848f38f1a75db99e9f10c7837f101666cdd06414898baadb7e59c019f1",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-12",
+            "id": "156067a6e4a59524fb5f12a69779523ac737e84cd439f635b3da55ca82fc5966",
+            "key": {
+              "dataset": "instrument_metadata",
+              "interval": "event",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "observe",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-12",
+            "id": "d0043511c8be76f6360451e1eeb929be268d75beeb10e5b848a4b8be1428104c",
+            "key": {
+              "dataset": "instrument_metadata",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "observe",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": null,
+            "day": "2026-10-11",
+            "id": "ab93e5e30775dd3ae646c4d985368c43cda1d850d8e4bbf26614eaeba601433f",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "acquire",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-11",
+            "id": "a7144551a8fc35df7a071cd16d5b89295bb28b27c15af6c5e9b106ae8eabbc28",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "spot",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": null,
+            "day": "2026-10-11",
+            "id": "65b24f7adfbe5ce4efda429c42828d64d1afd7298966e467c371a7c9c6cb8091",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "acquire",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-11",
+            "id": "f564cd4f9404ca6680293035bc8d695bd1a84e67ccb8bd3c6bfa1311414a0710",
+            "key": {
+              "dataset": "trade_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": null,
+            "day": "2026-10-11",
+            "id": "ef9976d91047e7dbd13f7d33f7577b58263bee8ec2367f344d73919ea9d4555c",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "acquire",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-11",
+            "id": "b60dbcc777b6f3950cea2f513de8d7db6071e089b69f601c877927169bf931ba",
+            "key": {
+              "dataset": "mark_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": null,
+            "day": "2026-10-11",
+            "id": "f94b1b55770007de2380e2893e8285f0242b78a3d6de2fb82a79df85535286c8",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "acquire",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-11",
+            "id": "64c236f6265830921f11e03a606b7d46894efda1895b58d160f723000387ffcf",
+            "key": {
+              "dataset": "index_price_bars",
+              "interval": "1m",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": null,
+            "day": "2026-10-11",
+            "id": "9a415156c0fd3bb5ebb0e80984b4eb1b0d063857bf526201db62d7dcef8a707e",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "acquire",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-11",
+            "id": "9059a58ea446af58da2cc1a8b37b85dbd50b5a02e50c04faa1b1b866abbad492",
+            "key": {
+              "dataset": "funding_events",
+              "interval": "event",
+              "market": "linear_perpetual",
+              "series": "primary",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T03:20:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": null,
+            "day": "2026-10-11",
+            "id": "a820290c241e7baa5ea40cef22c3d7a8b4e1924cc93c8de66c1f56d2f02d5fb6",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "acquire",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          },
+          {
+            "cycle": "2026-10-12",
+            "day": "2026-10-11",
+            "id": "80e12e2f537121459a3bd2e50b42c8db4c8d5c2212ac7a2a8bee9fef3cb51f40",
+            "key": {
+              "dataset": "open_interest",
+              "interval": "5m",
+              "market": "linear_perpetual",
+              "series": "archive",
+              "symbol": "BTCUSDT"
+            },
+            "next_at": "2026-10-12T09:00:00+00:00",
+            "purpose": "refresh",
+            "reason": "scheduled",
+            "review_required": false,
+            "state": "planned"
+          }
+        ],
+        "processed": [],
+        "review_required": false,
+        "run_outcome": "no_due_tasks",
+        "runner_ok": true,
+        "started_at": "2026-10-12T00:00:12.239281+00:00",
+        "state_counts": {
+          "complete": 188,
+          "planned": 32
+        },
+        "version": 1
+      },
+      "added": [
+        {
+          "cycle": null,
+          "day": "2026-10-11",
+          "id": "ab93e5e30775dd3ae646c4d985368c43cda1d850d8e4bbf26614eaeba601433f",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "acquire",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-11",
+          "id": "a7144551a8fc35df7a071cd16d5b89295bb28b27c15af6c5e9b106ae8eabbc28",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": null,
+          "day": "2026-10-11",
+          "id": "65b24f7adfbe5ce4efda429c42828d64d1afd7298966e467c371a7c9c6cb8091",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "acquire",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-11",
+          "id": "f564cd4f9404ca6680293035bc8d695bd1a84e67ccb8bd3c6bfa1311414a0710",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": null,
+          "day": "2026-10-11",
+          "id": "ef9976d91047e7dbd13f7d33f7577b58263bee8ec2367f344d73919ea9d4555c",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "acquire",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-11",
+          "id": "b60dbcc777b6f3950cea2f513de8d7db6071e089b69f601c877927169bf931ba",
+          "key": {
+            "dataset": "mark_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": null,
+          "day": "2026-10-11",
+          "id": "f94b1b55770007de2380e2893e8285f0242b78a3d6de2fb82a79df85535286c8",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "acquire",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-11",
+          "id": "64c236f6265830921f11e03a606b7d46894efda1895b58d160f723000387ffcf",
+          "key": {
+            "dataset": "index_price_bars",
+            "interval": "1m",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": null,
+          "day": "2026-10-11",
+          "id": "9a415156c0fd3bb5ebb0e80984b4eb1b0d063857bf526201db62d7dcef8a707e",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "acquire",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-11",
+          "id": "9059a58ea446af58da2cc1a8b37b85dbd50b5a02e50c04faa1b1b866abbad492",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T03:20:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": null,
+          "day": "2026-10-11",
+          "id": "a820290c241e7baa5ea40cef22c3d7a8b4e1924cc93c8de66c1f56d2f02d5fb6",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "acquire",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        },
+        {
+          "cycle": "2026-10-12",
+          "day": "2026-10-11",
+          "id": "80e12e2f537121459a3bd2e50b42c8db4c8d5c2212ac7a2a8bee9fef3cb51f40",
+          "key": {
+            "dataset": "open_interest",
+            "interval": "5m",
+            "market": "linear_perpetual",
+            "series": "archive",
+            "symbol": "BTCUSDT"
+          },
+          "next_at": "2026-10-12T09:00:00+00:00",
+          "purpose": "refresh",
+          "reason": "scheduled",
+          "review_required": false,
+          "state": "planned"
+        }
+      ],
+      "added_by_purpose": {
+        "acquire": 6,
+        "refresh": 6
+      },
+      "previous_pending_preserved": true
+    }
+  },
+  "live_counts": {
+    "daily_tasks": 220,
+    "daily_runs": 343,
+    "daily_attempts": 36,
+    "daily_cooldowns": 0,
+    "daily_reviews": 0,
+    "daily_probe_targets": 0
+  },
+  "live_states": {
+    "complete": 200,
+    "planned": 20
+  },
+  "checkpoint_counts": {
+    "daily_tasks": 220,
+    "daily_runs": 310,
+    "daily_attempts": 36,
+    "daily_cooldowns": 0,
+    "daily_reviews": 0,
+    "daily_probe_targets": 0
+  },
+  "checkpoint_states": {
+    "complete": 200,
+    "planned": 20
+  },
+  "today_attempts": [
+    {
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "finished_at": "2026-10-12T03:38:00.568465+00:00",
+      "id": "ab2034a09a614419b5fb907343ea687e",
+      "inputs": [
+        {
+          "id": "169e99048545ad270879bfb75ad53d9b29d8b823f07a585254aa12be1310a3ab",
+          "kind": "rest",
+          "received_at": "2026-10-12T03:38:00.239836+00:00",
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791676800000&endTime=1791763199999"
+        },
+        {
+          "id": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "kind": "rest",
+          "received_at": "2026-10-12T03:38:00.421158+00:00",
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791734400003&endTime=1791763199999"
+        }
+      ],
+      "proof": {
+        "checked_at": "2026-10-12T03:38:00.568453+00:00",
+        "file_sha256": [
+          "32c6dbf2201e654c0b02a06cabf5a02d54d7426bbda101c04ac27656507ddf58"
+        ],
+        "publish_intent": {
+          "economic_sha256": "316aef3ff2556b1c4635a2051ff1c0abea5d951bdbdeb0c26f1079b94910e2fb",
+          "end": "2026-10-12T00:00:00+00:00",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 3,
+          "row_end": "2026-10-12T00:00:00+00:00",
+          "row_start": "2026-10-11T00:00:00+00:00",
+          "source_id": "0369b3980093f1c49a1b048b1aa7bf60fbb058c294afbcf43538a7d6823867bb",
+          "start": "2026-10-11T00:00:00+00:00"
+        },
+        "query_ids": [
+          21084
+        ],
+        "revision_ids": [
+          "43cf67ca424db9437f33ae63e6af011e17c9e623a054e3d2b7ad1c8afeb6d8fd"
+        ],
+        "source_ids": [
+          "0369b3980093f1c49a1b048b1aa7bf60fbb058c294afbcf43538a7d6823867bb"
+        ]
+      },
+      "publish_intent": {
+        "economic_sha256": "316aef3ff2556b1c4635a2051ff1c0abea5d951bdbdeb0c26f1079b94910e2fb",
+        "end": "2026-10-12T00:00:00+00:00",
+        "key": {
+          "dataset": "funding_events",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "row_count": 3,
+        "row_end": "2026-10-12T00:00:00+00:00",
+        "row_start": "2026-10-11T00:00:00+00:00",
+        "source_id": "0369b3980093f1c49a1b048b1aa7bf60fbb058c294afbcf43538a7d6823867bb",
+        "start": "2026-10-11T00:00:00+00:00"
+      },
+      "requests": [
+        {
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "*,clienttype,Content-Type,lang,x-ui-request-trace,bnc-uuid",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-cache, no-store, must-revalidate",
+            "connection": "keep-alive",
+            "content-encoding": "gzip",
+            "content-security-policy": "default-src 'self'",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Mon, 12 Oct 2026 03:38:00 GMT",
+            "expires": "0",
+            "pragma": "no-cache",
+            "server": "nginx",
+            "strict-transport-security": "max-age=31536000; includeSubdomains",
+            "transfer-encoding": "chunked",
+            "vary": "Accept-Encoding",
+            "via": "1.1 922c977b85f8bf4134ac72600592f924.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "XnfcyjYTxi2_6C4jKcWysiQzPLIql0nMMv8aaBPs13PfS9ukw08BFA==",
+            "x-amz-cf-pop": "ICN80-P2",
+            "x-cache": "Miss from cloudfront",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-xss-protection": "1; mode=block"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:00.239124+00:00",
+          "started_at": "2026-10-12T03:38:00.178300+00:00",
+          "status": 200,
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791676800000&endTime=1791763199999"
+        },
+        {
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "*,clienttype,Content-Type,lang,x-ui-request-trace,bnc-uuid",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-cache, no-store, must-revalidate",
+            "connection": "keep-alive",
+            "content-length": "2",
+            "content-security-policy": "default-src 'self'",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Mon, 12 Oct 2026 03:38:00 GMT",
+            "expires": "0",
+            "pragma": "no-cache",
+            "server": "nginx",
+            "strict-transport-security": "max-age=31536000; includeSubdomains",
+            "via": "1.1 922c977b85f8bf4134ac72600592f924.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "s3WmmyoF41NZQ8G-SSOzsHPAKGY1Knk_AGToa-IyRxK6e_QyAqEzWQ==",
+            "x-amz-cf-pop": "ICN80-P2",
+            "x-cache": "Miss from cloudfront",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-xss-protection": "1; mode=block"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:00.420509+00:00",
+          "started_at": "2026-10-12T03:38:00.278440+00:00",
+          "status": 200,
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791734400003&endTime=1791763199999"
+        }
+      ],
+      "result": [
+        {
+          "date": "2026-10-11",
+          "revision": "43cf67ca424db9437f33ae63e6af011e17c9e623a054e3d2b7ad1c8afeb6d8fd",
+          "rows": 3,
+          "state": "published"
+        }
+      ],
+      "started_at": "2026-10-12T03:38:00.176756+00:00",
+      "state": "complete",
+      "task_id": "9a415156c0fd3bb5ebb0e80984b4eb1b0d063857bf526201db62d7dcef8a707e"
+    },
+    {
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "finished_at": "2026-10-12T03:38:01.234568+00:00",
+      "id": "8f033eb61f2e43b1a9fd258adfabb044",
+      "inputs": [
+        {
+          "id": "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf",
+          "kind": "archive",
+          "received_at": "2026-10-12T03:38:00.938849+00:00",
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-11.zip"
+        },
+        {
+          "id": "bc4e3345878fffd2787aeb3229d26522e6e27ea1a9485a6203b3b8931f624147",
+          "kind": "checksum",
+          "received_at": "2026-10-12T03:38:01.006755+00:00",
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-11.zip.CHECKSUM"
+        }
+      ],
+      "proof": {
+        "checked_at": "2026-10-12T03:38:01.234387+00:00",
+        "file_sha256": [
+          "e027f84bea3ad28be78b7da6390ae28ddce16a55a48462d8d41318ef4558ee8c"
+        ],
+        "publish_intent": {
+          "economic_sha256": "197efe8b2fd8dc6e3da2e4e2013a07fbe8db87463041de17fea62b9afb3cfe14",
+          "end": "2026-10-12T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-12T00:00:00+00:00",
+          "row_start": "2026-10-11T00:00:00+00:00",
+          "source_id": "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf",
+          "start": "2026-10-11T00:00:00+00:00"
+        },
+        "query_ids": [
+          21085
+        ],
+        "revision_ids": [
+          "ac3210be96681fcf1b150e9139e78afff48cf45c7c0bc00d9adaf0e53ca3d9a0"
+        ],
+        "source_ids": [
+          "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf"
+        ]
+      },
+      "publish_intent": {
+        "economic_sha256": "197efe8b2fd8dc6e3da2e4e2013a07fbe8db87463041de17fea62b9afb3cfe14",
+        "end": "2026-10-12T00:00:00+00:00",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "row_count": 1440,
+        "row_end": "2026-10-12T00:00:00+00:00",
+        "row_start": "2026-10-11T00:00:00+00:00",
+        "source_id": "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf",
+        "start": "2026-10-11T00:00:00+00:00"
+      },
+      "requests": [
+        {
+          "headers": {
+            "accept-ranges": "bytes",
+            "connection": "keep-alive",
+            "content-length": "64103",
+            "content-type": "application/zip",
+            "date": "Mon, 12 Oct 2026 03:38:01 GMT",
+            "etag": "\"c808dd07ac0b8c93582b87545850bbcf\"",
+            "last-modified": "Mon, 12 Oct 2026 02:11:49 GMT",
+            "server": "AmazonS3",
+            "via": "1.1 924bc6c22018e459de64c65d80b6bc2a.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "euEQeTVdJbrA437JI-OUzKv6bywHXovF1JRpm05khUrOeANbbP5p9Q==",
+            "x-amz-cf-pop": "ICN53-P1",
+            "x-amz-server-side-encryption": "AES256",
+            "x-cache": "Miss from cloudfront"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:00.905334+00:00",
+          "started_at": "2026-10-12T03:38:00.573736+00:00",
+          "status": 200,
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-11.zip"
+        },
+        {
+          "headers": {
+            "accept-ranges": "bytes",
+            "connection": "keep-alive",
+            "content-length": "91",
+            "content-type": "application/zip",
+            "date": "Mon, 12 Oct 2026 03:38:01 GMT",
+            "etag": "\"45ce7366df11824e6104dc32c5881af5\"",
+            "last-modified": "Mon, 12 Oct 2026 02:11:49 GMT",
+            "server": "AmazonS3",
+            "via": "1.1 924bc6c22018e459de64c65d80b6bc2a.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "mFbUy11gakZ5tE1HOOkLlXwtiOfA-2V_c_EBUn_GyPWuNpJq-aKDag==",
+            "x-amz-cf-pop": "ICN53-P1",
+            "x-amz-server-side-encryption": "AES256",
+            "x-cache": "Miss from cloudfront"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:01.005866+00:00",
+          "started_at": "2026-10-12T03:38:00.942681+00:00",
+          "status": 200,
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-11.zip.CHECKSUM"
+        }
+      ],
+      "result": [
+        {
+          "date": "2026-10-11",
+          "revision": "ac3210be96681fcf1b150e9139e78afff48cf45c7c0bc00d9adaf0e53ca3d9a0",
+          "rows": 1440,
+          "state": "published"
+        }
+      ],
+      "started_at": "2026-10-12T03:38:00.572279+00:00",
+      "state": "complete",
+      "task_id": "ab93e5e30775dd3ae646c4d985368c43cda1d850d8e4bbf26614eaeba601433f"
+    },
+    {
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "finished_at": "2026-10-12T03:38:01.740119+00:00",
+      "id": "bcb3cf88774c4dca8fd52acbd658048d",
+      "inputs": [
+        {
+          "id": "71c84910b7e6d77e17a6b66bb29ca5b4b9797f0c754d2b186fd177b6d9737a41",
+          "kind": "rest",
+          "received_at": "2026-10-12T03:38:01.534559+00:00",
+          "url": "https://api.binance.com/api/v3/exchangeInfo"
+        }
+      ],
+      "proof": {
+        "checked_at": "2026-10-12T03:38:01.740111+00:00",
+        "file_sha256": [
+          "f8be314da6faf5ffeb534e4e6c7530e88ed8622f2cabd6ff46c4e046012b3b2b"
+        ],
+        "publish_intent": {
+          "economic_sha256": "57006fd1cff4025b13bbfb9595a5b61b9c464dd5942a552481d961347d96d4db",
+          "end": "2026-10-13T00:00:00+00:00",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1,
+          "row_end": "2026-10-12T03:38:01.534560+00:00",
+          "row_start": "2026-10-12T03:38:01.534559+00:00",
+          "source_id": "0d12d32058f948201d06f85f5137c8ed749bcedd4147ea3eabc643eb61ee9456",
+          "start": "2026-10-12T00:00:00+00:00"
+        },
+        "query_ids": [
+          21086
+        ],
+        "revision_ids": [
+          "5b52ea3b692c6ebc5d33bf8592fbda88a6aeebc99d9f4ae68f7f22b296922440"
+        ],
+        "source_ids": [
+          "0d12d32058f948201d06f85f5137c8ed749bcedd4147ea3eabc643eb61ee9456"
+        ]
+      },
+      "publish_intent": {
+        "economic_sha256": "57006fd1cff4025b13bbfb9595a5b61b9c464dd5942a552481d961347d96d4db",
+        "end": "2026-10-13T00:00:00+00:00",
+        "key": {
+          "dataset": "instrument_metadata",
+          "interval": "event",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "row_count": 1,
+        "row_end": "2026-10-12T03:38:01.534560+00:00",
+        "row_start": "2026-10-12T03:38:01.534559+00:00",
+        "source_id": "0d12d32058f948201d06f85f5137c8ed749bcedd4147ea3eabc643eb61ee9456",
+        "start": "2026-10-12T00:00:00+00:00"
+      },
+      "requests": [
+        {
+          "headers": {
+            "access-control-allow-methods": "GET, HEAD, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-cache, no-store, must-revalidate",
+            "connection": "keep-alive",
+            "content-encoding": "gzip",
+            "content-length": "323174",
+            "content-security-policy": "default-src 'self'",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Mon, 12 Oct 2026 03:38:01 GMT",
+            "expires": "0",
+            "pragma": "no-cache",
+            "server": "nginx",
+            "strict-transport-security": "max-age=31536000; includeSubdomains",
+            "via": "1.1 9ce5dfe6a640bb6a762b3c2889e2317e.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "UUKpmD39IqTSIM6FizNqXT1Ma-XLzjdR9nGHTXjrnNOomEXnzM43yA==",
+            "x-amz-cf-pop": "ICN57-P2",
+            "x-cache": "Miss from cloudfront",
+            "x-content-security-policy": "default-src 'self'",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-mbx-used-weight": "20",
+            "x-mbx-used-weight-1m": "20",
+            "x-mbx-uuid": "ad49e58f-61d6-476e-a9ff-8adcb18d325e",
+            "x-webkit-csp": "default-src 'self'",
+            "x-xss-protection": "1; mode=block"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:01.388405+00:00",
+          "started_at": "2026-10-12T03:38:01.252300+00:00",
+          "status": 200,
+          "url": "https://api.binance.com/api/v3/exchangeInfo"
+        }
+      ],
+      "result": [
+        {
+          "date": "2026-10-12",
+          "revision": "5b52ea3b692c6ebc5d33bf8592fbda88a6aeebc99d9f4ae68f7f22b296922440",
+          "rows": 1,
+          "state": "published"
+        }
+      ],
+      "started_at": "2026-10-12T03:38:01.251258+00:00",
+      "state": "complete",
+      "task_id": "156067a6e4a59524fb5f12a69779523ac737e84cd439f635b3da55ca82fc5966"
+    },
+    {
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "finished_at": "2026-10-12T03:38:01.840933+00:00",
+      "id": "ee2c4eaa282e435187f58da2f06f5e64",
+      "inputs": [
+        {
+          "id": "25e608ecc6898e66d0add37beded9708e87b0e550352e0366b3d3e60dd3679e9",
+          "kind": "rest",
+          "received_at": "2026-10-12T03:38:01.811974+00:00",
+          "url": "https://fapi.binance.com/fapi/v1/exchangeInfo"
+        }
+      ],
+      "proof": {
+        "checked_at": "2026-10-12T03:38:01.840924+00:00",
+        "file_sha256": [
+          "19077bd1ddb53854d6ec2e15edf26835f2976aad6d4c602ef2ca9602b8059476"
+        ],
+        "publish_intent": {
+          "economic_sha256": "d90c9efdcc72864c308e4bcbedd3241b73d1478ec705fbff5199e730c5936cec",
+          "end": "2026-10-13T00:00:00+00:00",
+          "key": {
+            "dataset": "instrument_metadata",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1,
+          "row_end": "2026-10-12T03:38:01.811975+00:00",
+          "row_start": "2026-10-12T03:38:01.811974+00:00",
+          "source_id": "09d31681bf915454fb2b3822f7ed32c37456e84be907b7dcde51cbc2579672cc",
+          "start": "2026-10-12T00:00:00+00:00"
+        },
+        "query_ids": [
+          21087
+        ],
+        "revision_ids": [
+          "aedd2464e8bb48f8d264951bcfb5a21ff16f0ac664f2961b1f8b574e498bad45"
+        ],
+        "source_ids": [
+          "09d31681bf915454fb2b3822f7ed32c37456e84be907b7dcde51cbc2579672cc"
+        ]
+      },
+      "publish_intent": {
+        "economic_sha256": "d90c9efdcc72864c308e4bcbedd3241b73d1478ec705fbff5199e730c5936cec",
+        "end": "2026-10-13T00:00:00+00:00",
+        "key": {
+          "dataset": "instrument_metadata",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "row_count": 1,
+        "row_end": "2026-10-12T03:38:01.811975+00:00",
+        "row_start": "2026-10-12T03:38:01.811974+00:00",
+        "source_id": "09d31681bf915454fb2b3822f7ed32c37456e84be907b7dcde51cbc2579672cc",
+        "start": "2026-10-12T00:00:00+00:00"
+      },
+      "requests": [
+        {
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "*",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-cache, no-store, must-revalidate",
+            "connection": "keep-alive",
+            "content-encoding": "gzip",
+            "content-security-policy": "default-src 'self'",
+            "content-type": "application/json",
+            "date": "Mon, 12 Oct 2026 03:38:01 GMT",
+            "expires": "0",
+            "pragma": "no-cache",
+            "server": "nginx",
+            "strict-transport-security": "max-age=31536000; includeSubdomains",
+            "transfer-encoding": "chunked",
+            "vary": "Accept-Encoding",
+            "via": "1.1 922c977b85f8bf4134ac72600592f924.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "Drfj8f-Yb8lzKibeTL7mF-gRFsUgcWnblrRpMSr1oNDdRIzZFyNF-g==",
+            "x-amz-cf-pop": "ICN80-P2",
+            "x-cache": "Miss from cloudfront",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-mbx-used-weight-1m": "2",
+            "x-response-time": "0ms",
+            "x-xss-protection": "1; mode=block"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:01.809067+00:00",
+          "started_at": "2026-10-12T03:38:01.744771+00:00",
+          "status": 200,
+          "url": "https://fapi.binance.com/fapi/v1/exchangeInfo"
+        }
+      ],
+      "result": [
+        {
+          "date": "2026-10-12",
+          "revision": "aedd2464e8bb48f8d264951bcfb5a21ff16f0ac664f2961b1f8b574e498bad45",
+          "rows": 1,
+          "state": "published"
+        }
+      ],
+      "started_at": "2026-10-12T03:38:01.743806+00:00",
+      "state": "complete",
+      "task_id": "d0043511c8be76f6360451e1eeb929be268d75beeb10e5b848a4b8be1428104c"
+    },
+    {
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "finished_at": "2026-10-12T03:38:02.608815+00:00",
+      "id": "89ceb96d81914e0abb565016fa203aab",
+      "inputs": [
+        {
+          "id": "d8766aac4db1dc64616cf4eaa481e3dcf68038695461f4f189659f169cf20326",
+          "kind": "archive",
+          "received_at": "2026-10-12T03:38:02.175593+00:00",
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+        },
+        {
+          "id": "1ca08fc71a1e43c6255aa7c78835797a6c0c9da5d3039ca6091e611f24b55760",
+          "kind": "checksum",
+          "received_at": "2026-10-12T03:38:02.315999+00:00",
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip.CHECKSUM"
+        }
+      ],
+      "proof": {
+        "checked_at": "2026-10-12T03:38:02.608618+00:00",
+        "file_sha256": [
+          "4f25640adf741d94a6f851cab87c91b8e20bbaafd3b570e27583c12eaf6cfda7"
+        ],
+        "publish_intent": {
+          "economic_sha256": "a381240bb95dfa16060b0ffd933a0a49a3918d80742fc086ccc8c4ef2fd25742",
+          "end": "2026-10-09T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-09T00:00:00+00:00",
+          "row_start": "2026-10-08T00:00:00+00:00",
+          "source_id": "d8766aac4db1dc64616cf4eaa481e3dcf68038695461f4f189659f169cf20326",
+          "start": "2026-10-08T00:00:00+00:00"
+        },
+        "query_ids": [
+          20421
+        ],
+        "revision_ids": [
+          "b318d84726ad6114fc0b102c034ba76d59abb9802a081f969be729c42a779907"
+        ],
+        "source_ids": [
+          "d8766aac4db1dc64616cf4eaa481e3dcf68038695461f4f189659f169cf20326"
+        ]
+      },
+      "publish_intent": {
+        "economic_sha256": "a381240bb95dfa16060b0ffd933a0a49a3918d80742fc086ccc8c4ef2fd25742",
+        "end": "2026-10-09T00:00:00+00:00",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "row_count": 1440,
+        "row_end": "2026-10-09T00:00:00+00:00",
+        "row_start": "2026-10-08T00:00:00+00:00",
+        "source_id": "d8766aac4db1dc64616cf4eaa481e3dcf68038695461f4f189659f169cf20326",
+        "start": "2026-10-08T00:00:00+00:00"
+      },
+      "requests": [
+        {
+          "headers": {
+            "accept-ranges": "bytes",
+            "connection": "keep-alive",
+            "content-length": "70693",
+            "content-type": "application/zip",
+            "date": "Mon, 12 Oct 2026 03:38:03 GMT",
+            "etag": "\"5d3cf0b47bef7349f92477acefef1b60\"",
+            "last-modified": "Fri, 09 Oct 2026 02:11:31 GMT",
+            "server": "AmazonS3",
+            "via": "1.1 924bc6c22018e459de64c65d80b6bc2a.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "URwr_qUJRXQ9zhh-h3bldDZWKAPlbXT9jPBY5Jerwyhwi4h6EKopKg==",
+            "x-amz-cf-pop": "ICN53-P1",
+            "x-amz-server-side-encryption": "AES256",
+            "x-cache": "Miss from cloudfront"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:02.140642+00:00",
+          "started_at": "2026-10-12T03:38:02.018346+00:00",
+          "status": 200,
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip"
+        },
+        {
+          "headers": {
+            "accept-ranges": "bytes",
+            "connection": "keep-alive",
+            "content-length": "91",
+            "content-type": "application/zip",
+            "date": "Mon, 12 Oct 2026 03:38:02 GMT",
+            "etag": "\"e44ba36bd9a99e72ad0c3b4f66d0fc11\"",
+            "last-modified": "Fri, 09 Oct 2026 02:11:31 GMT",
+            "server": "AmazonS3",
+            "via": "1.1 924bc6c22018e459de64c65d80b6bc2a.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "lKRBZxRkY9C5EQoifUnhldN1_dU-LqoTLaXHS5ZNQ5uMuAM1xBt0zw==",
+            "x-amz-cf-pop": "ICN53-P1",
+            "x-amz-server-side-encryption": "AES256",
+            "x-cache": "Miss from cloudfront"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:02.305088+00:00",
+          "started_at": "2026-10-12T03:38:02.177850+00:00",
+          "status": 200,
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-08.zip.CHECKSUM"
+        }
+      ],
+      "result": [
+        {
+          "date": "2026-10-08",
+          "revision": "b318d84726ad6114fc0b102c034ba76d59abb9802a081f969be729c42a779907",
+          "rows": 1440,
+          "state": "published"
+        }
+      ],
+      "started_at": "2026-10-12T03:38:02.006330+00:00",
+      "state": "complete",
+      "task_id": "723d96781fa659a93de2d776d3e0075437d9565e97670dc11b71f65bb2bd0355"
+    },
+    {
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "finished_at": "2026-10-12T03:38:02.815362+00:00",
+      "id": "6ba3c700c5ef4e03a9f01a279f72c582",
+      "inputs": [
+        {
+          "id": "4e7e84cd380eed775b6fbeb949bd6e384faf1301b4b91c3307d7f526eb939120",
+          "kind": "rest",
+          "received_at": "2026-10-12T03:38:02.677946+00:00",
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791417600000&endTime=1791503999999"
+        },
+        {
+          "id": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "kind": "rest",
+          "received_at": "2026-10-12T03:38:02.773685+00:00",
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791475200001&endTime=1791503999999"
+        }
+      ],
+      "proof": {
+        "checked_at": "2026-10-12T03:38:02.815349+00:00",
+        "file_sha256": [
+          "d6588eb2f54e8c7980d55af0d4e01f1b0cdcb50da7df725132bff4202adef821"
+        ],
+        "publish_intent": {
+          "economic_sha256": "83086b21585e4b067a84c55405dfe2bf1943e9b82c19e0f0abc5e2512fff4078",
+          "end": "2026-10-09T00:00:00+00:00",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 3,
+          "row_end": "2026-10-09T00:00:00+00:00",
+          "row_start": "2026-10-08T00:00:00+00:00",
+          "source_id": "624d270b591965cae50f8ea81f98c7e4c024d6cad285b78e6f5862b673da9ae7",
+          "start": "2026-10-08T00:00:00+00:00"
+        },
+        "query_ids": [
+          20422
+        ],
+        "revision_ids": [
+          "b60c1e2d7084e979b4c75c5d975adc5da16b454e4e83c84790ac9603252372b1"
+        ],
+        "source_ids": [
+          "624d270b591965cae50f8ea81f98c7e4c024d6cad285b78e6f5862b673da9ae7"
+        ]
+      },
+      "publish_intent": {
+        "economic_sha256": "83086b21585e4b067a84c55405dfe2bf1943e9b82c19e0f0abc5e2512fff4078",
+        "end": "2026-10-09T00:00:00+00:00",
+        "key": {
+          "dataset": "funding_events",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "row_count": 3,
+        "row_end": "2026-10-09T00:00:00+00:00",
+        "row_start": "2026-10-08T00:00:00+00:00",
+        "source_id": "624d270b591965cae50f8ea81f98c7e4c024d6cad285b78e6f5862b673da9ae7",
+        "start": "2026-10-08T00:00:00+00:00"
+      },
+      "requests": [
+        {
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "*,clienttype,Content-Type,lang,x-ui-request-trace,bnc-uuid",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-cache, no-store, must-revalidate",
+            "connection": "keep-alive",
+            "content-encoding": "gzip",
+            "content-security-policy": "default-src 'self'",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Mon, 12 Oct 2026 03:38:02 GMT",
+            "expires": "0",
+            "pragma": "no-cache",
+            "server": "nginx",
+            "strict-transport-security": "max-age=31536000; includeSubdomains",
+            "transfer-encoding": "chunked",
+            "vary": "Accept-Encoding",
+            "via": "1.1 922c977b85f8bf4134ac72600592f924.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "S7nsOVD8tKXCNqlPFJBiRNMD3MShZup_WByHYDGO8fvZsEGUBn8M0A==",
+            "x-amz-cf-pop": "ICN80-P2",
+            "x-cache": "Miss from cloudfront",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-xss-protection": "1; mode=block"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:02.677056+00:00",
+          "started_at": "2026-10-12T03:38:02.630830+00:00",
+          "status": 200,
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791417600000&endTime=1791503999999"
+        },
+        {
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "*,clienttype,Content-Type,lang,x-ui-request-trace,bnc-uuid",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-cache, no-store, must-revalidate",
+            "connection": "keep-alive",
+            "content-length": "2",
+            "content-security-policy": "default-src 'self'",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Mon, 12 Oct 2026 03:38:02 GMT",
+            "expires": "0",
+            "pragma": "no-cache",
+            "server": "nginx",
+            "strict-transport-security": "max-age=31536000; includeSubdomains",
+            "via": "1.1 922c977b85f8bf4134ac72600592f924.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "IsZnrMl9AVCa7u409xP0y19AkwTkCf5A_sODz_TwRbYm-42f_nQ5Rw==",
+            "x-amz-cf-pop": "ICN80-P2",
+            "x-cache": "Miss from cloudfront",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-xss-protection": "1; mode=block"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:02.772874+00:00",
+          "started_at": "2026-10-12T03:38:02.731010+00:00",
+          "status": 200,
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791475200001&endTime=1791503999999"
+        }
+      ],
+      "result": [
+        {
+          "date": "2026-10-08",
+          "revision": "b60c1e2d7084e979b4c75c5d975adc5da16b454e4e83c84790ac9603252372b1",
+          "rows": 3,
+          "state": "published"
+        }
+      ],
+      "started_at": "2026-10-12T03:38:02.628654+00:00",
+      "state": "complete",
+      "task_id": "7fc4d5d44340fb76e6068ab3f206bf37aa7803f6bfb6a4fbdc293d5a56f2c684"
+    },
+    {
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "finished_at": "2026-10-12T03:38:03.422764+00:00",
+      "id": "d7d84ee34eae4e29979ff6a007200085",
+      "inputs": [
+        {
+          "id": "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48",
+          "kind": "archive",
+          "received_at": "2026-10-12T03:38:02.990024+00:00",
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip"
+        },
+        {
+          "id": "69a9d156bd0f25933130de3953c5b964463f2abe75ddda0fcbe876b44fd3298d",
+          "kind": "checksum",
+          "received_at": "2026-10-12T03:38:03.124397+00:00",
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM"
+        }
+      ],
+      "proof": {
+        "checked_at": "2026-10-12T03:38:03.422509+00:00",
+        "file_sha256": [
+          "d87320b3b55d0d546d6f340ee45ae63ed6ce9fe74c29a3d0754af101ec0096de"
+        ],
+        "publish_intent": {
+          "economic_sha256": "16f5fa4ae06cf1ffb1521295a42a0fbcff59173027aacb6b58d2ddad037f3e6e",
+          "end": "2026-10-10T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-10T00:00:00+00:00",
+          "row_start": "2026-10-09T00:00:00+00:00",
+          "source_id": "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48",
+          "start": "2026-10-09T00:00:00+00:00"
+        },
+        "query_ids": [
+          20648
+        ],
+        "revision_ids": [
+          "7bea98e86cc65f77b1e7a3efe1386c26720c169160d8108edc4e2c786eaf6f29"
+        ],
+        "source_ids": [
+          "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48"
+        ]
+      },
+      "publish_intent": {
+        "economic_sha256": "16f5fa4ae06cf1ffb1521295a42a0fbcff59173027aacb6b58d2ddad037f3e6e",
+        "end": "2026-10-10T00:00:00+00:00",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "row_count": 1440,
+        "row_end": "2026-10-10T00:00:00+00:00",
+        "row_start": "2026-10-09T00:00:00+00:00",
+        "source_id": "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48",
+        "start": "2026-10-09T00:00:00+00:00"
+      },
+      "requests": [
+        {
+          "headers": {
+            "accept-ranges": "bytes",
+            "connection": "keep-alive",
+            "content-length": "68355",
+            "content-type": "application/zip",
+            "date": "Mon, 12 Oct 2026 03:38:03 GMT",
+            "etag": "\"3775d9c4d57189952cc56ce0fa6b0a29\"",
+            "last-modified": "Sat, 10 Oct 2026 01:27:47 GMT",
+            "server": "AmazonS3",
+            "via": "1.1 924bc6c22018e459de64c65d80b6bc2a.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "xvdmVEICK4l-sbqPO7JkHe4gyNHeog2p2XOqWDQTUWq42Z0awLfQ1w==",
+            "x-amz-cf-pop": "ICN53-P1",
+            "x-amz-server-side-encryption": "AES256",
+            "x-cache": "Miss from cloudfront"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:02.954725+00:00",
+          "started_at": "2026-10-12T03:38:02.820397+00:00",
+          "status": 200,
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip"
+        },
+        {
+          "headers": {
+            "accept-ranges": "bytes",
+            "connection": "keep-alive",
+            "content-length": "91",
+            "content-type": "application/zip",
+            "date": "Mon, 12 Oct 2026 03:38:04 GMT",
+            "etag": "\"4d1516a02645302bbfc72078b13d6e73\"",
+            "last-modified": "Sat, 10 Oct 2026 01:27:47 GMT",
+            "server": "AmazonS3",
+            "via": "1.1 924bc6c22018e459de64c65d80b6bc2a.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "-hk4LtiXGQaZ86HS4_Dz4dIY10RLg6oZ1zfXwBQ7UNcnH_Imeq7Znw==",
+            "x-amz-cf-pop": "ICN53-P1",
+            "x-amz-server-side-encryption": "AES256",
+            "x-cache": "Miss from cloudfront"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:03.123742+00:00",
+          "started_at": "2026-10-12T03:38:02.991817+00:00",
+          "status": 200,
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-09.zip.CHECKSUM"
+        }
+      ],
+      "result": [
+        {
+          "date": "2026-10-09",
+          "revision": "7bea98e86cc65f77b1e7a3efe1386c26720c169160d8108edc4e2c786eaf6f29",
+          "rows": 1440,
+          "state": "published"
+        }
+      ],
+      "started_at": "2026-10-12T03:38:02.819061+00:00",
+      "state": "complete",
+      "task_id": "47681745d727cfd4e013633f24953b3325e81c0bac0639c2b4a2afbc5f6153e3"
+    },
+    {
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "finished_at": "2026-10-12T03:38:03.829910+00:00",
+      "id": "d23a785719fd44c8ade76e9d82bf1077",
+      "inputs": [
+        {
+          "id": "330ea5d3dcc6fc4bf60cad387557a61d353070bec7aa0bc3be6439c3bb4cdfdd",
+          "kind": "rest",
+          "received_at": "2026-10-12T03:38:03.481265+00:00",
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791504000000&endTime=1791590399999"
+        },
+        {
+          "id": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "kind": "rest",
+          "received_at": "2026-10-12T03:38:03.684150+00:00",
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791561600001&endTime=1791590399999"
+        }
+      ],
+      "proof": {
+        "checked_at": "2026-10-12T03:38:03.829897+00:00",
+        "file_sha256": [
+          "04ba7ddd735da196137de666d6c67b47222827358a14d559965b82a5799d412b"
+        ],
+        "publish_intent": {
+          "economic_sha256": "d698cd1e1cd91f9e707c8504444457e0777096c743bff58ebb8c3561283c0935",
+          "end": "2026-10-10T00:00:00+00:00",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 3,
+          "row_end": "2026-10-10T00:00:00+00:00",
+          "row_start": "2026-10-09T00:00:00+00:00",
+          "source_id": "20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372",
+          "start": "2026-10-09T00:00:00+00:00"
+        },
+        "query_ids": [
+          20652
+        ],
+        "revision_ids": [
+          "a81cc7ca0bfcc2731c5d49415ffcc0e25472196c24e6f4bfff64b33a012e6487"
+        ],
+        "source_ids": [
+          "20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372"
+        ]
+      },
+      "publish_intent": {
+        "economic_sha256": "d698cd1e1cd91f9e707c8504444457e0777096c743bff58ebb8c3561283c0935",
+        "end": "2026-10-10T00:00:00+00:00",
+        "key": {
+          "dataset": "funding_events",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "row_count": 3,
+        "row_end": "2026-10-10T00:00:00+00:00",
+        "row_start": "2026-10-09T00:00:00+00:00",
+        "source_id": "20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372",
+        "start": "2026-10-09T00:00:00+00:00"
+      },
+      "requests": [
+        {
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "*,clienttype,Content-Type,lang,x-ui-request-trace,bnc-uuid",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-cache, no-store, must-revalidate",
+            "connection": "keep-alive",
+            "content-encoding": "gzip",
+            "content-security-policy": "default-src 'self'",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Mon, 12 Oct 2026 03:38:03 GMT",
+            "expires": "0",
+            "pragma": "no-cache",
+            "server": "nginx",
+            "strict-transport-security": "max-age=31536000; includeSubdomains",
+            "transfer-encoding": "chunked",
+            "vary": "Accept-Encoding",
+            "via": "1.1 922c977b85f8bf4134ac72600592f924.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "Z4Huf-h_uzQnKu_Ls45pqWPeTCRVRDTff6PdLaJWNloUed_pZHV4Jg==",
+            "x-amz-cf-pop": "ICN80-P2",
+            "x-cache": "Miss from cloudfront",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-xss-protection": "1; mode=block"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:03.480570+00:00",
+          "started_at": "2026-10-12T03:38:03.438495+00:00",
+          "status": 200,
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791504000000&endTime=1791590399999"
+        },
+        {
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "*,clienttype,Content-Type,lang,x-ui-request-trace,bnc-uuid",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-cache, no-store, must-revalidate",
+            "connection": "keep-alive",
+            "content-length": "2",
+            "content-security-policy": "default-src 'self'",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Mon, 12 Oct 2026 03:38:03 GMT",
+            "expires": "0",
+            "pragma": "no-cache",
+            "server": "nginx",
+            "strict-transport-security": "max-age=31536000; includeSubdomains",
+            "via": "1.1 922c977b85f8bf4134ac72600592f924.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "GRK3XLR9dB4p16mEWI_WbxqSyXp_e2bBlNnJvfP_YFnfGCkgY9jyaw==",
+            "x-amz-cf-pop": "ICN80-P2",
+            "x-cache": "Miss from cloudfront",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-xss-protection": "1; mode=block"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:03.582891+00:00",
+          "started_at": "2026-10-12T03:38:03.538681+00:00",
+          "status": 200,
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791561600001&endTime=1791590399999"
+        }
+      ],
+      "result": [
+        {
+          "date": "2026-10-09",
+          "revision": "a81cc7ca0bfcc2731c5d49415ffcc0e25472196c24e6f4bfff64b33a012e6487",
+          "rows": 3,
+          "state": "published"
+        }
+      ],
+      "started_at": "2026-10-12T03:38:03.437295+00:00",
+      "state": "complete",
+      "task_id": "61873266153126330b078956ec2ad85d58e2176bede50972dfe4dbed51e4b0d7"
+    },
+    {
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "finished_at": "2026-10-12T03:38:04.022743+00:00",
+      "id": "13b35b460bad4604baf260e919c01a00",
+      "inputs": [
+        {
+          "id": "25c551842188b0d06e93ea2b059e44c17950cb9fe4cd91a9003709d520e53e6d",
+          "kind": "rest",
+          "received_at": "2026-10-12T03:38:03.877030+00:00",
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791590400000&endTime=1791676799999"
+        },
+        {
+          "id": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "kind": "rest",
+          "received_at": "2026-10-12T03:38:03.979033+00:00",
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791648000003&endTime=1791676799999"
+        }
+      ],
+      "proof": {
+        "checked_at": "2026-10-12T03:38:04.022728+00:00",
+        "file_sha256": [
+          "076d38ce15853defd59e6440f6b5ce4830d5c55aef22e61c5c9c55e3ccb65dc2"
+        ],
+        "publish_intent": {
+          "economic_sha256": "ea937c0785804bebea97d9aae65db05f1f783c3bdc3e9cfa924db46f1cc4c1d2",
+          "end": "2026-10-11T00:00:00+00:00",
+          "key": {
+            "dataset": "funding_events",
+            "interval": "event",
+            "market": "linear_perpetual",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 3,
+          "row_end": "2026-10-11T00:00:00+00:00",
+          "row_start": "2026-10-10T00:00:00+00:00",
+          "source_id": "9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df",
+          "start": "2026-10-10T00:00:00+00:00"
+        },
+        "query_ids": [
+          20896
+        ],
+        "revision_ids": [
+          "31bdb965e3387d4991394b44340457c27db0ffc941b119e91665a3199fff0e32"
+        ],
+        "source_ids": [
+          "9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df"
+        ]
+      },
+      "publish_intent": {
+        "economic_sha256": "ea937c0785804bebea97d9aae65db05f1f783c3bdc3e9cfa924db46f1cc4c1d2",
+        "end": "2026-10-11T00:00:00+00:00",
+        "key": {
+          "dataset": "funding_events",
+          "interval": "event",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "row_count": 3,
+        "row_end": "2026-10-11T00:00:00+00:00",
+        "row_start": "2026-10-10T00:00:00+00:00",
+        "source_id": "9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df",
+        "start": "2026-10-10T00:00:00+00:00"
+      },
+      "requests": [
+        {
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "*,clienttype,Content-Type,lang,x-ui-request-trace,bnc-uuid",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-cache, no-store, must-revalidate",
+            "connection": "keep-alive",
+            "content-encoding": "gzip",
+            "content-security-policy": "default-src 'self'",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Mon, 12 Oct 2026 03:38:03 GMT",
+            "expires": "0",
+            "pragma": "no-cache",
+            "server": "nginx",
+            "strict-transport-security": "max-age=31536000; includeSubdomains",
+            "transfer-encoding": "chunked",
+            "vary": "Accept-Encoding",
+            "via": "1.1 922c977b85f8bf4134ac72600592f924.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "ee6UHbEE2N_oMbTqlgXtnHHVfrOXQZtze1Pw6hRLqLjyKsUjZLw85w==",
+            "x-amz-cf-pop": "ICN80-P2",
+            "x-cache": "Miss from cloudfront",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-xss-protection": "1; mode=block"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:03.876313+00:00",
+          "started_at": "2026-10-12T03:38:03.834745+00:00",
+          "status": 200,
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791590400000&endTime=1791676799999"
+        },
+        {
+          "headers": {
+            "access-control-allow-credentials": "true",
+            "access-control-allow-headers": "*,clienttype,Content-Type,lang,x-ui-request-trace,bnc-uuid",
+            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-cache, no-store, must-revalidate",
+            "connection": "keep-alive",
+            "content-length": "2",
+            "content-security-policy": "default-src 'self'",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Mon, 12 Oct 2026 03:38:03 GMT",
+            "expires": "0",
+            "pragma": "no-cache",
+            "server": "nginx",
+            "strict-transport-security": "max-age=31536000; includeSubdomains",
+            "via": "1.1 922c977b85f8bf4134ac72600592f924.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "N2CauekK4NjiQGtdGkAe4KvL4AhK54yYp1t7yJ-BxrBH7kZwHswxgA==",
+            "x-amz-cf-pop": "ICN80-P2",
+            "x-cache": "Miss from cloudfront",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "x-xss-protection": "1; mode=block"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:03.978344+00:00",
+          "started_at": "2026-10-12T03:38:03.934888+00:00",
+          "status": 200,
+          "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&limit=1000&startTime=1791648000003&endTime=1791676799999"
+        }
+      ],
+      "result": [
+        {
+          "date": "2026-10-10",
+          "revision": "31bdb965e3387d4991394b44340457c27db0ffc941b119e91665a3199fff0e32",
+          "rows": 3,
+          "state": "published"
+        }
+      ],
+      "started_at": "2026-10-12T03:38:03.833778+00:00",
+      "state": "complete",
+      "task_id": "9e84e92b265afced75f359b007be8bfcf8f1a50e771a309dbb48ffce75a42214"
+    },
+    {
+      "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+      "finished_at": "2026-10-12T03:38:04.611553+00:00",
+      "id": "ac4fa7ce565546d8a415d670b0adbee7",
+      "inputs": [
+        {
+          "id": "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad",
+          "kind": "archive",
+          "received_at": "2026-10-12T03:38:04.186255+00:00",
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-10.zip"
+        },
+        {
+          "id": "696a0d7dc9dbd9f1898520a3e195107bbf37aa0b6c989058ab0da906bd088686",
+          "kind": "checksum",
+          "received_at": "2026-10-12T03:38:04.328641+00:00",
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-10.zip.CHECKSUM"
+        }
+      ],
+      "proof": {
+        "checked_at": "2026-10-12T03:38:04.611286+00:00",
+        "file_sha256": [
+          "38f23438c34227bea0f9502207893019d77d91c06e80501387b59fa01efd8c36"
+        ],
+        "publish_intent": {
+          "economic_sha256": "f2d195ae2628bbc67d012087a994d8ac396bff395a2005f707c255b997bb0a8a",
+          "end": "2026-10-11T00:00:00+00:00",
+          "key": {
+            "dataset": "trade_bars",
+            "interval": "1m",
+            "market": "spot",
+            "series": "primary",
+            "symbol": "BTCUSDT"
+          },
+          "row_count": 1440,
+          "row_end": "2026-10-11T00:00:00+00:00",
+          "row_start": "2026-10-10T00:00:00+00:00",
+          "source_id": "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad",
+          "start": "2026-10-10T00:00:00+00:00"
+        },
+        "query_ids": [
+          20895
+        ],
+        "revision_ids": [
+          "cb89a8c816e56c8e07354c6ce250d66a8f872f3121afa6c137cf39f5d5873be3"
+        ],
+        "source_ids": [
+          "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad"
+        ]
+      },
+      "publish_intent": {
+        "economic_sha256": "f2d195ae2628bbc67d012087a994d8ac396bff395a2005f707c255b997bb0a8a",
+        "end": "2026-10-11T00:00:00+00:00",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "spot",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "row_count": 1440,
+        "row_end": "2026-10-11T00:00:00+00:00",
+        "row_start": "2026-10-10T00:00:00+00:00",
+        "source_id": "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad",
+        "start": "2026-10-10T00:00:00+00:00"
+      },
+      "requests": [
+        {
+          "headers": {
+            "accept-ranges": "bytes",
+            "connection": "keep-alive",
+            "content-length": "63119",
+            "content-type": "application/zip",
+            "date": "Mon, 12 Oct 2026 03:38:04 GMT",
+            "etag": "\"644c19be8eefaea9e241dbf92379e75b\"",
+            "last-modified": "Sun, 11 Oct 2026 01:45:01 GMT",
+            "server": "AmazonS3",
+            "via": "1.1 924bc6c22018e459de64c65d80b6bc2a.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "nE8KSeDSKidmGA4-sdod6LYJ-a9uuVjfssg7ZqkD99iXWV9_iCkvoA==",
+            "x-amz-cf-pop": "ICN53-P1",
+            "x-amz-server-side-encryption": "AES256",
+            "x-cache": "Miss from cloudfront"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:04.152006+00:00",
+          "started_at": "2026-10-12T03:38:04.027622+00:00",
+          "status": 200,
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-10.zip"
+        },
+        {
+          "headers": {
+            "accept-ranges": "bytes",
+            "connection": "keep-alive",
+            "content-length": "91",
+            "content-type": "application/zip",
+            "date": "Mon, 12 Oct 2026 03:38:04 GMT",
+            "etag": "\"fe02eaa09e5936f43e2e3afd215acfa4\"",
+            "last-modified": "Sun, 11 Oct 2026 01:45:01 GMT",
+            "server": "AmazonS3",
+            "via": "1.1 924bc6c22018e459de64c65d80b6bc2a.cloudfront.net (CloudFront)",
+            "x-amz-cf-id": "QT1dR6Vii7LZgw6TyrwCrhYhHXSzbTW5Pm_b_p4NWRhSgIFgS26oGw==",
+            "x-amz-cf-pop": "ICN53-P1",
+            "x-amz-server-side-encryption": "AES256",
+            "x-cache": "Miss from cloudfront"
+          },
+          "outcome": "response_consumed",
+          "received_at": "2026-10-12T03:38:04.317698+00:00",
+          "started_at": "2026-10-12T03:38:04.188171+00:00",
+          "status": 200,
+          "url": "https://data.binance.vision/data/spot/daily/klines/BTCUSDT/1m/BTCUSDT-1m-2026-10-10.zip.CHECKSUM"
+        }
+      ],
+      "result": [
+        {
+          "date": "2026-10-10",
+          "revision": "cb89a8c816e56c8e07354c6ce250d66a8f872f3121afa6c137cf39f5d5873be3",
+          "rows": 1440,
+          "state": "published"
+        }
+      ],
+      "started_at": "2026-10-12T03:38:04.026670+00:00",
+      "state": "complete",
+      "task_id": "a0f2c5729d837024a22d39f1b75e2c7ccaec67b9a1b2e9916bdf80f90ce86cb1"
+    }
+  ],
+  "old_acquisitions_retried": 0,
+  "all_attempts_respect_first_eligible_at": true,
+  "latest_run": {
+    "as_of": "2026-10-12T08:13:39.780935+00:00",
+    "completed_tasks": 200,
+    "config_hash": "fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2",
+    "data_complete": false,
+    "finished_at": "2026-10-12T08:13:39.781154+00:00",
+    "id": "03acc1cfc827477f966845e972d23a9d",
+    "pending": [
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-08",
+        "id": "cd3f9a2d48650d6da5888c6f1468d9a06533d94acbda5347b9272a2aca820d97",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-09",
+        "id": "feca918414bcae836b2a4da1165215b036b2ec67d34b1650edcd510795e6833f",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-10",
+        "id": "066c103c020d9fd2383fcdd729109ee25d6742a8d0049f43e7787b5dd91bdbb5",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-08",
+        "id": "57f602bc86f2dd9f5becd7988ebd44e195bf79b554e66cc84ecaee236cc9d407",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-09",
+        "id": "59732a9ebd3df0b7bc745c15e943616bffcc530823711566b3d991d0e27fdd68",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-10",
+        "id": "66f96dad0fb428ece09118e058826c457a230177d38fc5817d2f33427ffeed75",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-08",
+        "id": "fddcecd5828b32739869c4448846421a9983c929415c2adc17ede23e8117d5c6",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-09",
+        "id": "d84eaf380e192180d5a25804d3602cc4cb1e707d3683c77088e79a9601c361d5",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-10",
+        "id": "ceb009b2373d6c7a889e2729e4dd18b2b0260ed1f9927d95a42e2a7eac077f8e",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-08",
+        "id": "d8d5be2a2f5c41f31e0353b9a7de907ce97714489d74f7c78e890ecd345de636",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-09",
+        "id": "9dac515eb7f43345ea3b18bf59207b74d5c8fd9ce05d2927e03c7baf78cdf80e",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-10",
+        "id": "a5dd2d848f38f1a75db99e9f10c7837f101666cdd06414898baadb7e59c019f1",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": null,
+        "day": "2026-10-11",
+        "id": "65b24f7adfbe5ce4efda429c42828d64d1afd7298966e467c371a7c9c6cb8091",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "acquire",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-11",
+        "id": "f564cd4f9404ca6680293035bc8d695bd1a84e67ccb8bd3c6bfa1311414a0710",
+        "key": {
+          "dataset": "trade_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": null,
+        "day": "2026-10-11",
+        "id": "ef9976d91047e7dbd13f7d33f7577b58263bee8ec2367f344d73919ea9d4555c",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "acquire",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-11",
+        "id": "b60dbcc777b6f3950cea2f513de8d7db6071e089b69f601c877927169bf931ba",
+        "key": {
+          "dataset": "mark_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": null,
+        "day": "2026-10-11",
+        "id": "f94b1b55770007de2380e2893e8285f0242b78a3d6de2fb82a79df85535286c8",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "acquire",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-11",
+        "id": "64c236f6265830921f11e03a606b7d46894efda1895b58d160f723000387ffcf",
+        "key": {
+          "dataset": "index_price_bars",
+          "interval": "1m",
+          "market": "linear_perpetual",
+          "series": "primary",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": null,
+        "day": "2026-10-11",
+        "id": "a820290c241e7baa5ea40cef22c3d7a8b4e1924cc93c8de66c1f56d2f02d5fb6",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "acquire",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      },
+      {
+        "cycle": "2026-10-12",
+        "day": "2026-10-11",
+        "id": "80e12e2f537121459a3bd2e50b42c8db4c8d5c2212ac7a2a8bee9fef3cb51f40",
+        "key": {
+          "dataset": "open_interest",
+          "interval": "5m",
+          "market": "linear_perpetual",
+          "series": "archive",
+          "symbol": "BTCUSDT"
+        },
+        "next_at": "2026-10-12T09:00:00+00:00",
+        "purpose": "refresh",
+        "reason": "scheduled",
+        "review_required": false,
+        "state": "planned"
+      }
+    ],
+    "processed": [],
+    "review_required": false,
+    "run_outcome": "no_due_tasks",
+    "runner_ok": true,
+    "started_at": "2026-10-12T08:13:39.347489+00:00",
+    "state_counts": {
+      "complete": 200,
+      "planned": 20
+    },
+    "version": 1
+  },
+  "passed": true
+}

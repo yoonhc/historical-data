@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="26" time="0.486" timestamp="2026-10-15T01:33:24.252738+09:00" hostname="hclm"><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_age_alone_does_not_change_decisions[30]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_age_alone_does_not_change_decisions[601]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_age_alone_does_not_change_decisions[3600]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_age_alone_does_not_change_decisions[86400]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_invalid_observations_are_rejected[tracking0-synchronized]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_invalid_observations_are_rejected[tracking1-reference]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_invalid_observations_are_rejected[tracking2-reference]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_invalid_observations_are_rejected[tracking3-invalid]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_invalid_observations_are_rejected[tracking4-nonfinite]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_invalid_observations_are_rejected[tracking5-external]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_accuracy_numbers_are_not_copied_to_unrelated_date_decisions" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_boundaries_use_interval_not_center_and_future_reference_inside_interval" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_fault_requires_new_observation_and_preserves_history[gap]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_fault_requires_new_observation_and_preserves_history[forward]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_fault_requires_new_observation_and_preserves_history[backward]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_fault_requires_new_observation_and_preserves_history[suspend]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_fault_requires_new_observation_and_preserves_history[provider]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_fault_requires_new_observation_and_preserves_history[query]" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_no_cached_bound_is_moved_to_a_new_wall_sample" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_status_preserves_success_when_freshness_cannot_be_decided" time="0.000" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_clock_decisions" name="test_resume_retains_request_pin_without_retrying_other_errors" time="0.003" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_job_integrations" name="test_pack_cutoff_uses_lower_bound_and_keeps_content_guards" time="0.052" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_job_integrations" name="test_backup_logical_day_survives_midnight_validation_and_resume" time="0.107" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_job_integrations" name="test_oi_grid_ambiguity_prevents_work_and_later_scope_is_fixed" time="0.014"><failure message="marketdata.domain.DataError: OI requires explicit archive/rest series and 5m period">store = &lt;marketdata.store.Store object at 0x7fdca275b0e0&gt;
+
+    def test_oi_grid_ambiguity_prevents_work_and_later_scope_is_fixed(store):
+        s=Samples('2024-01-15T09:00:45Z');c,_=context(s)
+        class Collector:
+            def __init__(self):self.store=store
+            def rest(self,*a):pytest.fail('must not request before range is unambiguous')
+        with jc.using(c),store.writer(),pytest.raises(jc.ClockDeferred,match='grid'):
+&gt;           operations.update(Collector(),[Key('open_interest',interval='5m')])
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+../../tests/test_job_integrations.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+&lt;string&gt;:8: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Key(dataset='open_interest', market='linear_perpetual', symbol='BTCUSDT', interval='5m', series='primary')
+
+    def __post_init__(self):
+        if self.dataset not in DATASETS or self.market not in {"spot", "linear_perpetual"}:
+            raise DataError("Unsupported dataset or market")
+        if self.symbol != "BTCUSDT":
+            raise DataError(
+                "Version 1 supports BTCUSDT only; units must be verified before extension"
+            )
+        if self.market == "spot" and self.dataset not in {"trade_bars", "instrument_metadata"}:
+            raise DataError("This dataset requires the futures market")
+        if self.dataset.endswith("_bars"):
+            if self.interval not in INTERVALS or self.series != "primary":
+                raise DataError("Invalid bar interval/series")
+        elif self.dataset == "open_interest":
+            if self.interval != "5m" or self.series not in {"archive", "rest"}:
+&gt;               raise DataError("OI requires explicit archive/rest series and 5m period")
+E               marketdata.domain.DataError: OI requires explicit archive/rest series and 5m period
+
+.venv/lib/python3.12/site-packages/marketdata/domain.py:115: DataError</failure></testcase><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_job_integrations" name="test_network_retains_actual_responses_when_end_time_fails" time="0.004" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_job_integrations" name="test_oi_probe_preserves_response_and_cooldown_across_clock_recovery" time="0.027" /></testsuite></testsuites>

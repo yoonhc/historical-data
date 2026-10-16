@@ -1,0 +1,23 @@
+[Unit]
+Description=Observe OI endpoint availability without publishing values
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+TimeoutStartSec=80s
+# Partial HTTP/quality observations are recorded, then retried by the timer.
+SuccessExitStatus=2
+
+[Unit]
+Requires=marketdata-jobs-clock-ready.service
+After=marketdata-jobs-clock-ready.service
+[Service]
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+[Service]
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-storage-2026-10-16/candidate/base/.venv/bin/python -B -I /home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-storage-2026-10-16/candidate/policy/run_job.py --job oi-probe --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data oi-probe

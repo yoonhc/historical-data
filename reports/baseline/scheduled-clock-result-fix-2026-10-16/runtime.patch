@@ -1,0 +1,65 @@
+--- before/policy/request_contract.py
++++ after/policy/request_contract.py
+@@ -9,6 +9,7 @@
+ import sqlite3
+ import tomllib
+ from contextlib import closing
++from decimal import Decimal
+ from pathlib import Path
+ 
+ VERSION = "scheduled-request-v2"
+@@ -18,8 +19,17 @@
+     pass
+ 
+ 
++def json_default(value):
++    if isinstance(value, (dt.datetime, dt.date)):
++        return value.isoformat()
++    if isinstance(value, Decimal):
++        # Match marketdata.domain's stored numeric representation without float loss.
++        return str(value)
++    raise TypeError(f"Unsupported request value: {type(value).__name__}")
++
++
+ def encode(value):
+-    return json.dumps(value, sort_keys=True, default=lambda v: v.isoformat()).encode() + b"\n"
++    return json.dumps(value, sort_keys=True, default=json_default).encode() + b"\n"
+ 
+ 
+ def digest(raw):
+--- before/policy/run_job.py
++++ after/policy/run_job.py
+@@ -6,12 +6,14 @@
+ 
+ import argparse
+ import contextlib
++import datetime as dt
+ import fcntl
+ import hashlib
+ import importlib.util
+ import json
+ import os
+ from pathlib import Path
++from decimal import Decimal
+ import runpy
+ import signal
+ import sys
+@@ -32,8 +34,17 @@
+ }
+ 
+ 
++def json_default(value):
++    if isinstance(value, (dt.datetime, dt.date)):
++        return value.isoformat()
++    if isinstance(value, Decimal):
++        # Match the committed report; never round quantities through float.
++        return str(value)
++    raise TypeError(f"Unsupported request value: {type(value).__name__}")
++
++
+ def encode(value):
+-    return json.dumps(value, sort_keys=True, default=lambda v: v.isoformat()).encode() + b"\n"
++    return json.dumps(value, sort_keys=True, default=json_default).encode() + b"\n"
+ 
+ 
+ def atomic(path, value):

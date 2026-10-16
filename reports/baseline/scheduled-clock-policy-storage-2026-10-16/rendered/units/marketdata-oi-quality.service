@@ -1,0 +1,21 @@
+[Unit]
+Description=Generate daily OI parity and availability evidence
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+TimeoutStartSec=5min
+# A completed report can contain findings requiring review.
+SuccessExitStatus=2
+
+[Unit]
+Requires=marketdata-jobs-clock-ready.service
+After=marketdata-jobs-clock-ready.service
+[Service]
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+[Service]
+ExecStart=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job oi-quality --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data oi-quality --days 7

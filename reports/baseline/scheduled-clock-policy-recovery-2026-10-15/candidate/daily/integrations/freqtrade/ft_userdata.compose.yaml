@@ -1,0 +1,17 @@
+# Apply AFTER the existing ft_userdata/docker-compose.yml. All host paths are absolute.
+services:
+  freqtrade:
+    image: freqtradeorg/freqtrade@sha256:7031bca43ed7668ebf421725dd5016acade6ef88b0771db3e08c96e6d19a42db
+    command: ["--version"]
+    working_dir: /freqtrade
+    volumes:
+      - ${MARKETDATA_EXPORT:?select an export}:/marketdata:ro
+      - ${MARKETDATA_ROOT:?project root}/integrations/freqtrade/check_export.py:/checks/check_export.py:ro
+      - ${MARKETDATA_STRATEGIES:?strategy directory}:/strategies:ro
+      - ${MARKETDATA_ROOT}/integrations/freqtrade/config.spot.json:/configs/spot.json:ro
+      - ${MARKETDATA_ROOT}/integrations/freqtrade/config.futures.json:/configs/futures.json:ro
+      - ${MARKETDATA_ROOT}/integrations/freqtrade/config.lookahead.json:/configs/lookahead.json:ro
+      - ${MARKETDATA_ROOT}/packages/marketdata/src:/opt/marketdata:ro
+      - ${MARKETDATA_ROOT}/packages/marketdata_freqtrade/src:/opt/adapter:ro
+    environment:
+      PYTHONPATH: /opt/marketdata:/opt/adapter

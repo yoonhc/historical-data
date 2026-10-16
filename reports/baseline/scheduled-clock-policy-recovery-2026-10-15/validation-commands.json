@@ -1,0 +1,151 @@
+{
+  "release_id": "scheduled-clock-policy-20261015-5b02fc74867e5bab",
+  "commands": [
+    {
+      "report": "base-policy.xml",
+      "cwd": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15",
+      "argv": [
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/base/.venv/bin/python",
+        "-B",
+        "-I",
+        "run_tests.py",
+        "base",
+        "tests/test_clock_decisions.py",
+        "tests/test_job_integrations.py",
+        "tests/test_rendered_contract.py",
+        "tests/test_wrapper_recovery.py",
+        "tests/test_result_connections.py",
+        "-q",
+        "--tb=short",
+        "--junitxml=base-policy.xml"
+      ]
+    },
+    {
+      "report": "daily-policy.xml",
+      "cwd": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15",
+      "argv": [
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/daily/.venv/bin/python",
+        "-B",
+        "-I",
+        "run_tests.py",
+        "daily",
+        "tests/test_daily_clock.py",
+        "tests/test_daily_result_connection.py",
+        "-q",
+        "--tb=short",
+        "--junitxml=daily-policy.xml"
+      ]
+    },
+    {
+      "report": "preserve-policy.xml",
+      "cwd": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15",
+      "argv": [
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/preserve/.venv/bin/python",
+        "-B",
+        "-I",
+        "run_tests.py",
+        "preserve",
+        "tests/test_preservation_clock.py",
+        "tests/test_boot_binding.py",
+        "tests/test_preserve_result_connections.py",
+        "-q",
+        "--tb=short",
+        "--junitxml=preserve-policy.xml"
+      ]
+    },
+    {
+      "report": "base-regression.xml",
+      "cwd": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15",
+      "argv": [
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/base/.venv/bin/python",
+        "-B",
+        "-I",
+        "run_tests.py",
+        "base",
+        "candidate/base/tests/test_maintenance.py",
+        "candidate/base/tests/test_maintenance_wait.py",
+        "candidate/base/tests/test_network_observer.py",
+        "candidate/base/tests/test_oi_probe.py",
+        "candidate/base/tests/test_oi_quality.py",
+        "candidate/base/tests/test_operations.py",
+        "candidate/base/tests/test_packing.py",
+        "candidate/base/tests/test_transport.py",
+        "candidate/base/tests/test_ingestion.py",
+        "candidate/base/tests/test_recovery.py",
+        "-q",
+        "--tb=short",
+        "--junitxml=base-regression.xml"
+      ]
+    },
+    {
+      "report": "preserve-regression.xml",
+      "cwd": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15",
+      "argv": [
+        "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/preserve/.venv/bin/python",
+        "-B",
+        "-I",
+        "run_tests.py",
+        "preserve",
+        "candidate/preserve/tests/test_backup.py",
+        "candidate/preserve/tests/test_checkpoint_code.py",
+        "candidate/preserve/tests/test_checkpoint_evidence.py",
+        "candidate/preserve/tests/test_checkpoint_registration.py",
+        "candidate/preserve/tests/test_maintenance.py",
+        "candidate/preserve/tests/test_packing.py",
+        "candidate/preserve/tests/test_restic_schedule.py",
+        "candidate/preserve/tests/test_retirement_clock.py",
+        "-q",
+        "--tb=short",
+        "--junitxml=preserve-regression.xml"
+      ],
+      "environment": {
+        "T05_PREVIOUS_SOURCE": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-clock-retirement-2026-10-11/work"
+      }
+    },
+    {
+      "report": "daily-regression.xml",
+      "cwd": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate/daily",
+      "argv": [
+        ".venv/bin/python",
+        "-B",
+        "-I",
+        "../../run_tests.py",
+        "daily",
+        "tests/test_daily_review.py",
+        "tests/test_daily_schedule.py",
+        "-q",
+        "--tb=short",
+        "--junitxml=../../daily-regression.xml"
+      ]
+    },
+    {
+      "report": "unit-verification.json",
+      "cwd": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15",
+      "argv": [
+        "python3",
+        "verify_units.py"
+      ]
+    }
+  ],
+  "environment_installation": {
+    "variants": [
+      "base",
+      "daily",
+      "preserve"
+    ],
+    "argv": [
+      "uv",
+      "sync",
+      "--offline",
+      "--frozen",
+      "--no-editable",
+      "--reinstall-package",
+      "marketdata"
+    ],
+    "network_download": false
+  },
+  "final_report_sealing": [
+    "python3",
+    "finish_review.py"
+  ]
+}

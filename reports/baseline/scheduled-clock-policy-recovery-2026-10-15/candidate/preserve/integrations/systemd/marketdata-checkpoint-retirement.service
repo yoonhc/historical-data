@@ -1,0 +1,22 @@
+[Unit]
+Description=Retire verified working checkpoints under an explicit recurring grant
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h
+EnvironmentFile=%h/.config/marketdata/checkpoint-retirement-service.env
+Environment=PYTHONNOUSERSITE=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+ExecStart=/usr/bin/env ${MARKETDATA_RETIREMENT_PYTHON} ${MARKETDATA_RETIREMENT_ENTRYPOINT} --settings ${MARKETDATA_RETIREMENT_SETTINGS} run
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=2h
+KillSignal=SIGINT
+TimeoutStopSec=120s
+Restart=no
+SuccessExitStatus=75
+StandardOutput=journal
+StandardError=journal

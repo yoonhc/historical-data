@@ -1,0 +1,248 @@
+{
+  "trial": "/tmp/t16-relocated-qkw41_pc",
+  "actual_systemd": false,
+  "passed": true,
+  "records": [
+    {
+      "job": "oi",
+      "returncode": 0,
+      "argv": [
+        "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python",
+        "-B",
+        "-I",
+        "/tmp/t16-relocated-qkw41_pc/release/trial_worker.py",
+        "--trial",
+        "/tmp/t16-relocated-qkw41_pc/release",
+        "--state",
+        "/tmp/t16-relocated-qkw41_pc/state/oi",
+        "--job",
+        "oi",
+        "--local-check"
+      ],
+      "worker": {
+        "actual_provider_in_work_tests": false,
+        "executable": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python",
+        "invocation": null,
+        "job": "oi",
+        "module": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "passed": true,
+        "prefix": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv",
+        "returncode": 0,
+        "uid": 1000,
+        "variant": "base"
+      },
+      "junit": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"1\" time=\"0.221\" timestamp=\"2026-10-16T21:23:31.494995+09:00\" hostname=\"hclm\"><testcase classname=\"test_result_connections\" name=\"test_real_oi_update_commit_and_failure_keep_distinct_request_status[False]\" time=\"0.070\" /></testsuite></testsuites>"
+    },
+    {
+      "job": "oi-probe",
+      "returncode": 0,
+      "argv": [
+        "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python",
+        "-B",
+        "-I",
+        "/tmp/t16-relocated-qkw41_pc/release/trial_worker.py",
+        "--trial",
+        "/tmp/t16-relocated-qkw41_pc/release",
+        "--state",
+        "/tmp/t16-relocated-qkw41_pc/state/oi-probe",
+        "--job",
+        "oi-probe",
+        "--local-check"
+      ],
+      "worker": {
+        "actual_provider_in_work_tests": false,
+        "executable": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python",
+        "invocation": null,
+        "job": "oi-probe",
+        "module": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "passed": true,
+        "prefix": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv",
+        "returncode": 0,
+        "uid": 1000,
+        "variant": "base"
+      },
+      "junit": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"1\" time=\"0.552\" timestamp=\"2026-10-16T21:23:32.176740+09:00\" hostname=\"hclm\"><testcase classname=\"test_storage_recovery\" name=\"test_old_runtime_updates_latest_then_reapply_recovers_original[close-oi-probe]\" time=\"0.405\" /></testsuite></testsuites>"
+    },
+    {
+      "job": "oi-quality",
+      "returncode": 0,
+      "argv": [
+        "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python",
+        "-B",
+        "-I",
+        "/tmp/t16-relocated-qkw41_pc/release/trial_worker.py",
+        "--trial",
+        "/tmp/t16-relocated-qkw41_pc/release",
+        "--state",
+        "/tmp/t16-relocated-qkw41_pc/state/oi-quality",
+        "--job",
+        "oi-quality",
+        "--local-check"
+      ],
+      "worker": {
+        "actual_provider_in_work_tests": false,
+        "executable": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python",
+        "invocation": null,
+        "job": "oi-quality",
+        "module": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "passed": true,
+        "prefix": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv",
+        "returncode": 0,
+        "uid": 1000,
+        "variant": "base"
+      },
+      "junit": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"6\" time=\"0.391\" timestamp=\"2026-10-16T21:23:33.182803+09:00\" hostname=\"hclm\"><testcase classname=\"test_wrapper_recovery\" name=\"test_real_quality_findings_are_terminal_and_argparse_two_is_not\" time=\"0.285\" /><testcase classname=\"test_wrapper_recovery\" name=\"test_dead_monitor_never_resumes_payload[sample_error0]\" time=\"0.014\" /><testcase classname=\"test_wrapper_recovery\" name=\"test_dead_monitor_never_resumes_payload[sample_error1]\" time=\"0.015\" /><testcase classname=\"test_wrapper_recovery\" name=\"test_dead_monitor_never_resumes_payload[sample_error2]\" time=\"0.014\" /><testcase classname=\"test_wrapper_recovery\" name=\"test_success_observation_journal_failure_never_becomes_time_wait\" time=\"0.000\" /><testcase classname=\"test_wrapper_recovery\" name=\"test_real_blocked_monitor_close_is_bounded_and_fatal\" time=\"0.022\" /></testsuite></testsuites>"
+    },
+    {
+      "job": "daily",
+      "returncode": 0,
+      "argv": [
+        "/tmp/t16-relocated-qkw41_pc/release/candidate/daily/.venv/bin/python",
+        "-B",
+        "-I",
+        "/tmp/t16-relocated-qkw41_pc/release/trial_worker.py",
+        "--trial",
+        "/tmp/t16-relocated-qkw41_pc/release",
+        "--state",
+        "/tmp/t16-relocated-qkw41_pc/state/daily",
+        "--job",
+        "daily",
+        "--local-check"
+      ],
+      "worker": {
+        "actual_provider_in_work_tests": false,
+        "executable": "/tmp/t16-relocated-qkw41_pc/release/candidate/daily/.venv/bin/python",
+        "invocation": null,
+        "job": "daily",
+        "module": "/tmp/t16-relocated-qkw41_pc/release/candidate/daily/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "passed": true,
+        "prefix": "/tmp/t16-relocated-qkw41_pc/release/candidate/daily/.venv",
+        "returncode": 0,
+        "uid": 1000,
+        "variant": "daily"
+      },
+      "junit": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"1\" time=\"0.263\" timestamp=\"2026-10-16T21:23:34.028220+09:00\" hostname=\"hclm\"><testcase classname=\"test_daily_result_connection\" name=\"test_real_daily_cli_ledger_terminal_and_no_duplicate_http\" time=\"0.115\" /></testsuite></testsuites>"
+    },
+    {
+      "job": "pack",
+      "returncode": 0,
+      "argv": [
+        "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python",
+        "-B",
+        "-I",
+        "/tmp/t16-relocated-qkw41_pc/release/trial_worker.py",
+        "--trial",
+        "/tmp/t16-relocated-qkw41_pc/release",
+        "--state",
+        "/tmp/t16-relocated-qkw41_pc/state/pack",
+        "--job",
+        "pack",
+        "--local-check"
+      ],
+      "worker": {
+        "actual_provider_in_work_tests": false,
+        "executable": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python",
+        "invocation": null,
+        "job": "pack",
+        "module": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "passed": true,
+        "prefix": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv",
+        "returncode": 0,
+        "uid": 1000,
+        "variant": "base"
+      },
+      "junit": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"1\" time=\"0.200\" timestamp=\"2026-10-16T21:23:34.750005+09:00\" hostname=\"hclm\"><testcase classname=\"test_result_connections\" name=\"test_real_pack_final_report_controls_terminal_warning[False]\" time=\"0.059\" /></testsuite></testsuites>"
+    },
+    {
+      "job": "backup",
+      "returncode": 0,
+      "argv": [
+        "/tmp/t16-relocated-qkw41_pc/release/candidate/preserve/.venv/bin/python",
+        "-B",
+        "-I",
+        "/tmp/t16-relocated-qkw41_pc/release/trial_worker.py",
+        "--trial",
+        "/tmp/t16-relocated-qkw41_pc/release",
+        "--state",
+        "/tmp/t16-relocated-qkw41_pc/state/backup",
+        "--job",
+        "backup",
+        "--local-check"
+      ],
+      "worker": {
+        "actual_provider_in_work_tests": false,
+        "executable": "/tmp/t16-relocated-qkw41_pc/release/candidate/preserve/.venv/bin/python",
+        "invocation": null,
+        "job": "backup",
+        "module": "/tmp/t16-relocated-qkw41_pc/release/candidate/preserve/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "passed": true,
+        "prefix": "/tmp/t16-relocated-qkw41_pc/release/candidate/preserve/.venv",
+        "returncode": 0,
+        "uid": 1000,
+        "variant": "preserve"
+      },
+      "junit": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"1\" time=\"0.386\" timestamp=\"2026-10-16T21:23:35.369920+09:00\" hostname=\"hclm\"><testcase classname=\"test_preserve_result_connections\" name=\"test_backup_saved_before_close_failure_recovers_original_day_and_T05_graph\" time=\"0.181\" /></testsuite></testsuites>"
+    },
+    {
+      "job": "restic-archive",
+      "returncode": 0,
+      "argv": [
+        "/tmp/t16-relocated-qkw41_pc/release/candidate/preserve/.venv/bin/python",
+        "-B",
+        "-I",
+        "/tmp/t16-relocated-qkw41_pc/release/trial_worker.py",
+        "--trial",
+        "/tmp/t16-relocated-qkw41_pc/release",
+        "--state",
+        "/tmp/t16-relocated-qkw41_pc/state/restic-archive",
+        "--job",
+        "restic-archive",
+        "--local-check"
+      ],
+      "worker": {
+        "actual_provider_in_work_tests": false,
+        "executable": "/tmp/t16-relocated-qkw41_pc/release/candidate/preserve/.venv/bin/python",
+        "invocation": null,
+        "job": "restic-archive",
+        "module": "/tmp/t16-relocated-qkw41_pc/release/candidate/preserve/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "passed": true,
+        "prefix": "/tmp/t16-relocated-qkw41_pc/release/candidate/preserve/.venv",
+        "returncode": 0,
+        "uid": 1000,
+        "variant": "preserve"
+      },
+      "junit": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"1\" time=\"0.294\" timestamp=\"2026-10-16T21:23:36.216349+09:00\" hostname=\"hclm\"><testcase classname=\"test_preserve_result_connections\" name=\"test_restic_real_schedule_entrypoint_binds_committed_receipt\" time=\"0.078\" /></testsuite></testsuites>"
+    },
+    {
+      "job": "network-observer",
+      "returncode": 0,
+      "argv": [
+        "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python",
+        "-B",
+        "-I",
+        "/tmp/t16-relocated-qkw41_pc/release/trial_worker.py",
+        "--trial",
+        "/tmp/t16-relocated-qkw41_pc/release",
+        "--state",
+        "/tmp/t16-relocated-qkw41_pc/state/network-observer",
+        "--job",
+        "network-observer",
+        "--local-check"
+      ],
+      "worker": {
+        "actual_provider_in_work_tests": false,
+        "executable": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python",
+        "invocation": null,
+        "job": "network-observer",
+        "module": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "passed": true,
+        "prefix": "/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv",
+        "returncode": 0,
+        "uid": 1000,
+        "variant": "base"
+      },
+      "junit": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"1\" time=\"0.256\" timestamp=\"2026-10-16T21:23:36.996500+09:00\" hostname=\"hclm\"><testcase classname=\"test_storage_recovery\" name=\"test_old_runtime_updates_latest_then_reapply_recovers_original[close-network-observer]\" time=\"0.096\" /></testsuite></testsuites>"
+    }
+  ],
+  "temporary_copy_retained_until_review": true
+}

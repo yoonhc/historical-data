@@ -1,0 +1,12 @@
+[Unit]
+Description=Observe OI endpoint availability without publishing values
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+ExecStart=/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/marketdata --root . oi-probe
+TimeoutStartSec=80s
+# Partial HTTP/quality observations are recorded, then retried by the timer.
+SuccessExitStatus=2

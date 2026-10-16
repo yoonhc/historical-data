@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="11" time="1.242" timestamp="2026-10-15T20:54:15.519222+09:00" hostname="hclm"><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_clock" name="test_old_reference_real_storage_then_zero_duplicate_requests" time="0.076" /><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_clock" name="test_first_eligibility_wait_is_not_failure_and_original_target_resumes" time="0.073" /><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_clock" name="test_persisted_server_cooldown_uses_upper_and_lower_bounds[3600]" time="0.080" /><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_clock" name="test_persisted_server_cooldown_uses_upper_and_lower_bounds[http-date]" time="0.080" /><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_clock" name="test_429_received_then_clock_loss_preserves_limit_without_spending_failure_budget" time="0.037"><failure message="marketdata.job_clock.ClockFailure: observation_failed: OSError: query unavailable">tests/test_daily_clock.py:90: in query_current
+    raise OSError("query unavailable")
+E   OSError: query unavailable
+
+The above exception was the direct cause of the following exception:
+tests/test_daily_clock.py:95: in test_429_received_then_clock_loss_preserves_limit_without_spending_failure_budget
+    runner.run()
+candidate/daily/packages/marketdata/src/marketdata/daily_schedule.py:927: in run
+    self.execute_task(task)
+candidate/daily/packages/marketdata/src/marketdata/daily_schedule.py:784: in execute_task
+    result = collector.archive(key, start, end, monthly=False, refresh=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+candidate/daily/packages/marketdata/src/marketdata/pipeline.py:162: in archive
+    zip_response = self.fetcher.fetch(url)
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+candidate/daily/packages/marketdata/src/marketdata/binance.py:69: in fetch
+    with self.client.stream("GET", url) as response:
+/usr/lib/python3.12/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+candidate/daily/packages/marketdata/src/marketdata/daily_schedule.py:201: in stream
+    scheduler.cooldown(url, response.headers)
+candidate/daily/packages/marketdata/src/marketdata/daily_schedule.py:320: in cooldown
+    point = jc.active().point('daily_rate_limit_received') if jc.active() else None
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+candidate/daily/packages/marketdata/src/marketdata/job_clock.py:236: in point
+    self.fail("observation_failed", exc)
+candidate/daily/packages/marketdata/src/marketdata/job_clock.py:185: in fail
+    self.check_health()
+candidate/daily/packages/marketdata/src/marketdata/job_clock.py:190: in check_health
+    raise ClockFailure(f"{reason}: {type(exc).__name__}: {exc}") from exc
+E   marketdata.job_clock.ClockFailure: observation_failed: OSError: query unavailable</failure></testcase><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_clock" name="test_storage_commit_then_time_hold_recovers_without_redownload" time="0.078" /><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_clock" name="test_real_transport_failure_is_counted_once_after_clock_recovers" time="0.038" /><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_clock" name="test_new_time_records_survive_previous_backup_restore_and_runtime_read" time="0.269" /><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_clock" name="test_time_hold_before_HTTP_preserves_manual_grant_and_inner_job_reason" time="0.060" /><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_result_connection" name="test_real_daily_cli_ledger_terminal_and_no_duplicate_http" time="0.104" /><testcase classname="reports.baseline.scheduled-clock-policy-recovery-2026-10-15.tests.test_daily_result_connection" name="test_daily_lock_wait_is_nonterminal_and_does_not_spend_attempts" time="0.086"><failure message="sqlite3.OperationalError: no such table: daily_attempts">tests/test_daily_result_connection.py:43: in test_daily_lock_wait_is_nonterminal_and_does_not_spend_attempts
+    assert wrapper.store.db.execute('SELECT COUNT(*) FROM daily_attempts').fetchone()[0] == 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   sqlite3.OperationalError: no such table: daily_attempts</failure></testcase></testsuite></testsuites>

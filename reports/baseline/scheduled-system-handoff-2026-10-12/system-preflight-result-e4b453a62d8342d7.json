@@ -1,0 +1,1534 @@
+{
+  "after": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "identities": {
+      "chrony.service": {
+        "ActiveState": "active",
+        "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+        "MainPID": "1245"
+      },
+      "marketdata-collector@aggtrade.service": {
+        "ActiveState": "active",
+        "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+        "MainPID": "224784"
+      },
+      "marketdata-collector@depth.service": {
+        "ActiveState": "active",
+        "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+        "MainPID": "224785"
+      }
+    },
+    "inventory": {
+      "system": "marketdata-checkpoint-retirement-apply@.service  linked   enabled\nmarketdata-checkpoint-retirement-preview.service linked   enabled\nmarketdata-checkpoint-retirement.service         masked   enabled\nmarketdata-clock-bootstrap.service               enabled  enabled\nmarketdata-collector@.service                    indirect enabled\nmarketdata-checkpoint-retirement.timer           masked   enabled\n",
+      "user": "marketdata-aggtrade.service              masked  enabled\nmarketdata-backup.service                linked  enabled\nmarketdata-checkpoint-retirement.service masked  enabled\nmarketdata-clock-ready.service           static  -\nmarketdata-daily.service                 static  -\nmarketdata-depth.service                 masked  enabled\nmarketdata-network-observer.service      static  -\nmarketdata-oi-probe.service              linked  enabled\nmarketdata-oi-quality.service            linked  enabled\nmarketdata-oi.service                    linked  enabled\nmarketdata-pack.service                  linked  enabled\nmarketdata-restic-archive.service        static  -\nmarketdata-backup.timer                  enabled enabled\nmarketdata-checkpoint-retirement.timer   masked  enabled\nmarketdata-daily.timer                   enabled enabled\nmarketdata-network-observer.timer        enabled enabled\nmarketdata-oi-probe.timer                enabled enabled\nmarketdata-oi-quality.timer              enabled enabled\nmarketdata-oi.timer                      enabled enabled\nmarketdata-pack.timer                    enabled enabled\nmarketdata-restic-archive.timer          enabled enabled\n"
+    },
+    "nodes": {
+      "/etc/chrony/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "cdff5dc077ea83c451d9273ba394eb3f5b0d075b6ca85fb8a07f28192c766f2c",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/manual.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "946c2c35aa5476f3de2780e113eee2131fe0a52ebbf3409dcaedf79cf3c4560e",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/settings.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b",
+        "uid": 0
+      },
+      "/etc/marketdata/clock-bootstrap.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+        "uid": 0
+      },
+      "/etc/marketdata/daily-publication-probe.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "347596dfcabe6e48a3e4084887e6930860593a83d6313aa392f4223e9f7f120b",
+        "uid": 0
+      },
+      "/etc/marketdata/daily-scheduler.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "1410f51a83b5ed95f0c2258835540c3bf2946975285041d298a9608638aff887",
+        "uid": 0
+      },
+      "/etc/marketdata/runtime.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+        "uid": 0
+      },
+      "/etc/marketdata/scheduled-system/oi-live.toml": {
+        "kind": "absent"
+      },
+      "/etc/marketdata/scheduled-system/topology.json": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12",
+        "uid": 0
+      },
+      "/etc/systemd/system/chrony.service.d/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-backup.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-backup.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-checkpoint-retirement.service": {
+        "gid": 0,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-checkpoint-retirement.timer": {
+        "gid": 0,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-clock-ready.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-collector@.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-daily.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-daily.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-network-observer.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-network-observer.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-probe.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-probe.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-quality.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-quality.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-pack.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-pack.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-restic-archive.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-restic-archive.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-backup.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-daily.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-network-observer.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi-probe.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi-quality.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-pack.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-restic-archive.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-clock-ready.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/home/yoonhc/.config/marketdata/network-observer.env": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "ebdf2cb3264d8152b0fadcc22932e2809a6d122d487215c942b70282b3e8eb13",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/network-observer.toml": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/restic-archive.toml": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/restic-service.env": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.service.d/80-checkpoint-evidence.conf": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "3ab1e66c6ab15a3e9ded81c903192360b4fa3266bca1cee05639fbd346af445f",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "d9121ababca9ed23cf6bc84df1b3b9a1832494f6385eb324379064d7067a4f3b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "55326bb195734a6ea5afea99b1916390fc839e2fbb37ccd8dc145fb8c12318a1",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "2ffe783c9341d78fc93526d3f401126932951e6e69788fdc3d69ce18c619bca8",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service.d/80-checkpoint-evidence.conf": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "36120a311a55b6fa836b695c74c769bc6d63703ba8dc6bfcb42236eec716f39b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-daily.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-daily.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-network-observer.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-restic-archive.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676",
+        "uid": 1000
+      },
+      "/var/lib/marketdata-clock/boot-state.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "eae06031a81a0a94567d96babad6fd89a1aad91bf10ea75b7cc93095b7720c99",
+        "uid": 0
+      }
+    }
+  },
+  "before": {
+    "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+    "identities": {
+      "chrony.service": {
+        "ActiveState": "active",
+        "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+        "MainPID": "1245"
+      },
+      "marketdata-collector@aggtrade.service": {
+        "ActiveState": "active",
+        "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+        "MainPID": "224784"
+      },
+      "marketdata-collector@depth.service": {
+        "ActiveState": "active",
+        "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+        "MainPID": "224785"
+      }
+    },
+    "inventory": {
+      "system": "marketdata-checkpoint-retirement-apply@.service  linked   enabled\nmarketdata-checkpoint-retirement-preview.service linked   enabled\nmarketdata-checkpoint-retirement.service         masked   enabled\nmarketdata-clock-bootstrap.service               enabled  enabled\nmarketdata-collector@.service                    indirect enabled\nmarketdata-checkpoint-retirement.timer           masked   enabled\n",
+      "user": "marketdata-aggtrade.service              masked  enabled\nmarketdata-backup.service                linked  enabled\nmarketdata-checkpoint-retirement.service masked  enabled\nmarketdata-clock-ready.service           static  -\nmarketdata-daily.service                 static  -\nmarketdata-depth.service                 masked  enabled\nmarketdata-network-observer.service      static  -\nmarketdata-oi-probe.service              linked  enabled\nmarketdata-oi-quality.service            linked  enabled\nmarketdata-oi.service                    linked  enabled\nmarketdata-pack.service                  linked  enabled\nmarketdata-restic-archive.service        static  -\nmarketdata-backup.timer                  enabled enabled\nmarketdata-checkpoint-retirement.timer   masked  enabled\nmarketdata-daily.timer                   enabled enabled\nmarketdata-network-observer.timer        enabled enabled\nmarketdata-oi-probe.timer                enabled enabled\nmarketdata-oi-quality.timer              enabled enabled\nmarketdata-oi.timer                      enabled enabled\nmarketdata-pack.timer                    enabled enabled\nmarketdata-restic-archive.timer          enabled enabled\n"
+    },
+    "nodes": {
+      "/etc/chrony/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "cdff5dc077ea83c451d9273ba394eb3f5b0d075b6ca85fb8a07f28192c766f2c",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/manual.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "946c2c35aa5476f3de2780e113eee2131fe0a52ebbf3409dcaedf79cf3c4560e",
+        "uid": 0
+      },
+      "/etc/marketdata/checkpoint-clock-retirement/settings.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b",
+        "uid": 0
+      },
+      "/etc/marketdata/clock-bootstrap.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb",
+        "uid": 0
+      },
+      "/etc/marketdata/daily-publication-probe.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "347596dfcabe6e48a3e4084887e6930860593a83d6313aa392f4223e9f7f120b",
+        "uid": 0
+      },
+      "/etc/marketdata/daily-scheduler.toml": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "1410f51a83b5ed95f0c2258835540c3bf2946975285041d298a9608638aff887",
+        "uid": 0
+      },
+      "/etc/marketdata/runtime.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+        "uid": 0
+      },
+      "/etc/marketdata/scheduled-system/oi-live.toml": {
+        "kind": "absent"
+      },
+      "/etc/marketdata/scheduled-system/topology.json": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/chrony-wait.service.d/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "bf22c050f1efe7e4e43ebc5281e8a7c61b4c10a507a505b941169c45cbdb5e12",
+        "uid": 0
+      },
+      "/etc/systemd/system/chrony.service.d/marketdata.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "624cac7b3130e3c1d3f61cd43ae3a10d1754512de4963414fdcea812af84a9c4",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-backup.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-backup.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-checkpoint-retirement.service": {
+        "gid": 0,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-checkpoint-retirement.timer": {
+        "gid": 0,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "fcf24e3715acfaf4434b9cc1b18fcd0ffd93d7c03ca0d79d640bba860e8699bc",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-clock-ready.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-collector@.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "2c82572681d9bd546d87f6c812006397c31443e16be3ef74aa4f03a29a1776e4",
+        "uid": 0
+      },
+      "/etc/systemd/system/marketdata-daily.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-daily.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-network-observer.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-network-observer.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-probe.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-probe.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-quality.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi-quality.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-oi.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-pack.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-pack.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-restic-archive.service": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/marketdata-restic-archive.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-backup.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-daily.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-network-observer.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi-probe.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi-quality.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-oi.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-pack.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/system/timers.target.wants/marketdata-restic-archive.timer": {
+        "kind": "absent"
+      },
+      "/etc/systemd/user/marketdata-backup.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-clock-ready.service": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "e22791d2aab43a6bb9cbd992f75879c7e67b8f69eab0b7cbb0d7293d562973ab",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-daily.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-network-observer.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi-probe.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi-quality.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-oi.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-pack.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/etc/systemd/user/marketdata-restic-archive.service.d/90-marketdata-clock.conf": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "a472857506697b03594559f699a0fc82244a013575ba9a0924b9e0f9c2b23598",
+        "uid": 0
+      },
+      "/home/yoonhc/.config/marketdata/network-observer.env": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "ebdf2cb3264d8152b0fadcc22932e2809a6d122d487215c942b70282b3e8eb13",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/network-observer.toml": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "65c27f72b553da92ebe779d61ec68ae63372225011b0748c53d73e93658eea12",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/restic-archive.toml": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/marketdata/restic-service.env": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 384,
+        "sha256": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.service.d/80-checkpoint-evidence.conf": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "3ab1e66c6ab15a3e9ded81c903192360b4fa3266bca1cee05639fbd346af445f",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/dev/null",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "d9121ababca9ed23cf6bc84df1b3b9a1832494f6385eb324379064d7067a4f3b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "55326bb195734a6ea5afea99b1916390fc839e2fbb37ccd8dc145fb8c12318a1",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "2ffe783c9341d78fc93526d3f401126932951e6e69788fdc3d69ce18c619bca8",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "539a27d79f8e311c4457f95341dc658b606f7487469cc0a2ce8dfc0e421d6599",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.service": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "8a9c2c20d9457a181386fbfc2fee4621783ac3fe064cf636e8c7a7717df7fb73",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service.d/80-checkpoint-evidence.conf": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "36120a311a55b6fa836b695c74c769bc6d63703ba8dc6bfcb42236eec716f39b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-daily.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-daily.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-network-observer.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-restic-archive.timer": {
+        "gid": 1000,
+        "kind": "symlink",
+        "mode": 511,
+        "target": "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "1603ffcf82ff52578ca1b74221fe1e3e5f5f36fa9f112ac2e649108086006389",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-backup.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "4796ebc355218ec649c5b48a9cb49eb474118e4b7cba65202f6b6f467c170141",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "c78dc65dfc2cfd7d83c34e6bab609f217e2db0f3ed8281776f0dffc9913d5df5",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-probe.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "faed7a2e667b41bee87f692fc876c9ec50deabfe03ea5913dd842c95ab109754",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "31b0fb78468a031471041c8064b1ba196cfebd5390d0c8f076ffe5927c1f82d6",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi-quality.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "6b27bbd3e946e629aace3dda5bfbe86bf9ffcd49e0cd59755176ab12545faa75",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "75fdf38454337944890c631fe054e394a438ad8dbdd24a6bb4b61700eb44c61f",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-oi.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "661b25c22627099969d1edfdd7ebe21dec2d6689246cc7d51c2eda037ee7dc11",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.service": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "bac1e831ff9441c3e45b10f0df9070af166b10da5106e4b01861c2f80ec655c2",
+        "uid": 1000
+      },
+      "/home/yoonhc/projects/algoTrade/historical_data/integrations/systemd/marketdata-pack.timer": {
+        "gid": 1000,
+        "kind": "file",
+        "mode": 436,
+        "sha256": "551c81722dec1122d927f56f8a6012bce165c725c147b46a31ab8b1b4ecc5676",
+        "uid": 1000
+      },
+      "/var/lib/marketdata-clock/boot-state.json": {
+        "gid": 0,
+        "kind": "file",
+        "mode": 420,
+        "sha256": "eae06031a81a0a94567d96babad6fd89a1aad91bf10ea75b7cc93095b7720c99",
+        "uid": 0
+      }
+    }
+  },
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "cleanup": {
+    "errors": [],
+    "paths_absent": true,
+    "unit_load_states": {
+      "system:md-t15-e4b453a62d8342d7-oi.service": "not-found"
+    }
+  },
+  "error": "Hold: systemctl failed: ['/usr/bin/systemctl', '--system', 'start', '--no-block', 'md-t15-e4b453a62d8342d7-oi.service']\nFailed to start md-t15-e4b453a62d8342d7-oi.service: Unit marketdata-clock-ready.service not found.\n",
+  "events": [
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "start",
+        "--no-block",
+        "md-t15-e4b453a62d8342d7-oi.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "start",
+        "--no-block",
+        "md-t15-e4b453a62d8342d7-oi.service"
+      ],
+      "code": 5,
+      "event": "command_result",
+      "stderr": "Failed to start md-t15-e4b453a62d8342d7-oi.service: Unit marketdata-clock-ready.service not found.\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-e4b453a62d8342d7-oi.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "stop",
+        "md-t15-e4b453a62d8342d7-oi.service"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-e4b453a62d8342d7-oi.service"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "reset-failed",
+        "md-t15-e4b453a62d8342d7-oi.service"
+      ],
+      "code": 1,
+      "event": "command_result",
+      "stderr": "Failed to reset failed state of unit md-t15-e4b453a62d8342d7-oi.service: Unit md-t15-e4b453a62d8342d7-oi.service not loaded.\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/sbin/runuser",
+        "-u",
+        "yoonhc",
+        "--",
+        "/usr/bin/env",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "finished_at": "2026-10-12T14:07:40.861296+00:00",
+  "nonce": "e4b453a62d8342d7",
+  "operating_changes_requested": false,
+  "operating_unchanged": true,
+  "ownership_before": {
+    "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": {
+      "gid": 0,
+      "kind": "file",
+      "mode": 420,
+      "uid": 0
+    },
+    "/etc/marketdata/clock-bootstrap.json": {
+      "gid": 0,
+      "kind": "file",
+      "mode": 420,
+      "uid": 0
+    },
+    "/etc/marketdata/scheduled-system/oi-live.toml": {
+      "kind": "absent"
+    },
+    "/etc/marketdata/scheduled-system/topology.json": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-backup.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-backup.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-clock-bootstrap.service": {
+      "gid": 0,
+      "kind": "file",
+      "mode": 420,
+      "uid": 0
+    },
+    "/etc/systemd/system/marketdata-clock-ready.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-daily.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-daily.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-network-observer.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-network-observer.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi-probe.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi-probe.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi-quality.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi-quality.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-oi.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-pack.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-pack.timer": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-restic-archive.service": {
+      "kind": "absent"
+    },
+    "/etc/systemd/system/marketdata-restic-archive.timer": {
+      "kind": "absent"
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.service": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-backup.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.service": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-daily.timer": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.service": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-network-observer.timer": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.service": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-probe.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.service": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi-quality.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.service": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-oi.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.service": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-pack.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.service": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/marketdata-restic-archive.timer": {
+      "gid": 1000,
+      "kind": "file",
+      "mode": 420,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-backup.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-daily.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-network-observer.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-probe.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi-quality.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-oi.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-pack.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/systemd/user/timers.target.wants/marketdata-restic-archive.timer": {
+      "gid": 1000,
+      "kind": "symlink",
+      "mode": 511,
+      "uid": 1000
+    }
+  },
+  "passed": false,
+  "tool_id": "scheduled-handoff-20261012-1d0b7392d86b5168",
+  "trials": {},
+  "worker_outputs": {
+    ".owner.json": {
+      "nonce": "e4b453a62d8342d7"
+    }
+  }
+}

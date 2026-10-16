@@ -1,0 +1,233 @@
+{
+  "close_failure": {
+    "defect_present": true,
+    "disk_request": {
+      "arguments": [],
+      "identity": "1510efef47e5530a6beecbb929156ba791ee0b93db1983de67fa6bb325041549",
+      "job": "backup",
+      "pins": {},
+      "state": "pending"
+    },
+    "limit": "close timeout injected after a normal real-thread join",
+    "outcome": {
+      "exception": "ClockDeferred",
+      "message": "monitor_stop_timeout"
+    },
+    "work_returns": [
+      0
+    ]
+  },
+  "config_identity": {
+    "entries": [
+      {
+        "config": "scope = 'A'\n",
+        "pins_at_entry": {}
+      },
+      {
+        "config": "scope = 'B'\n",
+        "pins_at_entry": {
+          "original_day": {
+            "day": "2026-10-15",
+            "observation": {
+              "boot_id": "isolated-boot",
+              "bootstrap_sha256": "bootstrap",
+              "chrony_error_estimate": 0.020999999999999998,
+              "config_sha256": "chrony",
+              "ledger_sha256": "closed",
+              "lower_utc_ns": 1792063254674751686,
+              "policy": "scheduled-decisions-v1",
+              "provider": {
+                "pid": 1
+              },
+              "query_after": {
+                "boottime_ns": 590992653574688,
+                "monotonic_ns": 590992653574643,
+                "span_ns": 190,
+                "wall_ns": 1792063254695756851
+              },
+              "query_alignment_margin": 4.414e-06,
+              "query_before": {
+                "boottime_ns": 590992653570340,
+                "monotonic_ns": 590992653570229,
+                "span_ns": 561,
+                "wall_ns": 1792063254695752382
+              },
+              "query_seconds": 4.414e-06,
+              "reference_age_seconds": 92063254.69575691,
+              "runtime_profile_sha256": "runtime",
+              "sample": {
+                "boottime_ns": 590992653574688,
+                "monotonic_ns": 590992653574643,
+                "span_ns": 190,
+                "wall_ns": 1792063254695756851
+              },
+              "sampling_margin": 7.51e-07,
+              "total_uncertainty": 0.021005165,
+              "tracking": {
+                "correction": 0.001,
+                "leap": "Normal",
+                "reference_address": "192.0.2.1",
+                "reference_id": "C0000201",
+                "reference_time": 1700000000.0,
+                "root_delay": 0.02,
+                "root_dispersion": 0.01,
+                "skew_ppm": 1.0,
+                "stratum": 3
+              },
+              "upper_utc_ns": 1792063254716762016
+            }
+          }
+        }
+      }
+    ],
+    "first": {
+      "exception": "RuntimeError",
+      "message": "injected_unfinished_work"
+    },
+    "limit": "Wrapper only; Host and business guards are reviewed separately in source",
+    "second": {
+      "returned": 0
+    },
+    "wrapper_allows_changed_config": true
+  },
+  "dead_monitor_resume": {
+    "before_resume": {
+      "alive": false,
+      "fault": "ClockDeferred: injected_monitor_sample_error",
+      "thread_exists": true
+    },
+    "defect_present": true,
+    "result": 0,
+    "thread_errors": [
+      {
+        "message": "injected_monitor_journal_error",
+        "type": "OSError"
+      }
+    ],
+    "work_entries": [
+      {
+        "alive": false,
+        "fault": null
+      }
+    ]
+  },
+  "exit_two": {
+    "first": {
+      "returned": 2
+    },
+    "first_disk_request": {
+      "arguments": [],
+      "exit_code": 2,
+      "identity": "5e4cb3f3771086ce465dc0b4827a2cc3a18dbe6623e1b504be3a296c45793a92",
+      "job": "backup",
+      "pins": {
+        "backup_day": {
+          "day": "2026-10-15",
+          "observation": {
+            "boot_id": "isolated-boot",
+            "bootstrap_sha256": "bootstrap",
+            "chrony_error_estimate": 0.020999999999999998,
+            "config_sha256": "chrony",
+            "ledger_sha256": "closed",
+            "lower_utc_ns": 1792063254684229186,
+            "policy": "scheduled-decisions-v1",
+            "provider": {
+              "pid": 1
+            },
+            "query_after": {
+              "boottime_ns": 590992663052533,
+              "monotonic_ns": 590992663052488,
+              "span_ns": 210,
+              "wall_ns": 1792063254705234696
+            },
+            "query_alignment_margin": 4.789e-06,
+            "query_before": {
+              "boottime_ns": 590992663047844,
+              "monotonic_ns": 590992663047699,
+              "span_ns": 511,
+              "wall_ns": 1792063254705229847
+            },
+            "query_seconds": 4.789e-06,
+            "reference_age_seconds": 92063254.70523477,
+            "runtime_profile_sha256": "runtime",
+            "sample": {
+              "boottime_ns": 590992663052533,
+              "monotonic_ns": 590992663052488,
+              "span_ns": 210,
+              "wall_ns": 1792063254705234696
+            },
+            "sampling_margin": 7.21e-07,
+            "total_uncertainty": 0.021005509999999998,
+            "tracking": {
+              "correction": 0.001,
+              "leap": "Normal",
+              "reference_address": "192.0.2.1",
+              "reference_id": "C0000201",
+              "reference_time": 1700000000.0,
+              "root_delay": 0.02,
+              "root_dispersion": 0.01,
+              "skew_ppm": 1.0,
+              "stratum": 3
+            },
+            "upper_utc_ns": 1792063254726240206
+          }
+        }
+      },
+      "state": "complete"
+    },
+    "limit": "Numeric wrapper behavior; actual job meanings require separate evidence",
+    "next_disk_request": {
+      "arguments": [],
+      "exit_code": 0,
+      "identity": "5e4cb3f3771086ce465dc0b4827a2cc3a18dbe6623e1b504be3a296c45793a92",
+      "job": "backup",
+      "pins": {},
+      "state": "complete"
+    },
+    "next_work_pins": {},
+    "second": {
+      "returned": 0
+    },
+    "unconditional_code_two_terminal": true
+  },
+  "monitor_thread": "real",
+  "observed_at_utc": "2026-10-15T11:20:53.686973+00:00",
+  "operating_data_accessed": false,
+  "operating_services_accessed": false,
+  "point_exception_classification": {
+    "journal_io": {
+      "cause": "OSError",
+      "classified_as": "ClockDeferred",
+      "defect_present": true,
+      "recorded": [
+        {
+          "error": "OSError: injected_success_journal_error",
+          "kind": "clock_deferred",
+          "reason": "review"
+        }
+      ]
+    },
+    "unknown_query_bug": {
+      "cause": "KeyError",
+      "classified_as": "ClockDeferred",
+      "defect_present": true,
+      "recorded": [
+        {
+          "error": "KeyError: 'injected_unexpected_response_key'",
+          "kind": "clock_deferred",
+          "reason": "review"
+        }
+      ]
+    }
+  },
+  "provider_and_work": "test doubles",
+  "purpose": "defect reproduction on unchanged original candidate, not safety validation",
+  "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "release_id": "scheduled-clock-policy-20261015-90f97df305c662c2",
+  "source_hashes": {
+    "base/packages/marketdata/src/marketdata/job_clock.py": "9a43798ba8e7d44f7b9427e4761a45f61e38025715bc3f708c87fef1c8409ead",
+    "policy/job_clock.py": "9a43798ba8e7d44f7b9427e4761a45f61e38025715bc3f708c87fef1c8409ead",
+    "policy/run_job.py": "fabf1d24c876220c88f24db31ec062a95df00dd8b0bd34bd52da2acb75715d50"
+  },
+  "source_hashes_unchanged": true
+}

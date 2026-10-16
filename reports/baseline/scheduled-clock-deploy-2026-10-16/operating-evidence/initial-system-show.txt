@@ -1,0 +1,169 @@
+Restart=on-failure
+MainPID=0
+ControlPID=0
+Result=exit-code
+NRestarts=4
+ExecMainCode=1
+ExecMainStatus=2
+ExecStart={ path=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python ; argv[]=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job oi --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data update --config /etc/marketdata/scheduled-system/oi-live.toml --report state/oi-latest.json ; ignore_errors=no ; start_time=[Fri 2026-10-16 22:42:18 KST] ; stop_time=[Fri 2026-10-16 22:42:18 KST] ; pid=2180458 ; code=exited ; status=2 }
+User=yoonhc
+Id=marketdata-oi.service
+Requires=sysinit.target home.mount marketdata-jobs-clock-ready.service system.slice -.mount
+ActiveState=failed
+SubState=failed
+InvocationID=5a324096937d46e4888336c584a8e708
+
+Restart=no
+MainPID=0
+ControlPID=0
+Result=success
+NRestarts=0
+ExecMainCode=1
+ExecMainStatus=0
+ExecStart={ path=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python ; argv[]=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job oi-probe --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data oi-probe ; ignore_errors=no ; start_time=[Fri 2026-10-16 22:44:15 KST] ; stop_time=[Fri 2026-10-16 22:44:16 KST] ; pid=2181548 ; code=exited ; status=0 }
+User=yoonhc
+Id=marketdata-oi-probe.service
+Requires=marketdata-jobs-clock-ready.service home.mount sysinit.target system.slice -.mount
+ActiveState=inactive
+SubState=dead
+InvocationID=e294c080002849e88eb46cd6590f72b2
+
+Restart=no
+MainPID=0
+ControlPID=0
+Result=exit-code
+NRestarts=0
+ExecMainCode=1
+ExecMainStatus=1
+ExecStart={ path=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python ; argv[]=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job oi-quality --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data oi-quality --days 7 ; ignore_errors=no ; start_time=[Fri 2026-10-16 22:23:57 KST] ; stop_time=[Fri 2026-10-16 22:24:01 KST] ; pid=2168770 ; code=exited ; status=1 }
+User=yoonhc
+Id=marketdata-oi-quality.service
+Requires=sysinit.target -.mount system.slice home.mount marketdata-jobs-clock-ready.service
+ActiveState=failed
+SubState=failed
+InvocationID=8623ef805cac477faacc3c72a50e5e21
+
+Restart=on-failure
+MainPID=0
+ControlPID=0
+Result=success
+NRestarts=0
+ExecMainCode=1
+ExecMainStatus=0
+ExecStart={ path=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/daily/.venv/bin/python ; argv[]=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/daily/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job daily --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json ; ignore_errors=no ; start_time=[Fri 2026-10-16 22:40:14 KST] ; stop_time=[Fri 2026-10-16 22:40:16 KST] ; pid=2178830 ; code=exited ; status=0 }
+User=yoonhc
+Id=marketdata-daily.service
+Requires=-.mount home.mount sysinit.target marketdata-jobs-clock-ready.service system.slice
+ActiveState=inactive
+SubState=dead
+InvocationID=ed41b6d0c57e4d179fc9f60619cbd88d
+
+Restart=on-failure
+MainPID=0
+ControlPID=0
+Result=success
+NRestarts=0
+ExecMainCode=1
+ExecMainStatus=0
+ExecStart={ path=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python ; argv[]=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job pack --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data maintenance --mode hourly --min-free-gib 10 --wait-for-lock ; ignore_errors=no ; start_time=[Fri 2026-10-16 22:28:51 KST] ; stop_time=[Fri 2026-10-16 22:30:29 KST] ; pid=2172058 ; code=exited ; status=0 }
+User=yoonhc
+Id=marketdata-pack.service
+Requires=-.mount system.slice home.mount sysinit.target marketdata-jobs-clock-ready.service
+ActiveState=inactive
+SubState=dead
+InvocationID=b401f3f113b54e95bcfad27b5f97057c
+
+Restart=on-failure
+MainPID=0
+ControlPID=0
+Result=success
+NRestarts=0
+ExecMainCode=1
+ExecMainStatus=0
+ExecStart={ path=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/preserve/.venv/bin/python ; argv[]=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/preserve/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job backup --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+User=yoonhc
+Id=marketdata-backup.service
+Requires=system.slice sysinit.target -.mount marketdata-jobs-clock-ready.service home.mount
+ActiveState=inactive
+SubState=dead
+InvocationID=8a852e6f315f43f6b6dc8cb77c116760
+
+Restart=no
+MainPID=0
+ControlPID=0
+Result=success
+NRestarts=0
+ExecMainCode=1
+ExecMainStatus=0
+ExecStart={ path=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/preserve/.venv/bin/python ; argv[]=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/preserve/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job restic-archive --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --profile /home/yoonhc/.config/marketdata/restic-archive.toml run ; ignore_errors=no ; start_time=[Fri 2026-10-16 22:35:00 KST] ; stop_time=[Fri 2026-10-16 22:35:37 KST] ; pid=2175464 ; code=exited ; status=0 }
+User=yoonhc
+Id=marketdata-restic-archive.service
+Requires=sysinit.target system.slice -.mount marketdata-jobs-clock-ready.service home.mount
+ActiveState=inactive
+SubState=dead
+InvocationID=32bda96c76df44718e35d53c7e86066d
+
+Restart=no
+MainPID=0
+ControlPID=0
+Result=success
+NRestarts=0
+ExecMainCode=1
+ExecMainStatus=0
+ExecStart={ path=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python ; argv[]=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job network-observer --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --profile /home/yoonhc/.config/marketdata/network-observer.toml ; ignore_errors=no ; start_time=[Fri 2026-10-16 22:44:20 KST] ; stop_time=[Fri 2026-10-16 22:44:21 KST] ; pid=2181586 ; code=exited ; status=0 }
+User=yoonhc
+Id=marketdata-network-observer.service
+Requires=-.mount sysinit.target system.slice marketdata-jobs-clock-ready.service home.mount
+ActiveState=inactive
+SubState=dead
+InvocationID=58000d0630a24a579459954f6dab2252
+
+Restart=no
+MainPID=1245
+ControlPID=0
+Result=success
+NRestarts=0
+ExecMainCode=0
+ExecMainStatus=0
+ExecStartPre={ path=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python ; argv[]=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py rtc-check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+ExecStart={ path=/usr/sbin/chronyd ; argv[]=/usr/sbin/chronyd -F 1 -f /etc/chrony/marketdata.conf ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+User=_chrony
+Id=chrony.service
+Requires=sysinit.target system.slice -.mount
+ActiveState=active
+SubState=running
+InvocationID=19420480ab3249529a075ca7cb2bd3c1
+
+Restart=always
+MainPID=224785
+ControlPID=0
+Result=success
+NRestarts=0
+ExecMainCode=0
+ExecMainStatus=0
+ExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+ExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream depth ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+ExecStart={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py --profile /etc/marketdata/runtime.json --stream depth --bootstrap-profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+User=yoonhc
+Id=marketdata-collector@depth.service
+Requires="system-marketdata\\x2dcollector.slice" home.mount -.mount sysinit.target
+ActiveState=active
+SubState=running
+InvocationID=41b1747221894331a5e0b4fdf3f9751e
+
+Restart=always
+MainPID=224784
+ControlPID=0
+Result=success
+NRestarts=0
+ExecMainCode=0
+ExecMainStatus=0
+ExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+ExecStartPre={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/marketdata_runtime.py wait-ready --profile /etc/marketdata/runtime.json --stream aggtrade ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+ExecStart={ path=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python ; argv[]=/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/.venv/bin/python -I /opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/integrations/runtime/capture_runtime.py --profile /etc/marketdata/runtime.json --stream aggtrade --bootstrap-profile /etc/marketdata/clock-bootstrap.json ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+User=yoonhc
+Id=marketdata-collector@aggtrade.service
+Requires=-.mount "system-marketdata\\x2dcollector.slice" home.mount sysinit.target
+ActiveState=active
+SubState=running
+InvocationID=1aa42e55ff804c1f9e5ec68b31116c6b

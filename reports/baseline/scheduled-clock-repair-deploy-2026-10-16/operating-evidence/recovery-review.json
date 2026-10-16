@@ -1,0 +1,266 @@
+{
+  "observed_at": "2026-10-16T15:21:19.889262+00:00",
+  "passed": true,
+  "operating_writes": false,
+  "receipt": {
+    "after_sha256": "c995ccdc184ab1cece5ef45f0b5d4b25b7f88b8338a55e7dbe36c8572249152a",
+    "before_sha256": "c69363e7038590756e2461b26079f9a7789ca5abe98da365cb8423c3bf199e11",
+    "data_quality": "report findings preserved",
+    "derived_result_code": 2,
+    "identity_preserved": true,
+    "observed_work_exit_code": null,
+    "original_process_exit_code": 1,
+    "pins_preserved": true,
+    "plan_id": "9f7ebc5e78621b68ae278b1829037bd9a3119e82464eb689a9f59adff499407c",
+    "purpose": "t16-exact-oi-result-recovery-v1",
+    "recovered_attempt_id": "d479bf1947254646994ac9e4187e00d8",
+    "report_sha256": "52058f8c256a26d34fbfc8d2b05f61d7857c2e352613cbeeb11c82a8cd90de1e",
+    "request_id": "a702240f54774dacab107dc28fa2a776",
+    "request_state": "complete",
+    "work_invocations": 0
+  },
+  "identity": "592568d5186099ae636454f0ea6933bc7c47a95f4d54ed7c39df72ea3f5992ce",
+  "pins": {
+    "oi_quality_day": {
+      "day": "2026-10-16",
+      "observation": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "bootstrap_sha256": "e1d97d15458c6d14d7908de6f5ac2230215c6181f9254b776b76158882e100e9",
+        "chrony_error_estimate": 0.1225323875,
+        "config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "ledger_sha256": "4d662d8924619a2361f02144a7f0b331eabdcfd2a6c370233e1cd007f859af57",
+        "lower_utc_ns": 1792157037247969911,
+        "policy": "scheduled-decisions-v1",
+        "provider": {
+          "argv": [
+            "/usr/sbin/chronyd",
+            "-F",
+            "1",
+            "-f",
+            "/etc/chrony/marketdata.conf"
+          ],
+          "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+          "pid": 1245
+        },
+        "query_after": {
+          "boottime_ns": 684775339577041,
+          "monotonic_ns": 684775339576295,
+          "span_ns": 2014,
+          "wall_ns": 1792157037381758473
+        },
+        "query_alignment_margin": 0.011252767,
+        "query_before": {
+          "boottime_ns": 684775328324065,
+          "monotonic_ns": 684775328323528,
+          "span_ns": 1393,
+          "wall_ns": 1792157037370505717
+        },
+        "query_seconds": 0.011252767,
+        "reference_age_seconds": 589.0054969787598,
+        "runtime_profile_sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+        "sample": {
+          "boottime_ns": 684775339577041,
+          "monotonic_ns": 684775339576295,
+          "span_ns": 2014,
+          "wall_ns": 1792157037381758473
+        },
+        "sampling_margin": 3.407e-06,
+        "total_uncertainty": 0.13378856150000001,
+        "tracking": {
+          "correction": 0.000809533,
+          "leap": "Normal",
+          "raw_csv": "5BBD5B9D,91.189.91.157,3,1792156448.376261375,0.000809533,0.000025445,0.000492898,26.529,-0.003,0.134,0.235802531,0.003821589,517.8,Normal",
+          "reference_address": "91.189.91.157",
+          "reference_id": "5BBD5B9D",
+          "reference_time": 1792156448.3762615,
+          "root_delay": 0.235802531,
+          "root_dispersion": 0.003821589,
+          "skew_ppm": 0.134,
+          "stratum": 3
+        },
+        "upper_utc_ns": 1792157037515547035
+      }
+    }
+  },
+  "original_failure": {
+    "attempt_id": "96c32c8fb0eb4a6ca96bee82b21de38b",
+    "errors": [
+      {
+        "cause": "'decimal.Decimal' object has no attribute 'isoformat'",
+        "cause_type": "AttributeError",
+        "message": "work_result_write_failed: AttributeError: 'decimal.Decimal' object has no attribute 'isoformat'",
+        "phase": "work",
+        "type": "ClockFailure"
+      },
+      {
+        "cause": "'decimal.Decimal' object has no attribute 'isoformat'",
+        "cause_type": "AttributeError",
+        "message": "work_result_write_failed: AttributeError: 'decimal.Decimal' object has no attribute 'isoformat'",
+        "phase": "monitor_close",
+        "type": "ClockFailure"
+      }
+    ],
+    "exit_code": 1,
+    "invocation_id": "8623ef805cac477faacc3c72a50e5e21",
+    "job": "oi-quality",
+    "kind": "request_finished",
+    "monitor": {
+      "ok": false,
+      "stopped": true
+    },
+    "request_id": "a702240f54774dacab107dc28fa2a776",
+    "state": "finalization_failed",
+    "work": null
+  },
+  "monitor": {
+    "last_time_fault": null,
+    "ok": true,
+    "required": true,
+    "stopped": true
+  },
+  "recovery_observations": [
+    {
+      "attempt_id": "d479bf1947254646994ac9e4187e00d8",
+      "job": "oi-quality",
+      "kind": "time_decision",
+      "kind_source": "explicit-reconciliation",
+      "observation": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "bootstrap_sha256": "e1d97d15458c6d14d7908de6f5ac2230215c6181f9254b776b76158882e100e9",
+        "chrony_error_estimate": 0.1247038615,
+        "config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "ledger_sha256": "4d662d8924619a2361f02144a7f0b331eabdcfd2a6c370233e1cd007f859af57",
+        "lower_utc_ns": 1792163707550487722,
+        "policy": "scheduled-decisions-v1",
+        "provider": {
+          "argv": [
+            "/usr/sbin/chronyd",
+            "-F",
+            "1",
+            "-f",
+            "/etc/chrony/marketdata.conf"
+          ],
+          "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+          "pid": 1245
+        },
+        "query_after": {
+          "boottime_ns": 691445646552946,
+          "monotonic_ns": 691445646552104,
+          "span_ns": 2365,
+          "wall_ns": 1792163707688734217
+        },
+        "query_alignment_margin": 0.013537783,
+        "query_before": {
+          "boottime_ns": 691445633015373,
+          "monotonic_ns": 691445633014321,
+          "span_ns": 2485,
+          "wall_ns": 1792163707675196284
+        },
+        "query_seconds": 0.013537783,
+        "reference_age_seconds": 542.1083116531372,
+        "runtime_profile_sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+        "sample": {
+          "boottime_ns": 691445646552946,
+          "monotonic_ns": 691445646552104,
+          "span_ns": 2365,
+          "wall_ns": 1792163707688734217
+        },
+        "sampling_margin": 4.85e-06,
+        "total_uncertainty": 0.1382464945,
+        "tracking": {
+          "correction": 0.001366785,
+          "leap": "Normal",
+          "raw_csv": "5BBD5B9D,91.189.91.157,3,1792163165.580422617,0.001366785,0.000832392,0.000954490,26.482,-0.004,0.205,0.235802531,0.005435811,515.1,Normal",
+          "reference_address": "91.189.91.157",
+          "reference_id": "5BBD5B9D",
+          "reference_time": 1792163165.5804226,
+          "root_delay": 0.235802531,
+          "root_dispersion": 0.005435811,
+          "skew_ppm": 0.205,
+          "stratum": 3
+        },
+        "upper_utc_ns": 1792163707826980712
+      },
+      "reason": "entry",
+      "recovery_plan_id": "9f7ebc5e78621b68ae278b1829037bd9a3119e82464eb689a9f59adff499407c",
+      "request_id": "a702240f54774dacab107dc28fa2a776"
+    },
+    {
+      "attempt_id": "d479bf1947254646994ac9e4187e00d8",
+      "job": "oi-quality",
+      "kind": "time_decision",
+      "kind_source": "explicit-reconciliation",
+      "observation": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "bootstrap_sha256": "e1d97d15458c6d14d7908de6f5ac2230215c6181f9254b776b76158882e100e9",
+        "chrony_error_estimate": 0.1247038745,
+        "config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "ledger_sha256": "4d662d8924619a2361f02144a7f0b331eabdcfd2a6c370233e1cd007f859af57",
+        "lower_utc_ns": 1792163707565781366,
+        "policy": "scheduled-decisions-v1",
+        "provider": {
+          "argv": [
+            "/usr/sbin/chronyd",
+            "-F",
+            "1",
+            "-f",
+            "/etc/chrony/marketdata.conf"
+          ],
+          "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+          "pid": 1245
+        },
+        "query_after": {
+          "boottime_ns": 691445660338317,
+          "monotonic_ns": 691445660337796,
+          "span_ns": 1522,
+          "wall_ns": 1792163707702519949
+        },
+        "query_alignment_margin": 0.012032575,
+        "query_before": {
+          "boottime_ns": 691445648305396,
+          "monotonic_ns": 691445648305221,
+          "span_ns": 611,
+          "wall_ns": 1792163707690487299
+        },
+        "query_seconds": 0.012032575,
+        "reference_age_seconds": 542.122097492218,
+        "runtime_profile_sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+        "sample": {
+          "boottime_ns": 691445660338317,
+          "monotonic_ns": 691445660337796,
+          "span_ns": 1522,
+          "wall_ns": 1792163707702519949
+        },
+        "sampling_margin": 2.133e-06,
+        "total_uncertainty": 0.13673858249999998,
+        "tracking": {
+          "correction": 0.001366781,
+          "leap": "Normal",
+          "raw_csv": "5BBD5B9D,91.189.91.157,3,1792163165.580422617,0.001366781,0.000832392,0.000954490,26.482,-0.004,0.205,0.235802531,0.005435828,515.1,Normal",
+          "reference_address": "91.189.91.157",
+          "reference_id": "5BBD5B9D",
+          "reference_time": 1792163165.5804226,
+          "root_delay": 0.235802531,
+          "root_dispersion": 0.005435828,
+          "skew_ppm": 0.205,
+          "stratum": 3
+        },
+        "upper_utc_ns": 1792163707839258532
+      },
+      "reason": "explicit_stored_result_reconciliation",
+      "recovery_plan_id": "9f7ebc5e78621b68ae278b1829037bd9a3119e82464eb689a9f59adff499407c",
+      "request_id": "a702240f54774dacab107dc28fa2a776"
+    }
+  ],
+  "source_directory": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/oi-quality/reconciliations/9f7ebc5e78621b68ae278b1829037bd9a3119e82464eb689a9f59adff499407c",
+  "attempt_path": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/oi-quality/attempts/a702240f54774dacab107dc28fa2a776/d479bf1947254646994ac9e4187e00d8.json",
+  "current_request": {
+    "request_id": "fe3f28cddb0d4c1997d2a469a9a9a45e",
+    "state": "complete",
+    "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+    "is_recovered_original": false
+  },
+  "original_report_bytes": 1666479,
+  "original_report_unchanged": true,
+  "original_process_failure_preserved": true
+}

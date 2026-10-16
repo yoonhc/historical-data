@@ -1,5 +1,18 @@
 # T05 근거 생성 기능 운영 전환 상태
 
+최신 후속: **10/12 첫 정기 사본의 완료/순서 근거·restic 보존·독립 복원은 확인 완료**했다.
+[실제 근거](../t13-operating-completion-2026-10-12/t05-restored-evidence.json)를 따른다.
+**10/13 00:32:58 T15에서 backup/restic의 manager·연결 설정을 시스템으로 이전**했다.
+[이전 결과·기존 객체 9개/등록 이력 보존](../scheduled-system-deploy-2026-10-13/status.md)을 확인했다.
+**10/13 첫 system 정기 backup의 완료/순서 연결도 확인 완료**했다. checkpoint `10dd2182…`의 완료 상한은
+**14:26:29.724714 KST**, U 0.1382557355초이며 같은 baseline과 10/12 선행 사본을 유지했다.
+restic `a2dbcdd4…` 저장·14:44 전체 검사와 지정 지점의 근거 객체 10개 조회/재구성을
+[확인](../scheduled-system-operating-completion-2026-10-13/summary.md)했다. 그 시점의 신규 후행 사본은 **2개**다.
+10/15 [후속 대조](../scheduled-clock-policy-2026-10-15/t05-observation/result.json)에서는 10/14까지 후행 사본 **3개**를 확인했다. 기간·당일 보존·새 삭제 계획의 통과와는 별개다.
+10/17에는 T16 Decimal 수정본까지 [적용](../scheduled-clock-repair-deploy-2026-10-16/status.md)했다. T05의 정책·기존 baseline과 근거는 유지하며 새 wrapper의 정기 backup/restic 연결 확인은 남아 있다.
+이 문서 아래는 10/11 적용 당시 기록이다. 당시 user drop-in 원복 절차를 현재 구성에 직접 적용하지 않는다.
+자동 정리는 계속 masked이며 후행 사본·보호 기간·별도 삭제 승인 단계는 미완료다.
+
 2026-10-11 **17:24 KST 확인**. **고정 실행본 설치·기존 7개 사본의 사후 근거 등록·backup/restic 두 ExecStart 전환 완료.**
 새 정기 checkpoint의 완료 직후 근거 생성·restic 보존·복원은 아직 확인 전이며 **T05 전체는 미완료**다.
 

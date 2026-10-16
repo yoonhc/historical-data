@@ -1,0 +1,13 @@
+[Unit]
+Description=Wake daily task scheduler; only due incomplete targets use network
+
+[Timer]
+OnActiveSec=30s
+OnCalendar=*-*-* *:00/5:00 UTC
+RandomizedDelaySec=30s
+AccuracySec=1s
+Persistent=true
+Unit=marketdata-daily.service
+
+[Install]
+WantedBy=timers.target

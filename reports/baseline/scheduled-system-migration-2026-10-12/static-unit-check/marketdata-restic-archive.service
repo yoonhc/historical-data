@@ -1,0 +1,38 @@
+[Unit]
+Description=Parallel restic archive of completed marketdata checkpoints
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc
+EnvironmentFile=/home/yoonhc/.config/marketdata/restic-service.env
+Environment=PYTHONNOUSERSITE=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+ExecStart=/usr/bin/env ${MARKETDATA_PYTHON} -m scripts.restic_schedule --profile ${MARKETDATA_RESTIC_PROFILE} run
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=6h
+KillSignal=SIGINT
+TimeoutStopSec=120s
+Restart=no
+StandardOutput=journal
+StandardError=journal
+
+[Unit]
+Requires=marketdata-clock-ready.service
+After=marketdata-clock-ready.service
+[Service]
+ExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json
+
+[Service]
+ExecStart=
+ExecStart=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_evidenced_archive.py --profile /home/yoonhc/.config/marketdata/restic-archive.toml run
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=
+ExecStart=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-system-migration-2026-10-12/candidate/migration/run_system_archive.py --profile /home/yoonhc/.config/marketdata/restic-archive.toml run
+ProtectClock=yes

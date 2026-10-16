@@ -1,0 +1,33 @@
+[Unit]
+Description=Local network evidence for marketdata collectors
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc
+EnvironmentFile=/home/yoonhc/.config/marketdata/network-observer.env
+Environment=PYTHONNOUSERSITE=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+ExecStart=/usr/bin/env ${MARKETDATA_NETWORK_PYTHON} ${MARKETDATA_NETWORK_SCRIPT} --profile ${MARKETDATA_NETWORK_PROFILE}
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=20s
+Restart=no
+StandardOutput=journal
+StandardError=journal
+
+
+[Unit]
+Requires=marketdata-clock-ready.service
+After=marketdata-clock-ready.service
+[Service]
+ExecStartPre=/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py check --profile /etc/marketdata/clock-bootstrap.json
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=
+ExecStart=/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/scripts/network_observer.py --profile /home/yoonhc/.config/marketdata/network-observer.toml
+ProtectClock=yes

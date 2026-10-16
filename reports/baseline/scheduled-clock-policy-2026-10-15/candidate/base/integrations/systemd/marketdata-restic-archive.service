@@ -1,0 +1,21 @@
+[Unit]
+Description=Parallel restic archive of completed marketdata checkpoints
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h
+EnvironmentFile=%h/.config/marketdata/restic-service.env
+Environment=PYTHONNOUSERSITE=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+ExecStart=/usr/bin/env ${MARKETDATA_PYTHON} -m scripts.restic_schedule --profile ${MARKETDATA_RESTIC_PROFILE} run
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=6h
+KillSignal=SIGINT
+TimeoutStopSec=120s
+Restart=no
+StandardOutput=journal
+StandardError=journal

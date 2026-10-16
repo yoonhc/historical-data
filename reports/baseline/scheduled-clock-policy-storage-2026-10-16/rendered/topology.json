@@ -1,0 +1,220 @@
+{
+  "policy_changes": [
+    "scheduled-decisions-v1; eight jobs only"
+  ],
+  "purpose": "scheduled-manager-only-v1",
+  "retirement": "both managers remain masked",
+  "schema": 1,
+  "system_inventory": [
+    "marketdata-backup.service",
+    "marketdata-backup.timer",
+    "marketdata-checkpoint-retirement-apply@.service",
+    "marketdata-checkpoint-retirement-preview.service",
+    "marketdata-checkpoint-retirement.service",
+    "marketdata-checkpoint-retirement.timer",
+    "marketdata-clock-bootstrap.service",
+    "marketdata-clock-ready.service",
+    "marketdata-collector@.service",
+    "marketdata-daily.service",
+    "marketdata-daily.timer",
+    "marketdata-jobs-clock-ready.service",
+    "marketdata-network-observer.service",
+    "marketdata-network-observer.timer",
+    "marketdata-oi-probe.service",
+    "marketdata-oi-probe.timer",
+    "marketdata-oi-quality.service",
+    "marketdata-oi-quality.timer",
+    "marketdata-oi.service",
+    "marketdata-oi.timer",
+    "marketdata-pack.service",
+    "marketdata-pack.timer",
+    "marketdata-restic-archive.service",
+    "marketdata-restic-archive.timer"
+  ],
+  "units": {
+    "marketdata-backup.service": {
+      "After": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "ExecStart": [
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/preserve/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job backup --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000"
+      ],
+      "ExecStartPre": [],
+      "Requires": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "User": "yoonhc",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+      "fragment": "/etc/systemd/system/marketdata-backup.service",
+      "kind": "work"
+    },
+    "marketdata-backup.timer": {
+      "Unit": "marketdata-backup.service",
+      "fragment": "/etc/systemd/system/marketdata-backup.timer",
+      "kind": "timer"
+    },
+    "marketdata-clock-ready.service": {
+      "ExecStart": [
+        "/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/.venv/bin/python -I /opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee/integrations/runtime/clock_gate.py wait --profile /etc/marketdata/clock-bootstrap.json"
+      ],
+      "User": "yoonhc",
+      "fragment": "/etc/systemd/system/marketdata-clock-ready.service",
+      "kind": "waiter"
+    },
+    "marketdata-daily.service": {
+      "After": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "ExecStart": [
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/daily/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job daily --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- run --root /home/yoonhc/projects/algoTrade/historical_data --config /etc/marketdata/daily-scheduler.toml --probe-config /etc/marketdata/daily-publication-probe.toml --report /home/yoonhc/projects/algoTrade/historical_data/state/daily-scheduler-latest.json"
+      ],
+      "ExecStartPre": [],
+      "Requires": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "User": "yoonhc",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+      "fragment": "/etc/systemd/system/marketdata-daily.service",
+      "kind": "work"
+    },
+    "marketdata-daily.timer": {
+      "Unit": "marketdata-daily.service",
+      "fragment": "/etc/systemd/system/marketdata-daily.timer",
+      "kind": "timer"
+    },
+    "marketdata-jobs-clock-ready.service": {
+      "ExecStart": [
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job oi --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --wait"
+      ],
+      "User": "yoonhc",
+      "fragment": "/etc/systemd/system/marketdata-jobs-clock-ready.service",
+      "kind": "waiter"
+    },
+    "marketdata-network-observer.service": {
+      "After": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "ExecStart": [
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job network-observer --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --profile /home/yoonhc/.config/marketdata/network-observer.toml"
+      ],
+      "ExecStartPre": [],
+      "Requires": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "User": "yoonhc",
+      "WorkingDirectory": "/home/yoonhc",
+      "fragment": "/etc/systemd/system/marketdata-network-observer.service",
+      "kind": "work"
+    },
+    "marketdata-network-observer.timer": {
+      "Unit": "marketdata-network-observer.service",
+      "fragment": "/etc/systemd/system/marketdata-network-observer.timer",
+      "kind": "timer"
+    },
+    "marketdata-oi-probe.service": {
+      "After": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "ExecStart": [
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job oi-probe --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data oi-probe"
+      ],
+      "ExecStartPre": [],
+      "Requires": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "User": "yoonhc",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+      "fragment": "/etc/systemd/system/marketdata-oi-probe.service",
+      "kind": "work"
+    },
+    "marketdata-oi-probe.timer": {
+      "Unit": "marketdata-oi-probe.service",
+      "fragment": "/etc/systemd/system/marketdata-oi-probe.timer",
+      "kind": "timer"
+    },
+    "marketdata-oi-quality.service": {
+      "After": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "ExecStart": [
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job oi-quality --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data oi-quality --days 7"
+      ],
+      "ExecStartPre": [],
+      "Requires": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "User": "yoonhc",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+      "fragment": "/etc/systemd/system/marketdata-oi-quality.service",
+      "kind": "work"
+    },
+    "marketdata-oi-quality.timer": {
+      "Unit": "marketdata-oi-quality.service",
+      "fragment": "/etc/systemd/system/marketdata-oi-quality.timer",
+      "kind": "timer"
+    },
+    "marketdata-oi.service": {
+      "After": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "ExecStart": [
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job oi --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data update --config /etc/marketdata/scheduled-system/oi-live.toml --report state/oi-latest.json"
+      ],
+      "ExecStartPre": [],
+      "Requires": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "User": "yoonhc",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+      "fragment": "/etc/systemd/system/marketdata-oi.service",
+      "kind": "work"
+    },
+    "marketdata-oi.timer": {
+      "Unit": "marketdata-oi.service",
+      "fragment": "/etc/systemd/system/marketdata-oi.timer",
+      "kind": "timer"
+    },
+    "marketdata-pack.service": {
+      "After": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "ExecStart": [
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job pack --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data maintenance --mode hourly --min-free-gib 10 --wait-for-lock"
+      ],
+      "ExecStartPre": [],
+      "Requires": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "User": "yoonhc",
+      "WorkingDirectory": "/home/yoonhc/projects/algoTrade/historical_data",
+      "fragment": "/etc/systemd/system/marketdata-pack.service",
+      "kind": "work"
+    },
+    "marketdata-pack.timer": {
+      "Unit": "marketdata-pack.service",
+      "fragment": "/etc/systemd/system/marketdata-pack.timer",
+      "kind": "timer"
+    },
+    "marketdata-restic-archive.service": {
+      "After": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "ExecStart": [
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/preserve/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job restic-archive --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --profile /home/yoonhc/.config/marketdata/restic-archive.toml run"
+      ],
+      "ExecStartPre": [],
+      "Requires": [
+        "marketdata-jobs-clock-ready.service"
+      ],
+      "User": "yoonhc",
+      "WorkingDirectory": "/home/yoonhc",
+      "fragment": "/etc/systemd/system/marketdata-restic-archive.service",
+      "kind": "work"
+    },
+    "marketdata-restic-archive.timer": {
+      "Unit": "marketdata-restic-archive.service",
+      "fragment": "/etc/systemd/system/marketdata-restic-archive.timer",
+      "kind": "timer"
+    }
+  }
+}

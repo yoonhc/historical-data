@@ -1,0 +1,11 @@
+[Unit]
+Description=Scheduled job clock observation and same-boot preparation
+After=network-online.target
+[Service]
+Type=oneshot
+User=yoonhc
+ExecStart=/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python -B -I /tmp/t16-relocated-qkw41_pc/release/candidate/policy/run_job.py --job oi --binding /etc/marketdata/checkpoint-clock-retirement/clock-binding.json --wait
+TimeoutStartSec=infinity
+RemainAfterExit=no
+ProtectClock=yes
+Environment=PYTHONDONTWRITEBYTECODE=1

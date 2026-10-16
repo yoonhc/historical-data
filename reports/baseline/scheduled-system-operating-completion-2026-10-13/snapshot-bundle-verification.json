@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "snapshot_id": "a2dbcdd442459fbde79cb29a7244e3acf95f40c5ac69e37d5b3337a16adba378",
+  "backup_id": "10dd21822fcc0371772f3cbd3dc5b0ec0a8d086829fb78e1e0a1cab023685665",
+  "commands": [
+    {
+      "arguments": [
+        "snapshots",
+        "--json",
+        "a2dbcdd442459fbde79cb29a7244e3acf95f40c5ac69e37d5b3337a16adba378"
+      ],
+      "started_at": "2026-10-13T13:04:15.760035+00:00",
+      "finished_at": "2026-10-13T13:04:16.262902+00:00",
+      "returncode": 0,
+      "stderr": "",
+      "path": "explicit-snapshot.json",
+      "sha256": "9b682bf50b2c04e6c767b5af3d06f8e56b7bf53ffe5e2ccc2d389b90715135ad",
+      "bytes": 1061
+    },
+    {
+      "arguments": [
+        "dump",
+        "a2dbcdd442459fbde79cb29a7244e3acf95f40c5ac69e37d5b3337a16adba378",
+        "/checkpoint-evidence.json"
+      ],
+      "started_at": "2026-10-13T13:04:16.263100+00:00",
+      "finished_at": "2026-10-13T13:04:17.086356+00:00",
+      "returncode": 0,
+      "stderr": "",
+      "path": "snapshot-checkpoint-evidence.json",
+      "sha256": "95fed71989ea0f5a8c18b6b97f2a54bc0f70747b2e2574e938339e8fb7a24192",
+      "bytes": 29825
+    }
+  ],
+  "bytes_equal_checkpoint_sidecar": true,
+  "object_ids": [
+    "005130b2c471011df4a52e9a22f194e9db0d7bcfbc672f6c37b3527df3982e6a",
+    "12095846cd1530cf05a91e66642b1410d44c3a406cde4ffeadacda98ff4ba194",
+    "16254cd2fb4b5c04763fc1e6fe7fd0c34576cf2eecc909bab337479dfd03f04f",
+    "5ec056db51157f58a4537cabf374eee65148dfd901007c1138c1cba481b6cf0b",
+    "6fb5fa7aab402f81ebed8c9db1f4648a3ac2ffa78422cfb932425fb2cfdb1b39",
+    "7d6a9251590e0a4b74632488147f318482e75930bb2e341b816d3eea26ae7fb7",
+    "969c89172180fd24235e4d790c4795dfede39605826c2d15065aecf245fd644a",
+    "b833b6e3b9d5c2f6f63954a21ec23f0d1772acb894f4c51fef29ee8c53db6da0",
+    "b976e8b04f2bfccbf68a2bc988faac2ed95c1e5dc9172a512396fa9f70dc9192",
+    "c94e71e9eb84e6b627438ebbea57dd98f0c49faa8c44eff00ded723879f4278d"
+  ],
+  "completion_proof": {
+    "object_id": "6fb5fa7aab402f81ebed8c9db1f4648a3ac2ffa78422cfb932425fb2cfdb1b39",
+    "completion_upper_utc_ns": 1791869189724714134,
+    "kind": "checkpoint"
+  },
+  "ancestors": [
+    "1ac0768ac6f55ebbc5fc5daccae5e531b267210daef752683bb7601a690ecab2",
+    "4381041be823394454ef9135162399d1540fa548025bfde05d791b250068a0de",
+    "6ba0fadd2ede16951c0448f6a7174c53e4cf22d9e19ee26c92e0be44b125b145",
+    "7dd4228ffb476e1333c0890922f413234b7598ecd0bc482d7d0a3ba49f4a6b44",
+    "9849b0ef7e523cbc79546c233f409ecd93cdcc8e1b5bc4f48fe8163229968a77",
+    "be6f6e493aa13931b3d0cddd03581f5b009c540b7560b7a9a7faf7006d5174a8",
+    "ccf70014d48549bd22e801b135680ef4b6e5040e236688ed78374aa987745935",
+    "fd4bf8417a5203f4dfbd467118740ecc2441d642096471737727fcbcdad00fdf"
+  ],
+  "registry_read_for_reconstruction": false,
+  "predecessor_checkpoint_read": false,
+  "bulk_restore": false,
+  "new_repository_check": false,
+  "deletion_authority": false
+}

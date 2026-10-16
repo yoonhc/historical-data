@@ -1,0 +1,69 @@
+{
+  "release_id": "scheduled-clock-policy-20261015-5b02fc74867e5bab",
+  "source_sha256": "5b02fc74867e5bab2a34c9a02f9ca2a2e1f356d6de8c978367ee8ece1cc17b25",
+  "reviewed_at": "2026-10-15T12:58:49.946383+00:00",
+  "passed": true,
+  "policy_and_recovery_tests": 90,
+  "regression_tests_per_variant": {
+    "base": 119,
+    "daily": 82,
+    "preserve": 146
+  },
+  "runs": [
+    {
+      "variant": "base",
+      "report": "base-regression.xml",
+      "sha256": "12fdee07de8cf7fc61dab2c2f8b2864063c1883b8f200ef15f7ac9fb83a9db35",
+      "passed": 119
+    },
+    {
+      "variant": "daily",
+      "report": "daily-regression.xml",
+      "sha256": "52ecc6a2c0fb672dabcd3f4fede9ea241c458b7c20fbb097a42e2ebb5e591725",
+      "passed": 82
+    },
+    {
+      "variant": "preserve",
+      "report": "preserve-regression.xml",
+      "sha256": "cf0d6c1aab2753d2436e06b6c62860d0e12b1e14170083396e31e1c215a6a8d5",
+      "passed": 146
+    },
+    {
+      "variant": "policy-base",
+      "report": "base-policy.xml",
+      "sha256": "37bebecddf2602ab36815ef98d02ecd197ea89395f7bbc854c154e11c2046e5b",
+      "passed": 66
+    },
+    {
+      "variant": "policy-daily",
+      "report": "daily-policy.xml",
+      "sha256": "46c4044dc60fd8f9e58da43895ab2d6961bfbd9695414a8fe05cabdc0e0e4c92",
+      "passed": 11
+    },
+    {
+      "variant": "policy-preserve",
+      "report": "preserve-policy.xml",
+      "sha256": "f1a0026c4235d74a36a072814f9200c5271c018e218a67c2da50d9ea448f062e",
+      "passed": 13
+    }
+  ],
+  "unit_syntax_and_order": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "",
+    "units": 17,
+    "uninstalled_path_substitution": {
+      "/opt/marketdata/releases/scheduled-clock-policy-20261015-5b02fc74867e5bab": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-recovery-2026-10-15/candidate"
+    },
+    "actual_system_execution": false
+  },
+  "actual_system_manager_execution": false,
+  "operating_deployed": false,
+  "prior_candidate_preserved": true,
+  "T05_deletion_authority": false,
+  "limits": [
+    "Provider/network/systemd provenance are isolated doubles in wrapper connection tests",
+    "Real restic used only with temporary repositories by existing preservation regressions",
+    "Runtime transition, rollback and actual protected system service execution remain pending"
+  ]
+}

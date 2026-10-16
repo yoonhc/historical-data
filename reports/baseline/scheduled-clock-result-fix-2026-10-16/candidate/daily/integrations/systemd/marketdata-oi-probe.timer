@@ -1,0 +1,12 @@
+[Unit]
+Description=Observe recent OI every fifteen seconds
+
+[Timer]
+OnActiveSec=2s
+OnCalendar=*-*-* *:*:00/15 UTC
+AccuracySec=1s
+# Missed historical observation times cannot be reconstructed.
+Persistent=false
+
+[Install]
+WantedBy=timers.target

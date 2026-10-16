@@ -1,0 +1,56 @@
+[
+  {
+    "cwd": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-result-fix-2026-10-16",
+    "argv": [
+      "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-storage-2026-10-16/candidate/base/.venv/bin/python",
+      "-B",
+      "-I",
+      "run_tests.py",
+      "base",
+      "tests/test_clock_decisions.py",
+      "tests/test_job_integrations.py",
+      "tests/test_wrapper_recovery.py",
+      "tests/test_result_connections.py",
+      "tests/test_storage_recovery.py",
+      "tests/test_result_numbers.py",
+      "-q",
+      "--junitxml=base-results.xml",
+      "-p",
+      "no:cacheprovider"
+    ]
+  },
+  {
+    "cwd": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-result-fix-2026-10-16",
+    "argv": [
+      "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-storage-2026-10-16/candidate/daily/.venv/bin/python",
+      "-B",
+      "-I",
+      "run_tests.py",
+      "daily",
+      "tests/test_daily_clock.py",
+      "tests/test_daily_result_connection.py",
+      "tests/test_daily_storage_recovery.py",
+      "-q",
+      "--junitxml=daily-results.xml",
+      "-p",
+      "no:cacheprovider"
+    ]
+  },
+  {
+    "cwd": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-result-fix-2026-10-16",
+    "argv": [
+      "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-storage-2026-10-16/candidate/preserve/.venv/bin/python",
+      "-B",
+      "-I",
+      "run_tests.py",
+      "preserve",
+      "tests/test_preservation_clock.py",
+      "tests/test_boot_binding.py",
+      "tests/test_preserve_result_connections.py",
+      "-q",
+      "--junitxml=preserve-results.xml",
+      "-p",
+      "no:cacheprovider"
+    ]
+  }
+]

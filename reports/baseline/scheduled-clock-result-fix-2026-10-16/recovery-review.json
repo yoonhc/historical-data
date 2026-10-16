@@ -1,0 +1,67 @@
+{
+  "reviewed_at": "2026-10-16T22:47:09.118985+09:00",
+  "operating_request_written": false,
+  "approved": false,
+  "request_id": "a702240f54774dacab107dc28fa2a776",
+  "request_path": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/oi-quality/request.json",
+  "request_sha256": "c69363e7038590756e2461b26079f9a7789ca5abe98da365cb8423c3bf199e11",
+  "identity": "592568d5186099ae636454f0ea6933bc7c47a95f4d54ed7c39df72ea3f5992ce",
+  "attempt_id": "96c32c8fb0eb4a6ca96bee82b21de38b",
+  "invocation_id": "8623ef805cac477faacc3c72a50e5e21",
+  "pinned_day": "2026-10-16",
+  "report_id": "4257e5803d8d3fe4f8e57aad801b840cb5503440359d18399ee4390cc14248cc",
+  "report_path": "/home/yoonhc/projects/algoTrade/historical_data/reports/oi-quality/20261016T132357-4257e5803d8d/report.json",
+  "report_sha256": "52058f8c256a26d34fbfc8d2b05f61d7857c2e352613cbeeb11c82a8cd90de1e",
+  "exact_result_observation_matches_request_journal": true,
+  "report_self_digest_matches": true,
+  "current_input_scope_matches": true,
+  "derived_report_exit_code": 2,
+  "observed_work_exit_code": null,
+  "disposition_if_explicitly_linked": {
+    "state": "complete",
+    "reason": "report_written_with_findings",
+    "data_complete": null,
+    "work_exit_code": 2,
+    "returncode": 2
+  },
+  "journal_failure": {
+    "attempt_id": "96c32c8fb0eb4a6ca96bee82b21de38b",
+    "errors": [
+      {
+        "cause": "'decimal.Decimal' object has no attribute 'isoformat'",
+        "cause_type": "AttributeError",
+        "message": "work_result_write_failed: AttributeError: 'decimal.Decimal' object has no attribute 'isoformat'",
+        "phase": "work",
+        "type": "ClockFailure"
+      },
+      {
+        "cause": "'decimal.Decimal' object has no attribute 'isoformat'",
+        "cause_type": "AttributeError",
+        "message": "work_result_write_failed: AttributeError: 'decimal.Decimal' object has no attribute 'isoformat'",
+        "phase": "monitor_close",
+        "type": "ClockFailure"
+      }
+    ],
+    "exit_code": 1,
+    "invocation_id": "8623ef805cac477faacc3c72a50e5e21",
+    "job": "oi-quality",
+    "kind": "request_finished",
+    "monitor": {
+      "ok": false,
+      "stopped": true
+    },
+    "request_id": "a702240f54774dacab107dc28fa2a776",
+    "state": "finalization_failed",
+    "work": null
+  },
+  "next_steps": [
+    "Preserve exact original request, attempt failure, report and their hashes.",
+    "Use an explicitly reviewed reconciliation to link this exact stored report without changing identity or pins; do not recompute the quality report.",
+    "A new invocation must revalidate stored result and monitoring before request termination.",
+    "Then prepare a new configuration/ledger transition plan for the corrected frozen source; previous approval does not include it."
+  ],
+  "limitations": [
+    "The original pending request has no durable result pointer. A date match alone is not recovery authorization.",
+    "This review classified stored bytes only; no operating request recovery or new runtime installation was performed."
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "backup": {
+    "backup_id": "fd4bf8417a5203f4dfbd467118740ecc2441d642096471737727fcbcdad00fdf",
+    "bytes": 43123755509,
+    "catalog_counts": {
+      "active": 15288,
+      "artifacts": 813857,
+      "event_collections": 1402,
+      "event_segments": 786455,
+      "fetches": 915335,
+      "file_packs": 2226,
+      "issues": 24,
+      "jobs": 11352,
+      "packed_files": 1564752,
+      "queries": 21105,
+      "revisions": 20791,
+      "snapshots": 20,
+      "sync_coverage": 5488,
+      "sync_runs": 6337,
+      "sync_targets": 9
+    },
+    "clock_evidence_error": null,
+    "clock_evidence_state": "available",
+    "completion_object": "b976e8b04f2bfccbf68a2bc988faac2ed95c1e5dc9172a512396fa9f70dc9192",
+    "evidence_sha256": "9262536c5dfa45af01c380a6cf43c94f586100a5b6ba40305861355a0e45eafd",
+    "files": 58598,
+    "ok": true,
+    "path": "/mnt/backup/marketdata-historical/automatic/2026-10-12/ea0b6b077d354a9290f2d919522771a9",
+    "reused": false,
+    "same_filesystem_as_source": false,
+    "storage": {
+      "mode": "linked_snapshot",
+      "new_bytes": 4502056465,
+      "new_files": 9672,
+      "reuse_backup_id": "9849b0ef7e523cbc79546c233f409ecd93cdcc8e1b5bc4f48fe8163229968a77",
+      "reuse_from": "/mnt/backup/marketdata-historical/automatic/2026-10-11/3d4530d9a00a48ca8717ee4bd5d5bb60",
+      "reused_bytes": 38621699044,
+      "reused_files": 48926,
+      "semantics": "file content bytes written at creation; excludes manifest/filesystem metadata"
+    },
+    "writer_lock_seconds": 4.965121394023299
+  },
+  "backup_capacity_after": {
+    "free_bytes": 858571456512,
+    "free_inodes": 61936554,
+    "healthy": true,
+    "min_free_bytes": 10737418240,
+    "total_inodes": 62513152,
+    "warnings": []
+  },
+  "backup_capacity_before": {
+    "free_bytes": 863308578816,
+    "free_inodes": 61994050,
+    "healthy": true,
+    "min_free_bytes": 10737418240,
+    "total_inodes": 62513152,
+    "warnings": []
+  },
+  "backup_configuration": {
+    "directory": "/mnt/backup/marketdata-historical/automatic",
+    "incremental": true,
+    "required_mount": "/mnt/backup"
+  },
+  "capacity_after": {
+    "free_bytes": 107572416512,
+    "free_inodes": 16927125,
+    "healthy": true,
+    "min_free_bytes": 10737418240,
+    "total_inodes": 18751488,
+    "warnings": []
+  },
+  "capacity_before": {
+    "free_bytes": 108021129216,
+    "free_inodes": 16928446,
+    "healthy": true,
+    "min_free_bytes": 10737418240,
+    "total_inodes": 18751488,
+    "warnings": []
+  },
+  "finished_at": "2026-10-12T05:21:46.181503+00:00",
+  "id": "4a5905fc51ab4f8e8165f3f468640dfd",
+  "lock_wait_seconds": 3.4770346246659756e-06,
+  "logical_files_deleted": 0,
+  "mode": "daily",
+  "new_prune": {
+    "packs": [
+      "c487eeb8b4e7b252e739ded2fb25a88005b1330d6644b0155b9043a78c80ce82",
+      "39ee4c9804a505b7588bee336647665c821dbc21f363ac971e7e91355df91dc9",
+      "e0779bdd4cfbf515ea4b229ad0eab5319a2bf86b02935c33b486ce063beb7ac6",
+      "6104b9b8e8c492d03c8a8e4003f4d80ac0c85e181c1a83874808e8442756398b",
+      "1fdf9de83fb12c0f12c20599bf0715f4da41ea78aa5687a4fa2e6399716be68f"
+    ],
+    "removed": 3518
+  },
+  "ok": true,
+  "packing": {
+    "applied": true,
+    "checked_at": "2026-10-12T04:11:16.173807+00:00",
+    "files": 3518,
+    "loose_files_removed": 0,
+    "packs": [
+      {
+        "bytes": 5382465,
+        "created_at": "2026-10-12T04:11:15.109331+00:00",
+        "id": "c487eeb8b4e7b252e739ded2fb25a88005b1330d6644b0155b9043a78c80ce82",
+        "members": 1024,
+        "path": "data/packs/c4/c487eeb8b4e7b252e739ded2fb25a88005b1330d6644b0155b9043a78c80ce82.zip"
+      },
+      {
+        "bytes": 543733,
+        "created_at": "2026-10-12T04:11:15.364968+00:00",
+        "id": "39ee4c9804a505b7588bee336647665c821dbc21f363ac971e7e91355df91dc9",
+        "members": 346,
+        "path": "data/packs/39/39ee4c9804a505b7588bee336647665c821dbc21f363ac971e7e91355df91dc9.zip"
+      },
+      {
+        "bytes": 43912407,
+        "created_at": "2026-10-12T04:11:15.633889+00:00",
+        "id": "e0779bdd4cfbf515ea4b229ad0eab5319a2bf86b02935c33b486ce063beb7ac6",
+        "members": 1024,
+        "path": "data/packs/e0/e0779bdd4cfbf515ea4b229ad0eab5319a2bf86b02935c33b486ce063beb7ac6.zip"
+      },
+      {
+        "bytes": 32276544,
+        "created_at": "2026-10-12T04:11:15.996265+00:00",
+        "id": "6104b9b8e8c492d03c8a8e4003f4d80ac0c85e181c1a83874808e8442756398b",
+        "members": 1024,
+        "path": "data/packs/61/6104b9b8e8c492d03c8a8e4003f4d80ac0c85e181c1a83874808e8442756398b.zip"
+      },
+      {
+        "bytes": 3185271,
+        "created_at": "2026-10-12T04:11:16.162305+00:00",
+        "id": "1fdf9de83fb12c0f12c20599bf0715f4da41ea78aa5687a4fa2e6399716be68f",
+        "members": 100,
+        "path": "data/packs/1f/1fdf9de83fb12c0f12c20599bf0715f4da41ea78aa5687a4fa2e6399716be68f.zip"
+      }
+    ],
+    "retention": "indefinite",
+    "source_bytes": 84368422
+  },
+  "pending_prune": {
+    "limit_reached": false,
+    "packs": [],
+    "removed": 0
+  },
+  "phase": "finished",
+  "requested_at": "2026-10-12T04:10:01.236768+00:00",
+  "retention": "indefinite",
+  "started_at": "2026-10-12T04:10:01.236802+00:00",
+  "state": "complete",
+  "updated_at": "2026-10-12T05:21:46.181507+00:00",
+  "validation": {
+    "checked": 1617972,
+    "failures": [],
+    "ok": true
+  },
+  "wait_for_lock": true
+}

@@ -1,0 +1,149 @@
+{
+  "prepared_at": "2026-10-16T14:47:28.712088+00:00",
+  "release_id": "scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+  "source_sha256": "686bb70c9ee4ef11d9845e8e41cc31a4d846fb2dc8881e9d9640d7f5fbd4ce60",
+  "tool_id": "scheduled-clock-handoff-20261016-1437b0f0212d4c6c",
+  "tool_source_sha256": "1437b0f0212d4c6cdf5622d9f0ae63d586724f34e59e7477701ad975459c6e29",
+  "host_plan_id": "8ce6ba51659556e5901e85c81694a9d585c0817dbc9a0c34c990547467217f31",
+  "configuration_plan_id": "78d7c634bced73af83e765e8f0c9e2a1a4b2029d5d0f0e3375e98e654f4dbd77",
+  "recovery_plan_id": "9f7ebc5e78621b68ae278b1829037bd9a3119e82464eb689a9f59adff499407c",
+  "implementation_scope": "Two-encoder correction source plus exact one-request recovery and current-to-corrected handoff",
+  "prior_source_validation": {
+    "path": "../scheduled-clock-result-fix-2026-10-16/validation.json",
+    "passed": 123,
+    "counted_here": false
+  },
+  "expected_final_tests": {
+    "total": 113,
+    "prior_handoff_and_installation": 76,
+    "exact_recovery": 22,
+    "recovery_transition_connections": 15
+  },
+  "test_environment": "Python 3.12, actual captured report/request/journal copied to isolated paths; actual files, flock, threads, six separate process SIGKILL boundaries. Chrony and managers are doubles in these tests.",
+  "payload_relocation": {
+    "passed": true,
+    "actual_systemd": false,
+    "operating_installation": false,
+    "objects": 5523,
+    "temporary_path": "/tmp/t16-repair-relocated-al1vkbxd/release",
+    "temporary_path_absent": true,
+    "variants": [
+      {
+        "variant": "base",
+        "uid": 1000,
+        "executable": "/tmp/t16-repair-relocated-al1vkbxd/release/base/.venv/bin/python",
+        "prefix": "/tmp/t16-repair-relocated-al1vkbxd/release/base/.venv",
+        "modules": {
+          "marketdata": {
+            "path": "base/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+            "sha256": "44a5fa1cce21a83e01fd81a9f2c34b7606177eb5dfd807d226b06a0e70c70e30"
+          },
+          "marketdata.cli": {
+            "path": "base/.venv/lib/python3.12/site-packages/marketdata/cli.py",
+            "sha256": "4c064d5d8a2ba079b8e686dfccea8d94dc373eb4899e7a97fc380d6be84f36b6"
+          },
+          "marketdata.job_clock": {
+            "path": "base/.venv/lib/python3.12/site-packages/marketdata/job_clock.py",
+            "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4"
+          }
+        },
+        "both_encoders_passed": true
+      },
+      {
+        "variant": "daily",
+        "uid": 1000,
+        "executable": "/tmp/t16-repair-relocated-al1vkbxd/release/daily/.venv/bin/python",
+        "prefix": "/tmp/t16-repair-relocated-al1vkbxd/release/daily/.venv",
+        "modules": {
+          "marketdata": {
+            "path": "daily/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+            "sha256": "44a5fa1cce21a83e01fd81a9f2c34b7606177eb5dfd807d226b06a0e70c70e30"
+          },
+          "marketdata.cli": {
+            "path": "daily/.venv/lib/python3.12/site-packages/marketdata/cli.py",
+            "sha256": "4c064d5d8a2ba079b8e686dfccea8d94dc373eb4899e7a97fc380d6be84f36b6"
+          },
+          "marketdata.job_clock": {
+            "path": "daily/.venv/lib/python3.12/site-packages/marketdata/job_clock.py",
+            "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4"
+          }
+        },
+        "both_encoders_passed": true
+      },
+      {
+        "variant": "preserve",
+        "uid": 1000,
+        "executable": "/tmp/t16-repair-relocated-al1vkbxd/release/preserve/.venv/bin/python",
+        "prefix": "/tmp/t16-repair-relocated-al1vkbxd/release/preserve/.venv",
+        "modules": {
+          "marketdata": {
+            "path": "preserve/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+            "sha256": "44a5fa1cce21a83e01fd81a9f2c34b7606177eb5dfd807d226b06a0e70c70e30"
+          },
+          "marketdata.cli": {
+            "path": "preserve/.venv/lib/python3.12/site-packages/marketdata/cli.py",
+            "sha256": "4c064d5d8a2ba079b8e686dfccea8d94dc373eb4899e7a97fc380d6be84f36b6"
+          },
+          "marketdata.job_clock": {
+            "path": "preserve/.venv/lib/python3.12/site-packages/marketdata/job_clock.py",
+            "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4"
+          }
+        },
+        "both_encoders_passed": true
+      }
+    ]
+  },
+  "prior_system_preflight_reused": {
+    "new_release_id": "scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+    "new_runtime_system_preflight_performed": false,
+    "previous_configuration_plan_id": "5e7473d9d5c349c5ae31a0da1f1589391ef3507000e358d3ba74ccbc3be5f0cb",
+    "previous_host_plan_id": "7eccd61f65c66fd5f3d70f8893e23aa01abe246caa719256e96e004d59753a7a",
+    "previous_preflight": {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-handoff-2026-10-16/system-preflight-result-48167a9e9eb24fdd.json",
+      "sha256": "8206c0462c2d4049f4007e7d06b20b82ee471c609a2c6b8d11c0caa7c9580b28",
+      "tool_id": "scheduled-clock-preflight-20261016-09c76b2964a76970"
+    },
+    "previous_release_id": "scheduled-clock-policy-20261016-544c61aca49f1355",
+    "previous_source_sha256": "544c61aca49f13559861902bcd49bc28a503b18b7d2718c48c2139c152f56c65",
+    "purpose": "two-encoder-fix-only",
+    "runtime_changes": {
+      "policy/request_contract.py": {
+        "after": "bff0d83ace0b372e3d7aabd23821fb0cd57aed4b0be265364cdc330c7dbefe2c",
+        "before": "283935e619ac051d42d1a81df6757070e2b809122e3dbf1927d9f12dd24cd141"
+      },
+      "policy/run_job.py": {
+        "after": "55a965a3c9894b89d5d45b9d26b6a71f71fc76f9cb048e48589d8958f83e4e7c",
+        "before": "c8aef88babd3736a872fbfda1eae6ad350a2690249b0f1e83dfabfc842910664"
+      }
+    },
+    "scope": "Reuse prior real systemd access/protection/timer/monitor tests for unchanged paths and code. New repair and host transition tested separately; final /opt imports checked before timer hold."
+  },
+  "native_inventory": "host-before.json",
+  "operating_request_repaired": false,
+  "corrected_runtime_installed": false,
+  "operating_services_changed": false,
+  "automatic_retirement": "masked",
+  "clock_control": false,
+  "checkpoint_deletion": false,
+  "limits": [
+    "No actual new systemd run or new /opt installation in this preparation. Prior unchanged protection/access tests are explicitly reused.",
+    "Final /opt imports run before timer hold in the approved executor.",
+    "Rollback returns to the previous T16 runtime including its Decimal defect; recovered records are preserved.",
+    "Original process exit 1 is retained; derived report code 2 is not an observed historical CLI return.",
+    "Remaining first daily data processing and periodic backup/T05/restic operating verification are still pending."
+  ],
+  "final_tests": {
+    "tests": 113,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 113,
+    "junit_sha256": "9429afae7892fd2e43c44073435098f164c2f1862780a61f74cd8d0850a96dd5"
+  },
+  "passed": true,
+  "static_checks": {
+    "ast": true,
+    "ruff_F_E9": true,
+    "ruff_exception": "unchanged vendor/handoff_common.py unused time import (F401); source preserved"
+  }
+}

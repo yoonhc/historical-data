@@ -1,0 +1,34 @@
+{
+  "format_version": 1,
+  "timeframes": ["1m", "5m", "15m", "1h"],
+  "datasets": {
+    "spot-3y": {
+      "snapshot_id": "74dfc6d98601153f1cc8ac7ce8e3062c4e2bde9e15a036d79656202ec8405500",
+      "start": "2023-09-22T00:00:00Z",
+      "end": "2026-09-22T00:00:00Z",
+      "modes": ["spot"],
+      "smoke_timerange": "20250901-20250915"
+    },
+    "futures-before-gap": {
+      "snapshot_id": "d8ed267f14c710429eaaf089ad3c3a7d3ef6151e485b03c39be47b80c29e27ee",
+      "start": "2023-09-22T00:00:00Z",
+      "end": "2024-08-12T10:00:00Z",
+      "modes": ["futures"],
+      "smoke_timerange": "20230923-20231007"
+    },
+    "futures-after-gap": {
+      "snapshot_id": "afc3b88736080c6fa462ff3bded1bbc5d5f296735294cc0b3f2863de17f7ba3f",
+      "start": "2024-08-12T11:00:00Z",
+      "end": "2026-09-22T00:00:00Z",
+      "modes": ["futures"],
+      "smoke_timerange": "20250901-20250915"
+    },
+    "oi-longest": {
+      "snapshot_id": "b8b238b61954b0c4f31fcafe4a94d7597bf2708df076a0746d3eab8b3e5602e4",
+      "start": "2025-08-29T07:00:00Z",
+      "end": "2026-09-22T00:00:00Z",
+      "modes": ["spot", "futures"],
+      "smoke_timerange": "20250901-20250915"
+    }
+  }
+}

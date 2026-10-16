@@ -1,0 +1,75 @@
+{
+  "candidate_runtime_files": 291,
+  "candidate_unchanged": true,
+  "host_tests": {
+    "errors": 0,
+    "failures": 0,
+    "manager": "isolated double; actual files/flock/durable receipts",
+    "report": "host-tests.xml",
+    "seconds": 15.364,
+    "sha256": "a9e6cb895922de05e5addd3f307eb8f2c4a63d2fc098b2eeff7dc76aa831be86",
+    "tests": 76
+  },
+  "limits": [
+    "Final /opt installation and live system-to-system handoff require separate exact-plan approval.",
+    "New configuration boot and live 8-job/backup/restic/collector-boundary observations are not completed.",
+    "Rollback with unresolved requests requires exact preservation review and delivery reconciliation.",
+    "Auxiliary request/attempt/JSONL independent backup and rotation remain follow-up."
+  ],
+  "native_readonly_review": {
+    "passed": true,
+    "report": "native-review.json",
+    "sha256": "4f8ee8b2179b270bb28e7b1f227a0cf1ec3785e839a3f033d6b1d89a29e95aab"
+  },
+  "operating_approval": false,
+  "operating_configuration_applied": false,
+  "operating_installed": false,
+  "plan_id": "7eccd61f65c66fd5f3d70f8893e23aa01abe246caa719256e96e004d59753a7a",
+  "readiness_adapter_native": {
+    "passed": true,
+    "report": "readiness-review.json"
+  },
+  "release_id": "scheduled-clock-policy-20261016-544c61aca49f1355",
+  "reused_not_rerun": {
+    "configuration_boundaries": 48,
+    "policy_and_recovery": 119,
+    "preflight_tool_contracts": 11,
+    "real_prior_runtime_record_and_configuration_rollback": 2
+  },
+  "ruff_F_E9": true,
+  "syntax_ast": true,
+  "system_preflight": {
+    "cleanup": {
+      "errors": [],
+      "paths_absent": true,
+      "unit_load_states": {
+        "md-t16-48167a9e9eb24fdd-backup.service": "not-found",
+        "md-t16-48167a9e9eb24fdd-context.service": "not-found",
+        "md-t16-48167a9e9eb24fdd-context.timer": "not-found",
+        "md-t16-48167a9e9eb24fdd-daily.service": "not-found",
+        "md-t16-48167a9e9eb24fdd-network-observer.service": "not-found",
+        "md-t16-48167a9e9eb24fdd-oi-probe.service": "not-found",
+        "md-t16-48167a9e9eb24fdd-oi-quality.service": "not-found",
+        "md-t16-48167a9e9eb24fdd-oi.service": "not-found",
+        "md-t16-48167a9e9eb24fdd-pack.service": "not-found",
+        "md-t16-48167a9e9eb24fdd-ready.service": "not-found",
+        "md-t16-48167a9e9eb24fdd-restic-archive.service": "not-found",
+        "md-t16-48167a9e9eb24fdd-resume.service": "not-found"
+      }
+    },
+    "operating_unchanged": true,
+    "operating_workload_data_used": false,
+    "passed": true,
+    "protected_entrypoints": 8,
+    "real_system_invocation_recovery": true,
+    "real_timer_and_manual_attribution": true,
+    "report": "preflight-result.json",
+    "sha256": "8206c0462c2d4049f4007e7d06b20b82ee471c609a2c6b8d11c0caa7c9580b28"
+  },
+  "tool_id": "scheduled-clock-handoff-20261016-778dca2b72c6e867",
+  "unchanged_helpers": {
+    "transition.py": "6030d4d96d4660042defe4678111af293c68e32e9448ef0689df37ddf6d9e404",
+    "vendor/handoff_common.py": "0666b1916db63a582c64577f400ea9caa847a11c27ac4042d9c31061a0ca1d37",
+    "vendor/transaction_engine.py": "53014d97594c60d45c1a1ae3e47f7c42797f85c3e0357242af0c4124a5414ceb"
+  }
+}

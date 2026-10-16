@@ -1,0 +1,19 @@
+# Separate from backup-host.example.toml (the completed trial's configuration).
+# Copy outside Git. Initialize the repository once, then pin its full ID here.
+store_root = "/srv/marketdata/store"
+backup_dir = "/mnt/backup/marketdata-historical/automatic"
+backup_mount = "/mnt/backup"
+backup_filesystem_uuid = "REPLACE_WITH_FILESYSTEM_UUID"
+restic_repository = "/mnt/backup/marketdata-restic"
+expected_repository_id = "REPLACE_WITH_64_HEX_REPOSITORY_ID"
+restic_binary = "/opt/marketdata-tools/restic-0.19.1"
+restic_password_file = "/home/collector/.config/marketdata/secrets/restic-password"
+archive_scope = "btc-original-host-v1"
+enroll_from_utc_date = "2026-09-27"
+state_root = "/srv/marketdata/restic-state"
+reports_root = "/srv/marketdata/restic-reports"
+cache_root = "/srv/marketdata/restic-cache"
+restore_work_root = "/mnt/backup/marketdata-restic-restore"
+min_free_gib = 10
+max_checkpoints_per_run = 3
+restic_threads = 2

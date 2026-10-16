@@ -1,0 +1,25 @@
+[Unit]
+Description=Capture recent public five-minute open interest
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+TimeoutStartSec=4min
+Restart=on-failure
+RestartSec=30s
+
+[Unit]
+Requires=marketdata-jobs-clock-ready.service
+After=marketdata-jobs-clock-ready.service
+[Service]
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+[Service]
+ExecStart=/opt/marketdata/releases/scheduled-clock-policy-20261015-90f97df305c662c2/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261015-90f97df305c662c2/policy/run_job.py --job oi --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data update --config /etc/marketdata/scheduled-system/oi-live.toml --report state/oi-latest.json

@@ -1,0 +1,71 @@
+{
+  "observed_at": "2026-10-12T16:32:54.910551+00:00",
+  "maintenance_source": "state/maintenance-hourly-latest.json",
+  "maintenance_sha256": "edf826314b5b982132881f61605586e49c95d27f8aa8273489abb99ad8fd7af8",
+  "journal": {
+    "argv": [
+      "/usr/bin/journalctl",
+      "-b",
+      "-u",
+      "marketdata-pack.service",
+      "--since",
+      "2026-10-13 01:24:00",
+      "--until",
+      "2026-10-13 01:31:00",
+      "--no-pager",
+      "-o",
+      "json",
+      "--output-fields=__REALTIME_TIMESTAMP,__MONOTONIC_TIMESTAMP,_SYSTEMD_UNIT,_SYSTEMD_INVOCATION_ID,_UID,_PID,MESSAGE"
+    ],
+    "code": 0,
+    "sha256": "1db7977765c9f90e5e4d6606222222a885cbfe7989bca4bd1906a5987f0b6510",
+    "stderr": ""
+  },
+  "run_id": "f7eb9c37114a4c5483b691ab1733fd18",
+  "first_attempt_failed": "9f6ef0b3652144fd901d64da82bca2d9",
+  "retry_started": "2026-10-12T16:28:05.297116+00:00",
+  "retry_finished": "2026-10-12T16:29:41.349016+00:00",
+  "retry_ok": true,
+  "packs": [
+    {
+      "id": "bb9c8118a360e8b7d756f3edb9bc6fb7da365cb8b0356a7f00d3541ed5121d75",
+      "path": "data/packs/bb/bb9c8118a360e8b7d756f3edb9bc6fb7da365cb8b0356a7f00d3541ed5121d75.zip",
+      "bytes": 7123266,
+      "members": 1024,
+      "created_at": "2026-10-12T16:26:00.595755+00:00",
+      "packed_references": 1024,
+      "actual_bytes": 7123266
+    },
+    {
+      "id": "d2bacf2b6edf563b909fe7f7c41ee59f179161d1b27c0addecd448fdcc51a904",
+      "path": "data/packs/d2/d2bacf2b6edf563b909fe7f7c41ee59f179161d1b27c0addecd448fdcc51a904.zip",
+      "bytes": 1121469,
+      "members": 372,
+      "created_at": "2026-10-12T16:26:00.758314+00:00",
+      "packed_references": 372,
+      "actual_bytes": 1121469
+    },
+    {
+      "id": "b74f9204777a52a25a58673ece90506885829a572f414c1bd1efadb4a11391c7",
+      "path": "data/packs/b7/b74f9204777a52a25a58673ece90506885829a572f414c1bd1efadb4a11391c7.zip",
+      "bytes": 57873481,
+      "members": 1024,
+      "created_at": "2026-10-12T16:26:01.060441+00:00",
+      "packed_references": 1024,
+      "actual_bytes": 57873481
+    },
+    {
+      "id": "216ece7eefba61c5031c1f5510ca41a648e85ff0744be6bcbcd2c1f5999669ef",
+      "path": "data/packs/21/216ece7eefba61c5031c1f5510ca41a648e85ff0744be6bcbcd2c1f5999669ef.zip",
+      "bytes": 4985262,
+      "members": 118,
+      "created_at": "2026-10-12T16:26:01.669370+00:00",
+      "packed_references": 118,
+      "actual_bytes": 4985262
+    }
+  ],
+  "individual_copies_removed": 2538,
+  "checkpoint_deletion": false,
+  "manual_retry_requested": false,
+  "note": "Read-only artifact/Parquet verification overlapped the earlier layout lock failure; the lock holder was not independently captured."
+}

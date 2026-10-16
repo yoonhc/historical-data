@@ -1,0 +1,651 @@
+{
+  "verified": [
+    {
+      "attempt_id": "56e3a17ea62c47deb6c89a716b3e1169",
+      "task_id": "38ebb237b3d351bc59f5efdd0c476ae35f85dacf2a32cd53203f3c687ddd0b3d",
+      "purpose": "acquire",
+      "day": "2026-10-12",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "proof": {
+        "queries": [
+          {
+            "id": 21330,
+            "key_id": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+            "start": "2026-10-12T00:00:00+00:00",
+            "end": "2026-10-13T00:00:00+00:00",
+            "source_id": "9f04746754aaa0e85f2cd39fb3c224b46b39a6790f62f42d7b503a10e21cc8ee"
+          }
+        ],
+        "revisions": [
+          {
+            "id": "b45db27763594645b52542aa83066743f93c08a685ca2f2bd03a32e305a8f416",
+            "day": "2026-10-12",
+            "sha256": "32f0d68ec3554acd2afc9eb0f29b7637c7d747bc81073ed9e06e95df13c1c072",
+            "path": "data/canonical/funding_events/d911927ead9da1eb/2026-10-12/b45db27763594645b52542aa83066743f93c08a685ca2f2bd03a32e305a8f416.parquet",
+            "physical_path": "data/canonical/funding_events/d911927ead9da1eb/2026-10-12/b45db27763594645b52542aa83066743f93c08a685ca2f2bd03a32e305a8f416.parquet",
+            "rows": 3,
+            "quality": {
+              "accepted_revision": false,
+              "issues": [],
+              "source_id": "9f04746754aaa0e85f2cd39fb3c224b46b39a6790f62f42d7b503a10e21cc8ee"
+            },
+            "first_timestamp": "2026-10-12 00:00:00.006000+00:00",
+            "last_timestamp": "2026-10-12 16:00:00.006000+00:00",
+            "exact_grid": null,
+            "issues": []
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "9f04746754aaa0e85f2cd39fb3c224b46b39a6790f62f42d7b503a10e21cc8ee",
+            "path": "data/raw/9f/9f04746754aaa0e85f2cd39fb3c224b46b39a6790f62f42d7b503a10e21cc8ee/payload",
+            "kind": "query_manifest",
+            "observed_at": "2026-10-13T03:20:20.541340+00:00",
+            "bytes": 367,
+            "physical_path": "data/raw/9f/9f04746754aaa0e85f2cd39fb3c224b46b39a6790f62f42d7b503a10e21cc8ee/payload",
+            "verified_sha256": "9f04746754aaa0e85f2cd39fb3c224b46b39a6790f62f42d7b503a10e21cc8ee"
+          }
+        ]
+      }
+    },
+    {
+      "attempt_id": "433a86f236a540f0a31805848946bbdc",
+      "task_id": "d17c68a382350de2c13c543267416b73309af6eb2e791d2953a22a5c8d6473eb",
+      "purpose": "acquire",
+      "day": "2026-10-12",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "proof": {
+        "queries": [
+          {
+            "id": 21331,
+            "key_id": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+            "start": "2026-10-12T00:00:00+00:00",
+            "end": "2026-10-13T00:00:00+00:00",
+            "source_id": "37eaf52515280dc290b144234d67827a07db99af88b17d5600d524157b2bd557"
+          }
+        ],
+        "revisions": [
+          {
+            "id": "aa54f8e5451185c6654ca797325bcd08ebf11c776089a7bc22c7ecb73e3bdbaf",
+            "day": "2026-10-12",
+            "sha256": "48887616bf4a78dd3837e522add1380b536bf93acdcd938e7408ea4d5064e2b5",
+            "path": "data/canonical/trade_bars/ecfecb290b55a4a8/2026-10-12/aa54f8e5451185c6654ca797325bcd08ebf11c776089a7bc22c7ecb73e3bdbaf.parquet",
+            "physical_path": "data/canonical/trade_bars/ecfecb290b55a4a8/2026-10-12/aa54f8e5451185c6654ca797325bcd08ebf11c776089a7bc22c7ecb73e3bdbaf.parquet",
+            "rows": 1440,
+            "quality": {
+              "accepted_revision": false,
+              "issues": [],
+              "source_id": "37eaf52515280dc290b144234d67827a07db99af88b17d5600d524157b2bd557"
+            },
+            "first_timestamp": "2026-10-12 00:00:00+00:00",
+            "last_timestamp": "2026-10-12 23:59:00+00:00",
+            "exact_grid": true,
+            "issues": []
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "37eaf52515280dc290b144234d67827a07db99af88b17d5600d524157b2bd557",
+            "path": "data/raw/37/37eaf52515280dc290b144234d67827a07db99af88b17d5600d524157b2bd557/payload",
+            "kind": "archive",
+            "observed_at": "2026-10-13T03:20:20.922525+00:00",
+            "bytes": 69031,
+            "physical_path": "data/raw/37/37eaf52515280dc290b144234d67827a07db99af88b17d5600d524157b2bd557/payload",
+            "verified_sha256": "37eaf52515280dc290b144234d67827a07db99af88b17d5600d524157b2bd557"
+          }
+        ]
+      }
+    },
+    {
+      "attempt_id": "b6d241fbd70e4f72a2f06932b3a4b6ac",
+      "task_id": "77180f13fc39d418e3f4e2b8a7edf8b2dfe3088009fd0056a0293f9ce4040799",
+      "purpose": "observe",
+      "day": "2026-10-13",
+      "key": {
+        "dataset": "instrument_metadata",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "proof": {
+        "queries": [
+          {
+            "id": 21332,
+            "key_id": "binance:linear_perpetual:BTCUSDT:instrument_metadata:event:primary",
+            "start": "2026-10-13T00:00:00+00:00",
+            "end": "2026-10-14T00:00:00+00:00",
+            "source_id": "0ef933a93676ecb87d3cf14f49351d74eb10134db52ea8e1675bdc0f0468dc06"
+          }
+        ],
+        "revisions": [
+          {
+            "id": "6aeb8ee659bd6dd8cd1a9c785828214c376c5e46b5146592be7dfbe5c28061ec",
+            "day": "2026-10-13",
+            "sha256": "d2a05831e19b96ca2bd214110043dc49fbbf1c8389e1e9e159ee4e0270cba623",
+            "path": "data/canonical/instrument_metadata/e8efc4dc2ae5152c/2026-10-13/6aeb8ee659bd6dd8cd1a9c785828214c376c5e46b5146592be7dfbe5c28061ec.parquet",
+            "physical_path": "data/canonical/instrument_metadata/e8efc4dc2ae5152c/2026-10-13/6aeb8ee659bd6dd8cd1a9c785828214c376c5e46b5146592be7dfbe5c28061ec.parquet",
+            "rows": 1,
+            "quality": {
+              "accepted_revision": false,
+              "issues": [],
+              "source_id": "0ef933a93676ecb87d3cf14f49351d74eb10134db52ea8e1675bdc0f0468dc06"
+            },
+            "first_timestamp": "2026-10-13 03:20:21.288774+00:00",
+            "last_timestamp": "2026-10-13 03:20:21.288774+00:00",
+            "exact_grid": null,
+            "issues": []
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "0ef933a93676ecb87d3cf14f49351d74eb10134db52ea8e1675bdc0f0468dc06",
+            "path": "data/raw/0e/0ef933a93676ecb87d3cf14f49351d74eb10134db52ea8e1675bdc0f0468dc06/payload",
+            "kind": "query_manifest",
+            "observed_at": "2026-10-13T03:20:21.300586+00:00",
+            "bytes": 305,
+            "physical_path": "data/raw/0e/0ef933a93676ecb87d3cf14f49351d74eb10134db52ea8e1675bdc0f0468dc06/payload",
+            "verified_sha256": "0ef933a93676ecb87d3cf14f49351d74eb10134db52ea8e1675bdc0f0468dc06"
+          }
+        ]
+      }
+    },
+    {
+      "attempt_id": "1c74b9d495104a5fbb3ecc7e9400b888",
+      "task_id": "c171f1974e4ff2afe11c2330fa0172b8e0d006c86e67ab01586b0c555b617294",
+      "purpose": "observe",
+      "day": "2026-10-13",
+      "key": {
+        "dataset": "instrument_metadata",
+        "interval": "event",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "proof": {
+        "queries": [
+          {
+            "id": 21333,
+            "key_id": "binance:spot:BTCUSDT:instrument_metadata:event:primary",
+            "start": "2026-10-13T00:00:00+00:00",
+            "end": "2026-10-14T00:00:00+00:00",
+            "source_id": "9b993f92ec56ca07d72f76dfff28880da12d0f02c4c859c08f0764378a98bd6e"
+          }
+        ],
+        "revisions": [
+          {
+            "id": "72542cb36caa2f31041ff1da9a56c5822f8c80f6b82660008ec9bf7cc11e30f2",
+            "day": "2026-10-13",
+            "sha256": "f01166455937ab2c54753c2d547d9574afcdd4b0bd9659b9a1e05a0c8752f47f",
+            "path": "data/canonical/instrument_metadata/994173cf025384b9/2026-10-13/72542cb36caa2f31041ff1da9a56c5822f8c80f6b82660008ec9bf7cc11e30f2.parquet",
+            "physical_path": "data/canonical/instrument_metadata/994173cf025384b9/2026-10-13/72542cb36caa2f31041ff1da9a56c5822f8c80f6b82660008ec9bf7cc11e30f2.parquet",
+            "rows": 1,
+            "quality": {
+              "accepted_revision": false,
+              "issues": [],
+              "source_id": "9b993f92ec56ca07d72f76dfff28880da12d0f02c4c859c08f0764378a98bd6e"
+            },
+            "first_timestamp": "2026-10-13 03:20:21.523117+00:00",
+            "last_timestamp": "2026-10-13 03:20:21.523117+00:00",
+            "exact_grid": null,
+            "issues": []
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "9b993f92ec56ca07d72f76dfff28880da12d0f02c4c859c08f0764378a98bd6e",
+            "path": "data/raw/9b/9b993f92ec56ca07d72f76dfff28880da12d0f02c4c859c08f0764378a98bd6e/payload",
+            "kind": "query_manifest",
+            "observed_at": "2026-10-13T03:20:21.686129+00:00",
+            "bytes": 293,
+            "physical_path": "data/raw/9b/9b993f92ec56ca07d72f76dfff28880da12d0f02c4c859c08f0764378a98bd6e/payload",
+            "verified_sha256": "9b993f92ec56ca07d72f76dfff28880da12d0f02c4c859c08f0764378a98bd6e"
+          }
+        ]
+      }
+    },
+    {
+      "attempt_id": "a97457e545e545a089403d1babcdec6a",
+      "task_id": "340dc9cb3b6231f4b0a95f998bc3e7c9c82185b7c65b9d28ec00278f0b25efb9",
+      "purpose": "refresh",
+      "day": "2026-10-09",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "proof": {
+        "queries": [
+          {
+            "id": 20652,
+            "key_id": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+            "start": "2026-10-09T00:00:00+00:00",
+            "end": "2026-10-10T00:00:00+00:00",
+            "source_id": "20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372"
+          }
+        ],
+        "revisions": [
+          {
+            "id": "a81cc7ca0bfcc2731c5d49415ffcc0e25472196c24e6f4bfff64b33a012e6487",
+            "day": "2026-10-09",
+            "sha256": "04ba7ddd735da196137de666d6c67b47222827358a14d559965b82a5799d412b",
+            "path": "data/canonical/funding_events/d911927ead9da1eb/2026-10-09/a81cc7ca0bfcc2731c5d49415ffcc0e25472196c24e6f4bfff64b33a012e6487.parquet",
+            "physical_path": "data/canonical/funding_events/d911927ead9da1eb/2026-10-09/a81cc7ca0bfcc2731c5d49415ffcc0e25472196c24e6f4bfff64b33a012e6487.parquet",
+            "rows": 3,
+            "quality": {
+              "accepted_revision": false,
+              "issues": [],
+              "source_id": "20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372"
+            },
+            "first_timestamp": "2026-10-09 00:00:00+00:00",
+            "last_timestamp": "2026-10-09 16:00:00+00:00",
+            "exact_grid": null,
+            "issues": []
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372",
+            "path": "data/raw/20/20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372/payload",
+            "kind": "query_manifest",
+            "observed_at": "2026-10-10T03:22:06.550677+00:00",
+            "bytes": 367,
+            "physical_path": "data/raw/20/20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372/payload",
+            "verified_sha256": "20542bfd50e4e5f612aa7b4a36ea0f0c327d9022f345980925a54aba8cd86372"
+          }
+        ]
+      }
+    },
+    {
+      "attempt_id": "2c94d7b951884e8597f222dc8f544d67",
+      "task_id": "47dfb9ac547159a0f4896fb7b4c7a6c3a83793e276c779c4e98a74b5d5380f40",
+      "purpose": "refresh",
+      "day": "2026-10-09",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "proof": {
+        "queries": [
+          {
+            "id": 20648,
+            "key_id": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+            "start": "2026-10-09T00:00:00+00:00",
+            "end": "2026-10-10T00:00:00+00:00",
+            "source_id": "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48"
+          }
+        ],
+        "revisions": [
+          {
+            "id": "7bea98e86cc65f77b1e7a3efe1386c26720c169160d8108edc4e2c786eaf6f29",
+            "day": "2026-10-09",
+            "sha256": "d87320b3b55d0d546d6f340ee45ae63ed6ce9fe74c29a3d0754af101ec0096de",
+            "path": "data/canonical/trade_bars/ecfecb290b55a4a8/2026-10-09/7bea98e86cc65f77b1e7a3efe1386c26720c169160d8108edc4e2c786eaf6f29.parquet",
+            "physical_path": "data/canonical/trade_bars/ecfecb290b55a4a8/2026-10-09/7bea98e86cc65f77b1e7a3efe1386c26720c169160d8108edc4e2c786eaf6f29.parquet",
+            "rows": 1440,
+            "quality": {
+              "accepted_revision": false,
+              "issues": [],
+              "source_id": "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48"
+            },
+            "first_timestamp": "2026-10-09 00:00:00+00:00",
+            "last_timestamp": "2026-10-09 23:59:00+00:00",
+            "exact_grid": true,
+            "issues": []
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48",
+            "path": "data/raw/35/35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48/payload",
+            "kind": "archive",
+            "observed_at": "2026-10-10T03:22:03.383966+00:00",
+            "bytes": 68355,
+            "physical_path": "data/raw/35/35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48/payload",
+            "verified_sha256": "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48"
+          }
+        ]
+      }
+    },
+    {
+      "attempt_id": "721b01f90a4d4c979a7e4d586077e4de",
+      "task_id": "83e0c3a923a5ee01beb87e78a8e5ee1cb8fc5be53d204026d7099a160f18d90e",
+      "purpose": "refresh",
+      "day": "2026-10-10",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "proof": {
+        "queries": [
+          {
+            "id": 20895,
+            "key_id": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+            "start": "2026-10-10T00:00:00+00:00",
+            "end": "2026-10-11T00:00:00+00:00",
+            "source_id": "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad"
+          }
+        ],
+        "revisions": [
+          {
+            "id": "cb89a8c816e56c8e07354c6ce250d66a8f872f3121afa6c137cf39f5d5873be3",
+            "day": "2026-10-10",
+            "sha256": "38f23438c34227bea0f9502207893019d77d91c06e80501387b59fa01efd8c36",
+            "path": "data/canonical/trade_bars/ecfecb290b55a4a8/2026-10-10/cb89a8c816e56c8e07354c6ce250d66a8f872f3121afa6c137cf39f5d5873be3.parquet",
+            "physical_path": "data/canonical/trade_bars/ecfecb290b55a4a8/2026-10-10/cb89a8c816e56c8e07354c6ce250d66a8f872f3121afa6c137cf39f5d5873be3.parquet",
+            "rows": 1440,
+            "quality": {
+              "accepted_revision": false,
+              "issues": [],
+              "source_id": "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad"
+            },
+            "first_timestamp": "2026-10-10 00:00:00+00:00",
+            "last_timestamp": "2026-10-10 23:59:00+00:00",
+            "exact_grid": true,
+            "issues": []
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad",
+            "path": "data/raw/79/79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad/payload",
+            "kind": "archive",
+            "observed_at": "2026-10-11T03:21:07.205051+00:00",
+            "bytes": 63119,
+            "physical_path": "data/raw/79/79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad/payload",
+            "verified_sha256": "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad"
+          }
+        ]
+      }
+    },
+    {
+      "attempt_id": "d7d4291de8aa454092743372d34b6921",
+      "task_id": "afa780bff7cd75c6e61b42edf4e83ebd3bdb61e5026b0241b7fa0b10ec7c7cd2",
+      "purpose": "refresh",
+      "day": "2026-10-10",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "proof": {
+        "queries": [
+          {
+            "id": 20896,
+            "key_id": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+            "start": "2026-10-10T00:00:00+00:00",
+            "end": "2026-10-11T00:00:00+00:00",
+            "source_id": "9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df"
+          }
+        ],
+        "revisions": [
+          {
+            "id": "31bdb965e3387d4991394b44340457c27db0ffc941b119e91665a3199fff0e32",
+            "day": "2026-10-10",
+            "sha256": "076d38ce15853defd59e6440f6b5ce4830d5c55aef22e61c5c9c55e3ccb65dc2",
+            "path": "data/canonical/funding_events/d911927ead9da1eb/2026-10-10/31bdb965e3387d4991394b44340457c27db0ffc941b119e91665a3199fff0e32.parquet",
+            "physical_path": "data/canonical/funding_events/d911927ead9da1eb/2026-10-10/31bdb965e3387d4991394b44340457c27db0ffc941b119e91665a3199fff0e32.parquet",
+            "rows": 3,
+            "quality": {
+              "accepted_revision": false,
+              "issues": [],
+              "source_id": "9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df"
+            },
+            "first_timestamp": "2026-10-10 00:00:00.002000+00:00",
+            "last_timestamp": "2026-10-10 16:00:00.002000+00:00",
+            "exact_grid": null,
+            "issues": []
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df",
+            "path": "data/raw/9c/9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df/payload",
+            "kind": "query_manifest",
+            "observed_at": "2026-10-11T03:21:07.716621+00:00",
+            "bytes": 367,
+            "physical_path": "data/raw/9c/9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df/payload",
+            "verified_sha256": "9cf5c3fc15382aba61e5a789267f35c9b309112984da8aabedaf70967b0e44df"
+          }
+        ]
+      }
+    },
+    {
+      "attempt_id": "eb3aa0ea889d4c4f87e61270413f10ab",
+      "task_id": "21ff04e6021b372ad7d531e6f04112c9226c951bcbf9ec8993492a2d0f5c2eba",
+      "purpose": "refresh",
+      "day": "2026-10-11",
+      "key": {
+        "dataset": "trade_bars",
+        "interval": "1m",
+        "market": "spot",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "proof": {
+        "queries": [
+          {
+            "id": 21085,
+            "key_id": "binance:spot:BTCUSDT:trade_bars:1m:primary",
+            "start": "2026-10-11T00:00:00+00:00",
+            "end": "2026-10-12T00:00:00+00:00",
+            "source_id": "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf"
+          }
+        ],
+        "revisions": [
+          {
+            "id": "ac3210be96681fcf1b150e9139e78afff48cf45c7c0bc00d9adaf0e53ca3d9a0",
+            "day": "2026-10-11",
+            "sha256": "e027f84bea3ad28be78b7da6390ae28ddce16a55a48462d8d41318ef4558ee8c",
+            "path": "data/canonical/trade_bars/ecfecb290b55a4a8/2026-10-11/ac3210be96681fcf1b150e9139e78afff48cf45c7c0bc00d9adaf0e53ca3d9a0.parquet",
+            "physical_path": "data/canonical/trade_bars/ecfecb290b55a4a8/2026-10-11/ac3210be96681fcf1b150e9139e78afff48cf45c7c0bc00d9adaf0e53ca3d9a0.parquet",
+            "rows": 1440,
+            "quality": {
+              "accepted_revision": false,
+              "issues": [],
+              "source_id": "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf"
+            },
+            "first_timestamp": "2026-10-11 00:00:00+00:00",
+            "last_timestamp": "2026-10-11 23:59:00+00:00",
+            "exact_grid": true,
+            "issues": []
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf",
+            "path": "data/raw/04/04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf/payload",
+            "kind": "archive",
+            "observed_at": "2026-10-12T03:38:00.938849+00:00",
+            "bytes": 64103,
+            "physical_path": "data/raw/04/04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf/payload",
+            "verified_sha256": "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf"
+          }
+        ]
+      }
+    },
+    {
+      "attempt_id": "2464330c62174c2498f71744e1d40650",
+      "task_id": "cf2c985cb0638de8b3696cf6d93f98efc496bc6006b87f3379fdc56c00355419",
+      "purpose": "refresh",
+      "day": "2026-10-11",
+      "key": {
+        "dataset": "funding_events",
+        "interval": "event",
+        "market": "linear_perpetual",
+        "series": "primary",
+        "symbol": "BTCUSDT"
+      },
+      "proof": {
+        "queries": [
+          {
+            "id": 21084,
+            "key_id": "binance:linear_perpetual:BTCUSDT:funding_events:event:primary",
+            "start": "2026-10-11T00:00:00+00:00",
+            "end": "2026-10-12T00:00:00+00:00",
+            "source_id": "0369b3980093f1c49a1b048b1aa7bf60fbb058c294afbcf43538a7d6823867bb"
+          }
+        ],
+        "revisions": [
+          {
+            "id": "43cf67ca424db9437f33ae63e6af011e17c9e623a054e3d2b7ad1c8afeb6d8fd",
+            "day": "2026-10-11",
+            "sha256": "32c6dbf2201e654c0b02a06cabf5a02d54d7426bbda101c04ac27656507ddf58",
+            "path": "data/canonical/funding_events/d911927ead9da1eb/2026-10-11/43cf67ca424db9437f33ae63e6af011e17c9e623a054e3d2b7ad1c8afeb6d8fd.parquet",
+            "physical_path": "data/canonical/funding_events/d911927ead9da1eb/2026-10-11/43cf67ca424db9437f33ae63e6af011e17c9e623a054e3d2b7ad1c8afeb6d8fd.parquet",
+            "rows": 3,
+            "quality": {
+              "accepted_revision": false,
+              "issues": [],
+              "source_id": "0369b3980093f1c49a1b048b1aa7bf60fbb058c294afbcf43538a7d6823867bb"
+            },
+            "first_timestamp": "2026-10-11 00:00:00.007000+00:00",
+            "last_timestamp": "2026-10-11 16:00:00.002000+00:00",
+            "exact_grid": null,
+            "issues": []
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "0369b3980093f1c49a1b048b1aa7bf60fbb058c294afbcf43538a7d6823867bb",
+            "path": "data/raw/03/0369b3980093f1c49a1b048b1aa7bf60fbb058c294afbcf43538a7d6823867bb/payload",
+            "kind": "query_manifest",
+            "observed_at": "2026-10-12T03:38:00.422948+00:00",
+            "bytes": 367,
+            "physical_path": "data/raw/03/0369b3980093f1c49a1b048b1aa7bf60fbb058c294afbcf43538a7d6823867bb/payload",
+            "verified_sha256": "0369b3980093f1c49a1b048b1aa7bf60fbb058c294afbcf43538a7d6823867bb"
+          }
+        ]
+      }
+    }
+  ],
+  "inputs": {
+    "55a146c3fda0bc9e4931732735fb4bbe6788ea5f4de25ff7b755e7faeb5e26de": {
+      "id": "55a146c3fda0bc9e4931732735fb4bbe6788ea5f4de25ff7b755e7faeb5e26de",
+      "path": "data/raw/55/55a146c3fda0bc9e4931732735fb4bbe6788ea5f4de25ff7b755e7faeb5e26de/payload",
+      "kind": "rest",
+      "observed_at": "2026-10-13T03:20:20.461030+00:00",
+      "bytes": 379
+    },
+    "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945": {
+      "id": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "path": "data/raw/4f/4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945/payload",
+      "kind": "rest",
+      "observed_at": "2026-09-21T14:31:37.168814+00:00",
+      "bytes": 2
+    },
+    "37eaf52515280dc290b144234d67827a07db99af88b17d5600d524157b2bd557": {
+      "id": "37eaf52515280dc290b144234d67827a07db99af88b17d5600d524157b2bd557",
+      "path": "data/raw/37/37eaf52515280dc290b144234d67827a07db99af88b17d5600d524157b2bd557/payload",
+      "kind": "archive",
+      "observed_at": "2026-10-13T03:20:20.922525+00:00",
+      "bytes": 69031
+    },
+    "f5053c67ff99efef42e67929d38bcd444a682c929311bb3058f94caaea18befc": {
+      "id": "f5053c67ff99efef42e67929d38bcd444a682c929311bb3058f94caaea18befc",
+      "path": "data/raw/f5/f5053c67ff99efef42e67929d38bcd444a682c929311bb3058f94caaea18befc/payload",
+      "kind": "checksum",
+      "observed_at": "2026-10-13T03:20:20.993073+00:00",
+      "bytes": 91
+    },
+    "72696b538e2276cd3ece6310c02e2e0ddd584a4e97ac22fb79095b3054f0b891": {
+      "id": "72696b538e2276cd3ece6310c02e2e0ddd584a4e97ac22fb79095b3054f0b891",
+      "path": "data/raw/72/72696b538e2276cd3ece6310c02e2e0ddd584a4e97ac22fb79095b3054f0b891/payload",
+      "kind": "rest",
+      "observed_at": "2026-10-13T03:20:21.288774+00:00",
+      "bytes": 1152517
+    },
+    "c6dcda634ee2bc31a6c4c70138f67744b95a41a7b4fd4bb481e252fc9bbb6322": {
+      "id": "c6dcda634ee2bc31a6c4c70138f67744b95a41a7b4fd4bb481e252fc9bbb6322",
+      "path": "data/raw/c6/c6dcda634ee2bc31a6c4c70138f67744b95a41a7b4fd4bb481e252fc9bbb6322/payload",
+      "kind": "rest",
+      "observed_at": "2026-10-13T03:20:21.523117+00:00",
+      "bytes": 17744043
+    },
+    "330ea5d3dcc6fc4bf60cad387557a61d353070bec7aa0bc3be6439c3bb4cdfdd": {
+      "id": "330ea5d3dcc6fc4bf60cad387557a61d353070bec7aa0bc3be6439c3bb4cdfdd",
+      "path": "data/raw/33/330ea5d3dcc6fc4bf60cad387557a61d353070bec7aa0bc3be6439c3bb4cdfdd/payload",
+      "kind": "rest",
+      "observed_at": "2026-10-10T03:22:06.442162+00:00",
+      "bytes": 379
+    },
+    "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48": {
+      "id": "35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48",
+      "path": "data/raw/35/35ac8b347a8999faf9f035563f0310870fc9185d94235c69b65b55d0b83ffb48/payload",
+      "kind": "archive",
+      "observed_at": "2026-10-10T03:22:03.383966+00:00",
+      "bytes": 68355
+    },
+    "69a9d156bd0f25933130de3953c5b964463f2abe75ddda0fcbe876b44fd3298d": {
+      "id": "69a9d156bd0f25933130de3953c5b964463f2abe75ddda0fcbe876b44fd3298d",
+      "path": "data/raw/69/69a9d156bd0f25933130de3953c5b964463f2abe75ddda0fcbe876b44fd3298d/payload",
+      "kind": "checksum",
+      "observed_at": "2026-10-10T03:22:03.519775+00:00",
+      "bytes": 91
+    },
+    "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad": {
+      "id": "79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad",
+      "path": "data/raw/79/79f2a7bb104a0a61d33904a9d396b82795460113582050516ecb07cb9008d2ad/payload",
+      "kind": "archive",
+      "observed_at": "2026-10-11T03:21:07.205051+00:00",
+      "bytes": 63119
+    },
+    "696a0d7dc9dbd9f1898520a3e195107bbf37aa0b6c989058ab0da906bd088686": {
+      "id": "696a0d7dc9dbd9f1898520a3e195107bbf37aa0b6c989058ab0da906bd088686",
+      "path": "data/raw/69/696a0d7dc9dbd9f1898520a3e195107bbf37aa0b6c989058ab0da906bd088686/payload",
+      "kind": "checksum",
+      "observed_at": "2026-10-11T03:21:07.334513+00:00",
+      "bytes": 91
+    },
+    "25c551842188b0d06e93ea2b059e44c17950cb9fe4cd91a9003709d520e53e6d": {
+      "id": "25c551842188b0d06e93ea2b059e44c17950cb9fe4cd91a9003709d520e53e6d",
+      "path": "data/raw/25/25c551842188b0d06e93ea2b059e44c17950cb9fe4cd91a9003709d520e53e6d/payload",
+      "kind": "rest",
+      "observed_at": "2026-10-11T03:21:07.634900+00:00",
+      "bytes": 380
+    },
+    "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf": {
+      "id": "04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf",
+      "path": "data/raw/04/04e48ed4adf4bc4885615c69fb54b1558f451394908b06bd85190947d6e1a1cf/payload",
+      "kind": "archive",
+      "observed_at": "2026-10-12T03:38:00.938849+00:00",
+      "bytes": 64103
+    },
+    "bc4e3345878fffd2787aeb3229d26522e6e27ea1a9485a6203b3b8931f624147": {
+      "id": "bc4e3345878fffd2787aeb3229d26522e6e27ea1a9485a6203b3b8931f624147",
+      "path": "data/raw/bc/bc4e3345878fffd2787aeb3229d26522e6e27ea1a9485a6203b3b8931f624147/payload",
+      "kind": "checksum",
+      "observed_at": "2026-10-12T03:38:01.006755+00:00",
+      "bytes": 91
+    },
+    "169e99048545ad270879bfb75ad53d9b29d8b823f07a585254aa12be1310a3ab": {
+      "id": "169e99048545ad270879bfb75ad53d9b29d8b823f07a585254aa12be1310a3ab",
+      "path": "data/raw/16/169e99048545ad270879bfb75ad53d9b29d8b823f07a585254aa12be1310a3ab/payload",
+      "kind": "rest",
+      "observed_at": "2026-10-12T03:38:00.239836+00:00",
+      "bytes": 381
+    }
+  }
+}

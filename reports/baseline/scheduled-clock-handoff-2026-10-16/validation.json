@@ -1,0 +1,38 @@
+{
+  "release_id": "scheduled-clock-policy-20261016-544c61aca49f1355",
+  "tool_id": "scheduled-clock-preflight-20261016-09c76b2964a76970",
+  "configuration_plan_id": "5e7473d9d5c349c5ae31a0da1f1589391ef3507000e358d3ba74ccbc3be5f0cb",
+  "candidate_source_unchanged": true,
+  "isolated_tests": [
+    {
+      "report": "transition-tests.xml",
+      "tests": 48,
+      "failures": 0
+    },
+    {
+      "report": "record-transition-tests.xml",
+      "tests": 2,
+      "failures": 0
+    },
+    {
+      "report": "preflight-tests.xml",
+      "tests": 11,
+      "failures": 0
+    }
+  ],
+  "relocated_variants_passed": true,
+  "eight_driver_jobs": 8,
+  "systemd_actual_execution": false,
+  "configuration_live_execution": false,
+  "operating_approval": false,
+  "T05_automatic_retirement": "masked",
+  "T05_registration": false,
+  "new_ledger_transition_engine": "unchanged T15 engine, private T16 contract adapter",
+  "legacy_history_connection": "real prior /opt CLI, actual fixture files/request/SQLite/JSONL; systemd/provider doubles",
+  "limits": [
+    "Final system manager preflight awaits sudo terminal execution",
+    "Live system-to-system handoff executor/final ownership and active-job plan still require finalization after preflight",
+    "No new-config reboot or live collector boundary verified",
+    "Auxiliary request/attempt/JSONL independent backup and rotation are follow-up"
+  ]
+}

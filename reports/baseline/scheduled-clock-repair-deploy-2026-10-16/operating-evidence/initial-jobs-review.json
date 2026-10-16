@@ -1,0 +1,418 @@
+{
+  "observed_at": "2026-10-16T15:23:04.292628+00:00",
+  "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+  "operating_writes": false,
+  "filewise_read_not_atomic_manager_snapshot": true,
+  "jobs": {
+    "oi": {
+      "request_id": "d026b737fa604f4389a0d26d237afb57",
+      "request_sha256": "6f73a14bde609b041213d0205d32a4abb533fed27d8aed74fadd130c321a8c61",
+      "state": "complete",
+      "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+      "new_release": true,
+      "attempt_id": "8a4c349af22d46778ec9c66aa09cc264",
+      "invocation_id": "dfffb3af924b41cab505cccbfb056641",
+      "exit_code": 2,
+      "post_activation_finished": {
+        "complete": 4
+      },
+      "observations": {
+        "count": 18,
+        "reference_age_min": 660.8769941329956,
+        "reference_age_max": 752.9804310798645,
+        "reference_age_over_600": 18,
+        "uncertainty_max": 0.1404467725
+      },
+      "scope_matches": true,
+      "status": "current_result_verified",
+      "disposition": {
+        "state": "complete",
+        "reason": "coverage_replan_retains_missing_ranges",
+        "data_complete": false,
+        "work_exit_code": 2,
+        "returncode": 2
+      },
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "work": {
+        "observed_exit_code": 2,
+        "recovered_committed_result": false
+      },
+      "committed_files": [],
+      "committed_records": [
+        {
+          "id": "51f1a26d340a40f79d1a3176addd8cd5",
+          "path": "/home/yoonhc/projects/algoTrade/historical_data/state/catalog.sqlite",
+          "sha256": "8c2f55a39efbcaaf98899f8c5f3cd3a56f2eb1fd0c9b820be7d060e11d644ea9",
+          "table": "sync_runs"
+        }
+      ],
+      "committed_ranges": [],
+      "result": [
+        {
+          "run_id": "51f1a26d340a40f79d1a3176addd8cd5",
+          "complete": false,
+          "state": "partial",
+          "errors": [],
+          "started_at": null,
+          "finished_at": null
+        }
+      ]
+    },
+    "oi-probe": {
+      "request_id": "e65a13fd755f42c3a9c39767956fb115",
+      "request_sha256": "67beefc91a5b73cd23547f2dd7906840508640d4901b383c7cc1f8e4e811da54",
+      "state": "complete",
+      "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+      "new_release": true,
+      "attempt_id": "6f678c5642404f5f8ec4d65b8922676d",
+      "invocation_id": "25ef0fb0a188461eba91af2ea707b2f5",
+      "exit_code": 0,
+      "post_activation_finished": {
+        "complete": 25
+      },
+      "observations": {
+        "count": 123,
+        "reference_age_min": 1.3615405559539795,
+        "reference_age_max": 760.8631219863892,
+        "reference_age_over_600": 38,
+        "uncertainty_max": 0.1396948415
+      },
+      "scope_matches": true,
+      "status": "current_result_verified",
+      "disposition": {
+        "state": "complete",
+        "reason": "observation_recorded",
+        "data_complete": true,
+        "work_exit_code": 0,
+        "returncode": 0
+      },
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "work": {
+        "observed_exit_code": 0,
+        "recovered_committed_result": false
+      },
+      "committed_files": [],
+      "committed_records": [
+        {
+          "id": 1122549,
+          "path": "/home/yoonhc/projects/algoTrade/historical_data/state/catalog.sqlite",
+          "sha256": "65bcfbd76ecc4b2ec4f9e3a865befe71ea2545bcdb2bbdb3d6d0f0b90f417b9f",
+          "table": "fetches"
+        }
+      ],
+      "committed_ranges": [],
+      "result": {
+        "probe_id": "c940ea171fcc45178c29a3d4d57fc1c3",
+        "source_id": "6e6857d58a8715fe5152da68dfbe8c7e77d387e6ad92228204179b379991e6ee",
+        "rows": 13,
+        "target_present": true,
+        "complete": true,
+        "state": "ok",
+        "received_at": "2026-10-16T15:23:01.411344+00:00"
+      }
+    },
+    "oi-quality": {
+      "request_id": "fe3f28cddb0d4c1997d2a469a9a9a45e",
+      "request_sha256": "3e0f7889486434242176ac8f74e65c2d14953a496dbe58db9215054ac0a86f31",
+      "state": "complete",
+      "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+      "new_release": true,
+      "attempt_id": "597af19313874b92b3cefeaf45a3f0e1",
+      "invocation_id": "b6a9c04c89d743348bb75e646f585ef3",
+      "exit_code": 2,
+      "post_activation_finished": {
+        "complete": 1
+      },
+      "observations": {
+        "count": 4,
+        "reference_age_min": 666.5470242500305,
+        "reference_age_max": 666.8163735866547,
+        "reference_age_over_600": 4,
+        "uncertainty_max": 0.1383505175
+      },
+      "scope_matches": true,
+      "status": "current_result_verified",
+      "disposition": {
+        "state": "complete",
+        "reason": "report_written_with_findings",
+        "data_complete": null,
+        "work_exit_code": 2,
+        "returncode": 2
+      },
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "work": {
+        "observed_exit_code": 2,
+        "recovered_committed_result": false
+      },
+      "committed_files": [
+        {
+          "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/oi-quality/20261016T151712-1ae7d68e7801/report.json",
+          "sha256": "33f1715bf2b00f1ee379293639a9ef8ccf2711f55233fbf6f85c4692e68eab9c"
+        }
+      ],
+      "committed_records": [],
+      "committed_ranges": [],
+      "result": {
+        "generated_at": "2026-10-16T15:17:12.258445+00:00",
+        "report_id": "1ae7d68e78011609470a8d51141430a70e2207b7c55a224332d4822f5d7d554f",
+        "needs_review": true,
+        "comparison_start": "2026-10-09T00:00:00+00:00",
+        "comparison_end": "2026-10-16T00:00:00+00:00",
+        "unit_status": "Quantity and value units remain unverified; comparison is exact source-number parity only",
+        "parity_totals": [
+          {
+            "blocked": 288,
+            "comparable": 1728,
+            "exact": 0,
+            "exact_rate": 0.0,
+            "expected": 2016,
+            "mismatch": 1728,
+            "missing_archive": 0,
+            "missing_rest": 0,
+            "quantity_exact": 0,
+            "shift_seconds": -300,
+            "value_exact": 0
+          },
+          {
+            "blocked": 288,
+            "comparable": 1728,
+            "exact": 0,
+            "exact_rate": 0.0,
+            "expected": 2016,
+            "mismatch": 1728,
+            "missing_archive": 0,
+            "missing_rest": 0,
+            "quantity_exact": 0,
+            "shift_seconds": 0,
+            "value_exact": 0
+          },
+          {
+            "blocked": 289,
+            "comparable": 1727,
+            "exact": 1727,
+            "exact_rate": 1.0,
+            "expected": 2016,
+            "mismatch": 0,
+            "missing_archive": 0,
+            "missing_rest": 0,
+            "quantity_exact": 1727,
+            "shift_seconds": 300,
+            "value_exact": 1727
+          }
+        ]
+      }
+    },
+    "daily": {
+      "request_id": "e739eb84bf654087ae5b59f89f19309a",
+      "request_sha256": "0d07dd0fa174d4dacca141b564e5c2e6c2b431d3d8d0005d29cc8d807d899266",
+      "state": "complete",
+      "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+      "new_release": true,
+      "attempt_id": "55b363c5f2b146938fc760a2177cec6f",
+      "invocation_id": "5e8cb70df06042fe9e21a19bfd4bfb85",
+      "exit_code": 0,
+      "post_activation_finished": {
+        "complete": 3
+      },
+      "observations": {
+        "count": 8,
+        "reference_age_min": 73.76617884635925,
+        "reference_age_max": 701.7490708827972,
+        "reference_age_over_600": 5,
+        "uncertainty_max": 0.13866738850000002
+      },
+      "scope_matches": true,
+      "status": "current_result_verified",
+      "disposition": {
+        "state": "complete",
+        "reason": "remaining_tasks_owned_by_daily_ledger",
+        "data_complete": false,
+        "work_exit_code": 0,
+        "returncode": 0
+      },
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "work": {
+        "observed_exit_code": 0,
+        "recovered_committed_result": false
+      },
+      "committed_files": [],
+      "committed_records": [
+        {
+          "id": "1238d9cc5513445ca983da741b694ff9",
+          "path": "/home/yoonhc/projects/algoTrade/historical_data/state/catalog.sqlite",
+          "sha256": "1844fe29d019f4e9eddc6387a58c966e93885ef972fe10b9824b6189dd17478d",
+          "table": "daily_runs"
+        }
+      ],
+      "committed_ranges": [],
+      "result": {
+        "started_at": "2026-10-16T15:20:13.277561+00:00",
+        "finished_at": "2026-10-16T15:20:14.169285+00:00",
+        "id": "1238d9cc5513445ca983da741b694ff9",
+        "runner_ok": true,
+        "data_complete": false,
+        "review_required": true,
+        "run_outcome": "no_due_tasks",
+        "state_counts": {
+          "complete": 346,
+          "needs_review": 1,
+          "planned": 21
+        },
+        "processed_count": 0
+      }
+    },
+    "pack": {
+      "request_id": "31fedd62982f461d9e51b24f3e4bd341",
+      "request_sha256": "242176a6c0aa29483a4844b9fb7b33b760c2bccdfa927fdcb12ff9d625e50c49",
+      "state": "pending",
+      "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+      "new_release": true,
+      "attempt_id": "1b4d5a451e3f43bda0962cba2089e6c4",
+      "invocation_id": "72b0eeb75f444aaab86795731bddb8fd",
+      "exit_code": null,
+      "post_activation_finished": {},
+      "observations": {
+        "count": 3,
+        "reference_age_min": 187.81299257278442,
+        "reference_age_max": 188.0132703781128,
+        "reference_age_over_600": 0,
+        "uncertainty_max": 0.13802442650000002
+      },
+      "scope_matches": true,
+      "status": "execution_not_finished_at_read"
+    },
+    "backup": {
+      "status": "no_request_yet",
+      "new_release": false
+    },
+    "restic-archive": {
+      "request_id": "027fd7136e1945be9e8eb03c48a76c1e",
+      "request_sha256": "216dfbd969910940227526aefec7ee59bc24b785b6bec960c151e0d376c36269",
+      "state": "complete",
+      "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+      "new_release": true,
+      "attempt_id": "c40e88fbf30d48f788d3b6d23f5dedc5",
+      "invocation_id": "6d65801e6fb54be885100d09643d5aad",
+      "exit_code": 0,
+      "post_activation_finished": {
+        "complete": 1
+      },
+      "observations": {
+        "count": 4,
+        "reference_age_min": 666.5431475639343,
+        "reference_age_max": 704.148341178894,
+        "reference_age_over_600": 4,
+        "uncertainty_max": 0.1401233985
+      },
+      "scope_matches": true,
+      "status": "current_result_verified",
+      "disposition": {
+        "state": "complete",
+        "reason": "archive_preserved",
+        "data_complete": null,
+        "work_exit_code": 0,
+        "returncode": 0
+      },
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "work": {
+        "observed_exit_code": 0,
+        "recovered_committed_result": false
+      },
+      "committed_files": [
+        {
+          "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/scheduled/009189db37dd4b398aa61e0171af331e.json",
+          "sha256": "757b816d27cacabede0f8ad8d21796b293b2e1d9c34d5b9cde43e6c2b031b244"
+        }
+      ],
+      "committed_records": [],
+      "committed_ranges": [],
+      "result": {
+        "run_id": "009189db37dd4b398aa61e0171af331e",
+        "processed": 0,
+        "manager": "system",
+        "classification": "verified_timer",
+        "uid": 1000,
+        "invocation_id": "6d65801e6fb54be885100d09643d5aad",
+        "trigger_at": "2026-10-16T15:17:11.950897+00:00"
+      }
+    },
+    "network-observer": {
+      "request_id": "8d0e179947b04c44b84320d43d674e64",
+      "request_sha256": "7f74d595bc05356ae130e2b0382f652c93a2d56c7f11b442e1f843327fb691a9",
+      "state": "complete",
+      "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+      "new_release": true,
+      "attempt_id": "dc338abb7e4d41f88dfe96702959b6f1",
+      "invocation_id": "5d01022570dd478498a631fa3729d15f",
+      "exit_code": 0,
+      "post_activation_finished": {
+        "complete": 8
+      },
+      "observations": {
+        "count": 32,
+        "reference_age_min": 21.57057285308838,
+        "reference_age_max": 734.7940762042999,
+        "reference_age_over_600": 16,
+        "uncertainty_max": 0.1388800675
+      },
+      "scope_matches": true,
+      "status": "current_result_verified",
+      "disposition": {
+        "state": "complete",
+        "reason": "network_observation_recorded",
+        "data_complete": null,
+        "work_exit_code": 0,
+        "returncode": 0
+      },
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "work": {
+        "observed_exit_code": 0,
+        "recovered_committed_result": false
+      },
+      "committed_files": [],
+      "committed_records": [],
+      "committed_ranges": [
+        {
+          "kind": "network-jsonl-v1",
+          "length": 6931,
+          "offset": 3064228,
+          "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/network-observer/2026-10-16.jsonl",
+          "sha256": "b39520ad0572b7dcf6eccd9b85656769250705147723154a7a9781832e1dcf83"
+        }
+      ],
+      "result": {
+        "started_at": "2026-10-16T15:22:21.095961+00:00",
+        "finished_at": "2026-10-16T15:22:21.242382+00:00",
+        "status": "ok",
+        "failed_probes": []
+      }
+    }
+  },
+  "new_finalization_errors": [],
+  "passed": true,
+  "finished_at": "2026-10-16T15:23:04.370767+00:00"
+}

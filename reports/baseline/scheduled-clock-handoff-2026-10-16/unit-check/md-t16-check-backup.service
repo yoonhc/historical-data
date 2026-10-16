@@ -1,0 +1,35 @@
+[Unit]
+Description=Market data daily verified maintenance
+StartLimitIntervalSec=3600
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+TimeoutStartSec=6h
+KillSignal=SIGINT
+TimeoutStopSec=120s
+Restart=on-failure
+RestartSec=120s
+
+[Unit]
+Requires=md-t16-check-ready.service
+After=md-t16-check-ready.service
+[Service]
+
+[Service]
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+[Service]
+ExecStart=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/preserve/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job backup --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml backup --min-free-gib 10 --max-files 20000
+
+[Service]
+ExecStart=
+ExecStart=/tmp/t16-relocated-qkw41_pc/release/candidate/preserve/.venv/bin/python -B -I /home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-handoff-2026-10-16/trial_worker.py --trial /tmp/t16-relocated-qkw41_pc/release --state /tmp --job backup --local-check
+WorkingDirectory=/tmp
+Restart=no
+ReadOnlyPaths=/home/yoonhc/projects/algoTrade/historical_data /etc/marketdata /var/lib/marketdata-clock /var/lib/marketdata-checkpoint-retirement
+PrivateNetwork=yes

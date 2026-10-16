@@ -1,0 +1,33 @@
+[Unit]
+Description=Capture recent public five-minute open interest
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/yoonhc/projects/algoTrade/historical_data
+TimeoutStartSec=4min
+Restart=on-failure
+RestartSec=30s
+
+[Unit]
+Requires=md-t16-check-ready.service
+After=md-t16-check-ready.service
+[Service]
+
+[Service]
+User=yoonhc
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+[Service]
+ExecStart=/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/base/.venv/bin/python -B -I /opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py --job oi --binding /etc/marketdata/scheduled-clock-policy/clock-binding.json --state-root /home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy --run -- --root /home/yoonhc/projects/algoTrade/historical_data update --config /etc/marketdata/scheduled-system/oi-live.toml --report state/oi-latest.json
+
+[Service]
+ExecStart=
+ExecStart=/tmp/t16-relocated-qkw41_pc/release/candidate/base/.venv/bin/python -B -I /home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-handoff-2026-10-16/trial_worker.py --trial /tmp/t16-relocated-qkw41_pc/release --state /tmp --job oi --local-check
+WorkingDirectory=/tmp
+Restart=no
+ReadOnlyPaths=/home/yoonhc/projects/algoTrade/historical_data /etc/marketdata /var/lib/marketdata-clock /var/lib/marketdata-checkpoint-retirement
+PrivateNetwork=yes

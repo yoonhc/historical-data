@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="4" failures="0" skipped="0" tests="4" time="0.616" timestamp="2026-10-15T01:15:07.402233+09:00" hostname="hclm"><testcase classname="" name="tests.test_checkpoint_evidence" time="0.000"><error message="collection failure">/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/tests/test_checkpoint_evidence.py:13: in &lt;module&gt;
+    from test_retirement_clock import Samples, provider
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/tests/test_retirement_clock.py:8: in &lt;module&gt;
+    from scripts import clock_retirement as safe
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/clock_retirement.py:22: in &lt;module&gt;
+    from scripts import checkpoint_schedule as legacy
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/checkpoint_schedule.py:26: in &lt;module&gt;
+    from scripts import checkpoint_code, restic_schedule
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/checkpoint_code.py:86: in &lt;module&gt;
+    STARTUP_CODE = describe_source()
+                   ^^^^^^^^^^^^^^^^^
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/checkpoint_code.py:48: in describe_source
+    files[path.relative_to(root).as_posix()] = sha256(path.read_bytes())
+                                                      ^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1021: in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1015: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/integrations/systemd/marketdata-checkpoint-retirement.service'</error></testcase><testcase classname="" name="tests.test_checkpoint_registration" time="0.000"><error message="collection failure">/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/tests/test_checkpoint_registration.py:9: in &lt;module&gt;
+    from test_checkpoint_evidence import lab as lab  # noqa: F401
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/tests/test_checkpoint_evidence.py:13: in &lt;module&gt;
+    from test_retirement_clock import Samples, provider
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/tests/test_retirement_clock.py:8: in &lt;module&gt;
+    from scripts import clock_retirement as safe
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/clock_retirement.py:22: in &lt;module&gt;
+    from scripts import checkpoint_schedule as legacy
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/checkpoint_schedule.py:26: in &lt;module&gt;
+    from scripts import checkpoint_code, restic_schedule
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/checkpoint_code.py:86: in &lt;module&gt;
+    STARTUP_CODE = describe_source()
+                   ^^^^^^^^^^^^^^^^^
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/checkpoint_code.py:48: in describe_source
+    files[path.relative_to(root).as_posix()] = sha256(path.read_bytes())
+                                                      ^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1021: in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1015: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/integrations/systemd/marketdata-checkpoint-retirement.service'</error></testcase><testcase classname="" name="tests.test_checkpoint_retention" time="0.000"><error message="collection failure">/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/tests/test_checkpoint_retention.py:17: in &lt;module&gt;
+    from scripts import checkpoint_code
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/checkpoint_code.py:86: in &lt;module&gt;
+    STARTUP_CODE = describe_source()
+                   ^^^^^^^^^^^^^^^^^
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/checkpoint_code.py:48: in describe_source
+    files[path.relative_to(root).as_posix()] = sha256(path.read_bytes())
+                                                      ^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1021: in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1015: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/integrations/systemd/marketdata-checkpoint-retirement.service'</error></testcase><testcase classname="" name="tests.test_checkpoint_schedule" time="0.000"><error message="collection failure">/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/tests/test_checkpoint_schedule.py:13: in &lt;module&gt;
+    from test_checkpoint_retention import ready as ready  # noqa: F401
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/tests/test_checkpoint_retention.py:17: in &lt;module&gt;
+    from scripts import checkpoint_code
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/checkpoint_code.py:86: in &lt;module&gt;
+    STARTUP_CODE = describe_source()
+                   ^^^^^^^^^^^^^^^^^
+reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/scripts/checkpoint_code.py:48: in describe_source
+    files[path.relative_to(root).as_posix()] = sha256(path.read_bytes())
+                                                      ^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1021: in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/pathlib.py:1015: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-policy-2026-10-15/candidate/preserve/integrations/systemd/marketdata-checkpoint-retirement.service'</error></testcase></testsuite></testsuites>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="7" time="0.532" timestamp="2026-10-15T01:33:23.942747+09:00" hostname="hclm"><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_daily_clock" name="test_old_reference_real_storage_then_zero_duplicate_requests" time="0.068" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_daily_clock" name="test_first_eligibility_wait_is_not_failure_and_original_target_resumes" time="0.057" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_daily_clock" name="test_persisted_server_cooldown_uses_upper_and_lower_bounds[3600]" time="0.077" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_daily_clock" name="test_persisted_server_cooldown_uses_upper_and_lower_bounds[http-date]" time="0.074" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_daily_clock" name="test_429_received_then_clock_loss_preserves_limit_without_spending_failure_budget" time="0.025"><failure message="KeyError: 'pending_failure'">env = (&lt;test_daily_schedule.Clock object at 0x7e4ab7697920&gt;, &lt;test_daily_schedule.Upstream object at 0x7e4ab7697da0&gt;, &lt;function env.&lt;locals&gt;.build at 0x7e4ab752c220&gt;)
+
+    def test_429_received_then_clock_loss_preserves_limit_without_spending_failure_budget(env):
+        clock,upstream,runner,key,url,s,c=setup(env);query=c.query;lost=[False]
+        def limited(request):lost[0]=True;return 429,b'limited',{'retry-after':'7200'}
+        upstream.responses[url]=limited
+        def query_current():
+            if lost[0]:raise OSError('query unavailable')
+            return query()
+        c.query=query_current
+        with jc.using(c),pytest.raises(jc.ClockDeferred):runner.run()
+        held=runner.ledger.rows('daily_cooldowns')[0]
+        assert held['pending_clock_cooldown'] and held['headers']['retry-after']=='7200'
+        attempt=runner.ledger.rows('daily_attempts')[0]
+&gt;       assert attempt['pending_failure']['status']==429 and attempt['state']=='deferred_clock'
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'pending_failure'
+
+../../tests/test_daily_clock.py:71: KeyError</failure></testcase><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_daily_clock" name="test_storage_commit_then_time_hold_recovers_without_redownload" time="0.064" /><testcase classname="reports.baseline.scheduled-clock-policy-2026-10-15.tests.test_daily_clock" name="test_real_transport_failure_is_counted_once_after_clock_recovers" time="0.036" /></testsuite></testsuites>

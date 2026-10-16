@@ -1,0 +1,81 @@
+{
+  "approval_sha256": "7c8c2d28723b21ddf228688b3a12e7ec0a925409f8e726f1ece99cd6faef45d8",
+  "automatic_retirement": "masked",
+  "checkpoint_deletion": false,
+  "clock_control": false,
+  "finished_at": "2026-10-12T15:32:58.601659+00:00",
+  "handoff_result": {
+    "automatic_retirement": "masked",
+    "checkpoint_deletion": false,
+    "clock_control": false,
+    "configuration": "apply_committed",
+    "operating_observation_pending": true,
+    "strict_policy_unchanged": true
+  },
+  "installation": {
+    "files": 1685,
+    "source_release_unchanged": true
+  },
+  "installed_import": {
+    "executable": "/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/bin/python",
+    "modules": {
+      "marketdata": {
+        "path": "/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/lib/python3.12/site-packages/marketdata/__init__.py",
+        "sha256": "44a5fa1cce21a83e01fd81a9f2c34b7606177eb5dfd807d226b06a0e70c70e30"
+      },
+      "marketdata.cli": {
+        "path": "/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv/lib/python3.12/site-packages/marketdata/cli.py",
+        "sha256": "dd189b97460afcafdefd434e7597a8f50c3b817afa09e809ae4cacb7da9b3402"
+      }
+    },
+    "prefix": "/opt/marketdata/releases/scheduled-manager-20261012-255d64b78ffa8328/.venv",
+    "uid": 1000
+  },
+  "operating_after": {
+    "chrony.service": {
+      "ActiveState": "active",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+      "MainPID": "1245"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "ActiveState": "active",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+      "MainPID": "224784"
+    },
+    "marketdata-collector@depth.service": {
+      "ActiveState": "active",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+      "MainPID": "224785"
+    }
+  },
+  "operating_before": {
+    "chrony.service": {
+      "ActiveState": "active",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+      "MainPID": "1245"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "ActiveState": "active",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+      "MainPID": "224784"
+    },
+    "marketdata-collector@depth.service": {
+      "ActiveState": "active",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+      "MainPID": "224785"
+    }
+  },
+  "passed": true,
+  "phase": "configuration_applied_operating_observation_pending",
+  "plan_id": "6a71f295ec760f442edf0f88b04c6cf9378d9383fb9c45c0dc7c8c140eac3f2b",
+  "preparation": {
+    "preservation_work_idle": true,
+    "strict_ready": true,
+    "wait_seconds": 201.32682424102677
+  },
+  "protected_processes_unchanged": true,
+  "release_id": "scheduled-manager-20261012-255d64b78ffa8328",
+  "started_at": "2026-10-12T15:29:30.790176+00:00",
+  "tool_id": "scheduled-handoff-20261012-b48b6beb0b9b72b9",
+  "wrapper_sha256": "7208c002e50af27ede4ebc76895e3f6a5fb61f0b86cabecf56ae7d13d6bbd602"
+}

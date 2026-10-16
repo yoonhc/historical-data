@@ -1,0 +1,135 @@
+{
+  "arguments": [
+    "--root",
+    "/home/yoonhc/projects/algoTrade/historical_data",
+    "oi-quality",
+    "--days",
+    "7"
+  ],
+  "binding": "/etc/marketdata/scheduled-clock-policy/clock-binding.json",
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "derived_report_exit_code": 2,
+  "identity": "592568d5186099ae636454f0ea6933bc7c47a95f4d54ed7c39df72ea3f5992ce",
+  "job": "oi-quality",
+  "journal_path": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/oi-quality/decisions.jsonl",
+  "journal_prefix_bytes": 8562,
+  "journal_prefix_sha256": "b0a1b2267f178c83c3931e13a19069df0938c525efb82e7d74f509c0dfa7ad40",
+  "observed_work_exit_code": null,
+  "original_attempt_id": "96c32c8fb0eb4a6ca96bee82b21de38b",
+  "original_invocation_id": "8623ef805cac477faacc3c72a50e5e21",
+  "original_process_exit_code": 1,
+  "pins": {
+    "oi_quality_day": {
+      "day": "2026-10-16",
+      "observation": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "bootstrap_sha256": "e1d97d15458c6d14d7908de6f5ac2230215c6181f9254b776b76158882e100e9",
+        "chrony_error_estimate": 0.1225323875,
+        "config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "ledger_sha256": "4d662d8924619a2361f02144a7f0b331eabdcfd2a6c370233e1cd007f859af57",
+        "lower_utc_ns": 1792157037247969911,
+        "policy": "scheduled-decisions-v1",
+        "provider": {
+          "argv": [
+            "/usr/sbin/chronyd",
+            "-F",
+            "1",
+            "-f",
+            "/etc/chrony/marketdata.conf"
+          ],
+          "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+          "pid": 1245
+        },
+        "query_after": {
+          "boottime_ns": 684775339577041,
+          "monotonic_ns": 684775339576295,
+          "span_ns": 2014,
+          "wall_ns": 1792157037381758473
+        },
+        "query_alignment_margin": 0.011252767,
+        "query_before": {
+          "boottime_ns": 684775328324065,
+          "monotonic_ns": 684775328323528,
+          "span_ns": 1393,
+          "wall_ns": 1792157037370505717
+        },
+        "query_seconds": 0.011252767,
+        "reference_age_seconds": 589.0054969787598,
+        "runtime_profile_sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+        "sample": {
+          "boottime_ns": 684775339577041,
+          "monotonic_ns": 684775339576295,
+          "span_ns": 2014,
+          "wall_ns": 1792157037381758473
+        },
+        "sampling_margin": 3.407e-06,
+        "total_uncertainty": 0.13378856150000001,
+        "tracking": {
+          "correction": 0.000809533,
+          "leap": "Normal",
+          "raw_csv": "5BBD5B9D,91.189.91.157,3,1792156448.376261375,0.000809533,0.000025445,0.000492898,26.529,-0.003,0.134,0.235802531,0.003821589,517.8,Normal",
+          "reference_address": "91.189.91.157",
+          "reference_id": "5BBD5B9D",
+          "reference_time": 1792156448.3762615,
+          "root_delay": 0.235802531,
+          "root_dispersion": 0.003821589,
+          "skew_ppm": 0.134,
+          "stratum": 3
+        },
+        "upper_utc_ns": 1792157037515547035
+      }
+    }
+  },
+  "plan_id": "9f7ebc5e78621b68ae278b1829037bd9a3119e82464eb689a9f59adff499407c",
+  "preserve": [
+    "original request and failure",
+    "report bytes and quality findings",
+    "identity and pins"
+  ],
+  "purpose": "t16-exact-oi-result-recovery-v1",
+  "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355",
+  "report_id": "4257e5803d8d3fe4f8e57aad801b840cb5503440359d18399ee4390cc14248cc",
+  "report_path": "/home/yoonhc/projects/algoTrade/historical_data/reports/oi-quality/20261016T132357-4257e5803d8d/report.json",
+  "report_sha256": "52058f8c256a26d34fbfc8d2b05f61d7857c2e352613cbeeb11c82a8cd90de1e",
+  "request_id": "a702240f54774dacab107dc28fa2a776",
+  "request_path": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/oi-quality/request.json",
+  "request_sha256": "c69363e7038590756e2461b26079f9a7789ca5abe98da365cb8423c3bf199e11",
+  "schema": 1,
+  "scope": {
+    "arguments": [
+      "--root",
+      "/home/yoonhc/projects/algoTrade/historical_data",
+      "oi-quality",
+      "--days",
+      "7"
+    ],
+    "files": {
+      "/etc/marketdata/scheduled-clock-policy/clock-binding.json": {
+        "resolved": "/etc/marketdata/scheduled-clock-policy/clock-binding.json",
+        "sha256": "2177c2da2131e3ceff9c814fc47db42e7d076714b8a5e72de3c02b672d9b7473"
+      },
+      "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/job_clock.py": {
+        "resolved": "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/job_clock.py",
+        "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4"
+      },
+      "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/request_contract.py": {
+        "resolved": "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/request_contract.py",
+        "sha256": "283935e619ac051d42d1a81df6757070e2b809122e3dbf1927d9f12dd24cd141"
+      },
+      "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py": {
+        "resolved": "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355/policy/run_job.py",
+        "sha256": "c8aef88babd3736a872fbfda1eae6ad350a2690249b0f1e83dfabfc842910664"
+      }
+    },
+    "job": "oi-quality",
+    "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-544c61aca49f1355",
+    "schema": "scheduled-request-v2"
+  },
+  "source_files": {
+    "base/packages/marketdata/src/marketdata/job_clock.py": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4",
+    "policy/job_clock.py": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4",
+    "policy/request_contract.py": "283935e619ac051d42d1a81df6757070e2b809122e3dbf1927d9f12dd24cd141",
+    "policy/run_job.py": "c8aef88babd3736a872fbfda1eae6ad350a2690249b0f1e83dfabfc842910664"
+  },
+  "work_invocations": 0
+}

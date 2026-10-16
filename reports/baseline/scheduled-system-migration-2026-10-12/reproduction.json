@@ -1,0 +1,43 @@
+{
+  "release_id": "scheduled-manager-20261012-255d64b78ffa8328",
+  "plan_id": "70c1723f25b5eff078b483c1c2ff848a8eba7d6d6b40c0d930ca44d2c829217c",
+  "operating_writes": false,
+  "commands": [
+    {
+      "argv": [
+        "uv",
+        "sync",
+        "--project",
+        "/tmp/scheduled-manager-repro-e12pukcw/candidate",
+        "--frozen",
+        "--offline",
+        "--no-editable",
+        "--link-mode",
+        "copy",
+        "--cache-dir",
+        "/home/yoonhc/projects/algoTrade/historical_data/.cache/uv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Using CPython 3.12.3 interpreter at: /usr/bin/python3\nCreating virtual environment at: /tmp/scheduled-manager-repro-e12pukcw/candidate/.venv\n   Building marketdata @ file:///tmp/scheduled-manager-repro-e12pukcw/candidate/packages/marketdata\n   Building marketdata-freqtrade @ file:///tmp/scheduled-manager-repro-e12pukcw/candidate/packages/marketdata_freqtrade\n      Built marketdata-freqtrade @ file:///tmp/scheduled-manager-repro-e12pukcw/candidate/packages/marketdata_freqtrade\n      Built marketdata @ file:///tmp/scheduled-manager-repro-e12pukcw/candidate/packages/marketdata\nPrepared 2 packages in 451ms\nInstalled 18 packages in 157ms\n + anyio==4.15.1\n + certifi==2026.7.22\n + duckdb==1.5.5\n + h11==0.16.0\n + httpcore==1.0.9\n + httpx==0.28.1\n + idna==3.20\n + iniconfig==2.3.0\n + marketdata==0.1.0 (from file:///tmp/scheduled-manager-repro-e12pukcw/candidate/packages/marketdata)\n + marketdata-freqtrade==0.1.0 (from file:///tmp/scheduled-manager-repro-e12pukcw/candidate/packages/marketdata_freqtrade)\n + packaging==26.3\n + pluggy==1.6.0\n + pyarrow==23.0.1\n + pygments==2.21.0\n + pytest==9.1.1\n + ruff==0.16.8\n + typing-extensions==4.16.0\n + websockets==17.1\n"
+    },
+    {
+      "argv": [
+        "/tmp/scheduled-manager-repro-e12pukcw/candidate/.venv/bin/python",
+        "-B",
+        "-I",
+        "-m",
+        "pytest",
+        "-q",
+        "/tmp/scheduled-manager-repro-e12pukcw/test_migration.py",
+        "--junitxml=/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-system-migration-2026-10-12/reproduction-tests.xml"
+      ],
+      "returncode": 0,
+      "stdout": "........................................................................ [ 47%]\n........................................................................ [ 94%]\n........                                                                 [100%]\n152 passed in 16.66s\n",
+      "stderr": ""
+    }
+  ],
+  "passed": true,
+  "reproduced_source_files": 41,
+  "temporary_directory_absent": true
+}
