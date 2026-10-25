@@ -1,0 +1,38 @@
+{
+  "checked_at": "2026-10-17T07:28:52.687541+00:00",
+  "passed": true,
+  "cases": [
+    {
+      "case": "actual_installed_link",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "ClockHold: Untrusted clock/approval path: /etc/systemd/system/marketdata-checkpoint-retirement-apply@.service"
+    },
+    {
+      "case": "same_bytes_trusted_regular_file",
+      "expected_accept": true,
+      "accepted": true,
+      "error": null
+    },
+    {
+      "case": "unexpected_dropin",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "ValueError: Unreviewed effective system unit"
+    },
+    {
+      "case": "reload_needed",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "ValueError: Unreviewed effective system unit"
+    },
+    {
+      "case": "different_unit_bytes",
+      "expected_accept": false,
+      "accepted": false,
+      "error": "ValueError: Installed system unit differs from approved unit"
+    }
+  ],
+  "scope": "actual installed guard with actual native filesystem ownership and controlled show responses; not actual repaired unit execution",
+  "operating_changed": false
+}

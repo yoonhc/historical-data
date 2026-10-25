@@ -1,0 +1,191 @@
+{
+  "finished_at": "2026-10-18T14:37:42.551261+00:00",
+  "jobs": {
+    "backup": {
+      "attempt_id": "0f737500c30e40d7833504990c0086a4",
+      "disposition": {
+        "data_complete": true,
+        "reason": "finished",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "invocation_id": "87d79f72a4b44731ade136d4edca1e2e",
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "request_id": "cfe24a93900342069d87cd633bbb8085",
+      "scope_matches_current_inputs": true,
+      "stored_evidence_verified": true,
+      "work": {
+        "observed_exit_code": 0,
+        "recovered_committed_result": false
+      }
+    },
+    "daily": {
+      "attempt_id": "aa5ff08598ba463bb4c6bf2d1e3ad8a5",
+      "disposition": {
+        "data_complete": false,
+        "reason": "remaining_tasks_owned_by_daily_ledger",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "invocation_id": "04bb8d7350504f4dad0f46e269f97c8b",
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "request_id": "ac5cdaeb1cd741db83ef2f6399ee764f",
+      "scope_matches_current_inputs": true,
+      "stored_evidence_verified": true,
+      "work": {
+        "observed_exit_code": 0,
+        "recovered_committed_result": false
+      }
+    },
+    "network-observer": {
+      "attempt_id": "703ba1518c5a40a98075f176c8c8bfe2",
+      "disposition": {
+        "data_complete": null,
+        "reason": "network_observation_recorded",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "invocation_id": "9fbcecf38f5744b7a5d8d8e2fb26fc94",
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "request_id": "b9233f2c512c44d4ba639b9f07117aa7",
+      "scope_matches_current_inputs": true,
+      "stored_evidence_verified": true,
+      "work": {
+        "observed_exit_code": 0,
+        "recovered_committed_result": false
+      }
+    },
+    "oi": {
+      "attempt_id": "58aeac7cf181480f80741f8c73d8ac82",
+      "disposition": {
+        "data_complete": false,
+        "reason": "coverage_replan_retains_missing_ranges",
+        "returncode": 2,
+        "state": "complete",
+        "work_exit_code": 2
+      },
+      "invocation_id": "5bec558bb9c1444fb03b7a617b7a7ab4",
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "request_id": "64a27d84e85f4623b0924a449abbf34d",
+      "scope_matches_current_inputs": true,
+      "stored_evidence_verified": true,
+      "work": {
+        "observed_exit_code": 2,
+        "recovered_committed_result": false
+      }
+    },
+    "oi-probe": {
+      "attempt_id": "a541c9bf271b4615aa12b1b050562d83",
+      "disposition": {
+        "data_complete": true,
+        "reason": "observation_recorded",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "invocation_id": "33954624c7c04054ad2a0ee73505e446",
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "request_id": "1bb2cd9d80154b93b606c151056d3c2b",
+      "scope_matches_current_inputs": true,
+      "stored_evidence_verified": true,
+      "work": {
+        "observed_exit_code": 0,
+        "recovered_committed_result": false
+      }
+    },
+    "oi-quality": {
+      "attempt_id": "1f0801b4684e43779d034da047d30475",
+      "disposition": {
+        "data_complete": null,
+        "reason": "report_written_with_findings",
+        "returncode": 2,
+        "state": "complete",
+        "work_exit_code": 2
+      },
+      "invocation_id": "3d9b795bd1ac488980189645dbf01aaa",
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "request_id": "57e0b54beaf94a8a9855f1c896c3cd3f",
+      "scope_matches_current_inputs": true,
+      "stored_evidence_verified": true,
+      "work": {
+        "observed_exit_code": 2,
+        "recovered_committed_result": false
+      }
+    },
+    "pack": {
+      "attempt_id": "894f510957f748f1aa8284a0c4af0ca6",
+      "disposition": {
+        "data_complete": true,
+        "reason": "finished",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "invocation_id": "45ef14c45d554d1cac71a92883045872",
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "request_id": "027e31eb7d11495b91acb297de35c195",
+      "scope_matches_current_inputs": true,
+      "stored_evidence_verified": true,
+      "work": {
+        "observed_exit_code": 0,
+        "recovered_committed_result": false
+      }
+    },
+    "restic-archive": {
+      "attempt_id": "cd2827b36ddb49338b06d7e48911a342",
+      "disposition": {
+        "data_complete": null,
+        "reason": "archive_preserved",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "invocation_id": "1392e6caba3f4c0f8735030b6fa4e284",
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "request_id": "91abb7e8214c4b3992872078778c4428",
+      "scope_matches_current_inputs": true,
+      "stored_evidence_verified": true,
+      "work": {
+        "observed_exit_code": 0,
+        "recovered_committed_result": false
+      }
+    }
+  },
+  "note": "Per-file read times; not one global atomic snapshot.",
+  "started_at": "2026-10-18T14:37:42.437452+00:00"
+}

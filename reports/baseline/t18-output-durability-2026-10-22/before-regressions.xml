@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="8" time="0.117" timestamp="2026-10-22T00:02:47.144396+09:00" hostname="hclm"><testcase classname="tests.test_archive_output" name="test_body_directory_sync_failure_is_retried_before_publishing[0]" time="0.005"><failure message="Failed: DID NOT RAISE OSError">tests/test_archive_output.py:186: in test_body_directory_sync_failure_is_retried_before_publishing
+    with pytest.raises(OSError, match="directory sync failure"):
+E   Failed: DID NOT RAISE OSError</failure></testcase><testcase classname="tests.test_archive_output" name="test_body_directory_sync_failure_is_retried_before_publishing[1]" time="0.003"><failure message="Failed: DID NOT RAISE OSError">tests/test_archive_output.py:186: in test_body_directory_sync_failure_is_retried_before_publishing
+    with pytest.raises(OSError, match="directory sync failure"):
+E   Failed: DID NOT RAISE OSError</failure></testcase><testcase classname="tests.test_archive_output" name="test_body_directory_sync_failure_is_retried_before_publishing[2]" time="0.003"><failure message="Failed: DID NOT RAISE OSError">tests/test_archive_output.py:186: in test_body_directory_sync_failure_is_retried_before_publishing
+    with pytest.raises(OSError, match="directory sync failure"):
+E   Failed: DID NOT RAISE OSError</failure></testcase><testcase classname="tests.test_archive_output" name="test_body_directory_sync_failure_is_retried_before_publishing[3]" time="0.003"><failure message="Failed: DID NOT RAISE OSError">tests/test_archive_output.py:186: in test_body_directory_sync_failure_is_retried_before_publishing
+    with pytest.raises(OSError, match="directory sync failure"):
+E   Failed: DID NOT RAISE OSError</failure></testcase><testcase classname="tests.test_archive_output" name="test_existing_body_file_sync_failure_preserves_independent_output" time="0.005"><failure message="Failed: DID NOT RAISE OSError">tests/test_archive_output.py:227: in test_existing_body_file_sync_failure_preserves_independent_output
+    with pytest.raises(OSError, match="body sync failure"):
+E   Failed: DID NOT RAISE OSError</failure></testcase><testcase classname="tests.test_archive_output" name="test_output_replace_sync_failure_is_retried_before_publishing" time="0.005"><failure message="AssertionError: assert PosixPath('/tmp/pytest-of-yoonhc/pytest-177/test_output_replace_sync_failu0/second') in []&#10; +  where PosixPath('/tmp/pytest-of-yoonhc/pytest-177/test_output_replace_sync_failu0/second') = PosixPath('/tmp/pytest-of-yoonhc/pytest-177/test_output_replace_sync_failu0/second/command.stdout').parent">tests/test_archive_output.py:274: in test_output_replace_sync_failure_is_retried_before_publishing
+    retain(tmp_path, receipt, raw)
+tests/test_archive_output.py:35: in retain
+    return output.retain_verified_manifest(root, REPOSITORY, receipt, raw, sha256(raw))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts/archive_output.py:128: in retain_verified_manifest
+    atomic_write(record, json_bytes(updated))
+tests/test_archive_output.py:268: in publish
+    assert path.parent in synced
+E   AssertionError: assert PosixPath('/tmp/pytest-of-yoonhc/pytest-177/test_output_replace_sync_failu0/second') in []
+E    +  where PosixPath('/tmp/pytest-of-yoonhc/pytest-177/test_output_replace_sync_failu0/second') = PosixPath('/tmp/pytest-of-yoonhc/pytest-177/test_output_replace_sync_failu0/second/command.stdout').parent</failure></testcase><testcase classname="tests.test_archive_output" name="test_parent_components_are_rejected_before_any_output_changes[stdout_escape]" time="0.003"><failure message="Failed: DID NOT RAISE ValueError">tests/test_archive_output.py:298: in test_parent_components_are_rejected_before_any_output_changes
+    with pytest.raises(ValueError, match="parent component"):
+E   Failed: DID NOT RAISE ValueError</failure></testcase><testcase classname="tests.test_archive_output" name="test_parent_components_are_rejected_before_any_output_changes[root_parent]" time="0.003"><failure message="Failed: DID NOT RAISE ValueError">tests/test_archive_output.py:298: in test_parent_components_are_rejected_before_any_output_changes
+    with pytest.raises(ValueError, match="parent component"):
+E   Failed: DID NOT RAISE ValueError</failure></testcase></testsuite></testsuites>

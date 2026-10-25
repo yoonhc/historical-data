@@ -8,7 +8,12 @@ Freqtrade와 연구 노트북은 이 프로젝트가 제공하는 데이터를 �
 2026-10-09 현재 두 스트림은 고정 배포본의 **시스템 서비스**로 실행하며,
 시각 근거 보존과 reference 지연만 있는 경우 다음 수집을 허용하는 정책을 운영에 적용했습니다.
 [현재 상태 조회·배포·되돌리기 안내](docs/system-runtime-operations.md)와
-[최신 적용 결과와 남은 관찰](reports/baseline/clock-runtime-deploy-2026-10-09/summary.md)을 참고하세요.
+[당시 적용 결과](reports/baseline/clock-runtime-deploy-2026-10-09/summary.md)를 참고하세요.
+
+최신 [10/25 작업 정리](docs/milestones/2026-10-25-retirement-and-archive-capacity-recovery.md)는
+T05 수동·자동 정리, T16 운영 검증, T17 OI 조사, T18 보관·수집 복구와 T19 추가 공간 회수를 묶습니다.
+운영 근거는 10/25 20:15 KST까지입니다. 장기 기록·조회·용량 관리와 과거 공백,
+T05 다음 예약·수집기의 다음 자연 child 관찰은 [TODO](TODO.md)에 별도로 남아 있습니다.
 
 첫 구현과 실제 데이터 검증을 마쳤습니다. 수집 코어에는 Freqtrade 의존성이 없고,
 별도 어댑터가 고정 스냅샷을 Feather/Parquet으로 내보냅니다. Freqtrade는 공식 Docker 이미지에서 실행합니다.
@@ -37,7 +42,8 @@ restic 비교·복원과 병행 예약 3/3, 호가 재시도·조기 갱신·조
 실제 적용과 실패/재개는 [2026-10-09 시각 근거와 수집 정책 후속](docs/milestones/2026-10-09-clock-evidence-and-capture-policy.md)에
 정리했습니다. 이후 [첫 child 전환](reports/baseline/t11-first-child-boundary-2026-10-09/summary.md)에서
 자연스러운 reference 지연 중 다음 수집 시작과 품질 이력 보존을 확인했습니다.
-신규 시각 근거의 운영 백업·복원은 아직 관찰 대기입니다.
+신규 시각 근거의 운영 백업·복원은 [10/10 실제 검증](reports/baseline/t04-operating-clock-restore-2026-10-10/summary.md)으로 완료했으며,
+기존 v1 로그 편입과 보조 기록의 독립 복구는 별도 후속입니다.
 
 ## 현재 확보한 데이터
 

@@ -1,0 +1,57 @@
+{
+  "authority_sha256": "5e501e421bb7ad14b43abc5329c123130c72a1f571c0a343a98ac4643caadae4",
+  "changes": [
+    "accept successful empty list-jobs output as no jobs",
+    "reject malformed nonempty responses",
+    "separately sealed recovery entrypoint reuses the unchanged operation engine and original audit state"
+  ],
+  "evidence_files": {
+    "native-job-probe.json": "b64e5ec407fd83088484c5b524fb9740f856de03b3f97a96d2afeb87ffbf7bfc",
+    "original-failure-diagnosis.json": "0e44d0cc329001df192d1072d4c117030a3278b81c9231376d103e330148c700",
+    "recovery-tests.xml": "641aff2df0c97dd8d5a2e330c1bf4a3ed4abd3ba3d60a61b6a0f94229c9bedd6",
+    "test_recovery.py": "2340589ec2dfebbaa4144de29868ed7c4ef379ef2fa77b591d5066796e0d3962"
+  },
+  "files": {
+    "common.py": "630c84d5364d533603f531a210dc943e93a0fc69d439b1e05c31074dcac01c79",
+    "native_host.py": "080d7782bf3e71aee84526cd8ee803563f0e6ff6564cd50a0183cb84504b08f5",
+    "operation-plan.json": "5fe462588a59c9bfecc94c68d5473143bb4f1e02c56ca834744acd8bb02f2198",
+    "operation.py": "d284e2e3f4127fc2c4a2d8260acb5594d6f141cd6ed692a8b8714490fb847366",
+    "prepared-plan.json": "6089f0f6461c9ffcfcae7d40867bbe73544d9a805f88bacfe3314163e33cc40b",
+    "repair_resume.py": "079c91d89d8dfb5e39952fc47b9abcae3dbec0aafec87bd28562f65d961ba4cf",
+    "verify_requests.py": "a21dba584459ccb2047328f9bd376d6e19cbbfa194617801cc76e7072209636e"
+  },
+  "fixed_native_host_sha256": "080d7782bf3e71aee84526cd8ee803563f0e6ff6564cd50a0183cb84504b08f5",
+  "initial_records": {
+    "attempt-81b84a54e20e4c3789bf28d9087fe534.json": "d7c9dc3e595be002c02d7a8bbe5cf02b3e480476825e5d6f5aae88aea2fcd1ea",
+    "authority.json": "5e501e421bb7ad14b43abc5329c123130c72a1f571c0a343a98ac4643caadae4",
+    "installed-import.json": "73730588e7b7b4bfb3276cae804de3bc49911529dc51c11a1bbff23f7a4e77f2",
+    "state.json": "7f6e54cb473505f49f8811d051e6d368669b893b551811bcd45d1aa633753d91"
+  },
+  "original_native_host_sha256": "d82b6fbd186b6189797a9fd81f34a78729afcee55265e94ba251210448137bd6",
+  "original_operation_id": "27dd5101bfa0b7005ce0a931b075bc9cccad5a5331e9350a30c4765cbf1ee225",
+  "original_operation_sha256": "5fe462588a59c9bfecc94c68d5473143bb4f1e02c56ca834744acd8bb02f2198",
+  "original_tool_id": "t18-output-operation-20261022-7bb526de6c7fbaef",
+  "preserved": [
+    "original operation bytes, original sealed tools and failed attempt",
+    "original T05 authority bytes/approved_at",
+    "source, six configuration changes, nine timers, inventory/capacity, locks, drain, query/check/batch and rollback contracts"
+  ],
+  "purpose": "t18-empty-job-response-recovery-v1",
+  "recovery_id": "a277ae71a27b2ed095b299b1244b16df7fa7394f57898abcf2bd2b5c490aa59e",
+  "recovery_tool_id": "t18-job-query-recovery-20261025-06fcf27fedd346f7",
+  "requires_separate_recovery_approval": true,
+  "schema": 1,
+  "scope": [
+    "resume same operation and authority from installed/timers_held",
+    "or original rollback restoring eight prior-active timers and keeping archiver held"
+  ],
+  "scope_after": "2875edd74ccef07cd4a1f09917d147ab0a73cde0a6921a5f3f7cd9930344ef83",
+  "source_release_id": "restic-output-20261022-585c3e3686704e5c",
+  "source_release_unchanged": true,
+  "validation": {
+    "focused_tests": 18,
+    "native_read_only_probe": true,
+    "new_root_preflight": false,
+    "original_66_tests_rerun": false
+  }
+}

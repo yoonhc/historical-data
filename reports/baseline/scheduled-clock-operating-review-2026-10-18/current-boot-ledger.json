@@ -1,0 +1,85 @@
+{
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "closed_boottime": 15.635695814,
+  "closed_observation": {
+    "conditional_error_bound_seconds": 0.1957006285,
+    "provider": {
+      "argv": [
+        "/usr/sbin/chronyd",
+        "-F",
+        "1",
+        "-f",
+        "/etc/chrony/marketdata.conf",
+        ""
+      ],
+      "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+      "pid": 1245
+    },
+    "ready": true,
+    "reasons": [],
+    "reference_age_seconds": 2.038670778274536,
+    "sample": {
+      "boottime_ns": 15873612363,
+      "monotonic_ns": 15873611848,
+      "sampling_span_ns": 1579,
+      "wall_ns": 1791472277915793853
+    },
+    "tracking": {
+      "correction": -0.066962399,
+      "leap": "Normal",
+      "raw_csv": "B97DBE39,185.125.190.57,3,1791472275.877091736,-0.066962399,0.198808655,0.198808655,24.944,7.388,24.314,0.253650129,0.001913165,0.0,Normal",
+      "reference_address": "185.125.190.57",
+      "reference_id": "B97DBE39",
+      "reference_time": 1791472275.8770916,
+      "root_delay": 0.253650129,
+      "root_dispersion": 0.001913165,
+      "skew_ppm": 24.314,
+      "stratum": 3
+    }
+  },
+  "configuration_history": [
+    {
+      "approval_sha256": "cfa1c9a10da9d4eff6601cb69d484505ae8cb6849ddcffe11a32cad3c75b98f0",
+      "direction": "apply",
+      "plan_id": "22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6",
+      "receipt": "/var/lib/marketdata-clock/runtime-transitions/22706e571f3a46a8745803b18bca2efacc3318c3e05b2309df6f3c7c37c621e6/apply-receipt.json"
+    },
+    {
+      "approval_sha256": "85aa68bea368f5c7f1af9af4a90fcf5fb6789ede99c1501ce4e0d67aca10a00c",
+      "direction": "apply",
+      "plan_id": "0c9b85223c2ad851434857b4eaa86f11e94595b4663134f98881ede02fefd8fe",
+      "receipt": "/var/lib/marketdata-clock/scheduled-transitions/0c9b85223c2ad851434857b4eaa86f11e94595b4663134f98881ede02fefd8fe/apply-receipt.json"
+    },
+    {
+      "approval_sha256": "0ce75032207d91db77f0e538e32f1974e3cc2f6621d7f86d29949caf958387fe",
+      "direction": "apply",
+      "plan_id": "5e7473d9d5c349c5ae31a0da1f1589391ef3507000e358d3ba74ccbc3be5f0cb",
+      "receipt": "/var/lib/marketdata-clock/scheduled-transitions/5e7473d9d5c349c5ae31a0da1f1589391ef3507000e358d3ba74ccbc3be5f0cb/apply-receipt.json"
+    },
+    {
+      "approval_sha256": "668006ef9a4aa58d5ccd20d8e322ce566fef16fe661e9abce5d3beab3d3b33dc",
+      "direction": "apply",
+      "plan_id": "78d7c634bced73af83e765e8f0c9e2a1a4b2029d5d0f0e3375e98e654f4dbd77",
+      "receipt": "/var/lib/marketdata-clock/scheduled-transitions/78d7c634bced73af83e765e8f0c9e2a1a4b2029d5d0f0e3375e98e654f4dbd77/apply-receipt.json"
+    }
+  ],
+  "first_boottime": 10.33559517,
+  "last_wait": {
+    "long_wait": false,
+    "needs_review": false,
+    "phase": "preparing",
+    "ready": false,
+    "reasons": [
+      "no_external_reference",
+      "not_synchronized_or_leap_pending",
+      "reference_age",
+      "clock_error_bound"
+    ],
+    "step_attempts": 0,
+    "wait_seconds": 0
+  },
+  "phase": "closed",
+  "profile_sha256": "23623da62205614bf9f525e2c2bf0ccbaeb6fa87ef9a312b04bfbb9baaff336c",
+  "schema": 1,
+  "step_attempts": 0
+}

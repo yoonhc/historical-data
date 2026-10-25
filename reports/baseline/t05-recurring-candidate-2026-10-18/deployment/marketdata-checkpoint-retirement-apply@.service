@@ -1,0 +1,44 @@
+[Unit]
+Description=Clock-bounded working checkpoint retirement
+After=chrony.service marketdata-clock-bootstrap.service
+RequiresMountsFor=/home/yoonhc/projects/algoTrade/historical_data /mnt/backup
+
+[Service]
+Type=oneshot
+User=yoonhc
+Group=yoonhc
+WorkingDirectory=/var/lib/marketdata-checkpoint-retirement
+Environment=LC_ALL=C
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=2h
+TimeoutStopSec=120s
+KillSignal=SIGINT
+KillMode=mixed
+Restart=no
+SuccessExitStatus=75
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectClock=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+PrivateDevices=yes
+PrivateTmp=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+RestrictRealtime=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+IPAddressDeny=any
+IPAddressAllow=localhost
+ReadWritePaths=/var/lib/marketdata-checkpoint-retirement /home/yoonhc/projects/algoTrade/historical_data/archive-state/b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558/archive.lock /home/yoonhc/projects/algoTrade/historical_data/state/maintenance.lock /home/yoonhc/projects/algoTrade/historical_data/.cache/restic-archive /mnt/backup/marketdata-restic/locks
+StandardOutput=journal
+StandardError=journal
+ReadWritePaths=/mnt/backup/marketdata-historical
+ExecStart=/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/.venv/bin/python -B -I /opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/scripts/run_clock_retirement.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml apply-plan --plan-id %i

@@ -1,0 +1,39 @@
+{
+  "operation_id": "d8d3bf23bc43518e41928294779c9ee5f5f1de3955527937be262609ab80f650",
+  "operation": {
+    "schema": "t18-bounded-reclamation-operation-v1",
+    "created_at": "2026-10-19T13:54:02.349902+00:00",
+    "plan_id": "0ea1f22baf75a483329fcfec350b56321245ef6b2f0000ed39a9a3bdc04c9be2",
+    "bundle_sha256": {
+      "deduplicate.py": "4e68dd62804b3cc8b270decac8354dc0cc3b6c51b068ae1f659d503268b86263",
+      "dedup-plan.json": "fdf837b13c76ad1086e970af9334f0233cfc90944117dfd7c27eef6e44be9671",
+      "check_hardlink_compatibility.py": "bc33e386bbc36d9033107dad65dc92b1c210fda3531a7c5282e37cef63f3e14a",
+      "hardlink-compatibility.json": "a8cf3903385d85ad0f4a90d8e27654efc773e1369e416a7e4aeb13066a30fc87",
+      "test_deduplicate.py": "d81ab614204540a57d9a31a69ad0ac70436bf972476a25b3cc51b39668d482e1"
+    },
+    "protected_sha256": {
+      "/etc/systemd/system/marketdata-restic-archive.timer": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+      "/etc/systemd/system/marketdata-restic-archive.service": "370874920f1ffb094e232f17128fb49a9eb348d1661bb0dd2cf98cd8b996ff5d",
+      "/home/yoonhc/.config/marketdata/restic-archive.toml": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+      "/home/yoonhc/.config/marketdata/restic-service.env": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9",
+      "/etc/marketdata/scheduled-clock-policy/clock-binding.json": "bb47490cac1e11ed3c5a456d9f5d7dc699b1c72c65f5dad2e12eb32dc4c8c925",
+      "/etc/marketdata/checkpoint-clock-retirement/recurring.json": "3b436c4f0803582c6a64414a009abf2ab212945584f6ba3211ec1efbaff8035d",
+      "/etc/marketdata/checkpoint-clock-retirement/manual.json": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+      "/etc/chrony/marketdata.conf": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "/home/yoonhc/projects/algoTrade/historical_data/archive-state/b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558/historical-data-original-v1/state.json": "524d9c762771c2df908dbeb0df829e38e57bc257ba722c724144078ff52c728c",
+      "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11/policy/request_contract.py": "bff0d83ace0b372e3d7aabd23821fb0cd57aed4b0be265364cdc330c7dbefe2c",
+      "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11/preserve/scripts/archive_backups.py": "69455f8e2e29387acfc2ab416550d8c656ada8f4d1f93dc833731d5adac4c045"
+    },
+    "protected_links": {
+      "/etc/systemd/system/timers.target.wants/marketdata-restic-archive.timer": "/etc/systemd/system/marketdata-restic-archive.timer"
+    },
+    "authority_scope": "Only the exact plan hardlink replacements and their small audit files. No service controls, ledger writes, new backups, timer resume, or other cleanup.",
+    "isolated_tests": {
+      "passed": 12,
+      "actual_installed_contract_cases": 2
+    },
+    "estimated_reclaim_bytes": 15450640384,
+    "temporary_payload_bytes": 0,
+    "audit_metadata_budget_bytes": 8388608
+  }
+}

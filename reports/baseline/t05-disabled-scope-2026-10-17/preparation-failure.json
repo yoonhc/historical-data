@@ -1,0 +1,11 @@
+{
+  "phase": "read_only_preparation_before_plan_publication",
+  "passed": false,
+  "error_type": "KeyError",
+  "error": "MainPID",
+  "location": "refresh_scope.py manager(): timer treated as a service",
+  "source": "native prepare.py command result in this session",
+  "operating_mutations": false,
+  "plan_published": false,
+  "resolution": "Only service units require MainPID and ControlPID; inactivity, no job and masks remain required for timers. Add isolated timer coverage and repeat the read-only host comparison."
+}

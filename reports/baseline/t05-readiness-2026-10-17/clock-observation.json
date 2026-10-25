@@ -1,0 +1,78 @@
+{
+  "tracking": {
+    "reference_id": "5BBD5B9D",
+    "reference_address": "91.189.91.157",
+    "stratum": 3,
+    "reference_time": 1792166520.764154,
+    "correction": 0.001952335,
+    "skew_ppm": 0.198,
+    "root_delay": 0.235802531,
+    "root_dispersion": 0.006752397,
+    "leap": "Normal",
+    "raw_csv": "5BBD5B9D,91.189.91.157,3,1792166520.764153843,0.001952335,-0.001059620,0.000920564,26.460,0.001,0.198,0.235802531,0.006752397,2062.3,Normal"
+  },
+  "provider": {
+    "pid": 1245,
+    "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+    "argv": [
+      "/usr/sbin/chronyd",
+      "-F",
+      "1",
+      "-f",
+      "/etc/chrony/marketdata.conf"
+    ]
+  },
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+  "bootstrap_sha256": "fb7a4a29c0145db1bf4248819479ad4b8b6a0d22ba8e28f23f9f3199ff25bc96",
+  "runtime_profile_sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+  "ledger_sha256": "cc94a8bb5a586036dee5620059dd1678232b45bf0683b40ac7d334f1f1b64edb",
+  "ready": true,
+  "reasons": [],
+  "reference_age_seconds": 1054.6173615455627,
+  "conditional_error_bound_seconds": 0.1266059975,
+  "chrony_error_estimate": 0.1266059975,
+  "query_alignment_margin": 0.013158981,
+  "sampling_margin": 2.064e-06,
+  "total_uncertainty": 0.13976704250000002,
+  "sample": {
+    "wall_ns": 1792167575381515575,
+    "monotonic_ns": 695313339333076,
+    "boottime_ns": 695313339333763,
+    "span_ns": 1633
+  },
+  "query_before": {
+    "wall_ns": 1792167575368356244,
+    "monotonic_ns": 695313326174095,
+    "boottime_ns": 695313326174221,
+    "span_ns": 431
+  },
+  "query_after": {
+    "wall_ns": 1792167575381515575,
+    "monotonic_ns": 695313339333076,
+    "boottime_ns": 695313339333763,
+    "span_ns": 1633
+  },
+  "query_seconds": 0.013158981,
+  "uncertainty_seconds": 0.13976704250000002,
+  "lower_utc_ns": 1792167575241748532,
+  "upper_utc_ns": 1792167575521282618,
+  "policy": {
+    "version": "checkpoint-time-bounds-v2",
+    "max_uncertainty_seconds": 5.0,
+    "retention_margin_seconds": 60,
+    "max_observation_age_seconds": 15.0,
+    "max_query_seconds": 3.0,
+    "max_sample_gap_seconds": 5.0,
+    "step_threshold_seconds": 0.25,
+    "sample_seconds": 1.0,
+    "provider_seconds": 10.0
+  },
+  "decision_sample": {
+    "wall_ns": 1792167575382108772,
+    "monotonic_ns": 695313339926664,
+    "boottime_ns": 695313339926860,
+    "span_ns": 591
+  },
+  "observation_age_seconds": 0.000593588
+}

@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-10-17T09:42:29.951741+00:00",
+  "source": "native exec_command chunk c2e7e1, exit 0",
+  "result": {
+    "passed": true,
+    "readonly": true,
+    "positions": {
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service": "before",
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service": "before",
+      "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service": "before",
+      "/etc/marketdata/checkpoint-clock-retirement/recurring.json": "before"
+    },
+    "operation_plan_id": "eced87a499269ebe5da84be1b0795ebfd2c109ce06f37db4e5e26f8027b9e231",
+    "retirement_plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+    "reviewed_run_id": "5d7deaf59b1f4c99847a732327ce77af",
+    "clock_ready": true,
+    "manual_enabled": false,
+    "automatic_retirement": "masked"
+  },
+  "sudo_attempt": {
+    "source": "native exec_command chunk b5cc3b",
+    "exit_code": 1,
+    "stderr": "sudo: a password is required\n",
+    "operating_tool_started": false,
+    "service_start_requested": false,
+    "configuration_changed": false
+  }
+}

@@ -1,0 +1,18 @@
+--- /etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service
++++ reports/baseline/t05-first-manual-exdev-2026-10-17/candidate/marketdata-checkpoint-retirement-apply@.service
+@@ -40,5 +40,5 @@
+ ReadWritePaths=/var/lib/marketdata-checkpoint-retirement /home/yoonhc/projects/algoTrade/historical_data/archive-state/b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558/archive.lock /home/yoonhc/projects/algoTrade/historical_data/state/maintenance.lock /home/yoonhc/projects/algoTrade/historical_data/.cache/restic-archive /mnt/backup/marketdata-restic/locks
+ StandardOutput=journal
+ StandardError=journal
+-ReadWritePaths=/mnt/backup/marketdata-historical/automatic /mnt/backup/marketdata-historical/.automatic.retiring
++ReadWritePaths=/mnt/backup/marketdata-historical
+ ExecStart=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_clock_retirement.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml apply-plan --plan-id %i
+--- /etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service
++++ reports/baseline/t05-first-manual-exdev-2026-10-17/candidate/marketdata-checkpoint-retirement.service
+@@ -40,5 +40,5 @@
+ ReadWritePaths=/var/lib/marketdata-checkpoint-retirement /home/yoonhc/projects/algoTrade/historical_data/archive-state/b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558/archive.lock /home/yoonhc/projects/algoTrade/historical_data/state/maintenance.lock /home/yoonhc/projects/algoTrade/historical_data/.cache/restic-archive /mnt/backup/marketdata-restic/locks
+ StandardOutput=journal
+ StandardError=journal
+-ReadWritePaths=/mnt/backup/marketdata-historical/automatic /mnt/backup/marketdata-historical/.automatic.retiring
++ReadWritePaths=/mnt/backup/marketdata-historical
+ ExecStart=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_clock_retirement.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml run

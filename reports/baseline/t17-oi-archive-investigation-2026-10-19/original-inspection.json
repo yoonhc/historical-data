@@ -1,0 +1,883 @@
+{
+  "started_at": "2026-10-18T15:14:21.827472+00:00",
+  "label": "original",
+  "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "executable": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/bin/python",
+  "database": "/home/yoonhc/projects/algoTrade/historical_data/state/catalog.sqlite",
+  "operating_mutations_requested": false,
+  "network_requests": 0,
+  "parser_replay_only": true,
+  "selected_records": {
+    "task_record": {
+      "id": "c24159c0b9f2893037ac67c41e52d5bbdfd0a9ed2c3f62ecdae43d6c7b32b6e9",
+      "record": "{\"attempts\":[\"0af32466cb6e44efbee0fe5ba85c5282\",\"39f32b6665984af28a7e3b84e73b13da\"],\"config_hash\":\"fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2\",\"cycle\":null,\"day\":\"2026-10-15\",\"first_eligible_at\":\"2026-10-16T09:00:00+00:00\",\"id\":\"c24159c0b9f2893037ac67c41e52d5bbdfd0a9ed2c3f62ecdae43d6c7b32b6e9\",\"key\":{\"dataset\":\"open_interest\",\"interval\":\"5m\",\"market\":\"linear_perpetual\",\"series\":\"archive\",\"symbol\":\"BTCUSDT\"},\"next_at\":null,\"proof\":null,\"publication_checks\":0,\"purpose\":\"acquire\",\"reason\":\"Task has no complete verified publication proof\",\"review_required\":true,\"state\":\"needs_review\",\"transient_failures\":0,\"validation_failures\":2,\"version\":1}"
+    },
+    "attempt_records": [
+      {
+        "id": "0af32466cb6e44efbee0fe5ba85c5282",
+        "record": "{\"config_hash\":\"fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2\",\"error\":{\"message\":\"Task has no complete verified publication proof\",\"status\":null,\"type\":\"DataError\"},\"finished_at\":\"2026-10-16T09:00:24.851259+00:00\",\"id\":\"0af32466cb6e44efbee0fe5ba85c5282\",\"inputs\":[{\"id\":\"5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90\",\"kind\":\"archive\",\"received_at\":\"2026-10-16T09:00:24.729790+00:00\",\"url\":\"https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip\"},{\"id\":\"e83db5cde9085b39e8545c7c620f4de5044fae82648ad61967e6113c828524e5\",\"kind\":\"checksum\",\"received_at\":\"2026-10-16T09:00:24.800824+00:00\",\"url\":\"https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip.CHECKSUM\"}],\"publish_intent\":{\"economic_sha256\":\"4490cc2440a746d7edee837c64c8b702bc2ad0a95caaa58b13e915b534d3a3b0\",\"end\":\"2026-10-16T00:00:00+00:00\",\"key\":{\"dataset\":\"open_interest\",\"interval\":\"5m\",\"market\":\"linear_perpetual\",\"series\":\"archive\",\"symbol\":\"BTCUSDT\"},\"row_count\":288,\"row_end\":\"2026-10-16T00:00:00+00:00\",\"row_start\":\"2026-10-15T00:00:00+00:00\",\"source_id\":\"5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90\",\"start\":\"2026-10-15T00:00:00+00:00\"},\"requests\":[{\"headers\":{\"accept-ranges\":\"bytes\",\"connection\":\"keep-alive\",\"content-length\":\"11218\",\"content-type\":\"binary/octet-stream\",\"date\":\"Fri, 16 Oct 2026 09:00:25 GMT\",\"etag\":\"\\\"741e9b59e0401f23eca10ed00561877d\\\"\",\"last-modified\":\"Fri, 16 Oct 2026 07:13:04 GMT\",\"server\":\"AmazonS3\",\"via\":\"1.1 f292525632ff4da4658e70c2b7b83518.cloudfront.net (CloudFront)\",\"x-amz-cf-id\":\"lZ2Vpx_dJGUgYRCJFPaKFx5oAFHfLuIWerZkoDacrI7ExCIWeXSSLw==\",\"x-amz-cf-pop\":\"ICN57-P5\",\"x-amz-server-side-encryption\":\"AES256\",\"x-cache\":\"Miss from cloudfront\"},\"outcome\":\"response_consumed\",\"received_at\":\"2026-10-16T09:00:24.717865+00:00\",\"started_at\":\"2026-10-16T09:00:24.588659+00:00\",\"status\":200,\"url\":\"https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip\"},{\"headers\":{\"accept-ranges\":\"bytes\",\"connection\":\"keep-alive\",\"content-length\":\"97\",\"content-type\":\"binary/octet-stream\",\"date\":\"Fri, 16 Oct 2026 09:00:24 GMT\",\"etag\":\"\\\"3368d84741d9653686c694cc3e9e55c3\\\"\",\"last-modified\":\"Fri, 16 Oct 2026 07:13:04 GMT\",\"server\":\"AmazonS3\",\"via\":\"1.1 f292525632ff4da4658e70c2b7b83518.cloudfront.net (CloudFront)\",\"x-amz-cf-id\":\"mF5RqtQ0ivrhP2LyrcnDCMtkeDfB1SzrQltZBmnmAsZxTbB1fiuomg==\",\"x-amz-cf-pop\":\"ICN57-P5\",\"x-amz-server-side-encryption\":\"AES256\",\"x-cache\":\"Miss from cloudfront\"},\"outcome\":\"response_consumed\",\"received_at\":\"2026-10-16T09:00:24.799311+00:00\",\"started_at\":\"2026-10-16T09:00:24.734160+00:00\",\"status\":200,\"url\":\"https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip.CHECKSUM\"}],\"started_at\":\"2026-10-16T09:00:24.586748+00:00\",\"state\":\"validation_retry\",\"task_id\":\"c24159c0b9f2893037ac67c41e52d5bbdfd0a9ed2c3f62ecdae43d6c7b32b6e9\"}"
+      },
+      {
+        "id": "39f32b6665984af28a7e3b84e73b13da",
+        "record": "{\"config_hash\":\"fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2\",\"error\":{\"message\":\"Task has no complete verified publication proof\",\"status\":null,\"type\":\"DataError\"},\"finished_at\":\"2026-10-16T11:00:12.622092+00:00\",\"id\":\"39f32b6665984af28a7e3b84e73b13da\",\"inputs\":[{\"id\":\"5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90\",\"kind\":\"archive\",\"received_at\":\"2026-10-16T11:00:12.498753+00:00\",\"url\":\"https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip\"},{\"id\":\"e83db5cde9085b39e8545c7c620f4de5044fae82648ad61967e6113c828524e5\",\"kind\":\"checksum\",\"received_at\":\"2026-10-16T11:00:12.572672+00:00\",\"url\":\"https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip.CHECKSUM\"}],\"publish_intent\":{\"economic_sha256\":\"4490cc2440a746d7edee837c64c8b702bc2ad0a95caaa58b13e915b534d3a3b0\",\"end\":\"2026-10-16T00:00:00+00:00\",\"key\":{\"dataset\":\"open_interest\",\"interval\":\"5m\",\"market\":\"linear_perpetual\",\"series\":\"archive\",\"symbol\":\"BTCUSDT\"},\"row_count\":288,\"row_end\":\"2026-10-16T00:00:00+00:00\",\"row_start\":\"2026-10-15T00:00:00+00:00\",\"source_id\":\"5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90\",\"start\":\"2026-10-15T00:00:00+00:00\"},\"requests\":[{\"headers\":{\"accept-ranges\":\"bytes\",\"connection\":\"keep-alive\",\"content-length\":\"11218\",\"content-type\":\"binary/octet-stream\",\"date\":\"Fri, 16 Oct 2026 11:00:12 GMT\",\"etag\":\"\\\"741e9b59e0401f23eca10ed00561877d\\\"\",\"last-modified\":\"Fri, 16 Oct 2026 07:13:04 GMT\",\"server\":\"AmazonS3\",\"via\":\"1.1 b9d178e44a376489d36de04cc7c4d74a.cloudfront.net (CloudFront)\",\"x-amz-cf-id\":\"80xy62UHo67omfSMxpYreK0XTgsZhs6uHd01zxVddzKugtcjZ7fY6Q==\",\"x-amz-cf-pop\":\"ICN80-P3\",\"x-amz-server-side-encryption\":\"AES256\",\"x-cache\":\"Miss from cloudfront\"},\"outcome\":\"response_consumed\",\"received_at\":\"2026-10-16T11:00:12.497705+00:00\",\"started_at\":\"2026-10-16T11:00:12.410231+00:00\",\"status\":200,\"url\":\"https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip\"},{\"headers\":{\"accept-ranges\":\"bytes\",\"connection\":\"keep-alive\",\"content-length\":\"97\",\"content-type\":\"binary/octet-stream\",\"date\":\"Fri, 16 Oct 2026 11:00:13 GMT\",\"etag\":\"\\\"3368d84741d9653686c694cc3e9e55c3\\\"\",\"last-modified\":\"Fri, 16 Oct 2026 07:13:04 GMT\",\"server\":\"AmazonS3\",\"via\":\"1.1 b9d178e44a376489d36de04cc7c4d74a.cloudfront.net (CloudFront)\",\"x-amz-cf-id\":\"1SuOU-Q-vODiDV_YstzWyY1DFCi7CwwNtDOQAxqqWQkSu3iUjuZDtg==\",\"x-amz-cf-pop\":\"ICN80-P3\",\"x-amz-server-side-encryption\":\"AES256\",\"x-cache\":\"Miss from cloudfront\"},\"outcome\":\"response_consumed\",\"received_at\":\"2026-10-16T11:00:12.570239+00:00\",\"started_at\":\"2026-10-16T11:00:12.510267+00:00\",\"status\":200,\"url\":\"https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip.CHECKSUM\"}],\"started_at\":\"2026-10-16T11:00:12.407861+00:00\",\"state\":\"needs_review\",\"task_id\":\"c24159c0b9f2893037ac67c41e52d5bbdfd0a9ed2c3f62ecdae43d6c7b32b6e9\"}"
+      }
+    ],
+    "related_task_records": [
+      {
+        "id": "c24159c0b9f2893037ac67c41e52d5bbdfd0a9ed2c3f62ecdae43d6c7b32b6e9",
+        "record": "{\"attempts\":[\"0af32466cb6e44efbee0fe5ba85c5282\",\"39f32b6665984af28a7e3b84e73b13da\"],\"config_hash\":\"fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2\",\"cycle\":null,\"day\":\"2026-10-15\",\"first_eligible_at\":\"2026-10-16T09:00:00+00:00\",\"id\":\"c24159c0b9f2893037ac67c41e52d5bbdfd0a9ed2c3f62ecdae43d6c7b32b6e9\",\"key\":{\"dataset\":\"open_interest\",\"interval\":\"5m\",\"market\":\"linear_perpetual\",\"series\":\"archive\",\"symbol\":\"BTCUSDT\"},\"next_at\":null,\"proof\":null,\"publication_checks\":0,\"purpose\":\"acquire\",\"reason\":\"Task has no complete verified publication proof\",\"review_required\":true,\"state\":\"needs_review\",\"transient_failures\":0,\"validation_failures\":2,\"version\":1}"
+      },
+      {
+        "id": "ea6bfafa9817d9a278119979a80c24f4d166b466d98c43cdd2a4ec0f17338f57",
+        "record": "{\"attempts\":[],\"config_hash\":\"fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2\",\"cycle\":\"2026-10-16\",\"day\":\"2026-10-15\",\"first_eligible_at\":\"2026-10-16T09:00:00+00:00\",\"id\":\"ea6bfafa9817d9a278119979a80c24f4d166b466d98c43cdd2a4ec0f17338f57\",\"key\":{\"dataset\":\"open_interest\",\"interval\":\"5m\",\"market\":\"linear_perpetual\",\"series\":\"archive\",\"symbol\":\"BTCUSDT\"},\"next_at\":\"2026-10-16T09:00:00+00:00\",\"proof\":null,\"publication_checks\":0,\"purpose\":\"refresh\",\"reason\":\"scheduled\",\"review_required\":false,\"state\":\"planned\",\"transient_failures\":0,\"validation_failures\":0,\"version\":1}"
+      },
+      {
+        "id": "0d889457b6399564f295c687dcd36f76780c5f7ec3783252d262257de2fda723",
+        "record": "{\"attempts\":[],\"config_hash\":\"fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2\",\"cycle\":\"2026-10-17\",\"day\":\"2026-10-15\",\"first_eligible_at\":\"2026-10-17T09:00:00+00:00\",\"id\":\"0d889457b6399564f295c687dcd36f76780c5f7ec3783252d262257de2fda723\",\"key\":{\"dataset\":\"open_interest\",\"interval\":\"5m\",\"market\":\"linear_perpetual\",\"series\":\"archive\",\"symbol\":\"BTCUSDT\"},\"next_at\":\"2026-10-17T09:00:00+00:00\",\"proof\":null,\"publication_checks\":0,\"purpose\":\"refresh\",\"reason\":\"scheduled\",\"review_required\":false,\"state\":\"planned\",\"transient_failures\":0,\"validation_failures\":0,\"version\":1}"
+      },
+      {
+        "id": "9599221618a2370561128b5196e9a304e8f31546e9b3ff4cf2e1d41c2ba3a4fd",
+        "record": "{\"attempts\":[],\"config_hash\":\"fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2\",\"cycle\":\"2026-10-18\",\"day\":\"2026-10-15\",\"first_eligible_at\":\"2026-10-18T09:00:00+00:00\",\"id\":\"9599221618a2370561128b5196e9a304e8f31546e9b3ff4cf2e1d41c2ba3a4fd\",\"key\":{\"dataset\":\"open_interest\",\"interval\":\"5m\",\"market\":\"linear_perpetual\",\"series\":\"archive\",\"symbol\":\"BTCUSDT\"},\"next_at\":\"2026-10-18T09:00:00+00:00\",\"proof\":null,\"publication_checks\":0,\"purpose\":\"refresh\",\"reason\":\"scheduled\",\"review_required\":false,\"state\":\"planned\",\"transient_failures\":0,\"validation_failures\":0,\"version\":1}"
+      },
+      {
+        "id": "24e80396328b117da66f68b57e645e1a549e79f3d00d9e228d6d65d8568482de",
+        "record": "{\"attempts\":[],\"config_hash\":\"fb9a36a40e5b54460bb5f5b9cd7f142eafe0f99e223e20c965299b8def39f2d2\",\"cycle\":\"2026-10-19\",\"day\":\"2026-10-15\",\"first_eligible_at\":\"2026-10-19T09:00:00+00:00\",\"id\":\"24e80396328b117da66f68b57e645e1a549e79f3d00d9e228d6d65d8568482de\",\"key\":{\"dataset\":\"open_interest\",\"interval\":\"5m\",\"market\":\"linear_perpetual\",\"series\":\"archive\",\"symbol\":\"BTCUSDT\"},\"next_at\":\"2026-10-19T09:00:00+00:00\",\"proof\":null,\"publication_checks\":0,\"purpose\":\"refresh\",\"reason\":\"scheduled\",\"review_required\":false,\"state\":\"planned\",\"transient_failures\":0,\"validation_failures\":0,\"version\":1}"
+      }
+    ],
+    "issues": [
+      {
+        "id": 26,
+        "key_id": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+        "day": "2026-10-15",
+        "source_id": "5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90",
+        "kind": "quarantined_zero_oi",
+        "blocking": 1,
+        "details": "[{\"kind\":\"zero_oi\",\"source_row\":40,\"timestamp\":\"2026-10-15T13:40:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":93,\"timestamp\":\"2026-10-15T13:55:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":127,\"timestamp\":\"2026-10-15T13:50:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":128,\"timestamp\":\"2026-10-15T14:20:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":154,\"timestamp\":\"2026-10-15T14:00:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":155,\"timestamp\":\"2026-10-15T14:30:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":156,\"timestamp\":\"2026-10-15T14:35:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":192,\"timestamp\":\"2026-10-15T14:15:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":193,\"timestamp\":\"2026-10-15T14:40:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":219,\"timestamp\":\"2026-10-15T13:45:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":220,\"timestamp\":\"2026-10-15T14:25:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":234,\"timestamp\":\"2026-10-15T14:05:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":235,\"timestamp\":\"2026-10-15T14:10:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":280,\"timestamp\":\"2026-10-15T14:45:00+00:00\"},{\"adjacent_count\":20,\"kind\":\"source_order_reversed\"}]",
+        "resolved": 0,
+        "created_at": "2026-10-16T09:00:24.809308+00:00"
+      }
+    ],
+    "jobs": [
+      {
+        "id": "78c357ba74f7c1b948cbecc51c189fd955fb2f88af41759cf948bbe41331592a",
+        "key_id": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+        "start": "2026-10-15T00:00:00+00:00",
+        "end": "2026-10-16T00:00:00+00:00",
+        "state": "quarantined",
+        "source_id": "5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90",
+        "error": null,
+        "attempts": 2,
+        "updated_at": "2026-10-16T11:00:12.590458+00:00"
+      },
+      {
+        "id": "0f2f81d83944e2b22b8594c7d2e5d88b1871868558e00367bcff7be611d440f7",
+        "key_id": "binance:linear_perpetual:BTCUSDT:open_interest:5m:archive",
+        "start": "2026-10-15T00:00:00+00:00",
+        "end": "2026-10-16T00:00:00+00:00",
+        "state": "quarantined",
+        "source_id": "5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90",
+        "error": null,
+        "attempts": 2,
+        "updated_at": "2026-10-16T11:00:12.589752+00:00"
+      }
+    ],
+    "revisions": [],
+    "active": [],
+    "queries": [],
+    "reviews": [],
+    "artifacts": [
+      {
+        "id": "5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90",
+        "path": "data/raw/5f/5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90/payload",
+        "kind": "archive",
+        "observed_at": "2026-10-16T09:00:24.729790+00:00",
+        "bytes": 11218
+      },
+      {
+        "id": "e83db5cde9085b39e8545c7c620f4de5044fae82648ad61967e6113c828524e5",
+        "path": "data/raw/e8/e83db5cde9085b39e8545c7c620f4de5044fae82648ad61967e6113c828524e5/payload",
+        "kind": "checksum",
+        "observed_at": "2026-10-16T09:00:24.800824+00:00",
+        "bytes": 97
+      }
+    ],
+    "fetches": [
+      {
+        "id": 1109504,
+        "artifact_id": "5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90",
+        "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip",
+        "observed_at": "2026-10-16T09:00:24.729790+00:00",
+        "metadata": "{\"headers\":{\"accept-ranges\":\"bytes\",\"connection\":\"keep-alive\",\"content-length\":\"11218\",\"content-type\":\"binary/octet-stream\",\"date\":\"Fri, 16 Oct 2026 09:00:25 GMT\",\"etag\":\"\\\"741e9b59e0401f23eca10ed00561877d\\\"\",\"last-modified\":\"Fri, 16 Oct 2026 07:13:04 GMT\",\"server\":\"AmazonS3\",\"via\":\"1.1 f292525632ff4da4658e70c2b7b83518.cloudfront.net (CloudFront)\",\"x-amz-cf-id\":\"lZ2Vpx_dJGUgYRCJFPaKFx5oAFHfLuIWerZkoDacrI7ExCIWeXSSLw==\",\"x-amz-cf-pop\":\"ICN57-P5\",\"x-amz-server-side-encryption\":\"AES256\",\"x-cache\":\"Miss from cloudfront\"},\"status\":200}"
+      },
+      {
+        "id": 1109505,
+        "artifact_id": "e83db5cde9085b39e8545c7c620f4de5044fae82648ad61967e6113c828524e5",
+        "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip.CHECKSUM",
+        "observed_at": "2026-10-16T09:00:24.800824+00:00",
+        "metadata": "{\"headers\":{\"accept-ranges\":\"bytes\",\"connection\":\"keep-alive\",\"content-length\":\"97\",\"content-type\":\"binary/octet-stream\",\"date\":\"Fri, 16 Oct 2026 09:00:24 GMT\",\"etag\":\"\\\"3368d84741d9653686c694cc3e9e55c3\\\"\",\"last-modified\":\"Fri, 16 Oct 2026 07:13:04 GMT\",\"server\":\"AmazonS3\",\"via\":\"1.1 f292525632ff4da4658e70c2b7b83518.cloudfront.net (CloudFront)\",\"x-amz-cf-id\":\"mF5RqtQ0ivrhP2LyrcnDCMtkeDfB1SzrQltZBmnmAsZxTbB1fiuomg==\",\"x-amz-cf-pop\":\"ICN57-P5\",\"x-amz-server-side-encryption\":\"AES256\",\"x-cache\":\"Miss from cloudfront\"},\"status\":200}"
+      },
+      {
+        "id": 1113518,
+        "artifact_id": "5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90",
+        "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip",
+        "observed_at": "2026-10-16T11:00:12.498753+00:00",
+        "metadata": "{\"headers\":{\"accept-ranges\":\"bytes\",\"connection\":\"keep-alive\",\"content-length\":\"11218\",\"content-type\":\"binary/octet-stream\",\"date\":\"Fri, 16 Oct 2026 11:00:12 GMT\",\"etag\":\"\\\"741e9b59e0401f23eca10ed00561877d\\\"\",\"last-modified\":\"Fri, 16 Oct 2026 07:13:04 GMT\",\"server\":\"AmazonS3\",\"via\":\"1.1 b9d178e44a376489d36de04cc7c4d74a.cloudfront.net (CloudFront)\",\"x-amz-cf-id\":\"80xy62UHo67omfSMxpYreK0XTgsZhs6uHd01zxVddzKugtcjZ7fY6Q==\",\"x-amz-cf-pop\":\"ICN80-P3\",\"x-amz-server-side-encryption\":\"AES256\",\"x-cache\":\"Miss from cloudfront\"},\"status\":200}"
+      },
+      {
+        "id": 1113519,
+        "artifact_id": "e83db5cde9085b39e8545c7c620f4de5044fae82648ad61967e6113c828524e5",
+        "url": "https://data.binance.vision/data/futures/um/daily/metrics/BTCUSDT/BTCUSDT-metrics-2026-10-15.zip.CHECKSUM",
+        "observed_at": "2026-10-16T11:00:12.572672+00:00",
+        "metadata": "{\"headers\":{\"accept-ranges\":\"bytes\",\"connection\":\"keep-alive\",\"content-length\":\"97\",\"content-type\":\"binary/octet-stream\",\"date\":\"Fri, 16 Oct 2026 11:00:13 GMT\",\"etag\":\"\\\"3368d84741d9653686c694cc3e9e55c3\\\"\",\"last-modified\":\"Fri, 16 Oct 2026 07:13:04 GMT\",\"server\":\"AmazonS3\",\"via\":\"1.1 b9d178e44a376489d36de04cc7c4d74a.cloudfront.net (CloudFront)\",\"x-amz-cf-id\":\"1SuOU-Q-vODiDV_YstzWyY1DFCi7CwwNtDOQAxqqWQkSu3iUjuZDtg==\",\"x-amz-cf-pop\":\"ICN80-P3\",\"x-amz-server-side-encryption\":\"AES256\",\"x-cache\":\"Miss from cloudfront\"},\"status\":200}"
+      }
+    ]
+  },
+  "previous_attempts": {
+    "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-operating-review-2026-10-18/preexisting-oi-attempts.json",
+    "sha256": "0f3969a64a85096129a38a406140ee8c32e115f9d2519a53cddd98d40e97081e",
+    "same_records": true
+  },
+  "parser_replay": [
+    {
+      "attempt_id": "0af32466cb6e44efbee0fe5ba85c5282",
+      "observed_at": "2026-10-16T09:00:24.729790+00:00",
+      "normalized_rows": 288,
+      "quarantine": true,
+      "issues": [
+        {
+          "kind": "zero_oi",
+          "source_row": 40,
+          "timestamp": "2026-10-15T13:40:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 93,
+          "timestamp": "2026-10-15T13:55:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 127,
+          "timestamp": "2026-10-15T13:50:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 128,
+          "timestamp": "2026-10-15T14:20:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 154,
+          "timestamp": "2026-10-15T14:00:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 155,
+          "timestamp": "2026-10-15T14:30:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 156,
+          "timestamp": "2026-10-15T14:35:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 192,
+          "timestamp": "2026-10-15T14:15:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 193,
+          "timestamp": "2026-10-15T14:40:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 219,
+          "timestamp": "2026-10-15T13:45:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 220,
+          "timestamp": "2026-10-15T14:25:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 234,
+          "timestamp": "2026-10-15T14:05:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 235,
+          "timestamp": "2026-10-15T14:10:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 280,
+          "timestamp": "2026-10-15T14:45:00+00:00"
+        },
+        {
+          "kind": "source_order_reversed",
+          "adjacent_count": 20
+        }
+      ],
+      "zero_rows": [
+        {
+          "timestamp": "2026-10-15T13:40:00+00:00",
+          "source_row": 40,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 13:40:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.92851417",
+            "sum_toptrader_long_short_ratio": "1.42336200",
+            "count_long_short_ratio": "1.84592485",
+            "sum_taker_long_short_vol_ratio": "0.61073800"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T13:45:00+00:00",
+          "source_row": 219,
+          "quantity": "91641.435000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 13:45:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "91641.4350000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.93412213",
+            "sum_toptrader_long_short_ratio": "1.37757200",
+            "count_long_short_ratio": "1.85253798",
+            "sum_taker_long_short_vol_ratio": "0.74566400"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T13:50:00+00:00",
+          "source_row": 127,
+          "quantity": "92714.615000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 13:50:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "92714.6150000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.92063821",
+            "sum_toptrader_long_short_ratio": "1.38261700",
+            "count_long_short_ratio": "1.82778013",
+            "sum_taker_long_short_vol_ratio": "0.60847400"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T13:55:00+00:00",
+          "source_row": 93,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 13:55:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.91631838",
+            "sum_toptrader_long_short_ratio": "1.38158600",
+            "count_long_short_ratio": "1.81745023",
+            "sum_taker_long_short_vol_ratio": "1.07214200"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:00:00+00:00",
+          "source_row": 154,
+          "quantity": "91677.414000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:00:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "91677.4140000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.92239268",
+            "sum_toptrader_long_short_ratio": "1.36937200",
+            "count_long_short_ratio": "1.82367588",
+            "sum_taker_long_short_vol_ratio": "1.36514200"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:05:00+00:00",
+          "source_row": 234,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:05:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.92094560",
+            "sum_toptrader_long_short_ratio": "1.36263000",
+            "count_long_short_ratio": "1.82971131",
+            "sum_taker_long_short_vol_ratio": "2.02271300"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:10:00+00:00",
+          "source_row": 235,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:10:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.90330565",
+            "sum_toptrader_long_short_ratio": "1.34313800",
+            "count_long_short_ratio": "1.81756907",
+            "sum_taker_long_short_vol_ratio": "1.14895200"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:15:00+00:00",
+          "source_row": 192,
+          "quantity": "91522.529000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:15:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "91522.5290000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.87569067",
+            "sum_toptrader_long_short_ratio": "1.32187300",
+            "count_long_short_ratio": "1.79094547",
+            "sum_taker_long_short_vol_ratio": "1.42513400"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:20:00+00:00",
+          "source_row": 128,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:20:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.86038192",
+            "sum_toptrader_long_short_ratio": "1.32600200",
+            "count_long_short_ratio": "1.77661841",
+            "sum_taker_long_short_vol_ratio": "0.81029100"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:25:00+00:00",
+          "source_row": 220,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:25:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.85214096",
+            "sum_toptrader_long_short_ratio": "1.31764500",
+            "count_long_short_ratio": "1.76811231",
+            "sum_taker_long_short_vol_ratio": "0.72075500"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:30:00+00:00",
+          "source_row": 155,
+          "quantity": "91675.582000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:30:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "91675.5820000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.84816125",
+            "sum_toptrader_long_short_ratio": "1.31780600",
+            "count_long_short_ratio": "1.76399980",
+            "sum_taker_long_short_vol_ratio": "0.71245100"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:35:00+00:00",
+          "source_row": 156,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:35:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.84638213",
+            "sum_toptrader_long_short_ratio": "1.32096500",
+            "count_long_short_ratio": "1.77084623",
+            "sum_taker_long_short_vol_ratio": "1.50104800"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:40:00+00:00",
+          "source_row": 193,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:40:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.84731574",
+            "sum_toptrader_long_short_ratio": "1.31872300",
+            "count_long_short_ratio": "1.77067146",
+            "sum_taker_long_short_vol_ratio": "1.37752900"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:45:00+00:00",
+          "source_row": 280,
+          "quantity": "92716.631000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:45:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "92716.6310000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.84724624",
+            "sum_toptrader_long_short_ratio": "1.31163600",
+            "count_long_short_ratio": "1.75907163",
+            "sum_taker_long_short_vol_ratio": "2.56803300"
+          }
+        }
+      ],
+      "quantity_zero_count": 8,
+      "notional_zero_count": 14,
+      "both_zero_count": 8,
+      "economic_sha256": "4490cc2440a746d7edee837c64c8b702bc2ad0a95caaa58b13e915b534d3a3b0",
+      "matches_publish_intent": true
+    },
+    {
+      "attempt_id": "39f32b6665984af28a7e3b84e73b13da",
+      "observed_at": "2026-10-16T11:00:12.498753+00:00",
+      "normalized_rows": 288,
+      "quarantine": true,
+      "issues": [
+        {
+          "kind": "zero_oi",
+          "source_row": 40,
+          "timestamp": "2026-10-15T13:40:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 93,
+          "timestamp": "2026-10-15T13:55:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 127,
+          "timestamp": "2026-10-15T13:50:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 128,
+          "timestamp": "2026-10-15T14:20:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 154,
+          "timestamp": "2026-10-15T14:00:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 155,
+          "timestamp": "2026-10-15T14:30:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 156,
+          "timestamp": "2026-10-15T14:35:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 192,
+          "timestamp": "2026-10-15T14:15:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 193,
+          "timestamp": "2026-10-15T14:40:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 219,
+          "timestamp": "2026-10-15T13:45:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 220,
+          "timestamp": "2026-10-15T14:25:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 234,
+          "timestamp": "2026-10-15T14:05:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 235,
+          "timestamp": "2026-10-15T14:10:00+00:00"
+        },
+        {
+          "kind": "zero_oi",
+          "source_row": 280,
+          "timestamp": "2026-10-15T14:45:00+00:00"
+        },
+        {
+          "kind": "source_order_reversed",
+          "adjacent_count": 20
+        }
+      ],
+      "zero_rows": [
+        {
+          "timestamp": "2026-10-15T13:40:00+00:00",
+          "source_row": 40,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 13:40:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.92851417",
+            "sum_toptrader_long_short_ratio": "1.42336200",
+            "count_long_short_ratio": "1.84592485",
+            "sum_taker_long_short_vol_ratio": "0.61073800"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T13:45:00+00:00",
+          "source_row": 219,
+          "quantity": "91641.435000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 13:45:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "91641.4350000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.93412213",
+            "sum_toptrader_long_short_ratio": "1.37757200",
+            "count_long_short_ratio": "1.85253798",
+            "sum_taker_long_short_vol_ratio": "0.74566400"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T13:50:00+00:00",
+          "source_row": 127,
+          "quantity": "92714.615000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 13:50:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "92714.6150000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.92063821",
+            "sum_toptrader_long_short_ratio": "1.38261700",
+            "count_long_short_ratio": "1.82778013",
+            "sum_taker_long_short_vol_ratio": "0.60847400"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T13:55:00+00:00",
+          "source_row": 93,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 13:55:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.91631838",
+            "sum_toptrader_long_short_ratio": "1.38158600",
+            "count_long_short_ratio": "1.81745023",
+            "sum_taker_long_short_vol_ratio": "1.07214200"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:00:00+00:00",
+          "source_row": 154,
+          "quantity": "91677.414000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:00:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "91677.4140000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.92239268",
+            "sum_toptrader_long_short_ratio": "1.36937200",
+            "count_long_short_ratio": "1.82367588",
+            "sum_taker_long_short_vol_ratio": "1.36514200"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:05:00+00:00",
+          "source_row": 234,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:05:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.92094560",
+            "sum_toptrader_long_short_ratio": "1.36263000",
+            "count_long_short_ratio": "1.82971131",
+            "sum_taker_long_short_vol_ratio": "2.02271300"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:10:00+00:00",
+          "source_row": 235,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:10:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.90330565",
+            "sum_toptrader_long_short_ratio": "1.34313800",
+            "count_long_short_ratio": "1.81756907",
+            "sum_taker_long_short_vol_ratio": "1.14895200"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:15:00+00:00",
+          "source_row": 192,
+          "quantity": "91522.529000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:15:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "91522.5290000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.87569067",
+            "sum_toptrader_long_short_ratio": "1.32187300",
+            "count_long_short_ratio": "1.79094547",
+            "sum_taker_long_short_vol_ratio": "1.42513400"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:20:00+00:00",
+          "source_row": 128,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:20:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.86038192",
+            "sum_toptrader_long_short_ratio": "1.32600200",
+            "count_long_short_ratio": "1.77661841",
+            "sum_taker_long_short_vol_ratio": "0.81029100"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:25:00+00:00",
+          "source_row": 220,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:25:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.85214096",
+            "sum_toptrader_long_short_ratio": "1.31764500",
+            "count_long_short_ratio": "1.76811231",
+            "sum_taker_long_short_vol_ratio": "0.72075500"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:30:00+00:00",
+          "source_row": 155,
+          "quantity": "91675.582000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:30:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "91675.5820000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.84816125",
+            "sum_toptrader_long_short_ratio": "1.31780600",
+            "count_long_short_ratio": "1.76399980",
+            "sum_taker_long_short_vol_ratio": "0.71245100"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:35:00+00:00",
+          "source_row": 156,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:35:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.84638213",
+            "sum_toptrader_long_short_ratio": "1.32096500",
+            "count_long_short_ratio": "1.77084623",
+            "sum_taker_long_short_vol_ratio": "1.50104800"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:40:00+00:00",
+          "source_row": 193,
+          "quantity": "0E-18",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:40:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "0E-16",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.84731574",
+            "sum_toptrader_long_short_ratio": "1.31872300",
+            "count_long_short_ratio": "1.77067146",
+            "sum_taker_long_short_vol_ratio": "1.37752900"
+          }
+        },
+        {
+          "timestamp": "2026-10-15T14:45:00+00:00",
+          "source_row": 280,
+          "quantity": "92716.631000000000000000",
+          "notional_value": "0E-18",
+          "raw_csv": {
+            "create_time": "2026-10-15 14:45:00",
+            "symbol": "BTCUSDT",
+            "sum_open_interest": "92716.6310000000000000",
+            "sum_open_interest_value": "0E-16",
+            "count_toptrader_long_short_ratio": "1.84724624",
+            "sum_toptrader_long_short_ratio": "1.31163600",
+            "count_long_short_ratio": "1.75907163",
+            "sum_taker_long_short_vol_ratio": "2.56803300"
+          }
+        }
+      ],
+      "quantity_zero_count": 8,
+      "notional_zero_count": 14,
+      "both_zero_count": 8,
+      "economic_sha256": "4490cc2440a746d7edee837c64c8b702bc2ad0a95caaa58b13e915b534d3a3b0",
+      "matches_publish_intent": true
+    }
+  ],
+  "source_checks": {
+    "zip_sha256": "5f1c31bdf645489221d120079529bd311168258ef524a669e88908db22139d90",
+    "checksum_sha256": "e83db5cde9085b39e8545c7c620f4de5044fae82648ad61967e6113c828524e5",
+    "checksum_filename_and_digest_match": true,
+    "zip_bytes": 11218,
+    "checksum_bytes": 97,
+    "csv_sha256": "8ccb9ded761a6c6179a4e2167f6a516eaced8a96b3a3137dd75109df6df51ec4",
+    "csv_rows": 288,
+    "distinct_timestamps": 288,
+    "exact_utc_day_5m_grid": true,
+    "adjacent_reverse_order_count": 20
+  },
+  "inventory": {
+    "start": "2026-10-15T00:00:00+00:00",
+    "end": "2026-10-16T00:00:00+00:00",
+    "missing_rows": 288,
+    "missing_ranges": [
+      [
+        "2026-10-15T00:00:00+00:00",
+        "2026-10-16T00:00:00+00:00"
+      ]
+    ],
+    "missing_days": 1,
+    "blocked_days": [
+      "2026-10-15"
+    ],
+    "complete": false,
+    "days": [
+      {
+        "day": "2026-10-15",
+        "start": "2026-10-15T00:00:00+00:00",
+        "end": "2026-10-16T00:00:00+00:00",
+        "missing_ranges": [
+          [
+            "2026-10-15T00:00:00+00:00",
+            "2026-10-16T00:00:00+00:00"
+          ]
+        ],
+        "blocked": true
+      }
+    ],
+    "semantics": "source_label_grid_only"
+  },
+  "proofs": [
+    null,
+    null
+  ],
+  "reconcile": {
+    "accepted": false,
+    "error": "No complete, unblocked verified acquisition evidence"
+  },
+  "query_only": true,
+  "database_changes_by_connection": 0,
+  "modules": {
+    "marketdata.normalize": {
+      "path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/normalize.py",
+      "sha256": "227037c0763e4b0e4d3f851dd247bbd84cc4e929197c33485171ee66a1b256e6"
+    },
+    "marketdata.store": {
+      "path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/store.py",
+      "sha256": "a2ff36df17a3289f9855e29b12d9ad4f930b5c094cafe7fa327c51ad2e0f4d52"
+    },
+    "marketdata.operations": {
+      "path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/operations.py",
+      "sha256": "d7668cb005905ca10afdc019477f200594f969339f17b543fb1cdbc988bcf3cd"
+    },
+    "marketdata.daily_schedule": {
+      "path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/daily_schedule.py",
+      "sha256": "a5a168b2863850ecbd98b1c3715d0ca9b234893f3ab00a55a877c74485b05cc2"
+    },
+    "marketdata.daily_review": {
+      "path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/daily_review.py",
+      "sha256": "d071e0ae9c2cd4dda818dd82be4de0e34c9fd56dd0b0f1474a13477ba65f0575"
+    }
+  },
+  "functions": {
+    "normalize_archive": {
+      "module_path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/normalize.py",
+      "line": 67,
+      "source_sha256": "4150f5ec544569ed49404fd90ee65a2d422b6e83dd6fdf217632c2a9dc0437be",
+      "ast_sha256": "eeec3d6833d2a22982749efac7b885c4868d2cf02da4145d95da4c8bd2d644ea"
+    },
+    "Store.publish": {
+      "module_path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/store.py",
+      "line": 258,
+      "source_sha256": "f4a81747b8553061bd1a8c693d897c25b6cf6f2fa3dcee42c64195a1f259690b",
+      "ast_sha256": "48fe15fc35a6f8d0d97cffbb4f492b0335253845f23852c18c221126a1d12861"
+    },
+    "inventory": {
+      "module_path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/operations.py",
+      "line": 118,
+      "source_sha256": "2c695a086e87a1d634182534b0b4afd737c3ca4a1982d4152fc5f658c6475474",
+      "ast_sha256": "13ff41e8d908386251fed3415f35969f2c0609a754e3584c8acd024b5f2e5543"
+    },
+    "Scheduler.proof": {
+      "module_path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/daily_schedule.py",
+      "line": 334,
+      "source_sha256": "0c5f1aef21d1c21610894014ca99dcdaa9e1e5546ec757fbb5b7ac51646ac55b",
+      "ast_sha256": "4ee0da4c3a11a79b23b8d3d8537d84a96eb677e32761ce57c5104b44ce283fc0"
+    },
+    "RecordingCollector._publish": {
+      "module_path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/daily_schedule.py",
+      "line": 234,
+      "source_sha256": "3a1dc6a04be8e2c518517e95611ac87d80488f0c89d18a424ddca767c7c0b4b1",
+      "ast_sha256": "f3e445c36eddb1cd1c99e2dd472271743a24cc9a131e1625c18193e3df7a86b1"
+    },
+    "reconcile_proof": {
+      "module_path": "/opt/marketdata/releases/t13-daily-scheduler-20261011-703fb0d455523c1b/.venv/lib/python3.12/site-packages/marketdata/daily_review.py",
+      "line": 172,
+      "source_sha256": "6d06b067e4c149ceeb72f8988c813ae10584de4b375f2b506c204360ce4882ce",
+      "ast_sha256": "a3843e32451020e3ee1d5336bd693427b63fcdd99bde1fcf3d02c7ca88386264"
+    }
+  },
+  "finished_at": "2026-10-18T15:14:24.491191+00:00",
+  "passed": true
+}

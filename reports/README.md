@@ -16,11 +16,33 @@
 그 기준 01:04 KST 이후 T05 구현·설치·기존 근거 등록, T04 시험 공간 정리, T13 실제 자료 처리와 정오 백업을 다룹니다.
 이번 [Git 보존·검사 범위](baseline/work-summary-2026-10-11-evening/summary.md)는 마지막 커밋 이후 변경과 구분해 기록합니다.
 
-최신 [10/17 마일스톤](../docs/milestones/2026-10-17-scheduled-jobs-clock-policy-and-recovery.md)은
+최신 [10/25 마일스톤](../docs/milestones/2026-10-25-retirement-and-archive-capacity-recovery.md)은
+이전 기준 10/17 00:26 KST 이후 T05 수동·자동 정리 완료, T16 운영 검증 완료, T17 OI 조사,
+T18 용량 장애 복구·출력 공유 적용과 T19 추가 공간 회수를 묶습니다.
+[Git 보존·검사 범위](baseline/work-summary-2026-10-25/summary.md)는 마지막 커밋 `6308c7f` 이후 변경을 다룹니다.
+최신 운영 근거는 **10/25 20:15 KST까지**이며 이 문서 정리는 새로운 운영 점검이 아닙니다.
+
+- [T05 첫 자연 자동 정리](baseline/t05-recurring-operating-completion-2026-10-19/summary.md):
+  수동 10개에 이어 10/19 실제 timer의 새 계획으로 2개 정리·6개 보존을 확인했습니다.
+- [T16 완료](baseline/scheduled-clock-operating-review-2026-10-18/summary.md):
+  실제 daily 처리·요청 종결·정기 backup/T05/restic 연결까지 합의한 1차 운영 검증을 마쳤습니다.
+- [T17 조사](baseline/t17-oi-archive-investigation-2026-10-19/summary.md)와
+  [REST 대조](baseline/t17-oi-rest-comparison-2026-10-19/summary.md): 10/15 UTC OI 원문의 0값을 확인했으며 자료 복구는 대기 중입니다.
+- [T18 완료](baseline/t18-incident-completion-2026-10-25/summary.md):
+  수집·pack 복구, 출력 공유 배포, 여섯 사본 편입과 자연 no-op 두 회차의 중복 본문 추가 할당 0 B를 연결합니다.
+- [T19 제한된 추가 회수](baseline/t19-capacity-apply-2026-10-25/result.md):
+  1,022개 출력 공유로 8.61GB를 회수했고 사후 가용량은 24.55GB였습니다. 장기 관리 설계는 별도입니다.
+
+현재 기록상 T05 recurring·시스템 timer는 활성, 사용자 자동화 두 유닛은 masked, manual은 비활성입니다.
+10/25 16:02의 T05 시각 자격 검사 실패·삭제 0개를 보존하며 10/26 15:40 자연 예약은 관찰 대기입니다.
+수집기는 20:13 표본에서 다음 child의 기존 시각 정책 대기 상태였습니다.
+과거 공백·장기 보관/조회·다음 child 관찰을 완료 범위와 구분해 [TODO](../TODO.md)에 유지합니다.
+
+이전 [10/17 마일스톤](../docs/milestones/2026-10-17-scheduled-jobs-clock-policy-and-recovery.md)은
 10/11 18:20 KST 이후 T13 완료·시험 정리, T15 시스템 manager 이전 완료, T05 근거 축적,
 T16 시각 정책 적용과 Decimal 결함의 한 요청 복구·수정본 전환을 묶습니다.
-[이번 Git 보존·검사](baseline/work-summary-2026-10-17/summary.md)와 운영 검증은 구분합니다.
-**현재 T16은 실제 daily 자료 처리와 다음 정기 backup/T05/restic 연결을 기다립니다. 자동 정리는 계속 masked입니다.**
+[당시 Git 보존·검사](baseline/work-summary-2026-10-17/summary.md)와 운영 검증은 구분합니다.
+당시 남아 있던 T16 실제 처리와 T05 정리는 위 10/18·19 완료 기록을 따릅니다.
 
 `baseline/scheduled-clock-repair-deploy-2026-10-16/`는 **현재 운영 수정본 `686bb70c9ee4ef11`의 적용·복구 근거**입니다.
 [10/17 실제 결과](baseline/scheduled-clock-repair-deploy-2026-10-16/status.md)에 원래 OI 품질 요청의 업무 재호출 없는 종결,
@@ -53,7 +75,7 @@ T13은 [10/12 고정 범위 운영 검증](baseline/t13-operating-completion-202
 `baseline/t05-clock-retirement-2026-10-11/`는 이전 T05 후보와 당일 백업 미완료로 보류된 최초 시스템 미리보기입니다.
 `baseline/t05-completion-evidence-2026-10-11/`는 [완료 상한·순서·독립 복원 보완](baseline/t05-completion-evidence-2026-10-11/summary.md)의 고정 후보·215개 최종 검사·58개 재현 및 15:50 시스템 미리보기입니다.
 `baseline/t05-evidence-deploy-2026-10-11/`는 [실제 설치·중단/재개·현재 원복](baseline/t05-evidence-deploy-2026-10-11/status.md)입니다.
-17:24까지 설치·기존 7개 사후 근거 등록·backup/restic 두 명령 전환을 확인했습니다. 이후 새 정기 근거의 보존/복원은 위 T13·T15 결과로 확인했고, 실제 정리는 아직 미완료입니다.
+17:24까지 설치·기존 7개 사후 근거 등록·backup/restic 두 명령 전환을 확인했습니다. 이후 새 정기 근거의 보존/복원은 위 T13·T15 결과로, 수동·자동 정리는 위 10/17·19 후속 기록으로 확인했습니다.
 
 `baseline/t04-restore-cleanup-2026-10-11/`는 [승인한 T04 시험 폴더의 부모 포함 정리](baseline/t04-restore-cleanup-2026-10-11/summary.md)입니다.
 17:59 완료·관측 여유 공간 약 79.97GB 증가와 원본·checkpoint/restic·복구 키트·기존 검증 근거 보존을 기록했습니다.
@@ -552,7 +574,9 @@ v2 관측 42회, 초기 요청 경계 보정 근거와 실제 타이머 실행 �
 20개 스냅샷의 107개 구간 조회 대조와 수집 전후 상태를 기록했습니다. 같은 파일시스템의
 복구 지점이며, 외부 백업·정기 예약이나 aggTrade·depth 수집 구현 완료를 뜻하지 않습니다.
 
-Git에는 시장 데이터·SQLite·백테스트 결과 ZIP을 포함하지 않습니다. manifest와 해시는
+Git에는 운영 시장 데이터 집합·SQLite·백테스트 결과 ZIP을 포함하지 않습니다.
+예외적으로 T17의 특정 결함을 재현하는 공개 OI 하루치 ZIP(11,218바이트)·CHECKSUM·CSV는
+검토 입력으로 보존하며, 전체 자료 백업이나 새 다운로드 결과로 취급하지 않습니다. manifest와 해시는
 입력을 식별하는 근거이며 원본 파일의 백업을 대신하지 않습니다. 같은 연구를 재현하려면
 해당 `data/`와 일관된 `state/` 백업도 함께 보관해야 합니다.
 

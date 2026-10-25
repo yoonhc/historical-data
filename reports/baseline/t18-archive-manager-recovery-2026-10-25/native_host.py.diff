@@ -1,0 +1,51 @@
+--- previous-recovery/native_host.py
++++ manager-recovery/native_host.py
+@@ -416,9 +416,30 @@
+                 "installed-import.json", {"python": str(c.PYTHON), "imports": imports, "uid": 1000}
+             )
+ 
++    def optional_commands(self, row):
++        keys = ("ExecStartPre", "ExecStartPost", "ExecStop", "ExecStopPost", "ExecCondition")
++        missing = [key for key in keys if key not in row]
++        if not missing:
++            return {key: row[key] for key in keys}
++        # systemctl omits empty command arrays even with --all. Query their
++        # actual typed D-Bus values; absence in text is not proof of absence.
++        prefix = ["/usr/bin/busctl", "--system", "--json=short"]
++        value = json.loads(run(prefix + ["call", "org.freedesktop.systemd1", "/org/freedesktop/systemd1", "org.freedesktop.systemd1.Manager", "GetUnit", "s", c.SERVICE]))
++        op.require(isinstance(value, dict) and value.get("type") == "o" and isinstance(value.get("data"), list) and len(value["data"]) == 1 and isinstance(value["data"][0], str) and value["data"][0].startswith("/org/freedesktop/systemd1/unit/"), "Invalid service object response")
++        object_path = value["data"][0]
++        result = {key: row[key] for key in keys if key in row}
++        for key in missing:
++            value = json.loads(run(prefix + ["get-property", "org.freedesktop.systemd1", object_path, "org.freedesktop.systemd1.Service", key]))
++            op.require(isinstance(value, dict) and value.get("type") == "a(sasbttttuii)" and isinstance(value.get("data"), list), "Invalid command property: " + key)
++            result[key] = value["data"]
++        return result
++
+     def reload_and_verify(self, side):
+         op.require(self.locked, "Reload only within configuration transition")
+         run(["/usr/bin/systemctl", "daemon-reload"])
++        self.verify_loaded(side)
++
++    def verify_loaded(self, side):
+         row = self.show((c.SERVICE,))[c.SERVICE]
+         topology = json.loads(self.p["changes"][c.TOPOLOGY][side]["text"])
+         expected = topology["units"][c.SERVICE]
+@@ -433,16 +454,7 @@
+             "Effective protection differs",
+         )
+         op.require(
+-            all(
+-                not row[k]
+-                for k in (
+-                    "ExecStartPre",
+-                    "ExecStartPost",
+-                    "ExecStop",
+-                    "ExecStopPost",
+-                    "ExecCondition",
+-                )
+-            ),
++            not any(self.optional_commands(row).values()),
+             "Unexpected additional command",
+         )
+         op.require(

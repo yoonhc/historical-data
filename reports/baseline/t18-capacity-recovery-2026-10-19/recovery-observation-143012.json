@@ -1,0 +1,722 @@
+{
+  "observed_at": "2026-10-19T14:30:11.752534+00:00",
+  "service_control": false,
+  "database_writes": false,
+  "streams": {
+    "depth": {
+      "latest_clock": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 3530162,
+        "child_start_ticks": "94613143",
+        "clock": {
+          "conditional_error_bound_seconds": 0.1231084425,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": false,
+          "reasons": [
+            "reference_age"
+          ],
+          "reference_age_seconds": 2387.4632728099823,
+          "sample": {
+            "boottime_ns": 947941979133871,
+            "monotonic_ns": 947941979133526,
+            "sampling_span_ns": 912,
+            "wall_ns": 1792420204021315794
+          },
+          "tracking": {
+            "correction": 0.000533794,
+            "leap": "Normal",
+            "raw_csv": "5BBD5B9D,91.189.91.157,3,1792417816.558020299,0.000533794,0.000154673,0.000659889,26.727,0.000,0.149,0.235206127,0.004971585,1558.1,Normal",
+            "reference_address": "91.189.91.157",
+            "reference_id": "5BBD5B9D",
+            "reference_time": 1792417816.5580204,
+            "root_delay": 0.235206127,
+            "root_dispersion": 0.004971585,
+            "skew_ppm": 0.149,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "decision": {
+          "conditional_error_bound_seconds": 0.1231084425,
+          "current_estimate_usable": true,
+          "raw_start_allowed": true,
+          "reasons": [],
+          "reference_age_seconds": 2394.5025033950806,
+          "reference_stale": true
+        },
+        "history": {
+          "hard_fault_seen": false,
+          "legacy_violations": 1768,
+          "reference_stale_seen": true
+        },
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "policy_version": "reference-freshness-v2",
+        "profile_sha256": "25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9",
+        "record": 1800,
+        "run_id": "4ac89ce47872461a8604f8898b188798",
+        "sample": {
+          "boottime_ns": 947949018343341,
+          "monotonic_ns": 947949018341843,
+          "sampling_span_ns": 3656,
+          "wall_ns": 1792420211060523851
+        },
+        "schema": 2,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "depth",
+        "supervisor_pid": 3530137,
+        "supervisor_start_ticks": "94613110",
+        "systemd_invocation_id": "8f9f604f45fa44b3833aca627834f391",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 947949018343341,
+            "monotonic_ns": 947949018341843,
+            "sampling_span_ns": 3656,
+            "wall_ns": 1792420211060523851
+          },
+          "before": {
+            "boottime_ns": 947948014750175,
+            "monotonic_ns": 947948014748983,
+            "sampling_span_ns": 3106,
+            "wall_ns": 1792420210056931026
+          }
+        }
+      },
+      "collection": {
+        "id": "b8e9a91742f445b2a8096795a61fb338",
+        "dataset": "book_depth",
+        "kind": "websocket",
+        "started_at": "2026-10-19T13:59:53.794343+00:00",
+        "updated_at": "2026-10-19T14:30:07.405402+00:00",
+        "state": "running",
+        "report_subset": {
+          "persisted_messages": 17735,
+          "messages": 17735,
+          "last_received_at": "2026-10-19T14:30:07.317953+00:00",
+          "runtime_clock": {
+            "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+            "child_id": "1618729f95654cdf9d70769bf22945c4",
+            "collection_start": {
+              "boottime_ns": 946131752296797,
+              "monotonic_ns": 946131752295729,
+              "sampling_span_ns": 2495,
+              "wall_ns": 1792418393794477707
+            },
+            "policy_version": "reference-freshness-v2",
+            "run_id": "4ac89ce47872461a8604f8898b188798",
+            "schema": 2,
+            "stream": "depth"
+          },
+          "synchronized": true,
+          "sync_losses": 0,
+          "connection_errors": 0
+        }
+      },
+      "sample_segments": [
+        {
+          "id": "8c1626a53bc9696b909e01ba9e0b597adf29f258b1b056b753d68d098e6972b7",
+          "collection_id": "b8e9a91742f445b2a8096795a61fb338",
+          "dataset": "book_depth",
+          "instrument_id": "binance:linear_perpetual:BTCUSDT",
+          "kind": "journal",
+          "path": "data/canonical/book_depth/8c/8c1626a53bc9696b909e01ba9e0b597adf29f258b1b056b753d68d098e6972b7.parquet",
+          "file_sha": "8c1626a53bc9696b909e01ba9e0b597adf29f258b1b056b753d68d098e6972b7",
+          "source_id": "ca1defee383eac8502b6c83fb0cb4c0aecc8366a614c9aec4a6997b5ba11f8cb",
+          "first_time": "2026-10-19T14:30:07.421000+00:00",
+          "last_time": "2026-10-19T14:30:07.421000+00:00",
+          "first_id": 17923,
+          "last_id": 17923,
+          "row_count": 1,
+          "file_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/canonical/book_depth/8c/8c1626a53bc9696b909e01ba9e0b597adf29f258b1b056b753d68d098e6972b7.parquet",
+            "bytes": 31055,
+            "expected_sha256": "8c1626a53bc9696b909e01ba9e0b597adf29f258b1b056b753d68d098e6972b7",
+            "sha256": "8c1626a53bc9696b909e01ba9e0b597adf29f258b1b056b753d68d098e6972b7",
+            "matches": true
+          },
+          "raw_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/ca/ca1defee383eac8502b6c83fb0cb4c0aecc8366a614c9aec4a6997b5ba11f8cb/payload",
+            "bytes": 42090,
+            "expected_sha256": "ca1defee383eac8502b6c83fb0cb4c0aecc8366a614c9aec4a6997b5ba11f8cb",
+            "sha256": "ca1defee383eac8502b6c83fb0cb4c0aecc8366a614c9aec4a6997b5ba11f8cb",
+            "matches": true
+          }
+        },
+        {
+          "id": "f66ceebe42be9bd2ba0bb49c6a6d055030d9d8be0f202f173eb723db6fef045b",
+          "collection_id": "b8e9a91742f445b2a8096795a61fb338",
+          "dataset": "book_depth",
+          "instrument_id": "binance:linear_perpetual:BTCUSDT",
+          "kind": "journal",
+          "path": "data/canonical/book_depth/f6/f66ceebe42be9bd2ba0bb49c6a6d055030d9d8be0f202f173eb723db6fef045b.parquet",
+          "file_sha": "f66ceebe42be9bd2ba0bb49c6a6d055030d9d8be0f202f173eb723db6fef045b",
+          "source_id": "6d6d6f87965915d4d32cd316e484d8eb2fceaf0ec13a2b0890fed63be640fcbc",
+          "first_time": "2026-10-19T14:30:03.817000+00:00",
+          "last_time": "2026-10-19T14:30:07.288000+00:00",
+          "first_id": 17888,
+          "last_id": 17922,
+          "row_count": 35,
+          "file_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/canonical/book_depth/f6/f66ceebe42be9bd2ba0bb49c6a6d055030d9d8be0f202f173eb723db6fef045b.parquet",
+            "bytes": 81425,
+            "expected_sha256": "f66ceebe42be9bd2ba0bb49c6a6d055030d9d8be0f202f173eb723db6fef045b",
+            "sha256": "f66ceebe42be9bd2ba0bb49c6a6d055030d9d8be0f202f173eb723db6fef045b",
+            "matches": true
+          },
+          "raw_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/6d/6d6d6f87965915d4d32cd316e484d8eb2fceaf0ec13a2b0890fed63be640fcbc/payload",
+            "bytes": 46913,
+            "expected_sha256": "6d6d6f87965915d4d32cd316e484d8eb2fceaf0ec13a2b0890fed63be640fcbc",
+            "sha256": "6d6d6f87965915d4d32cd316e484d8eb2fceaf0ec13a2b0890fed63be640fcbc",
+            "matches": true
+          }
+        }
+      ],
+      "published_clock_chunks": [
+        {
+          "id": "9e4decedac99b80444d22372d96b761ecb730c723786cb7f33e89110975aa3b6",
+          "path": "data/raw/9e/9e4decedac99b80444d22372d96b761ecb730c723786cb7f33e89110975aa3b6/payload",
+          "kind": "runtime_clock_v2",
+          "observed_at": "2026-10-19T14:29:57.948716+00:00",
+          "bytes": 23114,
+          "url": "runtime-clock://4ac89ce47872461a8604f8898b188798/7",
+          "metadata": {
+            "chunk": 7,
+            "first_sample": {
+              "boottime_ns": 947635131729161,
+              "monotonic_ns": 947635131727362,
+              "sampling_span_ns": 4819,
+              "wall_ns": 1792419897173909060
+            },
+            "kind": "runtime_clock_v2",
+            "last_sample": {
+              "boottime_ns": 947934875150657,
+              "monotonic_ns": 947934875149565,
+              "sampling_span_ns": 2845,
+              "wall_ns": 1792420196917331468
+            },
+            "partial_tail_bytes": 0,
+            "previous": "cf4c8c9c4288dec7f24e0dd8449fe80014976c97359f50239f89a7c98ada6145",
+            "records": 297,
+            "run_id": "4ac89ce47872461a8604f8898b188798",
+            "schema": 2,
+            "uncompressed_bytes": 705866,
+            "uncompressed_sha256": "4dac01fed17973025dd300fb4779065ed8c1cc323ecc815dde3d09d0f23acb51"
+          },
+          "file_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/9e/9e4decedac99b80444d22372d96b761ecb730c723786cb7f33e89110975aa3b6/payload",
+            "bytes": 23114,
+            "expected_sha256": "9e4decedac99b80444d22372d96b761ecb730c723786cb7f33e89110975aa3b6",
+            "sha256": "9e4decedac99b80444d22372d96b761ecb730c723786cb7f33e89110975aa3b6",
+            "matches": true
+          }
+        },
+        {
+          "id": "cf4c8c9c4288dec7f24e0dd8449fe80014976c97359f50239f89a7c98ada6145",
+          "path": "data/raw/cf/cf4c8c9c4288dec7f24e0dd8449fe80014976c97359f50239f89a7c98ada6145/payload",
+          "kind": "runtime_clock_v2",
+          "observed_at": "2026-10-19T14:24:57.187131+00:00",
+          "bytes": 23073,
+          "url": "runtime-clock://4ac89ce47872461a8604f8898b188798/6",
+          "metadata": {
+            "chunk": 6,
+            "first_sample": {
+              "boottime_ns": 947334296287507,
+              "monotonic_ns": 947334296287366,
+              "sampling_span_ns": 481,
+              "wall_ns": 1792419596338469490
+            },
+            "kind": "runtime_clock_v2",
+            "last_sample": {
+              "boottime_ns": 947634118435273,
+              "monotonic_ns": 947634118432623,
+              "sampling_span_ns": 6583,
+              "wall_ns": 1792419896160614240
+            },
+            "partial_tail_bytes": 0,
+            "previous": "36cc74aa12c7a0ea8962f0193e9ef18e16fabe087e11046255c1d898162adc0c",
+            "records": 297,
+            "run_id": "4ac89ce47872461a8604f8898b188798",
+            "schema": 2,
+            "uncompressed_bytes": 705509,
+            "uncompressed_sha256": "0c2d6ce0825e18b9052ecb0839fd0426b5321fc6994e158002cfc95ac2c4a1bc"
+          },
+          "file_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/cf/cf4c8c9c4288dec7f24e0dd8449fe80014976c97359f50239f89a7c98ada6145/payload",
+            "bytes": 23073,
+            "expected_sha256": "cf4c8c9c4288dec7f24e0dd8449fe80014976c97359f50239f89a7c98ada6145",
+            "sha256": "cf4c8c9c4288dec7f24e0dd8449fe80014976c97359f50239f89a7c98ada6145",
+            "matches": true
+          }
+        }
+      ],
+      "clock_monotonic_age_seconds": 0.921467571,
+      "systemd_clock_identity_matches": true,
+      "collection_clock_identity_matches": true
+    },
+    "aggtrade": {
+      "latest_clock": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 3529981,
+        "child_start_ticks": "94612715",
+        "clock": {
+          "conditional_error_bound_seconds": 0.12311491849999999,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": false,
+          "reasons": [
+            "reference_age"
+          ],
+          "reference_age_seconds": 2393.5125489234924,
+          "sample": {
+            "boottime_ns": 947948028411171,
+            "monotonic_ns": 947948028410679,
+            "sampling_span_ns": 1303,
+            "wall_ns": 1792420210070592712
+          },
+          "tracking": {
+            "correction": 0.00053332,
+            "leap": "Normal",
+            "raw_csv": "5BBD5B9D,91.189.91.157,3,1792417816.558020299,0.000533320,0.000154673,0.000659889,26.727,0.000,0.149,0.235206127,0.004978535,1558.1,Normal",
+            "reference_address": "91.189.91.157",
+            "reference_id": "5BBD5B9D",
+            "reference_time": 1792417816.5580204,
+            "root_delay": 0.235206127,
+            "root_dispersion": 0.004978535,
+            "skew_ppm": 0.149,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "decision": {
+          "conditional_error_bound_seconds": 0.12311491849999999,
+          "current_estimate_usable": true,
+          "raw_start_allowed": true,
+          "reasons": [],
+          "reference_age_seconds": 2394.514449119568,
+          "reference_stale": true
+        },
+        "history": {
+          "hard_fault_seen": false,
+          "legacy_violations": 1772,
+          "reference_stale_seen": true
+        },
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "policy_version": "reference-freshness-v2",
+        "profile_sha256": "25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9",
+        "record": 1804,
+        "run_id": "604ac513b84b4aaa9565cc1a58d3af10",
+        "sample": {
+          "boottime_ns": 947949030288564,
+          "monotonic_ns": 947949030287747,
+          "sampling_span_ns": 2535,
+          "wall_ns": 1792420211072469574
+        },
+        "schema": 2,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "aggtrade",
+        "supervisor_pid": 3529954,
+        "supervisor_start_ticks": "94612683",
+        "systemd_invocation_id": "3fa620f0e63341b9af76ff35b030b0c6",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 947949030288564,
+            "monotonic_ns": 947949030287747,
+            "sampling_span_ns": 2535,
+            "wall_ns": 1792420211072469574
+          },
+          "before": {
+            "boottime_ns": 947948028415489,
+            "monotonic_ns": 947948028415418,
+            "sampling_span_ns": 321,
+            "wall_ns": 1792420210070597581
+          }
+        }
+      },
+      "collection": {
+        "id": "82cc8a68ebcf4e90b46500d4c791bfa9",
+        "dataset": "agg_trades",
+        "kind": "websocket",
+        "started_at": "2026-10-19T13:59:49.593790+00:00",
+        "updated_at": "2026-10-19T14:30:09.975314+00:00",
+        "state": "running",
+        "report_subset": {
+          "persisted_messages": 67622,
+          "messages": 67622,
+          "last_received_at": "2026-10-19T14:30:09.954504+00:00",
+          "last_trade_time": "2026-10-19T14:30:09.777000+00:00",
+          "last_id": 3490164364,
+          "previous_persisted_id": 3489785613,
+          "resume_after_id": 3489785613,
+          "runtime_clock": {
+            "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+            "child_id": "bd67d502c4654b9ab8d5c89dfc7fb70b",
+            "collection_start": {
+              "boottime_ns": 946127551833044,
+              "monotonic_ns": 946127551831927,
+              "sampling_span_ns": 3016,
+              "wall_ns": 1792418389594013884
+            },
+            "policy_version": "reference-freshness-v2",
+            "run_id": "604ac513b84b4aaa9565cc1a58d3af10",
+            "schema": 2,
+            "stream": "aggtrade"
+          },
+          "connection_errors": 0,
+          "detected_gaps": 1,
+          "unrepaired_gaps": 1,
+          "recent_recoveries": [
+            {
+              "collection_id": "e911140165944bb29aa7f9806469024c",
+              "complete": false,
+              "first_id": 3489785614,
+              "last_id": 3490096742
+            }
+          ]
+        }
+      },
+      "sample_segments": [
+        {
+          "id": "b27b9eb3bb7615560a10f70e024b9f1f4ec19b57a7f512578c4b2d3008f86057",
+          "collection_id": "82cc8a68ebcf4e90b46500d4c791bfa9",
+          "dataset": "agg_trades",
+          "instrument_id": "binance:linear_perpetual:BTCUSDT",
+          "kind": "websocket",
+          "path": "data/canonical/agg_trades/websocket/b2/b27b9eb3bb7615560a10f70e024b9f1f4ec19b57a7f512578c4b2d3008f86057.parquet",
+          "file_sha": "b27b9eb3bb7615560a10f70e024b9f1f4ec19b57a7f512578c4b2d3008f86057",
+          "source_id": "04edb661bef5a137fcd8c1b943813e90c9331475bfb625303d4faa4faf632cfa",
+          "first_time": "2026-10-19T14:30:05.096000+00:00",
+          "last_time": "2026-10-19T14:30:09.777000+00:00",
+          "first_id": 3490164132,
+          "last_id": 3490164364,
+          "row_count": 233,
+          "file_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/canonical/agg_trades/websocket/b2/b27b9eb3bb7615560a10f70e024b9f1f4ec19b57a7f512578c4b2d3008f86057.parquet",
+            "bytes": 11316,
+            "expected_sha256": "b27b9eb3bb7615560a10f70e024b9f1f4ec19b57a7f512578c4b2d3008f86057",
+            "sha256": "b27b9eb3bb7615560a10f70e024b9f1f4ec19b57a7f512578c4b2d3008f86057",
+            "matches": true
+          },
+          "raw_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/04/04edb661bef5a137fcd8c1b943813e90c9331475bfb625303d4faa4faf632cfa/payload",
+            "bytes": 5013,
+            "expected_sha256": "04edb661bef5a137fcd8c1b943813e90c9331475bfb625303d4faa4faf632cfa",
+            "sha256": "04edb661bef5a137fcd8c1b943813e90c9331475bfb625303d4faa4faf632cfa",
+            "matches": true
+          }
+        },
+        {
+          "id": "7fc4c101e3ea4945382cd423e83fd0636f0876abd99c4dbe47e6cb9c466c5cd9",
+          "collection_id": "82cc8a68ebcf4e90b46500d4c791bfa9",
+          "dataset": "agg_trades",
+          "instrument_id": "binance:linear_perpetual:BTCUSDT",
+          "kind": "websocket",
+          "path": "data/canonical/agg_trades/websocket/7f/7fc4c101e3ea4945382cd423e83fd0636f0876abd99c4dbe47e6cb9c466c5cd9.parquet",
+          "file_sha": "7fc4c101e3ea4945382cd423e83fd0636f0876abd99c4dbe47e6cb9c466c5cd9",
+          "source_id": "7bc0dd86c19f66edd965f5ccb1eeb59b4539a575682e7407308c6943285ef7aa",
+          "first_time": "2026-10-19T14:29:59.973000+00:00",
+          "last_time": "2026-10-19T14:30:04.748000+00:00",
+          "first_id": 3490163890,
+          "last_id": 3490164131,
+          "row_count": 242,
+          "file_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/canonical/agg_trades/websocket/7f/7fc4c101e3ea4945382cd423e83fd0636f0876abd99c4dbe47e6cb9c466c5cd9.parquet",
+            "bytes": 12000,
+            "expected_sha256": "7fc4c101e3ea4945382cd423e83fd0636f0876abd99c4dbe47e6cb9c466c5cd9",
+            "sha256": "7fc4c101e3ea4945382cd423e83fd0636f0876abd99c4dbe47e6cb9c466c5cd9",
+            "matches": true
+          },
+          "raw_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/7b/7bc0dd86c19f66edd965f5ccb1eeb59b4539a575682e7407308c6943285ef7aa/payload",
+            "bytes": 5326,
+            "expected_sha256": "7bc0dd86c19f66edd965f5ccb1eeb59b4539a575682e7407308c6943285ef7aa",
+            "sha256": "7bc0dd86c19f66edd965f5ccb1eeb59b4539a575682e7407308c6943285ef7aa",
+            "matches": true
+          }
+        }
+      ],
+      "published_clock_chunks": [
+        {
+          "id": "13697215dc1f0b5a7b60effeef48dd06f8843984f32d47beb89447be556e47c3",
+          "path": "data/raw/13/13697215dc1f0b5a7b60effeef48dd06f8843984f32d47beb89447be556e47c3/payload",
+          "kind": "runtime_clock_v2",
+          "observed_at": "2026-10-19T14:29:53.893915+00:00",
+          "bytes": 23102,
+          "url": "runtime-clock://604ac513b84b4aaa9565cc1a58d3af10/7",
+          "metadata": {
+            "chunk": 7,
+            "first_sample": {
+              "boottime_ns": 947631075935914,
+              "monotonic_ns": 947631075934155,
+              "sampling_span_ns": 4479,
+              "wall_ns": 1792419893118116003
+            },
+            "kind": "runtime_clock_v2",
+            "last_sample": {
+              "boottime_ns": 947930834295246,
+              "monotonic_ns": 947930834294449,
+              "sampling_span_ns": 2294,
+              "wall_ns": 1792420192876476387
+            },
+            "partial_tail_bytes": 0,
+            "previous": "6faf843c62ca59599b6df2f931df11616e7480a84ff31c49be3d30c1bb2d05e9",
+            "records": 297,
+            "run_id": "604ac513b84b4aaa9565cc1a58d3af10",
+            "schema": 2,
+            "uncompressed_bytes": 707180,
+            "uncompressed_sha256": "18d105f4d7c6aea117d6afe8ff0ca056379d490e4476121465851a705b5e4a27"
+          },
+          "file_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/13/13697215dc1f0b5a7b60effeef48dd06f8843984f32d47beb89447be556e47c3/payload",
+            "bytes": 23102,
+            "expected_sha256": "13697215dc1f0b5a7b60effeef48dd06f8843984f32d47beb89447be556e47c3",
+            "sha256": "13697215dc1f0b5a7b60effeef48dd06f8843984f32d47beb89447be556e47c3",
+            "matches": true
+          }
+        },
+        {
+          "id": "6faf843c62ca59599b6df2f931df11616e7480a84ff31c49be3d30c1bb2d05e9",
+          "path": "data/raw/6f/6faf843c62ca59599b6df2f931df11616e7480a84ff31c49be3d30c1bb2d05e9/payload",
+          "kind": "runtime_clock_v2",
+          "observed_at": "2026-10-19T14:24:53.132474+00:00",
+          "bytes": 23049,
+          "url": "runtime-clock://604ac513b84b4aaa9565cc1a58d3af10/6",
+          "metadata": {
+            "chunk": 6,
+            "first_sample": {
+              "boottime_ns": 947330247660815,
+              "monotonic_ns": 947330247660664,
+              "sampling_span_ns": 561,
+              "wall_ns": 1792419592289842758
+            },
+            "kind": "runtime_clock_v2",
+            "last_sample": {
+              "boottime_ns": 947630060965145,
+              "monotonic_ns": 947630060963722,
+              "sampling_span_ns": 3507,
+              "wall_ns": 1792419892103145565
+            },
+            "partial_tail_bytes": 0,
+            "previous": "fd25d864ec953afb6282a7956881ac14058a414c260689bd35619dde3e0fd0ed",
+            "records": 297,
+            "run_id": "604ac513b84b4aaa9565cc1a58d3af10",
+            "schema": 2,
+            "uncompressed_bytes": 706686,
+            "uncompressed_sha256": "f7bb1c0cf411b532833ecacd29e17d6eb0f583c0f71bd02bee115f5e1dd78972"
+          },
+          "file_check": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/6f/6faf843c62ca59599b6df2f931df11616e7480a84ff31c49be3d30c1bb2d05e9/payload",
+            "bytes": 23049,
+            "expected_sha256": "6faf843c62ca59599b6df2f931df11616e7480a84ff31c49be3d30c1bb2d05e9",
+            "sha256": "6faf843c62ca59599b6df2f931df11616e7480a84ff31c49be3d30c1bb2d05e9",
+            "matches": true
+          }
+        }
+      ],
+      "clock_monotonic_age_seconds": 1.102294568,
+      "systemd_clock_identity_matches": true,
+      "collection_clock_identity_matches": true
+    }
+  },
+  "units": {
+    "marketdata-collector@depth.service": {
+      "Restart": "always",
+      "MainPID": "3530137",
+      "ControlPID": "0",
+      "Result": "success",
+      "NRestarts": "1375",
+      "ExecMainStartTimestamp": "Mon 2026-10-19 22:59:53 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-collector@depth.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "Job": "",
+      "StartLimitIntervalUSec": "0",
+      "StartLimitBurst": "5",
+      "InvocationID": "8f9f604f45fa44b3833aca627834f391"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "Restart": "always",
+      "MainPID": "3529954",
+      "ControlPID": "0",
+      "Result": "success",
+      "NRestarts": "1382",
+      "ExecMainStartTimestamp": "Mon 2026-10-19 22:59:48 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-collector@aggtrade.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "Job": "",
+      "StartLimitIntervalUSec": "0",
+      "StartLimitBurst": "5",
+      "InvocationID": "3fa620f0e63341b9af76ff35b030b0c6"
+    },
+    "marketdata-pack.service": {
+      "Restart": "on-failure",
+      "MainPID": "0",
+      "ControlPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Mon 2026-10-19 23:15:01 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-pack.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "static",
+      "Job": "",
+      "StartLimitIntervalUSec": "1h",
+      "StartLimitBurst": "4",
+      "InvocationID": "d05d382023124bab8dfd5e39c569e566"
+    },
+    "marketdata-pack.timer": {
+      "NextElapseUSecRealtime": "Tue 2026-10-20 00:15:00 KST",
+      "Result": "success",
+      "Id": "marketdata-pack.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "Job": "",
+      "StartLimitIntervalUSec": "10s",
+      "StartLimitBurst": "5",
+      "InvocationID": "095f254dc0db4ca195e9acad52e8fcfd"
+    },
+    "marketdata-restic-archive.service": {
+      "Restart": "no",
+      "MainPID": "0",
+      "ControlPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Mon 2026-10-19 22:35:00 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-restic-archive.service",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "static",
+      "Job": "",
+      "StartLimitIntervalUSec": "10s",
+      "StartLimitBurst": "5",
+      "InvocationID": "72336056fa90467fa325e779ced76c3f"
+    },
+    "marketdata-restic-archive.timer": {
+      "NextElapseUSecRealtime": "",
+      "Result": "success",
+      "Id": "marketdata-restic-archive.timer",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "enabled",
+      "Job": "",
+      "StartLimitIntervalUSec": "10s",
+      "StartLimitBurst": "5",
+      "InvocationID": "dffc636f57ed42f4a4caef593424cc0c"
+    },
+    "marketdata-checkpoint-retirement.timer": {
+      "NextElapseUSecRealtime": "Tue 2026-10-20 15:40:00 KST",
+      "Result": "success",
+      "Id": "marketdata-checkpoint-retirement.timer",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "Job": "",
+      "StartLimitIntervalUSec": "10s",
+      "StartLimitBurst": "5",
+      "InvocationID": "132c6de084754ddeae35c207ff9b2860"
+    },
+    "chrony.service": {
+      "Restart": "no",
+      "MainPID": "1245",
+      "ControlPID": "0",
+      "Result": "success",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Fri 2026-10-09 00:11:08 KST",
+      "ExecMainStatus": "0",
+      "Id": "chrony.service",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "Job": "",
+      "StartLimitIntervalUSec": "10s",
+      "StartLimitBurst": "5",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1"
+    }
+  },
+  "automatic_gap_recovery": [
+    {
+      "id": "e911140165944bb29aa7f9806469024c",
+      "started_at": "2026-10-19T13:59:59.397237+00:00",
+      "state": "partial",
+      "report": {
+        "complete": false,
+        "end": null,
+        "first_id": 3489785614,
+        "first_requested_id": 3489785614,
+        "gaps": [],
+        "id": "e911140165944bb29aa7f9806469024c",
+        "kind": "rest",
+        "last_id": 3489805613,
+        "last_requested_id": 3490096742,
+        "pages": 20,
+        "query_complete": false,
+        "rows": 20000,
+        "semantics": "source_query_completion_and_observed_ID_continuity_only",
+        "start": null,
+        "started_at": "2026-10-19T13:59:59.397237+00:00",
+        "state": "partial",
+        "stop_reason": "page_budget_exhausted",
+        "updated_at": "2026-10-19T14:00:03.418085+00:00"
+      }
+    }
+  ],
+  "available_bytes": 22914916352
+}

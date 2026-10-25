@@ -1,0 +1,57 @@
+{
+  "checked_at": "2026-10-16T16:19:35.396264+00:00",
+  "assessment_completed": true,
+  "formal_preview_ready": false,
+  "formal_preview_run": false,
+  "backup_id": "08eb0f0245bb2cb26b7b25ea685a93a2577aa8091b0aecdf603db5db88ac41ad",
+  "snapshot_id": "789986e2e6f1469d80322dbac91fde652207b24aeadb9c03f9b766b48a11fe67",
+  "latest_completed_at": "2026-10-16T05:41:11.803986+00:00",
+  "full_check_finished_at": "2026-10-16T05:52:42.732191+00:00",
+  "snapshot_bundle": {
+    "path": "explicit-snapshot-bundle.json",
+    "sha256": "d2c5805594017ac9c7e660776902370d56bd5baa79e0f3f5054470de6acd2ba7",
+    "bytes": 39415
+  },
+  "objects": 13,
+  "baseline_checkpoints": 7,
+  "post_baseline_successors": 5,
+  "time_order_conditional_candidates": 9,
+  "time_order_retained": 3,
+  "time_order_assessment_is_not_deletion_authority": true,
+  "current_uncertainty_seconds": 0.13976704250000002,
+  "current_observation_lower_utc_ns": 1792167575241748532,
+  "scope_check": {
+    "allowed": false,
+    "reason": "authorization_scope_changed",
+    "detail": "Review code/clock/system-unit scope",
+    "current_scope_id": "da7b03dba075a816d1c8277298dd123ce1db62e54aa9a85920711a18913a6c22",
+    "installed_scope_id": "529cb1c08746e19c5d1ca8841cb80d8b3439c1040ffcfe021412d3e17b42a53c",
+    "installed_binding": {
+      "bootstrap_profile": "/etc/marketdata/clock-bootstrap.json",
+      "bootstrap_profile_sha256": "343c057c01d70bc3ccaab4eb1253ee335a89da00b8c97fba8ad8808d13d71fcb"
+    },
+    "current_binding": {
+      "bootstrap_profile": "/etc/marketdata/clock-bootstrap.json",
+      "bootstrap_profile_sha256": "fb7a4a29c0145db1bf4248819479ad4b8b6a0d22ba8e28f23f9f3199ff25bc96"
+    },
+    "proposal_installed": false
+  },
+  "daily_check": {
+    "allowed": false,
+    "reason": "daily_not_today",
+    "detail": "Latest daily belongs to a different KST date",
+    "date_kst": "2026-10-17"
+  },
+  "automatic_retirement": "masked",
+  "grant_writes": false,
+  "registry_writes": false,
+  "checkpoint_deletion": false,
+  "new_backup": false,
+  "new_repository_check": false,
+  "bulk_restore": false,
+  "protected_processes_unchanged": true,
+  "limitations": [
+    "Time/order classification uses archived evidence and known local paths; full current filesystem inventory and retained-data integrity audit were not run.",
+    "The latest backup predates the T16 deployment; this is not validation of a new T16 backup."
+  ]
+}

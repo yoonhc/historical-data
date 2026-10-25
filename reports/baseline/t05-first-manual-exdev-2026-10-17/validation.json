@@ -1,0 +1,93 @@
+{
+  "source_syntax": "passed: 3 Python scripts",
+  "candidate_diff": "only common writable parent for two units",
+  "protection_options_copied": [
+    "UMask=0077",
+    "Nice=10",
+    "IOSchedulingClass=best-effort",
+    "IOSchedulingPriority=7",
+    "KillSignal=SIGINT",
+    "KillMode=mixed",
+    "Restart=no",
+    "SuccessExitStatus=75",
+    "NoNewPrivileges=yes",
+    "CapabilityBoundingSet=",
+    "AmbientCapabilities=",
+    "ProtectSystem=strict",
+    "ProtectHome=read-only",
+    "ProtectClock=yes",
+    "ProtectKernelTunables=yes",
+    "ProtectKernelModules=yes",
+    "ProtectControlGroups=yes",
+    "PrivateDevices=yes",
+    "PrivateTmp=yes",
+    "RestrictSUIDSGID=yes",
+    "LockPersonality=yes",
+    "RestrictRealtime=yes",
+    "RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6",
+    "IPAddressDeny=any",
+    "IPAddressAllow=localhost"
+  ],
+  "linux_namespace_cases": [
+    {
+      "mode": "split",
+      "source_dev": 66311,
+      "staging_dev": 66311,
+      "source_mount_id": 868,
+      "staging_mount_id": 869,
+      "rename_errno": 18,
+      "source_present": true,
+      "destination_present": false,
+      "payload_unchanged": true,
+      "outside_write_errno": 30
+    },
+    {
+      "mode": "common",
+      "source_dev": 66311,
+      "staging_dev": 66311,
+      "source_mount_id": 868,
+      "staging_mount_id": 868,
+      "rename_errno": null,
+      "source_present": false,
+      "destination_present": true,
+      "payload_unchanged": true,
+      "outside_write_errno": 30
+    }
+  ],
+  "candidate_systemd_analyze_verify": {
+    "exit_code": 0,
+    "unit_count": 2,
+    "evidence_tool_chunk": "c287ce",
+    "actual_service_execution": false
+  },
+  "readonly_operating_audit": "audit.json",
+  "actual_system_trial": {
+    "state": "passed",
+    "prior_tool_attempt": {
+      "state": "awaiting_terminal_run",
+      "sudo_n_exit_code": 1,
+      "error": "sudo: a password is required"
+    },
+    "report": "system-rename-result-6b0b3591a09c42dc.json",
+    "started_at": "2026-10-17T08:44:28.055054+00:00",
+    "finished_at": "2026-10-17T08:44:28.288731+00:00",
+    "split_errno": 18,
+    "common_errno": null,
+    "outside_write_errno": 30,
+    "uid": 1000,
+    "operating_unchanged": true,
+    "cleanup_errors": [],
+    "trial_paths_absent": true
+  },
+  "operating_installation": false,
+  "operating_retry": false,
+  "frozen_source_and_candidate_sha256": {
+    "audit_failure.py": "33654efecf7d480c90e5ae57c1f800ee46be298e5052c4238cb194cda568eddb",
+    "namespace_probe.py": "750320c77add1c4ee6a93a7bd9725fd86a608b4169966383b1842e319472cd53",
+    "system_rename_preflight.py": "d3b559074318abaa8ac7969a0e0e33148f088f31b766f28a66645444b6a85cfc",
+    "candidate/marketdata-checkpoint-retirement-apply@.service": "e1c620d08dd09028147d06fee9b1dde9314dd97ab3ff430f0b21e6d614e760c5",
+    "candidate/marketdata-checkpoint-retirement.service": "97c0b5290eb5dc8b7bdda9811e7f629a0994dbd37661fc77b025bbe2109bd6a5",
+    "candidate/recurring.json": "9d9c544fe9fc7c4b3ec498fddf6feef7fb419b09b1f760a2bbe3c009f8422a5e",
+    "candidate/units.diff": "c4db1428db61be4bd754384afd6bba144fbe1bb052a2d2f915b282cbff5dd612"
+  }
+}

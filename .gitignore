@@ -23,3 +23,11 @@ integrations/freqtrade/user_data/
 
 # Durable operational restic receipts (not the marketdata catalog).
 /archive-state/
+# A live lock inode is local state, not portable audit evidence.
+/reports/baseline/t19-capacity-apply-2026-10-25/audit/operation.lock
+
+# These exact source-release entries are part of the approved T18 content hash.
+!/reports/baseline/t18-archive-deploy-2026-10-22/runtime/preserve/packages/marketdata/build/
+!/reports/baseline/t18-archive-deploy-2026-10-22/runtime/preserve/packages/marketdata_freqtrade/build/
+!/reports/baseline/t18-archive-deploy-2026-10-22/runtime/preserve/packages/marketdata/src/marketdata.egg-info/
+!/reports/baseline/t18-archive-deploy-2026-10-22/runtime/preserve/packages/marketdata_freqtrade/src/marketdata_freqtrade.egg-info/

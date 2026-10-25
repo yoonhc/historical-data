@@ -1,0 +1,58 @@
+{
+  "plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+  "tool_sha256": "f26a0bdca8093476894b62307472bafa51faf7f19f58a057fb998909f9b488c0",
+  "repair_tool_sha256": "79818c1257fa4e6ed4829e27a0612d1efaa06841e35bada5b6eab38f681caf47",
+  "files": {
+    "helper": {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-disabled-scope-2026-10-17/refresh_scope.py",
+      "sha256": "d915c86557143b003c0a3b644ce84c9f435f63579282fe3ee03a486817142367"
+    },
+    "scope_plan": {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-disabled-scope-2026-10-17/plan.json",
+      "sha256": "8b387148aad704a6de11ada8e66757d815160bd8a62a28feedca233165c3ff4e"
+    },
+    "preview_plan": {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-formal-preview-2026-10-17/plan.json",
+      "sha256": "c928892ace0bb7ddd5cc4751467408d9bd8b10c33ebaeee74194a5e40cd2a25d"
+    },
+    "preview_after": {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-formal-preview-2026-10-17/after.json",
+      "sha256": "6cc3557c2819c88a5be11b4dd2332845357eb63f546112fd0e710fa85f24570a"
+    },
+    "proposal": {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-first-manual-recovery-2026-10-17/manual-proposal.json",
+      "sha256": "7520bb02314605ab706a6b19d110f246955fddc120f5135d2b75552a437e2919"
+    },
+    "authorization": {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-first-manual-recovery-2026-10-17/authorization.md",
+      "sha256": "e6422e2141f02b853ee7f2e4a1c4b6cda9995128213f36c9ac3614c6a8c2697a"
+    },
+    "failed_run": {
+      "path": "/var/lib/marketdata-checkpoint-retirement/runs/4a61c943702c41bcb4b5e854ac098440/run.json",
+      "sha256": "8b7871a22a8ca296eeb96e956c5a99b4db61561bb29cd803105b02f1dfe33425"
+    },
+    "failed_root_result": {
+      "path": "/var/lib/marketdata-clock/t05-manual-applications/31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08/fb03b559a7594d008106ad153d8273ec/result.json",
+      "sha256": "0cd6a59ac92ade6659bb8674f432a8b3f8442b0a8d5d486e06e41502ebc819df"
+    }
+  },
+  "repair": {
+    "target": "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service",
+    "source": "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service",
+    "before": {
+      "uid": 0,
+      "gid": 0,
+      "mode": 511,
+      "kind": "symlink",
+      "target": "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service"
+    },
+    "after": {
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "nlink": 1,
+      "sha256": "9932a3c4a8bc5acc74d5ba9c98d6348e2e367524999e15181b246fd0ac3addd0"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "observed_at": "2026-10-19T12:40:24.941313+00:00",
+  "read_only": true,
+  "service_control": false,
+  "data_deletion": false,
+  "configuration_changes": false,
+  "retirement_completed_at": "2026-10-19T07:09:04.371359+00:00",
+  "first_depth_failure": "2026-10-19T07:53:55.858463+00:00",
+  "first_aggtrade_failure": "2026-10-19T07:53:58.848559+00:00",
+  "initial_error": "Clock evidence capacity reserve exhausted",
+  "subsequent_failure_at": "2026-10-19T08:05:37+00:00",
+  "later_gate_hold": "Current clock is not ready: reference_age",
+  "minimum_reserve_bytes": 10737418240,
+  "additional_chunk_record_margin": true,
+  "filesystems": {
+    "data": {
+      "path": "/home/yoonhc/projects/algoTrade/historical_data",
+      "device": 66312,
+      "available_bytes": 8123760640,
+      "free_including_reserved_bytes": 23500550144,
+      "total_bytes": 301237854208
+    },
+    "backup": {
+      "path": "/mnt/backup",
+      "device": 66314,
+      "available_bytes": 836323905536,
+      "free_including_reserved_bytes": 887551086592,
+      "total_bytes": 1006979411968
+    }
+  },
+  "latest_clock": {
+    "depth": {
+      "run_id": "573a1358b7174505810ca4d4a78f043a",
+      "state": "running",
+      "supervisor_pid": 3368760,
+      "systemd_invocation_id": "6f4e9153e6b14670886c98288fff7456",
+      "sample": {
+        "boottime_ns": 924872116245024,
+        "monotonic_ns": 924872116244112,
+        "sampling_span_ns": 2464,
+        "wall_ns": 1792397134158426045
+      }
+    },
+    "aggtrade": {
+      "run_id": "b54a134dcb8844fbb8bff902d31e8678",
+      "state": "running",
+      "supervisor_pid": 3368802,
+      "systemd_invocation_id": "7fcf659647944188a2be6833658dfabe",
+      "sample": {
+        "boottime_ns": 924872924173660,
+        "monotonic_ns": 924872924172698,
+        "sampling_span_ns": 2584,
+        "wall_ns": 1792397134966354620
+      }
+    }
+  },
+  "journal_sources": {
+    "during-retirement": {
+      "entries_total": 716,
+      "retained_entries": 4,
+      "sha256": "7833ad973f5c212d79e07f27a6471a8c7cd737d7e4239b325fa7a99ca8bf58c6"
+    },
+    "capacity-failure": {
+      "entries_total": 381,
+      "retained_entries": 38,
+      "sha256": "09fe83f3210f8694ef1038b78af123cf2b33897fb68c6fb308437c7570e5898c"
+    }
+  },
+  "installed_capacity_check": {
+    "path": "/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325/packages/marketdata/src/marketdata/clock_evidence.py",
+    "sha256": "75a3a5ab156e13cc3ecf3dc1d997fc5e81095ffbce5dd6480388687ad9656a82",
+    "line": 168
+  },
+  "limits": [
+    "Initial stop is an application capacity rejection, not a T05 delete/stop operation.",
+    "Successful collection after the brief 16:54 restart ceased again around 17:05; full data-gap/partial audit is outstanding.",
+    "Space growth attribution, safe recovery and recurrence prevention are outstanding; no files or thresholds changed."
+  ]
+}

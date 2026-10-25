@@ -1,0 +1,67 @@
+{
+  "characterization_passed": true,
+  "implementation_changed": false,
+  "operating_writes": false,
+  "clock_or_manager_control": false,
+  "source_sha256": {
+    "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/clock_retirement.py": "32b8a29706c85150bef3b2d9cba1b95cb184d2c88e6479a81e96246ab49bb7b2",
+    "/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/retire_checkpoints.py": "4c92a18c2aa17dbfa981305f88816ad1c910266a2750bcbee8267177238f84f9"
+  },
+  "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "cases": [
+    {
+      "injected_at": "planning_lock",
+      "persisted_report": {
+        "state": "deferred",
+        "exit_code": 75,
+        "deletion_attempted": false,
+        "deleted_this_run": 0,
+        "needs_attention": false,
+        "reason": "Busy",
+        "plan_id": null
+      },
+      "journal_count": 0,
+      "next_evaluation": {
+        "reached_discovery": true
+      },
+      "matching_complete_journal_control": {
+        "reached_discovery": true
+      },
+      "unfinished_journal_control": {
+        "reached_discovery": false,
+        "reason": "unfinished_retirement",
+        "attention": true,
+        "detail": "Inspect prior plan; explicit recovery required"
+      }
+    },
+    {
+      "injected_at": "apply_lock",
+      "persisted_report": {
+        "state": "deferred",
+        "exit_code": 75,
+        "deletion_attempted": true,
+        "deleted_this_run": 0,
+        "needs_attention": false,
+        "reason": "Busy",
+        "plan_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "journal_count": 0,
+      "next_evaluation": {
+        "reached_discovery": false,
+        "reason": "unfinished_retirement",
+        "attention": true,
+        "detail": "Prior deletion needs review"
+      },
+      "matching_complete_journal_control": {
+        "reached_discovery": true
+      },
+      "unfinished_journal_control": {
+        "reached_discovery": false,
+        "reason": "unfinished_retirement",
+        "attention": true,
+        "detail": "Inspect prior plan; explicit recovery required"
+      }
+    }
+  ],
+  "limits": "Characterize installed automatic-run deferral; only temporary paths are used.\n\nThe installed execute() and ClockRetirement.locks() are real. Manager, clock,\nauthorization, preservation work and parent locks are doubles. This is not an\noperating deletion, real lock-contention test or corrected-candidate test.\n"
+}

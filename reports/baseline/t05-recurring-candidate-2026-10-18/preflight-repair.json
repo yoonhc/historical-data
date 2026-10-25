@@ -1,0 +1,21 @@
+{
+  "candidate_runtime_changed": false,
+  "release_id": "t05-recurring-retirement-20261018-e57a7995f03fb301",
+  "failed_report": {
+    "path": "system-preflight-result-dc353c8dacb4461c.json",
+    "sha256": "2472e669e5fbf5415d235891e658a1f1a27f348b06e731225d719a789174a7bd"
+  },
+  "cause": "The single dated transient timer and service were unloaded after the timer invocation; subsequent manual start found no unit.",
+  "changes": [
+    "Trial calendar has a next daily occurrence until explicit cleanup; production timer is unchanged.",
+    "Reject not-found instead of treating default show properties as successful idle inspection.",
+    "Preserve each completed invocation and fragment before subsequent operations can fail."
+  ],
+  "tool_before_sha256": "39f48018b40b91defe0c9e656d6f4cb8339465d3400635e20336a314db704cf0",
+  "tool_after_sha256": "b9ed8ff7ea73428958faebf45c3b492506c2a6e3e5051c229f1584b6931b1d66",
+  "worker_unchanged": true,
+  "preflight_cases": 15,
+  "additional_cases": 3,
+  "source_reference": "https://raw.githubusercontent.com/systemd/systemd/v255/src/run/run.c",
+  "root_retry": "pending"
+}

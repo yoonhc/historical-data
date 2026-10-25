@@ -1,0 +1,77 @@
+{
+  "absent_records": [
+    "apply-receipt.json",
+    "rollback-receipt.json"
+  ],
+  "authority_sha256": "5e501e421bb7ad14b43abc5329c123130c72a1f571c0a343a98ac4643caadae4",
+  "changes": [
+    "preserve previous successful empty-job response handling",
+    "read missing optional command properties through typed systemd D-Bus, reject nonempty or malformed",
+    "compare protected After/Requires as unordered sets while all other fields remain exact",
+    "pin actual interrupted transaction/configuration as recovery entry boundary"
+  ],
+  "evidence_files": {
+    "native-transition-probe.json": "154e14cd72cf78312f0e51609c0ac5c074ea72b36189164c2df7de3139e26f2d",
+    "original-failed-recovery.json": "308deb4ddb30828ce72230788815f1d3e5ff65caba6ef6ad3ef233f8380819e2",
+    "recovery-tests.xml": "a5dacec2b50c0a15226e2ecb5c43649f92a317ac7cda99b1c57a387326b34a2b",
+    "test_manager_response.py": "6cdfbea085c661d4159713401ec4dc284607488085fa95d3cf42b5fff3c4a308",
+    "test_recovery.py": "2340589ec2dfebbaa4144de29868ed7c4ef379ef2fa77b591d5066796e0d3962"
+  },
+  "files": {
+    "common.py": "630c84d5364d533603f531a210dc943e93a0fc69d439b1e05c31074dcac01c79",
+    "native_host.py": "0d4231f0a1d109c7fe7cc04b9862327e2cf4ded347da2e3d140030bded2c229d",
+    "operation-plan.json": "5fe462588a59c9bfecc94c68d5473143bb4f1e02c56ca834744acd8bb02f2198",
+    "operation.py": "d284e2e3f4127fc2c4a2d8260acb5594d6f141cd6ed692a8b8714490fb847366",
+    "prepared-plan.json": "6089f0f6461c9ffcfcae7d40867bbe73544d9a805f88bacfe3314163e33cc40b",
+    "repair_resume.py": "0a0b0ed9e15a68a1c3ff49c52802f1cd944443fc9fe15ec9b7ddcb454a78875d",
+    "verify_requests.py": "a21dba584459ccb2047328f9bd376d6e19cbbfa194617801cc76e7072209636e"
+  },
+  "fixed_native_host_sha256": "0d4231f0a1d109c7fe7cc04b9862327e2cf4ded347da2e3d140030bded2c229d",
+  "initial_inputs": {
+    "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": "bca6681ed9cc5204b174e825f0fcc76a2af839e7e0017ad571954d3c5f636b4f",
+    "/etc/marketdata/checkpoint-clock-retirement/recurring.json": "770c93cf71b6d12f58ec57f5d4de09185fa05691d101bd7225546e8d5b8d8421",
+    "/etc/marketdata/clock-bootstrap.json": "1347ee317083b64487fd4ed893ea26754e733d09a6f8050a6aa943fc755b13b8",
+    "/etc/marketdata/scheduled-clock-policy/clock-binding.json": "bca6681ed9cc5204b174e825f0fcc76a2af839e7e0017ad571954d3c5f636b4f",
+    "/etc/marketdata/scheduled-system/topology.json": "b0ead155dc66b131b6cb8803fae5275bce4a8bc97efd53d0f71e8b52ee18a748",
+    "/etc/systemd/system/marketdata-restic-archive.service": "50b4fccfa2999411e7c0fcdc574a0c517ef9e741890f2ef067302daf57649dda",
+    "/var/lib/marketdata-clock/boot-state.json": "7550bfb5118619af545a118035f639e51f93eca2e4e79e2c0f3ccb4148eac8d2"
+  },
+  "initial_records": {
+    "attempt-81b84a54e20e4c3789bf28d9087fe534.json": "d7c9dc3e595be002c02d7a8bbe5cf02b3e480476825e5d6f5aae88aea2fcd1ea",
+    "attempt-c67fbf0d04f04f78802b7bcb948e6853.json": "308deb4ddb30828ce72230788815f1d3e5ff65caba6ef6ad3ef233f8380819e2",
+    "authority.json": "5e501e421bb7ad14b43abc5329c123130c72a1f571c0a343a98ac4643caadae4",
+    "installed-import.json": "73730588e7b7b4bfb3276cae804de3bc49911529dc51c11a1bbff23f7a4e77f2",
+    "state.json": "7f6e54cb473505f49f8811d051e6d368669b893b551811bcd45d1aa633753d91",
+    "transaction.json": "7e4c2e9f727c6d937a2e6db2be9db72d48c5d872fad610b4d7f2bf74ff40d118"
+  },
+  "original_native_host_sha256": "d82b6fbd186b6189797a9fd81f34a78729afcee55265e94ba251210448137bd6",
+  "original_operation_id": "27dd5101bfa0b7005ce0a931b075bc9cccad5a5331e9350a30c4765cbf1ee225",
+  "original_operation_sha256": "5fe462588a59c9bfecc94c68d5473143bb4f1e02c56ca834744acd8bb02f2198",
+  "original_tool_id": "t18-output-operation-20261022-7bb526de6c7fbaef",
+  "preserved": [
+    "original operation, sealed tools, both failures and authority/approval time",
+    "business source and six configuration targets/after values",
+    "nine timers, inventory/capacity, normal drain/locks, full propose, query/check/batch and rollback"
+  ],
+  "previous_recovery_id": "a277ae71a27b2ed095b299b1244b16df7fa7394f57898abcf2bd2b5c490aa59e",
+  "purpose": "t18-manager-response-recovery-v2",
+  "recovery_id": "ab49fce3b04087ceb44874b0fde1c452bd457e4b7b9e255dfda4aa7b8ad90eb6",
+  "recovery_tool_id": "t18-manager-query-recovery-20261025-2503f88208b70638",
+  "requires_separate_recovery_approval": true,
+  "schema": 2,
+  "scope": [
+    "resume original operation from exact pending ledger/disabled grant/after files",
+    "or rollback via original engine and restore other eight timers with archiver held"
+  ],
+  "scope_after": "2875edd74ccef07cd4a1f09917d147ab0a73cde0a6921a5f3f7cd9930344ef83",
+  "source_release_id": "restic-output-20261022-585c3e3686704e5c",
+  "source_release_unchanged": true,
+  "validation": {
+    "focused_tests": 31,
+    "includes_previous_recovery_tests": 18,
+    "native_read_only_remaining_checks": true,
+    "new_root_preflight": false,
+    "new_tests": 13,
+    "original_66_tests_rerun": false
+  }
+}

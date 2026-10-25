@@ -1,0 +1,122 @@
+{
+  "units": {
+    "chrony.service": {
+      "MainPID": "1245",
+      "Result": "success",
+      "ExecMainStartTimestamp": "Fri 2026-10-09 00:11:08 KST",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "chrony.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1"
+    },
+    "marketdata-collector@depth.service": {
+      "MainPID": "224785",
+      "Result": "success",
+      "ExecMainStartTimestamp": "Fri 2026-10-09 19:33:46 KST",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-collector@depth.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "MainPID": "224784",
+      "Result": "success",
+      "ExecMainStartTimestamp": "Fri 2026-10-09 19:33:46 KST",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-collector@aggtrade.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b"
+    },
+    "marketdata-backup.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "ExecMainStartTimestamp": "Fri 2026-10-16 13:10:01 KST",
+      "ExecMainExitTimestamp": "Fri 2026-10-16 14:41:14 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-backup.service",
+      "LoadState": "loaded",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "static",
+      "InvocationID": "8a852e6f315f43f6b6dc8cb77c116760"
+    },
+    "marketdata-backup.timer": {
+      "NextElapseUSecRealtime": "Sat 2026-10-17 13:10:00 KST",
+      "Result": "success",
+      "Id": "marketdata-backup.timer",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled",
+      "InvocationID": "fd6447617d7942839e4a32c2ce9a4a37"
+    },
+    "marketdata-restic-archive.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "ExecMainStartTimestamp": "Sat 2026-10-17 01:05:01 KST",
+      "ExecMainExitTimestamp": "Sat 2026-10-17 01:05:36 KST",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-restic-archive.service",
+      "LoadState": "loaded",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "static",
+      "InvocationID": "728ec9c8d9114966b21f89fed7925e4f"
+    },
+    "marketdata-checkpoint-retirement.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "ExecMainStartTimestamp": "",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-checkpoint-retirement.service",
+      "LoadState": "masked",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "masked",
+      "InvocationID": ""
+    },
+    "marketdata-checkpoint-retirement.timer": {
+      "NextElapseUSecRealtime": "",
+      "Result": "success",
+      "Id": "marketdata-checkpoint-retirement.timer",
+      "LoadState": "masked",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "masked",
+      "InvocationID": ""
+    },
+    "marketdata-checkpoint-retirement-preview.service": {
+      "MainPID": "0",
+      "Result": "success",
+      "ExecMainStartTimestamp": "",
+      "ExecMainExitTimestamp": "",
+      "ExecMainStatus": "0",
+      "Id": "marketdata-checkpoint-retirement-preview.service",
+      "LoadState": "loaded",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "linked",
+      "InvocationID": ""
+    }
+  },
+  "masks": {
+    "/etc/systemd/system/marketdata-checkpoint-retirement.service": "/dev/null",
+    "/etc/systemd/system/marketdata-checkpoint-retirement.timer": "/dev/null",
+    "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service": "/dev/null",
+    "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer": "/dev/null"
+  },
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d"
+}

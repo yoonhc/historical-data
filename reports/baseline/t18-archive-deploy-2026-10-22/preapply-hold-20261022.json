@@ -1,0 +1,78 @@
+{
+  "observed_at": "2026-10-22T09:45:54.746310+00:00",
+  "operation_id": "89a04417859c59ce5941e7aed36f25eb00db766962977878732cbd23e575901d",
+  "authorization": "User approved this exact fixed operation; changed inventory requires hold. No replacement operation is approved.",
+  "phase": "held_before_install",
+  "reason": "checkpoint_inventory_changed",
+  "operating_apply_invoked": false,
+  "source_installed": false,
+  "timers_controlled": false,
+  "configuration_ledger_or_grant_written": false,
+  "root_operation_receipt_created": false,
+  "operation_plan_file_sha256": "50aab5c8d8ded456fb6dffb32aedef755739f09377258d3f96d628dfca65a733",
+  "inventory_delta": {
+    "expected": 8,
+    "actual": 9,
+    "added_manifest": "/mnt/backup/marketdata-historical/automatic/2026-10-22/9591d25d5a7a4d18af7769da3c3380ed/backup.json",
+    "added_manifest_sha256": "94075b7ef8349bc5e69b9a3bffa9f5a26a72afe9032c20e6e07bef84ac74d1bc",
+    "added_manifest_bytes": 15272331
+  },
+  "pending_checkpoints": [
+    {
+      "backup_id": "a284b57feecbb18aa4f3e344d572f886b6877d7032de8cee82fcc7b845c38387",
+      "completed_at": "2026-10-20T05:53:00.512264+00:00",
+      "manifest_bytes": 16291559,
+      "manifest_sha256": "fe107f15ab7554c6c293e5e19b0ad8d22c892751b19ba0f03f09c0cc995dd443",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-20/4d2d167739f34706a11eb863eada0979",
+      "archive_state_present": false,
+      "stored_snapshot_id": null
+    },
+    {
+      "backup_id": "ee64631d41bbad436fc9a24fe589d1ee161f9a143328a5863186254f9cc5c0ed",
+      "completed_at": "2026-10-21T05:57:05.426870+00:00",
+      "manifest_bytes": 16983273,
+      "manifest_sha256": "089267358b822cdb67bb7a04c2e9d5a6018fa6546d2a2ffd1b9724986889b69a",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-21/26974d844b6b42cf99b9affcf532714f",
+      "archive_state_present": false,
+      "stored_snapshot_id": null
+    },
+    {
+      "backup_id": "b3f6573541bbba432fb2218678350596001aa5da73594d82b040c9af0b5aa298",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-22/9591d25d5a7a4d18af7769da3c3380ed",
+      "completed_at": "2026-10-22T05:59:40.606506+00:00",
+      "manifest_bytes": 15272331,
+      "manifest_sha256": "94075b7ef8349bc5e69b9a3bffa9f5a26a72afe9032c20e6e07bef84ac74d1bc",
+      "archive_state_present": false,
+      "stored_snapshot_id": null
+    }
+  ],
+  "archive_state": {
+    "path": "/home/yoonhc/projects/algoTrade/historical_data/archive-state/b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558/historical-data-original-v1/state.json",
+    "sha256": "524d9c762771c2df908dbeb0df829e38e57bc257ba722c724144078ff52c728c",
+    "updated_at": "2026-10-19T13:35:45.969683+00:00",
+    "checkpoint_count": 24
+  },
+  "capacity": {
+    "available_bytes": 15534739456,
+    "approved_required_bytes": 12142692006,
+    "approved_floor_passed": true,
+    "candidate_recalculation_only": {
+      "first_body_bytes": 329821000,
+      "largest_temporary_stdout_bytes": 16983273,
+      "required_bytes": 12157964337,
+      "additional_bytes_vs_approved": 15272331,
+      "headroom_above_recalculated_bytes": 3376775119,
+      "approved": false,
+      "limits": "Reuses prior 24-manifest size basis; no new restic verification or full data integrity check."
+    }
+  },
+  "not_performed_after_hold": [
+    "installation and final-path UID1000 imports",
+    "timer holds or normal drain",
+    "exclusive transition locks",
+    "installed after full propose",
+    "authority or active grant creation",
+    "archiver start",
+    "archive processing or natural no-op measurement"
+  ]
+}

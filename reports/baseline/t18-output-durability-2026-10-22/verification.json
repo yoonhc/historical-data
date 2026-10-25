@@ -1,0 +1,64 @@
+{
+  "python": "3.12.3",
+  "files": {
+    "scripts/archive_output.py": "e01a905faf122798539c211809d32c0b08e9d2271332227285ca8228d338de9f",
+    "tests/test_archive_output.py": "ec9282796f3c361f5b3bc97b94ba1ed2df23e55196c1938e342f5a7f00c6789a",
+    "reports/baseline/t18-output-durability-2026-10-22/build_candidate.py": "be22787e58f55f615287f963728bea0d75edb44ddb6e6db6f378da0417754a81",
+    "reports/baseline/t18-output-durability-2026-10-22/check_candidate.py": "cf75d87b87e710613b501f3ff6bd4e3054ada42053cbc3671f479646f4f23158",
+    "reports/baseline/t18-output-durability-2026-10-22/candidate/archive_output.py": "e01a905faf122798539c211809d32c0b08e9d2271332227285ca8228d338de9f",
+    "reports/baseline/t18-output-durability-2026-10-22/candidate/archive_backups.py": "941d425e5fab10272b92608de88c225f0d10ee592f85e29dccebf476424dee06",
+    "reports/baseline/t18-capacity-recovery-2026-10-19/candidate/archive_output.py": "33c3c560db5ca30215a677bbb1c6930aa879314e4dc41bd302cd1c686fca91f1",
+    "reports/baseline/t18-capacity-recovery-2026-10-19/candidate/archive_backups.py": "941d425e5fab10272b92608de88c225f0d10ee592f85e29dccebf476424dee06"
+  },
+  "tests": {
+    "before-regressions.xml": {
+      "suites": [
+        {
+          "name": "pytest",
+          "errors": "0",
+          "failures": "8",
+          "skipped": "0",
+          "tests": "8",
+          "time": "0.117",
+          "timestamp": "2026-10-22T00:02:47.144396+09:00",
+          "hostname": "hclm"
+        }
+      ],
+      "sha256": "e4132b2c836e119cce7d45b4e9398b6cd8dbed4dfd1ecc00164aa902d02b6851"
+    },
+    "helper-tests.xml": {
+      "suites": [
+        {
+          "name": "pytest",
+          "errors": "0",
+          "failures": "0",
+          "skipped": "0",
+          "tests": "23",
+          "time": "0.185",
+          "timestamp": "2026-10-22T00:03:13.570045+09:00",
+          "hostname": "hclm"
+        }
+      ],
+      "sha256": "08054357855fd307f93c5d220abbeeb7595febe5530ecbda679572ff1b6cfc5e"
+    },
+    "installed-candidate-tests.xml": {
+      "suites": [
+        {
+          "name": "pytest",
+          "errors": "0",
+          "failures": "0",
+          "skipped": "0",
+          "tests": "25",
+          "time": "37.084",
+          "timestamp": "2026-10-22T00:03:50.220171+09:00",
+          "hostname": "hclm"
+        }
+      ],
+      "sha256": "bbd4107be8b308305b3344106787733de8aad01bb8b97e1383649fa8c6d9e241"
+    }
+  },
+  "verification_scope": "Real files, hardlinks, fsync error injection and isolated real restic with actual installed preservation modules. Not power-loss or actual systemd namespace testing.",
+  "operating_files_changed": false,
+  "timer_resumed": false,
+  "deployment_plan_fixed": false
+}

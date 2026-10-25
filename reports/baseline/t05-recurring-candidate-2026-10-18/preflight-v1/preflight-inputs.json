@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "release_id": "t05-recurring-retirement-20261018-e57a7995f03fb301",
+  "purpose": "temporary_protected_system_inspection_only",
+  "production_activation": false,
+  "files": {
+    "candidate.patch": "cdf74dd8995bc0320db1e83d5aebb956021dfa5fb95bcc9f9c78a999231672ff",
+    "deployment-files.json": "93e4d62b963b92dc2e8a2bcd32da66ba3415d7f0931054e4e5fd13e576c32759",
+    "deployment/marketdata-checkpoint-retirement-apply@.service": "62fea813e7fa37f2f350a180e5295e7852b06e7e616e34f6e358797631e4e0b4",
+    "deployment/marketdata-checkpoint-retirement-preview.service": "3c04687c7a15c3f24b699bbabab4d44ba72d3725abdc5735a13d3cf241fdcf87",
+    "deployment/marketdata-checkpoint-retirement.service": "6c1a4bc54dc0c10cac4fa2111e69b88ffa5ac83eaaa5dfb87f983b953d34516f",
+    "deployment/marketdata-checkpoint-retirement.timer": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa",
+    "environment-files.json": "7bbd1bfb459539abc424d9b7e128723f08d9e47239762db63bb1d22ab793e0e4",
+    "manifest.json": "2bf79e42deed4fdbdd00e060bbcbdf91e36e894d17f58e671f48c0cbe8a84927",
+    "preflight-tests.xml": "6136d0efbe9e548459454a30c0d574ac0268180b0b3368086254fc4f97054266",
+    "projected-recurring.disabled.json": "6d731e2e9e43aba3f249c5349531b1155948e4ecdeb4546ae0c4ef7463d62c66",
+    "recurring-tests.xml": "b1df8cb465b9bcdf3e8dc2f40c4fca98c5aa3931506e819dbad434ad4906f169",
+    "related-regression.xml": "2fbd99b53ccf343f7a441a9d110517a1524abefc083d54655cbd4a365e6ea332",
+    "reproduction.json": "af818d8fe26ccc783ca692939faad07c1659e1648d66b60f81f65b08c150665b",
+    "scope-projection.json": "bb299a25625df48db463c9d2ccc6fd2a439117f57acdfaf545d1509736c1b957",
+    "source.tar.gz": "dedc50a59b7a6b75c575e387fbbec6253e9e1c9df9328e8ec4a527fa3b0d0c26",
+    "system_preflight.py": "39f48018b40b91defe0c9e656d6f4cb8339465d3400635e20336a314db704cf0",
+    "trial_worker.py": "d05e83797089fab8d230a0b0d8f8d130e9dbf0c455d410eb18a710a6d633b031",
+    "unit-validation.json": "3ede718ef9c5b4cf78f7c5e6ff8f1717a743aea0580214fd0914a96b56dc59ca",
+    "validation.json": "f966786bafcacd82b59537a55d56207d03de73c7a2385000502f8d81c5f9cefd"
+  },
+  "operating_input_sha256": {
+    "/etc/chrony/marketdata.conf": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+    "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": "bb47490cac1e11ed3c5a456d9f5d7dc699b1c72c65f5dad2e12eb32dc4c8c925",
+    "/etc/marketdata/checkpoint-clock-retirement/manual.json": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+    "/etc/marketdata/checkpoint-clock-retirement/policy.toml": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d",
+    "/etc/marketdata/checkpoint-clock-retirement/recurring.json": "9d9c544fe9fc7c4b3ec498fddf6feef7fb419b09b1f760a2bbe3c009f8422a5e",
+    "/etc/marketdata/checkpoint-clock-retirement/registration-approval.template.json": "bb0864bcb5ef772866bea5a9b0f43950ce3f89e2d35e580b1ffc1faf16d5be23",
+    "/etc/marketdata/checkpoint-clock-retirement/render-input.json": "722adfcf36831241f7735f2014ed34bf72ca7b70d801b1dd36c885ef41dbecc2",
+    "/etc/marketdata/checkpoint-clock-retirement/settings.toml": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b",
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service": "e1c620d08dd09028147d06fee9b1dde9314dd97ab3ff430f0b21e6d614e760c5",
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-preview.service": "66d535599731c0bb656dbcbba75dc67382742f35115da89f92aba42395674d66",
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service": "97c0b5290eb5dc8b7bdda9811e7f629a0994dbd37661fc77b025bbe2109bd6a5",
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.timer": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa",
+    "/etc/marketdata/clock-bootstrap.json": "fb7a4a29c0145db1bf4248819479ad4b8b6a0d22ba8e28f23f9f3199ff25bc96",
+    "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service": "e1c620d08dd09028147d06fee9b1dde9314dd97ab3ff430f0b21e6d614e760c5"
+  }
+}

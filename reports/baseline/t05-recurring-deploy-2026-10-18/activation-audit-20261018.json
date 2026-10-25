@@ -1,0 +1,443 @@
+{
+  "observed_at": "2026-10-18T14:01:39.055403+00:00",
+  "passed": true,
+  "read_only_operating_audit": true,
+  "operation_plan_id": "2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e",
+  "release_id": "t05-recurring-retirement-20261018-e57a7995f03fb301",
+  "tool_id": "t05-recurring-operation-20261018-447cddda543bc6ed",
+  "receipt": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/attempts/963f259af2fa4ed898c01b8e903b17f5.json",
+  "root_operation_state": {
+    "direction": "apply",
+    "done": [
+      "install",
+      "import",
+      "disabled_grant",
+      "configure:/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service",
+      "configure:/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-preview.service",
+      "configure:/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service",
+      "configure:/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service",
+      "configure:/etc/systemd/system/marketdata-checkpoint-retirement.service",
+      "configure:/etc/systemd/system/marketdata-checkpoint-retirement.timer",
+      "reload",
+      "grant",
+      "enable_link",
+      "enable_reload",
+      "timer_start",
+      "apply_complete"
+    ],
+    "intent": null
+  },
+  "installed_release": {
+    "objects": 1798,
+    "verified": true
+  },
+  "installed_tool": {
+    "objects": 7,
+    "verified": true
+  },
+  "after_nodes": {
+    "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "3b436c4f0803582c6a64414a009abf2ab212945584f6ba3211ec1efbaff8035d"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service": {
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "62fea813e7fa37f2f350a180e5295e7852b06e7e616e34f6e358797631e4e0b4"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-preview.service": {
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "3c04687c7a15c3f24b699bbabab4d44ba72d3725abdc5735a13d3cf241fdcf87"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service": {
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "6c1a4bc54dc0c10cac4fa2111e69b88ffa5ac83eaaa5dfb87f983b953d34516f"
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service": {
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "62fea813e7fa37f2f350a180e5295e7852b06e7e616e34f6e358797631e4e0b4"
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement.service": {
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "6c1a4bc54dc0c10cac4fa2111e69b88ffa5ac83eaaa5dfb87f983b953d34516f"
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement.timer": {
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa"
+    },
+    "/etc/systemd/system/timers.target.wants/marketdata-checkpoint-retirement.timer": {
+      "uid": 0,
+      "gid": 0,
+      "mode": 511,
+      "kind": "symlink",
+      "target": "/etc/systemd/system/marketdata-checkpoint-retirement.timer"
+    }
+  },
+  "full_installed_proposal_equals_reviewed": true,
+  "scope_id": "311ab16f019b4473185c487b219430c1fab4e90c4257f813bacfa696b1ba29a5",
+  "authority": {
+    "approval_reference": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/authority.json",
+    "approved_at": "2026-10-18T13:59:34.892351+00:00",
+    "meaning": "Explicit --approve-operation accepted; no claim of earlier approval",
+    "operation_plan_id": "2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e",
+    "scope_id": "311ab16f019b4473185c487b219430c1fab4e90c4257f813bacfa696b1ba29a5"
+  },
+  "active_grant_sha256": "3b436c4f0803582c6a64414a009abf2ab212945584f6ba3211ec1efbaff8035d",
+  "activation_probe_total_uncertainty_seconds": 0.134919064,
+  "current_uid1000_import_cli": {
+    "cli_help_passed": true,
+    "executable": "/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/.venv/bin/python",
+    "modules": {
+      "marketdata": "/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/packages/marketdata/src/marketdata/__init__.py",
+      "scripts.clock_retirement": "/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/scripts/clock_retirement.py"
+    },
+    "prefix": "/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/.venv",
+    "uid": 1000
+  },
+  "effective_units": {
+    "service": {
+      "Type": "oneshot",
+      "Restart": "no",
+      "RestartUSec": "100ms",
+      "TimeoutStartUSec": "2h",
+      "TimeoutStopUSec": "2min",
+      "RuntimeMaxUSec": "infinity",
+      "MainPID": "0",
+      "ControlPID": "0",
+      "ExecMainStartTimestampMonotonic": "0",
+      "ExecStart": "{ path=/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/.venv/bin/python ; argv[]=/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/.venv/bin/python -B -I /opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/scripts/run_clock_retirement.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml run ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+      "UMask": "0077",
+      "WorkingDirectory": "/var/lib/marketdata-checkpoint-retirement",
+      "Nice": "10",
+      "IOSchedulingClass": "2",
+      "IOSchedulingPriority": "7",
+      "User": "yoonhc",
+      "Group": "yoonhc",
+      "PrivateTmp": "yes",
+      "ProtectClock": "yes",
+      "ProtectHome": "read-only",
+      "ProtectSystem": "strict",
+      "NoNewPrivileges": "yes",
+      "KillMode": "mixed",
+      "KillSignal": "2",
+      "Id": "marketdata-checkpoint-retirement.service",
+      "Requires": "sysinit.target mnt-backup.mount home.mount -.mount system.slice",
+      "Wants": "tmp.mount",
+      "After": "-.mount sysinit.target tmp.mount system.slice systemd-journald.socket marketdata-clock-bootstrap.service chrony.service mnt-backup.mount basic.target marketdata-checkpoint-retirement.timer home.mount systemd-tmpfiles-setup.service",
+      "LoadState": "loaded",
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "FragmentPath": "/etc/systemd/system/marketdata-checkpoint-retirement.service",
+      "DropInPaths": "",
+      "UnitFileState": "static",
+      "ActiveEnterTimestampMonotonic": "0",
+      "Job": "",
+      "NeedDaemonReload": "no",
+      "InvocationID": ""
+    },
+    "timer": {
+      "Unit": "marketdata-checkpoint-retirement.service",
+      "TimersCalendar": "{ OnCalendar=*-*-* 06:40:00 UTC ; next_elapse=Mon 2026-10-19 15:40:00 KST }",
+      "AccuracyUSec": "1s",
+      "RandomizedDelayUSec": "0",
+      "Persistent": "no",
+      "Id": "marketdata-checkpoint-retirement.timer",
+      "Requires": "sysinit.target",
+      "Wants": "",
+      "After": "time-set.target time-sync.target sysinit.target",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "FragmentPath": "/etc/systemd/system/marketdata-checkpoint-retirement.timer",
+      "DropInPaths": "",
+      "UnitFileState": "enabled",
+      "ActiveEnterTimestampMonotonic": "859717249231",
+      "Job": "",
+      "NeedDaemonReload": "no",
+      "InvocationID": "132c6de084754ddeae35c207ff9b2860"
+    }
+  },
+  "service_extra": {
+    "Result": "success",
+    "ExecMainStartTimestamp": "",
+    "ExecMainStartTimestampMonotonic": "0",
+    "ExecMainStatus": "0",
+    "ReadWritePaths": "/var/lib/marketdata-checkpoint-retirement /home/yoonhc/projects/algoTrade/historical_data/archive-state/b5a4434c95fcf4a9eb1339689cdea42c1da08bd34b845193dffce2aa8203e558/archive.lock /home/yoonhc/projects/algoTrade/historical_data/state/maintenance.lock /home/yoonhc/projects/algoTrade/historical_data/.cache/restic-archive /mnt/backup/marketdata-restic/locks /mnt/backup/marketdata-historical"
+  },
+  "timer_extra": {
+    "NextElapseUSecRealtime": "Mon 2026-10-19 15:40:00 KST",
+    "LastTriggerUSec": "",
+    "UnitFileState": "enabled",
+    "ActiveEnterTimestamp": "Sun 2026-10-18 22:59:39 KST"
+  },
+  "next_timer": {
+    "next_elapse_usec": 1792392000000000,
+    "next_utc": "2026-10-19T06:40:00+00:00",
+    "timer_state": "active",
+    "next_kst": "2026-10-19T15:40:00+09:00"
+  },
+  "command_intents": [
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "at": "2026-10-18T13:59:38.436319+00:00",
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "at": "2026-10-18T13:59:38.992287+00:00",
+      "event": "command_intent"
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "start",
+        "marketdata-checkpoint-retirement.timer"
+      ],
+      "at": "2026-10-18T13:59:39.285099+00:00",
+      "event": "command_intent"
+    }
+  ],
+  "command_results": [
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "at": "2026-10-18T13:59:38.684302+00:00",
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "daemon-reload"
+      ],
+      "at": "2026-10-18T13:59:39.220848+00:00",
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "--system",
+        "start",
+        "marketdata-checkpoint-retirement.timer"
+      ],
+      "at": "2026-10-18T13:59:39.292491+00:00",
+      "code": 0,
+      "event": "command_result",
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "root_attempt_count": 1,
+  "direct_service_start_count": 0,
+  "protected_files_verified": 50,
+  "preserved_records_verified": 24,
+  "protected_processes": {
+    "chrony.service": {
+      "MainPID": "1245",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+      "ActiveState": "active"
+    },
+    "marketdata-collector@depth.service": {
+      "MainPID": "224785",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+      "ActiveState": "active"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "MainPID": "224784",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+      "ActiveState": "active"
+    }
+  },
+  "user_automation": "masked",
+  "manual_enabled": false,
+  "recurring_enabled": true,
+  "unfinished": [],
+  "runs_at_audit": [
+    {
+      "path": "/var/lib/marketdata-checkpoint-retirement/runs/d1c40fd557974ed9b462d1ea98e689ff/run.json",
+      "run_id": "d1c40fd557974ed9b462d1ea98e689ff",
+      "action": "apply-plan",
+      "started_at": "2026-10-17T07:37:00.702130+00:00",
+      "state": "deferred",
+      "plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+      "sha256": "af8c7cc70beaf6a57140fe42b41b8836c3a7af8fbf612bc860f6a88cd1273536"
+    },
+    {
+      "path": "/var/lib/marketdata-checkpoint-retirement/runs/5d7deaf59b1f4c99847a732327ce77af/run.json",
+      "run_id": "5d7deaf59b1f4c99847a732327ce77af",
+      "action": "apply-plan",
+      "started_at": "2026-10-17T07:50:43.605496+00:00",
+      "state": "failed",
+      "plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+      "sha256": "90ea055b05be7860e215a87b93aac7ca0f2f95666587675c63e5ce3380ab2f14"
+    },
+    {
+      "path": "/var/lib/marketdata-checkpoint-retirement/runs/9690925e44194b73bfba206ba40360e7/run.json",
+      "run_id": "9690925e44194b73bfba206ba40360e7",
+      "action": "preview",
+      "started_at": "2026-10-17T06:46:25.399229+00:00",
+      "state": "preview_ready",
+      "plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+      "sha256": "e845ed6b87dfe2c5c45c33d703fbc871fcc701e90f20c077ef02a24a2feb3b16"
+    },
+    {
+      "path": "/var/lib/marketdata-checkpoint-retirement/runs/f57f334be39e4137a4b7785836b6d2bd/run.json",
+      "run_id": "f57f334be39e4137a4b7785836b6d2bd",
+      "action": "apply-plan",
+      "started_at": "2026-10-17T10:58:42.298313+00:00",
+      "state": "complete",
+      "plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+      "sha256": "86cdcec96c33a6e97e0608c42f58b338aa4543613179072b6b4044cd121c2604"
+    },
+    {
+      "path": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/run.json",
+      "run_id": "2d9f7b8b4a434183a875dfa441171295",
+      "action": "apply-plan",
+      "started_at": "2026-10-17T09:47:08.391293+00:00",
+      "state": "failed",
+      "plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+      "sha256": "57be65ef8653484f318ccd61727ca86b71305969fec0c8eb16ba398b52ce8e6e"
+    },
+    {
+      "path": "/var/lib/marketdata-checkpoint-retirement/runs/4a61c943702c41bcb4b5e854ac098440/run.json",
+      "run_id": "4a61c943702c41bcb4b5e854ac098440",
+      "action": "apply-plan",
+      "started_at": "2026-10-17T07:15:25.851479+00:00",
+      "state": "deferred",
+      "plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+      "sha256": "8b7871a22a8ca296eeb96e956c5a99b4db61561bb29cd803105b02f1dfe33425"
+    }
+  ],
+  "runs_since_activation": [],
+  "first_scheduled_evaluation": "pending",
+  "first_natural_automatic_deletion": "pending",
+  "additional_backup_restore_failure_injection_or_manual_deletion": false,
+  "root_evidence_copies": {
+    "attempts/963f259af2fa4ed898c01b8e903b17f5.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/attempts/963f259af2fa4ed898c01b8e903b17f5.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "e004444fd96998e65f36b45bc51d8fa2544df753e26a475309202cd9ab8df743"
+    },
+    "state.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/state.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "f7a15d0206d567e2e07f05793b612fca72ed3ef9bb2c2794df3e6fa2dadd32ba"
+    },
+    "authority.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/authority.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "cae124083000f2aca7f13a6b658fa43cbf6748e335051bc44c04b0ca124abe9c"
+    },
+    "active-grant.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/active-grant.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "3b436c4f0803582c6a64414a009abf2ab212945584f6ba3211ec1efbaff8035d"
+    },
+    "active-grant-hash.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/active-grant-hash.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "3140a617cdb37c33331ed8010f8ebfc0ff63cf7a619e3495f6811363f4310d7b"
+    },
+    "events/6f7fde25acc145b68b264625963c00eb.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/events/6f7fde25acc145b68b264625963c00eb.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "a49b6fdf33100f00a57ed53b8c2e9413b58d64138f00023cfac5860502371e29"
+    },
+    "events/92b99327857b4a348a5a4cead81f23c6.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/events/92b99327857b4a348a5a4cead81f23c6.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "1f86e754ac68c70cded4545d839ae47408cb3a7ceee4c6c456831ff2c40f7f13"
+    },
+    "events/d5e4f4de9e174c2c8e5c6aaa939a8c64.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/events/d5e4f4de9e174c2c8e5c6aaa939a8c64.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "3c1f2a979cfbad3fc57830566ec462944e0bd3733a08d6e8aeec7af73c33b57d"
+    },
+    "events/eec69eb80d354a05964134df08c3e6be.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/events/eec69eb80d354a05964134df08c3e6be.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "e059204c1cf9cb480f627946da1d87d2c668eef2b203ba5e5ded862a9779755e"
+    },
+    "events/6749f42b6c204a1099fe7ff6d2453aa5.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/events/6749f42b6c204a1099fe7ff6d2453aa5.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "359866f470b0b747707ac15a2e294a8bc2e7a37a14de1bcb03a69b417e41f6f9"
+    },
+    "events/84e915cbe7c44b98859fdb0545a97ea6.json": {
+      "source": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/events/84e915cbe7c44b98859fdb0545a97ea6.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420,
+      "kind": "file",
+      "sha256": "0590c8c561af6c4c3d6d16e5828c9efd6291cf711487e64e9318b56151bde153"
+    }
+  }
+}

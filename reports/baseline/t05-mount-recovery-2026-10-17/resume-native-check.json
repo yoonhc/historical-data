@@ -1,0 +1,44 @@
+{
+  "execution": {
+    "chunk_id": "2aca13",
+    "exit_code": 0,
+    "wall_seconds": 0.515358763,
+    "environment": "native host, current unprivileged account",
+    "observed_kst_minute": "2026-10-17 19:07",
+    "command": "/usr/bin/python3 -B -I /home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-mount-recovery-2026-10-17/resume_only.py --action check"
+  },
+  "stdout": {
+    "passed": true,
+    "readonly": true,
+    "operation_plan_id": "821367d24e43bd2423da568dfbca8cab47ac9c40fe405f09feadea567bec4824",
+    "configuration": "after",
+    "configuration_writes": 0,
+    "daemon_reload": false,
+    "reviewed_busy_run": "2d9f7b8b4a434183a875dfa441171295",
+    "journal_unchanged": true,
+    "clock_ready": true,
+    "preservation_timers": [
+      {
+        "unit": "marketdata-backup.timer",
+        "NextElapseUSecRealtime": {"microseconds": 1792296600000000, "remaining_seconds": 63146.704630851746},
+        "NextElapseUSecMonotonic": {"microseconds": 0, "remaining_seconds": null}
+      },
+      {
+        "unit": "marketdata-pack.timer",
+        "NextElapseUSecRealtime": {"microseconds": 1792235700000000, "remaining_seconds": 2246.6976401805878},
+        "NextElapseUSecMonotonic": {"microseconds": 0, "remaining_seconds": null}
+      },
+      {
+        "unit": "marketdata-restic-archive.timer",
+        "NextElapseUSecRealtime": {"microseconds": 1792235100000000, "remaining_seconds": 1646.6915817260742},
+        "NextElapseUSecMonotonic": {"microseconds": 0, "remaining_seconds": null}
+      }
+    ],
+    "automatic_retirement": "masked"
+  },
+  "limitations": [
+    "Read-only admission check, not an operating resume or deletion result",
+    "Timer timestamps are an observation, not a reservation of future locks",
+    "Apply repeats all admission checks before granting and requesting the service"
+  ]
+}

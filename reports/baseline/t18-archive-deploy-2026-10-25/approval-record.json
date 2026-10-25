@@ -1,0 +1,44 @@
+{
+  "kind": "user_authorization_record_not_runtime_authority",
+  "recorded_at": "2026-10-25T06:28:58.031409+00:00",
+  "authorization_source": "explicit user message in this conversation approving this exact operation",
+  "operation_id": "27dd5101bfa0b7005ce0a931b075bc9cccad5a5331e9350a30c4765cbf1ee225",
+  "operation_json_sha256": "5fe462588a59c9bfecc94c68d5473143bb4f1e02c56ca834744acd8bb02f2198",
+  "source_release_id": "restic-output-20261022-585c3e3686704e5c",
+  "tool_id": "t18-output-operation-20261022-7bb526de6c7fbaef",
+  "scope_after": "2875edd74ccef07cd4a1f09917d147ab0a73cde0a6921a5f3f7cd9930344ef83",
+  "authorized": [
+    "source install with retained preserve Python",
+    "six configuration changes and boot-ledger connection transition",
+    "temporary hold and restoration of nine timers",
+    "exact derived T05 recurring scope approval",
+    "archiver timer resume only",
+    "reviewed same-operation stop/rollback with archiver held"
+  ],
+  "required_checks": [
+    "current inventory hashes, boot, configuration, metadata, requests, idle state, locks and home capacity",
+    "final UID1000 import and CLI before timer hold",
+    "normal drain outside coordinator, 600 seconds is a hold boundary",
+    "disabled recurring during configuration transition; full propose equality before authority grant",
+    "readiness and space after unlock; prior-active timers restored; no ambiguous start repeat"
+  ],
+  "prohibited": [
+    "manual business service start",
+    "request/pins/budget reset",
+    "forced termination",
+    "old operation approval substitution",
+    "collector/Chrony/RTC/polling control",
+    "query frequency, full-read check, batch 3 or T05 policy change",
+    "confirmation backup/snapshot, manual deletion, whole restore or operating fault injection"
+  ],
+  "rollback": "preserve new bodies, receipts, requests, data, ledgers and evidence; restore other prior-active timers/T05, keep archiver stopped",
+  "runtime_authority_path": "/var/lib/marketdata-clock/t18-output-handoffs/27dd5101bfa0b7005ce0a931b075bc9cccad5a5331e9350a30c4765cbf1ee225/authority.json",
+  "runtime_authority_creation": "only by approved root tool, once, reused unchanged on resume",
+  "operating_observation": [
+    "each exact pending backup 2026-10-20 through 2026-10-25: snapshot, full check, T05 bundle, terminal request",
+    "natural unchanged-snapshot no-op: actual dump/hash verification and bounded large-body allocation"
+  ],
+  "authorization_not_re_requested": true,
+  "sudo_authentication": "noninteractive read-only check returned password required; user terminal execution requested",
+  "preapply_observation": "preapply-observation-20261025T062755Z.json"
+}

@@ -1,0 +1,87 @@
+{
+  "observed_at": "2026-10-19T13:44:22.331015+00:00",
+  "files": {
+    "/etc/systemd/system/marketdata-restic-archive.timer": {
+      "uid": 65534,
+      "gid": 65534,
+      "mode": 420,
+      "kind": "file",
+      "mtime_ns": 1791819177313691019,
+      "ino": 5245595,
+      "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b"
+    },
+    "/etc/systemd/system/marketdata-restic-archive.service": {
+      "uid": 65534,
+      "gid": 65534,
+      "mode": 420,
+      "kind": "file",
+      "mtime_ns": 1792163824952772635,
+      "ino": 5244445,
+      "sha256": "370874920f1ffb094e232f17128fb49a9eb348d1661bb0dd2cf98cd8b996ff5d"
+    },
+    "/etc/systemd/system/timers.target.wants/marketdata-restic-archive.timer": {
+      "uid": 65534,
+      "gid": 65534,
+      "mode": 511,
+      "kind": "symlink",
+      "mtime_ns": 1791819178385663281,
+      "ino": 5245679,
+      "target": "/etc/systemd/system/marketdata-restic-archive.timer"
+    },
+    "/home/yoonhc/.config/marketdata/restic-archive.toml": {
+      "uid": 1000,
+      "gid": 1000,
+      "mode": 384,
+      "kind": "file",
+      "mtime_ns": 1790512197429779405,
+      "ino": 10792472,
+      "sha256": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba"
+    },
+    "/home/yoonhc/.config/marketdata/restic-service.env": {
+      "uid": 1000,
+      "gid": 1000,
+      "mode": 384,
+      "kind": "file",
+      "mtime_ns": 1790514447398241926,
+      "ino": 10751566,
+      "sha256": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9"
+    },
+    "/etc/marketdata/scheduled-clock-policy/clock-binding.json": {
+      "uid": 65534,
+      "gid": 65534,
+      "mode": 420,
+      "kind": "file",
+      "mtime_ns": 1792163824942772897,
+      "ino": 5374055,
+      "sha256": "bb47490cac1e11ed3c5a456d9f5d7dc699b1c72c65f5dad2e12eb32dc4c8c925"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+      "uid": 65534,
+      "gid": 65534,
+      "mode": 420,
+      "kind": "file",
+      "mtime_ns": 1792331978983451036,
+      "ino": 5374054,
+      "sha256": "3b436c4f0803582c6a64414a009abf2ab212945584f6ba3211ec1efbaff8035d"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/manual.json": {
+      "uid": 65534,
+      "gid": 65534,
+      "mode": 420,
+      "kind": "file",
+      "mtime_ns": 1792236756358247040,
+      "ino": 5374039,
+      "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e"
+    },
+    "/etc/chrony/marketdata.conf": {
+      "uid": 65534,
+      "gid": 65534,
+      "mode": 420,
+      "kind": "file",
+      "mtime_ns": 1791470385605712956,
+      "ino": 5374008,
+      "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86"
+    }
+  },
+  "allowed_action": "systemctl stop marketdata-restic-archive.timer only; no restart/enable/disable/mask/file or ledger writes"
+}

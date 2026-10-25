@@ -1,0 +1,99 @@
+{
+  "position": "before",
+  "unit": {
+    "MainPID": "0",
+    "ControlPID": "0",
+    "Result": "success",
+    "ExecMainStatus": "0",
+    "ExecStart": "{ path=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python ; argv[]=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_clock_retirement.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml apply-plan --plan-id 31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+    "User": "yoonhc",
+    "Group": "yoonhc",
+    "Id": "marketdata-checkpoint-retirement-apply@31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08.service",
+    "LoadState": "loaded",
+    "ActiveState": "inactive",
+    "SubState": "dead",
+    "FragmentPath": "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service",
+    "DropInPaths": "",
+    "Job": "",
+    "NeedDaemonReload": "no",
+    "InvocationID": ""
+  },
+  "units": {
+    "chrony.service": {
+      "MainPID": "1245",
+      "ControlPID": "0",
+      "Id": "chrony.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "Job": "",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1"
+    },
+    "marketdata-collector@depth.service": {
+      "MainPID": "224785",
+      "ControlPID": "0",
+      "Id": "marketdata-collector@depth.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "Job": "",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "MainPID": "224784",
+      "ControlPID": "0",
+      "Id": "marketdata-collector@aggtrade.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "Job": "",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b"
+    },
+    "marketdata-checkpoint-retirement.service": {
+      "MainPID": "0",
+      "ControlPID": "0",
+      "Id": "marketdata-checkpoint-retirement.service",
+      "LoadState": "masked",
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": ""
+    },
+    "marketdata-checkpoint-retirement.timer": {
+      "Id": "marketdata-checkpoint-retirement.timer",
+      "LoadState": "masked",
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": ""
+    },
+    "marketdata-checkpoint-retirement-preview.service": {
+      "MainPID": "0",
+      "ControlPID": "0",
+      "Id": "marketdata-checkpoint-retirement-preview.service",
+      "LoadState": "loaded",
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": ""
+    }
+  },
+  "registry": {
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/005130b2c471011df4a52e9a22f194e9db0d7bcfbc672f6c37b3527df3982e6a.json": "005130b2c471011df4a52e9a22f194e9db0d7bcfbc672f6c37b3527df3982e6a",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/12095846cd1530cf05a91e66642b1410d44c3a406cde4ffeadacda98ff4ba194.json": "12095846cd1530cf05a91e66642b1410d44c3a406cde4ffeadacda98ff4ba194",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/16254cd2fb4b5c04763fc1e6fe7fd0c34576cf2eecc909bab337479dfd03f04f.json": "16254cd2fb4b5c04763fc1e6fe7fd0c34576cf2eecc909bab337479dfd03f04f",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/22109e504bf70b07632cfb77a36666f3d7f554adc0e27449d6a35e14ddb6fd18.json": "22109e504bf70b07632cfb77a36666f3d7f554adc0e27449d6a35e14ddb6fd18",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/2e242b0a5af450545f5dd7277d7eb4444de3f3cc854d256cd83705363380b92f.json": "2e242b0a5af450545f5dd7277d7eb4444de3f3cc854d256cd83705363380b92f",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/2f454cd30a0626ace9d6b17e8f53f74a70837177435513a931aca1505c10f557.json": "2f454cd30a0626ace9d6b17e8f53f74a70837177435513a931aca1505c10f557",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/5ec056db51157f58a4537cabf374eee65148dfd901007c1138c1cba481b6cf0b.json": "5ec056db51157f58a4537cabf374eee65148dfd901007c1138c1cba481b6cf0b",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/6fb5fa7aab402f81ebed8c9db1f4648a3ac2ffa78422cfb932425fb2cfdb1b39.json": "6fb5fa7aab402f81ebed8c9db1f4648a3ac2ffa78422cfb932425fb2cfdb1b39",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/7d6a9251590e0a4b74632488147f318482e75930bb2e341b816d3eea26ae7fb7.json": "7d6a9251590e0a4b74632488147f318482e75930bb2e341b816d3eea26ae7fb7",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/969c89172180fd24235e4d790c4795dfede39605826c2d15065aecf245fd644a.json": "969c89172180fd24235e4d790c4795dfede39605826c2d15065aecf245fd644a",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/b833b6e3b9d5c2f6f63954a21ec23f0d1772acb894f4c51fef29ee8c53db6da0.json": "b833b6e3b9d5c2f6f63954a21ec23f0d1772acb894f4c51fef29ee8c53db6da0",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/b976e8b04f2bfccbf68a2bc988faac2ed95c1e5dc9172a512396fa9f70dc9192.json": "b976e8b04f2bfccbf68a2bc988faac2ed95c1e5dc9172a512396fa9f70dc9192",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/c94e71e9eb84e6b627438ebbea57dd98f0c49faa8c44eff00ded723879f4278d.json": "c94e71e9eb84e6b627438ebbea57dd98f0c49faa8c44eff00ded723879f4278d",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/objects/ffd3c93d9fb3deb2fbf78e16fa4b44b61790bca5b66d4f558e571b17d543ff28.json": "ffd3c93d9fb3deb2fbf78e16fa4b44b61790bca5b66d4f558e571b17d543ff28",
+    "/var/lib/marketdata-checkpoint-retirement/evidence/registration-receipts/0404b2e43594055456c5e9aae6cd1219b2199e2eccb1e82f4f2d9e9536d91ee3-95a9da373208424c8f62891666e25d0b.json": "3e5149a15685e4684e598db37bbb2fe2857ce8042a80ecbc792c6b1c4ea91a09"
+  },
+  "unit_fingerprint": {
+    "uid": 0,
+    "gid": 0,
+    "mode": 511,
+    "kind": "symlink",
+    "target": "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service"
+  }
+}

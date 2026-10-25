@@ -1,0 +1,423 @@
+{
+  "kind": "post_activation_timer_results",
+  "operating_mutations": false,
+  "t05_run_ref": {
+    "path": "/var/lib/marketdata-checkpoint-retirement/runs/2483ead46a474a359556a514a93b90eb/run.json",
+    "sha256": "97cfb7ce6cf76508ff8347a9010bc29a85815cd1319a8684382e0e568851a93b"
+  },
+  "t05_result": {
+    "action": "run",
+    "already_complete": false,
+    "authorization": {
+      "approval_reference": "/var/lib/marketdata-clock/t18-output-handoffs/27dd5101bfa0b7005ce0a931b075bc9cccad5a5331e9350a30c4765cbf1ee225/authority.json",
+      "approved_at": "2026-10-25T06:29:02.225960+00:00",
+      "enabled": true,
+      "grant_sha256": "3d67f5a2ae4f44e0be36a68237fe30056ed6419d785b07a44b71f1f9797fa7e7",
+      "plan_id": null,
+      "resume_interrupted": false,
+      "scope_id": "2875edd74ccef07cd4a1f09917d147ab0a73cde0a6921a5f3f7cd9930344ef83"
+    },
+    "completed_before_run": 0,
+    "context": {
+      "classification": "verified_timer",
+      "cwd": "/var/lib/marketdata-checkpoint-retirement",
+      "environment": {
+        "INVOCATION_ID": "c5a0eeea15a9472d825ce60a5e1d6ebc",
+        "TRIGGER_TIMER_MONOTONIC_USEC": "1439461078767",
+        "TRIGGER_TIMER_REALTIME_USEC": "1792911723120950",
+        "TRIGGER_UNIT": "marketdata-checkpoint-retirement.timer"
+      },
+      "environment_matches_job": true,
+      "manager": "system",
+      "manager_evidence": {
+        "/org/freedesktop/systemd1/job/14518540:Job.ActivationDetails": {
+          "data": [
+            [
+              "trigger_unit",
+              "marketdata-checkpoint-retirement.timer"
+            ],
+            [
+              "trigger_timer_realtime_usec",
+              "1792911723120950"
+            ],
+            [
+              "trigger_timer_monotonic_usec",
+              "1439461078767"
+            ]
+          ],
+          "type": "a(ss)"
+        },
+        "/org/freedesktop/systemd1/job/14518540:Job.JobType": {
+          "data": "start",
+          "type": "s"
+        },
+        "/org/freedesktop/systemd1/job/14518540:Job.State": {
+          "data": "running",
+          "type": "s"
+        },
+        "/org/freedesktop/systemd1/job/14518540:Job.Unit": {
+          "data": [
+            "marketdata-checkpoint-retirement.service",
+            "/org/freedesktop/systemd1/unit/marketdata_2dcheckpoint_2dretirement_2eservice"
+          ],
+          "type": "(so)"
+        },
+        "/org/freedesktop/systemd1/unit/marketdata_2dcheckpoint_2dretirement_2eservice:Unit.Job": {
+          "data": [
+            14518540,
+            "/org/freedesktop/systemd1/job/14518540"
+          ],
+          "type": "(uo)"
+        },
+        "/org/freedesktop/systemd1/unit/marketdata_2dcheckpoint_2dretirement_2etimer:Timer.LastTriggerUSec": {
+          "data": 1792911723120950,
+          "type": "t"
+        },
+        "/org/freedesktop/systemd1/unit/marketdata_2dcheckpoint_2dretirement_2etimer:Timer.LastTriggerUSecMonotonic": {
+          "data": 1439461078767,
+          "type": "t"
+        }
+      },
+      "module": "/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/scripts/restic_schedule.py",
+      "module_sha256": "b059f7955774c6d19499404982b8c235cf3d2e6be2ffa54b7a0b95b611388d77",
+      "pid": 1797921,
+      "provenance_method": "current_start_job_activation_details",
+      "python": "/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/.venv/bin/python",
+      "scheduled": true,
+      "service_properties": {
+        "Id": "marketdata-checkpoint-retirement.service",
+        "InvocationID": "c5a0eeea15a9472d825ce60a5e1d6ebc",
+        "MainPID": "1797921",
+        "Type": "oneshot"
+      },
+      "service_verified": true,
+      "start_job": {
+        "activation_details": {
+          "trigger_timer_monotonic_usec": "1439461078767",
+          "trigger_timer_realtime_usec": "1792911723120950",
+          "trigger_unit": "marketdata-checkpoint-retirement.timer"
+        },
+        "id": 14518540,
+        "path": "/org/freedesktop/systemd1/job/14518540"
+      },
+      "trigger_at": "2026-10-25T07:02:03.120950+00:00",
+      "uid": 1000,
+      "user": "yoonhc"
+    },
+    "date_kst": "2026-10-25",
+    "deleted_checkpoints": 0,
+    "deleted_this_run": 0,
+    "deletion_attempted": false,
+    "error": "ValueError: Expected today's 15:40 trigger",
+    "exit_code": 1,
+    "finished_at": "2026-10-25T07:02:03.449150+00:00",
+    "initial_clock": {
+      "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+      "bootstrap_sha256": "1347ee317083b64487fd4ed893ea26754e733d09a6f8050a6aa943fc755b13b8",
+      "chrony_error_estimate": 0.153160082,
+      "conditional_error_bound_seconds": 0.153160082,
+      "config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "decision_sample": {
+        "boottime_ns": 1439461406872599,
+        "monotonic_ns": 1439461406872498,
+        "span_ns": 441,
+        "wall_ns": 1792911723449054642
+      },
+      "ledger_sha256": "2fc9d65588c5dc829a3c30343e883d333beec17d3cc556b340dbcea1598610d9",
+      "lower_utc_ns": 1792911723285099945,
+      "observation_age_seconds": 0.000846705,
+      "policy": {
+        "max_observation_age_seconds": 15.0,
+        "max_query_seconds": 3.0,
+        "max_sample_gap_seconds": 5.0,
+        "max_uncertainty_seconds": 5.0,
+        "provider_seconds": 10.0,
+        "retention_margin_seconds": 60,
+        "sample_seconds": 1.0,
+        "step_threshold_seconds": 0.25,
+        "version": "checkpoint-time-bounds-v2"
+      },
+      "provider": {
+        "argv": [
+          "/usr/sbin/chronyd",
+          "-F",
+          "1",
+          "-f",
+          "/etc/chrony/marketdata.conf"
+        ],
+        "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+        "pid": 1245
+      },
+      "query_after": {
+        "boottime_ns": 1439461406026425,
+        "monotonic_ns": 1439461406025793,
+        "span_ns": 1643,
+        "wall_ns": 1792911723448207947
+      },
+      "query_alignment_margin": 0.009944523,
+      "query_before": {
+        "boottime_ns": 1439461396081996,
+        "monotonic_ns": 1439461396081270,
+        "span_ns": 1754,
+        "wall_ns": 1792911723438263348
+      },
+      "query_seconds": 0.009944523,
+      "ready": true,
+      "reasons": [],
+      "reference_age_seconds": 28698.485238075256,
+      "runtime_profile_sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+      "sample": {
+        "boottime_ns": 1439461406026425,
+        "monotonic_ns": 1439461406025793,
+        "span_ns": 1643,
+        "wall_ns": 1792911723448207947
+      },
+      "sampling_margin": 3.397e-06,
+      "total_uncertainty": 0.163108002,
+      "tracking": {
+        "correction": -0.000461986,
+        "leap": "Normal",
+        "raw_csv": "B97DBE3A,185.125.190.58,3,1792883024.962969745,-0.000461986,0.000135621,0.001799373,27.211,0.001,0.022,0.238954410,0.033220891,2071.8,Normal",
+        "reference_address": "185.125.190.58",
+        "reference_id": "B97DBE3A",
+        "reference_time": 1792883024.9629698,
+        "root_delay": 0.23895441,
+        "root_dispersion": 0.033220891,
+        "skew_ppm": 0.022,
+        "stratum": 3
+      },
+      "uncertainty_seconds": 0.163108002,
+      "upper_utc_ns": 1792911723611315949
+    },
+    "needs_attention": true,
+    "next_evaluation": "next calendar day; no automatic resume",
+    "ok": false,
+    "phase": "finished",
+    "plan_id": null,
+    "report": "/var/lib/marketdata-checkpoint-retirement/runs/2483ead46a474a359556a514a93b90eb/run.json",
+    "run_id": "2483ead46a474a359556a514a93b90eb",
+    "schema": 1,
+    "selection_assessed": false,
+    "started_at": "2026-10-25T07:02:03.357317+00:00",
+    "state": "failed"
+  },
+  "next_t05_calendar": "2026-10-26T15:40:00+09:00",
+  "next_timer_source": "activation-observed-20261025T070338Z.json",
+  "interpretation": "Actual system timer requested work at restoration time 16:02. Existing exact 15:40 guard rejected before plan/selection/deletion. Preserve failed/1; no manual retry or reset.",
+  "guard_source": "/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301/scripts/clock_retirement.py",
+  "guard_lines": {
+    "trigger": 610,
+    "prior_deletion_guard": 312
+  },
+  "oi_request": {
+    "arguments": [
+      "--root",
+      "/home/yoonhc/projects/algoTrade/historical_data",
+      "update",
+      "--config",
+      "/etc/marketdata/scheduled-system/oi-live.toml",
+      "--report",
+      "state/oi-latest.json"
+    ],
+    "attempt": {
+      "errors": [],
+      "id": "68c4a4fea08a4d40ab4da401497addeb",
+      "invocation_id": "a79ea682579c48a19fd7625e60c129ba",
+      "monitor": {
+        "last_time_fault": null,
+        "required": true,
+        "stopped": true
+      },
+      "work": {
+        "observed_exit_code": 2,
+        "recovered_committed_result": false
+      }
+    },
+    "disposition": {
+      "data_complete": false,
+      "reason": "coverage_replan_retains_missing_ranges",
+      "returncode": 2,
+      "state": "complete",
+      "work_exit_code": 2
+    },
+    "exit_code": 2,
+    "identity": "eeff6ac31630404b2b28e0ebf86e99c95e3f66ea399b8ecfeca4f50aec4fdf2e",
+    "job": "oi",
+    "pins": {},
+    "request_id": "6395910dddff49ffbd276cc92848b5fb",
+    "schema": "scheduled-request-v2",
+    "scope": {
+      "arguments": [
+        "--root",
+        "/home/yoonhc/projects/algoTrade/historical_data",
+        "update",
+        "--config",
+        "/etc/marketdata/scheduled-system/oi-live.toml",
+        "--report",
+        "state/oi-latest.json"
+      ],
+      "files": {
+        "/etc/marketdata/scheduled-clock-policy/clock-binding.json": {
+          "resolved": "/etc/marketdata/scheduled-clock-policy/clock-binding.json",
+          "sha256": "bca6681ed9cc5204b174e825f0fcc76a2af839e7e0017ad571954d3c5f636b4f"
+        },
+        "/etc/marketdata/scheduled-system/oi-live.toml": {
+          "resolved": "/etc/marketdata/scheduled-system/oi-live.toml",
+          "sha256": "9aa395f34094b9f8473ee1bb3c3a3f368e2748e8250168cdec30eee0db05ba81"
+        },
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11/policy/job_clock.py": {
+          "resolved": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11/policy/job_clock.py",
+          "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4"
+        },
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11/policy/request_contract.py": {
+          "resolved": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11/policy/request_contract.py",
+          "sha256": "bff0d83ace0b372e3d7aabd23821fb0cd57aed4b0be265364cdc330c7dbefe2c"
+        },
+        "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11/policy/run_job.py": {
+          "resolved": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11/policy/run_job.py",
+          "sha256": "55a965a3c9894b89d5d45b9d26b6a71f71fc76f9cb048e48589d8958f83e4e7c"
+        }
+      },
+      "job": "oi",
+      "release": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11",
+      "schema": "scheduled-request-v2"
+    },
+    "state": "complete",
+    "work_exit_code": 2,
+    "work_result": {
+      "files": [],
+      "job": "oi",
+      "ranges": [],
+      "records": [
+        {
+          "id": "2882e188ee164c35a46b33f7f96666a2",
+          "path": "/home/yoonhc/projects/algoTrade/historical_data/state/catalog.sqlite",
+          "sha256": "46a30e95cc83aa76ee83337924debffd29936079eed3ab75f627644ad21a2ab5",
+          "table": "sync_runs"
+        }
+      ],
+      "result": [
+        {
+          "clock_observation": {
+            "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+            "bootstrap_sha256": "1347ee317083b64487fd4ed893ea26754e733d09a6f8050a6aa943fc755b13b8",
+            "chrony_error_estimate": 0.1221960205,
+            "config_sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+            "ledger_sha256": "2fc9d65588c5dc829a3c30343e883d333beec17d3cc556b340dbcea1598610d9",
+            "lower_utc_ns": 1792911785259209168,
+            "policy": "scheduled-decisions-v1",
+            "provider": {
+              "argv": [
+                "/usr/sbin/chronyd",
+                "-F",
+                "1",
+                "-f",
+                "/etc/chrony/marketdata.conf"
+              ],
+              "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+              "pid": 1245
+            },
+            "query_after": {
+              "boottime_ns": 1439523351307111,
+              "monotonic_ns": 1439523351306464,
+              "span_ns": 1533,
+              "wall_ns": 1792911785393488542
+            },
+            "query_alignment_margin": 0.012080587,
+            "query_before": {
+              "boottime_ns": 1439523339226373,
+              "monotonic_ns": 1439523339225877,
+              "span_ns": 1233,
+              "wall_ns": 1792911785381408086
+            },
+            "query_seconds": 0.012080587,
+            "reference_age_seconds": 1.5437560081481934,
+            "runtime_profile_sha256": "98e8d4ab01919914c92180ba2e119803f84823d58e97994d9afe9bef805aa581",
+            "sample": {
+              "boottime_ns": 1439523351307111,
+              "monotonic_ns": 1439523351306464,
+              "span_ns": 1533,
+              "wall_ns": 1792911785393488542
+            },
+            "sampling_margin": 2.766e-06,
+            "total_uncertainty": 0.1342793735,
+            "tracking": {
+              "correction": -0.001142045,
+              "leap": "Normal",
+              "raw_csv": "B97DBE38,185.125.190.56,3,1792911783.849732527,-0.001142045,0.000680691,0.001720553,27.209,-0.001,0.021,0.236667991,0.002719980,28759.0,Normal",
+              "reference_address": "185.125.190.56",
+              "reference_id": "B97DBE38",
+              "reference_time": 1792911783.8497326,
+              "root_delay": 0.236667991,
+              "root_dispersion": 0.00271998,
+              "skew_ppm": 0.021,
+              "stratum": 3
+            },
+            "upper_utc_ns": 1792911785527767916
+          },
+          "complete": false,
+          "coverage": {
+            "blocked_days": [
+              "2026-10-15"
+            ],
+            "complete": false,
+            "end": "2026-10-25T07:05:00+00:00",
+            "missing_days": 1,
+            "missing_ranges": [
+              [
+                "2026-10-15T13:45:00+00:00",
+                "2026-10-16T00:00:00+00:00"
+              ]
+            ],
+            "missing_rows": 123,
+            "semantics": "source_label_grid_only",
+            "start": "2026-08-25T09:05:00+00:00"
+          },
+          "coverage_before": {
+            "blocked_days": [
+              "2026-10-15"
+            ],
+            "complete": false,
+            "end": "2026-10-25T07:05:00+00:00",
+            "missing_days": 1,
+            "missing_ranges": [
+              [
+                "2026-10-15T13:45:00+00:00",
+                "2026-10-16T00:00:00+00:00"
+              ]
+            ],
+            "missing_rows": 123,
+            "semantics": "source_label_grid_only",
+            "start": "2026-08-25T09:05:00+00:00"
+          },
+          "end": "2026-10-25T07:05:00+00:00",
+          "errors": [],
+          "key": "binance:linear_perpetual:BTCUSDT:open_interest:5m:rest",
+          "plan": {
+            "deferred_days": 0,
+            "expired_missing_ranges": [],
+            "ranges": [
+              [
+                "2026-10-25T06:05:00+00:00",
+                "2026-10-25T07:05:00+00:00"
+              ]
+            ],
+            "retention_floor": "2026-09-26T07:10:00+00:00"
+          },
+          "results": [
+            {
+              "date": "2026-10-25",
+              "revision": "c0be3c0271cb8e5da671169cdc53d31485a3e02c8afb77ee1d7f8e6f2689d18a",
+              "rows": 85,
+              "state": "published"
+            }
+          ],
+          "run_id": "2882e188ee164c35a46b33f7f96666a2",
+          "start": "2026-08-25T09:05:00+00:00",
+          "state": "partial"
+        }
+      ]
+    }
+  },
+  "oi_interpretation": "Complete wrapper request, data incomplete and exit 2, existing 2026-10-15 OI coverage finding retained; no request reset."
+}

@@ -1,0 +1,53 @@
+{
+  "action": "apply",
+  "checkpoint_deletion_requested": false,
+  "clock_control": false,
+  "operation_plan_id": "2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e",
+  "passed": true,
+  "protected_processes_after": {
+    "chrony.service": {
+      "ActiveState": "active",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+      "MainPID": "1245"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "ActiveState": "active",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+      "MainPID": "224784"
+    },
+    "marketdata-collector@depth.service": {
+      "ActiveState": "active",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+      "MainPID": "224785"
+    }
+  },
+  "protected_processes_before": {
+    "chrony.service": {
+      "ActiveState": "active",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+      "MainPID": "1245"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "ActiveState": "active",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+      "MainPID": "224784"
+    },
+    "marketdata-collector@depth.service": {
+      "ActiveState": "active",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+      "MainPID": "224785"
+    }
+  },
+  "protected_processes_unchanged": true,
+  "report": "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e/attempts/963f259af2fa4ed898c01b8e903b17f5.json",
+  "result": {
+    "active_grant_sha256": "3b436c4f0803582c6a64414a009abf2ab212945584f6ba3211ec1efbaff8035d",
+    "checkpoint_deletion_requested": false,
+    "clock_control": false,
+    "operating_observation_pending": true,
+    "operation_plan_id": "2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e",
+    "passed": true,
+    "phase": "activated",
+    "user_automation": "masked"
+  }
+}

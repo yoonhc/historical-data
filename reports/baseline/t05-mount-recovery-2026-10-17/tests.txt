@@ -1,0 +1,39 @@
+installed_module=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/clock_retirement.py
+installed_module=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/retire_checkpoints.py
+installed_module=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/packages/marketdata/src/marketdata/checkpoint_evidence.py
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python
+rootdir: /tmp/t05-mount-validation-70s1jwhy/tests
+configfile: ../../../dev/null
+collecting ... collected 27 items
+
+tests/test_recovery_contract.py::test_exact_bridge_preserves_original_contract_and_failure PASSED [  3%]
+tests/test_recovery_contract.py::test_unreviewed_change_is_rejected[extra_file] PASSED [  7%]
+tests/test_recovery_contract.py::test_unreviewed_change_is_rejected[extra_unit_option] PASSED [ 11%]
+tests/test_recovery_contract.py::test_unreviewed_change_is_rejected[recurring_enable] PASSED [ 14%]
+tests/test_recovery_contract.py::test_unreviewed_change_is_rejected[binding] PASSED [ 18%]
+tests/test_recovery_contract.py::test_unreviewed_change_is_rejected[ownership] PASSED [ 22%]
+tests/test_recovery_contract.py::test_unreviewed_change_is_rejected[scope] PASSED [ 25%]
+tests/test_recovery_contract.py::test_unreviewed_change_is_rejected[plan] PASSED [ 29%]
+tests/test_recovery_contract.py::test_unreviewed_change_is_rejected[run] PASSED [ 33%]
+tests/test_recovery_contract.py::test_only_exact_prepared_journal_is_accepted[unlink] PASSED [ 37%]
+tests/test_recovery_contract.py::test_only_exact_prepared_journal_is_accepted[moved] PASSED [ 40%]
+tests/test_recovery_contract.py::test_only_exact_prepared_journal_is_accepted[target] PASSED [ 44%]
+tests/test_recovery_contract.py::test_only_exact_prepared_journal_is_accepted[another_attempt] PASSED [ 48%]
+tests/test_recovery_contract.py::test_three_explicit_approvals_required PASSED [ 51%]
+tests/test_recovery_contract.py::test_each_atomic_commit_can_resume_and_roll_back_without_touching_history[1] PASSED [ 55%]
+tests/test_recovery_contract.py::test_each_atomic_commit_can_resume_and_roll_back_without_touching_history[2] PASSED [ 59%]
+tests/test_recovery_contract.py::test_each_atomic_commit_can_resume_and_roll_back_without_touching_history[3] PASSED [ 62%]
+tests/test_recovery_contract.py::test_each_atomic_commit_can_resume_and_roll_back_without_touching_history[4] PASSED [ 66%]
+tests/test_recovery_contract.py::test_unknown_configuration_cannot_be_overwritten PASSED [ 70%]
+tests/test_recovery_contract.py::test_crash_after_grant_before_dispatch_finalizes_without_start PASSED [ 74%]
+tests/test_recovery_contract.py::test_failed_worker_restores_only_owned_grant_and_preserves_failure PASSED [ 77%]
+tests/test_recovery_contract.py::test_finalizer_never_revokes_active_or_foreign_grant[worker_active] PASSED [ 81%]
+tests/test_recovery_contract.py::test_finalizer_never_revokes_active_or_foreign_grant[foreign_grant] PASSED [ 85%]
+tests/test_recovery_contract.py::test_corrupt_original_plan_does_not_receive_scope_bridge PASSED [ 88%]
+tests/test_recovery_contract.py::test_full_dispatch_path_releases_runner_and_never_reissues_intent[False] PASSED [ 92%]
+tests/test_recovery_contract.py::test_full_dispatch_path_releases_runner_and_never_reissues_intent[True] PASSED [ 96%]
+tests/test_installed_recovery.py::test_reviewed_unit_scope_recovers_original_exdev_journal PASSED [100%]
+
+- generated xml file: /home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-mount-recovery-2026-10-17/tests.xml -
+======================== 27 passed in 88.82s (0:01:28) =========================

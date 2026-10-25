@@ -1,0 +1,377 @@
+{
+  "observed_at": "2026-10-25T09:05:43.347934+00:00",
+  "operating_mutations": false,
+  "streams": {
+    "depth": {
+      "collection": {
+        "id": "d0c55fb0f3c6465d9daadf8b7ed3e4ba",
+        "dataset": "book_depth",
+        "kind": "websocket",
+        "started_at": "2026-10-25T08:51:04.561693+00:00",
+        "updated_at": "2026-10-25T09:05:41.912078+00:00",
+        "state": "running"
+      },
+      "persisted_messages": 8600,
+      "last_received_at": "2026-10-25T09:05:41.861438+00:00",
+      "runtime_clock": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_id": "cfeea2e3200947fa80061620aa48bde5",
+        "collection_start": {
+          "boottime_ns": 1446002519645452,
+          "monotonic_ns": 1446002519644430,
+          "sampling_span_ns": 2344,
+          "wall_ns": 1792918264561826523
+        },
+        "policy_version": "reference-freshness-v2",
+        "run_id": "4ac89ce47872461a8604f8898b188798",
+        "schema": 2,
+        "stream": "depth"
+      },
+      "sample_segments": [
+        {
+          "id": "93b58695d169d40bf2af802ac0c46cbcef364dd45d37ec231dd07afc17c5eb5e",
+          "first_time": "2026-10-25T09:05:41.944000+00:00",
+          "last_time": "2026-10-25T09:05:41.944000+00:00",
+          "row_count": 1,
+          "segment": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/canonical/book_depth/93/93b58695d169d40bf2af802ac0c46cbcef364dd45d37ec231dd07afc17c5eb5e.parquet",
+            "bytes": 32407,
+            "sha256": "93b58695d169d40bf2af802ac0c46cbcef364dd45d37ec231dd07afc17c5eb5e"
+          },
+          "raw": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/3d/3dc63a414c40ff74b7e9681e38a46c14e6f33b88c45af0079c78b81c0537b556/payload",
+            "bytes": 42090,
+            "sha256": "3dc63a414c40ff74b7e9681e38a46c14e6f33b88c45af0079c78b81c0537b556"
+          }
+        }
+      ],
+      "sample_clock_chunks": [
+        {
+          "url": "runtime-clock://4ac89ce47872461a8604f8898b188798/1735",
+          "metadata": {
+            "chunk": 1735,
+            "first_sample": {
+              "boottime_ns": 1446304063384416,
+              "monotonic_ns": 1446304063383790,
+              "sampling_span_ns": 2114,
+              "wall_ns": 1792918566105565677
+            },
+            "kind": "runtime_clock_v2",
+            "last_sample": {
+              "boottime_ns": 1446603691391259,
+              "monotonic_ns": 1446603691390342,
+              "sampling_span_ns": 2475,
+              "wall_ns": 1792918865733572300
+            },
+            "partial_tail_bytes": 0,
+            "previous": "5b61ee88e327b8a275a143f1233975512c48584c13ea0ad083442db78621c0d4",
+            "records": 297,
+            "run_id": "4ac89ce47872461a8604f8898b188798",
+            "schema": 2,
+            "uncompressed_bytes": 705077,
+            "uncompressed_sha256": "af7d74ecabbc8f8b011311c38bc1a8a1ba548f06a43e48179baf5d501e568aec"
+          },
+          "file": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/fe/fe09b905511d8876e2b9c7da5771ebf3552bb1e7dc17b7da3f736c623cb523a7/payload",
+            "bytes": 22235,
+            "sha256": "fe09b905511d8876e2b9c7da5771ebf3552bb1e7dc17b7da3f736c623cb523a7"
+          }
+        }
+      ],
+      "latest_clock": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 1830182,
+        "child_start_ticks": "144600224",
+        "clock": {
+          "conditional_error_bound_seconds": 0.1224749335,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": false,
+          "reasons": [
+            "reference_age"
+          ],
+          "reference_age_seconds": 872.1410372257233,
+          "sample": {
+            "boottime_ns": 1446872945212215,
+            "monotonic_ns": 1446872945211759,
+            "sampling_span_ns": 1173,
+            "wall_ns": 1792919134987393947
+          },
+          "tracking": {
+            "correction": -0.000272426,
+            "leap": "Normal",
+            "raw_csv": "B97DBE38,185.125.190.56,3,1792918262.846336906,-0.000272426,-0.000847072,0.001654094,27.206,-0.001,0.022,0.236667991,0.003868512,6478.5,Normal",
+            "reference_address": "185.125.190.56",
+            "reference_id": "B97DBE38",
+            "reference_time": 1792918262.8463368,
+            "root_delay": 0.236667991,
+            "root_dispersion": 0.003868512,
+            "skew_ppm": 0.022,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "decision": {
+          "conditional_error_bound_seconds": 0.1224749335,
+          "current_estimate_usable": true,
+          "raw_start_allowed": false,
+          "reasons": [
+            "prior_hard_fault_blocks_stale_exception"
+          ],
+          "reference_age_seconds": 880.2285878658295,
+          "reference_stale": true
+        },
+        "history": {
+          "hard_fault_seen": true,
+          "legacy_violations": 400640,
+          "reference_stale_seen": true
+        },
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "policy_version": "reference-freshness-v2",
+        "profile_sha256": "25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9",
+        "record": 494320,
+        "run_id": "4ac89ce47872461a8604f8898b188798",
+        "sample": {
+          "boottime_ns": 1446881032743864,
+          "monotonic_ns": 1446881032742861,
+          "sampling_span_ns": 2725,
+          "wall_ns": 1792919143074924844
+        },
+        "schema": 2,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "depth",
+        "supervisor_pid": 3530137,
+        "supervisor_start_ticks": "94613110",
+        "systemd_invocation_id": "8f9f604f45fa44b3833aca627834f391",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 1446881032743864,
+            "monotonic_ns": 1446881032742861,
+            "sampling_span_ns": 2725,
+            "wall_ns": 1792919143074924844
+          },
+          "before": {
+            "boottime_ns": 1446880030070580,
+            "monotonic_ns": 1446880030069844,
+            "sampling_span_ns": 2234,
+            "wall_ns": 1792919142072251862
+          }
+        }
+      },
+      "clock_sample_age_seconds": 0.274739892,
+      "systemd_identity_matches": true,
+      "collection_clock_identity_matches": true
+    },
+    "aggtrade": {
+      "collection": {
+        "id": "ff46ecdc59ad43409cc74eee2e1d51c9",
+        "dataset": "agg_trades",
+        "kind": "websocket",
+        "started_at": "2026-10-25T08:51:04.446481+00:00",
+        "updated_at": "2026-10-25T09:05:39.718327+00:00",
+        "state": "running"
+      },
+      "persisted_messages": 5894,
+      "last_received_at": "2026-10-25T09:05:38.701294+00:00",
+      "runtime_clock": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_id": "90ae3801f3a0471abe12bf96e0ddcbfb",
+        "collection_start": {
+          "boottime_ns": 1446002404416451,
+          "monotonic_ns": 1446002404415604,
+          "sampling_span_ns": 2034,
+          "wall_ns": 1792918264446597782
+        },
+        "policy_version": "reference-freshness-v2",
+        "run_id": "604ac513b84b4aaa9565cc1a58d3af10",
+        "schema": 2,
+        "stream": "aggtrade"
+      },
+      "sample_segments": [
+        {
+          "id": "e6956a9cd7f99e71db0ec8b1f8b3f64609e2b8365027fcbf1ee060de747a5aef",
+          "first_time": "2026-10-25T09:05:34.021000+00:00",
+          "last_time": "2026-10-25T09:05:38.543000+00:00",
+          "row_count": 71,
+          "segment": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/canonical/agg_trades/websocket/e6/e6956a9cd7f99e71db0ec8b1f8b3f64609e2b8365027fcbf1ee060de747a5aef.parquet",
+            "bytes": 7465,
+            "sha256": "e6956a9cd7f99e71db0ec8b1f8b3f64609e2b8365027fcbf1ee060de747a5aef"
+          },
+          "raw": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/e4/e4ada20f9bf4a9bf32e0d0f0c7ff364e72abd1de0e46fa4c832e4344e425711a/payload",
+            "bytes": 1607,
+            "sha256": "e4ada20f9bf4a9bf32e0d0f0c7ff364e72abd1de0e46fa4c832e4344e425711a"
+          }
+        }
+      ],
+      "sample_clock_chunks": [
+        {
+          "url": "runtime-clock://604ac513b84b4aaa9565cc1a58d3af10/1753",
+          "metadata": {
+            "chunk": 1753,
+            "first_sample": {
+              "boottime_ns": 1446304063382592,
+              "monotonic_ns": 1446304063381731,
+              "sampling_span_ns": 2064,
+              "wall_ns": 1792918566105563924
+            },
+            "kind": "runtime_clock_v2",
+            "last_sample": {
+              "boottime_ns": 1446603691421796,
+              "monotonic_ns": 1446603691420829,
+              "sampling_span_ns": 3016,
+              "wall_ns": 1792918865733602806
+            },
+            "partial_tail_bytes": 0,
+            "previous": "0ed1faef8d1b842f949c9aa3d723176bbe9801186ef4d9b4548f46b4ca86fa17",
+            "records": 297,
+            "run_id": "604ac513b84b4aaa9565cc1a58d3af10",
+            "schema": 2,
+            "uncompressed_bytes": 706086,
+            "uncompressed_sha256": "12529af6727d5336abfeeee3b1e2e26957cfeefbc3a02b531b06ba729eb453f9"
+          },
+          "file": {
+            "path": "/home/yoonhc/projects/algoTrade/historical_data/data/raw/5a/5a48c332e37f9eb5a0696d51cdf4c36b8e62db09a2275e6c392c5c9806a949d8/payload",
+            "bytes": 22205,
+            "sha256": "5a48c332e37f9eb5a0696d51cdf4c36b8e62db09a2275e6c392c5c9806a949d8"
+          }
+        }
+      ],
+      "latest_clock": {
+        "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+        "child_pid": 1830178,
+        "child_start_ticks": "144600214",
+        "clock": {
+          "conditional_error_bound_seconds": 0.1224749325,
+          "provider": {
+            "argv": [
+              "/usr/sbin/chronyd",
+              "-F",
+              "1",
+              "-f",
+              "/etc/chrony/marketdata.conf",
+              ""
+            ],
+            "invocation_id": "19420480ab3249529a075ca7cb2bd3c1",
+            "pid": 1245
+          },
+          "ready": false,
+          "reasons": [
+            "reference_age"
+          ],
+          "reference_age_seconds": 872.1422803401947,
+          "sample": {
+            "boottime_ns": 1446872946452848,
+            "monotonic_ns": 1446872946452678,
+            "sampling_span_ns": 702,
+            "wall_ns": 1792919134988634781
+          },
+          "tracking": {
+            "correction": -0.000272426,
+            "leap": "Normal",
+            "raw_csv": "B97DBE38,185.125.190.56,3,1792918262.846336906,-0.000272426,-0.000847072,0.001654094,27.206,-0.001,0.022,0.236667991,0.003868511,6478.5,Normal",
+            "reference_address": "185.125.190.56",
+            "reference_id": "B97DBE38",
+            "reference_time": 1792918262.8463368,
+            "root_delay": 0.236667991,
+            "root_dispersion": 0.003868511,
+            "skew_ppm": 0.022,
+            "stratum": 3
+          }
+        },
+        "clock_usable": false,
+        "decision": {
+          "conditional_error_bound_seconds": 0.1224749325,
+          "current_estimate_usable": true,
+          "raw_start_allowed": false,
+          "reasons": [
+            "prior_hard_fault_blocks_stale_exception"
+          ],
+          "reference_age_seconds": 880.2285969257355,
+          "reference_stale": true
+        },
+        "history": {
+          "hard_fault_seen": true,
+          "legacy_violations": 400651,
+          "reference_stale_seen": true
+        },
+        "policy": {
+          "heartbeat_seconds": 10.0,
+          "max_correction_seconds": 0.1,
+          "max_error_seconds": 0.5,
+          "max_reference_age_seconds": 600.0,
+          "max_sample_gap_seconds": 5.0,
+          "max_skew_ppm": 100.0,
+          "provider_seconds": 10.0,
+          "ready_poll_seconds": 5.0,
+          "ready_timeout_seconds": 120.0,
+          "sample_seconds": 1.0,
+          "status_max_age_seconds": 25.0,
+          "step_threshold_seconds": 0.25,
+          "stop_timeout_seconds": 120.0
+        },
+        "policy_version": "reference-freshness-v2",
+        "profile_sha256": "25819868d21d8fbd15855b7585888b7cd0facc595df657a66b497ebcd26e33c9",
+        "record": 494315,
+        "run_id": "604ac513b84b4aaa9565cc1a58d3af10",
+        "sample": {
+          "boottime_ns": 1446881032752480,
+          "monotonic_ns": 1446881032751713,
+          "sampling_span_ns": 2194,
+          "wall_ns": 1792919143074933731
+        },
+        "schema": 2,
+        "scope": "sampled_process_clock_not_per_event",
+        "state": "running",
+        "stream": "aggtrade",
+        "supervisor_pid": 3529954,
+        "supervisor_start_ticks": "94612683",
+        "systemd_invocation_id": "3fa620f0e63341b9af76ff35b030b0c6",
+        "uncertain_interval": {
+          "after": {
+            "boottime_ns": 1446881032752480,
+            "monotonic_ns": 1446881032751713,
+            "sampling_span_ns": 2194,
+            "wall_ns": 1792919143074933731
+          },
+          "before": {
+            "boottime_ns": 1446880030047438,
+            "monotonic_ns": 1446880030046706,
+            "sampling_span_ns": 1944,
+            "wall_ns": 1792919142072228939
+          }
+        }
+      },
+      "clock_sample_age_seconds": 0.275115511,
+      "systemd_identity_matches": true,
+      "collection_clock_identity_matches": true
+    }
+  },
+  "home_available_bytes": 16030085120
+}

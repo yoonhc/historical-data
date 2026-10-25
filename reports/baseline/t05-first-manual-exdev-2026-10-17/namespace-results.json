@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "mode": "split",
+      "source_dev": 66311,
+      "staging_dev": 66311,
+      "source_mount_id": 868,
+      "staging_mount_id": 869,
+      "rename_errno": 18,
+      "source_present": true,
+      "destination_present": false,
+      "payload_unchanged": true,
+      "outside_write_errno": 30
+    },
+    {
+      "mode": "common",
+      "source_dev": 66311,
+      "staging_dev": 66311,
+      "source_mount_id": 868,
+      "staging_mount_id": 868,
+      "rename_errno": null,
+      "source_present": false,
+      "destination_present": true,
+      "payload_unchanged": true,
+      "outside_write_errno": 30
+    }
+  ],
+  "fixture_cleanup": true,
+  "actual_system_manager_test": false,
+  "operating_mutations": false
+}

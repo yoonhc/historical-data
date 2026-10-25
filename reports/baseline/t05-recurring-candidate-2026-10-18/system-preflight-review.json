@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-18T05:36:21.453923+00:00",
+  "release_id": "t05-recurring-retirement-20261018-e57a7995f03fb301",
+  "root_report": {
+    "path": "system-preflight-result-fe42ff4321294b9a.json",
+    "sha256": "bbabde69b834da8661703057c3add83b7820c80f940cc1257afd9998f3c58e95",
+    "started_at": "2026-10-18T05:33:49.625941+00:00",
+    "finished_at": "2026-10-18T05:34:26.838177+00:00"
+  },
+  "checked_invocations": {
+    "timer": {
+      "uid": 1000,
+      "invocation": "5552754101484102a17497095943d034",
+      "classification": "verified_timer",
+      "scheduled": true,
+      "start_job": {
+        "activation_details": {
+          "trigger_timer_monotonic_usec": "829402959411",
+          "trigger_timer_realtime_usec": "1792301665001593",
+          "trigger_unit": "md-t05-recurring-fe42ff4321294b9a.timer"
+        },
+        "id": 5288385,
+        "path": "/org/freedesktop/systemd1/job/5288385"
+      },
+      "installed_guard_passed": true,
+      "entrypoint_help_exit_code": 0,
+      "unit_exit_code": 0,
+      "disabled_run": {
+        "run_id": "20bbb896b8de498ea5e1e7ecaec89735",
+        "state": "deferred",
+        "reason": "authorization_pending",
+        "exit_code": 75,
+        "deletion_attempted": false,
+        "deleted_this_run": 0
+      },
+      "clock_uncertainty_seconds": 0.1339052885,
+      "reference_age_seconds": 716.0757627487183
+    },
+    "manual": {
+      "uid": 1000,
+      "invocation": "4ce3c458387c4613b0ae28730009560d",
+      "classification": "manual_service_or_unknown",
+      "scheduled": false,
+      "start_job": {
+        "activation_details": {},
+        "id": 5288524,
+        "path": "/org/freedesktop/systemd1/job/5288524"
+      },
+      "installed_guard_passed": true,
+      "entrypoint_help_exit_code": 0,
+      "unit_exit_code": 0,
+      "disabled_run": {
+        "run_id": "e14956c810a847b696be80b5899823f4",
+        "state": "deferred",
+        "reason": "authorization_pending",
+        "exit_code": 75,
+        "deletion_attempted": false,
+        "deleted_this_run": 0
+      },
+      "clock_uncertainty_seconds": 0.1344654125,
+      "reference_age_seconds": 716.9020302295685
+    }
+  },
+  "operating_snapshot_equal": true,
+  "protected_config_objects": 15,
+  "unchanged_masks": 4,
+  "unchanged_processes": [
+    "chrony.service",
+    "marketdata-collector@depth.service",
+    "marketdata-collector@aggtrade.service"
+  ],
+  "cleanup": {
+    "errors": [],
+    "unit_states": {
+      "md-t05-recurring-fe42ff4321294b9a.service": {
+        "MainPID": "0",
+        "ControlPID": "0",
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "Job": ""
+      },
+      "md-t05-recurring-fe42ff4321294b9a.timer": {
+        "LoadState": "not-found",
+        "ActiveState": "inactive",
+        "Job": ""
+      }
+    },
+    "paths_absent": true
+  },
+  "preflight_input_sha256": "50b3743cfe4db0eb5b6621a8ca4d9ac8bcab6d584511aec1b5bab86196c85852",
+  "sealed_inputs_currently_match": true,
+  "candidate_cases": 46,
+  "preflight_tool_cases": 15,
+  "test_counts_not_incremented_for_root_trial": true,
+  "production_installation": false,
+  "checkpoint_deletion": false,
+  "automatic_retirement": "masked",
+  "limits": [
+    "Temporary protected system units and disabled grant; not production automatic deletion.",
+    "Final operating installation, enabled grant, activation and stop/rollback runner remain pending.",
+    "Source input seals and preflight-time validation retain their original pending labels; this review records subsequent completion."
+  ]
+}

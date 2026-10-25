@@ -1,0 +1,48 @@
+--- previous-recovery/repair_resume.py
++++ manager-recovery/repair_resume.py
+@@ -1,7 +1,8 @@
+ """Separately approved adapter repair for one existing T18 handoff.
+ 
+ Preserves the original authority, tool seal, operation and failed attempt.
+-Only the native empty-job-list interpretation changes. Default is inspection.
++Repairs native job/command response handling and compares dependency sets without
++ordering artifacts. Default is inspection.
+ """
+ 
+ import argparse
+@@ -27,7 +28,7 @@
+         repair["recovery_id"] == c.sha(c.canonical({k: v for k, v in repair.items() if k != "recovery_id"})),
+         "Recovery digest differs",
+     )
+-    op.require(repair["purpose"] == "t18-empty-job-response-recovery-v1", "Wrong repair purpose")
++    op.require(repair["purpose"] == "t18-manager-response-recovery-v2", "Wrong repair purpose")
+     for name, digest in {**repair["files"], **repair["evidence_files"]}.items():
+         op.require(not Path(name).is_absolute() and ".." not in Path(name).parts, "Unsafe file name")
+         op.require(c.file_sha(HERE / name) == digest, "Recovery file differs: " + name)
+@@ -44,8 +45,16 @@
+ def initial_boundary(repair, directory):
+     for name, digest in repair["initial_records"].items():
+         op.require(c.file_sha(n.safe(directory / name)) == digest, "Recovery boundary changed: " + name)
+-    for name in ("transaction.json", "apply-receipt.json", "rollback-receipt.json"):
++    for path, digest in repair.get("initial_inputs", {}).items():
++        op.require(c.file_sha(n.safe(Path(path))) == digest, "Recovery input changed: " + path)
++    for name in repair.get("absent_records", ("transaction.json", "apply-receipt.json", "rollback-receipt.json")):
+         op.require(not (directory / name).exists(), "Configuration already started: " + name)
++
++
++def normalized_units(rows):
++    # These dependency properties are sets; daemon-reload can reorder output.
++    # All other fields, including PID, invocation and state, stay exact.
++    return {unit: {key: sorted(value.split()) if key in ("After", "Requires") else value for key, value in row.items()} for unit, row in rows.items()}
+ 
+ 
+ def seal(repair, args):
+@@ -120,7 +129,7 @@
+             report["original_authority_unchanged"] = c.file_sha(authority) == repair["authority_sha256"]
+             try:
+                 report["protected_after"] = host.show(c.PROCESS_UNITS)
+-                report["protected_processes_unchanged"] = report.get("protected_before") == report["protected_after"]
++                report["protected_processes_unchanged"] = bool(report.get("protected_before")) and normalized_units(report["protected_before"]) == normalized_units(report["protected_after"])
+                 report["timers_after"] = host.timers(op.TIMERS)
+             except Exception as exc:
+                 report["protected_processes_unchanged"] = None

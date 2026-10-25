@@ -1,0 +1,84 @@
+{
+  "allowed_changed_prepared_fields": [
+    "capacity",
+    "observed_at",
+    "pending_checkpoints_observed",
+    "preparation_id"
+  ],
+  "changes_do_not_affect_native_trial": "Only observation time, completed checkpoint inventory and space arithmetic changed; execution code, Python, configuration, scope, boot and protected inputs are identical.",
+  "cleanup": {
+    "errors": [],
+    "paths_absent": true,
+    "units": {
+      "md-t18-c044d2ddabfe4623-after.service": {
+        "ActiveState": "inactive",
+        "BindReadOnlyPaths": "",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "Id": "md-t18-c044d2ddabfe4623-after.service",
+        "InvocationID": "",
+        "Job": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "ProtectClock": "no",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "ReadOnlyPaths": "",
+        "ReadWritePaths": "",
+        "SubState": "dead",
+        "UMask": "0022",
+        "User": ""
+      },
+      "md-t18-c044d2ddabfe4623-before.service": {
+        "ActiveState": "inactive",
+        "BindReadOnlyPaths": "",
+        "ControlPID": "0",
+        "DropInPaths": "",
+        "Id": "md-t18-c044d2ddabfe4623-before.service",
+        "InvocationID": "",
+        "Job": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "ProtectClock": "no",
+        "ProtectHome": "no",
+        "ProtectSystem": "no",
+        "ReadOnlyPaths": "",
+        "ReadWritePaths": "",
+        "SubState": "dead",
+        "UMask": "0022",
+        "User": ""
+      },
+      "md-t18-c044d2ddabfe4623-before.timer": {
+        "ActiveState": "inactive",
+        "DropInPaths": "",
+        "Id": "md-t18-c044d2ddabfe4623-before.timer",
+        "InvocationID": "",
+        "Job": "",
+        "LoadState": "not-found",
+        "SubState": "dead"
+      }
+    }
+  },
+  "cleanup_evidence_origin": "original native preflight only",
+  "execution_inputs_equal": true,
+  "hash_verification_file": "reuse-hash-verification.json",
+  "hash_verification_sha256": "50cfbd14784b69c1fbf48f030e909833408d79d1be3b2ddcb659b891229bf914",
+  "kind": "hash_verified_reuse_of_original_native_preflight",
+  "native_preflight_rerun": false,
+  "new_native_trial_claimed": false,
+  "operating_unchanged": true,
+  "original_native_preflight": {
+    "file": "system-preflight-result-c044d2ddabfe4623.json",
+    "finished_at": "2026-10-21T23:13:18.322227+00:00",
+    "preparation_id": "69f111f23f9726eca65035fd05c18731301d0bb1f7cacbdec8363a3274cc33f1",
+    "sha256": "0795285111ee4c5122e0360e69ea23725a5434b0ae297ff5691be149f8a14fb5",
+    "started_at": "2026-10-21T23:13:15.002205+00:00"
+  },
+  "original_prepared_plan": {
+    "file": "original-prepared-plan.json",
+    "sha256": "e6cfd2fbbc13a98d902298a073ce5a6b850db1af7696e66bced830fddc893c59"
+  },
+  "passed": true,
+  "preparation_id": "9e66fac0e15bb61d3e68caea9f17ab8a095a068b0803840a68cf6cb8a3a066d3",
+  "schema": 1
+}

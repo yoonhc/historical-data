@@ -1,0 +1,60 @@
+{
+  "recorded_at": "2026-10-17T07:35:20.654748+00:00",
+  "scope": "exact same-plan pre-deletion refusal recovery; identical unit bytes installed as a regular file; installed retirement engine and policies unchanged",
+  "plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+  "isolated_tests": {
+    "command": "python3 -B reports/baseline/t05-first-manual-recovery-2026-10-17/test_manual_apply.py",
+    "exit_code": 0,
+    "passed": 12,
+    "previous_cases": 7,
+    "new_cases": 5,
+    "source_tool_chunk": "29c6f6",
+    "production_deletion": false
+  },
+  "installed_guard_tests": {
+    "file": "installed-guard-tests.json",
+    "passed": 5,
+    "source_tool_chunk": "de54af",
+    "scope": "Actual installed guard, native ownership and controlled systemctl responses; not an actual repaired unit execution"
+  },
+  "host_preflight": {
+    "command": "/usr/bin/python3 -B -I reports/baseline/t05-first-manual-recovery-2026-10-17/repair_and_apply.py --action check",
+    "exit_code": 0,
+    "passed": true,
+    "readonly": true,
+    "position": "before",
+    "manual_enabled": false,
+    "automatic_retirement": "masked",
+    "source_tool_chunk": "466564"
+  },
+  "root_start_attempt": {
+    "command_prefix": "sudo -n /usr/bin/python3 -B -I",
+    "exit_code": 1,
+    "stderr": "sudo: a password is required\n",
+    "source_tool_chunk": "a10b7c",
+    "root_helper_executed": false,
+    "unit_repaired": false,
+    "manual_grant_changed": false,
+    "service_start_requested": false,
+    "checkpoint_deletion": false
+  },
+  "frozen_inputs_verified": true,
+  "files": {
+    "authorization.md": "e6422e2141f02b853ee7f2e4a1c4b6cda9995128213f36c9ac3614c6a8c2697a",
+    "failure-journal.jsonl": "4acfddde796a9eb99bac38dccd7c611e9ff5f54b91949fec8ca983f89f52eeb8",
+    "failure-review.json": "fa14a80ef861b61c284a71a1fc9445876b084f6f24e22de495423db941ca9062",
+    "inputs.json": "10d851c5604e315894b7b74d8d948a09c9645e7d52fed9dad8788a75cc42fce5",
+    "installed-guard-tests.json": "d5491cd0dd8e27ac11d754c8cb9ec7060be8566ca1e2900ed937ecac8c312d41",
+    "manual-proposal.json": "7520bb02314605ab706a6b19d110f246955fddc120f5135d2b75552a437e2919",
+    "manual_apply.py": "f26a0bdca8093476894b62307472bafa51faf7f19f58a057fb998909f9b488c0",
+    "repair_and_apply.py": "79818c1257fa4e6ed4829e27a0612d1efaa06841e35bada5b6eab38f681caf47",
+    "status.md": "45eba85d1a804dd5da89fefca90630acc3f47a81abeeb585f2dfdeb371d289f9",
+    "test_manual_apply.py": "7fb16cdd08a088aadd516fc784a4506ecbf4e0e9c1a92ebd2a47261e5d4a13b8"
+  },
+  "operating_apply_complete": false,
+  "remaining": [
+    "Actual one-unit installation repair and installed guard as UID 1000",
+    "Installed same-plan retirement prerequisites, retained-data validation and deletion-time clock check",
+    "Exact candidate removal, retained/excluded preservation, actual reclamation and disabled authorities after completion"
+  ]
+}

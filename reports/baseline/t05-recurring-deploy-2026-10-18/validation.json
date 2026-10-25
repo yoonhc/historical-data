@@ -1,0 +1,66 @@
+{
+  "finished_at": "2026-10-18T13:38:52.733584+00:00",
+  "limits": [
+    "Manager commands are doubles in new transition tests; prior real-manager preflight reused",
+    "Real SIGKILL covers local installs/transactions, not production managers",
+    "No production install, recurring grant, timer activation or checkpoint deletion",
+    "Final-path scope/guard and first scheduled/automatic deletion observations remain"
+  ],
+  "operating_writes": 0,
+  "operation_plan_id": "2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e",
+  "passed": true,
+  "relocation": {
+    "copy": {
+      "objects": 1798,
+      "path": "/tmp/t05-recurring-install-24bd53te/t05-recurring-retirement-20261018-e57a7995f03fb301",
+      "sealed": true
+    },
+    "import": {
+      "cli_help_passed": true,
+      "executable": "/tmp/t05-recurring-install-24bd53te/t05-recurring-retirement-20261018-e57a7995f03fb301/.venv/bin/python",
+      "modules": {
+        "marketdata": "/tmp/t05-recurring-install-24bd53te/t05-recurring-retirement-20261018-e57a7995f03fb301/packages/marketdata/src/marketdata/__init__.py",
+        "scripts.clock_retirement": "/tmp/t05-recurring-install-24bd53te/t05-recurring-retirement-20261018-e57a7995f03fb301/scripts/clock_retirement.py"
+      },
+      "prefix": "/tmp/t05-recurring-install-24bd53te/t05-recurring-retirement-20261018-e57a7995f03fb301/.venv",
+      "uid": 1000
+    },
+    "limit": "Temporary UID 1000 path; final /opt root ownership/propose is an apply-time condition",
+    "seconds": 3.201527424971573,
+    "verify": {
+      "objects": 1798,
+      "verified": true
+    }
+  },
+  "reused_evidence": {
+    "candidate_cases": 61,
+    "manual_deletion": "f57f334be39e4137a4b7785836b6d2bd",
+    "repeated": false,
+    "rerun": false,
+    "rerun_root": false,
+    "root_preflight": "system-preflight-result-fe42ff4321294b9a.json"
+  },
+  "started_at": "2026-10-18T13:38:43.047946+00:00",
+  "temporary_removed": true,
+  "test_sha256": "a3e7b1d5d646804776692e662b4730c1a72350e3293fb1aa8dc848dc3c5cb036",
+  "tests": {
+    "command": [
+      "/home/yoonhc/projects/algoTrade/historical_data/.venv/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-recurring-deploy-2026-10-18/test_transition.py"
+    ],
+    "output_sha256": "6d5c87e84c5b11d61d72e9d595bf3056b38ff962a9e31693dd82900c8578df6f",
+    "result": "73 passed in 6.23s"
+  },
+  "tool_files": {
+    "engine.py": "f4ffdaccd1027c4f6349b623ef0884fc2b2667f65af03d97c7246ac07dbb191c",
+    "handoff.py": "eeb317e4dfb6b89471c3270527e1f213875002d3a97faeaf8a3b1ed8611ef949",
+    "host.py": "d2cd6916436effd487c1a467fad258a5bebbb1255db8b08a64abf02f6a9ba956",
+    "inspect_installed.py": "a1aa3c9d28b362f5d593dfbf88eb204b4a768f8a8959a00a6b84c684676250ec",
+    "installation.py": "45ceda907433d4580fd42745574e9cbcff9504c14729cfa6734caa4ae7f7a9fa",
+    "vendor/handoff_common.py": "0666b1916db63a582c64577f400ea9caa847a11c27ac4042d9c31061a0ca1d37"
+  }
+}

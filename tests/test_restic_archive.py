@@ -96,6 +96,35 @@ def agent(p, name):
     return archive.Archive(p, root)
 
 
+def test_repeated_noop_still_dumps_each_manifest_without_duplicate_body_allocation(setup_archive):
+    p = setup_archive
+    initial = agent(p, "output-initial")
+    assert initial.run()["processed"] == 2
+    checked = initial.state["repository_check"]
+    bodies = list((p.reports_root / "manifest-objects-v1").rglob("*.stdout"))
+    assert len(bodies) == 2
+    original = {path: (path.stat().st_ino, path.stat().st_blocks) for path in bodies}
+    all_commands = []
+    for number in range(3):
+        current = agent(p, f"output-noop-{number}")
+        assert current.run()["processed"] == 0
+        assert current.state["repository_check"] == checked
+        commands = [json.loads(path.read_bytes()) for path in current.restic.reports.glob("*.json")]
+        dumps = [r for r in commands if r.get("arguments", [None])[0] == "dump"]
+        assert len(dumps) == 2
+        assert not any(r.get("operation") == "check" for r in commands)
+        for receipt in dumps:
+            proof = receipt["verified_stdout"]
+            out, body = Path(receipt["stdout"]), Path(proof["body"])
+            assert sha256(out.read_bytes()) == proof["sha256"]
+            assert out.stat().st_ino == body.stat().st_ino
+            assert proof["snapshot_id"] == receipt["arguments"][1]
+            assert proof["verification"] == "fresh_dump_expected_hash_match"
+        all_commands.extend(dumps)
+    assert len({r["stdout"] for r in all_commands}) == 6
+    assert {path: (path.stat().st_ino, path.stat().st_blocks) for path in bodies} == original
+
+
 @pytest.mark.parametrize(
     "kind", ["overlap", "secret", "symlink", "repository_id", "scope", "reserve"]
 )

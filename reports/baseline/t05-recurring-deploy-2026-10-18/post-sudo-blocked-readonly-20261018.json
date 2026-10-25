@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-10-18T13:56:32.214689+00:00",
+  "operation_plan_id": "2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e",
+  "passed": true,
+  "read_only": true,
+  "before_paths": {
+    "/etc/marketdata/checkpoint-clock-retirement/recurring.json": true,
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service": true,
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-preview.service": true,
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service": true,
+    "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service": true,
+    "/etc/systemd/system/marketdata-checkpoint-retirement.service": true,
+    "/etc/systemd/system/marketdata-checkpoint-retirement.timer": true,
+    "/etc/systemd/system/timers.target.wants/marketdata-checkpoint-retirement.timer": true
+  },
+  "protected_files_count": 50,
+  "preserved_records_count": 24,
+  "protected_processes": {
+    "chrony.service": {
+      "MainPID": "1245",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+      "ActiveState": "active"
+    },
+    "marketdata-collector@depth.service": {
+      "MainPID": "224785",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e",
+      "ActiveState": "active"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "MainPID": "224784",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b",
+      "ActiveState": "active"
+    }
+  },
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "new_installation_paths_absent": {
+    "/opt/marketdata/releases/t05-recurring-retirement-20261018-e57a7995f03fb301": true,
+    "/opt/marketdata/tools/t05-recurring-operation-20261018-447cddda543bc6ed": true,
+    "/var/lib/marketdata-clock/t05-recurring-operations/2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e": true
+  },
+  "automatic_retirement": "masked",
+  "manual_enabled": false,
+  "recurring_enabled": false,
+  "root_authority_created": false,
+  "timer_start_requested": false,
+  "checkpoint_deletion_requested": false
+}

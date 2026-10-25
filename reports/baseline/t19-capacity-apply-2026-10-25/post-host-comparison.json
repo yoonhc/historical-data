@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-25T11:15:23.932031+00:00",
+  "protected_processes_unchanged": true,
+  "processes": {
+    "chrony.service": {
+      "before": {
+        "MainPID": "1245",
+        "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+        "ActiveState": "active"
+      },
+      "after": {
+        "MainPID": "1245",
+        "InvocationID": "19420480ab3249529a075ca7cb2bd3c1",
+        "ActiveState": "active"
+      }
+    },
+    "marketdata-collector@depth.service": {
+      "before": {
+        "MainPID": "3530137",
+        "InvocationID": "8f9f604f45fa44b3833aca627834f391",
+        "ActiveState": "active"
+      },
+      "after": {
+        "MainPID": "3530137",
+        "InvocationID": "8f9f604f45fa44b3833aca627834f391",
+        "ActiveState": "active"
+      }
+    },
+    "marketdata-collector@aggtrade.service": {
+      "before": {
+        "MainPID": "3529954",
+        "InvocationID": "3fa620f0e63341b9af76ff35b030b0c6",
+        "ActiveState": "active"
+      },
+      "after": {
+        "MainPID": "3529954",
+        "InvocationID": "3fa620f0e63341b9af76ff35b030b0c6",
+        "ActiveState": "active"
+      }
+    }
+  },
+  "timers": {
+    "marketdata-restic-archive.timer": {
+      "same_invocation": true,
+      "active": "active",
+      "enabled": "enabled",
+      "next": "Sun 2026-10-25 20:35:00 KST"
+    },
+    "marketdata-checkpoint-retirement.timer": {
+      "same_invocation": true,
+      "active": "active",
+      "enabled": "enabled",
+      "next": "Mon 2026-10-26 15:40:00 KST"
+    }
+  },
+  "t05_grants": {
+    "recurring": {
+      "enabled": true,
+      "sha256": "3d67f5a2ae4f44e0be36a68237fe30056ed6419d785b07a44b71f1f9797fa7e7"
+    },
+    "manual": {
+      "enabled": false,
+      "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e"
+    }
+  },
+  "service_control": false
+}

@@ -1,0 +1,146 @@
+{
+  "oi": {
+    "source": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/oi/decisions.jsonl",
+    "prefix_bytes": 15687479,
+    "prefix_sha256": "22c404b377f061396a1da87876d9628271a14831538553bed8389d88303dec10",
+    "request_finished_counts": {
+      "complete": 1522
+    },
+    "problem_events": []
+  },
+  "oi-probe": {
+    "source": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/oi-probe/decisions.jsonl",
+    "prefix_bytes": 118980642,
+    "prefix_sha256": "73d1945451f105125293e3ea37cb6d6b40551697f6b610458e3836a700d46164",
+    "request_finished_counts": {
+      "complete": 11835
+    },
+    "problem_events": []
+  },
+  "oi-quality": {
+    "source": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/oi-quality/decisions.jsonl",
+    "prefix_bytes": 57406,
+    "prefix_sha256": "95c9b192cefb350b759684a3d57858d971e3519d7c2dcd87bd5198bb3e75d7d5",
+    "request_finished_counts": {
+      "finalization_failed": 1,
+      "complete": 6
+    },
+    "problem_events": [
+      {
+        "attempt_id": "96c32c8fb0eb4a6ca96bee82b21de38b",
+        "errors": [
+          {
+            "cause": "'decimal.Decimal' object has no attribute 'isoformat'",
+            "cause_type": "AttributeError",
+            "message": "work_result_write_failed: AttributeError: 'decimal.Decimal' object has no attribute 'isoformat'",
+            "phase": "work",
+            "type": "ClockFailure"
+          },
+          {
+            "cause": "'decimal.Decimal' object has no attribute 'isoformat'",
+            "cause_type": "AttributeError",
+            "message": "work_result_write_failed: AttributeError: 'decimal.Decimal' object has no attribute 'isoformat'",
+            "phase": "monitor_close",
+            "type": "ClockFailure"
+          }
+        ],
+        "exit_code": 1,
+        "invocation_id": "8623ef805cac477faacc3c72a50e5e21",
+        "job": "oi-quality",
+        "kind": "request_finished",
+        "monitor": {
+          "ok": false,
+          "stopped": true
+        },
+        "request_id": "a702240f54774dacab107dc28fa2a776",
+        "state": "finalization_failed",
+        "work": null
+      }
+    ]
+  },
+  "daily": {
+    "source": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/daily/decisions.jsonl",
+    "prefix_bytes": 4320665,
+    "prefix_sha256": "60438ca67d7dc749f197cf591b8e42cdfd23a712abb4e1cbe05550ba82d6d21b",
+    "request_finished_counts": {
+      "complete": 596
+    },
+    "problem_events": []
+  },
+  "pack": {
+    "source": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/pack/decisions.jsonl",
+    "prefix_bytes": 437883,
+    "prefix_sha256": "267fea666f0a1f3332259ccddd4631c8948f391e83530c59fe70338b2833e3b7",
+    "request_finished_counts": {
+      "complete": 54
+    },
+    "problem_events": []
+  },
+  "backup": {
+    "source": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/backup/decisions.jsonl",
+    "prefix_bytes": 20118,
+    "prefix_sha256": "95cc40694b05bc077711aeee0b3f6fd12ae38081239b0b157cf9d1bb0b48c654",
+    "request_finished_counts": {
+      "complete": 2
+    },
+    "problem_events": []
+  },
+  "restic-archive": {
+    "source": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/restic-archive/decisions.jsonl",
+    "prefix_bytes": 845815,
+    "prefix_sha256": "b8fc4041d4005beb462892e3e079a20e8a9632843b3bb54ddefc267793f113fe",
+    "request_finished_counts": {
+      "complete": 102,
+      "failed": 2
+    },
+    "problem_events": [
+      {
+        "attempt_id": "451265e865fe4c60b158c26178f945fb",
+        "errors": [],
+        "exit_code": 75,
+        "invocation_id": "0922f71a74e0481f9fd82422e6379b09",
+        "job": "restic-archive",
+        "kind": "request_finished",
+        "monitor": {
+          "last_time_fault": null,
+          "required": true,
+          "stopped": true
+        },
+        "request_id": "3ec22a5fbf1b418e8c97e0034f7e57f7",
+        "state": "failed",
+        "work": {
+          "observed_exit_code": 75,
+          "recovered_committed_result": false
+        }
+      },
+      {
+        "attempt_id": "42387e89696f4b22a8ccb5451dca251c",
+        "errors": [],
+        "exit_code": 75,
+        "invocation_id": "2a233489cfa54367a4fb42d77c481bc3",
+        "job": "restic-archive",
+        "kind": "request_finished",
+        "monitor": {
+          "last_time_fault": null,
+          "required": true,
+          "stopped": true
+        },
+        "request_id": "475cba150a7647abbd9d55535118f479",
+        "state": "failed",
+        "work": {
+          "observed_exit_code": 75,
+          "recovered_committed_result": false
+        }
+      }
+    ]
+  },
+  "network-observer": {
+    "source": "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/network-observer/decisions.jsonl",
+    "prefix_bytes": 24245697,
+    "prefix_sha256": "114c1b27929f2f6fd1a1a0eed53cb10134a3cc91582980a6bc89eb7187c4b530",
+    "request_finished_counts": {
+      "complete": 2964
+    },
+    "problem_events": []
+  }
+}

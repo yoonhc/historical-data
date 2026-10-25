@@ -1,0 +1,214 @@
+{
+  "passed": true,
+  "started_at": "2026-10-18T04:46:31.347957+00:00",
+  "finished_at": "2026-10-18T04:46:31.645656+00:00",
+  "boot_id": "eb163bf2-6642-4336-b4d6-6cd58771b13d",
+  "files": {
+    "/etc/marketdata/checkpoint-clock-retirement/settings.toml": {
+      "path": "/etc/marketdata/checkpoint-clock-retirement/settings.toml",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0644",
+      "kind": "file",
+      "sha256": "4cc6cb95a5d96afa83c6c3153d27a5a00be96186a00c8bb76ea5d0b44656ac2b"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/policy.toml": {
+      "path": "/etc/marketdata/checkpoint-clock-retirement/policy.toml",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0644",
+      "kind": "file",
+      "sha256": "0e265933374c8cff6ca13d205e6097ae2e4adab03a49add969f0bbafabe8a26d"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": {
+      "path": "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0644",
+      "kind": "file",
+      "sha256": "bb47490cac1e11ed3c5a456d9f5d7dc699b1c72c65f5dad2e12eb32dc4c8c925"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+      "path": "/etc/marketdata/checkpoint-clock-retirement/recurring.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0644",
+      "kind": "file",
+      "sha256": "9d9c544fe9fc7c4b3ec498fddf6feef7fb419b09b1f760a2bbe3c009f8422a5e"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/manual.json": {
+      "path": "/etc/marketdata/checkpoint-clock-retirement/manual.json",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0644",
+      "kind": "file",
+      "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service": {
+      "path": "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0644",
+      "kind": "file",
+      "sha256": "e1c620d08dd09028147d06fee9b1dde9314dd97ab3ff430f0b21e6d614e760c5"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-preview.service": {
+      "path": "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-preview.service",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0644",
+      "kind": "file",
+      "sha256": "66d535599731c0bb656dbcbba75dc67382742f35115da89f92aba42395674d66"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service": {
+      "path": "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0644",
+      "kind": "file",
+      "sha256": "97c0b5290eb5dc8b7bdda9811e7f629a0994dbd37661fc77b025bbe2109bd6a5"
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.timer": {
+      "path": "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.timer",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0644",
+      "kind": "file",
+      "sha256": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa"
+    }
+  },
+  "proposal_scope_id": "84a0b92ae6f8bf0e38ac10ecb4a2615a32af72aebf1c8c28d591c02087cf4983",
+  "proposal_matches_disabled_grant": true,
+  "masks": [
+    {
+      "path": "/etc/systemd/system/marketdata-checkpoint-retirement.service",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0777",
+      "kind": "symlink",
+      "target": "/dev/null"
+    },
+    {
+      "path": "/etc/systemd/system/marketdata-checkpoint-retirement.timer",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0777",
+      "kind": "symlink",
+      "target": "/dev/null"
+    },
+    {
+      "path": "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0777",
+      "kind": "symlink",
+      "target": "/dev/null"
+    },
+    {
+      "path": "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0777",
+      "kind": "symlink",
+      "target": "/dev/null"
+    }
+  ],
+  "managers": {
+    "system": {
+      "marketdata-checkpoint-retirement.service": {
+        "MainPID": "0",
+        "ControlPID": "0",
+        "Id": "marketdata-checkpoint-retirement.service",
+        "LoadState": "masked",
+        "ActiveState": "inactive",
+        "SubState": "dead",
+        "FragmentPath": "/etc/systemd/system/marketdata-checkpoint-retirement.service",
+        "DropInPaths": "",
+        "Job": "",
+        "NeedDaemonReload": "no",
+        "InvocationID": ""
+      },
+      "marketdata-checkpoint-retirement.timer": {
+        "Id": "marketdata-checkpoint-retirement.timer",
+        "LoadState": "masked",
+        "ActiveState": "inactive",
+        "SubState": "dead",
+        "FragmentPath": "/etc/systemd/system/marketdata-checkpoint-retirement.timer",
+        "DropInPaths": "",
+        "Job": "",
+        "NeedDaemonReload": "no",
+        "InvocationID": ""
+      }
+    },
+    "user": {
+      "marketdata-checkpoint-retirement.service": {
+        "MainPID": "0",
+        "ControlPID": "0",
+        "Id": "marketdata-checkpoint-retirement.service",
+        "LoadState": "masked",
+        "ActiveState": "inactive",
+        "SubState": "dead",
+        "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.service",
+        "DropInPaths": "",
+        "Job": "",
+        "NeedDaemonReload": "no",
+        "InvocationID": ""
+      },
+      "marketdata-checkpoint-retirement.timer": {
+        "Id": "marketdata-checkpoint-retirement.timer",
+        "LoadState": "masked",
+        "ActiveState": "inactive",
+        "SubState": "dead",
+        "FragmentPath": "/home/yoonhc/.config/systemd/user/marketdata-checkpoint-retirement.timer",
+        "DropInPaths": "",
+        "Job": "",
+        "NeedDaemonReload": "no",
+        "InvocationID": ""
+      }
+    }
+  },
+  "protected_processes": {
+    "chrony.service": {
+      "MainPID": "1245",
+      "ControlPID": "0",
+      "Id": "chrony.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "SubState": "running",
+      "FragmentPath": "/usr/lib/systemd/system/chrony.service",
+      "DropInPaths": "/etc/systemd/system/chrony.service.d/marketdata.conf",
+      "Job": "",
+      "NeedDaemonReload": "no",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1"
+    },
+    "marketdata-collector@depth.service": {
+      "MainPID": "224785",
+      "ControlPID": "0",
+      "Id": "marketdata-collector@depth.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "SubState": "running",
+      "FragmentPath": "/etc/systemd/system/marketdata-collector@.service",
+      "DropInPaths": "",
+      "Job": "",
+      "NeedDaemonReload": "no",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "MainPID": "224784",
+      "ControlPID": "0",
+      "Id": "marketdata-collector@aggtrade.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "SubState": "running",
+      "FragmentPath": "/etc/systemd/system/marketdata-collector@.service",
+      "DropInPaths": "",
+      "Job": "",
+      "NeedDaemonReload": "no",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b"
+    }
+  },
+  "operating_writes": false,
+  "actual_automatic_fragment": "masked; not installed or executed by this inspection",
+  "limits": "No preview, archive read-data check, checkpoint inventory or whole-data verification."
+}

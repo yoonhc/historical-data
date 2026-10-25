@@ -1,0 +1,162 @@
+{
+  "kind": "read_only_native_job_probe_not_new_root_trial",
+  "observed_at": "2026-10-25T06:37:00.535132+00:00",
+  "uid": 1000,
+  "operating_mutations": false,
+  "passed": true,
+  "actual_job_output": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "timer_states": {
+    "marketdata-oi.timer": {
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": "585a910fb7b042ae9c9673fd236150e6"
+    },
+    "marketdata-oi-probe.timer": {
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": "19c67c724a8f417a809ec11ce27216f6"
+    },
+    "marketdata-oi-quality.timer": {
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": "d76f7792bc5746fd8fb3480aaeca8344"
+    },
+    "marketdata-daily.timer": {
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": "359120dfaa984ed684a1572fbd317aaa"
+    },
+    "marketdata-pack.timer": {
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": "095f254dc0db4ca195e9acad52e8fcfd"
+    },
+    "marketdata-backup.timer": {
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": "fd6447617d7942839e4a32c2ce9a4a37"
+    },
+    "marketdata-restic-archive.timer": {
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": "dffc636f57ed42f4a4caef593424cc0c"
+    },
+    "marketdata-network-observer.timer": {
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": "2d7a5dcddc624b558ac8a87043db54cd"
+    },
+    "marketdata-checkpoint-retirement.timer": {
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": "132c6de084754ddeae35c207ff9b2860"
+    }
+  },
+  "held_9_and_idle": true,
+  "protected_inputs_and_installed_release_verified": true,
+  "terminal_request_returncode": 0,
+  "terminal_request_proofs": {
+    "backup": {
+      "disposition": {
+        "data_complete": true,
+        "reason": "finished",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "request_id": "7aa04bde4e834f45abba402070e12538",
+      "sha256": "d7534e6a7ccc9ee9227196496a1c19dfe9e6a8632730981b1c2cc194ad0b988c"
+    },
+    "daily": {
+      "disposition": {
+        "data_complete": false,
+        "reason": "remaining_tasks_owned_by_daily_ledger",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "request_id": "4b05d7ffbaad424893ec5a399cddb9e9",
+      "sha256": "86d43eb9df7b01b0bd0373e3d1de6cfe948eac1c90c9c90e293c2d20467f5728"
+    },
+    "network-observer": {
+      "disposition": {
+        "data_complete": null,
+        "reason": "network_observation_recorded",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "request_id": "783a659e68904307a5808cee5ab36f1f",
+      "sha256": "b21ba4d9e52c1e23c21350d2f8ec7bea6e6c2aeea3b65dd0fc278e174ad3c2b8"
+    },
+    "oi": {
+      "disposition": {
+        "data_complete": false,
+        "reason": "coverage_replan_retains_missing_ranges",
+        "returncode": 2,
+        "state": "complete",
+        "work_exit_code": 2
+      },
+      "request_id": "407b2bd735e744879de523948155196c",
+      "sha256": "30df416da464a4b612920392b9d46d94415f4e31b1e5eba2fae77362e56fe94f"
+    },
+    "oi-probe": {
+      "disposition": {
+        "data_complete": true,
+        "reason": "observation_recorded",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "request_id": "2fe646fc3072445d996e2407be7c5540",
+      "sha256": "fe164b55fdf03a524769b972d799da902e2079ab1f377793a82f7159eb1d7183"
+    },
+    "oi-quality": {
+      "disposition": {
+        "data_complete": null,
+        "reason": "report_written_with_findings",
+        "returncode": 2,
+        "state": "complete",
+        "work_exit_code": 2
+      },
+      "request_id": "744e51c326ea4cc4b0006e19c655a27c",
+      "sha256": "83cc61c0b1a0cb0e1f754e5295fdcec816058e6a56f2ac43f373646481599ddf"
+    },
+    "pack": {
+      "disposition": {
+        "data_complete": true,
+        "reason": "finished",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "request_id": "a274ac1a2e4641968ba60b2e7d5cc67d",
+      "sha256": "a0c6bbea77b067232b17a27f86cc034256fb3264ddc6d73f933e9becb061d32a"
+    },
+    "restic-archive": {
+      "disposition": {
+        "data_complete": null,
+        "reason": "archive_preserved",
+        "returncode": 0,
+        "state": "complete",
+        "work_exit_code": 0
+      },
+      "request_id": "699b631182e94ed8a0b84abbb3bf4623",
+      "sha256": "791b4cec1b922b2161dbbadda97a22450736b0478af774b6d09c04a40439e3f7"
+    }
+  },
+  "authority_sha256": "5e501e421bb7ad14b43abc5329c123130c72a1f571c0a343a98ac4643caadae4",
+  "initial_records": {
+    "state.json": "7f6e54cb473505f49f8811d051e6d368669b893b551811bcd45d1aa633753d91",
+    "authority.json": "5e501e421bb7ad14b43abc5329c123130c72a1f571c0a343a98ac4643caadae4",
+    "installed-import.json": "73730588e7b7b4bfb3276cae804de3bc49911529dc51c11a1bbff23f7a4e77f2",
+    "attempt-81b84a54e20e4c3789bf28d9087fe534.json": "d7c9dc3e595be002c02d7a8bbe5cf02b3e480476825e5d6f5aae88aea2fcd1ea"
+  },
+  "configuration_before_matches": true,
+  "ledger_before_matches": true,
+  "recurring_before_matches": true
+}

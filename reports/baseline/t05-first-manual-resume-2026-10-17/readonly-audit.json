@@ -1,0 +1,272 @@
+{
+  "checked_at": "2026-10-17T07:43:04.842848+00:00",
+  "passed": true,
+  "unit_fingerprint": {
+    "uid": 0,
+    "gid": 0,
+    "mode": 420,
+    "kind": "file",
+    "nlink": 1,
+    "sha256": "9932a3c4a8bc5acc74d5ba9c98d6348e2e367524999e15181b246fd0ac3addd0"
+  },
+  "position": "after",
+  "protected_inputs": 91,
+  "protected_processes": {
+    "chrony.service": {
+      "MainPID": "1245",
+      "ControlPID": "0",
+      "Id": "chrony.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "Job": "",
+      "InvocationID": "19420480ab3249529a075ca7cb2bd3c1"
+    },
+    "marketdata-collector@depth.service": {
+      "MainPID": "224785",
+      "ControlPID": "0",
+      "Id": "marketdata-collector@depth.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "Job": "",
+      "InvocationID": "41b1747221894331a5e0b4fdf3f9751e"
+    },
+    "marketdata-collector@aggtrade.service": {
+      "MainPID": "224784",
+      "ControlPID": "0",
+      "Id": "marketdata-collector@aggtrade.service",
+      "LoadState": "loaded",
+      "ActiveState": "active",
+      "Job": "",
+      "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b"
+    },
+    "marketdata-checkpoint-retirement.service": {
+      "MainPID": "0",
+      "ControlPID": "0",
+      "Id": "marketdata-checkpoint-retirement.service",
+      "LoadState": "masked",
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": ""
+    },
+    "marketdata-checkpoint-retirement.timer": {
+      "Id": "marketdata-checkpoint-retirement.timer",
+      "LoadState": "masked",
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": ""
+    },
+    "marketdata-checkpoint-retirement-preview.service": {
+      "MainPID": "0",
+      "ControlPID": "0",
+      "Id": "marketdata-checkpoint-retirement-preview.service",
+      "LoadState": "loaded",
+      "ActiveState": "inactive",
+      "Job": "",
+      "InvocationID": ""
+    }
+  },
+  "existing_evidence_unchanged": 15,
+  "paths_absent": [
+    "/var/lib/marketdata-checkpoint-retirement/retention/journals/31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08.json",
+    "/var/lib/marketdata-checkpoint-retirement/retention/inventories/31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+    "/mnt/backup/marketdata-historical/.automatic.retiring/historical-data-original-v1/31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08"
+  ],
+  "checkpoint_manifest_checks": [
+    {
+      "kind": "candidates",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-13/9d4a3f83517044ebaf08b045514f15c5",
+      "backup_id": "10dd21822fcc0371772f3cbd3dc5b0ec0a8d086829fb78e1e0a1cab023685665",
+      "manifest_sha256": "d8395deaa2b4a10ceb2e2771df01d2b6bde4025312c55e3f647b9b4ccb13eb5b",
+      "root": {
+        "dev": 66314,
+        "ino": 21113180,
+        "mode": 16877
+      }
+    },
+    {
+      "kind": "candidates",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-07/358aedceb5a54aee9bea0bf5f59ca92d",
+      "backup_id": "1ac0768ac6f55ebbc5fc5daccae5e531b267210daef752683bb7601a690ecab2",
+      "manifest_sha256": "c30105ac5130f4f35ec24a4e5e64b3e83fa6d103a4044da7e45d54596643bdcd",
+      "root": {
+        "dev": 66314,
+        "ino": 16801393,
+        "mode": 16893
+      }
+    },
+    {
+      "kind": "candidates",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-10/cc5773d4224b45c1963479adb41ab705",
+      "backup_id": "4381041be823394454ef9135162399d1540fa548025bfde05d791b250068a0de",
+      "manifest_sha256": "04b2958bd92efe2cc6df2a5c548e85944e38c6e756868a68b31a8c61b87d538b",
+      "root": {
+        "dev": 66314,
+        "ino": 20974947,
+        "mode": 16893
+      }
+    },
+    {
+      "kind": "candidates",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-09/d7d2be14890140e8ae11be2943f1730e",
+      "backup_id": "6ba0fadd2ede16951c0448f6a7174c53e4cf22d9e19ee26c92e0be44b125b145",
+      "manifest_sha256": "9c79faa87b1abde9346862ee646328fa784821f898c2e0e2249780e45de86b7f",
+      "root": {
+        "dev": 66314,
+        "ino": 16804314,
+        "mode": 16893
+      }
+    },
+    {
+      "kind": "candidates",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-06/a28d8d6a370145b48a01331749af6d1f",
+      "backup_id": "7dd4228ffb476e1333c0890922f413234b7598ecd0bc482d7d0a3ba49f4a6b44",
+      "manifest_sha256": "61469d2de875f6a2e0b6be7c341f0ca76567f94b01e5f09c255d54fbe197aca4",
+      "root": {
+        "dev": 66314,
+        "ino": 16804359,
+        "mode": 16893
+      }
+    },
+    {
+      "kind": "candidates",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-14/e816c1b8958844599d958bb4f61d98ad",
+      "backup_id": "8dba1987cd50c0b8dff5a7e059e0194eb1925e43ed6a5d7653d32c75e3fe5113",
+      "manifest_sha256": "9fec7303fd5480c1d49658880763ae83f7d5f6f06693069ec62db81f288a420c",
+      "root": {
+        "dev": 66314,
+        "ino": 21113648,
+        "mode": 16877
+      }
+    },
+    {
+      "kind": "candidates",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-11/3d4530d9a00a48ca8717ee4bd5d5bb60",
+      "backup_id": "9849b0ef7e523cbc79546c233f409ecd93cdcc8e1b5bc4f48fe8163229968a77",
+      "manifest_sha256": "538e489ce9d47143a209cd23c0144b738ef0e484169e1a200c105f76d1d7eb52",
+      "root": {
+        "dev": 66314,
+        "ino": 20985986,
+        "mode": 16893
+      }
+    },
+    {
+      "kind": "candidates",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-08/56a530cf83164a83aefd30653138904a",
+      "backup_id": "be6f6e493aa13931b3d0cddd03581f5b009c540b7560b7a9a7faf7006d5174a8",
+      "manifest_sha256": "15d0f249ea76bd604005af7693d7a12ab1689ed2a538101b5b8cd6ab07ea3d10",
+      "root": {
+        "dev": 66314,
+        "ino": 16796848,
+        "mode": 16893
+      }
+    },
+    {
+      "kind": "candidates",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-08/ce63ff231fb440b68972ea702382c1e5",
+      "backup_id": "ccf70014d48549bd22e801b135680ef4b6e5040e236688ed78374aa987745935",
+      "manifest_sha256": "70941188298499a536efe9a93541fcbadec682ddd6659e4082731b6269164d75",
+      "root": {
+        "dev": 66314,
+        "ino": 16801757,
+        "mode": 16893
+      }
+    },
+    {
+      "kind": "candidates",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-12/ea0b6b077d354a9290f2d919522771a9",
+      "backup_id": "fd4bf8417a5203f4dfbd467118740ecc2441d642096471737727fcbcdad00fdf",
+      "manifest_sha256": "d3fd2fe18a7ab3c231d4a6c1277c9ea85084a0d2b18e7e9d582028287ffe7a65",
+      "root": {
+        "dev": 66314,
+        "ino": 21111982,
+        "mode": 16893
+      }
+    },
+    {
+      "kind": "keep",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-16/2e4c1729b668424ab66293c6d29975b8",
+      "backup_id": "08eb0f0245bb2cb26b7b25ea685a93a2577aa8091b0aecdf603db5db88ac41ad",
+      "manifest_sha256": "59769774509fa10318076e652dd9d65c244ebf473a0cbbaa2998b497c7024d4a",
+      "root": {
+        "dev": 66314,
+        "ino": 21114795,
+        "mode": 16877
+      }
+    },
+    {
+      "kind": "keep",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-17/d1b17bb4ca074575a66f42926c30141a",
+      "backup_id": "9b916470eca7e5da1462dff9c39380869242bf6711861eaea754c010ccf00963",
+      "manifest_sha256": "ce934402eae0810fc7b1a690cb6124ac2099e7314727a39e66c90dac97680d21",
+      "root": {
+        "dev": 66314,
+        "ino": 21115485,
+        "mode": 16877
+      }
+    },
+    {
+      "kind": "keep",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-10-15/26d3b66f08614a31b42d66cd3b84bb6e",
+      "backup_id": "b09dd76cb5a225668a46e470241645973f26b0971c2fc30a922a45329945dd03",
+      "manifest_sha256": "af2659b38cb6a6ccbf56efb1c8b48358787b344c88f9c145fa78d5000894fd67",
+      "root": {
+        "dev": 66314,
+        "ino": 21114164,
+        "mode": 16877
+      }
+    },
+    {
+      "kind": "excluded",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-09-25/initial",
+      "backup_id": "e6d4a8f8936990f158cb5a8cc91f419a933eb0f19610e5c4ad30c71a877a2240",
+      "manifest_sha256": "f7fd6c07acb86c920504cf01d2df230870ebb6f54783ba6fbf991491cf900246",
+      "root": {
+        "dev": 66314,
+        "ino": 16777220,
+        "mode": 16893
+      }
+    },
+    {
+      "kind": "excluded",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-09-25/linked",
+      "backup_id": "a3f90efe758c2bc584d7e57e5ec1b5e98b8384637e65e5e547591699d5b9636c",
+      "manifest_sha256": "5c6795cf1014cdf06cc0f168c24f771e6a1ebe8a5447c2ed2d18ea88ac73171d",
+      "root": {
+        "dev": 66314,
+        "ino": 16796610,
+        "mode": 16893
+      }
+    },
+    {
+      "kind": "excluded",
+      "path": "/mnt/backup/marketdata-historical/automatic/2026-09-26/d4e81e6b027349cdb2e372da4f47288d",
+      "backup_id": "e6e2e02c95a0498aa88c6199866cddde05f3a0bba67b81d0566f57289dddfac7",
+      "manifest_sha256": "ec8537202d08af3d20841c3f7c7efb209b51e830cd5d73459aafe61a3446e2a2",
+      "root": {
+        "dev": 66314,
+        "ino": 16796674,
+        "mode": 16893
+      }
+    }
+  ],
+  "manual": {
+    "uid": 0,
+    "gid": 0,
+    "mode": 420,
+    "kind": "file",
+    "nlink": 1,
+    "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e"
+  },
+  "manual_disabled": true,
+  "recurring": {
+    "uid": 0,
+    "gid": 0,
+    "mode": 420,
+    "kind": "file",
+    "nlink": 1,
+    "sha256": "14523bb85f8dcdbe3cd4fa40d21e3c11ca8a7bae181071464c68579d4a24fc65"
+  },
+  "all_four_masks": true,
+  "operating_mutations": false,
+  "scope": "roots/manifests, evidence hashes, protected configuration and processes; not full retained data or candidate tree validation"
+}

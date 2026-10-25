@@ -1,0 +1,29 @@
+{
+  "state": "candidate_only_not_installed_or_approved",
+  "unit_changes": [
+    {
+      "canonical_path": "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service",
+      "before_sha256": "9932a3c4a8bc5acc74d5ba9c98d6348e2e367524999e15181b246fd0ac3addd0",
+      "after_sha256": "e1c620d08dd09028147d06fee9b1dde9314dd97ab3ff430f0b21e6d614e760c5",
+      "candidate": "reports/baseline/t05-first-manual-exdev-2026-10-17/candidate/marketdata-checkpoint-retirement-apply@.service"
+    },
+    {
+      "canonical_path": "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service",
+      "before_sha256": "14410ec16303633a995d9b623930e8ba0a42fe19ef72a58439a0d7987c7606b2",
+      "after_sha256": "97c0b5290eb5dc8b7bdda9811e7f629a0994dbd37661fc77b025bbe2109bd6a5",
+      "candidate": "reports/baseline/t05-first-manual-exdev-2026-10-17/candidate/marketdata-checkpoint-retirement.service"
+    }
+  ],
+  "before_scope_id": "da7b03dba075a816d1c8277298dd123ce1db62e54aa9a85920711a18913a6c22",
+  "after_scope_id": "84a0b92ae6f8bf0e38ac10ecb4a2615a32af72aebf1c8c28d591c02087cf4983",
+  "recurring_disabled": true,
+  "operating_code_changed": false,
+  "existing_plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+  "existing_plan_unchanged": true,
+  "existing_journal_unchanged": true,
+  "scope_transition_and_interrupted_journal_recovery": "prepared and isolated verified; explicit operation approval pending; ordinary proposer still rejects scope mismatch",
+  "parent_write_expansion": "common parent becomes writable; currently contains only automatic and .automatic.retiring",
+  "automatic_units_remain_masked": true,
+  "recovery_operation_plan_id": "eced87a499269ebe5da84be1b0795ebfd2c109ce06f37db4e5e26f8027b9e231",
+  "recovery_review": "../t05-mount-recovery-2026-10-17/review.md"
+}

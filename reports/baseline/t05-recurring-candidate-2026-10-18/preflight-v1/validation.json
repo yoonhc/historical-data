@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "release_id": "t05-recurring-retirement-20261018-e57a7995f03fb301",
+  "candidate_cases": 46,
+  "preflight_tool_cases": 12,
+  "total_cases": 58,
+  "reports": {
+    "recurring-tests.xml": {
+      "cases": 42,
+      "sha256": "b1df8cb465b9bcdf3e8dc2f40c4fca98c5aa3931506e819dbad434ad4906f169",
+      "case_ids": [
+        "tests.test_recurring_deferral::test_only_failed_acquisition_has_safe_marker[WriterBusy-preservation]",
+        "tests.test_recurring_deferral::test_only_failed_acquisition_has_safe_marker[WriterBusy-checkpoint_inputs]",
+        "tests.test_recurring_deferral::test_only_failed_acquisition_has_safe_marker[Busy-preservation]",
+        "tests.test_recurring_deferral::test_only_failed_acquisition_has_safe_marker[Busy-checkpoint_inputs]",
+        "tests.test_recurring_deferral::test_only_failed_acquisition_has_safe_marker[CheckpointBusy-preservation]",
+        "tests.test_recurring_deferral::test_only_failed_acquisition_has_safe_marker[CheckpointBusy-checkpoint_inputs]",
+        "tests.test_recurring_deferral::test_busy_after_entry_is_never_safe_acquisition_failure[WriterBusy-body]",
+        "tests.test_recurring_deferral::test_busy_after_entry_is_never_safe_acquisition_failure[WriterBusy-exit]",
+        "tests.test_recurring_deferral::test_busy_after_entry_is_never_safe_acquisition_failure[Busy-body]",
+        "tests.test_recurring_deferral::test_busy_after_entry_is_never_safe_acquisition_failure[Busy-exit]",
+        "tests.test_recurring_deferral::test_busy_after_entry_is_never_safe_acquisition_failure[CheckpointBusy-body]",
+        "tests.test_recurring_deferral::test_busy_after_entry_is_never_safe_acquisition_failure[CheckpointBusy-exit]",
+        "tests.test_recurring_deferral::test_unknown_acquisition_error_requires_review[OSError]",
+        "tests.test_recurring_deferral::test_unknown_acquisition_error_requires_review[RuntimeError]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[state-running]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[phase-applying]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[exit_code-1]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[needs_attention-True]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[deleted_this_run-1]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[deleted_checkpoints-1]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[completed_before_run-1]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[unfinished_retirement-True]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[retirement_journal-/some/journal]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[plan_id-cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[run_id-cccccccccccccccccccccccccccccccc]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[reason-ClockHold]",
+        "tests.test_recurring_deferral::test_final_record_must_prove_safe_exit[pre_application_lock_deferral-None]",
+        "tests.test_recurring_deferral::test_unknown_or_malformed_certificate_cannot_exempt_prior_intent[schema-2]",
+        "tests.test_recurring_deferral::test_unknown_or_malformed_certificate_cannot_exempt_prior_intent[run_id-x]",
+        "tests.test_recurring_deferral::test_unknown_or_malformed_certificate_cannot_exempt_prior_intent[stage-mutation]",
+        "tests.test_recurring_deferral::test_unknown_or_malformed_certificate_cannot_exempt_prior_intent[stage-value3]",
+        "tests.test_recurring_deferral::test_unknown_or_malformed_certificate_cannot_exempt_prior_intent[exception_type-OSError]",
+        "tests.test_recurring_deferral::test_unknown_or_malformed_certificate_cannot_exempt_prior_intent[extra-True]",
+        "tests.test_recurring_deferral::test_real_lock_after_plan_allows_new_plan_without_resetting_history[maintenance]",
+        "tests.test_recurring_deferral::test_real_lock_after_plan_allows_new_plan_without_resetting_history[repository]",
+        "tests.test_recurring_deferral::test_real_lock_after_plan_allows_new_plan_without_resetting_history[checkpoint]",
+        "tests.test_recurring_deferral::test_uncertified_prejournal_busy_still_blocks_next_automatic_plan",
+        "tests.test_recurring_deferral::test_sigkill_only_durable_safe_finalization_allows_reevaluation[after_intent-False]",
+        "tests.test_recurring_deferral::test_sigkill_only_durable_safe_finalization_allows_reevaluation[before_final-False]",
+        "tests.test_recurring_deferral::test_sigkill_only_durable_safe_finalization_allows_reevaluation[after_final-True]",
+        "tests.test_recurring_deferral::test_close_failure_keeps_request_for_review",
+        "tests.test_recurring_deferral::test_final_write_failure_leaves_original_intent"
+      ]
+    },
+    "related-regression.xml": {
+      "cases": 4,
+      "sha256": "2fbd99b53ccf343f7a441a9d110517a1524abefc083d54655cbd4a365e6ea332",
+      "case_ids": [
+        "tests.test_clock_retirement::test_mid_deletion_clock_fault_leaves_journal_and_blocks_new_plan",
+        "tests.test_clock_retirement::test_changed_completion_evidence_and_targets_refuse_application",
+        "tests.test_checkpoint_retention::test_interrupted_retirement_resumes_only_authorized_remaining_files",
+        "tests.test_checkpoint_schedule::test_abrupt_exit_before_retirement_journal_also_blocks_new_plan"
+      ]
+    },
+    "preflight-tests.xml": {
+      "cases": 12,
+      "sha256": "6136d0efbe9e548459454a30c0d574ac0268180b0b3368086254fc4f97054266",
+      "case_ids": [
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_transient_properties_preserve_safeguards_and_isolate_writes",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_duplicate_scalar_manager_property_rejected",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_preflight_rejects_changed_inputs_before_trial_creation[None]",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_preflight_rejects_changed_inputs_before_trial_creation[input]",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_preflight_rejects_changed_inputs_before_trial_creation[operating]",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_preflight_rejects_changed_inputs_before_trial_creation[source]",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_actual_installed_fragment_guard[None]",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_actual_installed_fragment_guard[bytes]",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_actual_installed_fragment_guard[dropin]",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_actual_installed_fragment_guard[reload]",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_actual_installed_fragment_guard[duplicate]",
+        "reports.baseline.t05-recurring-candidate-2026-10-18.test_preflight::test_projection_changes_code_and_units_only"
+      ]
+    }
+  },
+  "operating_deletion": false,
+  "real_system_preflight": "pending",
+  "candidate_source_unchanged_after_tests": true,
+  "reused_prior_evidence": "Unchanged clock policy/evidence/restore contracts and successful original manual deletion; not added to current test counts."
+}

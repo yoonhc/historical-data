@@ -1,0 +1,83 @@
+{
+  "operation_plan_id": "821367d24e43bd2423da568dfbca8cab47ac9c40fe405f09feadea567bec4824",
+  "based_on_operation": "eced87a499269ebe5da84be1b0795ebfd2c109ce06f37db4e5e26f8027b9e231",
+  "retirement_plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+  "reviewed_run_id": "2d9f7b8b4a434183a875dfa441171295",
+  "passed": true,
+  "dispatch_intent": true,
+  "started_at": "2026-10-17T10:58:41.259822+00:00",
+  "configuration": "after",
+  "configuration_writes": 0,
+  "daemon_reload": false,
+  "clock_control": false,
+  "automatic_retirement": "masked",
+  "phase": "service_finished",
+  "runs_before_dispatch": [
+    "2d9f7b8b4a434183a875dfa441171295",
+    "4a61c943702c41bcb4b5e854ac098440",
+    "5d7deaf59b1f4c99847a732327ce77af",
+    "9690925e44194b73bfba206ba40360e7",
+    "d1c40fd557974ed9b462d1ea98e689ff"
+  ],
+  "preservation_timers": [
+    {
+      "unit": "marketdata-backup.timer",
+      "NextElapseUSecRealtime": {
+        "microseconds": 1792296600000000,
+        "remaining_seconds": 61878.77693629265
+      },
+      "NextElapseUSecMonotonic": {
+        "microseconds": 0,
+        "remaining_seconds": null
+      }
+    },
+    {
+      "unit": "marketdata-pack.timer",
+      "NextElapseUSecRealtime": {
+        "microseconds": 1792235700000000,
+        "remaining_seconds": 978.7671194076538
+      },
+      "NextElapseUSecMonotonic": {
+        "microseconds": 0,
+        "remaining_seconds": null
+      }
+    },
+    {
+      "unit": "marketdata-restic-archive.timer",
+      "NextElapseUSecRealtime": {
+        "microseconds": 1792235100000000,
+        "remaining_seconds": 378.760089635849
+      },
+      "NextElapseUSecMonotonic": {
+        "microseconds": 0,
+        "remaining_seconds": null
+      }
+    }
+  ],
+  "service_start_requested": true,
+  "last_unit": {
+    "MainPID": "0",
+    "ControlPID": "0",
+    "Result": "success",
+    "ExecMainStatus": "0",
+    "ExecStart": "{ path=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python ; argv[]=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_clock_retirement.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml apply-plan --plan-id 31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+    "User": "yoonhc",
+    "Group": "yoonhc",
+    "Id": "marketdata-checkpoint-retirement-apply@31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08.service",
+    "LoadState": "loaded",
+    "ActiveState": "inactive",
+    "SubState": "dead",
+    "FragmentPath": "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service",
+    "DropInPaths": "",
+    "Job": "",
+    "NeedDaemonReload": "no",
+    "InvocationID": ""
+  },
+  "run_id": "f57f334be39e4137a4b7785836b6d2bd",
+  "run_state": "complete",
+  "run_exit_code": 0,
+  "deleted_this_run": 10,
+  "manual_finalization": "original_disabled_restored",
+  "protected_inputs_and_processes_unchanged": true,
+  "finished_at": "2026-10-17T11:32:36.391366+00:00"
+}

@@ -1,0 +1,104 @@
+{
+  "operation_plan_id": "2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e",
+  "files": {
+    "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+      "after": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "6d731e2e9e43aba3f249c5349531b1155948e4ecdeb4546ae0c4ef7463d62c66"
+      },
+      "before": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "9d9c544fe9fc7c4b3ec498fddf6feef7fb419b09b1f760a2bbe3c009f8422a5e"
+      }
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service": {
+      "after": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "62fea813e7fa37f2f350a180e5295e7852b06e7e616e34f6e358797631e4e0b4"
+      },
+      "before": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "e1c620d08dd09028147d06fee9b1dde9314dd97ab3ff430f0b21e6d614e760c5"
+      }
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-preview.service": {
+      "after": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "3c04687c7a15c3f24b699bbabab4d44ba72d3725abdc5735a13d3cf241fdcf87"
+      },
+      "before": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "66d535599731c0bb656dbcbba75dc67382742f35115da89f92aba42395674d66"
+      }
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service": {
+      "after": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "6c1a4bc54dc0c10cac4fa2111e69b88ffa5ac83eaaa5dfb87f983b953d34516f"
+      },
+      "before": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "97c0b5290eb5dc8b7bdda9811e7f629a0994dbd37661fc77b025bbe2109bd6a5"
+      }
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service": {
+      "after": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "62fea813e7fa37f2f350a180e5295e7852b06e7e616e34f6e358797631e4e0b4"
+      },
+      "before": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "e1c620d08dd09028147d06fee9b1dde9314dd97ab3ff430f0b21e6d614e760c5"
+      }
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement.service": {
+      "after": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "6c1a4bc54dc0c10cac4fa2111e69b88ffa5ac83eaaa5dfb87f983b953d34516f"
+      },
+      "before": {
+        "kind": "symlink",
+        "target": "/dev/null"
+      }
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement.timer": {
+      "after": {
+        "kind": "file",
+        "mode": 420,
+        "sha256": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa"
+      },
+      "before": {
+        "kind": "symlink",
+        "target": "/dev/null"
+      }
+    },
+    "/etc/systemd/system/timers.target.wants/marketdata-checkpoint-retirement.timer": {
+      "after": {
+        "kind": "symlink",
+        "target": "/etc/systemd/system/marketdata-checkpoint-retirement.timer"
+      },
+      "before": {
+        "kind": "absent"
+      }
+    }
+  },
+  "active_grant_rule": {
+    "approval_reference": "/var/lib/marketdata-clock/t05-recurring-operations/OPERATION_ID/authority.json",
+    "approved_at": "first accepted explicit --approve-operation UTC timestamp, immutable on resume",
+    "base": "disabled_proposal",
+    "enabled": true,
+    "exact_active_bytes_and_hash": "persisted before grant write; not fabricated before approval",
+    "other_fields": "exactly equal; no scope substitution"
+  }
+}

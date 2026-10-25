@@ -1,0 +1,69 @@
+{
+  "capacity": {
+    "available_bytes": {
+      "after": 16642568192,
+      "before": 16918843392
+    },
+    "first_body_bytes": {
+      "after": 379678169,
+      "before": 314548669
+    },
+    "largest_temporary_stdout_bytes": {
+      "after": 17194286,
+      "before": 16983273
+    }
+  },
+  "changed_capacity_fields": [
+    "available_bytes",
+    "first_body_bytes",
+    "largest_temporary_stdout_bytes"
+  ],
+  "changed_operation_fields": [
+    "checkpoint_manifest_paths",
+    "evidence_files",
+    "operation_id",
+    "prepared",
+    "system_preflight"
+  ],
+  "changed_prepared_fields": [
+    "capacity",
+    "observed_at",
+    "pending_checkpoints_observed",
+    "preparation_id"
+  ],
+  "inventory": {
+    "added": [
+      "/mnt/backup/marketdata-historical/automatic/2026-10-22/9591d25d5a7a4d18af7769da3c3380ed/backup.json",
+      "/mnt/backup/marketdata-historical/automatic/2026-10-23/f557233292954029ac5b3d2fc951ea82/backup.json",
+      "/mnt/backup/marketdata-historical/automatic/2026-10-24/8cb874d4ea044bb9b96413bfd6c99977/backup.json",
+      "/mnt/backup/marketdata-historical/automatic/2026-10-25/cf2a4fff53644599bbfd00a1b217a3b6/backup.json"
+    ],
+    "after": 12,
+    "before": 8,
+    "missing": []
+  },
+  "new_authority_created": false,
+  "new_native_trial": false,
+  "new_operation_id": "27dd5101bfa0b7005ce0a931b075bc9cccad5a5331e9350a30c4765cbf1ee225",
+  "operating_applied": false,
+  "pending": {
+    "after": 6,
+    "before": 2
+  },
+  "previous_operation_id": "89a04417859c59ce5941e7aed36f25eb00db766962977878732cbd23e575901d",
+  "tests_rerun": false,
+  "unchanged": {
+    "drain_seconds": 600,
+    "extra_headroom_bytes": 1073741824,
+    "nine_timers": true,
+    "original_native_preflight_and_66_tests": true,
+    "policy": true,
+    "production_tool_files": true,
+    "python_environment": true,
+    "scope_after": true,
+    "six_configuration_changes": true,
+    "source_release": true
+  },
+  "validated_at": "2026-10-25T06:12:24.761593+00:00",
+  "validation": "data-only digest/schema/delta and original evidence hash checks; not a new operational test"
+}

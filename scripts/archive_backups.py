@@ -29,6 +29,7 @@ from marketdata.domain import json_bytes, now, sha256
 from marketdata.fileio import safe_file
 from marketdata.store import Store, atomic_write
 
+from scripts.archive_output import retain_verified_manifest
 from scripts.restic_trial import compare_readers, overlap, require, sample_streams
 
 VERSION = 1
@@ -451,8 +452,15 @@ class Archive:
             timestamp(snapshot["time"]) == timestamp(entry["checkpoint_at"]),
             "Snapshot checkpoint time differs",
         )
-        raw, _ = self.restic.command(["dump", snapshot["id"], "/backup.json"])
+        raw, receipt = self.restic.command(["dump", snapshot["id"], "/backup.json"])
         require(sha256(raw) == entry["manifest_sha256"], "Snapshot manifest differs")
+        retain_verified_manifest(
+            self.p.reports_root,
+            self.p.expected_repository_id,
+            receipt,
+            raw,
+            entry["manifest_sha256"],
+        )
         return attempts[0]
 
     def extract_verify(self, snapshot, entry):

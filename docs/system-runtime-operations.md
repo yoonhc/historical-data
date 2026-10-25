@@ -1,5 +1,12 @@
 # 시스템 수집·예약 업무 운영
 
+**최신 기록 기준은 2026-10-25 20:15 KST다.** 아래 이전 전환 이력과 현재 실행 경로를 구분한다.
+[10/25 마일스톤](milestones/2026-10-25-retirement-and-archive-capacity-recovery.md)에 완료·잔여 범위를 모았다.
+T05 반복 자동화와 archiver timer는 활성, 사용자 자동 정리 두 유닛은 masked, manual 승인은 비활성이다.
+T16 1차 운영 검증과 T18의 장애 복구·출력 공유 효과 확인은 완료했다.
+20:13 표본에서 수집 supervisor는 유지됐지만 다음 child는 기존 시각 정책으로 대기 중이었다.
+이 문서 정리로 현재 호스트를 다시 점검하거나 완료한 적용을 재실행하지 않았다.
+
 2026-10-09 19:33 KST의 T04·T11 적용 이후 구성을 설명한다.
 [실제 적용·실패/재개·초기 저장 확인](../reports/baseline/clock-runtime-deploy-2026-10-09/summary.md)과
 [남은 작업](../TODO.md)을 함께 확인한다. **21:59 KST의 후속 확인**에서
@@ -17,7 +24,9 @@
 [남은 고정 범위](../reports/baseline/t13-operating-review-2026-10-11/completion-plan.md)를 따른다.
 당시 대기였던 다음 주기 구분·저녁분 후속 백업·독립 복원은 위 10/12 고정 범위 검증으로 완료했다.
 **T05는 10/11 16:21 설치·기존 7개 사후 근거 등록, 17:22 backup/restic 실행 명령 전환을 마쳤다.**
-[실제 적용·잔여 검증](../reports/baseline/t05-evidence-deploy-2026-10-11/status.md)을 구분하며 자동 정리는 계속 masked다.
+[실제 적용·후속 완료](../reports/baseline/t05-evidence-deploy-2026-10-11/status.md)를 구분한다. 당시 자동 정리는 masked였으며,
+이후 [10/18 활성화](../reports/baseline/t05-recurring-deploy-2026-10-18/status.md)와
+[10/19 첫 자연 자동 삭제·보존](../reports/baseline/t05-recurring-operating-completion-2026-10-19/summary.md)을 완료했다.
 **10/13 00:32:58 T15의 승인된 이전을 완료해 8개 예약 업무도 시스템 manager가 운영한다.**
 [실제 적용·실효 구성·초기 실행·수집 경계](../reports/baseline/scheduled-system-deploy-2026-10-13/status.md)를 확인했다.
 기존 사용자 업무/timer 16개는 masked이며, T15 단계에서는 strict 시각 정책을 유지했다.
@@ -29,8 +38,11 @@ system restic의 새 snapshot·전체 검사·지정 지점의 근거 bundle 조
 **10/16 22:23:51 KST T16을 별도 승인한 계획으로 적용했다.** 8개 업무는 새 전용 waiter와 판단 지점별 시각 구간을 사용한다.
 [설치·실제 초기 결과·남은 범위](../reports/baseline/scheduled-clock-deploy-2026-10-16/status.md)를 확인한다.
 OI 품질 보고서의 Decimal 기록 결함은 별도 보완했고, **10/17 00:17:06 KST 원래 한 요청의 근거 기반 종결과 수정본 전환을 완료**했다.
-[실제 복구·새 품질 실행·잔여 검증](../reports/baseline/scheduled-clock-repair-deploy-2026-10-16/status.md)을 따른다. 실제 daily 자료 처리와 다음 정기 backup/T05/restic 연결은 남아 있다.
-현재 원복은 [수정본의 정확한 적용 계획](../reports/baseline/scheduled-clock-repair-deploy-2026-10-16/deployment-review.md)을 사용한다. 원복 대상인 이전 T16에는 Decimal 결함이 남으며 완료한 요청 복구·새 자료·근거는 유지한다.
+[실제 복구·새 품질 실행](../reports/baseline/scheduled-clock-repair-deploy-2026-10-16/status.md)에 이어
+[10/18 운영 완료](../reports/baseline/scheduled-clock-operating-review-2026-10-18/summary.md)에서 실제 daily 처리와 정기 backup/T05/restic 연결을 확인했다.
+T16 당시 [수정본 적용 계획](../reports/baseline/scheduled-clock-repair-deploy-2026-10-16/deployment-review.md)은 이력으로 보존한다.
+10/25 T18 이후의 중지·원복은 [현재 고정 도구와 manager 조회 보완의 연결](../reports/baseline/t18-archive-deploy-2026-10-25/stop-rollback-tools.md)을 따른다.
+원복 시 archiver timer는 보류하고 새 body·receipt·request·자료·근거를 보존한다. 원래 실패한 apply를 다시 실행하지 않는다.
 미완료 요청의 해시·pins·저장 근거 검토를 생략하거나 요청 삭제·T05 재등록으로 우회하지 않는다.
 
 ## 실행 코드와 관리 주체
@@ -39,9 +51,11 @@ OI 품질 보고서의 Decimal 기록 결함은 별도 보완했고, **10/17 00:
 |---|---|
 | 수집 고정 배포본 | `/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325` |
 | 부팅 준비·기존 업무 시각 검사 배포본 | `/opt/marketdata/releases/system-bootstrap-20261007-f85eb8321a19c1ee` 유지 |
-| 8개 예약 업무 고정 배포본 | `/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11` |
+| 예약 업무 기본 배포본 | `/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11` (restic 소스만 아래 T18 실행본 사용) |
 | daily variant | 위 배포본의 `daily/` — 기존 T13 원장·정책과 업무별 시각 연결 |
-| backup/restic variant | 위 배포본의 `preserve/` — 기존 T05 완료·순서 근거 및 restic 보존 유지 |
+| backup variant | 위 배포본의 `preserve/` — 기존 T05 완료·순서 근거 유지 |
+| restic 소스 | `/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c`의 `policy/run_job.py`·`preserve/` |
+| restic Python | 기존 `scheduled-clock-policy-20261016-686bb70c9ee4ef11/preserve/.venv/bin/python` — 새 소스의 필수 의존성이므로 보존 |
 | OI 3종·pack·network variant | 위 배포본의 `base/`, 공통 진입점은 `policy/run_job.py` |
 | 설치 방식 | root 소유 코드·비 editable venv, `python -I`, 수집·예약 업무 프로세스는 `yoonhc` |
 | 시스템 수집 유닛 | `marketdata-collector@depth.service`, `marketdata-collector@aggtrade.service` |
@@ -52,7 +66,8 @@ OI 품질 보고서의 Decimal 기록 결함은 별도 보완했고, **10/17 00:
 | 예약 업무 관리자·준비 | 8개 업무는 시스템 manager, `User=yoonhc`, `marketdata-jobs-clock-ready.service`. 600초 단독 차단 없이 유효한 관측·boot 준비와 실제 판단 경계 확인 |
 | 이전 사용자 예약 유닛 | 8개 service·8개 timer는 persistent masked·비활성. user manager에서 다시 enable/start하지 않음 |
 | 이전 사용자 수집 유닛 | `marketdata-depth.service`, `marketdata-aggtrade.service`는 masked·비활성 |
-| 자동 checkpoint 정리 | 사용자·시스템 service/timer 네 곳 모두 persistent masked. 근거 생성 기능만 설치·전환했고 삭제/반복 승인은 별도 |
+| 자동 checkpoint 정리 | `t05-recurring-retirement-20261018-e57a7995f03fb301` 고정 실행본. 시스템 timer·recurring 활성, 사용자 service/timer 두 mask·manual 비활성 |
+| 현재 T05 scope | T18 승인 전환 후 `2875edd74ccef07cd4a1f09917d147ab0a73cde0a6921a5f3f7cd9930344ef83` |
 
 개발 폴더 변경은 고정된 수집·daily·backup/restic 배포본에 자동 반영되지 않는다. 새 배포는 별도 경로에서 후보를 검증·고정하고
 검토한 종료/기동 경계에서 적용한다. 설치된 venv나 고정 후보의 파일을 직접 덮어쓰지 않는다.
@@ -223,7 +238,15 @@ collection·supervisor run·boot·child와 연결한다. 등록된 근거는 기
 
 staging은 정상 상태에서 약 6MiB 수준으로 제한하지만 등록 artifact는 계속 누적된다.
 기록·등록 실패나 한도 초과 때는 수집을 종료하고 spool을 보존한다. 5분 회전은 최대 유실 시간 보장이 아니다.
-자동 checkpoint 정리는 상시 시각 검사 T05의 별도 검증·승인 전까지 masked 상태로 유지한다.
+자동 checkpoint 정리는 별도 검증·승인한 시스템 timer에서 매번 새 계획으로 평가한다.
+15:40 KST·Persistent=false·Restart=no와 기존 보존 조건을 유지하며 완료한 수동 계획은 재사용하지 않는다.
+10/25 복원 직후 16:02의 시각 자격 검사 failed/1은 삭제 진입·삭제 0개로 보존한다.
+10/26 자연 예약의 실제 결과는 별도 관찰이며 `Persistent=false`만으로 모든 재활성화 요청을 배제한다고 가정하지 않는다.
+
+T18은 성공한 정확한 `/backup.json` dump를 매번 조회·검증한 뒤 같은 본문의 할당만 공유한다.
+각 출력 경로·명령 receipt를 유지하며 실제 조회 시각은 공유 inode의 mtime 대신 receipt로 판단한다.
+두 자연 no-op의 큰 본문 추가 할당은 0 B였지만 임시 쓰기·반복 조회·일반 기록 증가가 없어진 것은 아니다.
+과거 출력의 정확한 두 승인 묶음 회수 외에는 일괄 삭제·압축·이동하지 않는다.
 
 T05 근거 생성은 **실제 checkpoint 완료 표시 확정 뒤** 새 시각 관측으로 완료 상한을 기록하고,
 backup ID·manifest·실제 생성 선후관계를 `checkpoint-evidence.json`과 연결한다.
@@ -241,4 +264,7 @@ backup ID·manifest·실제 생성 선후관계를 `checkpoint-evidence.json`과
 같은 사본의 restic 보존·검사·기존 잠금/승인 조건을 함께 따른다. reference age 600초는 T05 판단에 사용하지 않는다.
 T16 적용 뒤 backup/restic의 **기동 전 전용 waiter**는 reference age 600초만으로 막지 않는다. 유효한 현재 관측·부팅 준비와 각 업무 판단 경계가 충족되지 않으면 계속 보류한다.
 근거 생성 기능 설치를 자동 삭제 승인이나 다른 8개 업무의 시각 정책 변경으로 해석하지 않는다.
-[최종 설계](t05-checkpoint-clock-safety-design.md)·[실제 중단/재개 및 원복](../reports/baseline/t05-evidence-deploy-2026-10-11/recovery.md)을 따른다.
+[정책 설계](t05-checkpoint-clock-safety-design.md)와
+[T05 반복 자동화 중지·원복 계약](../reports/baseline/t05-recurring-deploy-2026-10-18/operation-review.md)을 보존한다.
+T18에서 binding·scope가 바뀌었으므로 실제 변경 시에는 위 현재 중지·원복 연결과 현재 파일/ledger를 대조한다.
+과거 설치 계획의 승인·scope를 현재 구성에 그대로 재사용하지 않는다.

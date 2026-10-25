@@ -1,0 +1,46 @@
+{
+  "recorded_at": "2026-10-18T13:58:50.128771+00:00",
+  "timestamp_meaning": "Record creation time; individual command start timestamps were not captured",
+  "operation_plan_id": "2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e",
+  "plan_file_sha256": "ba1e99a4640edde0f4ad275d7e765922dc96656bc99986a8a78d31033d2d6696",
+  "check": {
+    "command": [
+      "/usr/bin/python3",
+      "-B",
+      "-I",
+      "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-recurring-deploy-2026-10-18/handoff.py",
+      "--action",
+      "check"
+    ],
+    "exit_code": 0,
+    "stdout": {
+      "passed": true,
+      "read_only": true,
+      "operation_plan_id": "2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e",
+      "before_paths": 8,
+      "release_objects": 1798,
+      "unfinished": [],
+      "installed": false,
+      "activated": false
+    }
+  },
+  "apply_attempt": {
+    "command": [
+      "sudo",
+      "-n",
+      "/usr/bin/python3",
+      "-B",
+      "-I",
+      "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-recurring-deploy-2026-10-18/handoff.py",
+      "--action",
+      "apply",
+      "--approve-operation",
+      "2c03a81f309d0eca6f03e24a5d84fb838d75598fd1d38dbc6dd2a4204a57ae6e"
+    ],
+    "exit_code": 1,
+    "output": "sudo: a password is required\n",
+    "python_entrypoint_started": false,
+    "root_authority_created": false
+  },
+  "after_check": "post-sudo-blocked-readonly-20261018.json"
+}

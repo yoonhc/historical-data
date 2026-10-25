@@ -1,0 +1,334 @@
+{
+  "observed_at": "2026-10-19T12:21:54.492374+00:00",
+  "scope": "Saved REST response linked to issue 25; not all historical responses or a new API request",
+  "operating_writes": 0,
+  "network_requests": 0,
+  "db_changes": 0,
+  "issue": {
+    "id": 25,
+    "key_id": "binance:linear_perpetual:BTCUSDT:open_interest:5m:rest",
+    "day": "2026-10-15",
+    "source_id": "f94c97c2a5e53997294be6163ce33da543d759bf19170db37bada478e053e9f3",
+    "kind": "quarantined_zero_oi",
+    "blocking": 1,
+    "details": "[{\"kind\":\"zero_oi\",\"source_row\":0,\"timestamp\":\"2026-10-15T13:50:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":1,\"timestamp\":\"2026-10-15T13:55:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":2,\"timestamp\":\"2026-10-15T14:05:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":3,\"timestamp\":\"2026-10-15T14:20:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":4,\"timestamp\":\"2026-10-15T14:35:00+00:00\"},{\"kind\":\"zero_oi\",\"source_row\":5,\"timestamp\":\"2026-10-15T14:50:00+00:00\"}]",
+    "resolved": 0,
+    "created_at": "2026-10-15T16:59:10.128464+00:00"
+  },
+  "query_manifest_artifact": {
+    "id": "f94c97c2a5e53997294be6163ce33da543d759bf19170db37bada478e053e9f3",
+    "path": "data/raw/f9/f94c97c2a5e53997294be6163ce33da543d759bf19170db37bada478e053e9f3/payload",
+    "kind": "query_manifest",
+    "observed_at": "2026-10-15T16:59:10.127125+00:00",
+    "bytes": 300
+  },
+  "query_manifest": {
+    "end": "2026-10-15T16:59:10.039995+00:00",
+    "key": {
+      "dataset": "open_interest",
+      "interval": "5m",
+      "market": "linear_perpetual",
+      "series": "rest",
+      "symbol": "BTCUSDT"
+    },
+    "pagination_complete": true,
+    "source_ids": [
+      "7d0cca001b0e1fd9a108919edb6d5e2390656437fc811829571fb631855b3920"
+    ],
+    "start": "2026-10-15T13:45:00+00:00"
+  },
+  "raw_artifact": {
+    "id": "7d0cca001b0e1fd9a108919edb6d5e2390656437fc811829571fb631855b3920",
+    "path": "data/raw/7d/7d0cca001b0e1fd9a108919edb6d5e2390656437fc811829571fb631855b3920/payload",
+    "kind": "rest",
+    "observed_at": "2026-10-15T16:59:10.124418+00:00",
+    "bytes": 5047
+  },
+  "fetches": [
+    {
+      "id": 1078289,
+      "artifact_id": "7d0cca001b0e1fd9a108919edb6d5e2390656437fc811829571fb631855b3920",
+      "url": "https://fapi.binance.com/futures/data/openInterestHist?symbol=BTCUSDT&period=5m&limit=500&startTime=1792071900000&endTime=1792083550038",
+      "observed_at": "2026-10-15T16:59:10.124418+00:00",
+      "metadata": "{\"headers\":{\"access-control-allow-credentials\":\"true\",\"access-control-allow-headers\":\"*,clienttype,Content-Type,lang,x-ui-request-trace,bnc-uuid\",\"access-control-allow-methods\":\"GET, POST, PUT, DELETE, OPTIONS\",\"access-control-allow-origin\":\"*\",\"cache-control\":\"no-cache, no-store, must-revalidate\",\"connection\":\"keep-alive\",\"content-encoding\":\"gzip\",\"content-security-policy\":\"default-src 'self'\",\"content-type\":\"application/json;charset=UTF-8\",\"date\":\"Thu, 15 Oct 2026 16:59:10 GMT\",\"expires\":\"0\",\"pragma\":\"no-cache\",\"server\":\"nginx\",\"strict-transport-security\":\"max-age=31536000; includeSubdomains\",\"transfer-encoding\":\"chunked\",\"vary\":\"accept-encoding\",\"via\":\"1.1 d47cdd224621d4ea1fb204ab7e56b9d6.cloudfront.net (CloudFront)\",\"x-amz-cf-id\":\"Kzp-0cmBTLP8dqVKLBq01lWSxdJkVv91aZHI54Kof-h2LgP2YZFUbw==\",\"x-amz-cf-pop\":\"ICN57-P6\",\"x-cache\":\"Miss from cloudfront\",\"x-content-type-options\":\"nosniff\",\"x-frame-options\":\"SAMEORIGIN\",\"x-xss-protection\":\"1; mode=block\"},\"status\":200}"
+    }
+  ],
+  "raw_rows": 30,
+  "raw_first": "2026-10-15T13:50:00+00:00",
+  "raw_last": "2026-10-15T16:55:00+00:00",
+  "raw_quantity_zero_rows": 0,
+  "raw_value_zero_rows": 6,
+  "raw_missing_labels_in_requested_range": [
+    "2026-10-15T13:45:00+00:00",
+    "2026-10-15T14:00:00+00:00",
+    "2026-10-15T14:10:00+00:00",
+    "2026-10-15T14:15:00+00:00",
+    "2026-10-15T14:25:00+00:00",
+    "2026-10-15T14:30:00+00:00",
+    "2026-10-15T14:40:00+00:00",
+    "2026-10-15T14:45:00+00:00",
+    "2026-10-15T14:55:00+00:00"
+  ],
+  "parser_quarantine": true,
+  "parser_issues": [
+    {
+      "kind": "zero_oi",
+      "source_row": 0,
+      "timestamp": "2026-10-15T13:50:00+00:00"
+    },
+    {
+      "kind": "zero_oi",
+      "source_row": 1,
+      "timestamp": "2026-10-15T13:55:00+00:00"
+    },
+    {
+      "kind": "zero_oi",
+      "source_row": 2,
+      "timestamp": "2026-10-15T14:05:00+00:00"
+    },
+    {
+      "kind": "zero_oi",
+      "source_row": 3,
+      "timestamp": "2026-10-15T14:20:00+00:00"
+    },
+    {
+      "kind": "zero_oi",
+      "source_row": 4,
+      "timestamp": "2026-10-15T14:35:00+00:00"
+    },
+    {
+      "kind": "zero_oi",
+      "source_row": 5,
+      "timestamp": "2026-10-15T14:50:00+00:00"
+    }
+  ],
+  "parser_issues_match_stored": true,
+  "canonical_revision": {
+    "id": "3353a60b8ff95a8fbb751da4a754fbfb17a3f2c61dd831888bb6203baf36fa5f",
+    "key_id": "binance:linear_perpetual:BTCUSDT:open_interest:5m:rest",
+    "key_json": "{\"dataset\":\"open_interest\",\"interval\":\"5m\",\"market\":\"linear_perpetual\",\"series\":\"rest\",\"symbol\":\"BTCUSDT\"}",
+    "day": "2026-10-15",
+    "path": "data/canonical/open_interest/3e237e30619eb427/2026-10-15/3353a60b8ff95a8fbb751da4a754fbfb17a3f2c61dd831888bb6203baf36fa5f.parquet",
+    "file_sha": "a43f29220ba852b39c8b85c7f546a606b1ed9861001f6b11e8f7e959c713a0a1",
+    "row_count": 165,
+    "quality": "{\"accepted_revision\":false,\"issues\":[],\"source_id\":\"d95a6d52c4db58ebeb6e64f04d2a8b29fd509d3041fc73e6f693e93d7b1c5b00\"}",
+    "created_at": "2026-10-15T14:20:46.067176+00:00"
+  },
+  "canonical_rows": 165,
+  "canonical_first": "2026-10-15T00:00:00+00:00",
+  "canonical_last": "2026-10-15T13:40:00+00:00",
+  "canonical_day_expected_labels": 288,
+  "canonical_quantity_zero_rows": 0,
+  "canonical_value_zero_rows": 0,
+  "archive_csv_path": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t17-oi-archive-investigation-2026-10-19/BTCUSDT-metrics-2026-10-15.csv",
+  "archive_csv_sha256": "8ccb9ded761a6c6179a4e2167f6a516eaced8a96b3a3137dd75109df6df51ec4",
+  "comparison_shift_seconds": 300,
+  "comparison_shift_is_hypothesis_only": true,
+  "problem_window": [
+    {
+      "archive_label": "2026-10-15T13:40:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T13:45:00+00:00",
+      "archive_quantity": "0E-16",
+      "archive_value": "0E-16",
+      "rest_present": false,
+      "rest_quantity": null,
+      "rest_value": null,
+      "both_values_equal": null
+    },
+    {
+      "archive_label": "2026-10-15T13:45:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T13:50:00+00:00",
+      "archive_quantity": "91641.4350000000000000",
+      "archive_value": "0E-16",
+      "rest_present": true,
+      "rest_quantity": "91641.435000000000000000",
+      "rest_value": "0E-18",
+      "both_values_equal": true
+    },
+    {
+      "archive_label": "2026-10-15T13:50:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T13:55:00+00:00",
+      "archive_quantity": "92714.6150000000000000",
+      "archive_value": "0E-16",
+      "rest_present": true,
+      "rest_quantity": "92714.615000000000000000",
+      "rest_value": "0E-18",
+      "both_values_equal": true
+    },
+    {
+      "archive_label": "2026-10-15T13:55:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:00:00+00:00",
+      "archive_quantity": "0E-16",
+      "archive_value": "0E-16",
+      "rest_present": false,
+      "rest_quantity": null,
+      "rest_value": null,
+      "both_values_equal": null
+    },
+    {
+      "archive_label": "2026-10-15T14:00:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:05:00+00:00",
+      "archive_quantity": "91677.4140000000000000",
+      "archive_value": "0E-16",
+      "rest_present": true,
+      "rest_quantity": "91677.414000000000000000",
+      "rest_value": "0E-18",
+      "both_values_equal": true
+    },
+    {
+      "archive_label": "2026-10-15T14:05:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:10:00+00:00",
+      "archive_quantity": "0E-16",
+      "archive_value": "0E-16",
+      "rest_present": false,
+      "rest_quantity": null,
+      "rest_value": null,
+      "both_values_equal": null
+    },
+    {
+      "archive_label": "2026-10-15T14:10:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:15:00+00:00",
+      "archive_quantity": "0E-16",
+      "archive_value": "0E-16",
+      "rest_present": false,
+      "rest_quantity": null,
+      "rest_value": null,
+      "both_values_equal": null
+    },
+    {
+      "archive_label": "2026-10-15T14:15:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:20:00+00:00",
+      "archive_quantity": "91522.5290000000000000",
+      "archive_value": "0E-16",
+      "rest_present": true,
+      "rest_quantity": "91522.529000000000000000",
+      "rest_value": "0E-18",
+      "both_values_equal": true
+    },
+    {
+      "archive_label": "2026-10-15T14:20:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:25:00+00:00",
+      "archive_quantity": "0E-16",
+      "archive_value": "0E-16",
+      "rest_present": false,
+      "rest_quantity": null,
+      "rest_value": null,
+      "both_values_equal": null
+    },
+    {
+      "archive_label": "2026-10-15T14:25:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:30:00+00:00",
+      "archive_quantity": "0E-16",
+      "archive_value": "0E-16",
+      "rest_present": false,
+      "rest_quantity": null,
+      "rest_value": null,
+      "both_values_equal": null
+    },
+    {
+      "archive_label": "2026-10-15T14:30:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:35:00+00:00",
+      "archive_quantity": "91675.5820000000000000",
+      "archive_value": "0E-16",
+      "rest_present": true,
+      "rest_quantity": "91675.582000000000000000",
+      "rest_value": "0E-18",
+      "both_values_equal": true
+    },
+    {
+      "archive_label": "2026-10-15T14:35:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:40:00+00:00",
+      "archive_quantity": "0E-16",
+      "archive_value": "0E-16",
+      "rest_present": false,
+      "rest_quantity": null,
+      "rest_value": null,
+      "both_values_equal": null
+    },
+    {
+      "archive_label": "2026-10-15T14:40:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:45:00+00:00",
+      "archive_quantity": "0E-16",
+      "archive_value": "0E-16",
+      "rest_present": false,
+      "rest_quantity": null,
+      "rest_value": null,
+      "both_values_equal": null
+    },
+    {
+      "archive_label": "2026-10-15T14:45:00+00:00",
+      "rest_label_at_plus_5m": "2026-10-15T14:50:00+00:00",
+      "archive_quantity": "92716.6310000000000000",
+      "archive_value": "0E-16",
+      "rest_present": true,
+      "rest_quantity": "92716.631000000000000000",
+      "rest_value": "0E-18",
+      "both_values_equal": true
+    }
+  ],
+  "quality_report": {
+    "path": "/home/yoonhc/projects/algoTrade/historical_data/reports/oi-quality/20261019T034000-ecbc1b3053c3/report.json",
+    "sha256": "2b047ce89e7bf38a83017e411385ace7cb7c9dbb91f7fa198c471553879d137b",
+    "report_id": "ecbc1b3053c346367b27770f12a01c15e15be68588d90e77eeab6762848e5879",
+    "generated_at": "2026-10-19T03:40:00.981179+00:00",
+    "reference_shift_seconds": 300,
+    "unit_status": "Quantity and value units remain unverified; comparison is exact source-number parity only",
+    "parity_for_day": [
+      {
+        "blocked": 288,
+        "comparable": 0,
+        "day": "2026-10-15",
+        "exact": 0,
+        "exact_rate": null,
+        "expected": 288,
+        "mismatch": 0,
+        "missing_archive": 0,
+        "missing_rest": 0,
+        "quantity_exact": 0,
+        "shift_seconds": -300,
+        "value_exact": 0
+      },
+      {
+        "blocked": 288,
+        "comparable": 0,
+        "day": "2026-10-15",
+        "exact": 0,
+        "exact_rate": null,
+        "expected": 288,
+        "mismatch": 0,
+        "missing_archive": 0,
+        "missing_rest": 0,
+        "quantity_exact": 0,
+        "shift_seconds": 0,
+        "value_exact": 0
+      },
+      {
+        "blocked": 288,
+        "comparable": 0,
+        "day": "2026-10-15",
+        "exact": 0,
+        "exact_rate": null,
+        "expected": 288,
+        "mismatch": 0,
+        "missing_archive": 0,
+        "missing_rest": 0,
+        "quantity_exact": 0,
+        "shift_seconds": 300,
+        "value_exact": 0
+      }
+    ]
+  },
+  "code": {
+    "normalize_rest": {
+      "path": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11/base/.venv/lib/python3.12/site-packages/marketdata/normalize.py",
+      "line": 190,
+      "file_sha256": "227037c0763e4b0e4d3f851dd247bbd84cc4e929197c33485171ee66a1b256e6"
+    },
+    "parity_report": {
+      "path": "/opt/marketdata/releases/scheduled-clock-policy-20261016-686bb70c9ee4ef11/base/.venv/lib/python3.12/site-packages/marketdata/oi_quality.py",
+      "line": 28,
+      "file_sha256": "eaba4b3ba93cc0b7f6027addfaa1cb03003848183f3971691b990e594e70b2ad"
+    }
+  },
+  "passed": true
+}

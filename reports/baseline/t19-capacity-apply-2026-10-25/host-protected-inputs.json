@@ -1,0 +1,394 @@
+{
+  "at": "2026-10-25T10:29:15.008637+00:00",
+  "context": "host_outside_filesystem_sandbox",
+  "differences": {
+    "/etc/chrony/marketdata.conf": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+        "uid": 65534
+      }
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/manual.json": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+        "uid": 65534
+      }
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "3d67f5a2ae4f44e0be36a68237fe30056ed6419d785b07a44b71f1f9797fa7e7",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "3d67f5a2ae4f44e0be36a68237fe30056ed6419d785b07a44b71f1f9797fa7e7",
+        "uid": 65534
+      }
+    },
+    "/etc/marketdata/scheduled-clock-policy/clock-binding.json": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "bca6681ed9cc5204b174e825f0fcc76a2af839e7e0017ad571954d3c5f636b4f",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "bca6681ed9cc5204b174e825f0fcc76a2af839e7e0017ad571954d3c5f636b4f",
+        "uid": 65534
+      }
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement.service": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "6c1a4bc54dc0c10cac4fa2111e69b88ffa5ac83eaaa5dfb87f983b953d34516f",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "6c1a4bc54dc0c10cac4fa2111e69b88ffa5ac83eaaa5dfb87f983b953d34516f",
+        "uid": 65534
+      }
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement.timer": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa",
+        "uid": 65534
+      }
+    },
+    "/etc/systemd/system/marketdata-restic-archive.service": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "50b4fccfa2999411e7c0fcdc574a0c517ef9e741890f2ef067302daf57649dda",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "50b4fccfa2999411e7c0fcdc574a0c517ef9e741890f2ef067302daf57649dda",
+        "uid": 65534
+      }
+    },
+    "/etc/systemd/system/marketdata-restic-archive.timer": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+        "uid": 65534
+      }
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/policy/job_clock.py": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4",
+        "uid": 65534
+      }
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/policy/request_contract.py": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "bff0d83ace0b372e3d7aabd23821fb0cd57aed4b0be265364cdc330c7dbefe2c",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "bff0d83ace0b372e3d7aabd23821fb0cd57aed4b0be265364cdc330c7dbefe2c",
+        "uid": 65534
+      }
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/policy/run_job.py": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "55a965a3c9894b89d5d45b9d26b6a71f71fc76f9cb048e48589d8958f83e4e7c",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "55a965a3c9894b89d5d45b9d26b6a71f71fc76f9cb048e48589d8958f83e4e7c",
+        "uid": 65534
+      }
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/preserve/packages/marketdata/src/marketdata/job_clock.py": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4",
+        "uid": 65534
+      }
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/preserve/scripts/archive_backups.py": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "941d425e5fab10272b92608de88c225f0d10ee592f85e29dccebf476424dee06",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "941d425e5fab10272b92608de88c225f0d10ee592f85e29dccebf476424dee06",
+        "uid": 65534
+      }
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/preserve/scripts/archive_output.py": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "e01a905faf122798539c211809d32c0b08e9d2271332227285ca8228d338de9f",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "e01a905faf122798539c211809d32c0b08e9d2271332227285ca8228d338de9f",
+        "uid": 65534
+      }
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/preserve/scripts/restic_schedule.py": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 420,
+        "sha256": "ec6a929dcd0f963d10f0ea17c759dc71f84a78bf001a5b5ddd1690ebf13dbad1",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 420,
+        "sha256": "ec6a929dcd0f963d10f0ea17c759dc71f84a78bf001a5b5ddd1690ebf13dbad1",
+        "uid": 65534
+      }
+    },
+    "/usr/bin/ionice": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 493,
+        "sha256": "c4315c8f9cd5b5a3e6d40114966f04d22982a2d2d1955292ff2e2bdfaaab3507",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 493,
+        "sha256": "c4315c8f9cd5b5a3e6d40114966f04d22982a2d2d1955292ff2e2bdfaaab3507",
+        "uid": 65534
+      }
+    },
+    "/usr/bin/python3.12": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 493,
+        "sha256": "1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 493,
+        "sha256": "1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118",
+        "uid": 65534
+      }
+    },
+    "/usr/bin/systemctl": {
+      "host_actual": {
+        "gid": 0,
+        "mode": 493,
+        "sha256": "7ba82b5ba146759c710e1b80fadaa3fdbc0f9b85c8fb2c8c3196b7b1a0037ef8",
+        "uid": 0
+      },
+      "sandbox_expected": {
+        "gid": 65534,
+        "mode": 493,
+        "sha256": "7ba82b5ba146759c710e1b80fadaa3fdbc0f9b85c8fb2c8c3196b7b1a0037ef8",
+        "uid": 65534
+      }
+    }
+  },
+  "files": {
+    "/etc/chrony/marketdata.conf": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "7a89504e8794aa929ffcc125a4bf5e6689bec4513ca902461329d141527fbb86",
+      "uid": 0
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/manual.json": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "fe599e7332281a1a4b601833912c67606b3dd877d3ad274fcb764143b077be4e",
+      "uid": 0
+    },
+    "/etc/marketdata/checkpoint-clock-retirement/recurring.json": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "3d67f5a2ae4f44e0be36a68237fe30056ed6419d785b07a44b71f1f9797fa7e7",
+      "uid": 0
+    },
+    "/etc/marketdata/scheduled-clock-policy/clock-binding.json": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "bca6681ed9cc5204b174e825f0fcc76a2af839e7e0017ad571954d3c5f636b4f",
+      "uid": 0
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement.service": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "6c1a4bc54dc0c10cac4fa2111e69b88ffa5ac83eaaa5dfb87f983b953d34516f",
+      "uid": 0
+    },
+    "/etc/systemd/system/marketdata-checkpoint-retirement.timer": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "5cf13dceffa07a7d452dc5d0303dbb26fb77e9a1ebbf2fe7d1c26dd2735d5dfa",
+      "uid": 0
+    },
+    "/etc/systemd/system/marketdata-restic-archive.service": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "50b4fccfa2999411e7c0fcdc574a0c517ef9e741890f2ef067302daf57649dda",
+      "uid": 0
+    },
+    "/etc/systemd/system/marketdata-restic-archive.timer": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "7b118f820dd57a2cee9a19872d2bd301041ae9a5bc5d82f6d9fe9b6b1ea2990b",
+      "uid": 0
+    },
+    "/home/yoonhc/.config/marketdata/restic-archive.toml": {
+      "gid": 1000,
+      "mode": 384,
+      "sha256": "8428785c331f3d7ea8a36f95defb384f36de2b556e7bb2ae12f7f6ddbbc2c2ba",
+      "uid": 1000
+    },
+    "/home/yoonhc/.config/marketdata/restic-service.env": {
+      "gid": 1000,
+      "mode": 384,
+      "sha256": "abaeaa1330980ff513bd743e0173b9dddc375db784eef4cda4b8618f5e753be9",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t18-capacity-recovery-2026-10-19/deduplicate.py": {
+      "gid": 1000,
+      "mode": 436,
+      "sha256": "4e68dd62804b3cc8b270decac8354dc0cc3b6c51b068ae1f659d503268b86263",
+      "uid": 1000
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t18-capacity-recovery-2026-10-19/hardlink-compatibility.json": {
+      "gid": 1000,
+      "mode": 436,
+      "sha256": "a8cf3903385d85ad0f4a90d8e27654efc773e1369e416a7e4aeb13066a30fc87",
+      "uid": 1000
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/policy/job_clock.py": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4",
+      "uid": 0
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/policy/request_contract.py": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "bff0d83ace0b372e3d7aabd23821fb0cd57aed4b0be265364cdc330c7dbefe2c",
+      "uid": 0
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/policy/run_job.py": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "55a965a3c9894b89d5d45b9d26b6a71f71fc76f9cb048e48589d8958f83e4e7c",
+      "uid": 0
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/preserve/packages/marketdata/src/marketdata/job_clock.py": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "394d69867cfee6a9032a626e6f8887309c33ad08f8abe7a052af8295a58fbce4",
+      "uid": 0
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/preserve/scripts/archive_backups.py": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "941d425e5fab10272b92608de88c225f0d10ee592f85e29dccebf476424dee06",
+      "uid": 0
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/preserve/scripts/archive_output.py": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "e01a905faf122798539c211809d32c0b08e9d2271332227285ca8228d338de9f",
+      "uid": 0
+    },
+    "/opt/marketdata/releases/restic-output-20261022-585c3e3686704e5c/preserve/scripts/restic_schedule.py": {
+      "gid": 0,
+      "mode": 420,
+      "sha256": "ec6a929dcd0f963d10f0ea17c759dc71f84a78bf001a5b5ddd1690ebf13dbad1",
+      "uid": 0
+    },
+    "/usr/bin/ionice": {
+      "gid": 0,
+      "mode": 493,
+      "sha256": "c4315c8f9cd5b5a3e6d40114966f04d22982a2d2d1955292ff2e2bdfaaab3507",
+      "uid": 0
+    },
+    "/usr/bin/python3.12": {
+      "gid": 0,
+      "mode": 493,
+      "sha256": "1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118",
+      "uid": 0
+    },
+    "/usr/bin/systemctl": {
+      "gid": 0,
+      "mode": 493,
+      "sha256": "7ba82b5ba146759c710e1b80fadaa3fdbc0f9b85c8fb2c8c3196b7b1a0037ef8",
+      "uid": 0
+    }
+  },
+  "operating_writes": 0,
+  "uid": 1000
+}

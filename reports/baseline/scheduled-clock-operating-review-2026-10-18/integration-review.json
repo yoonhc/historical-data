@@ -1,0 +1,186 @@
+{
+  "checked_at": "2026-10-18T14:43:30.978785+00:00",
+  "passed": true,
+  "daily_system_invocations": {
+    "209157f2a455427a94ab15033958d92a": {
+      "invocation_id": "74ec8a85ac104c39bf514d51d9164eb3",
+      "uid": 1000,
+      "manager_job_done": true,
+      "process_ids": [
+        "2438821"
+      ],
+      "fixed_command_verified": true
+    },
+    "35f3459b23194203a687a45989589e66": {
+      "invocation_id": "79f3b3e8efc749469761162ccdd495ef",
+      "uid": 1000,
+      "manager_job_done": true,
+      "process_ids": [
+        "2440155"
+      ],
+      "fixed_command_verified": true
+    },
+    "4c2d80de76d04b859d074083ad63b61e": {
+      "invocation_id": "8b629cda48e84f8e873de3b893338849",
+      "uid": 1000,
+      "manager_job_done": true,
+      "process_ids": [
+        "2570692"
+      ],
+      "fixed_command_verified": true
+    },
+    "f27385967718423dbe93f1360ca054fd": {
+      "invocation_id": "edc6b2a1f2f6423c8576caadb963ddab",
+      "uid": 1000,
+      "manager_job_done": true,
+      "process_ids": [
+        "2566488"
+      ],
+      "fixed_command_verified": true
+    }
+  },
+  "backup": {
+    "maintenance_id": "1de6965ae3844c999a672653571a5c8c",
+    "backup_id": "9b916470eca7e5da1462dff9c39380869242bf6711861eaea754c010ccf00963",
+    "reused": false,
+    "request_id": "ea8e68bd64d743f5b3ae5b080c0f318c",
+    "invocation_id": "fda07748026c4dfd8a2e7d0a1544075b",
+    "completion_object": "2e242b0a5af450545f5dd7277d7eb4444de3f3cc854d256cd83705363380b92f",
+    "evidence_sha256": "63fe236673bcb857908c3e3e3e7068abfd6bfc4a7d143753478dd5326a12d1fb"
+  },
+  "restic": {
+    "snapshot_id": "0911b25d3a270fad604eeb222748e950ea45383b68d9b451e6d785b92672c58f",
+    "archive_run_id": "6845ad8849f2414aac798369806f6310",
+    "system_timer_verified": true,
+    "request_id": "84147c3693574b3f8fde284da67790f8",
+    "invocation_id": "e0860d76785b4c7cb3dff705ffddb60c",
+    "stored_at": "2026-10-17T06:14:42.502131+00:00",
+    "full_check_finished_at": "2026-10-17T06:17:01.937641+00:00",
+    "read_data": true,
+    "num_errors": 0,
+    "bundle_bytes": 42618,
+    "bundle_objects": 14,
+    "predecessors": 12,
+    "direct_snapshot_read_reused_from": "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-formal-preview-2026-10-17/verification.json"
+  },
+  "boot_ledger_matches_deployment_receipt": true,
+  "preexisting_oi_review": {
+    "task_id": "c24159c0b9f2893037ac67c41e52d5bbdfd0a9ed2c3f62ecdae43d6c7b32b6e9",
+    "prior_run": "f92129292fc94e68b151008d308012de",
+    "prior_started_at": "2026-10-16T15:10:15.781856+00:00",
+    "attempt_ids": [
+      "0af32466cb6e44efbee0fe5ba85c5282",
+      "39f32b6665984af28a7e3b84e73b13da"
+    ],
+    "before_initial_T16_deployment": true,
+    "pending_refresh_cycles": [
+      "2026-10-16",
+      "2026-10-17",
+      "2026-10-18"
+    ]
+  },
+  "terminal_error_scan": {
+    "known_recovered_decimal_request": true,
+    "additional_lock_busy_failures": 2,
+    "lock_busy_recovered_with_same_request": [
+      {
+        "request_id": "3ec22a5fbf1b418e8c97e0034f7e57f7",
+        "failed_attempt": "451265e865fe4c60b158c26178f945fb",
+        "failed_invocation": "0922f71a74e0481f9fd82422e6379b09",
+        "original_state": "failed",
+        "exit_code": 75,
+        "reason_from_system_journal": "lock_busy",
+        "lock_at": "2026-10-17T08:05:01.351619+00:00",
+        "completed_attempt": "fefb913453204c2a9e11ac7a7b0daae2",
+        "completed_invocation": "fdc99ef98deb440f99c308a74ba8ddcb",
+        "resumed_at": "2026-10-17T08:35:01.321915+00:00",
+        "finished_at": "2026-10-17T08:35:40.362259+00:00",
+        "same_request_identity_scope_pins": true,
+        "processed": 0,
+        "resumed_from_system_timer": true
+      },
+      {
+        "request_id": "475cba150a7647abbd9d55535118f479",
+        "failed_attempt": "42387e89696f4b22a8ccb5451dca251c",
+        "failed_invocation": "2a233489cfa54367a4fb42d77c481bc3",
+        "original_state": "failed",
+        "exit_code": 75,
+        "reason_from_system_journal": "lock_busy",
+        "lock_at": "2026-10-17T11:05:01.342894+00:00",
+        "completed_attempt": "5a668d9aa48242758bf05e66be1160c6",
+        "completed_invocation": "a814a01422c14a15b8f2d45e732a60c1",
+        "resumed_at": "2026-10-17T11:35:01.348810+00:00",
+        "finished_at": "2026-10-17T11:35:38.592426+00:00",
+        "same_request_identity_scope_pins": true,
+        "processed": 0,
+        "resumed_from_system_timer": true
+      }
+    ],
+    "unresolved_failed_or_finalization_failed_events_in_captured_prefixes": 0,
+    "limits": "Only committed request_finished records in captured prefixes; not a guarantee against unrecorded crashes."
+  },
+  "reused_sources": {
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-disabled-scope-2026-10-17/backup-completion-20261017.json": {
+      "sha256": "396da7f0b9a78d9143c043c36af80fbbeaa9a2af85e3a1ad4d061e3a8c8130ea",
+      "bytes": 20650444
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-disabled-scope-2026-10-17/restic-completion-20261017.json": {
+      "sha256": "f86d32097ac5d18b13649bc8fec157dbcca764c12fffea8917d913000c496da8",
+      "bytes": 286524
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-formal-preview-2026-10-17/verification.json": {
+      "sha256": "d0d18be4e4ccc224620078da9552b9f598aef0a75621daeb3974b3997ea11e27",
+      "bytes": 5977
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/6845ad8849f2414aac798369806f6310/9bd3f647d8f0478e8c1b4b7081435477.stdout": {
+      "sha256": "390183f57f5965367604ccbb914ce144ee4e7a11a769bf987db639f71c003be6",
+      "bytes": 113
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/restic-archive-runs/6845ad8849f2414aac798369806f6310/9bd3f647d8f0478e8c1b4b7081435477.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/t05-formal-preview-2026-10-17/bundle-07a8273ab9a640bab89e6c6eb7629bc6.json": {
+      "sha256": "63fe236673bcb857908c3e3e3e7068abfd6bfc4a7d143753478dd5326a12d1fb",
+      "bytes": 42618
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-repair-deploy-2026-10-16/operating-evidence/configuration-receipt.json": {
+      "sha256": "32941348d66d24af0c59f97bf3fb8f3960ba92630863055abeaa4778c84e7057",
+      "bytes": 31848
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-operating-review-2026-10-18/current-boot-ledger.json": {
+      "sha256": "cc94a8bb5a586036dee5620059dd1678232b45bf0683b40ac7d334f1f1b64edb",
+      "bytes": 3150
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-operating-review-2026-10-18/daily-wrapper-review.json": {
+      "sha256": "c26279f18757c7b91ef590533e089d88aaea11cae27ee20f27d0f929e4ec7d0b",
+      "bytes": 2703
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-repair-deploy-2026-10-16/operating-evidence/daily-last-before-repair.json": {
+      "sha256": "f5f74d90beb608d79bcb74ec547022f0975143ab3313bbf44678932bae3e0812",
+      "bytes": 13771
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/reports/baseline/scheduled-clock-operating-review-2026-10-18/daily-review.json": {
+      "sha256": "4072da7022c7b5e2d671a09e5ba10f46ea54664f7af14355fc188b20ee139fc8",
+      "bytes": 13544
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/restic-archive/attempts/3ec22a5fbf1b418e8c97e0034f7e57f7/451265e865fe4c60b158c26178f945fb.json": {
+      "sha256": "d69ee158a2f73fcec05fd4cecfc03e0aa46f82cc3c78d1b02e27b53ff534478f",
+      "bytes": 2313
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/restic-archive/attempts/3ec22a5fbf1b418e8c97e0034f7e57f7/fefb913453204c2a9e11ac7a7b0daae2.json": {
+      "sha256": "11ec516f448e3ac94e6db34ffb8f5be0cc3d9aee875ddaf4511564673a7528cb",
+      "bytes": 45843
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/restic-archive/attempts/475cba150a7647abbd9d55535118f479/5a668d9aa48242758bf05e66be1160c6.json": {
+      "sha256": "c8faf68a7be236dd62ea0d205d46656b085763ab4c20d5ddd7b9040717707812",
+      "bytes": 45856
+    },
+    "/home/yoonhc/projects/algoTrade/historical_data/state/scheduled-clock-policy/restic-archive/attempts/475cba150a7647abbd9d55535118f479/42387e89696f4b22a8ccb5451dca251c.json": {
+      "sha256": "1bb189eaad782967cb8d09306443861e39624c474e56129afb1686d73b9ec038",
+      "bytes": 2313
+    }
+  },
+  "operational_mutations": 0,
+  "new_full_check_or_restore": false
+}

@@ -1,0 +1,53 @@
+{
+  "observed_at": "2026-10-25T15:30:19.410902+09:00",
+  "operation_id": "27dd5101bfa0b7005ce0a931b075bc9cccad5a5331e9350a30c4765cbf1ee225",
+  "operating_mutations": false,
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "list-jobs",
+        "--output=json",
+        "--no-pager"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "list-jobs",
+        "--output=json",
+        "--no-pager",
+        "--no-legend"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/systemctl",
+        "list-jobs",
+        "--output=json",
+        "--no-pager",
+        "--all"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "configuration_before_matches": {
+    "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": true,
+    "/etc/marketdata/clock-bootstrap.json": true,
+    "/etc/marketdata/scheduled-clock-policy/clock-binding.json": true,
+    "/etc/marketdata/scheduled-system/topology.json": true,
+    "/etc/systemd/system/marketdata-restic-archive.service": true
+  },
+  "ledger_before_matches": true,
+  "grant_before_matches": true,
+  "transaction_exists": false,
+  "apply_receipt_exists": false
+}

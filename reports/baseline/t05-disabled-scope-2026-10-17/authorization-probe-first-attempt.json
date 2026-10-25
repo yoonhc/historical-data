@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "phase": "isolated_authorization_input_substitution",
+  "error": "authorization_scope_changed",
+  "cause": "The first probe redirected plain_path(), but installed authorize() uses the original Path.read_bytes() to load the grant. It therefore correctly read and refused the unchanged old operating grant.",
+  "resolution": "Redirect only Path.read_bytes() for the exact recurring grant path during the isolated call. The operating file and authorization implementation remain unchanged.",
+  "operating_mutations": false,
+  "production_tool_changed": false
+}

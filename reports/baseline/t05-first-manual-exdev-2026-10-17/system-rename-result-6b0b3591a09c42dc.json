@@ -1,0 +1,102 @@
+{
+  "started_at": "2026-10-17T08:44:28.055054+00:00",
+  "passed": true,
+  "operating_mutations": false,
+  "trial_root": "/mnt/backup/.md-t05-rename-6b0b3591a09c42dc",
+  "trial_runtime": "/run/md-t05-rename-6b0b3591a09c42dc",
+  "tool_sha256": "d3b559074318abaa8ac7969a0e0e33148f088f31b766f28a66645444b6a85cfc",
+  "installed_unit_sha256": "9932a3c4a8bc5acc74d5ba9c98d6348e2e367524999e15181b246fd0ac3addd0",
+  "protection_properties": [
+    "UMask=0077",
+    "Nice=10",
+    "IOSchedulingClass=best-effort",
+    "IOSchedulingPriority=7",
+    "KillSignal=SIGINT",
+    "KillMode=mixed",
+    "Restart=no",
+    "SuccessExitStatus=75",
+    "NoNewPrivileges=yes",
+    "CapabilityBoundingSet=",
+    "AmbientCapabilities=",
+    "ProtectSystem=strict",
+    "ProtectHome=read-only",
+    "ProtectClock=yes",
+    "ProtectKernelTunables=yes",
+    "ProtectKernelModules=yes",
+    "ProtectControlGroups=yes",
+    "PrivateDevices=yes",
+    "PrivateTmp=yes",
+    "RestrictSUIDSGID=yes",
+    "LockPersonality=yes",
+    "RestrictRealtime=yes",
+    "RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6",
+    "IPAddressDeny=any",
+    "IPAddressAllow=localhost"
+  ],
+  "cases": [
+    {
+      "unit": "md-t05-rename-6b0b3591a09c42dc-split.service",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "result": {
+        "mode": "split",
+        "uid": 1000,
+        "gid": 1000,
+        "same_device": true,
+        "source_mount_id": 872,
+        "staging_mount_id": 869,
+        "invocation_id": "ee785d0a9bac4d0cb9defbeed2516bdd",
+        "source_path": "/mnt/backup/.md-t05-rename-6b0b3591a09c42dc/split/checkpoints/automatic/dummy",
+        "target_path": "/mnt/backup/.md-t05-rename-6b0b3591a09c42dc/split/checkpoints/.automatic.retiring/dummy",
+        "rename_errno": 18,
+        "source_exists": true,
+        "target_exists": false,
+        "payload_preserved": true,
+        "outside_write_errno": 30,
+        "passed": true
+      }
+    },
+    {
+      "unit": "md-t05-rename-6b0b3591a09c42dc-common.service",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "result": {
+        "mode": "common",
+        "uid": 1000,
+        "gid": 1000,
+        "same_device": true,
+        "source_mount_id": 868,
+        "staging_mount_id": 868,
+        "invocation_id": "121defac1c084fb48930dd6faad006c5",
+        "source_path": "/mnt/backup/.md-t05-rename-6b0b3591a09c42dc/common/checkpoints/automatic/dummy",
+        "target_path": "/mnt/backup/.md-t05-rename-6b0b3591a09c42dc/common/checkpoints/.automatic.retiring/dummy",
+        "rename_errno": null,
+        "source_exists": false,
+        "target_exists": true,
+        "payload_preserved": true,
+        "outside_write_errno": 30,
+        "passed": true
+      }
+    }
+  ],
+  "cleanup": {
+    "errors": [],
+    "unit_states": {
+      "md-t05-rename-6b0b3591a09c42dc-split.service": {
+        "MainPID": "0",
+        "LoadState": "not-found",
+        "ActiveState": "inactive"
+      },
+      "md-t05-rename-6b0b3591a09c42dc-common.service": {
+        "MainPID": "0",
+        "LoadState": "not-found",
+        "ActiveState": "inactive"
+      }
+    },
+    "paths_absent": true
+  },
+  "operating_unchanged": true,
+  "finished_at": "2026-10-17T08:44:28.288731+00:00"
+}

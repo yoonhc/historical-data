@@ -1,0 +1,20 @@
+--- original/native_host.py
++++ recovery/native_host.py
+@@ -199,8 +199,15 @@
+         # Other exact-plan T05 instances share the runner lock; also reject any
+         # live service job before taking it. No instance is stopped or reset.
+         if c.T05_SERVICE in services:
+-            jobs = json.loads(
+-                run(["/usr/bin/systemctl", "list-jobs", "--output=json", "--no-pager"])
++            raw_jobs = run(["/usr/bin/systemctl", "list-jobs", "--output=json", "--no-pager"])
++            # This host emits an empty successful output when there are no jobs.
++            # Non-zero command status still raises in run(); non-empty invalid
++            # JSON and malformed rows must never be treated as an empty queue.
++            jobs = json.loads(raw_jobs) if raw_jobs.strip() else []
++            op.require(
++                isinstance(jobs, list)
++                and all(isinstance(j, dict) and isinstance(j.get("unit"), str) for j in jobs),
++                "Unexpected system job response",
+             )
+             op.require(
+                 not any(

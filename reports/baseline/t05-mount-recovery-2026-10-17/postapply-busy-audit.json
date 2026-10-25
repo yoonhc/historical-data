@@ -1,0 +1,383 @@
+{
+  "passed": true,
+  "checked_at": "2026-10-17T09:52:34.771519+00:00",
+  "operation_plan_id": "eced87a499269ebe5da84be1b0795ebfd2c109ce06f37db4e5e26f8027b9e231",
+  "plan_id": "31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08",
+  "run_id": "2d9f7b8b4a434183a875dfa441171295",
+  "configuration": "after",
+  "scope_id": "84a0b92ae6f8bf0e38ac10ecb4a2615a32af72aebf1c8c28d591c02087cf4983",
+  "reason": "Busy",
+  "detail": "Another archive/check/recovery holds the repository lock; retry later",
+  "run_started_at": "2026-10-17T09:47:08.391293+00:00",
+  "run_finished_at": "2026-10-17T09:47:27.203711+00:00",
+  "journal_sha256": "b197674e221643d5e1fce0535865e03f937c29358b512d4f1884d83113a0a740",
+  "journal_unchanged": true,
+  "journal_attempts": 1,
+  "all_items_prepared": true,
+  "unlinked_files": 0,
+  "deleted_this_run": 0,
+  "stage_empty": true,
+  "candidates": 10,
+  "retained": 3,
+  "excluded": 3,
+  "manifest_and_candidate_roots_preserved": true,
+  "inventories_preserved": 10,
+  "protected_inputs": 88,
+  "operating": {
+    "positions": {
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement-apply@.service": "after",
+      "/etc/marketdata/checkpoint-clock-retirement/units/marketdata-checkpoint-retirement.service": "after",
+      "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service": "after",
+      "/etc/marketdata/checkpoint-clock-retirement/recurring.json": "after"
+    },
+    "units": {
+      "chrony.service": {
+        "MainPID": "1245",
+        "ControlPID": "0",
+        "Id": "chrony.service",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "Job": "",
+        "InvocationID": "19420480ab3249529a075ca7cb2bd3c1"
+      },
+      "marketdata-collector@depth.service": {
+        "MainPID": "224785",
+        "ControlPID": "0",
+        "Id": "marketdata-collector@depth.service",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "Job": "",
+        "InvocationID": "41b1747221894331a5e0b4fdf3f9751e"
+      },
+      "marketdata-collector@aggtrade.service": {
+        "MainPID": "224784",
+        "ControlPID": "0",
+        "Id": "marketdata-collector@aggtrade.service",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "Job": "",
+        "InvocationID": "1aa42e55ff804c1f9e5ec68b31116c6b"
+      },
+      "marketdata-checkpoint-retirement.service": {
+        "MainPID": "0",
+        "ControlPID": "0",
+        "Id": "marketdata-checkpoint-retirement.service",
+        "LoadState": "masked",
+        "ActiveState": "inactive",
+        "Job": "",
+        "InvocationID": ""
+      },
+      "marketdata-checkpoint-retirement.timer": {
+        "Id": "marketdata-checkpoint-retirement.timer",
+        "LoadState": "masked",
+        "ActiveState": "inactive",
+        "Job": "",
+        "InvocationID": ""
+      },
+      "marketdata-checkpoint-retirement-preview.service": {
+        "MainPID": "0",
+        "ControlPID": "0",
+        "Id": "marketdata-checkpoint-retirement-preview.service",
+        "LoadState": "loaded",
+        "ActiveState": "inactive",
+        "Job": "",
+        "InvocationID": ""
+      }
+    },
+    "registry_files": 15,
+    "existing_registry_preserved": 15
+  },
+  "manual_enabled": false,
+  "recurring_enabled": false,
+  "automatic_retirement": "masked",
+  "run_hashes": {
+    "d1c40fd557974ed9b462d1ea98e689ff": "af8c7cc70beaf6a57140fe42b41b8836c3a7af8fbf612bc860f6a88cd1273536",
+    "5d7deaf59b1f4c99847a732327ce77af": "90ea055b05be7860e215a87b93aac7ca0f2f95666587675c63e5ce3380ab2f14",
+    "2d9f7b8b4a434183a875dfa441171295": "57be65ef8653484f318ccd61727ca86b71305969fec0c8eb16ba398b52ce8e6e",
+    "4a61c943702c41bcb4b5e854ac098440": "8b7871a22a8ca296eeb96e956c5a99b4db61561bb29cd803105b02f1dfe33425"
+  },
+  "source_evidence": {
+    "root-result.json": {
+      "source": "/var/lib/marketdata-clock/t05-mount-repairs/eced87a499269ebe5da84be1b0795ebfd2c109ce06f37db4e5e26f8027b9e231/result-1792230449307681504.json",
+      "sha256": "b73b9188c85c6768a0268ab5604d2a69b942d9b54f7096f853aeb77b5d52051f",
+      "bytes": 2351
+    },
+    "root-state.json": {
+      "source": "/var/lib/marketdata-clock/t05-mount-repairs/eced87a499269ebe5da84be1b0795ebfd2c109ce06f37db4e5e26f8027b9e231/state.json",
+      "sha256": "b73b9188c85c6768a0268ab5604d2a69b942d9b54f7096f853aeb77b5d52051f",
+      "bytes": 2351
+    },
+    "manual-enabled.json": {
+      "source": "/var/lib/marketdata-clock/t05-mount-repairs/eced87a499269ebe5da84be1b0795ebfd2c109ce06f37db4e5e26f8027b9e231/manual-enabled.json",
+      "sha256": "715d05d28c89cbfdfecebf7427a2cd1ff6505070edd4b7fd91c7125aab1d9c36",
+      "bytes": 11086
+    },
+    "run.json": {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/run.json",
+      "sha256": "57be65ef8653484f318ccd61727ca86b71305969fec0c8eb16ba398b52ce8e6e",
+      "bytes": 88833
+    },
+    "clock.jsonl": {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/clock.jsonl",
+      "sha256": "3de1e79e8750fc08b3efe70e4dd853990dbac5b8c808be96f016227fa6311abc",
+      "bytes": 4000
+    },
+    "journal.json": {
+      "source": "/var/lib/marketdata-checkpoint-retirement/retention/journals/31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08.json",
+      "sha256": "b197674e221643d5e1fce0535865e03f937c29358b512d4f1884d83113a0a740",
+      "bytes": 13237
+    }
+  },
+  "commands": [
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/02138c70c0fb4e02b2e9a063646fa4da.json",
+      "sha256": "7141b44deb5be4f0e316832b54d92dd12c61e6378df281e1ef9e5e6850c6f49c",
+      "record": {
+        "arguments": [
+          "dump",
+          "0911b25d3a270fad604eeb222748e950ea45383b68d9b451e6d785b92672c58f",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:14.677327+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:13.112317+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/02138c70c0fb4e02b2e9a063646fa4da.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/02138c70c0fb4e02b2e9a063646fa4da.stdout",
+        "wall_seconds": 1.5649907339829952
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/079098780a2f483d92e31dafca6dca17.json",
+      "sha256": "e1eb3221fc215f54cbc2b938badb97d25970110996cf7008ad9fe7256090556a",
+      "record": {
+        "arguments": [
+          "dump",
+          "789986e2e6f1469d80322dbac91fde652207b24aeadb9c03f9b766b48a11fe67",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:19.405241+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:17.863797+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/079098780a2f483d92e31dafca6dca17.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/079098780a2f483d92e31dafca6dca17.stdout",
+        "wall_seconds": 1.5413884030422196
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/17f0c764f2a04c739e250293d60d1a16.json",
+      "sha256": "81948ad3cb2779af1caf44681456a9a9b6d3ec17a5148790ae8c898de0d2b76c",
+      "record": {
+        "arguments": [
+          "dump",
+          "616ed4d6dbd3636b1970c5e623e3a770d42d31ae9ee3b9b26102e9675110a470",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:17.802406+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:16.266147+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/17f0c764f2a04c739e250293d60d1a16.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/17f0c764f2a04c739e250293d60d1a16.stdout",
+        "wall_seconds": 1.5362279389519244
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/505495a4ae084420afb653757434faf5.json",
+      "sha256": "eaf5c7723be4d36daca836d80d4a8b33f7d40ca9d1ca35163cd88898484058de",
+      "record": {
+        "arguments": [
+          "dump",
+          "0911b25d3a270fad604eeb222748e950ea45383b68d9b451e6d785b92672c58f",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:24.085277+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:22.553112+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/505495a4ae084420afb653757434faf5.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/505495a4ae084420afb653757434faf5.stdout",
+        "wall_seconds": 1.5321449280017987
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/62c4246bf95f45adbe76581579a82363.json",
+      "sha256": "8604fcaeaf70829484770fd5f9d393552ce153137ca9674a003b5af4a3423487",
+      "record": {
+        "arguments": [
+          "dump",
+          "94c79c5a5d38192e430c8c78ac15e403dd00dfb6f1d85455ca7a57fed326f839",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:13.102873+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:11.567904+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/62c4246bf95f45adbe76581579a82363.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/62c4246bf95f45adbe76581579a82363.stdout",
+        "wall_seconds": 1.534944756072946
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/6faca76d18a54fdebd8f4088cca9bca2.json",
+      "sha256": "dc36a3df1080dc07361a4bb83b5e0c72c91938ed316acf819777134bbbef7dd5",
+      "record": {
+        "arguments": [
+          "dump",
+          "616ed4d6dbd3636b1970c5e623e3a770d42d31ae9ee3b9b26102e9675110a470",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:27.181277+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:25.655144+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/6faca76d18a54fdebd8f4088cca9bca2.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/6faca76d18a54fdebd8f4088cca9bca2.stdout",
+        "wall_seconds": 1.5260345080168918
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/7059f4530d184e2283fdc5b79eb2efdd.json",
+      "sha256": "079901fad85c40cb556943334454706a47c7fc7cdf3076bd0cdef5a7fa9606eb",
+      "record": {
+        "arguments": [
+          "dump",
+          "94c79c5a5d38192e430c8c78ac15e403dd00dfb6f1d85455ca7a57fed326f839",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:22.542351+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:20.977512+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/7059f4530d184e2283fdc5b79eb2efdd.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/7059f4530d184e2283fdc5b79eb2efdd.stdout",
+        "wall_seconds": 1.5647693559294567
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/d08dadc6dc3043ef8ba7a46a9a783308.json",
+      "sha256": "0a44fd183ca25ecbb9317f3873145ff1db7d9a3736130d5098b96ed9bc3f64c7",
+      "record": {
+        "arguments": [
+          "dump",
+          "789986e2e6f1469d80322dbac91fde652207b24aeadb9c03f9b766b48a11fe67",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:10.021781+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:08.525718+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/d08dadc6dc3043ef8ba7a46a9a783308.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/d08dadc6dc3043ef8ba7a46a9a783308.stdout",
+        "wall_seconds": 1.4960047509521246
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/e177bc4e21b64e6b8fc583d6e94f7cff.json",
+      "sha256": "91854e6fb1c8df1787183f9720fda000e3e36101e7481f167931cb02ac1b65db",
+      "record": {
+        "arguments": [
+          "dump",
+          "9c0f667e492b8f2a5450d5ef812ee9b3f21ca8131d24807b1bdaa20653e0ce51",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:25.631413+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:24.106851+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/e177bc4e21b64e6b8fc583d6e94f7cff.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/e177bc4e21b64e6b8fc583d6e94f7cff.stdout",
+        "wall_seconds": 1.5244944299338385
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/ed1ac9e80f3e442991b9b0906e6c0ccc.json",
+      "sha256": "cfdbc13c50b1b1715876c42bd7e4afdd4c18a3e5812aa95c9bb3401222f89779",
+      "record": {
+        "arguments": [
+          "dump",
+          "a2dbcdd442459fbde79cb29a7244e3acf95f40c5ac69e37d5b3337a16adba378",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:20.955518+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:19.415898+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/ed1ac9e80f3e442991b9b0906e6c0ccc.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/ed1ac9e80f3e442991b9b0906e6c0ccc.stdout",
+        "wall_seconds": 1.539560041972436
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/f3f69e2800b941f1b7ba636be0cf9986.json",
+      "sha256": "d5fdff7ff3e0b803da98d2a58a1d480fd0722d02332f09e259932146201bba31",
+      "record": {
+        "arguments": [
+          "dump",
+          "9c0f667e492b8f2a5450d5ef812ee9b3f21ca8131d24807b1bdaa20653e0ce51",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:16.256538+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:14.689029+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/f3f69e2800b941f1b7ba636be0cf9986.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/f3f69e2800b941f1b7ba636be0cf9986.stdout",
+        "wall_seconds": 1.567454310017638
+      }
+    },
+    {
+      "source": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/fab70260cf2d48b085bf6f06f47386d0.json",
+      "sha256": "e17f460408cafa7f9790c7f90172ffe3463ea8f730f51b8855d256c8b5d09c92",
+      "record": {
+        "arguments": [
+          "dump",
+          "a2dbcdd442459fbde79cb29a7244e3acf95f40c5ac69e37d5b3337a16adba378",
+          "/checkpoint-evidence.json"
+        ],
+        "cwd": null,
+        "finished_at": "2026-10-17T09:47:11.546003+00:00",
+        "operation": "dump",
+        "returncode": 0,
+        "started_at": "2026-10-17T09:47:10.043938+00:00",
+        "stderr": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/fab70260cf2d48b085bf6f06f47386d0.stderr",
+        "stdout": "/var/lib/marketdata-checkpoint-retirement/runs/2d9f7b8b4a434183a875dfa441171295/commands/fab70260cf2d48b085bf6f06f47386d0.stdout",
+        "wall_seconds": 1.5020410650176927
+      }
+    }
+  ],
+  "clock_uncertainty_seconds": 0.1381896005,
+  "reference_age_seconds": 1069.8293211460114,
+  "current_unit": {
+    "MainPID": "0",
+    "ControlPID": "0",
+    "Result": "exit-code",
+    "ExecMainStatus": "1",
+    "ExecStart": "{ path=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python ; argv[]=/opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/.venv/bin/python -B -I /opt/marketdata/releases/t05-completion-evidence-20261011-c9d413cfe11ec0e7/scripts/run_clock_retirement.py --settings /etc/marketdata/checkpoint-clock-retirement/settings.toml apply-plan --plan-id 31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08 ; ignore_errors=no ; start_time=[Sat 2026-10-17 18:47:08 KST] ; stop_time=[Sat 2026-10-17 18:47:27 KST] ; pid=2586122 ; code=exited ; status=1 }",
+    "User": "yoonhc",
+    "Group": "yoonhc",
+    "Id": "marketdata-checkpoint-retirement-apply@31766af4d1fec615372a7c7cb37c380e13f734a62b548986cd858c3e8937ba08.service",
+    "LoadState": "loaded",
+    "ActiveState": "failed",
+    "SubState": "failed",
+    "FragmentPath": "/etc/systemd/system/marketdata-checkpoint-retirement-apply@.service",
+    "DropInPaths": "",
+    "Job": "",
+    "NeedDaemonReload": "no",
+    "InvocationID": "98583b775b784c7c8db4b20597fd250f"
+  },
+  "operating_mutation": false,
+  "new_service_requested": false
+}

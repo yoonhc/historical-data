@@ -1,0 +1,54 @@
+{
+  "archive_request_unchanged": true,
+  "boot_matches": true,
+  "capacity": {
+    "available_bytes": 15558070272,
+    "passed": true,
+    "required_bytes": 12142692006
+  },
+  "checkpoint_inventory": {
+    "actual_count": 9,
+    "added": [
+      "/mnt/backup/marketdata-historical/automatic/2026-10-22/9591d25d5a7a4d18af7769da3c3380ed/backup.json"
+    ],
+    "expected_count": 8,
+    "matches": false,
+    "missing": []
+  },
+  "configuration": {
+    "/etc/marketdata/checkpoint-clock-retirement/clock-binding.json": {
+      "mode": 420,
+      "position": "before",
+      "sandbox_uid": 65534
+    },
+    "/etc/marketdata/clock-bootstrap.json": {
+      "mode": 420,
+      "position": "before",
+      "sandbox_uid": 65534
+    },
+    "/etc/marketdata/scheduled-clock-policy/clock-binding.json": {
+      "mode": 420,
+      "position": "before",
+      "sandbox_uid": 65534
+    },
+    "/etc/marketdata/scheduled-system/topology.json": {
+      "mode": 420,
+      "position": "before",
+      "sandbox_uid": 65534
+    },
+    "/etc/systemd/system/marketdata-restic-archive.service": {
+      "mode": 420,
+      "position": "before",
+      "sandbox_uid": 65534
+    }
+  },
+  "grant_sha256": "3b436c4f0803582c6a64414a009abf2ab212945584f6ba3211ec1efbaff8035d",
+  "handoff_sha256": "d9cc290b7cefc52c7e35d5d9930da7dcc2829bc383691d4025729f97ec4032e9",
+  "ledger_unchanged": true,
+  "new_release_exists": false,
+  "observed_at": "2026-10-22T09:33:12.500241+00:00",
+  "operation_file_sha256": "50aab5c8d8ded456fb6dffb32aedef755739f09377258d3f96d628dfca65a733",
+  "operation_id": "89a04417859c59ce5941e7aed36f25eb00db766962977878732cbd23e575901d",
+  "protected_mismatches": [],
+  "shared_body_exists": false
+}
