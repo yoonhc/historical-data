@@ -11,6 +11,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 from .binance import FUTURES, Fetcher, SourceError
+from .clock_evidence import collection_context, finish_context
 from .domain import DataError, Key, from_epoch, json_bytes, micros, now, number, sha256, utc
 from .oi_probe import retry_delay
 from .schema import TIME, VALUE
@@ -105,7 +106,13 @@ def id_gaps(ids):
 
 def start_collection(store, kind, details=None):
     identity, stamp = uuid4().hex, now()
-    report = {"id": identity, "kind": kind, "started_at": stamp, **(details or {})}
+    report = {
+        "id": identity,
+        "kind": kind,
+        "started_at": stamp,
+        **(details or {}),
+        **collection_context(kind),
+    }
     with store.writer(timeout=60), store.db:
         store.db.execute(
             "INSERT INTO event_collections VALUES(?,?,?,?,?,?,?)",
@@ -123,6 +130,7 @@ def start_collection(store, kind, details=None):
 
 
 def save_collection(store, report, state):
+    finish_context(report, state)
     report = {**report, "state": state, "updated_at": now()}
     with store.writer(timeout=60), store.db:
         store.db.execute(

@@ -1,0 +1,15 @@
+[Unit]
+Description=Generate daily OI parity and availability evidence
+Requires=marketdata-jobs-clock-ready.service
+After=marketdata-jobs-clock-ready.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=@STORE_ROOT@
+TimeoutStartSec=5min
+# A completed report can contain findings requiring review.
+SuccessExitStatus=2
+User=@USER@
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+ExecStart=@RELEASE@/.venv/bin/python -B -I @RELEASE@/scripts/run_job.py --job oi-quality --binding @CONFIG_ROOT@/scheduled-clock-policy/clock-binding.json --state-root @STORE_ROOT@/state/scheduled-clock-policy --run -- --root @STORE_ROOT@ oi-quality --days 7

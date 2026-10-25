@@ -1,0 +1,19 @@
+[Unit]
+Description=Market data due daily tasks (T13 candidate)
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=600
+StartLimitBurst=5
+Requires=marketdata-jobs-clock-ready.service
+After=marketdata-jobs-clock-ready.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=@STORE_ROOT@
+TimeoutStartSec=30min
+Restart=on-failure
+RestartSec=60s
+User=@USER@
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+ExecStart=@RELEASE@/.venv/bin/python -B -I @RELEASE@/scripts/run_job.py --job daily --binding @CONFIG_ROOT@/scheduled-clock-policy/clock-binding.json --state-root @STORE_ROOT@/state/scheduled-clock-policy --run -- run --root @STORE_ROOT@ --config @CONFIG_ROOT@/daily-scheduler.toml --probe-config @CONFIG_ROOT@/daily-publication-probe.toml --report @STORE_ROOT@/state/daily-scheduler-latest.json

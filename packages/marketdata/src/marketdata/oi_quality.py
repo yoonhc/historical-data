@@ -7,6 +7,7 @@ from collections import Counter
 from datetime import timedelta
 from pathlib import Path
 
+from . import job_clock as jc
 from .domain import DAY, DataError, Key, full_days, json_bytes, now, sha256, utc
 from .normalize import normalize_rest
 from .oi_probe import REST_OI
@@ -369,6 +370,10 @@ def load_receipts(store, start, as_of, max_fetch_id):
 
 def quality_report(store, start, end, *, as_of=None, reference_shift=300):
     start, end, as_of = utc(start), utc(end), utc(as_of) if as_of else now()
+    point = jc.active().point("oi_quality_as_of") if jc.active() else None
+    if point:
+        point.day()
+        as_of = point.lower
     list(full_days(start, end))
     if end > as_of.replace(hour=0, minute=0, second=0, microsecond=0) or end - start > 31 * DAY:
         raise DataError("OI comparison requires 1..31 completed UTC days")
@@ -377,6 +382,31 @@ def quality_report(store, start, end, *, as_of=None, reference_shift=300):
         high = store.db.execute("SELECT COALESCE(MAX(id),0) FROM fetches").fetchone()[0]
         parity = parity_report(store, start, end, reference_shift)
         observed = observation_report(load_receipts(store, start, as_of, high), start, as_of)
+    if point:
+        latest = observed.get("probe_end")
+        ages = (
+            [(point.lower - latest).total_seconds(), (point.upper - latest).total_seconds()]
+            if latest
+            else None
+        )
+        fresh = (
+            (
+                True
+                if 0 <= ages[0] <= ages[1] <= 60
+                else False
+                if ages[0] > 60 or ages[1] < 0
+                else None
+            )
+            if ages
+            else None
+        )
+        observed.update(
+            latest_probe_age_interval_seconds=ages, fresh=fresh, freshness_known=fresh is not None
+        )
+        if observed["counts"]["timing_eligible_probes"]:
+            observed["observation_status"] = (
+                "active" if fresh is True else "stale" if fresh is False else "freshness_unknown"
+            )
     anomalies = parity["anomalies"] + observed["anomalies"]
     review = bool(
         anomalies
@@ -385,6 +415,7 @@ def quality_report(store, start, end, *, as_of=None, reference_shift=300):
     )
     report = {
         "format_version": 1,
+        **({"clock_observation": point.evidence} if point else {}),
         "generated_at": as_of,
         "comparison_start": start,
         "comparison_end": end,

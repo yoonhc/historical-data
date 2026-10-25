@@ -47,6 +47,14 @@ T16 당시 [수정본 적용 계획](../reports/baseline/scheduled-clock-repair-
 
 ## 실행 코드와 관리 주체
 
+파일별 역할과 실제 import 경로, 개발 저장소·데이터·상태의 구분은
+[프로젝트 구조와 실제 운영 코드](project-structure.md)에 정리했다.
+10/25 루트 `packages/`·`scripts/`·`integrations/runtime/`의 개발 소스 통합은
+아래 운영 경로의 전환과 별도다. [개발 통합 근거](../reports/baseline/source-integration-2026-10-25/summary.md)를 따른다.
+통합본의 다음 배포에서는 설치 패키지와 루트 소스의 일치 및 전체 실행 파일의 고정 목록을 확인한다.
+기존 수집용 `seal_runtime.py`만으로 이 확인을 대신하지 않는다.
+[최종 검토·배포 전 남은 범위](../reports/baseline/source-integration-2026-10-25/final-review.md)를 함께 따른다.
+
 | 대상 | 현재 구성 |
 |---|---|
 | 수집 고정 배포본 | `/opt/marketdata/releases/clock-evidence-policy-20261009-65296619a374c325` |

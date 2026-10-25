@@ -9,6 +9,7 @@ import uuid
 from contextlib import contextmanager
 from pathlib import Path
 
+from . import job_clock as jc
 from .backup import create_backup, load_backup, reserve_bytes, verify_backup
 from .domain import DataError, WriterBusy, json_bytes, now, utc
 from .fileio import layout_lock, safe_file
@@ -99,7 +100,15 @@ def backup_location(store, directory=None, required_mount=None):
 
 
 def daily_backup(
-    store, day, min_free_gib, progress, *, directory=None, incremental=False, required_mount=None
+    store,
+    day,
+    min_free_gib,
+    progress,
+    *,
+    directory=None,
+    incremental=False,
+    required_mount=None,
+    evidence=None,
 ):
     # A stable date groups attempts. Incomplete attempts remain for investigation;
     # only a verified completion marker can satisfy this day's backup.
@@ -125,7 +134,12 @@ def daily_backup(
                 )
     destination = destination_day / uuid.uuid4().hex
     result = create_backup(
-        store, destination, min_free_gib=min_free_gib, progress=progress, reuse_from=previous
+        store,
+        destination,
+        min_free_gib=min_free_gib,
+        progress=progress,
+        reuse_from=previous,
+        evidence=evidence,
     )
     backup_location(store, directory, required_mount)
     return {**result, "reused": False}
@@ -142,16 +156,25 @@ def run(
     incremental=False,
     backup_mount=None,
     wait_for_lock=False,
+    evidence=None,
 ):
     if mode not in {"hourly", "daily"} or not 2 <= max_files <= 100000:
         raise DataError("Expected hourly/daily mode and max_files 2..100000")
     reserve_bytes(min_free_gib)
     requested = now()
     with maintenance_lock(store, wait=wait_for_lock, progress=progress) as wait_seconds:
+        point = jc.active().point("maintenance_after_lock") if jc.active() else None
         started = now()
+        work_day = (
+            jc.active().pin_day("backup_day", point)
+            if mode == "daily" and point
+            else started.date().isoformat()
+        )
         report = {
             "id": uuid.uuid4().hex,
             "mode": mode,
+            "work_day": work_day,
+            **({"clock_observation": point.evidence} if point else {}),
             "requested_at": requested,
             "started_at": started,
             "wait_for_lock": wait_for_lock,
@@ -218,15 +241,20 @@ def run(
                     report["validation"] = store.validate()
                 if not report["validation"]["ok"]:
                     raise DataError("Store validation failed; no backup created")
+                if jc.active():
+                    report["backup_decision_observation"] = (
+                        jc.active().wait_point("backup_after_validation").evidence
+                    )
                 phase("backup")
                 report["backup"] = daily_backup(
                     store,
-                    started.date().isoformat(),
+                    work_day,
                     min_free_gib,
                     progress,
                     directory=backup_dir,
                     incremental=incremental,
                     required_mount=backup_mount,
+                    evidence=evidence,
                 )
                 report["backup_capacity_after"] = capacity(directory, min_free_gib)
             report["capacity_after"] = capacity(store.root, min_free_gib)
@@ -240,6 +268,9 @@ def run(
                 phase="finished",
             )
             return report
+        except jc.ClockDeferred as exc:
+            report.update(state="deferred_clock", error=str(exc))
+            raise
         except (Exception, KeyboardInterrupt) as exc:
             report.update(
                 state="interrupted" if isinstance(exc, KeyboardInterrupt) else "failed",
@@ -258,11 +289,22 @@ def status(store, *, min_free_gib=10):
         path = store.root / f"state/maintenance-{mode}-latest.json"
         report = json.loads(path.read_bytes()) if path.exists() else None
         age = (current - utc(report["started_at"])).total_seconds() if report else None
+        time_status = (
+            jc.freshness(bool(report and report["ok"]), utc(report["started_at"]), hours)
+            if report and jc.active()
+            else {}
+        )
         modes[mode] = {
             "healthy": bool(report and report["ok"] and 0 <= age <= hours * 3600),
             "age_seconds": age,
             "report": report,
+            **time_status,
         }
+    if jc.active():
+        for value in modes.values():
+            value["healthy"] = (
+                value.get("execution_succeeded", False) and value.get("fresh") is True
+            )
     space = capacity(store.root, min_free_gib)
     configuration = (modes["daily"]["report"] or {}).get("backup_configuration")
     backup_space = None
@@ -282,4 +324,9 @@ def status(store, *, min_free_gib=10):
         "capacity": space,
         "backup_capacity": backup_space,
         "modes": modes,
+        **(
+            {"freshness_known": all(m.get("freshness_known", False) for m in modes.values())}
+            if jc.active()
+            else {}
+        ),
     }

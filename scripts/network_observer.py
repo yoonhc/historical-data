@@ -16,6 +16,8 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 from pathlib import Path
 
+from marketdata import job_clock as jc
+
 HOSTS = ("fapi.binance.com", "fstream.binance.com")
 
 
@@ -189,6 +191,7 @@ def load_profile(path):
 
 
 def observe(config):
+    observation = jc.active().point("network_observation_start") if jc.active() else None
     started = now()
     selected = route(config["external_ip"], config["expected_interface"])
     probes = {"selected_route": selected, "link": link(selected["interface"])}
@@ -207,9 +210,25 @@ def observe(config):
                 probes[name] = future.result()
             except Exception as exc:
                 probes[name] = {"ok": False, "error": f"{type(exc).__name__}: {exc}"}
+    time_quality = {}
+    if observation:
+        try:
+            end_point = jc.active().point("network_observation_end")
+            time_quality = {
+                "current_time_known": True,
+                "start": observation.evidence,
+                "end": end_point.evidence,
+            }
+        except jc.ClockDeferred as exc:
+            time_quality = {
+                "current_time_known": False,
+                "start": observation.evidence,
+                "reason": str(exc),
+            }
     failed = [name for name, item in probes.items() if item["ok"] is False]
     return {
         "version": 1,
+        **({"local_time_quality": time_quality} if observation else {}),
         "started_at": started,
         "finished_at": now(),
         "status": "degraded" if failed else "ok",
@@ -237,22 +256,33 @@ def run(profile):
             return {"status": "busy"}
         result = observe(config)
         result["profile_sha256"] = hashlib.sha256(profile.read_bytes()).hexdigest()
-        encoded = json.dumps(result, ensure_ascii=False, separators=(",", ":")) + "\n"
-        with (output / f"{result['started_at'][:10]}.jsonl").open("a") as journal:
+        encoded = (json.dumps(result, ensure_ascii=False, separators=(",", ":")) + "\n").encode()
+        journal_path = output / f"{result['started_at'][:10]}.jsonl"
+        with journal_path.open("ab") as journal:
+            offset = journal.tell()
             journal.write(encoded)
             journal.flush()
             os.fsync(journal.fileno())
         temporary = output / "latest.json.tmp"
-        with temporary.open("w") as latest:
+        with temporary.open("wb") as latest:
             latest.write(encoded)
             latest.flush()
             os.fsync(latest.fileno())
         temporary.replace(output / "latest.json")
         return {
             "status": result["status"],
+            "started_at": result["started_at"],
             "failed_probes": result["failed_probes"],
             "finished_at": result["finished_at"],
+            "profile_sha256": result["profile_sha256"],
             "output_root": str(output),
+            "observation_ref": {
+                "kind": "network-jsonl-v1",
+                "path": str(journal_path.absolute()),
+                "offset": offset,
+                "length": len(encoded),
+                "sha256": hashlib.sha256(encoded).hexdigest(),
+            },
         }
 
 
@@ -261,7 +291,9 @@ def main():
     parser.add_argument("--profile", required=True, type=Path)
     args = parser.parse_args()
     os.umask(0o077)
-    print(json.dumps(run(args.profile)))
+    result = run(args.profile)
+    jc.finished("network-observer", result)
+    print(json.dumps(result))
 
 
 if __name__ == "__main__":

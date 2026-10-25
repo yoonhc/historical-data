@@ -1,0 +1,12 @@
+[Unit]
+Description=Scheduled job clock observation and same-boot preparation
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=@USER@
+ExecStart=@RELEASE@/.venv/bin/python -B -I @RELEASE@/scripts/run_job.py --job oi --binding @CONFIG_ROOT@/scheduled-clock-policy/clock-binding.json --wait
+TimeoutStartSec=infinity
+RemainAfterExit=no
+ProtectClock=yes
+Environment=PYTHONDONTWRITEBYTECODE=1

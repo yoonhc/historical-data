@@ -7,9 +7,10 @@ import os
 import shutil
 import sqlite3
 import time
-from contextlib import closing
+from contextlib import ExitStack, closing
 from pathlib import Path
 
+from . import checkpoint_evidence
 from .checkpoint_locks import checkpoint_locks
 from .domain import DataError, json_bytes, now, sha256
 from .fileio import layout_lock, safe_file
@@ -219,13 +220,41 @@ def link_verified(source, previous, destination, record):
     return record
 
 
-def create_backup(store, destination, *, min_free_gib=10, progress=None, reuse_from=None):
+def create_backup(
+    store, destination, *, min_free_gib=10, progress=None, reuse_from=None, evidence=None
+):
     # Pin the catalog's file layout throughout copying, without holding the writer.
     # Acquire input protection before layout/writer; cleanup cannot retire reuse_from.
-    with checkpoint_locks([reuse_from] if reuse_from is not None else []), layout_lock(store.root):
-        return _create_backup(
+    with ExitStack() as stack:
+        order, evidence_error = None, None
+        if evidence is not None:
+            try:
+                stack.enter_context(evidence.registry.lock())
+                order = evidence.begin(store.root)
+            except Exception as exc:
+                evidence_error = f"{type(exc).__name__}: {exc}"
+            destination = checkpoint_evidence.plain_path(destination)
+            checkpoint_evidence.mkdir(destination.parent)
+        roots = [reuse_from] if reuse_from is not None else []
+        if evidence is not None:
+            roots.append(destination)
+        stack.enter_context(checkpoint_locks(roots, exclusive=evidence is not None))
+        stack.enter_context(layout_lock(store.root))
+        result = _create_backup(
             store, destination, min_free_gib=min_free_gib, progress=progress, reuse_from=reuse_from
         )
+        if evidence is not None:
+            result.update(clock_evidence_state="missing", clock_evidence_error=evidence_error)
+            if order is not None:
+                try:
+                    manifest = json.loads((Path(result["path"]) / "backup.json").read_bytes())
+                    result.update(evidence.complete(result["path"], manifest, order))
+                except Exception as exc:
+                    result.update(
+                        clock_evidence_state="missing",
+                        clock_evidence_error=f"{type(exc).__name__}: {exc}",
+                    )
+        return result
 
 
 def _create_backup(store, destination, *, min_free_gib=10, progress=None, reuse_from=None):
@@ -384,6 +413,7 @@ def _verify_backup(source):
     source, manifest = load_backup(source)
     verify_files(source, manifest["files"])
     verify_packed_layout(source)
+    evidence = checkpoint_evidence.read_bundle(source, manifest)
     return {
         "backup_id": manifest["backup_id"],
         "path": str(source),
@@ -393,6 +423,9 @@ def _verify_backup(source):
         "bytes": sum(item["bytes"] for item in manifest["files"]),
         "catalog_counts": manifest["catalog_counts"],
         "storage": manifest.get("storage"),
+        "checkpoint_evidence": None
+        if evidence is None
+        else {k: evidence[k] for k in ("sha256", "object_ids")},
     }
 
 
@@ -404,6 +437,7 @@ def restore_backup(source, destination, *, min_free_gib=10, progress=None):
 def _restore_backup(source, destination, *, min_free_gib=10, progress=None):
     minimum = reserve_bytes(min_free_gib)
     source, manifest = load_backup(source)
+    evidence = checkpoint_evidence.read_bundle(source, manifest)
     # Never overlay an existing store; keep the archived backup independent of its restore.
     destination = Path(destination).absolute()
     if destination.resolve().is_relative_to(source):
@@ -431,6 +465,16 @@ def _restore_backup(source, destination, *, min_free_gib=10, progress=None):
         "ok": True,
         "services_started": False,
     }
+    if evidence is not None:
+        relative = f"state/checkpoint-evidence/{manifest['backup_id']}.json"
+        checkpoint_evidence.immutable(destination / relative, evidence["bundle"])
+        receipt["checkpoint_evidence"] = {
+            "path": relative,
+            "sha256": evidence["sha256"],
+            "object_ids": evidence["object_ids"],
+            "original_backup_id": manifest["backup_id"],
+            "deletion_authority_restored": False,
+        }
     sync_directories(destination)
     atomic_write(destination / "restore.json", json_bytes(receipt))
     return receipt

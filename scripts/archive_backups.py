@@ -23,7 +23,7 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
-from marketdata import backup
+from marketdata import backup, checkpoint_evidence
 from marketdata.checkpoint_locks import checkpoint_locks
 from marketdata.domain import json_bytes, now, sha256
 from marketdata.fileio import safe_file
@@ -411,8 +411,9 @@ def expected_tags(profile, entry):
 
 
 class Archive:
-    def __init__(self, profile, reports):
+    def __init__(self, profile, reports, *, share_verified_outputs=True):
         self.p, self.reports = profile, reports
+        self.share_verified_outputs = share_verified_outputs
         self.state = load_state(profile)
         self.restic = Restic(profile, reports)
 
@@ -454,14 +455,27 @@ class Archive:
         )
         raw, receipt = self.restic.command(["dump", snapshot["id"], "/backup.json"])
         require(sha256(raw) == entry["manifest_sha256"], "Snapshot manifest differs")
-        retain_verified_manifest(
-            self.p.reports_root,
-            self.p.expected_repository_id,
-            receipt,
-            raw,
-            entry["manifest_sha256"],
-        )
+        if self.share_verified_outputs:
+            retain_verified_manifest(
+                self.p.reports_root,
+                self.p.expected_repository_id,
+                receipt,
+                raw,
+                entry["manifest_sha256"],
+            )
         return attempts[0]
+
+    def clock_bundle(self, snapshot, entry):
+        """Bind optional evidence to bytes actually stored, including lost-receipt recovery."""
+        root = Path(entry["path"])
+        expected = checkpoint_evidence.read_bundle(
+            root, json.loads((root / "backup.json").read_bytes())
+        )
+        if expected is None:
+            return None
+        raw, _ = self.restic.command(["dump", snapshot, "/" + checkpoint_evidence.SIDECAR])
+        require(sha256(raw) == expected["sha256"], "Stored completion evidence differs")
+        return {k: expected[k] for k in ("sha256", "object_ids")}
 
     def extract_verify(self, snapshot, entry):
         self.p.guard(reserve=entry["bytes"])
@@ -532,6 +546,7 @@ class Archive:
                 "archive_finished_at": None,
                 "evidence": "extracted_and_fully_verified",
                 "verified_duplicates": [s["id"] for s in valid],
+                "checkpoint_evidence": self.clock_bundle(chosen["id"], entry),
             }
             record.pop("error", None)
             self.save()
@@ -661,6 +676,7 @@ class Archive:
                         "archive_started_at": receipt["started_at"],
                         "archive_finished_at": receipt["finished_at"],
                         "evidence": "exit_0_summary_metadata_manifest",
+                        "checkpoint_evidence": self.clock_bundle(sid, entry),
                     }
                     attempt.update(status="stored", finished_at=now().isoformat())
                     record.pop("error", None)

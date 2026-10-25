@@ -5,6 +5,7 @@ from contextlib import nullcontext
 from datetime import timedelta
 from pathlib import Path
 
+from . import job_clock as jc
 from .binance import Fetcher, SourceError, archive_units, archive_url, rest_url
 from .domain import (
     PARSER_VERSION,
@@ -99,7 +100,20 @@ class Collector:
             batch = normalize_archive(blob, key, identity, observed, member)
             if any(not start <= r["timestamp"] < end for r in batch.rows):
                 raise DataError("Archive row outside declared source interval")
-            if key.dataset.endswith("_bars") and any(r["bar_end"] > now() for r in batch.rows):
+            point = jc.active().point("archive_content_completion") if jc.active() else None
+            if (
+                point
+                and key.dataset.endswith("_bars")
+                and any(r["bar_end"] > point.lower for r in batch.rows)
+            ):
+                if any(r["bar_end"] > point.upper for r in batch.rows):
+                    raise DataError("Archive contains an unfinished candle")
+                raise jc.ClockDeferred("archive_candle_completion_boundary")
+            if (
+                not point
+                and key.dataset.endswith("_bars")
+                and any(r["bar_end"] > now() for r in batch.rows)
+            ):
                 raise DataError("Archive contains an unfinished candle")
             results = self._publish(
                 key,
@@ -115,6 +129,11 @@ class Collector:
             )
             self._write(self.store.job, token, key, start, end, state, identity)
             return results
+        except jc.ClockDeferred as exc:
+            self._write(
+                self.store.job, token, key, start, end, "deferred_clock", identity, str(exc)
+            )
+            raise
         except Exception as exc:
             self._write(self.store.job, token, key, start, end, "failed", identity, str(exc))
             raise
@@ -133,7 +152,12 @@ class Collector:
     ):
         start, end = utc(start), utc(end)
         list(full_days(start, end))
-        if end > now().replace(hour=0, minute=0, second=0, microsecond=0):
+        point = jc.active().point("archive_completed_date") if jc.active() else None
+        if point and end > point.lower.replace(hour=0, minute=0, second=0, microsecond=0):
+            if end > point.upper.replace(hour=0, minute=0, second=0, microsecond=0):
+                raise DataError("Only completed UTC days can be requested from archives")
+            raise jc.ClockDeferred("archive_date_not_yet_proven")
+        if not point and end > now().replace(hour=0, minute=0, second=0, microsecond=0):
             raise DataError("Only completed UTC days can be requested from archives")
         output = []
         for begin, stop, month in archive_units(key, start, end, monthly):
@@ -205,6 +229,11 @@ class Collector:
                     )
                 else:
                     raise
+            except jc.ClockDeferred as exc:
+                self._write(
+                    self.store.job, token, key, begin, stop, "deferred_clock", error=str(exc)
+                )
+                raise
             except Exception as exc:
                 self._write(self.store.job, token, key, begin, stop, "failed", error=str(exc))
                 raise
@@ -216,11 +245,23 @@ class Collector:
         start, end = utc(start), utc(end)
         if start >= end:
             raise DataError("Expected start < end")
-        if key.dataset == "open_interest" and start < now() - timedelta(days=29):
+        point = jc.active().point("rest_query_scope") if jc.active() else None
+        if point:
+            if end > point.lower:
+                if end > point.upper:
+                    raise DataError("Cannot collect a future interval")
+                raise jc.ClockDeferred("rest_end_boundary")
+            if key.dataset == "open_interest" and start < point.upper - timedelta(days=29):
+                if start < point.lower - timedelta(days=29):
+                    raise DataError(
+                        "REST OI backfill exceeds conservative 29-day limit; use archive series"
+                    )
+                raise jc.ClockDeferred("rest_history_boundary")
+        if not point and key.dataset == "open_interest" and start < now() - timedelta(days=29):
             raise DataError(
                 "REST OI backfill exceeds conservative 29-day limit; use archive series"
             )
-        if end > now():
+        if not point and end > now():
             raise DataError("Cannot collect a future interval")
         cursor, collected, source_ids, issues, quarantined = start, [], [], [], False
         token = sha256(json_bytes([key.asdict(), start, end, "rest"]))
@@ -291,6 +332,9 @@ class Collector:
                 manifest_id,
             )
             return result
+        except jc.ClockDeferred as exc:
+            self._write(self.store.job, token, key, start, end, "deferred_clock", error=str(exc))
+            raise
         except Exception as exc:
             self._write(self.store.job, token, key, start, end, "failed", error=str(exc))
             raise

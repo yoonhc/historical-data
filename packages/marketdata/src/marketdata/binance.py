@@ -9,6 +9,7 @@ from urllib.parse import urlencode
 
 import httpx
 
+from . import job_clock as jc
 from .domain import DataError, Key, now, utc
 
 VISION = "https://data.binance.vision/data"
@@ -59,6 +60,8 @@ class Fetcher:
                 window.clear()
             if window:
                 self.sleep(max(0, 0.1 - (time.monotonic() - window[-1][0])))
+            if jc.active():
+                jc.active().point("http_request")
             window.append((time.monotonic(), weight))
             self.requests += 1
             try:
@@ -90,7 +93,12 @@ class Fetcher:
                     try:
                         delay = float(retry) if retry else 2**attempt
                     except ValueError:
-                        delay = (parsedate_to_datetime(retry) - now()).total_seconds()
+                        basis = (
+                            jc.active().point("http_absolute_retry_after").lower
+                            if jc.active()
+                            else now()
+                        )
+                        delay = (parsedate_to_datetime(retry) - basis).total_seconds()
                     if delay > 60:
                         raise SourceError(
                             f"Source requests cooldown {delay}s; retry in next run",

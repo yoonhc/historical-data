@@ -5,12 +5,19 @@ Freqtrade와 연구 노트북은 이 프로젝트가 제공하는 데이터를 �
 
 현재 할 일·관찰 예정·보류 항목은 [TODO.md](TODO.md)에서 관리합니다. 작업 시작과 종료 때 갱신하며,
 완료 항목은 결과 문서에 근거를 남긴 뒤 목록에서 정리합니다.
-2026-10-09 현재 두 스트림은 고정 배포본의 **시스템 서비스**로 실행하며,
+[프로젝트 구조와 실제 운영 코드](docs/project-structure.md)에는 현재 `/opt` 실행본,
+service별 진입점·주요 파일, 개발 소스와 데이터·상태·고정 후보의 위치를 정리했습니다.
+작업 폴더와 운영 고정본은 분리돼 있습니다. 최신 업무 구현은 루트 `packages/`·`scripts/`,
+runtime은 `integrations/runtime/`에 통합했으며, [통합 검증 기록](reports/baseline/source-integration-2026-10-25/summary.md)에서
+출처와 검증 범위를 확인할 수 있습니다. 기존 `reports/baseline`의 고정 소스·승인·실패 기록은 보존합니다.
+[최종 검토](reports/baseline/source-integration-2026-10-25/final-review.md)에서 개발 통합을 확인했고,
+통합본의 운영 배포와 코드 고정 범위·검사 입력·요청 identity 개선은 별도 후속으로 남겼습니다.
+두 스트림은 고정 배포본의 **시스템 서비스**가 관리합니다. 2026-10-09에는
 시각 근거 보존과 reference 지연만 있는 경우 다음 수집을 허용하는 정책을 운영에 적용했습니다.
 [현재 상태 조회·배포·되돌리기 안내](docs/system-runtime-operations.md)와
 [당시 적용 결과](reports/baseline/clock-runtime-deploy-2026-10-09/summary.md)를 참고하세요.
 
-최신 [10/25 작업 정리](docs/milestones/2026-10-25-retirement-and-archive-capacity-recovery.md)는
+[10/25 운영 작업 정리](docs/milestones/2026-10-25-retirement-and-archive-capacity-recovery.md)는
 T05 수동·자동 정리, T16 운영 검증, T17 OI 조사, T18 보관·수집 복구와 T19 추가 공간 회수를 묶습니다.
 운영 근거는 10/25 20:15 KST까지입니다. 장기 기록·조회·용량 관리와 과거 공백,
 T05 다음 예약·수집기의 다음 자연 child 관찰은 [TODO](TODO.md)에 별도로 남아 있습니다.
@@ -90,18 +97,57 @@ REST OI는 최초 최근 28일을 확보한 뒤 5분마다 수집하고, 상품 
 종료된 스트림 파일을 원문 바이트와 ID를 보존한 채 묶는 기능도 제공합니다.
 [파일 묶음 저장·무기한 보관 정책](docs/file-packing-and-retention.md)을 확인하세요.
 
-## 설치와 실행
+## 개발 설치와 검증
 
 Python 3.12 이상과 uv를 사용합니다. 작업 디렉터리는 이 프로젝트 루트입니다.
 
 ```bash
 uv --cache-dir .cache/uv sync --all-packages --frozen
-.venv/bin/pytest -q
+.venv/bin/python -B -m pytest -q
 ```
 
 `marketdata`와 `marketdata-freqtrade`는 별도 배포 가능한 패키지입니다.
 수집기만 설치할 때는 `pip install ./packages/marketdata`를 사용하면 됩니다.
 어댑터도 Freqtrade 자체를 설치하지 않습니다.
+예약 업무·T05·runtime을 포함한 통합 실행본에는 `scripts/`와 `integrations/`도 필요하며,
+코어 패키지 설치만으로 시스템 유닛이나 운영 승인이 구성되지는 않습니다.
+
+| 개발 위치 | 주요 역할 |
+|---|---|
+| `packages/marketdata/src/marketdata/` | 자료 수집·저장·품질, daily, 업무 시각·결과 계약, checkpoint 근거 |
+| `scripts/` | 예약 업무 wrapper, restic·출력 공유, T05 정리·유닛 출력 도구 |
+| `integrations/runtime/` | 수집 supervisor, 부팅 준비·시각 guard, 수집용 설치 receipt |
+| `integrations/systemd/scheduled/` | 8개 시스템 업무와 waiter의 매개변수 유닛 템플릿 |
+| `tests/` | 루트 개발 소스를 대상으로 한 회귀·중단 복구 검사 |
+
+통합 연결만 빠르게 확인할 때는 다음 명령을 사용합니다.
+
+```bash
+.venv/bin/python -B -m pytest -q tests/test_unified_source.py
+.venv/bin/ruff check packages scripts integrations/runtime tests
+.venv/bin/python -B -I scripts/run_job.py --help
+```
+
+실제 restic 회귀는 `.cache/restic/0.19.1/restic`과 임시 저장소를 사용합니다.
+시각 근거의 restic 검사에는 `CLOCK_TEST_RESTIC`도 같은 경로로 지정합니다.
+바이너리가 준비된 환경에서 전체 검사를 실행하는 명령은 다음과 같습니다.
+
+```bash
+CLOCK_TEST_RESTIC="$PWD/.cache/restic/0.19.1/restic" \
+  .venv/bin/python -B -m pytest -q
+```
+
+바이너리·환경 변수가 없으면 해당 검사가 건너뛰어질 수 있으므로 실행 결과의 skip 수를 구분합니다.
+기존 전체 검사와 수정 후 영향 범위를 연결한 **977개 고유 검사에 남은 실패가 없으며**,
+최종 재검토의 연결 검사 16개와 유닛 구문 검사 21개는 각각의 범위로 기록했습니다.
+[실행별 결과와 재사용 범위](reports/baseline/source-integration-2026-10-25/summary.md)를 참고하세요.
+
+개발 명령은 현재 `/opt` 실행본의 배포·운영 점검 명령을 대신하지 않습니다.
+통합본을 배포할 때는 설치 패키지와 루트 소스의 일치, 전체 실행 파일의 고정 목록·해시,
+설정·scope·미완료 요청·ledger 전환을 별도로 검증합니다.
+기존 `seal_runtime.py`는 수집용 receipt이므로 통합 배포 전체의 고정 근거로 사용할 수 없습니다.
+
+## 자료 CLI 사용
 
 모든 기간은 UTC의 `[start, end)`입니다. 타임존 없는 날짜·시각도 UTC로 해석합니다.
 아카이브 수집은 완료된 UTC 날짜 단위이며, 캔들 누락을 보간하지 않습니다.

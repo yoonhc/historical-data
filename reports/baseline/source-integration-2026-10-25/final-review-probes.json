@@ -1,0 +1,31 @@
+{
+  "scope": "development review; no installed service or operating data changed",
+  "final_tree": {
+    "count": 106,
+    "mismatches": []
+  },
+  "original_sources": {
+    "count": 132,
+    "mismatches": []
+  },
+  "legacy_sealer_boundary": {
+    "environment": "temporary real venv, copied package/runtime; no workload dependencies installed",
+    "files_sealed": 42,
+    "root_source_is_sealed": false,
+    "scheduled_wrapper_is_sealed": false,
+    "manifest_hashes_still_match_after_source_copy_change": true,
+    "installed_and_source_copy_now_differ": true,
+    "origins": {
+      "collector_default": ".venv/lib/python3.12/site-packages/marketdata/__init__.py",
+      "scheduled": "packages/marketdata/src/marketdata/__init__.py"
+    },
+    "meaning": "collector-only legacy seal is not a complete unified deployment seal"
+  },
+  "rendered_unit_syntax": {
+    "count": 21,
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "",
+    "meaning": "static unit parsing only; no services started or namespace checks performed"
+  }
+}

@@ -14,6 +14,7 @@ from marketdata.store import atomic_write
 from test_restic_archive import agent, setup_archive, write_profile  # noqa: F401
 
 from scripts import archive_backups as archive
+from scripts import checkpoint_code
 from scripts import retire_checkpoints as retention
 
 
@@ -125,7 +126,11 @@ def test_actual_cleanup_next_daily_archive_no_duplicate_and_missing_snapshot(
     atomic_write(p.state_file, json_bytes(state))
     plan = cleaner.plan()
     assert len(plan["keep"]) == 3 and len(plan["candidates"]) == 2
-    assert plan["schema"] == 2 and plan["code"]["git_commit"]
+    assert plan["schema"] == 2
+    # A frozen exported release has no Git checkout; its exact source identity
+    # must still be present and match the running implementation.
+    assert plan["code"] == checkpoint_code.current_code()
+    assert len(plan["code"]["source_sha256"]) == 64 and plan["code"]["source_files"]
     assert all(e["snapshot_id"] for e in plan["keep"])
     for candidate in plan["candidates"]:
         age = archive.timestamp(plan["assessed_at"]) - archive.timestamp(

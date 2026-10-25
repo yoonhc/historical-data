@@ -7,6 +7,7 @@ import zipfile
 from collections import defaultdict
 from datetime import timedelta
 
+from . import job_clock as jc
 from .backup import require_capacity, reserve_bytes
 from .domain import DataError, now, sha256, utc
 from .fileio import layout_lock, packed_record, safe_file, sync_parent
@@ -88,7 +89,14 @@ def plan_events(
 ):
     if not 1 <= target_mib <= 256 or not 2 <= max_members <= 4096 or not 2 <= max_files <= 100000:
         raise DataError("Pack limits: target MiB 1..256, members 2..4096, files 2..100000")
-    cutoff = utc(before) if before else now() - timedelta(hours=1)
+    observation = jc.active().point("pack_selection") if jc.active() else None
+    cutoff = (
+        utc(before)
+        if before
+        else (observation.lower if observation else now()) - timedelta(hours=1)
+    )
+    if observation and cutoff > observation.lower - timedelta(hours=1):
+        raise jc.ClockDeferred("pack_cutoff_not_proven_old")
     selected = set(collection_ids)
     known = {r[0] for r in store.db.execute("SELECT id FROM event_collections")}
     if selected - known:
@@ -145,6 +153,7 @@ def plan_events(
     return {
         "checked_at": now(),
         "before": cutoff,
+        **({"clock_observation": observation.evidence} if observation else {}),
         "retention": "indefinite",
         "groups": groups,
         "files": sum(len(g["members"]) for g in groups),

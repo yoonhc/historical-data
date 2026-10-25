@@ -5,6 +5,7 @@ from dataclasses import asdict, dataclass
 from datetime import timedelta
 from uuid import uuid4
 
+from . import job_clock as jc
 from .binance import SourceError
 from .domain import DAY, EPOCH, DataError, Key, day_ranges, from_epoch, json_bytes, micros, now, utc
 
@@ -275,6 +276,11 @@ def _record_run(store, identity, state, report, *, finished=True):
 def update(collector, keys, policy=None, *, current=None, progress=None):
     """Caller must hold store.writer(); every restart replans from published coverage."""
     policy, current = policy or SyncPolicy(), utc(current) if current else now()
+    observation = jc.active().point("oi_update_range") if jc.active() else None
+    if observation:
+        observation.grid(300, slack=45)
+        observation.day()
+        current = observation.lower
     store, output = collector.store, []
     with store.db:
         store.db.execute(
@@ -291,6 +297,7 @@ def update(collector, keys, policy=None, *, current=None, progress=None):
         identity = uuid4().hex
         report = {
             "run_id": identity,
+            **({"clock_observation": observation.evidence} if observation else {}),
             "key": key.id,
             "start": start,
             "end": end,
@@ -364,6 +371,15 @@ def update(collector, keys, policy=None, *, current=None, progress=None):
             report["state"] = (
                 "complete" if report["complete"] else "failed" if report["errors"] else "partial"
             )
+        except jc.ClockFailure as exc:
+            report.update(state="failed", complete=False)
+            report["errors"].append({"type": type(exc).__name__, "message": str(exc)})
+            _record_run(store, identity, "failed", report)
+            raise
+        except jc.ClockDeferred as exc:
+            report.update(state="deferred_clock", complete=False, clock_reason=str(exc))
+            _record_run(store, identity, "deferred_clock", report)
+            raise
         except KeyboardInterrupt:
             report.update(state="interrupted", complete=False)
             _record_run(store, identity, "interrupted", report)
@@ -380,6 +396,25 @@ def update(collector, keys, policy=None, *, current=None, progress=None):
 
 def status(store, keys=None, policy=None, *, current=None):
     current = utc(current) if current else now()
+    time_point = None
+    if jc.active():
+        try:
+            time_point = jc.active().point("operations_status")
+            current = time_point.lower
+        except jc.ClockDeferred as exc:
+            rows = [
+                dict(r)
+                for r in store.db.execute(
+                    "SELECT id,key_id,state,finished_at FROM sync_runs WHERE rowid IN (SELECT MAX(rowid) FROM sync_runs GROUP BY key_id)"
+                )
+            ]
+            return {
+                "healthy": False,
+                "freshness_known": False,
+                "reason": str(exc),
+                "recorded_runs": rows,
+                "data_reclassified": False,
+            }
     if keys is None:
         found = {}
         for table in ("revisions", "sync_targets"):
@@ -396,7 +431,12 @@ def status(store, keys=None, policy=None, *, current=None):
         latest = head["latest_timestamp"]
         age = (current - latest).total_seconds() if latest else None
         limit = selected.stale_after_seconds or (900 if is_live_oi(key) else 129600)
-        stale = age is None or age > limit or age < 0
+        time_status = jc.freshness(None, latest, limit / 3600) if latest and jc.active() else {}
+        stale = (
+            time_status.get("fresh") is not True
+            if jc.active()
+            else age is None or age > limit or age < 0
+        )
         if key.dataset == "instrument_metadata":
             coverage = {
                 "complete": not stale,
@@ -435,6 +475,8 @@ def status(store, keys=None, policy=None, *, current=None):
         state = (
             "empty"
             if latest is None
+            else "freshness_unknown"
+            if jc.active() and not time_status.get("freshness_known", False)
             else "stale"
             if stale
             else "partial"
@@ -453,6 +495,7 @@ def status(store, keys=None, policy=None, *, current=None):
                 "state": state,
                 "data": head,
                 "age_seconds": age,
+                **time_status,
                 "stale_after_seconds": limit,
                 "scope_registered": saved is not None,
                 "coverage": public_inventory(coverage),
@@ -460,6 +503,7 @@ def status(store, keys=None, policy=None, *, current=None):
                 "historical_blocking_issues": [dict(r) for r in historical],
                 "historical_blocked_days": blocked_days,
                 "last_run": latest_run,
+                "execution_succeeded": bool(latest_run and latest_run["state"] == "complete"),
                 "latest_source_job": dict(job) if job else None,
             }
         )

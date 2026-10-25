@@ -18,7 +18,7 @@ from datetime import timedelta
 from pathlib import Path
 from types import SimpleNamespace
 
-from marketdata import backup
+from marketdata import backup, checkpoint_evidence
 from marketdata.checkpoint_locks import checkpoint_locks, plain_path
 from marketdata.domain import json_bytes, now, sha256
 from marketdata.fileio import sync_parent
@@ -177,6 +177,9 @@ def tree_inventory(root, manifest=None):
     if manifest is not None:
         expected = {f["path"] for f in manifest["files"]} | {"backup.json"}
         require(len(expected) == len(manifest["files"]) + 1, "Duplicate inventory paths")
+        evidence = checkpoint_evidence.read_bundle(root, manifest)
+        if evidence is not None:
+            expected.add(checkpoint_evidence.SIDECAR)
         directories = {"."}
         for file in expected:
             backup.safe_file(root, file)
@@ -238,7 +241,10 @@ class Retirement:
             )
         plain_path(self.root)
         plain_path(self.trash)
-        self.a = archive.Archive(self.p, reports)
+        # T05 keeps command evidence in its own run/state directory, including
+        # paths outside the archiver's reports root. Preserve that contract when
+        # using the unified Archive reader; T18 sharing remains archiver-only.
+        self.a = archive.Archive(self.p, reports, share_verified_outputs=False)
 
     @contextmanager
     def locks(self):
@@ -433,7 +439,7 @@ class Retirement:
         require(set(live) <= set(state["checkpoints"]), "Unarchived local checkpoint")
         proof = self.recovery_guard(snapshots)
         assessed_at = now()
-        keep, candidates = selection(entries, self.policy, assessed_at)
+        keep, candidates = self.select(entries, assessed_at)
         keep = [
             {**e, "snapshot_id": state["checkpoints"][e["backup_id"]]["stored"]["snapshot_id"]}
             for e in keep
@@ -447,7 +453,20 @@ class Retirement:
             "repository_check_finished_at": checked["finished_at"],
         }
 
-    def plan(self):
+    def select(self, entries, instant):
+        return selection(entries, self.policy, instant)
+
+    def plan_details(self, audit):
+        return {}
+
+    def plan(self, *, automation=None):
+        if automation is not None:
+            require(
+                set(automation) == {"run_id", "scope_id"}
+                and re.fullmatch(r"[0-9a-f]{32}", automation["run_id"])
+                and re.fullmatch(archive.HEX, automation["scope_id"]),
+                "Explicit automatic run/scope identity required",
+            )
         code = current_code()
         with self.locks():
             audit = self.audit()
@@ -503,6 +522,13 @@ class Retirement:
                     "space": reclaim_estimate(inventories),
                     "deleted_checkpoints": 0,
                 }
+                if automation is not None:
+                    result["automation"] = dict(automation)
+                details = self.plan_details(audit)
+                require(
+                    not set(details).intersection(result), "Plan extension overrides base fields"
+                )
+                result.update(details)
                 result["plan_id"] = sha256(json_bytes(result))
                 self.check_code(result)
                 persist(self.root / "plans" / f"{result['plan_id']}.json", result)
@@ -515,9 +541,15 @@ class Retirement:
     def inventory_file(self, pid, bid):
         return self.root / "inventories" / pid / f"{bid}.json"
 
+    def application_locks(self, manager, stage):
+        # The default engine preserves the original lock/exception behavior.
+        # Scheduled wrappers may distinguish failure to ENTER these locks from
+        # failures after the protected application body has begun.
+        return manager
+
     def apply(self, pid, *, hook=lambda phase, item: None):
         require(self.policy.apply_enabled, "Apply disabled: preview-only policy")
-        with self.locks():
+        with self.application_locks(self.locks(), "preservation"):
             plan = self.load_plan(pid)
             existing = [j for j in self.journals() if j["plan_id"] == pid]
             if existing and existing[0]["status"] == "complete":
@@ -548,7 +580,9 @@ class Retirement:
                 c["entry"]["path"] for c in plan["candidates"]
             ]
             inputs.append(stage / "input-lock")
-            with checkpoint_locks(inputs, exclusive=True, wait=False):
+            with self.application_locks(
+                checkpoint_locks(inputs, exclusive=True, wait=False), "checkpoint_inputs"
+            ):
                 # Recheck retained physical bytes before any retirement, not the
                 # expensive full store logical/recovery/re-backup procedure.
                 for entry in audit["keep"]:
@@ -685,6 +719,7 @@ class Retirement:
                         stat.S_ISREG(info.st_mode) and signature(info) == records.get(path),
                         "Unexpected file during retirement",
                     )
+                    hook("before_unlink", item)
                     os.unlink(name, dir_fd=fd)
                     item["unlinked_files"] += 1
                     hook("after_unlink", item)
@@ -695,6 +730,7 @@ class Retirement:
                         and signature(info) == records.get((relative / name).as_posix()),
                         "Unexpected directory during retirement",
                     )
+                    hook("before_rmdir", item)
                     os.rmdir(name, dir_fd=fd)
                 os.fsync(fd)
             item["phase"] = "removing_root"

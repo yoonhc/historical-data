@@ -1,0 +1,19 @@
+[Unit]
+Description=Capture recent public five-minute open interest
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=4
+Requires=marketdata-jobs-clock-ready.service
+After=marketdata-jobs-clock-ready.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=@STORE_ROOT@
+TimeoutStartSec=4min
+Restart=on-failure
+RestartSec=30s
+User=@USER@
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+ExecStart=@RELEASE@/.venv/bin/python -B -I @RELEASE@/scripts/run_job.py --job oi --binding @CONFIG_ROOT@/scheduled-clock-policy/clock-binding.json --state-root @STORE_ROOT@/state/scheduled-clock-policy --run -- --root @STORE_ROOT@ update --config @CONFIG_ROOT@/scheduled-system/oi-live.toml --report state/oi-latest.json

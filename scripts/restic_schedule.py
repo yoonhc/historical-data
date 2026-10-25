@@ -17,6 +17,7 @@ from contextlib import contextmanager
 from datetime import UTC, datetime
 from pathlib import Path
 
+from marketdata import job_clock as jc
 from marketdata.domain import json_bytes, now, sha256
 from marketdata.store import atomic_write
 
@@ -105,9 +106,12 @@ def unit_bus_path(name):
     )
 
 
-def service_context(service=SERVICE, timer=TIMER):
+def service_context(service=SERVICE, timer=TIMER, *, manager="user"):
     """Positive, cross-checked timer evidence; ambiguous/missing information only undercounts."""
+    require(manager in {"user", "system"}, "Explicit systemd manager")
+    manager_arg = "--" + manager
     context = {
+        "manager": manager,
         "uid": os.getuid(),
         "user": pwd.getpwuid(os.getuid()).pw_name,
         "pid": os.getpid(),
@@ -127,7 +131,7 @@ def service_context(service=SERVICE, timer=TIMER):
         return context
     try:
         output = subprocess.check_output(
-            ["systemctl", "--user", "show", service, "--property=InvocationID,MainPID,Id,Type"],
+            ["systemctl", manager_arg, "show", service, "--property=InvocationID,MainPID,Id,Type"],
             text=True,
             timeout=10,
         )
@@ -146,7 +150,7 @@ def service_context(service=SERVICE, timer=TIMER):
             raw = subprocess.check_output(
                 [
                     "busctl",
-                    "--user",
+                    manager_arg,
                     "--json=short",
                     "get-property",
                     "org.freedesktop.systemd1",
@@ -385,6 +389,7 @@ def run(profile):
     with observation_lock(profile):
         observation = load(profile)
         reconcile_restore(observation, load_state(profile))
+        clock_start = jc.active().point("archive_preservation_start") if jc.active() else None
         context = service_context()
         run_id = uuid.uuid4().hex
         report = profile.reports_root / "scheduled" / (run_id + ".json")
@@ -394,6 +399,7 @@ def run(profile):
             "context": context,
             "ok": False,
             "counted_dates": [],
+            **({"clock_observation": clock_start.evidence} if clock_start else {}),
             "archive": None,
             "restore": None,
         }
@@ -405,7 +411,21 @@ def run(profile):
         try:
             receipt = execute(profile, "run")
             record["archive"] = receipt
-            candidates = eligible_records(observation, context, receipt, load_state(profile))
+            clock_known = True
+            if jc.active():
+                try:
+                    record["clock_at_qualification"] = (
+                        jc.active().point("archive_qualification").evidence
+                    )
+                except jc.ClockDeferred as exc:
+                    clock_known = False
+                    record["clock_qualification_reason"] = str(exc)
+            record["freshness_known"] = clock_known
+            candidates = (
+                eligible_records(observation, context, receipt, load_state(profile))
+                if clock_known
+                else []
+            )
             record["counted_dates"] = add_dates(observation, candidates)
             save(profile, observation)
             atomic_write(report, json_bytes(record))
@@ -472,12 +492,20 @@ def main():
             result = start_observation(p)
         else:
             result = status(p)
+        if args.action == "run":
+            jc.finished(
+                "restic-archive",
+                result,
+                files=[p.reports_root / "scheduled" / (result["run_id"] + ".json")],
+            )
         print(json_bytes(result).decode(), flush=True)
     except Busy as exc:
         print(
             json_bytes({"ok": False, "status": "lock_busy", "error": str(exc)}).decode(), flush=True
         )
         raise SystemExit(75)
+    except (jc.ClockDeferred, jc.ClockFailure):
+        raise
     except (Exception, KeyboardInterrupt) as exc:
         print(
             json_bytes({"ok": False, "type": type(exc).__name__, "error": str(exc)}).decode(),

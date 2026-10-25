@@ -1,0 +1,42 @@
+{
+  "scope": "development source integration; no operating deployment",
+  "python": "3.12.3",
+  "source_records_checked": 132,
+  "source_targets": 125,
+  "frozen_source_changes": [],
+  "initial_full_suite": {
+    "tests": 977,
+    "passed": 963,
+    "failed": 14,
+    "report": "full-suite.xml"
+  },
+  "corrected_connections": {
+    "tests": 140,
+    "passed": 140,
+    "failed": 0,
+    "report": "final-connections.xml"
+  },
+  "resolved_initial_failures": [
+    "tests.test_checkpoint_schedule::test_abrupt_exit_before_retirement_journal_also_blocks_new_plan",
+    "tests.test_checkpoint_schedule::test_authorized_run_then_noop_and_next_real_daily_archive",
+    "tests.test_checkpoint_schedule::test_preview_with_pending_grant_has_fresh_plans_and_never_deletes",
+    "tests.test_checkpoint_schedule::test_revoked_grant_between_plan_and_apply_preserves_candidates",
+    "tests.test_checkpoint_schedule::test_runner_maintenance_repository_and_reader_contention",
+    "tests.test_checkpoint_schedule::test_sigkill_like_exit_blocks_new_plan_and_manual_resume_is_explicit",
+    "tests.test_clock_retirement::test_changed_completion_evidence_and_targets_refuse_application",
+    "tests.test_clock_retirement::test_cold_and_warm_preview_preserve_operating_inputs_and_old_grants",
+    "tests.test_clock_retirement::test_manual_approval_deletes_only_proven_candidates_and_preserves_restic",
+    "tests.test_clock_retirement::test_mid_deletion_clock_fault_leaves_journal_and_blocks_new_plan",
+    "tests.test_recurring_deferral::test_real_lock_after_plan_allows_new_plan_without_resetting_history[checkpoint]",
+    "tests.test_recurring_deferral::test_real_lock_after_plan_allows_new_plan_without_resetting_history[maintenance]",
+    "tests.test_recurring_deferral::test_real_lock_after_plan_allows_new_plan_without_resetting_history[repository]",
+    "tests.test_recurring_deferral::test_uncertified_prejournal_busy_still_blocks_next_automatic_plan"
+  ],
+  "latest_results": {
+    "unique_tests": 977,
+    "passed": 977,
+    "failed": 0,
+    "meaning": "Unchanged coverage from the initial full suite plus corrected affected tests; not a second full-suite run"
+  },
+  "corrected_source_bytes_unchanged_through_retest": true
+}

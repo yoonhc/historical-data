@@ -1,5 +1,11 @@
 # 검증 기록
 
+[10/25 루트 개발 소스 통합](baseline/source-integration-2026-10-25/summary.md)은
+수집 시각 근거·T13·T16·T05·T18을 `packages/`·`scripts/`·`integrations/`로 합친 출처와 검사 기록입니다.
+이 작업은 앞선 운영 기록을 보존한 커밋 `bd39826` 이후의 개발 변경이며, 운영 적용은 포함하지 않습니다.
+원본별 해시, 첫 전체 회귀의 실패와 수정 후 재검사, [최종 검토](baseline/source-integration-2026-10-25/final-review.md)를
+함께 보존합니다. 최신 개발은 루트 소스에서 진행하고, 당시 운영 실행·승인·복구의 재현에는 기존 고정 소스를 사용합니다.
+
 [2026-10-09 시스템 전환 마일스톤](../docs/milestones/2026-10-09-system-runtime-and-cutover.md)이
 이전 10/3 마일스톤 이후의 독립 복구·정리·호가 보완부터 시각 관리·운영 전환까지 묶습니다.
 [같은 날 후속 마일스톤](../docs/milestones/2026-10-09-clock-evidence-and-capture-policy.md)은 그 기준 시각

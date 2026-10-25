@@ -1,0 +1,24 @@
+[Unit]
+Description=Local network evidence for marketdata collectors
+Requires=marketdata-jobs-clock-ready.service
+After=marketdata-jobs-clock-ready.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=@USER_HOME@
+EnvironmentFile=@NETWORK_ENV@
+Environment=PYTHONNOUSERSITE=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=20s
+Restart=no
+StandardOutput=journal
+StandardError=journal
+User=@USER@
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+ExecStart=@RELEASE@/.venv/bin/python -B -I @RELEASE@/scripts/run_job.py --job network-observer --binding @CONFIG_ROOT@/scheduled-clock-policy/clock-binding.json --state-root @STORE_ROOT@/state/scheduled-clock-policy --run -- --profile @NETWORK_PROFILE@

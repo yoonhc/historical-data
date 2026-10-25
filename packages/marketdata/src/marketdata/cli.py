@@ -8,11 +8,13 @@ import time
 import tomllib
 from pathlib import Path
 
+from . import job_clock as jc
 from .aggtrade_stream import capture, stream_status
 from .aggtrades import collect_rest, compare_candles, compare_sources, read_trades
 from .backfill import backfill_set
 from .backup import create_backup, restore_backup, storage_report, verify_backup
 from .binance import SourceError, archive_units, archive_url
+from .clock_evidence import query_root as clock_evidence_query
 from .depth import replay as depth_replay
 from .depth import status as depth_status
 from .depth_stream import capture as depth_capture
@@ -122,6 +124,10 @@ def parser():
         default=1,
         help="Release the writer between archive/REST batches and pause this long",
     )
+    p = sub.add_parser(
+        "clock-evidence", help="Query preserved sampled clock evidence for a collection"
+    )
+    p.add_argument("--collection-id", required=True)
     sub.add_parser("validate")
     p = sub.add_parser(
         "maintenance", help="Apply verified packing; daily mode validates and backs up"
@@ -364,6 +370,10 @@ def main(argv=None):
     args = parser().parse_args(argv)
     store = collector = None
     try:
+        if args.command == "clock-evidence":
+            result = clock_evidence_query(args.root, args.collection_id)
+            emit(result)
+            return 0 if result["evidence_state"] == "available" else 2
         if args.command in {"backup-verify", "restore", "storage"}:
             if args.command == "backup-verify":
                 result = verify_backup(args.path)
@@ -414,6 +424,12 @@ def main(argv=None):
                 ok = result["healthy"]
                 if args.report:
                     atomic_write(args.report, json_bytes(result))
+            if args.command == "maintenance" and args.mode == "hourly":
+                history = (
+                    store.root
+                    / f"reports/maintenance/{utc(result['started_at']):%Y-%m-%d}/{result['id']}.json"
+                )
+                jc.finished("pack", result, files=[history])
             emit(result)
             return 0 if ok else 2
         if args.command.startswith("pack-"):
@@ -514,14 +530,19 @@ def main(argv=None):
         elif args.command == "oi-quality":
             if bool(args.start) != bool(args.end) or not 1 <= args.days <= 31:
                 raise DataError("Supply both --start/--end, or --days between 1 and 31")
+            time_point = jc.active().point("oi_quality_scope") if jc.active() else None
+            selected_day = jc.active().pin_day("oi_quality_day", time_point) if time_point else None
             end = (
                 utc(args.end)
                 if args.end
+                else utc(selected_day)
+                if selected_day
                 else now().replace(hour=0, minute=0, second=0, microsecond=0)
             )
             start = utc(args.start) if args.start else end - args.days * DAY
             result = quality_report(store, start, end, reference_shift=args.reference_shift)
             output = write_report(result, args.output or store.root / "reports/oi-quality")
+            jc.finished("oi-quality", result, files=[output / "report.json"])
             emit(
                 {
                     "report_id": result["report_id"],
@@ -678,6 +699,27 @@ def main(argv=None):
                         atomic_write(args.report, json_bytes(result))
                 else:
                     raise DataError("Unknown command")
+        if args.command == "update":
+            jc.finished(
+                "oi",
+                result,
+                records=[
+                    {
+                        "path": str(store.root / "state/catalog.sqlite"),
+                        "table": "sync_runs",
+                        "id": row["run_id"],
+                    }
+                    for row in result
+                ],
+            )
+        elif args.command == "oi-probe":
+            jc.finished(
+                "oi-probe",
+                result,
+                files=[store.root / "state/oi-probe-latest.json"]
+                if result.get("source_id")
+                else [],
+            )
         emit(result)
         return 2 if incomplete(result) else 0
     except (DataError, SourceError, OSError, KeyError, sqlite3.Error, json.JSONDecodeError) as exc:

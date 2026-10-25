@@ -1,0 +1,26 @@
+[Unit]
+Description=Parallel restic archive of completed marketdata checkpoints
+Requires=marketdata-jobs-clock-ready.service
+After=marketdata-jobs-clock-ready.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=@USER_HOME@
+EnvironmentFile=@ARCHIVE_ENV@
+Environment=PYTHONNOUSERSITE=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=6h
+KillSignal=SIGINT
+TimeoutStopSec=120s
+Restart=no
+StandardOutput=journal
+StandardError=journal
+User=@USER@
+Environment=PYTHONDONTWRITEBYTECODE=1
+ProtectClock=yes
+ExecStart=@RELEASE@/.venv/bin/python -B -I @RELEASE@/scripts/run_job.py --job restic-archive --binding @CONFIG_ROOT@/scheduled-clock-policy/clock-binding.json --state-root @STORE_ROOT@/state/scheduled-clock-policy --run -- --profile @ARCHIVE_PROFILE@ run

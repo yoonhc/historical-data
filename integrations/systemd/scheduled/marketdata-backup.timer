@@ -1,0 +1,10 @@
+[Unit]
+Description=Validate market data and create a daily verified backup
+
+[Timer]
+OnCalendar=*-*-* 04:10:00 UTC
+Persistent=true
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target

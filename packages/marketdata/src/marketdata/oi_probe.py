@@ -10,6 +10,7 @@ from uuid import uuid4
 
 import httpx
 
+from . import job_clock as jc
 from .binance import Fetcher, SourceError, rest_url
 from .domain import DataError, Key, WriterBusy, json_bytes, micros, now, sha256, utc
 from .normalize import normalize_rest
@@ -75,9 +76,24 @@ def probe_once(store, fetcher=None, *, clock=now, monotonic=time.monotonic):
         except BlockingIOError as exc:
             raise WriterBusy("Another OI probe is running") from exc
         latest = store.root / "state/oi-probe-latest.json"
-        current = utc(clock())
+        observation = jc.active().point("oi_probe_target") if jc.active() else None
+        if observation:
+            observation.grid(300)
+        current = observation.lower if observation else utc(clock())
+        requested = observation.center if observation else current
         if latest.exists():
             previous = json.loads(latest.read_bytes())
+            pending = previous.get("pending_clock_cooldown")
+            if pending and observation:
+                error = SourceError(
+                    "retained cooldown", pending["status"], headers=pending["headers"]
+                )
+                previous["cooldown_until"] = observation.upper + timedelta(
+                    seconds=retry_delay(error, observation.upper)
+                )
+                previous.pop("pending_clock_cooldown")
+                previous["cooldown_clock_observation"] = observation.evidence
+                atomic_write(latest, json_bytes(previous))
             until = previous.get("cooldown_until")
             if until and current < utc(until):
                 return {"state": "cooldown", "cooldown_until": until, "complete": False}
@@ -93,9 +109,10 @@ def probe_once(store, fetcher=None, *, clock=now, monotonic=time.monotonic):
         fetcher = fetcher or Fetcher(client, retries=0, max_bytes=1_000_000)
         receipt = {
             "version": PROBE_VERSION,
+            **({"clock_observation": observation.evidence} if observation else {}),
             "query_policy": "target_strictly_inside_request_time_end",
             "probe_id": uuid4().hex,
-            "requested_at": current,
+            "requested_at": requested,
             "query_start": start,
             "query_end": end,
             "target_label": target,
@@ -113,13 +130,30 @@ def probe_once(store, fetcher=None, *, clock=now, monotonic=time.monotonic):
                 status=exc.status,
                 error=str(exc),
                 cooldown_until=received + timedelta(seconds=retry_delay(exc, received)),
+                **(
+                    {"pending_clock_cooldown": {"status": exc.status, "headers": dict(exc.headers)}}
+                    if jc.active()
+                    else {}
+                ),
             )
         finally:
             if client:
                 client.close()
         elapsed = monotonic() - tick
+        observation_failure = None
         receipt.update(received_at=received, elapsed_seconds=elapsed)
-        receipt["clock_flags"] = clock_flags(current, received, elapsed, headers)
+        receipt["clock_flags"] = clock_flags(requested, received, elapsed, headers)
+        if jc.active():
+            try:
+                receipt["clock_at_receive"] = jc.active().point("oi_probe_receive").evidence
+                receipt["utc_quality_known"] = True
+            except (jc.ClockDeferred, jc.ClockFailure) as exc:
+                receipt["utc_quality_known"] = False
+                receipt["clock_flags"].append("current_clock_unavailable")
+                receipt["clock_reason"] = str(exc)
+                if isinstance(exc, jc.ClockFailure):
+                    observation_failure = exc
+                    receipt["clock_failure"] = True
         if receipt["state"] == "ok":
             try:
                 rows = parse_probe_rows(body, sha256(body), received, start, end)
@@ -138,4 +172,8 @@ def probe_once(store, fetcher=None, *, clock=now, monotonic=time.monotonic):
             )
         result = {**receipt, "source_id": source_id, "url": url}
         atomic_write(latest, json_bytes(result))
+        if observation_failure is not None:
+            # Keep a received response and its server cooldown even if monitoring
+            # failed. Propagate that failure after releasing the data writer.
+            raise observation_failure
         return result

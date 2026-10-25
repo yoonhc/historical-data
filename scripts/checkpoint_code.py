@@ -17,7 +17,21 @@ SCRIPT_FILES = (
     "scripts/checkpoint_code.py",
     "scripts/retire_checkpoints.py",
     "scripts/archive_backups.py",
+    "scripts/archive_output.py",
+    "scripts/run_job.py",
     "scripts/restic_trial.py",
+    "scripts/checkpoint_schedule.py",
+    "scripts/run_checkpoint_schedule.py",
+    "scripts/restic_schedule.py",
+    "scripts/clock_retirement.py",
+    "scripts/retirement_clock.py",
+    "scripts/run_clock_retirement.py",
+    "scripts/render_retirement_units.py",
+    "scripts/checkpoint_evidence.py",
+    "scripts/run_evidenced_backup.py",
+    "scripts/run_evidenced_archive.py",
+    "integrations/systemd/marketdata-checkpoint-retirement.service",
+    "integrations/systemd/marketdata-checkpoint-retirement.timer",
 )
 DECLARATIONS = ("pyproject.toml", "packages/marketdata/pyproject.toml", "uv.lock")
 

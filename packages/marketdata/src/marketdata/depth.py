@@ -7,6 +7,7 @@ from uuid import uuid4
 import pyarrow as pa
 import pyarrow.parquet as pq
 
+from .clock_evidence import collection_context, finish_context
 from .domain import DataError, from_epoch, json_bytes, now, number, sha256, utc
 from .schema import TIME, VALUE
 from .store import atomic_write
@@ -428,6 +429,7 @@ def start_collection(store, details):
         "kind": "websocket",
         "started_at": now(),
         **details,
+        **collection_context("websocket"),
     }
     with store.writer(timeout=60), store.db:
         store.db.execute(
@@ -446,6 +448,7 @@ def start_collection(store, details):
 
 
 def save_collection(store, report, state):
+    finish_context(report, state)
     report.update(state=state, updated_at=now())
     with store.writer(timeout=60), store.db:
         store.db.execute(
